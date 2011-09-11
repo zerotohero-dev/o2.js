@@ -1,5 +1,7 @@
 # So What's Next?
 
+- remove global "alises" in modules, instead add cached references inside
+  module functions to speed things up. 
 - Write a formatting guideline, on what conventions are used in o2.js
 (indendations, naming conventions, spaces etc.)
 - Prepare unit tests
