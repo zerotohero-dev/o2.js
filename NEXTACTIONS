@@ -1,0 +1,11 @@
+# So What's Next?
+
+- Write a formatting guideline, on what conventions are used in o2.js
+(indendations, naming conventions, spaces etc.)
+- Prepare unit tests
+- Identify target platforms (my aim is to support IE7+, and to hell
+with IE6)
+- Minor feature implementations and refactoring.
+- Add documentation.
+- Add examples.
+- Keep this list up-to-date.
