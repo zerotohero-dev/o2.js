@@ -65,13 +65,15 @@ if(!o2.DomHelper) {
      */
     me.addStyle = function(obj, style) {
 
+        var toCamelCaseCached = toCamelCase;
+        
         if(!obj || typeof obj != 'object') {
             return;
         }
 
         for(var key in style) {
             if(style.hasOwnProperty(key)) {
-                obj.style[toCamelCase(key)] = style[key];
+                obj.style[toCamelCaseCached(key)] = style[key];
             }
         }
 
