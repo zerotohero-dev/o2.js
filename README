@@ -1,0 +1,57 @@
+________________________________________________________________________________
+
+About Volkan Özçelik
+________________________________________________________________________________
+
+It's me: Volkan! Jack of all Trades, Sensei of JavaScript ;)
+
+Since 2003, I've been doing front-end development on client-heavy AJAX web 
+applications. 
+
+Currently, I'm a *VP of Technology* at http://grou.ps/, a well-known 
+do-it-yourself social networking platform that allows people to come together
+and form interactive communities around a shared interest or affiliation. 
+
+Before that, I was a *JavaScript Engineer* at http://www.livego.com/, a globally 
+known social mash-up. 
+
+Before that, I was the *Chief Technology Officer* of a business network 
+(cember.net) which was acquired by Xing AG for around 4.2M Euros. 
+
+See my linkedin profile to find more about me: 
+http://linkedin.com/in/volkanozcelik 
+
+I also share worth-following bits an pieces on twitter:
+http://twitter.com/linkibol
+________________________________________________________________________________
+
+About o2.js
+________________________________________________________________________________
+
+Up till now, I've used various JavaScript structures, analyzed almost all of 
+the popular JavaScript frameworks, and have built a dozen of JavaScript 
+libraries, from the ground up, myself.
+
+Front-end development and front-end performance optimization has always been my 
+passion. And at o2.js, I aim to reflect this passion.
+
+With o2.js, I'll be diving deep into the realm of JavaScript, while  trying to 
+seek out mostly library-independent solutions. I will be sharing my experiences
+along the way at http://o2js.com/
+
+*Seriously, though: what's with the "o2" thing?*
+
+It’s geekish — you know ;) .
+
+“o2” is the chemical symbol of “oxygen“.
+
+In the land of heavy-weight JavaScript libraries, o2.js will be like fresh air:
+
+    * It will be fast,
+    * it will be flexible,
+    * it will be reliable.
+
+We will be building all of our examples around the “o2” namespace and, 
+as time goes by, it will evolve to a modular, lightweight utility package.
+
+Let us get our hands dirty... and we'll see how it goes along ;)
