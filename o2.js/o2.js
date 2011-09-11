@@ -1,0 +1,149 @@
+/*global window*/
+
+/*!
+* Copyright © by Volkan Özçelik - http://o2js.com/
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+*/
+
+/**
+ * <b>o2.js</b>
+ * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ * @timestamp
+ * @version 0.23.201109111412
+ * @author Volkan Ozcelik
+ * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ */
+
+/**
+ * Root namespace &ndash; magic goes here ;)
+ * @namespace o2
+ */
+var o2 = {
+    
+    /**
+     * @function nill
+     *
+     * <p>An empty function.</p>
+     */
+    nill : function() {
+    },
+
+    /**
+     * @property {String} version
+     *
+     * <p>Project version.</p>
+     */
+    version : '0.23',
+
+    /**
+     * <p>Project build number.</p>
+     *
+     * @property {String} build
+     */
+    build : '201109111412',
+
+    /**
+     * @function {static} $
+     *
+     * <p>An alias for <code>document.getElementById</code>.</p>
+     *
+     * @param {Object} obj - the id to check.
+     * @return document.getElementById(obj) if obj is a <code>String</code>;
+     * obj itself otherwise.
+     * @throws {Exception} if obj is <code>undefined</code>.
+     */
+    $ : function(obj, UNDEFINED) {
+        
+        if(obj === UNDEFINED) {
+            throw 'o2.$: Object is not defined';
+        }
+
+        if( typeof obj == 'string') {
+            return document.getElementById(obj);
+        }
+
+        return obj ? obj : null;
+
+    },
+
+    /**
+     * @function {static} t
+     *
+     * <p>A <code>getElementsByTagName</code> wrapper.</p>
+     *
+     * @param {String} tagName - the name of the tag to search.
+     * @param {DOMNode} parent - (optional defaults to <code>document</code>) the
+     * parent container to search.
+     * @return a collection of matching elements.
+     */
+    t : function(tagName, parent) {
+
+        parent = parent || document;
+
+        return parent.getElementsByTagName(tagName);
+
+    },
+
+    /**
+     * @function {static} tt
+     * <p>Acts similar to {link o2.t} -- with one exception: The method return
+     * the first matched node, instead of returning a node collection.</p>
+     * @param {String} tagName - the name of the tag to search.
+     * @param {DOMNode} parent - (optional defaults to <code>document</code>) the
+     * parent container to search.
+     * @return the first matched element if found; <code>null</code> otherwise.
+     */
+    tt : function(tagName, parent) {
+
+        var result = o2.t(tagName, parent);
+
+        return result ? result[0] : null;
+
+    },
+
+    /**
+     * @function {static} ready
+     *
+     * <p>An alias for <code>o2.DomHelper.ready</code>.</p>
+     *
+     * @param {Function} callback - The callback to execute when DOM is ready.
+     */
+    ready : function(callback) {
+
+        o2.DomHelper.ready(callback);
+
+    },
+
+    /**
+     * @function {static} load
+     *
+     * <p>An alias for <code>o2.EventHandler.addEventListener(window, 'load',
+     * callback)</code>.</p>
+     *
+     * @param {Function} callback - The callback to execute when window is
+     * loaded.
+     */
+    load : function(callback) {
+
+        o2.EventHandler.addEventListener(window, 'load', callback);
+
+    }
+
+};
