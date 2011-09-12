@@ -1,6 +1,5 @@
 /*global window, o2 */
 
-
 if(!o2.StringHelper) {
     o2.StringHelper = {};
 }
@@ -123,7 +122,8 @@ if(!o2.StringHelper) {
         //VMERGE: merge with fw.
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
         str = ['', str].join('');
-        var map = shouldPreserveAmpersands ? config.map.xssEncodeNoAmp : config.map.xssEncode;
+        var config = config.map;
+        var map = shouldPreserveAmpersands ? config.xssEncodeNoAmp : config.xssEncode;
         var mapItem = null;
 
         for(var i = 0, len = map.length; i < len; i++) {
@@ -203,10 +203,9 @@ if(!o2.StringHelper) {
      * @function {static} o2.StringHelper.encodeSafeHtml
      *
      * <p>Encodes the <code>String</code> by converting it into a text node and
-     * returning
-     * the node's value.</p>
+     * returning the node's value.</p>
      *
-     * @param {String} str - the <code>String</code> to process
+     * @param {String} str - the <code>String</code> to process.
      * @return the processed <code>String</code>.
      */
     me.encodeSafeHtml = function(str) {

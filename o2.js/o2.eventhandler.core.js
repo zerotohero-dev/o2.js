@@ -1,23 +1,43 @@
 /*global window, o2*/
 
 /*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
+* This program is distributed under the terms of the MIT license.
+* Please see the LICENSE file for details.
+*/
 
 /**
  * @module o2.eventhandler.core
  * @requires o2
+ * @requires o2.stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
 ( function(o2, window, UNDEFINED) {
+
+    /*
+     * Module configuration.
+     */
+    var config = {
+        constants : {
+            text : {
+                err : {
+                    CALLBACK_NOT_DEFINED : '{0}: Callback is not defined!'
+                }
+            }
+        }
+    };
+
+    /*
+     * Aliases.
+     */
+    var $ = o2.$;
+    var format = o2.StringHelper.format;
 
     /**
      * @class {static} o2.EventHandler
@@ -100,31 +120,37 @@
         /**
          * @function {static} o2.EventHandler.addEventListener
          *
-         * <p>Adds a new event listener to the DOM Node.</p>
+         * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
          *
-         * @param {DomNode} obj - the object the evet shall be attached.
+         * @param {DomNode} node - the <strong>DOM</strong> object (or its
+         * <code>String</code> id) the evet shall be attached.
          * @param {String} evt - the name of the event (like "click",
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
          * @throws {Exception} if <strong>fn</strong> callback is not defined.
          */
-        addEventListener : function(obj, evt, fn) {
-            /**/
-            obj = o2.$(obj);
+        addEventListener : function(node, evt, fn) {
+
+            var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
+            var kCallbackNotDefined = format(kCallbackTemplate, 'addEventListener');
+
+            var obj = o2.$(node);
 
             if(!obj) {
                 return;
             }
 
             if(obj.addEventListener) {
-                o2.EventHandler.addEventListener = function(obj, evt, fn) {
+                o2.EventHandler.addEventListener = function(node, evt, fn) {
+
+                    var obj = o2.$(node);
 
                     if(!obj) {
                         return;
                     }
 
                     if(!fn) {
-                        throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                        throw kCallbackNotDefined;
                     }
 
                     //
@@ -147,14 +173,16 @@
             }
 
             if(obj.attachEvent) {
-                o2.EventHandler.addEventListener = function(obj, evt, fn) {
+                o2.EventHandler.addEventListener = function(node, evt, fn) {
+
+                    var obj = o2.$(node);
 
                     if(!obj) {
                         return;
                     }
 
                     if(!fn) {
-                        throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                        throw kCallbackNotDefined;
                     }
 
                     var onEvent = ['on', evt].join('');
@@ -168,14 +196,16 @@
                 return;
             }
 
-            o2.EventHandler.addEventListener = function(obj, evt, fn) {
+            o2.EventHandler.addEventListener = function(node, evt, fn) {
+
+                var obj = o2.$(node);
 
                 if(!obj) {
                     return;
                 }
 
                 if(!fn) {
-                    throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                    throw kCallbackNotDefined;
                 }
 
                 var onEvent = ['on', evt].join('');
@@ -192,27 +222,35 @@
          *
          * <p>Removes an already-added new event listener from the DOM Node.</p>
          *
-         * @param {DomNode} obj - the object the evet shall be removed.
+         * @param {DomNode} node - the DOM object (or its <code>String</code>
+         * reference) the evet shall be removed.
          * @param {String} evt - the name of the event (like "click",
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
          * @throws {Exception} if <strong>fn</strong> callback is not defined.
          */
-        removeEventListener : function(obj, evt, fn) {
+        removeEventListener : function(node, evt, fn) {
+
+            var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
+            var kCallbackNotDefined = format(kCallbackTemplate, 'removeEventListener');
+
+            var obj = o2.$(node);
 
             if(!obj) {
                 return;
             }
 
             if(obj.removeEventListener) {
-                o2.EventHandler.removeEventListener = function(obj, evt, fn) {
+                o2.EventHandler.removeEventListener = function(node, evt, fn) {
+
+                    var obj = o2.$(node);
 
                     if(!obj) {
                         return;
                     }
 
                     if(!fn) {
-                        throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                        throw kCallbackNotDefined;
                     }
 
                     obj.removeEventListener(evt, fn, false);
@@ -226,14 +264,16 @@
             }
 
             if(obj.detachEvent) {
-                o2.EventHandler.removeEventListener = function(obj, evt, fn) {
+                o2.EventHandler.removeEventListener = function(node, evt, fn) {
+
+                    var obj = o2.$(node);
 
                     if(!obj) {
                         return;
                     }
 
                     if(!fn) {
-                        throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                        throw kCallbackNotDefined;
                     }
 
                     var onEvent = ['on', evt].join('');
@@ -247,14 +287,16 @@
                 return;
             }
 
-            o2.EventHandler.removeEventListener = function(obj, evt, fn) {
+            o2.EventHandler.removeEventListener = function(node, evt, fn) {
+
+                var obj = o2.$(node);
 
                 if(!obj) {
                     return;
                 }
 
                 if(!fn) {
-                    throw 'groups.framework.EventHandler.addEventListener: callback is not defined!';
+                    throw kCallbackNotDefined;
                 }
 
                 var onEvent = ['on', evt].join('');

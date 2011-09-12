@@ -17,7 +17,9 @@ if(!o2.StringHelper) {
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(o2, window, UNDEFINED) {
+    
+    var me = o2.StringHelper;
 
     /*
      * Module configuration.
@@ -106,4 +108,4 @@ if(!o2.StringHelper) {
 
     };
 
-}(o2.StringHelper, this));
+}(o2, this));

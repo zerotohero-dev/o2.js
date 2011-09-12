@@ -11,7 +11,7 @@
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  * @timestamp
- * @version 0.23.201109111412
+ * @version 0.23.201109120859
  * @author Volkan Ozcelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -42,7 +42,7 @@ var o2 = {
      *
      * @property {String} build
      */
-    build : '201109111412',
+    build : '201109120859',
 
     /**
      * @function {static} $

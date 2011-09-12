@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
@@ -43,9 +43,10 @@
             if(index == -1) {
                 return args;
             }
-            href = href.substring(index + 1);
 
-            var nameValuePairs = href.split('&');
+            var query = href.substring(index + 1);
+            var nameValuePairs = query.split('&');
+
             var nameValuePair = null;
 
             for(var i = 0; i < nameValuePairs.length; i++) {
