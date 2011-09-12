@@ -20,6 +20,7 @@
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
  */
+//TODO: create closure and name this window.o2
 var o2 = {
     
     /**
@@ -57,6 +58,7 @@ var o2 = {
     $ : function(obj, UNDEFINED) {
         
         if(obj === UNDEFINED) {
+            //TODO: to config.
             throw 'o2.$: Object is not defined';
         }
 
