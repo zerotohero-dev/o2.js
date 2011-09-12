@@ -19,3 +19,7 @@ Each o2.js module has the following basic structure.
 //enclose JavaScript objects in <code>...</coce>
 * @param {DomNode} node - the DOM object (or its <code>String</code>
 * reference) the evet shall be removed.
+
+comment // and a space after -- proper sentence.
+        // Open the connection.
+        xhr.open(verb, url, isAsync);

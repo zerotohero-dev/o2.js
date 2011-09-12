@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -49,17 +49,16 @@
             },
             GUID_MULTIPLIER : 10000
         },
-        progId : ['Msxml2.XMLHTTP',
-        /**/
-        'Microsoft.XMLHTTP',
-        /**/
-        'Msxml2.XMLHTTP.7.0',
-        /**/
-        'Msxml2.XMLHTTP.6.0',
-        /**/
-        'Msxml2.XMLHTTP.5.0',
-        /**/
-        'Msxml2.XMLHTTP.3.0']
+        // @formatter:off
+        progId : [
+            'Msxml2.XMLHTTP',
+            'Microsoft.XMLHTTP',
+            'Msxml2.XMLHTTP.7.0',
+            'Msxml2.XMLHTTP.6.0',
+            'Msxml2.XMLHTTP.5.0',
+            'Msxml2.XMLHTTP.3.0'
+       ]
+       // @formatter:on
     };
 
     /*
@@ -122,7 +121,7 @@
             return;
         }
 
-        //to avoid memory leaks
+        // To avoid memory leaks.
         xhr.onreadystatechange = o2.nill;
     }
 
@@ -323,8 +322,6 @@
 
         // name1=value1&name2=value2&name3=value3 (for POST requests)
         var postQuery = isPost ? parametrizedQuery : '';
-        function haydar() {
-        }
 
         // A unique string to prevent caching.
         var guid = generateGuid();
