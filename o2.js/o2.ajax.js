@@ -3,6 +3,7 @@
 /**
  * @module o2.ajax.core
  * @requires o2
+ * @requires o2.stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -60,6 +61,13 @@
        ]
        // @formatter:on
     };
+
+    /*
+     * Aliases.
+     */
+    var generateGuid = o2.StringHelper.generateGuid;
+    var concat = o2.StringHelper.concat;
+    var nill = o2.nill;
 
     /*
      * <p>Creates a brand new <code>XmlHttpRequest</code> object.</p>
@@ -122,7 +130,7 @@
         }
 
         // To avoid memory leaks.
-        xhr.onreadystatechange = o2.nill;
+        xhr.onreadystatechange = nill;
     }
 
     /*
@@ -133,7 +141,7 @@
      */
     function processCallbacks(xhr, callbacks) {
 
-        var nill = o2.nill;
+        var nillCached = nill;
         var constants = config.constants;
 
         var kComplete = constants.readystate.COMPLETE;
@@ -141,9 +149,9 @@
         var kCached = constants.status.CACHED;
         callbacks = callbacks || {};
 
-        var oncomplete = callbacks.oncomplete || nill;
-        var onerror = callbacks.onerror || nill;
-        var onexception = callbacks.onexception || nill;
+        var oncomplete = callbacks.oncomplete || nillCached;
+        var onerror = callbacks.onerror || nillCached;
+        var onexception = callbacks.onexception || nillCached;
 
         var status = xhr.status;
         var isSuccess = status == kOk || status == kCached;
@@ -185,13 +193,14 @@
             return;
         }
 
-        var nill = o2.nill;
+        var nillCached = o2.nill;
 
-        var oncomplete = callbacks.oncomplete ? callbacks.oncomplete : nill;
-        var onerror = callbacks.onerror ? callbacks.onerror : nill;
-        var onexception = callbacks.onexception ? callbacks.onexception : nill;
+        var oncomplete = callbacks.oncomplete ? callbacks.oncomplete : nillCached;
+        var onerror = callbacks.onerror ? callbacks.onerror : nillCached;
+        var onexception = callbacks.onexception ? callbacks.onexception : nillCached;
 
         xhr.onreadystatechange = function() {
+
             var status = null;
             var isSuccess = false;
 
@@ -204,6 +213,7 @@
             if(xhr.readyState == kComplete) {
                 processCallbacks(xhr, callbacks);
             }
+
         };
 
 
@@ -273,24 +283,6 @@
         }
 
         return buffer.join('&').replace(/%20/g, '+');
-
-    }
-
-    /*
-     * Copied from o2.stringhelper.core to eliminate cross-module dependency.
-     */
-    function generateGuid() {
-
-        return [(new Date()).getTime(), Math.floor(config.constants.GUID_MULTIPLIER * Math.random())].join('');
-
-    }
-
-    /*
-     * Copied from o2.stringhelper.core to eliminate cross-module dependency.
-     */
-    function concat() {
-
-        return Array.prototype.slice.call(arguments).join('');
 
     }
 

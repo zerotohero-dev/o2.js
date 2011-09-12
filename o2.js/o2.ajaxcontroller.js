@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -61,14 +61,16 @@
      */
     o2.AjaxController.prototype.update = function(observable, data) {
 
-        if(data.isTimedOut) {
-            // Unregister self from the observable.
-            this.unregister(observable);
-            // Abort the request.
-            this.xhr.abort();
-            // Execute callback.
-            this.ontimeout();
+        if(!data.isTimedOut) {
+            return;
         }
+
+        // Unregister self from the observable.
+        this.unregister(observable);
+        // Abort the request.
+        this.xhr.abort();
+        // Execute callback.
+        this.ontimeout();
 
     };
 

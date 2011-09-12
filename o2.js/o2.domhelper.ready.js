@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 if(!o2.DomHelper) {
     o2.DomHelper = {};
 }
@@ -14,14 +9,16 @@ if(!o2.DomHelper) {
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(o2, window, UNDEFINED) {
+
+    var me = o2.DomHelper;
 
     /*
      * Module configuration.
@@ -33,6 +30,11 @@ if(!o2.DomHelper) {
             }
         }
     };
+    
+    /*
+     * Aliases.
+     */
+    var nill = o2.nill;
 
     /*
      *
@@ -80,7 +82,8 @@ if(!o2.DomHelper) {
         }
 
         flushReadyQueue();
-        checkScrollLeft = o2.nill;
+        //
+        checkScrollLeft =nill;
 
     };
 
@@ -88,7 +91,8 @@ if(!o2.DomHelper) {
 
         window.document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
         flushReadyQueue();
-        onMozDomContentLoaded = o2.nill;
+        //
+        onMozDomContentLoaded = nill;
 
     };
 
@@ -96,7 +100,8 @@ if(!o2.DomHelper) {
 
         window.document.removeEventListener('load', onMozWindowLoad, false);
         flushReadyQueue();
-        onMozWindowLoad = o2.nill;
+        //
+        onMozWindowLoad = nill;
 
     };
 
@@ -107,7 +112,8 @@ if(!o2.DomHelper) {
         }
         window.document.detachEvent('onreadystatechange', onIEDomContentLoaded);
         flushReadyQueue();
-        onIEDomContentLoaded = o2.nill;
+        //
+        onIEDomContentLoaded = nill;
 
     };
 
@@ -115,7 +121,8 @@ if(!o2.DomHelper) {
 
         window.detachEvent('onload', onIEWindowLoaded);
         flushReadyQueue();
-        onIEDomContentLoaded = o2.nill;
+        //
+        onIEDomContentLoaded = nill;
 
     };
 
@@ -132,7 +139,7 @@ if(!o2.DomHelper) {
             window.addEventListener('load', onMozWindowLoad, false);
 
             //Do not process further calls.
-            bindReadyListeners = o2.nill;
+            bindReadyListeners = nill;
 
             return;
         }
@@ -154,7 +161,7 @@ if(!o2.DomHelper) {
             }
 
             // Do not process further calls.
-            bindReadyListeners = o2.nill;
+            bindReadyListeners = nill;
 
             return;
         }

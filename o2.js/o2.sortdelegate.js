@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
@@ -30,8 +30,9 @@
          * <code>String</code>s will be stored alphabeticaly at the bottom, and
          * <code>Number</code>s will be sorted numerically before them.</p>
          */
-        sort : function(a, b, isDescending) {
-            isDescending = !!isDescending;
+        sort : function(a, b, isDesc) {
+            
+            var isDescending = !!isDesc;
 
             if(isNaN(a) && isNaN(b)) {
                 if(a < b) {

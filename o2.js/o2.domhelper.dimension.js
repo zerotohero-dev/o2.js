@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 if(!o2.DomHelper) {
     o2.DomHelper = {};
 }
@@ -14,9 +9,9 @@ if(!o2.DomHelper) {
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -51,8 +46,14 @@ if(!o2.DomHelper) {
                     };
                 }
 
-                var height = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight, d.body.offsetHeight, d.documentElement.offsetHeight, d.body.clientHeight, d.documentElement.clientHeight);
-                var width = Math.max(d.body.scrollWidth, d.documentElement.scrollWidth, d.body.offsetWidth, d.documentElement.offsetWidth, d.body.clientWidth, d.documentElement.clientWidth);
+                // @formatter:off
+                var height = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight, 
+                    d.body.offsetHeight, d.documentElement.offsetHeight, 
+                    d.body.clientHeight, d.documentElement.clientHeight);
+                var width = Math.max(d.body.scrollWidth, d.documentElement.scrollWidth, 
+                       d.body.offsetWidth, d.documentElement.offsetWidth, 
+                       d.body.clientWidth, d.documentElement.clientWidth);
+                // @formatter:on
 
                 return {
                     width : width,

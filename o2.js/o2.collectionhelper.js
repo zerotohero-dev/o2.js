@@ -7,9 +7,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -40,6 +40,9 @@
 
     }
 
+    /*
+     *
+     */
     function isArray(obj) {
 
         return is(obj, config.constants.ecmaScriptType.ARRAY);
@@ -67,7 +70,8 @@
          * <code>toObj</code>.
          */
         merge : function(toObj, fromObj, isRecursive) {
-            isRecursive = !!isRecursive;
+
+            var shouldRecurse = !!isRecursive;
 
             var value = null;
 
@@ -77,12 +81,12 @@
                 if(fromObj.hasOwnProperty(key)) {
                     value = fromObj[key];
 
-                    if(isRecursive && typeof value == 'object') {
+                    if(shouldRecurse && typeof value == 'object') {
                         if( typeof toObj[key] != 'object') {
                             toObj[key] = {};
                         }
 
-                        merge(toObj[key], fromObj[key], isRecursive);
+                        merge(toObj[key], fromObj[key], shouldRecurse);
 
                         continue;
                     }
@@ -185,7 +189,8 @@
          * @return the copied <code>Object</code>.
          */
         copy : function(ar, isDeepCopy) {
-            isDeepCopy = !!isDeepCopy;
+            
+            var shouldDeepCopy = !!isDeepCopy;
 
             var theCopy = isArray(ar) ? [] : {};
 
@@ -195,8 +200,8 @@
                 if(ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(isDeepCopy && ( typeof value == 'object')) {
-                        theCopy[key] = o2.CollectionHelper.copy(value, isDeepCopy);
+                    if(shouldDeepCopy && ( typeof value == 'object')) {
+                        theCopy[key] = o2.CollectionHelper.copy(value, shouldDeepCopy);
                         continue;
                     }
 

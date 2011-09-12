@@ -375,6 +375,7 @@
          * in {@link o2.EventHandler.addEventListener}
          */
         preventDefault : function(evt) {
+
             o2.EventHandler.preventDefault = window.event ? function() {
 
                 window.event.returnValue = false;

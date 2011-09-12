@@ -6,9 +6,9 @@
  * @requires o2.methodhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -20,33 +20,35 @@
      */
     var clone = o2.MethodHelper.bind;
 
-	/**
-	 * @class {static} o2.ObjectHelper
-	 *
-	 * <p>A helper class for <strong>JavaScript</strong> <code>object</code>
-	 * inheritance.</p>
-	 */
-	o2.ObjectHelper = {
+    /**
+     * @class {static} o2.ObjectHelper
+     *
+     * <p>A helper class for <strong>JavaScript</strong> <code>object</code>
+     * inheritance.</p>
+     */
+    o2.ObjectHelper = {
 
-		/**
-		 * @function {static} o2.ObjectHelper.copy
-		 * <p>Copies <code>base</code>'s methods, to <code>child</code>.
-		 */
-		copyMethods: function(child, base) {
+        /**
+         * @function {static} o2.ObjectHelper.copy
+         * <p>Copies <code>base</code>'s methods, to <code>child</code>.
+         */
+        copyMethods : function(child, base) {
 
-			var shouldCopy = false;
+            var shouldCopy = false;
 
-			for(var key in base) {
-				if(base.hasOwnProperty(key)) {
-					shouldCopy = base.hasOwnProperty(key) && typeof base[key] == 'function';
-					if(!shouldCopy) {
-						continue;
-					}
-					child[key] = clone(o2.JsonpState, base[key]);
-				}
-			}
+            for(var key in base) {
+                if(base.hasOwnProperty(key)) {
+                    shouldCopy = base.hasOwnProperty(key) && typeof base[key] == 'function';
 
-		}
+                    if(!shouldCopy) {
+                        continue;
+                    }
 
-	};
+                    child[key] = clone(o2.JsonpState, base[key]);
+                }
+            }
+
+        }
+
+    };
 }(o2, this));

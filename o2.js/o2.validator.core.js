@@ -1,14 +1,13 @@
 /*global o2, window*/
 
-
 /**
  * @module o2.validator.core
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A validation helper.</p>
@@ -56,7 +55,7 @@
         var objectNameStartIndex = 8;
         var trimLastBraceIndex = -1;
         var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
-        
+
         return obj !== UNDEFINED && obj !== null && klass === type;
 
     }
@@ -129,8 +128,11 @@
                     return false;
                 }
 
-                months[1] = ((parseInt(year, 10) % 4 === 0 && parseInt(year, 10) % 100 !== 0) || parseInt(year, 10) % 400 === 0) ? 29 : 28;
+                // @formatter:off
+                months[1] = ((parseInt(year, 10) % 4 === 0 && parseInt(year, 10) % 100 !== 0) || 
+                    parseInt(year, 10) % 400 === 0) ? 29 : 28;
                 maxDay = months[parseInt(month, 10) - 1];
+                // @formatter:on
 
                 if(parseInt(day, 10) > maxDay) {
                     return false;

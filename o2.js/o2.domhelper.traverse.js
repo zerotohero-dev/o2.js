@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 /**
  * @module o2.domhelper.traverse
  * @requires o2
@@ -42,9 +37,10 @@
         if(!target || typeof target != 'object') {
             return null;
         }
-        shouldExcludeSelf = !!shouldExcludeSelf;
+        
+        var isExcluded = !!shouldExcludeSelf;
 
-        if(shouldExcludeSelf) {
+        if(isExcluded) {
             target = target.parentNode;
         }
 
@@ -86,9 +82,10 @@
         if(!obj || typeof obj != 'object') {
             return null;
         }
-        shouldExcludeSelf = !!shouldExcludeSelf;
+        
+        var isExcluded = !!shouldExcludeSelf;
 
-        if(shouldExcludeSelf) {
+        if(isExcluded) {
             obj = obj.parentNode;
         }
 
@@ -130,9 +127,10 @@
         if(!obj || typeof obj != 'object') {
             return null;
         }
-        shouldExcludeSelf = !!shouldExcludeSelf;
+        
+        var isExcluded = !!shouldExcludeSelf;
 
-        if(shouldExcludeSelf) {
+        if(isExcluded) {
             obj = obj.parentNode;
         }
 
@@ -165,9 +163,10 @@
         if(!obj || typeof obj != 'object') {
             return null;
         }
-        shouldExcludeSelf = !!shouldExcludeSelf;
+        
+        var isExcluded = !!shouldExcludeSelf;
 
-        return me.findParentByAttribute(obj, 'id', id, shouldExcludeSelf);
+        return me.findParentByAttribute(obj, 'id', id, isExcluded);
 
     };
 
@@ -185,9 +184,10 @@
         if(!obj || typeof obj != 'object') {
             return null;
         }
-        shouldExcludeSelf = !!shouldExcludeSelf;
+        
+        var isExcluded = !!shouldExcludeSelf;
 
-        return me.findParentWithAttribute(obj, 'id', shouldExcludeSelf);
+        return me.findParentWithAttribute(obj, 'id', isExcluded);
 
     };
 

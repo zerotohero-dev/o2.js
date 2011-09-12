@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 /**
  * @module o2.domhelper.core
  * @requires o2
@@ -125,6 +120,7 @@
                 if(!theNode.parentNode) {
                     return false;
                 }
+                //
                 theNode = theNode.parentNode;
             }
 
@@ -319,16 +315,19 @@
             var nodeValue = '';
             var child = null;
             var shouldRemove = false;
+            
+            var removeEmptyTextNodes = o2.DomHelper.removeEmptyTextNodes;
 
             for( i = 0; i < len; i++) {
                 child = children[i];
 
                 if(child.hasChildNodes()) {
                     if(isRecursive) {
-                        o2.DomHelper.removeEmptyTextNodes(child, true);
+                        removeEmptyTextNodes(child, true);
                     }
                     continue;
                 }
+                //
                 shouldRemove = child.nodeType == kText && regWhitespace.test(child.nodeValue);
 
                 if(shouldRemove) {

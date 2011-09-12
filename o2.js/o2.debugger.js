@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A debugging helper.</p>
@@ -171,19 +171,24 @@
 
             } else if(config.isUsingConsole && !config.outputElement) {
                 return function(value, className) {
+
                     println(value, className);
+
                 };
 
             } else if(!config.isUsingConsole && config.outputElement) {
                 return function(value, className) {
+
                     var debugContent = document.createElement(nodeName);
                     debugContent.className = className;
                     debugContent.innerHTML = value;
                     config.outputElement.appendChild(debugContent);
+
                 };
 
             } else {
                 return function(value) {
+
                 };
 
             }

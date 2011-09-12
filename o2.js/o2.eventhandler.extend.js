@@ -9,15 +9,15 @@ if(!o2.EventHandler) {
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Extension methods for the {@link o2.EventHandler} object.</p>
  */
 ( function(o2, window, UNDEFINED) {
-    
+
     var me = o2.EventHandler;
 
     /*
@@ -33,15 +33,14 @@ if(!o2.EventHandler) {
      * @return the actual <code>DOM Event</code> object.
      */
     var getEventObject = function(evt) {
-        
         getEventObject = window.event ? function() {
-        
+
             return window.event;
-        
+
         } : function(e) {
-        
+
             return e;
-        
+
         };
 
         return getEventObject(evt);
@@ -60,12 +59,13 @@ if(!o2.EventHandler) {
      * <code>y</code> is the distance from the left of the screen.
      */
     me.getMouseCoordinates = function(evt) {
-        
+
         var e = getEventObject(evt);
 
         if(!e) {
             return {
-                x : 0, y : 0
+                x : 0,
+                y : 0
             };
         }
 
@@ -74,20 +74,21 @@ if(!o2.EventHandler) {
 
         if(e.pageX) {
             me.getMouseCoordinates = function(e) {
-        
+
                 if(!e) {
                     return {
-                        x : 0, y : 0
+                        x : 0,
+                        y : 0
                     };
                 }
-        
                 posx = e.pageX || 0;
                 posy = e.pageY || 0;
-        
+
                 return {
-                    x : posx, y : posy
+                    x : posx,
+                    y : posy
                 };
-        
+
             };
 
             return me.getMouseCoordinates(evt);
@@ -95,33 +96,35 @@ if(!o2.EventHandler) {
 
         if(e.clientX) {
             me.getMouseCoordinates = function(e) {
-        
+
                 if(!e) {
                     return {
-                        x : 0, y : 0
+                        x : 0,
+                        y : 0
                     };
                 }
 
                 var clientX = e.clientX || 0;
                 var clientY = e.clientY || 0;
-        
                 posx = clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
                 posy = clientY + document.body.scrollTop + document.documentElement.scrollTop;
 
                 return {
-                    x : posx, y : posy
+                    x : posx,
+                    y : posy
                 };
-        
+
             };
 
             return me.getMouseCoordinates(evt);
         }
 
-        //the current event object neither has pageX, nor clientX defined.
+        // The current event object neither has pageX, nor clientX defined.
         return {
-            x : 0, y : 0
+            x : 0,
+            y : 0
         };
-    
+
     };
 
     /**
@@ -137,7 +140,7 @@ if(!o2.EventHandler) {
      * <code>Integer</code>
      */
     me.getKeyCode = function(evt) {
-    
+
         var e = getEventObject(evt);
 
         if(!e) {
@@ -145,11 +148,11 @@ if(!o2.EventHandler) {
         }
 
         if(e.charCode) {
-    
+
             me.getKeyCode = function(e) {
-    
+
                 return e.charCode;
-    
+
             };
 
             return me.getKeyCode(evt);
@@ -157,9 +160,9 @@ if(!o2.EventHandler) {
 
         if(e.keyCode) {
             me.getKeyCode = function(e) {
-    
+
                 return e.keyCode;
-    
+
             };
 
             return me.getKeyCode(evt);
@@ -167,16 +170,16 @@ if(!o2.EventHandler) {
 
         if(e.which) {
             me.getKeyCode = function(e) {
-    
+
                 return e.which;
-    
+
             };
 
             return me.getKeyCode(evt);
         }
 
         return null;
-    
+
     };
 
     /**
@@ -191,7 +194,7 @@ if(!o2.EventHandler) {
      * <code>false</code> otherwise.
      */
     me.isRightClick = function(evt) {
-    
+
         var e = getEventObject(evt);
 
         //

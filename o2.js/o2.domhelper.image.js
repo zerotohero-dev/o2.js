@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 if(!o2.DomHelper) {
     o2.DomHelper = {};
 }
@@ -14,9 +9,9 @@ if(!o2.DomHelper) {
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Includes image-related <strong>DOM</strong> helper methods.</p>
@@ -41,14 +36,17 @@ if(!o2.DomHelper) {
      * <strong>image</strong> can <strong>not</strong> be loaded successfully.
      */
     me.loadImage = function(url, succesCallback, failureCallback) {
-        //
-        succesCallback = succesCallback || o2.nill;
-        failureCallback = failureCallback || o2.nill;
+
+        var succesCallbackCached = succesCallback || o2.nill;
+        var failureCallbackCached = failureCallback || o2.nill;
+
         var testImg = new Image();
-        testImg.onload = succesCallback;
-        testImg.onerror = failureCallback;
-        testImg.onabort = failureCallback;
+
+        testImg.onload = succesCallbackCached;
+        testImg.onerror = failureCallbackCached;
+        testImg.onabort = failureCallbackCached;
         testImg.src = url;
+
         return testImg;
 
     };

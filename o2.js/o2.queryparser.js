@@ -48,10 +48,12 @@
             var nameValuePairs = query.split('&');
 
             var nameValuePair = null;
+            var kNameIndex = 0;
+            var kValueIndex = 1;
 
             for(var i = 0; i < nameValuePairs.length; i++) {
                 nameValuePair = nameValuePairs[i].split('=');
-                args[nameValuePair[0]] = decodeURIComponent(nameValuePair[1]);
+                args[nameValuePair[kNameIndex]] = decodeURIComponent(nameValuePair[kValueIndex]);
             }
 
             return args;

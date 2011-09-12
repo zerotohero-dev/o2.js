@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 if(!o2.DomHelper) {
     o2.DomHelper = {};
 }
@@ -40,6 +35,7 @@ if(!o2.DomHelper) {
 
 
             me.scrollWindowToBottom();
+
             return;
         }
 
@@ -70,6 +66,7 @@ if(!o2.DomHelper) {
 
 
             me.scrollWindowToTop();
+
             return;
 
         }

@@ -1,10 +1,5 @@
 /*global window, o2*/
 
-/*
- * This program is distributed under the terms of the MIT license.
- * Please see the LICENSE file for details.
- */
-
 if(!o2.DomHelper) {
     o2.DomHelper = {};
 }
@@ -15,9 +10,9 @@ if(!o2.DomHelper) {
  * @requires o2.stringhelper.transform
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A utility package to
@@ -66,7 +61,7 @@ if(!o2.DomHelper) {
     me.addStyle = function(obj, style) {
 
         var toCamelCaseCached = toCamelCase;
-        
+
         if(!obj || typeof obj != 'object') {
             return;
         }
@@ -249,7 +244,6 @@ if(!o2.DomHelper) {
         }
 
         obj.style.display = obj.o2_oldDisplay ? obj.o2_oldDisplay : '';
-
         //
         delete obj.o2_oldDisplay;
 

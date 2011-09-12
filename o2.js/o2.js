@@ -16,6 +16,7 @@
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 ( function(window, UNDEFINED) {
+
     /**
      * Root namespace &ndash; magic goes here ;)
      * @namespace o2
@@ -42,7 +43,7 @@
          *
          * @property {String} build
          */
-        build : '201109120859',
+        build : '201109121444',
 
         /**
          * @function {static} $
@@ -81,9 +82,10 @@
          * @return a collection of matching elements.
          */
         t : function(tagName, parent) {
-            parent = parent || document;
+            
+            var p = parent || document;
 
-            return parent.getElementsByTagName(tagName);
+            return p.getElementsByTagName(tagName);
 
         },
 

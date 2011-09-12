@@ -5,9 +5,9 @@
  * @requires o2.ajaxstate
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
@@ -61,4 +61,5 @@
             }
         }
     }
+
 }(o2, this));

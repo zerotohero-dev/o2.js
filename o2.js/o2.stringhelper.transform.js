@@ -110,16 +110,16 @@ if(!o2.StringHelper) {
      * than <code>maxLength</code>.</p>
      *
      * @param {String} str - the <code>String</code> to process.
-     * @param {Integer} maxLength - Optional (defaults to
+     * @param {Integer} maxLen - Optional (defaults to
      * {@link o2.StringHelper.config.constants.TRUNCATION_LENGTH},
      * maximum <code>String</code> length that's allowed without truncation.
      * @return the processed <code>String</code>.
      */
-    me.truncate = function(str, maxLength) {
+    me.truncate = function(str, maxLen) {
 
         var ellipsis = config.constants.text.ELLIPSIS;
         var eLen = ellipsis.length;
-        maxLength = maxLength ? maxLength : config.constants.TRUNCATION_LENGTH;
+        var maxLength = maxLen ? maxLen : config.constants.TRUNCATION_LENGTH;
 
         if(str.length > maxLength) {
             return [str.substr(0, maxLength - eLen), ellipsis].join('');
@@ -145,7 +145,9 @@ if(!o2.StringHelper) {
         var constants = config.constants;
 
         return input.replace(constants.regExp.CAMEL_CASE, function(match) {
+            
             return match.toUpperCase().replace(constants.text.DASH, '');
+        
         });
 
     };
@@ -164,7 +166,9 @@ if(!o2.StringHelper) {
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
+            
             return [constants.text.DASH, match.toLowerCase()].join('');
+        
         });
 
     };
@@ -183,7 +187,9 @@ if(!o2.StringHelper) {
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
+            
             return [constants.text.UNDERSCORE, match.toLowerCase()].join('');
+        
         });
 
     };

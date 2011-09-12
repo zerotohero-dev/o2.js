@@ -1,6 +1,5 @@
 /*global o2, window*/
 
-
 /**
  * @module o2.jsonpcontroller
  * @requires o2.ajaxcontroller
