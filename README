@@ -41,12 +41,27 @@ and re-usable JavaScript framework.
 Hope you like the outcome ;)
 ________________________________________________________________________________
 
-Supported Platforms and Operating Systems
+Supported Platforms & User Agents
 ________________________________________________________________________________
 
+o2.js is being designed to run pretty smoothly in almost any device/user agent.
+o2.js utilizes modern features whenever possible, while gracefully degrading to 
+slower alternatives for the less capable browsers. For instance, o2.js DomHelper 
+selectors will try to use DOM Level 2 native querySelector method if available,
+and will fall back to a good-old for loop otherwise.
 
-//TODO: complete this.
+o2.js is constantly being developed keeping backwards compatibility in mind.
+Before each major release, o2.js will be unit-tested in *at least* 
+the following browsers/platforms:
 
+    * IE6/Windows IE7/Windows IE8/Windows IE9/Windows
+    * Firefox/Linux (the Most Recent Stable Version)
+    * Opera/Linux (the Most Recent Stable Version)
+    * Google Chrome/Linux (the Most Recent Stable Version)
+    * Firefox/Windows (the Most Recent Stable Version)
+    * Opera/Windows (the Most Recent Stable Version)
+    * Google Chrome/Windows (the Most Recent Stable Version)
+    * Safari/Windows (the Most Recent Stable Version)
 ________________________________________________________________________________
 
 About The Author
