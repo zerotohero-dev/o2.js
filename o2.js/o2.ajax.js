@@ -1,4 +1,4 @@
-/*global window, o2, ActiveXObject*/
+/*global o2, ActiveXObject */
 
 /**
  * @module o2.ajax.core

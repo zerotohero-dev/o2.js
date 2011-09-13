@@ -1,4 +1,4 @@
-/*global o2, window*/
+/*global o2 */
 
 /**
  * @module o2.jsonp

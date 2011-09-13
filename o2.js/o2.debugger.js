@@ -1,4 +1,4 @@
-/*global o2, window, console*/
+/*global o2, console */
 
 /**
  * @module o2.debugger

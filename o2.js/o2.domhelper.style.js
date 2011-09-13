@@ -1,4 +1,4 @@
-/*global window, o2*/
+/*global o2 */
 
 if(!o2.DomHelper) {
     o2.DomHelper = {};

@@ -1,5 +1,3 @@
-/*global window*/
-
 //VMERGE: merge with fw after completing the next milestone.
 
 /**
@@ -43,7 +41,7 @@
          *
          * @property {String} build
          */
-        build : '201109121444',
+        build : '201109131420',
 
         /**
          * @function {static} $

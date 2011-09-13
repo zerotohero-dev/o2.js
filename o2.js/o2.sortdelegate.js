@@ -1,4 +1,4 @@
-/*global window, o2*/
+/*global o2 */
 
 /**
  * @module o2.sortdelegate
