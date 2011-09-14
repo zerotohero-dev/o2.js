@@ -227,6 +227,7 @@
          * if available.
          */
         init : function(outputElement, shouldUseConsole) {
+            var outputNode = o2.$(outputElement);
 
             // Can I use the browser's built-in console?
             //(the double negation !!shouldUseConsole will convert the var to
@@ -236,14 +237,14 @@
             // Is everything ok? -- I should either use the output element, or
             // the console.
             // If I can use neither of them, then it's a fatal situation.
-            var isConfigOk = ((outputElement && outputElement.nodeName) || config.isUsingConsole);
+            var isConfigOk = ((outputNode && outputNode.nodeName) || config.isUsingConsole);
 
             if(!isConfigOk) {
                 throw config.constants.text.ER_CANNOT_INITIALIZE;
             }
 
             // Set the output element
-            config.outputElement = outputElement;
+            config.outputElement = outputNode;
 
             // Successfully initialized.
             config.isInitialized = true;
