@@ -1,0 +1,31 @@
+div.fail {
+    background: #cc0000;
+    padding: 10px;
+    margin: 5px;
+    border: 1px #000000 solid;
+    color: #ffffff;
+}
+
+div.fail b {
+    color: #000000;
+}
+
+div.pass {
+    background: #00cc00;
+    padding: 10px;
+    margin: 5px;
+    border: 1px #000000 solid;
+    color: #ffffff;
+}
+
+div.pass b {
+    color: #000000;
+}
+
+div.log {
+    background: #cccccc;
+    padding: 10px;
+    margin: 5px;
+    border: 1px #666666 solid;
+    color: #000000;
+}
