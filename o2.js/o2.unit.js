@@ -26,7 +26,8 @@
 
         // @formatter:off
         var message = ['All unit tests are complete: ',
-            '(total success: ' , o2.Unit.globalSuccessCount + ', total failure: ' , o2.Unit.globalFailureCount , ')'
+            '(<b>total success</b>: ' , o2.Unit.globalSuccessCount, 
+            ', <b>total failure</b>: ' , o2.Unit.globalFailureCount , ')'
         ].join('');
         // @formatter:on
 
@@ -39,7 +40,7 @@
      */
     function reportFatalError(unitTest) {
 
-        var message = ['FATAL ERROR in Unit test setup: "', unitTest.description, '"'].join('');
+        var message = ['FATAL ERROR in UnitTest setup: "', unitTest.description, '"'].join('');
         unitTest.didAssertion(false, message);
 
     }
@@ -92,7 +93,7 @@
         try {
             o2.Debugger.init(config.TEST_OUTPUT_CONTAINER, config.TEST_SHOULD_USE_CONSOLE);
         } catch(failedToInitializeException) {
-            throw 'o2.Unit.run: Failed to initialize o2.Debugger. No unit tests will be run.';
+            throw 'o2.Unit.run: Failed to initialize o2.Debugger. No "UnitTest"s will be run.';
         }
 
     }
@@ -221,6 +222,9 @@
 
         },
 
+        /**
+         * 
+         */
         run : function() {
 
             initializeDebugger();
