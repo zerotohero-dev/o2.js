@@ -19,6 +19,22 @@
         TEST_SHOULD_USER_CONSOLE : true
     };
 
+    var state = {
+        /**
+         *
+         */
+        tests : [],
+        /**
+         *
+         */
+        globalSuccessCount : 0,
+
+        /**
+         *
+         */
+        globalFailureCount : 0
+    };
+
     /**
      *
      */
@@ -26,8 +42,8 @@
 
         // @formatter:off
         var message = ['All unit tests are complete: ',
-            '(<b>total success</b>: ' , o2.Unit.globalSuccessCount, 
-            ', <b>total failure</b>: ' , o2.Unit.globalFailureCount , ')'
+            '(<b>total success</b>: ' , state.globalSuccessCount, 
+            ', <b>total failure</b>: ' , state.globalFailureCount , ')'
         ].join('');
         // @formatter:on
 
@@ -51,12 +67,13 @@
     function updateTestStatus(unitTest, isSuccess) {
 
         if(isSuccess) {
-            o2.Unit.globalSuccessCount++;
+            state.globalSuccessCount++;
             unitTest.successCount++;
+
             return;
         }
 
-        o2.Unit.globalFailureCount++;
+        state.globalFailureCount++;
         unitTest.failureCount++;
     }
 
@@ -91,9 +108,13 @@
     function initializeDebugger() {
 
         try {
+
             o2.Debugger.init(config.TEST_OUTPUT_CONTAINER, config.TEST_SHOULD_USE_CONSOLE);
+
         } catch(failedToInitializeException) {
+
             throw 'o2.Unit.run: Failed to initialize o2.Debugger. No "UnitTest"s will be run.';
+
         }
 
     }
@@ -119,10 +140,14 @@
     up.execute = function() {
 
         try {
+            
             this.testPlan.apply(this, []);
+        
         } catch(executionException) {
+        
             this.remainingCount = 0;
             reportFatalError(this);
+        
         }
 
     };
@@ -153,13 +178,11 @@
     };
 
     /**
+     * @class {static} o2.Unit
      *
+     * <p>A "unit test" processor class.</p>
      */
     o2.Unit = {
-
-        globalSuccessCount : 0,
-        globalFailureCount : 0,
-        tests : [],
 
         /**
          *
@@ -218,12 +241,12 @@
 
             var totalAssertionCount = testMeta.count;
             var testPlan = testMeta.test;
-            o2.Unit.tests.push(new UnitTest(description, totalAssertionCount, testPlan));
+            state.tests.push(new UnitTest(description, totalAssertionCount, testPlan));
 
         },
 
         /**
-         * 
+         *
          */
         run : function() {
 
@@ -235,35 +258,35 @@
 
                 if(isLocked(activeUnitTest)) {
                     setTimeout(waitForUnitTest, config.TEST_CHECK_TIMEOUT);
+
                     return;
                 }
+
                 //
-                activeUnitTest = o2.Unit.tests.shift();
+                activeUnitTest = state.tests.shift();
 
                 if(!activeUnitTest) {
                     reportGlobalCompletion();
                     activeUnitTest = null;
+
                     return;
                 }
 
                 if(!activeUnitTest instanceof UnitTest) {
                     activeUnitTest = null;
+
                     return;
                 }
 
-                if(activeUnitTest.hasMoreItems()) {
-                    try {
-                        activeUnitTest.execute();
-                    } catch(exception) {
-
-                    }
-
+                if(activeUnitTest.hasMoreItems()) {                    
+                    activeUnitTest.execute();
                     setTimeout(waitForUnitTest, config.TEST_CHECK_TIMEOUT);
+
                     return;
                 }
+
                 //
                 activeUnitTest = null;
-                return;
 
             }, config.TEST_CHECK_TIMEOUT);
 
