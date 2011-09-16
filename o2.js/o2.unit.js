@@ -41,7 +41,7 @@
     function reportGlobalCompletion() {
 
         // @formatter:off
-        var message = ['All unit tests are complete: ',
+        var message = ['All unit tests have been completed: ',
             '(<b>total success</b>: ' , state.globalSuccessCount, 
             ', <b>total failure</b>: ' , state.globalFailureCount , ')'
         ].join('');
