@@ -43,7 +43,7 @@
         // @formatter:off
         var message = ['All unit tests have been completed: ',
             '(<b>total success</b>: ' , state.globalSuccessCount, 
-            ', <b>total failure</b>: ' , state.globalFailureCount , ')'
+            ' , <b>total failure</b>: ' , state.globalFailureCount , ')'
         ].join('');
         // @formatter:on
 
@@ -86,7 +86,7 @@
 
         // @formatter:off
         var message = ['Completed: "', unitTest.description, '": ', 
-            '(success:' , unitTest.successCount, ',fail:', unitTest.failureCount, ')'].join('');
+            '(success: ' , unitTest.successCount, ' , failure: ', unitTest.failureCount, ')'].join('');
         // @formatter:on
 
         assert(isAllSuccess, message);
