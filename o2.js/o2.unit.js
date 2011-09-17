@@ -12,18 +12,37 @@
 
     var log = o2.Debugger.log;
     var assert = o2.Debugger.assert;
+    var initDebugger = o2.Debugger.init;
 
+    /**
+     *
+     */
     var config = {
+
+        /**
+         *
+         */
         TEST_CHECK_TIMEOUT : 100,
+
+        /**
+         *
+         */
         TEST_OUTPUT_CONTAINER : 'Output',
+
+        /**
+         *
+         */
         TEST_SHOULD_USER_CONSOLE : true
+
     };
 
     var state = {
+
         /**
          *
          */
         tests : [],
+
         /**
          *
          */
@@ -33,6 +52,7 @@
          *
          */
         globalFailureCount : 0
+
     };
 
     /**
@@ -85,8 +105,11 @@
         var isAllSuccess = unitTest.failureCount <= 0;
 
         // @formatter:off
-        var message = ['<b>Completed</b>: "', unitTest.description, '": ', 
-            '(<b>success: ' , unitTest.successCount, '</b> , <b>failure: ', unitTest.failureCount, '</b>)'].join('');
+        var message = [
+            '<b>Completed</b>: "', unitTest.description, '": ', 
+            '(<b>success: ' , unitTest.successCount, '</b> , ',
+            '<b>failure: ', unitTest.failureCount, '</b>)'
+        ].join('');
         // @formatter:on
 
         assert(isAllSuccess, message);
@@ -109,7 +132,7 @@
 
         try {
 
-            o2.Debugger.init(config.TEST_OUTPUT_CONTAINER, config.TEST_SHOULD_USE_CONSOLE);
+            initDebugger(config.TEST_OUTPUT_CONTAINER, config.TEST_SHOULD_USE_CONSOLE);
 
         } catch(failedToInitializeException) {
 
@@ -140,14 +163,14 @@
     up.execute = function() {
 
         try {
-            
+
             this.testPlan.apply(this, []);
-        
+
         } catch(executionException) {
-        
+
             this.remainingCount = 0;
             reportFatalError(this);
-        
+
         }
 
     };
@@ -278,7 +301,7 @@
                     return;
                 }
 
-                if(activeUnitTest.hasMoreItems()) {                    
+                if(activeUnitTest.hasMoreItems()) {
                     activeUnitTest.execute();
                     setTimeout(waitForUnitTest, config.TEST_CHECK_TIMEOUT);
 
