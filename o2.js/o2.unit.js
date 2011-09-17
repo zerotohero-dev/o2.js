@@ -13,27 +13,76 @@
     var log = o2.Debugger.log;
     var assert = o2.Debugger.assert;
     var initDebugger = o2.Debugger.init;
+    var format = o2.StringHelper.format;
 
-    /**
+    /*
      *
      */
     var config = {
 
-        /**
+        /*
          *
          */
-        TEST_CHECK_TIMEOUT : 100,
+        TEST_CHECK_INTERVAL : 100,
 
-        /**
+        /*
          *
          */
         TEST_OUTPUT_CONTAINER : 'Output',
 
-        /**
+        /*
          *
          */
-        TEST_SHOULD_USER_CONSOLE : true
+        TEST_SHOULD_USE_CONSOLE : true
 
+    };
+
+    /*
+     *
+     */
+    var errorMessage = {
+
+        /*
+         *
+         */
+        FAILED_TO_INITIALIZE_DEBUGGER : 'Failed to initialize o2.Debugger. No "UnitTest"s will be run!',
+
+        /*
+         *
+         */
+        FATAL_ERROR_IN_UNIT_TEST : 'FATAL ERROR in UnitTest setup: "{0}"',
+
+        /*
+         *
+         */
+        ARGUMENT_COUNT_MISMATCH : '"{0}" expects {1} arguments'
+
+    };
+
+    /*
+     *
+     */
+    var template = {
+        // @formatter:off
+
+        /*
+         * 
+         */
+        UPDATE_TEST_COMPLETION : [
+            '<p><b>Completed</b>: "{0}":</p>', 
+            '<p style="text-align:right">(<b>success: {1}</b> , ',
+            '<b>failure: {2}</b>)</p>'
+        ].join(''),
+
+        /*
+         * 
+         */
+        REPORT_GLOBAL_COMPLETION :  ['<p>All unit tests have been completed:</p>',
+            '<p style="text-align:right">(<b>total success: {0}', 
+            '</b> , <b>total failure: {1}</b>)</p>'
+        ].join('')
+
+        // @formatter:on
     };
 
     var state = {
@@ -58,26 +107,31 @@
     /**
      *
      */
-    function reportGlobalCompletion() {
+    function reportTestCompletion(unitTest) {
 
-        // @formatter:off
-        var message = ['All unit tests have been completed: ',
-            '(<b>total success: ' , state.globalSuccessCount, 
-            '</b> , <b>total failure: ' , state.globalFailureCount , '</b>)'
-        ].join('');
-        // @formatter:on
+        var isAllSuccess = unitTest.failureCount <= 0;
 
-        log(message);
+        var description = unitTest.description;
+        var successCount = unitTest.successCount;
+        var failureCount = unitTest.failureCount;
+
+        var message = format(template.UPDATE_TEST_COMPLETION, description, successCount, failureCount);
+
+        assert(isAllSuccess, message);
 
     }
 
     /**
      *
      */
-    function reportFatalError(unitTest) {
+    function reportGlobalCompletion() {
 
-        var message = ['FATAL ERROR in UnitTest setup: "', unitTest.description, '"'].join('');
-        unitTest.didAssertion(false, message);
+        var successCount = state.globalSuccessCount;
+        var failureCount = state.globalFailureCount;
+
+        var message = format(template.REPORT_GLOBAL_COMPLETION, successCount, failureCount);
+
+        assert(state.globalFailureCount <= 0, message);
 
     }
 
@@ -100,19 +154,35 @@
     /**
      *
      */
-    function updateTestCompletion(unitTest) {
+    function didAssertion(unitTest, isSuccess, message) {
 
-        var isAllSuccess = unitTest.failureCount <= 0;
+        assert(isSuccess, message);
+        updateTestStatus(unitTest, isSuccess);
 
-        // @formatter:off
-        var message = [
-            '<b>Completed</b>: "', unitTest.description, '": ', 
-            '(<b>success: ' , unitTest.successCount, '</b> , ',
-            '<b>failure: ', unitTest.failureCount, '</b>)'
-        ].join('');
-        // @formatter:on
+        unitTest.remainingCount--;
 
-        assert(isAllSuccess, message);
+        if(unitTest.remainingCount <= 0) {
+            reportTestCompletion(unitTest);
+        }
+
+    }
+
+    /**
+     *
+     */
+    function reportFatalError(unitTest) {
+
+        var message = format(errorMessage.FATAL_ERROR_IN_UNIT_TEST, unitTest.description);
+        didAssertion(unitTest, false, message);
+
+    }
+
+    /**
+     *
+     */
+    function hasMoreItems(unitTest) {
+
+        return unitTest.remainingCount > 0;
 
     }
 
@@ -121,7 +191,7 @@
      */
     function isLocked(activeUnitTest) {
 
-        return activeUnitTest && activeUnitTest.hasMoreItems();
+        return activeUnitTest && hasMoreItems(activeUnitTest);
 
     }
 
@@ -136,7 +206,7 @@
 
         } catch(failedToInitializeException) {
 
-            throw 'o2.Unit.run: Failed to initialize o2.Debugger. No "UnitTest"s will be run.';
+            throw errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
 
         }
 
@@ -145,60 +215,30 @@
     /**
      *
      */
-    function UnitTest(description, totalAssertionCount, testPlan) {
+    function UnitTest(description, totalAssertionCount, testCase) {
 
         this.description = description;
         this.remainingCount = totalAssertionCount;
         this.successCount = 0;
         this.failureCount = 0;
-        this.testPlan = testPlan;
+        this.testCase = testCase;
 
     }
 
-    var up = UnitTest.prototype;
-
-    /**
-     *
-     */
-    up.execute = function() {
+    function execute(unitTest) {
 
         try {
 
-            this.testPlan.apply(this, []);
+            unitTest.testCase.apply(unitTest, []);
 
         } catch(executionException) {
 
-            this.remainingCount = 0;
-            reportFatalError(this);
+            unitTest.remainingCount = 0;
+            reportFatalError(unitTest);
 
         }
 
-    };
-
-    /**
-     *
-     */
-    UnitTest.prototype.hasMoreItems = function() {
-
-        return this.remainingCount > 0;
-
-    };
-
-    /**
-     *
-     */
-    UnitTest.prototype.didAssertion = function(isSuccess, message) {
-
-        assert(isSuccess, message);
-        updateTestStatus(this, isSuccess);
-
-        this.remainingCount--;
-
-        if(this.remainingCount <= 0) {
-            updateTestCompletion(this);
-        }
-
-    };
+    }
 
     /**
      * @class {static} o2.Unit
@@ -212,8 +252,13 @@
          */
         assert : function(unitTest, expression, message) {
 
+            if(arguments.length != 3) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'assert', 3);
+            }
+
             var result = !!expression;
-            unitTest.didAssertion(result, message);
+            didAssertion(unitTest, result, message);
 
         },
 
@@ -222,8 +267,13 @@
          */
         assertEqual : function(unitTest, currentValue, expectedValue, message) {
 
+            if(arguments.length != 4) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'assertEqual', 4);
+            }
+
             var result = (currentValue == expectedValue);
-            unitTest.didAssertion(result, message);
+            didAssertion(unitTest, result, message);
 
         },
 
@@ -232,8 +282,13 @@
          */
         assertNotEqual : function(unitTest, currentValue, expectedValue, message) {
 
+            if(arguments.length != 4) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'assertNotEqual', 4);
+            }
+
             var result = (currentValue != expectedValue);
-            unitTest.didAssertion(result, message);
+            didAssertion(unitTest, result, message);
 
         },
 
@@ -242,8 +297,13 @@
          */
         assertStrictEqual : function(unitTest, currentValue, expectedValue, message) {
 
+            if(arguments.length != 4) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'assertStrictEqual', 4);
+            }
+
             var result = (currentValue === expectedValue);
-            unitTest.didAssertion(result, message);
+            didAssertion(unitTest, result, message);
 
         },
 
@@ -252,19 +312,29 @@
          */
         assertStrictNotEqual : function(unitTest, currentValue, expectedValue, message) {
 
+            if(arguments.length != 4) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'assertStrictNotEqual', 4);
+            }
+
             var result = (currentValue !== expectedValue);
-            unitTest.didAssertion(result, message);
+            didAssertion(unitTest, result, message);
 
         },
 
         /**
          *
          */
-        pushTest : function(description, testMeta) {
+        add : function(description, testMeta) {
+
+            if(arguments.length != 2) {
+
+                throw format(errorMessage.ARGUMENT_COUNT_MISMATCH, 'add', 4);
+            }
 
             var totalAssertionCount = testMeta.count;
-            var testPlan = testMeta.test;
-            state.tests.push(new UnitTest(description, totalAssertionCount, testPlan));
+            var testCase = testMeta.test;
+            state.tests.push(new UnitTest(description, totalAssertionCount, testCase));
 
         },
 
@@ -272,6 +342,7 @@
          *
          */
         run : function() {
+            var kCheckInterval = config.TEST_CHECK_INTERVAL;
 
             initializeDebugger();
 
@@ -280,7 +351,7 @@
             setTimeout(function waitForUnitTest() {
 
                 if(isLocked(activeUnitTest)) {
-                    setTimeout(waitForUnitTest, config.TEST_CHECK_TIMEOUT);
+                    setTimeout(waitForUnitTest, kCheckInterval);
 
                     return;
                 }
@@ -296,14 +367,15 @@
                 }
 
                 if(!activeUnitTest instanceof UnitTest) {
+                    reportGlobalCompletion();
                     activeUnitTest = null;
 
                     return;
                 }
 
-                if(activeUnitTest.hasMoreItems()) {
-                    activeUnitTest.execute();
-                    setTimeout(waitForUnitTest, config.TEST_CHECK_TIMEOUT);
+                if(hasMoreItems(activeUnitTest)) {
+                    execute(activeUnitTest);
+                    setTimeout(waitForUnitTest, kCheckInterval);
 
                     return;
                 }
@@ -311,7 +383,7 @@
                 //
                 activeUnitTest = null;
 
-            }, config.TEST_CHECK_TIMEOUT);
+            }, kCheckInterval);
 
         }
 
