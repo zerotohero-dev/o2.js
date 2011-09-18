@@ -16,6 +16,12 @@
 ( function(o2, window, UNDEFINED) {
 
     /*
+     * Aliases.
+     */
+    var $ = o2.$;
+    var format = o2.StringHelper.format;
+
+    /*
      * Module configuration.
      */
     var config = {
@@ -27,12 +33,6 @@
             }
         }
     };
-
-    /*
-     * Aliases.
-     */
-    var $ = o2.$;
-    var format = o2.StringHelper.format;
 
     /**
      * @class {static} o2.EventHandler

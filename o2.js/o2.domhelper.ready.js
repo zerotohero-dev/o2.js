@@ -21,6 +21,11 @@ if(!o2.DomHelper) {
     var me = o2.DomHelper;
 
     /*
+     * Aliases.
+     */
+    var nill = o2.nill;
+
+    /*
      * Module configuration.
      */
     var config = {
@@ -30,11 +35,6 @@ if(!o2.DomHelper) {
             }
         }
     };
-    
-    /*
-     * Aliases.
-     */
-    var nill = o2.nill;
 
     /*
      *
@@ -181,6 +181,7 @@ if(!o2.DomHelper) {
         // if DOM is ready, execute the delegate immediately.
         if(state.isApplicationReady) {
             delegate();
+            
             return;
         }
 

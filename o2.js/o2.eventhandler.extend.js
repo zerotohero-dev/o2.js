@@ -63,6 +63,7 @@ if(!o2.EventHandler) {
         var e = getEventObject(evt);
 
         if(!e) {
+
             return {
                 x : 0,
                 y : 0
@@ -76,6 +77,7 @@ if(!o2.EventHandler) {
             me.getMouseCoordinates = function(e) {
 
                 if(!e) {
+
                     return {
                         x : 0,
                         y : 0
@@ -98,6 +100,7 @@ if(!o2.EventHandler) {
             me.getMouseCoordinates = function(e) {
 
                 if(!e) {
+
                     return {
                         x : 0,
                         y : 0
@@ -144,6 +147,7 @@ if(!o2.EventHandler) {
         var e = getEventObject(evt);
 
         if(!e) {
+
             return null;
         }
 
@@ -216,11 +220,13 @@ if(!o2.EventHandler) {
         //
 
         if(!e) {
+
             return false;
         }
 
         if(e.which) {
             me.isRightClick = function(e) {
+
                 return e.which == 3;
             };
 
@@ -229,6 +235,7 @@ if(!o2.EventHandler) {
 
         if(e.button) {
             me.isRightClick = function(e) {
+
                 return e.button == 2;
             };
 

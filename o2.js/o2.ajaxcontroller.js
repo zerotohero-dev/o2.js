@@ -62,6 +62,7 @@
     o2.AjaxController.prototype.update = function(observable, data) {
 
         if(!data.isTimedOut) {
+            
             return;
         }
 
@@ -85,6 +86,7 @@
     o2.AjaxController.prototype.unregister = function(observable) {
 
         if(this.isDeleted) {
+            
             return;
         }
 

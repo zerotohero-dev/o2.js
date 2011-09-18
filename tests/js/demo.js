@@ -38,7 +38,9 @@
     var compact = o2.StringHelper.compact;
 
     function triggerLogin(username, password) {
-        alert(['log in username:', username, ' password:', password].join(''));
+        
+        o2.Unit.log(['log in username:', username, ' password:', password].join(''));
+    
     }
 
     function logUserIn(username, password, UNDEFINED) {
@@ -53,29 +55,35 @@
         var argLen = arguments.length;
 
         if(argLen != 2) {
+
             return kInvalidArguments;
         }
 
         if(username === null || username === UNDEFINED) {
+
             return kInvalidCredentials;
         }
 
         if(password === null || password === UNDEFINED) {
+
             return kInvalidCredentials;
         }
 
         var compactedUsername = compact(username);
 
         if(compactedUsername === '') {
+
             return kUsernameBlank;
         }
 
         if(password === '') {
+
             return kPasswordBlank;
         }
 
         if(compactedUsername !== '' && password !== '') {
             triggerLogin(username, password);
+
             return kSuccess;
         }
 
@@ -276,6 +284,7 @@
              });*/
 
             o2.Unit.run();
+
         }
 
     };

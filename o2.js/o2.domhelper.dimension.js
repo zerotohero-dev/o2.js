@@ -40,6 +40,7 @@ if(!o2.DomHelper) {
 
                 // d.body can be null when refreshing.
                 if(!d || !d.body) {
+                    
                     return {
                         width : 0,
                         height : 0
@@ -70,6 +71,7 @@ if(!o2.DomHelper) {
             var d = document;
 
             if(!d || !d.body) {
+                
                 return {
                     width : 0,
                     height : 0
@@ -104,6 +106,7 @@ if(!o2.DomHelper) {
             me.getWindowInnerDimension = function() {
 
                 if(!window) {
+                    
                     return {
                         width : 0,
                         height : 0
@@ -126,6 +129,7 @@ if(!o2.DomHelper) {
                 var d = document.documentElement;
 
                 if(!d) {
+                    
                     return {
                         width : 0,
                         height : 0
@@ -147,6 +151,7 @@ if(!o2.DomHelper) {
             var d = document.body;
 
             if(!d) {
+                
                 return {
                     width : 0,
                     height : 0

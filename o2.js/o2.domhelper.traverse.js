@@ -7,9 +7,9 @@
  * @requires o2.stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -35,9 +35,10 @@
     me.findParent = function(target, nodeName, shouldExcludeSelf) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
-        
+
         var isExcluded = !!shouldExcludeSelf;
 
         if(isExcluded) {
@@ -45,12 +46,14 @@
         }
 
         if(!target) {
+
             return null;
         }
 
         while(target) {
             if(target.nodeName.toLowerCase() !== nodeName.toLowerCase()) {
                 target = target.parentNode;
+
                 continue;
             }
 
@@ -80,9 +83,10 @@
         var getAttribute = o2.DomHelper.getAttribute;
 
         if(!obj || typeof obj != 'object') {
+
             return null;
         }
-        
+
         var isExcluded = !!shouldExcludeSelf;
 
         if(isExcluded) {
@@ -90,17 +94,21 @@
         }
 
         if(!obj) {
+
             return null;
         }
 
         if(getAttribute(obj, attribute) === value) {
+
             return obj;
         }
 
         while(obj) {
             if(getAttribute(obj, attribute) === value) {
+
                 return obj;
             }
+            //
             obj = obj.parentNode;
         }
 
@@ -125,9 +133,10 @@
         var getAttribute = o2.DomHelper.getAttribute;
 
         if(!obj || typeof obj != 'object') {
+
             return null;
         }
-        
+
         var isExcluded = !!shouldExcludeSelf;
 
         if(isExcluded) {
@@ -135,13 +144,16 @@
         }
 
         if(!obj) {
+
             return null;
         }
 
         while(obj) {
             if(getAttribute(obj, attribute) !== null) {
+
                 return obj;
             }
+            //
             obj = obj.parentNode;
         }
 
@@ -161,9 +173,10 @@
     me.findParentById = function(obj, id, shouldExcludeSelf) {
 
         if(!obj || typeof obj != 'object') {
+
             return null;
         }
-        
+
         var isExcluded = !!shouldExcludeSelf;
 
         return me.findParentByAttribute(obj, 'id', id, isExcluded);
@@ -182,9 +195,10 @@
     me.findParentWithId = function(obj, value, shouldExcludeSelf) {
 
         if(!obj || typeof obj != 'object') {
+
             return null;
         }
-        
+
         var isExcluded = !!shouldExcludeSelf;
 
         return me.findParentWithAttribute(obj, 'id', isExcluded);
@@ -214,6 +228,7 @@
             me.findFirstchild = function(target, nodeName) {
 
                 if(!target || typeof target != 'object') {
+
                     return null;
                 }
 
@@ -236,6 +251,7 @@
         me.findFirstChild = function(target, nodeName) {
 
             if(!target || typeof target != 'object') {
+
                 return null;
             }
 
@@ -247,6 +263,7 @@
             var children = target.childNodes;
 
             if(!children || children.length === 0) {
+
                 return null;
             }
 
@@ -255,15 +272,18 @@
             while(node) {
                 if(node.nodeType == kTextNode) {
                     node = node.nextSibling;
+
                     continue;
                 }
 
                 if(nodeName == kAll) {
+
                     return node;
                 }
 
                 if(node.nodeName.toLowerCase() != nodeName) {
                     node = node.nextSibling;
+
                     continue;
                 }
 
@@ -290,6 +310,7 @@
     me.findFirstChildById = function(target, id) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
@@ -297,6 +318,7 @@
             me.findFirstChildById = function(target, id) {
 
                 if(!target || typeof target != 'object') {
+
                     return null;
                 }
 
@@ -314,20 +336,24 @@
         me.findFirstChildById = function(target, id) {
 
             if(!target || typeof target != 'object') {
+
                 return null;
             }
 
             var children = target.childNodes;
 
             if(!children || children.length === 0) {
+
                 return null;
             }
 
             var node = children[0];
             while(node) {
                 if(node.id && node.id == id) {
+
                     return node;
                 }
+                //
                 node = node.nextSibling;
             }
 
@@ -351,6 +377,7 @@
     me.findFirstChildWithId = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
@@ -359,6 +386,7 @@
             me.findFirstChildWithId = function(target) {
 
                 if(!target || typeof target != 'object') {
+
                     return null;
                 }
 
@@ -376,12 +404,14 @@
         me.findFirstChildWithId = function(target) {
 
             if(!target || typeof target != 'object') {
+
                 return null;
             }
 
             var children = target.childNodes;
 
             if(!children || children.length === 0) {
+
                 return null;
             }
 
@@ -389,8 +419,10 @@
 
             while(node) {
                 if(node.id) {
+
                     return node;
                 }
+                //
                 node = node.nextSibling;
             }
 
@@ -424,6 +456,7 @@
         // that item, and apply li.last-child instead.
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
@@ -434,6 +467,7 @@
         nodeName = nodeName.toLowerCase();
 
         if(!children || children.length === 0) {
+
             return null;
         }
 
@@ -442,15 +476,18 @@
         while(node) {
             if(node.nodeType == kTextNode) {
                 node = node.previousSibling;
+
                 continue;
             }
 
             if(nodeName == kAll) {
+
                 return node;
             }
 
             if(node.nodeName.toLowerCase() != nodeName) {
                 node = node.previousSibling;
+
                 continue;
             }
 
@@ -473,12 +510,14 @@
     me.findLastChildById = function(target, id) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var children = target.childNodes;
 
         if(!children || children.length === 0) {
+
             return null;
         }
 
@@ -486,8 +525,10 @@
 
         while(node) {
             if(node.id && node.id == id) {
+
                 return node;
             }
+            //
             node = node.previousSibling;
         }
 
@@ -507,12 +548,14 @@
     me.findLastChildWithId = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var children = target.childNodes;
 
         if(!children || children.length === 0) {
+
             return null;
         }
 
@@ -520,8 +563,10 @@
 
         while(node) {
             if(node.id) {
+
                 return node;
             }
+            //
             node = node.previousSibling;
         }
 
@@ -542,12 +587,14 @@
     me.findPrevious = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.previousSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -555,8 +602,10 @@
 
         while(node) {
             if(node.nodeType != kTextNode) {
+
                 return node;
             }
+            //
             node = node.previousSibling;
         }
 
@@ -577,12 +626,14 @@
     me.findPreviousById = function(target, id) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.previousSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -590,8 +641,10 @@
 
         while(node) {
             if(node.id && node.id == id) {
+
                 return node;
             }
+            //
             node = node.previousSibling;
         }
 
@@ -611,12 +664,14 @@
     me.findPreviousWithId = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.previousSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -624,8 +679,10 @@
 
         while(node) {
             if(node.id) {
+
                 return node;
             }
+            //
             node = node.previousSibling;
         }
 
@@ -646,12 +703,14 @@
     me.findNext = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.nextSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -659,8 +718,10 @@
 
         while(node) {
             if(node.nodeType != kTextNode) {
+
                 return node;
             }
+            //
             node = node.nextSibling;
         }
 
@@ -681,12 +742,14 @@
     me.findNextById = function(target, id) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.nextSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -694,8 +757,10 @@
 
         while(node) {
             if(node.id && node.id == id) {
+
                 return node;
             }
+            //
             node = node.nextSibling;
         }
 
@@ -716,12 +781,14 @@
     me.findNextWithId = function(target) {
 
         if(!target || typeof target != 'object') {
+
             return null;
         }
 
         var node = target.nextSibling;
 
         if(!node) {
+
             return null;
         }
 
@@ -729,8 +796,10 @@
 
         while(node) {
             if(node.id) {
+
                 return node;
             }
+            //
             node = node.nextSibling;
         }
 

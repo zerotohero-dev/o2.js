@@ -82,12 +82,15 @@
 
         if(window.XMLHttpRequest) {
             createXhr = function() {
+                
                 return new XMLHttpRequest();
+                
             };
 
             request = createXhr();
 
             if(!request) {
+                
                 throw kNoXhr;
             }
 
@@ -108,10 +111,15 @@
         }
 
         if(!request) {
+            
             throw kNoXhr;
         }
+        
+        //
         createXhr = function() {
+            
             return new ActiveXObject(progId);
+            
         };
 
         return request;
@@ -126,11 +134,13 @@
     function finalizeXhr(xhr) {
 
         if(!xhr) {
+            
             return;
         }
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
+        
     }
 
     /*
@@ -157,18 +167,24 @@
         var isSuccess = status == kOk || status == kCached;
 
         try {
+            
             if(isSuccess) {
                 oncomplete(xhr.responseText, xhr.responseXML, xhr);
+                
                 return;
             }
 
             onerror(xhr.status, xhr.statusText, xhr);
 
         } catch(ex) {
+            
             onexception(xhr, ex);
+            
 
         } finally {
+            
             finalizeXhr(xhr);
+            
         }
 
     }
@@ -186,10 +202,12 @@
     function registerCallbacks(xhr, callbacks) {
 
         if(!xhr) {
+            
             return;
         }
 
         if(xhr.isInitialized) {
+            
             return;
         }
 
@@ -295,6 +313,7 @@
     function send(url, verb, parameters, callbacks, isSync) {
 
         if(!url) {
+            
             return null;
         }
         parameters = parameters || {};
@@ -340,9 +359,13 @@
 
         // Send the request.
         try {
+            
             xhr.send(postQuery);
+        
         } catch(exception) {
+        
             callbacks.onexception(xhr, exception);
+        
         }
 
         if(isSync) {

@@ -114,10 +114,12 @@
                 o2.CollectionHelper.indexOf = function(ar, elm) {
 
                     if(!ar) {
+
                         return -1;
                     }
 
                     if(!isArray(ar)) {
+
                         return -1;
                     }
 
@@ -131,15 +133,18 @@
             o2.CollectionHelper.indexOf = function(ar, elm) {
 
                 if(!ar) {
+
                     return -1;
                 }
 
                 if(!isArray(ar)) {
+
                     return -1;
                 }
 
                 for(var i = 0, len = ar.length; i < len; i++) {
                     if(elm == ar[i]) {
+
                         return i;
                     }
                 }
@@ -189,7 +194,7 @@
          * @return the copied <code>Object</code>.
          */
         copy : function(ar, isDeepCopy) {
-            
+
             var shouldDeepCopy = !!isDeepCopy;
 
             var theCopy = isArray(ar) ? [] : {};
@@ -202,6 +207,7 @@
 
                     if(shouldDeepCopy && ( typeof value == 'object')) {
                         theCopy[key] = o2.CollectionHelper.copy(value, shouldDeepCopy);
+
                         continue;
                     }
 
@@ -224,16 +230,19 @@
         clear : function(ar) {
 
             if(!ar) {
+
                 return null;
             }
 
             if(isArray(ar)) {
                 ar.length = 0;
+
                 return ar;
             }
 
             for(var key in ar) {
                 if(ar.hasOwnProperty(key)) {
+                    //
                     delete ar[key];
                 }
             }
@@ -253,10 +262,12 @@
         getFirst : function(ar) {
 
             if(!ar) {
+
                 return null;
             }
 
             if(!isArray(ar)) {
+
                 return null;
             }
 
@@ -275,10 +286,12 @@
         getLast : function(ar) {
 
             if(!ar) {
+
                 return null;
             }
 
             if(!isArray(ar)) {
+
                 return null;
             }
 
@@ -308,6 +321,7 @@
             isDeepClean = !!isDeepClean;
 
             if(!ar) {
+
                 return null;
             }
 
@@ -322,11 +336,13 @@
                         ar.splice(i, 1);
                         i = i - 1;
                         len = ar.length;
+
                         continue;
                     }
 
                     if(isArray(value) && isDeepClean) {
                         compact(value, isDeepClean);
+
                         continue;
                     }
                 }
@@ -339,11 +355,13 @@
                     value = ar[key];
 
                     if(value === null || value === UNDEFINED) {
+                        //
                         delete ar[key];
                     }
 
                     if( typeof value == 'object' && isDeepClean) {
                         compact(value);
+
                         continue;
                     }
                 }

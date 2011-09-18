@@ -5,9 +5,9 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -74,6 +74,7 @@
                 }
 
                 if(c.indexOf(eq) === 0) {
+
                     return c.substring(eq.length, c.length);
                 }
             }

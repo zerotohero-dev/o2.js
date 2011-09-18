@@ -59,6 +59,7 @@
 
             //!
             if(hasObserver.apply(this.protecteds, [observer])) {
+                
                 return;
             }
 
@@ -88,6 +89,7 @@
             // This is an already-deleted zombie object.
             // No need for further processing.
             if(observer.isDeleted) {
+                
                 return true;
             }
 
@@ -96,6 +98,7 @@
             for(var i = 0, len = observers.length; i < len; i++) {
                 if(observer == observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
+                    
                     return true;
                 }
             }
@@ -225,6 +228,7 @@
 
                 for(var i = 0, len = observers.length; i < len; i++) {
                     if(observer.object === observers[i]) {
+                        
                         return true;
                     }
                 }
@@ -275,11 +279,13 @@
                     registrationTime = meta.registrationTime;
 
                     if(!timeout) {
+                        
                         throw 'Please specify timeout meta data for the observer';
                     }
                     shouldNotifyObserver = (now - registrationTime > timeout);
 
                     if(!shouldNotifyObserver) {
+                        
                         continue;
                     }
 

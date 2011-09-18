@@ -21,6 +21,11 @@ if(!o2.MethodHelper) {
 ( function(me, window, UNDEFINED) {
 
     /*
+     * Aliases.
+     */
+    var format = o2.StringHelper.format;
+
+    /*
      * Module configuration.
      */
     var config = {
@@ -30,11 +35,6 @@ if(!o2.MethodHelper) {
             }
         }
     };
-
-    /*
-     * Aliases.
-     */
-    var format = o2.StringHelper.format;
 
     /**
      * @function {static} o2.MethodHelper.overload

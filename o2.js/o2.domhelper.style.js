@@ -22,6 +22,12 @@ if(!o2.DomHelper) {
 ( function(me, window, UNDEFINED) {
 
     /*
+     * Aliases.
+     */
+    var toCamelCase = o2.StringHelper.toCamelCase;
+    var toDashedFromCamelCase = o2.StringHelper.toDashedFromCamelCase;
+
+    /*
      * Module configuration.
      */
     var config = {
@@ -35,12 +41,6 @@ if(!o2.DomHelper) {
             }
         }
     };
-
-    /*
-     * Aliases.
-     */
-    var toCamelCase = o2.StringHelper.toCamelCase;
-    var toDashedFromCamelCase = o2.StringHelper.toDashedFromCamelCase;
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -63,6 +63,7 @@ if(!o2.DomHelper) {
         var toCamelCaseCached = toCamelCase;
 
         if(!obj || typeof obj != 'object') {
+            
             return;
         }
 
@@ -105,6 +106,7 @@ if(!o2.DomHelper) {
                 cssProperty = toCamelCase(cssProperty);
 
                 if(!obj || typeof obj != 'object') {
+                    
                     return null;
                 }
 
@@ -112,14 +114,17 @@ if(!o2.DomHelper) {
                 var val = obj.style[cssProperty];
 
                 if(val) {
+                    
                     return val;
                 }
 
                 if(obj.currentStyle) {
+                    
                     return obj.currentStyle[cssProperty];
                 }
 
                 if(defaultView.getComputedStyle) {
+                    
                     return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
                 }
 
@@ -136,20 +141,24 @@ if(!o2.DomHelper) {
             cssProperty = toCamelCase(cssProperty);
 
             if(!obj || typeof obj != 'object') {
+                
                 return null;
             }
 
             var val = obj.style[cssProperty];
 
             if(val) {
+                
                 return val;
             }
 
             if(obj.currentStyle) {
+                
                 return obj.currentStyle[cssProperty];
             }
 
             if(defaultView.getComputedStyle) {
+                
                 return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
             }
 
@@ -178,6 +187,7 @@ if(!o2.DomHelper) {
     me.isVisible = function(obj) {
 
         if(!obj || typeof obj != 'object') {
+            
             return false;
         }
 
@@ -221,6 +231,7 @@ if(!o2.DomHelper) {
     me.hide = function(obj) {
 
         if(!obj || typeof obj != 'object') {
+            
             return;
         }
 
@@ -240,6 +251,7 @@ if(!o2.DomHelper) {
     me.show = function(obj) {
 
         if(!obj || typeof obj != 'object') {
+            
             return;
         }
 

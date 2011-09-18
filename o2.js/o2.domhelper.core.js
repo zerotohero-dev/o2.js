@@ -105,19 +105,23 @@
             var theNode = testNode;
 
             if(!testNode || !parentNode) {
+                
                 return false;
             }
 
             if(testNode == parentNode) {
+                
                 return false;
             }
 
             while(theNode.nodeName.toLowerCase() != 'body') {
                 if(theNode == parentNode) {
+                    
                     return true;
                 }
 
                 if(!theNode.parentNode) {
+                    
                     return false;
                 }
                 //
@@ -139,10 +143,12 @@
         removeNode : function(elm) {
 
             if(!elm) {
+                
                 return null;
             }
 
             elm.parentNode.removeChild(elm);
+            
             return elm;
 
         },
@@ -158,6 +164,7 @@
         insertAfter : function(newNode, refNode) {
 
             if(!newNode || !refNode) {
+                
                 return;
             }
 
@@ -178,6 +185,7 @@
         insertBefore : function(newNode, refNode) {
 
             if(!newNode || !refNode) {
+                
                 return;
             }
 
@@ -216,6 +224,7 @@
 
                     if(key == 'class' || key == 'className') {
                         e.className = value;
+                        
                         continue;
                     }
 
@@ -256,11 +265,13 @@
         prepend : function(child, parent) {
 
             if(!child || !parent) {
+                
                 return;
             }
 
             if(parent.childNodes.length === 0) {
                 parent.appendChild(child);
+                
                 return;
             }
 
@@ -279,6 +290,7 @@
         append : function(child, parent) {
 
             if(!child || !parent) {
+                
                 return;
             }
 
@@ -299,6 +311,7 @@
         removeEmptyTextNodes : function(elm, isRecursive) {
 
             if(!elm) {
+                
                 return;
             }
 
@@ -325,6 +338,7 @@
                     if(isRecursive) {
                         removeEmptyTextNodes(child, true);
                     }
+                    
                     continue;
                 }
                 //
@@ -358,6 +372,7 @@
             var ot = -1;
 
             if(!elm) {
+                
                 return {
                     left : ol,
                     top : ot
@@ -370,6 +385,7 @@
                 elm = elm.offsetParent;
 
                 if(!elm) {
+                    
                     break;
                 }
             }
@@ -394,6 +410,7 @@
         getAttribute : function(obj, attribute) {
 
             if(!obj || !attribute) {
+                
                 return null;
             }
 
@@ -402,6 +419,7 @@
                 var value = obj.getAttribute(attribute);
 
                 if(value !== UNDEFINED) {
+                    
                     return value;
                 }
             }

@@ -78,6 +78,7 @@ if(!o2.DomHelper) {
     me.addClass = function(el, c) {
 
         if(me.hasClass(el, c)) {
+            
             return;
         }
 
@@ -96,6 +97,7 @@ if(!o2.DomHelper) {
     me.removeClass = function(el, c) {
 
         if(!me.hasClass(el, c)) {
+            
             return;
         }
 
@@ -116,6 +118,7 @@ if(!o2.DomHelper) {
     me.getChildrenByClassName = function(el, c) {
 
         if(!el) {
+            
             return null;
         }
 
@@ -128,6 +131,7 @@ if(!o2.DomHelper) {
                 var children = el.childNodes;
 
                 if(!el) {
+                    
                     return null;
                 }
 
@@ -145,6 +149,7 @@ if(!o2.DomHelper) {
         me.getChildrenByClassName = function(el, c) {
 
             if(!el) {
+                
                 return null;
             }
 
@@ -170,6 +175,7 @@ if(!o2.DomHelper) {
     me.getElementsByClassName = function(el, c) {
 
         if(!el) {
+            
             return null;
         }
 
@@ -177,6 +183,7 @@ if(!o2.DomHelper) {
             me.getElementsByClassName = function(el, c) {
 
                 if(!el) {
+                    
                     return null;
                 }
 
@@ -192,6 +199,7 @@ if(!o2.DomHelper) {
         me.getElementsByClassName = function(el, c) {
 
             if(!el) {
+                
                 return null;
             }
 

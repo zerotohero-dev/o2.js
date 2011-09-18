@@ -5,9 +5,9 @@
  * @requires o2.ajaxcontroller
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -55,7 +55,7 @@
 
 
     o2.JsonpController.prototype = {
-        
+
         /**
          * @function o2.JsonpController.unregister
          *
@@ -76,25 +76,26 @@
          * this <code>Observer</code>.
          */
         update : function(observable, data) {
-        
+
             if(data.isTimedOut) {
                 // Unregister self from the observable.
                 this.unregister(observable);
-        
+
                 // Abort the request.
                 window[this.jsonp] = o2.nill;
-        
+
                 // Purge former requests to prevent memory leak.
                 purgeQueue.push(this.jsonp);
+
                 while(purgeQueue.length > 1) {
                     delete window[purgeQueue.shift()];
                 }
-        
+
                 // Execute callback.
                 this.ontimeout();
-        
+
             }
-        
+
         }
 
     };

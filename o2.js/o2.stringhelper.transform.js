@@ -27,7 +27,12 @@ if(!o2.StringHelper) {
      * <p>Module configuration.</p>
      */
     var config = {
+        
+        /**
+         * 
+         */
         constants : {
+            
             /**
              * @property {private const Integer}
              * o2.StringHelper.config.constants.TRUNCATION_LENGTH
@@ -37,6 +42,10 @@ if(!o2.StringHelper) {
              * (...)</p>
              */
             TRUNCATION_LENGTH : 100,
+            
+            /**
+             * 
+             */
             regExp : {
                 BR_2_NL : /<br\s*\/?>/g,
                 NL_2_BR : /\r\n|\n|\r/g,
@@ -44,6 +53,10 @@ if(!o2.StringHelper) {
                 CAMEL_CASE : /(\-[a-z])/g,
                 ALL_CAPS : /([A-Z])/g
             },
+            
+            /**
+             * 
+             */
             text : {
                 ELLIPSIS : '&hellip;',
                 DASH : '-',

@@ -66,6 +66,7 @@
              * <p>Common class names.</p>
              */
             className : {
+
                 /** @property {private const String} FAIL*/
                 FAIL : 'fail',
                 /** @property {private const String} PASS*/
@@ -78,6 +79,7 @@
                 INFO : 'info',
                 /** @property {private const String} WARN*/
                 WARN : 'warn'
+
             },
 
             /**
@@ -86,6 +88,7 @@
              * <p>Localizable text.</p>
              */
             text : {
+
                 /** @property {private const String} PASS*/
                 PASS : '<b>PASS:</b> ',
                 /** @property {private const String} FAIL*/
@@ -98,6 +101,7 @@
                 WARN : '<b>WARN:</b> ',
                 /** @property {private const String} ER_CANNOT_INITIALIZE*/
                 ER_CANNOT_INITIALIZE : 'o2.Debugger: cannot initialize outputElement'
+
             }
         }
     };
@@ -112,30 +116,35 @@
                     console.log(text);
                 } catch(ignore1) {
                 }
+
                 break;
             case ccc.INFO:
                 try {
                     console.info(text);
                 } catch(ignore2) {
                 }
+
                 break;
             case ccc.WARN:
                 try {
                     console.warn(text);
                 } catch(ignore3) {
                 }
+
                 break;
             case ccc.ERROR:
                 try {
                     console.error(text);
                 } catch(ignore4) {
                 }
+
                 break;
             default:
                 try {
                     console.log(text);
                 } catch(ignore5) {
                 }
+
                 break;
         }
 
@@ -159,6 +168,7 @@
             var nodeName = 'div';
 
             if(config.isUsingConsole && config.outputElement) {
+
                 return function(value, className) {
 
                     println(value, className);
@@ -170,6 +180,7 @@
                 };
 
             } else if(config.isUsingConsole && !config.outputElement) {
+
                 return function(value, className) {
 
                     println(value, className);
@@ -177,6 +188,7 @@
                 };
 
             } else if(!config.isUsingConsole && config.outputElement) {
+
                 return function(value, className) {
 
                     var debugContent = document.createElement(nodeName);
@@ -187,6 +199,7 @@
                 };
 
             } else {
+
                 return function(value) {
 
                 };
@@ -227,6 +240,7 @@
          * if available.
          */
         init : function(outputElement, shouldUseConsole) {
+
             var outputNode = o2.$(outputElement);
 
             // Can I use the browser's built-in console?
@@ -240,6 +254,7 @@
             var isConfigOk = ((outputNode && outputNode.nodeName) || config.isUsingConsole);
 
             if(!isConfigOk) {
+
                 throw config.constants.text.ER_CANNOT_INITIALIZE;
             }
 
@@ -269,6 +284,7 @@
             // If not initialized, then we cannot use any of
             // o2.Debugger's public methods.
             if(!config.isInitialized) {
+
                 return;
             }
 
@@ -305,6 +321,7 @@
             var empty = '';
 
             if(!config.isInitialized) {
+
                 return;
             }
 
@@ -313,6 +330,7 @@
 
             if(pass) {
                 o2.Debugger.println([text.PASS, message].join(empty), className.PASS);
+
                 return;
             }
 
@@ -336,6 +354,7 @@
             var empty = '';
 
             if(!config.isInitialized) {
+
                 return;
             }
 
@@ -362,6 +381,7 @@
             var empty = '';
 
             if(!config.isInitialized) {
+
                 return;
             }
 
@@ -388,6 +408,7 @@
             var empty = '';
 
             if(!config.isInitialized) {
+
                 return;
             }
 
@@ -413,6 +434,7 @@
         log : function(message) {
 
             if(!config.isInitialized) {
+
                 return;
             }
 
