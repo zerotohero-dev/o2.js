@@ -258,7 +258,7 @@
     }
 
     /*
-     * Executes an <code>o2.UnitTest</code>  unitTest.
+     * Executes an <code>o2.UnitTest</code> unit test.
      */
     function execute(unitTest) {
 
