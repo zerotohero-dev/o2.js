@@ -246,7 +246,7 @@
             // Can I use the browser's built-in console?
             //(the double negation !!shouldUseConsole will convert the var to
             // boolean.)
-            config.isUsingConsole = (console === UNDEFINED && !!shouldUseConsole);
+            config.isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
             // Is everything ok? -- I should either use the output element, or
             // the console.
