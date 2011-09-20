@@ -149,13 +149,17 @@
                     // below is just to show that you can run async assertions as well:
                     
                     setTimeout(function(){
+                        
                         assertStrictEqual(me, resultNoParam, kInvalidArguments, 'no arguments gives error');
+                    
                     },2000);
 
                   
                     setTimeout(function(){
+                    
                         assertStrictEqual(me, resultOneParam, kInvalidArguments, 'one argument gives error');
                         assertStrictEqual(me, resultThreeParams, kInvalidArguments, 'three arguments gives error');                        
+                    
                     },2000);
 
                 }
