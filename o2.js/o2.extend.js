@@ -13,6 +13,7 @@
  * Helpful extension functions to <code>o2</code> namespace.
  */
 ( function(o2, window, UNDEFINED) {
+    //TODO: add documentation.
     //TODO: complete me.
     
     o2.first = function() {
@@ -26,5 +27,9 @@
     o2.parent = function() {
 
     };
+    
+    o2.remove = function(){
+        
+    }
 
 }(o2, this));

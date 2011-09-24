@@ -18,7 +18,12 @@
      * Module Configuration
      */
     var config = {
+        
+        /*
+         * 
+         */
         constants : {
+            
             /*
              * @property {private const Integer}
              * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
@@ -26,13 +31,27 @@
              * generating a random String.
              */
             DEFAULT_RANDOM_LENGTH : 8,
+            
+            /*
+             * 
+             */
             RANDOM_CHAR_FEED : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
+            
+            /*
+             * 
+             */
             GUID_MULTIPLIER : 10000,
+            
+            /*
+             * 
+             */
             regExp : {
                 TRIM : /^\s+|\s+$/g,
                 WHITESPACE : /\s+/g
             }
+            
         }
+        
     };
 
     /**
@@ -174,6 +193,13 @@
 
             return shouldCompact ? str.replace(regExp.WHITESPACE, ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
 
+        },
+        
+        //TODO: add documentation.
+        strip: function(str) {
+            
+            return o2.StringHelper.trim(str, false);
+        
         },
 
         /**

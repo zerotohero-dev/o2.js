@@ -5,14 +5,21 @@
  * @requires o2
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
 ( function(o2, window, UNDEFINED) {
+
+    //TODO: update my documentation ($'s added).
+
+    /*
+     * Aliases.
+     */
+    var $ = o2.$;
 
     /**
      * @class {static} o2.DomHelper
@@ -102,26 +109,30 @@
          */
         isChild : function(testNode, parentNode) {
 
+            //
+            testNode = $(testNode);
+            parentNode = $(parentNode);
+
             var theNode = testNode;
 
             if(!testNode || !parentNode) {
-                
+
                 return false;
             }
 
             if(testNode == parentNode) {
-                
+
                 return false;
             }
 
             while(theNode.nodeName.toLowerCase() != 'body') {
                 if(theNode == parentNode) {
-                    
+
                     return true;
                 }
 
                 if(!theNode.parentNode) {
-                    
+
                     return false;
                 }
                 //
@@ -130,6 +141,23 @@
 
             return false;
 
+        },
+
+        //TODO: add documentation.
+        create : function(nodeName) {
+
+            if(!nodeName) {
+
+                return null;
+            }
+            
+            if(typeof nodeName != 'string'){
+
+                return null;
+            }
+            
+            return document.createElement(nodeName);
+        
         },
 
         /**
@@ -142,14 +170,94 @@
          */
         removeNode : function(elm) {
 
+            //
+            elm = $(elm);
+
             if(!elm) {
-                
+
                 return null;
             }
 
             elm.parentNode.removeChild(elm);
-            
+
             return elm;
+
+        },
+
+        /**
+         * @function {static} o2.DomHelper.removeEmptyTextNodes
+         *
+         * <p>Removes empty text nodes from the element.</p>
+         *
+         * @param {DomNode} elm - The element to process.
+         * @param {Boolean} isRecursive - if <code>true</code> do the same
+         * process for
+         * the child nodes of <code>elm</code> as well.
+         */
+        removeEmptyTextNodes : function(elm, isRecursive) {
+
+            //
+            elm = $(elm);
+
+            if(!elm) {
+
+                return;
+            }
+
+            var children = elm.childNodes;
+            var arRemove = [];
+            var len = children.length;
+            var i = 0;
+
+            //
+            isRecursive = !!isRecursive;
+
+            var kText = o2.DomHelper.nodeType.TEXT;
+            var regWhitespace = /^\s*$/;
+
+            var nodeValue = '';
+            var child = null;
+            var shouldRemove = false;
+
+            var removeEmptyTextNodes = o2.DomHelper.removeEmptyTextNodes;
+
+            for( i = 0; i < len; i++) {
+                child = children[i];
+
+                if(child.hasChildNodes()) {
+                    if(isRecursive) {
+                        removeEmptyTextNodes(child, true);
+                    }
+
+                    continue;
+                }
+
+                //
+                shouldRemove = child.nodeType == kText && regWhitespace.test(child.nodeValue);
+
+                if(shouldRemove) {
+                    arRemove.push(child);
+                }
+            }
+
+            for( i = 0, len = arRemove.length; i < len; i++) {
+                child = arRemove[i];
+                child.parentNode.removeChild(child);
+            }
+
+        },
+
+        //TODO: add documentation.
+        removeChildren : function(elm) {
+
+            var node = $(elm);
+
+            if(!node) {
+
+                return;
+            }
+
+            node.innerHTML = '';
 
         },
 
@@ -163,8 +271,12 @@
          */
         insertAfter : function(newNode, refNode) {
 
+            //
+            newNode = $(newNode);
+            refNode = $(refNode);
+
             if(!newNode || !refNode) {
-                
+
                 return;
             }
 
@@ -184,8 +296,12 @@
          */
         insertBefore : function(newNode, refNode) {
 
+            //
+            newNode = $(newNode);
+            refNode = $(refNode);
+
             if(!newNode || !refNode) {
-                
+
                 return;
             }
 
@@ -224,19 +340,22 @@
 
                     if(key == 'class' || key == 'className') {
                         e.className = value;
-                        
+
                         continue;
                     }
 
                     if(key == 'style' || key == 'css' || key == 'cssText') {
+
                         // The string value of the style attribute is available
                         // as a read/write string called cssText, which is a
                         // property of the style object, which itself is a
                         // property of the element.
                         // Note, however, that it is not supported very well;
                         // Safari does not support it up to version 1.1 (reading
-                        // it produced the value null)
+                        // it produces the value null)
+                        //
                         // ...
+                        //
                         // To avoid problems a combination of cssText and
                         // getAttribute/setAttribute can be used.
 
@@ -264,14 +383,18 @@
          */
         prepend : function(child, parent) {
 
+            //
+            child = $(child);
+            parent = $(parent);
+
             if(!child || !parent) {
-                
+
                 return;
             }
 
             if(parent.childNodes.length === 0) {
                 parent.appendChild(child);
-                
+
                 return;
             }
 
@@ -289,70 +412,16 @@
          */
         append : function(child, parent) {
 
+            //
+            child = $(child);
+            parent = $(parent);
+
             if(!child || !parent) {
-                
+
                 return;
             }
 
             parent.appendChild(child);
-
-        },
-
-        /**
-         * @function {static} o2.DomHelper.removeEmptyTextNodes
-         *
-         * <p>Removes empty text nodes from the element.</p>
-         *
-         * @param {DomNode} elm - The element to process.
-         * @param {Boolean} isRecursive - if <code>true</code> do the same
-         * process for
-         * the child nodes of <code>elm</code> as well.
-         */
-        removeEmptyTextNodes : function(elm, isRecursive) {
-
-            if(!elm) {
-                
-                return;
-            }
-
-            var children = elm.childNodes;
-            var arRemove = [];
-            var len = children.length;
-            var i = 0;
-            //
-            isRecursive = !!isRecursive;
-
-            var kText = o2.DomHelper.nodeType.TEXT;
-            var regWhitespace = /^\s*$/;
-
-            var nodeValue = '';
-            var child = null;
-            var shouldRemove = false;
-            
-            var removeEmptyTextNodes = o2.DomHelper.removeEmptyTextNodes;
-
-            for( i = 0; i < len; i++) {
-                child = children[i];
-
-                if(child.hasChildNodes()) {
-                    if(isRecursive) {
-                        removeEmptyTextNodes(child, true);
-                    }
-                    
-                    continue;
-                }
-                //
-                shouldRemove = child.nodeType == kText && regWhitespace.test(child.nodeValue);
-
-                if(shouldRemove) {
-                    arRemove.push(child);
-                }
-            }
-
-            for( i = 0, len = arRemove.length; i < len; i++) {
-                child = arRemove[i];
-                child.parentNode.removeChild(child);
-            }
 
         },
 
@@ -368,11 +437,14 @@
          */
         getOffset : function(elm) {
 
+            //
+            elm = $(elm);
+
             var ol = -1;
             var ot = -1;
 
             if(!elm) {
-                
+
                 return {
                     left : ol,
                     top : ot
@@ -385,7 +457,7 @@
                 elm = elm.offsetParent;
 
                 if(!elm) {
-                    
+
                     break;
                 }
             }
@@ -409,8 +481,11 @@
          */
         getAttribute : function(obj, attribute) {
 
+            //
+            obj = $(obj);
+
             if(!obj || !attribute) {
-                
+
                 return null;
             }
 
@@ -419,7 +494,7 @@
                 var value = obj.getAttribute(attribute);
 
                 if(value !== UNDEFINED) {
-                    
+
                     return value;
                 }
             }

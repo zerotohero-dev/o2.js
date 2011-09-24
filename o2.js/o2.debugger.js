@@ -113,35 +113,45 @@
         switch(className) {
             case ccc.LOG:
                 try {
+
                     console.log(text);
+                
                 } catch(ignore1) {
                 }
 
                 break;
             case ccc.INFO:
                 try {
+                
                     console.info(text);
+                
                 } catch(ignore2) {
                 }
 
                 break;
             case ccc.WARN:
                 try {
+                
                     console.warn(text);
+                
                 } catch(ignore3) {
                 }
 
                 break;
             case ccc.ERROR:
                 try {
+                
                     console.error(text);
+                
                 } catch(ignore4) {
                 }
 
                 break;
             default:
                 try {
+                
                     console.log(text);
+                
                 } catch(ignore5) {
                 }
 

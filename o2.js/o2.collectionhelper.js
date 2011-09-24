@@ -251,6 +251,43 @@
 
         },
 
+        removeElementByValue : function(collection, name, value) {
+
+            var item = null;
+
+            if(isArray(collection)) {
+                for(var i = 0, len = collection.length; i < len; i++) {
+                    item = collection[i];
+
+                    if(item[name] != value) {
+
+                        continue;
+                    }
+
+                    collection.splice(i, 1);
+                    i--;
+                    len = collection.length;
+                }
+
+                return;
+            }
+
+            for(var key in collection) {
+                if(collection.hasOwnProperty(key)) {
+                    item = collection[key];
+
+                    if(item[name] != value) {
+
+                        continue;
+                    }
+                    
+                    //
+                    delete collection[key];
+                }
+            }
+
+        },
+
         /**
          * @function o2.CollectionHelper.getFirst
          *
@@ -318,6 +355,8 @@
          * @return a reference to the <code>Object</code> itself.
          */
         compact : function(ar, isDeepClean) {
+
+            //
             isDeepClean = !!isDeepClean;
 
             if(!ar) {

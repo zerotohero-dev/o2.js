@@ -41,7 +41,7 @@
          *
          * @property {String} build
          */
-        build : '201109151510',
+        build : '201109240855',
 
         /**
          * @function {static} $
@@ -81,6 +81,9 @@
          */
         t : function(tagName, parent) {
             
+            //
+            parent = o2.$(parent);
+
             var p = parent || document;
 
             return p.getElementsByTagName(tagName);
@@ -90,8 +93,8 @@
         /**
          * @function {static} tt
          * <p>Acts similar to {link o2.t} -- with one exception: The method
-         * return
-         * the first matched node, instead of returning a node collection.</p>
+         * returns the first matched node, instead of returning a node
+         * collection.</p>
          * @param {String} tagName - the name of the tag to search.
          * @param {DOMNode} parent - (optional defaults to <code>document</code>)
          * the
@@ -100,6 +103,9 @@
          * otherwise.
          */
         tt : function(tagName, parent) {
+            
+            //
+            parent = o2.$(parent);            
 
             var result = o2.t(tagName, parent);
 

@@ -32,6 +32,7 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
+    //TODO: update documentation.
     me.findParent = function(target, nodeName, shouldExcludeSelf) {
 
         if(!target || typeof target != 'object') {
@@ -50,9 +51,31 @@
             return null;
         }
 
+        var nodes = null;
+        var hasParent = false;
+        var targetNodeName = '';
+        var currentNodeName = '';
+
         while(target) {
-            if(target.nodeName.toLowerCase() !== nodeName.toLowerCase()) {
-                target = target.parentNode;
+            nodes = nodeName.split(' ');
+            targetNodeName = target.nodeName.toLowerCase();
+            
+            for(var i=0, len=nodes.length; i<len; i++){
+                currentNodeName = nodes[i].toLowerCase();
+                
+                if(!currentNodeName){
+                    
+                    continue;
+                }
+                
+                if(targetNodeName === currentNodeName){
+                    hasParent = true;
+                    
+                    break;
+                }
+            }
+            
+            if(!hasParent){
 
                 continue;
             }
@@ -108,6 +131,7 @@
 
                 return obj;
             }
+            
             //
             obj = obj.parentNode;
         }
@@ -128,6 +152,7 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
+    //TODO: I can have a space delimeted list of attributes.    
     me.findParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
 
         var getAttribute = o2.DomHelper.getAttribute;
@@ -170,6 +195,7 @@
      *
      * @see o2.DomHelper.findParentByAttribute
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findParentById = function(obj, id, shouldExcludeSelf) {
 
         if(!obj || typeof obj != 'object') {
@@ -192,6 +218,7 @@
      *
      * @see o2.DomHelper.findParentWithAttribute
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findParentWithId = function(obj, value, shouldExcludeSelf) {
 
         if(!obj || typeof obj != 'object') {
@@ -216,6 +243,7 @@
      * optional. It defaults to '*', which will match any node name.)
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
+    //TODO: I can have a space delimeted list of node names.
     me.findFirstChild = function(target, nodeName) {
 
         if(!target || typeof target != 'object') {
@@ -297,6 +325,8 @@
         return me.findFirstChild(target, nodeName);
 
     };
+    
+    //TODO: findChildrenById
 
     /**
      * @function {static} o2.DomHelper.findFirstChildById
@@ -307,6 +337,7 @@
      * @param {String} id - the id of the child.
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findFirstChildById = function(target, id) {
 
         if(!target || typeof target != 'object') {
@@ -353,6 +384,7 @@
 
                     return node;
                 }
+                
                 //
                 node = node.nextSibling;
             }
@@ -443,6 +475,7 @@
      * optional. It defaults to '*', which will match any node name.)
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
+    //TODO: I can have a space delimeted list of node names.
     me.findLastChild = function(target, nodeName) {
 
         // Although this function may be speeded up using  obj.querySelector and
@@ -507,6 +540,7 @@
      * @param {String} id - the id of the child.
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findLastChildById = function(target, id) {
 
         if(!target || typeof target != 'object') {
@@ -605,6 +639,7 @@
 
                 return node;
             }
+            
             //
             node = node.previousSibling;
         }
@@ -623,6 +658,7 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findPreviousById = function(target, id) {
 
         if(!target || typeof target != 'object') {
@@ -644,6 +680,7 @@
 
                 return node;
             }
+            
             //
             node = node.previousSibling;
         }
@@ -682,6 +719,7 @@
 
                 return node;
             }
+            
             //
             node = node.previousSibling;
         }
@@ -721,6 +759,7 @@
 
                 return node;
             }
+            
             //
             node = node.nextSibling;
         }
@@ -739,6 +778,7 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
+    //TODO: I can have a space delimeted list of ids.
     me.findNextById = function(target, id) {
 
         if(!target || typeof target != 'object') {
@@ -760,6 +800,7 @@
 
                 return node;
             }
+            
             //
             node = node.nextSibling;
         }
@@ -799,6 +840,7 @@
 
                 return node;
             }
+            
             //
             node = node.nextSibling;
         }

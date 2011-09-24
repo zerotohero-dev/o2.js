@@ -132,6 +132,7 @@
             var obj = o2.$(node);
 
             if(!obj) {
+                
                 return;
             }
 
@@ -211,6 +212,25 @@
 
             o2.EventHandler.addEventListener(obj, evt, fn);
         },
+        
+        //TODO: add documentation.
+        addEventListeners: function(collection, eventName, handler){
+              
+              if(!collection){
+                  
+                  return;
+              }
+              
+              var listen = o2.EventHandler.addEventListener;
+              
+              for(var key in collection){
+                  if(collection.hasOwnProperty(key)){
+                      listen(collection[key], eventName, handler);
+                  }
+              }
+
+        },
+        
 
         /**
          * @function {static} o2.EventHandler.removeEventListener
