@@ -32,6 +32,8 @@
      * @return the actual <code>DOM Event</code> object.
      */
     var getEventObject = function(evt) {
+        
+        //
         getEventObject = window.event ? function() {
 
             return window.event;
@@ -43,6 +45,7 @@
         };
 
         return getEventObject(evt);
+
     };
 
     /**
@@ -108,6 +111,8 @@
 
                 var clientX = e.clientX || 0;
                 var clientY = e.clientY || 0;
+                
+                //
                 posx = clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
                 posy = clientY + document.body.scrollTop + document.documentElement.scrollTop;
 

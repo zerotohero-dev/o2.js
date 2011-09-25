@@ -18,12 +18,16 @@
      * Aliases.
      */
     var me = framework.DomHelper;
-    var nill = me.nill;
+    var nill = framework.nill;
 
     /*
      * Module configuration.
      */
     var config = {
+
+        /*
+         *
+         */
         constants : {
 
             /*
@@ -34,6 +38,7 @@
             }
 
         }
+
     };
 
     /*
@@ -75,19 +80,19 @@
     var checkScrollLeft = function() {
 
         try {
-            
+
             window.document.documentElement.doScroll('left');
-            
+
         } catch(e) {
-            
+
             setTimeout(checkScrollLeft, 50);
-            
+
             return;
-        
+
         }
 
         flushReadyQueue();
-        
+
         //
         checkScrollLeft = nill;
 
@@ -96,7 +101,7 @@
     var onMozDomContentLoaded = function(evt) {
 
         window.document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
-        
+
         //
         flushReadyQueue();
 
@@ -108,7 +113,7 @@
     var onMozWindowLoad = function(evt) {
 
         window.document.removeEventListener('load', onMozWindowLoad, false);
-        
+
         //
         flushReadyQueue();
 
@@ -123,13 +128,13 @@
 
             return;
         }
-        
+
         //
         window.document.detachEvent('onreadystatechange', onIEDomContentLoaded);
-        
+
         //
         flushReadyQueue();
-        
+
         //
         onIEDomContentLoaded = nill;
 
@@ -138,10 +143,10 @@
     var onIEWindowLoaded = function(evt) {
 
         window.detachEvent('onload', onIEWindowLoaded);
-        
+
         //
         flushReadyQueue();
-        
+
         //
         onIEDomContentLoaded = nill;
 
@@ -153,7 +158,7 @@
 
         // Mozilla, Opera, webkit
         if(doc.addEventListener) {
-        
+
             //Listen to native on dom conten loaded event.
             doc.addEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
 
@@ -168,7 +173,7 @@
 
         // MSIE
         if(doc.attachEvent) {
-        
+
             // Listen to ready state change.
             doc.attachEvent('onreadystatechange', onIEDomContentLoaded);
 

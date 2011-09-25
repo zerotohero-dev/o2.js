@@ -202,6 +202,8 @@
         var kComplete = constants.readystate.COMPLETE;
         var kOk = constants.status.OK;
         var kCached = constants.status.CACHED;
+        
+        //
         callbacks = callbacks || {};
 
         var oncomplete = callbacks.oncomplete || nillCached;

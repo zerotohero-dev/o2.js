@@ -23,6 +23,10 @@
      * Module configuration.
      */
     var config = {
+        
+        /*
+         * 
+         */
         map : {
             xssEncodeNoAmp : [{
                 regExp : /</g,
@@ -97,6 +101,9 @@
         }
     };
 
+    /*
+     * 
+     */
     var state = {
         tempDiv : null
     };
@@ -118,9 +125,9 @@
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
 
-        //VMERGE: merge with fw.
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
         str = ['', str].join('');
+        
         var config = config.map;
         var map = shouldPreserveAmpersands ? config.xssEncodeNoAmp : config.xssEncode;
         var mapItem = null;

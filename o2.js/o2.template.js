@@ -15,7 +15,7 @@
 
     //TODO: this file need several enhancements to become a useful template
     // engine.
-    
+
     /*
      * Aliases.
      */
@@ -25,15 +25,29 @@
      * Module configuration.
      */
     var config = {
+
+        /*
+         *
+         */
         constants : {
+
+            /*
+             *
+             */
             command : {
                 EACH : 'each'
             },
+
+            /*
+             *
+             */
             regExp : {
                 TEMPLATE : /\{\{(.*?)\}\}/g,
                 SEPARATOR : /\s+/
             }
+
         }
+
     };
 
     /*
@@ -44,10 +58,12 @@
         var len = line.length;
 
         if(len === 0) {
+
             return '';
         }
 
         if(len == 1) {
+
             return line[0];
         }
 
@@ -62,15 +78,19 @@
         if(directive.length > 1) {
             collectionKey = directive[1];
         }
+
+        //
         directiveKey = directive[0];
 
         if(directiveKey != constants.command.EACH) {
+
             return subTpl.join('');
         }
 
         var collection = collectionKey ? data[collectionKey] : data;
 
         if( typeof collection != 'object') {
+
             return subTpl.join('');
         }
 
@@ -98,11 +118,14 @@
         var collection = null;
 
         if( typeof line != 'string') {
+
             return parseDirective(line, data);
         }
 
         return line.replace(regTemplate, function(str, p1, offset, total) {
+
             return data[p1] !== UNDEFINED ? data[p1] : str;
+
         });
 
     }
@@ -127,6 +150,8 @@
         parse : function(data, tpl) {
 
             var buffer = [];
+            
+            //
             data = data || {};
 
             for(var i = 0, len = tpl.length; i < len; i++) {

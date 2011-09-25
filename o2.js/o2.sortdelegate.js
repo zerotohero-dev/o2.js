@@ -35,13 +35,15 @@
          * <code>Number</code>s will be sorted numerically before them.</p>
          */
         sort : function(a, b, isDesc) {
-            
+
             var isDescending = !!isDesc;
 
             if(isNaN(a) && isNaN(b)) {
                 if(a < b) {
+
                     return isDescending ? 1 : -1;
                 } else if(a > b) {
+
                     return isDescending ? -1 : 1;
                 }
 
@@ -49,6 +51,7 @@
             }
 
             if(isDescending) {
+
                 return (isNaN(b) ? -1 / 0 : b) - (isNaN(a) ? -1 / 0 : a);
             }
 

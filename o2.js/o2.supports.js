@@ -47,11 +47,15 @@
             var value = null;
 
             try {
+                
                 value = cookie.read(kTestCookie);
+            
             } catch(ignore) {
+            
             }
 
             if(!value) {
+            
                 return false;
             }
 

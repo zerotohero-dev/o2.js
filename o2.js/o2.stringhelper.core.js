@@ -144,17 +144,21 @@
             var args = arguments;
 
             if(args.length === 0) {
+            
                 return null;
             }
 
             if(args.length == 1) {
+            
                 return args[0];
             }
 
             var pattern = RegExp(['{', '([0-', (args.length - 2), '])', '}'].join(''), 'g');
 
             return args[0].replace(pattern, function(match, index) {
+            
                 return args[+index + 1];
+            
             });
 
         },
@@ -190,7 +194,10 @@
          * @return the processed <code>String</code>.
          */
         trim : function(str, shouldCompact) {
+            
+            //
             shouldCompact = shouldCompact || false;
+            
             var constants = config.constants;
             var regExp = constants.regExp;
 

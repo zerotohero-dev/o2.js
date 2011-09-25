@@ -42,7 +42,7 @@
              */
             TRUNCATION_LENGTH : 100,
             
-            /**
+            /*
              * 
              */
             regExp : {
@@ -53,7 +53,7 @@
                 ALL_CAPS : /([A-Z])/g
             },
             
-            /**
+            /*
              * 
              */
             text : {
@@ -134,6 +134,7 @@
         var maxLength = maxLen ? maxLen : config.constants.TRUNCATION_LENGTH;
 
         if(str.length > maxLength) {
+        
             return [str.substr(0, maxLength - eLen), ellipsis].join('');
         }
 

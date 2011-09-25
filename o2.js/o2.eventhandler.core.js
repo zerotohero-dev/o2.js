@@ -20,7 +20,7 @@
     var me = framework;
     var nill = me.nill;
     var $ = me.$;
-    var format =me.StringHelper.format;
+    var format = me.StringHelper.format;
 
     /*
      * Module configuration.
@@ -133,7 +133,7 @@
             var obj = $(node);
 
             if(!obj) {
-                
+
                 return;
             }
 
@@ -143,12 +143,12 @@
                     var obj = $(node);
 
                     if(!obj) {
-                        
+
                         return;
                     }
 
                     if(!fn) {
-                        
+
                         throw kCallbackNotDefined;
                     }
 
@@ -177,12 +177,12 @@
                     var obj = $(node);
 
                     if(!obj) {
-                        
+
                         return;
                     }
 
                     if(!fn) {
-                        
+
                         throw kCallbackNotDefined;
                     }
 
@@ -216,26 +216,26 @@
 
 
             me.EventHandler.addEventListener(obj, evt, fn);
-        },
-        
-        //TODO: add documentation.
-        addEventListeners: function(collection, eventName, handler){
-              
-              if(!collection){
-                  
-                  return;
-              }
-              
-              var listen = me.EventHandler.addEventListener;
-              
-              for(var key in collection){
-                  if(collection.hasOwnProperty(key)){
-                      listen(collection[key], eventName, handler);
-                  }
-              }
 
         },
-        
+
+        //TODO: add documentation.
+        addEventListeners : function(collection, eventName, handler) {
+
+            if(!collection) {
+
+                return;
+            }
+
+            var listen = me.EventHandler.addEventListener;
+
+            for(var key in collection) {
+                if(collection.hasOwnProperty(key)) {
+                    listen(collection[key], eventName, handler);
+                }
+            }
+
+        },
 
         /**
          * @function {static} EventHandler.removeEventListener
@@ -257,6 +257,7 @@
             var obj = $(node);
 
             if(!obj) {
+
                 return;
             }
 
@@ -266,10 +267,12 @@
                     var obj = $(node);
 
                     if(!obj) {
+
                         return;
                     }
 
                     if(!fn) {
+
                         throw kCallbackNotDefined;
                     }
 
@@ -289,10 +292,12 @@
                     var obj = $(node);
 
                     if(!obj) {
+
                         return;
                     }
 
                     if(!fn) {
+
                         throw kCallbackNotDefined;
                     }
 
@@ -312,10 +317,12 @@
                 var obj = $(node);
 
                 if(!obj) {
+
                     return;
                 }
 
                 if(!fn) {
+
                     throw kCallbackNotDefined;
                 }
 
@@ -326,13 +333,13 @@
 
 
             me.EventHandler.removeEventListener(obj, evt, fn);
-        
+
         },
 
-//TODO: removeAllEventListeners (obj)
-//TODO: removeAllEventListeners (obj, eventName)
-//TODO: removeAllEventListeners (eventName)
-//TODO: removeAllEventListeners ()
+        //TODO: removeAllEventListeners (obj)
+        //TODO: removeAllEventListeners (obj, eventName)
+        //TODO: removeAllEventListeners (eventName)
+        //TODO: removeAllEventListeners ()
 
         /**
          * @function {static} EventHandler.getEventObject
@@ -357,6 +364,7 @@
             };
 
             return me.EventHandler.getEventObject(evt);
+
         },
 
         /**
@@ -382,6 +390,7 @@
             };
 
             return me.EventHandler.getTarget(evt);
+
         },
 
         /**
@@ -411,6 +420,7 @@
             } : function(e) {
 
                 if(!e) {
+
                     return;
                 }
 
@@ -424,6 +434,7 @@
 
 
             me.EventHandler.preventDefault(evt);
+
         },
 
         /**
@@ -448,6 +459,7 @@
             } : function(e) {
 
                 if(!e) {
+
                     return;
                 }
 
@@ -457,6 +469,7 @@
 
 
             me.EventHandler.stopPropagation(evt);
+
         }
 
     };

@@ -104,9 +104,13 @@
             var jsonp = [kJson, (++config.state.counter)].join('');
 
             window[jsonp] = function(data) {
+                
                 callback(data, params);
                 window[jsonp] = null;
+                
+                //
                 delete window[jsonp];
+            
             };
 
             load([url, '?', query, kCallback, '=', jsonp].join(''));

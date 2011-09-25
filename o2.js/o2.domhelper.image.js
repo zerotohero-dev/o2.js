@@ -19,7 +19,7 @@
      * Aliases.
      */
     var me = framework.DomHelper;
-    var nill = me.nill;
+    var nill = framework.nill;
 
     /**
      * @funciton {static} DomHelper.loadImage

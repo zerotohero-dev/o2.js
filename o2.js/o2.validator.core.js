@@ -2,7 +2,6 @@
 
 /**
  * @module validator.core
- * @requires o2
  *
  * <!--
  *  This program is distributed under
@@ -23,7 +22,12 @@
      * Module configuration.
      */
     var config = {
+        
+        /*
+         * 
+         */
         constants : {
+        
             /*
              * A struct containing all valid
              * EcmaScript types.
@@ -39,7 +43,9 @@
                 ARGUMENTS : 'Arguments',
                 REGEXP : 'RegExp'
             }
+        
         }
+    
     };
 
     /**
@@ -130,6 +136,7 @@
                 var day = arguments[2];
 
                 if(!year || !month || !day) {
+
                     return false;
                 }
 
@@ -140,6 +147,7 @@
                 // @formatter:on
 
                 if(parseInt(day, 10) > maxDay) {
+
                     return false;
                 }
 

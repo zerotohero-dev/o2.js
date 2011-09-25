@@ -17,6 +17,9 @@
  */
 ( function(framework, window, UNDEFINED) {
 
+    /*
+     * Aliases.
+     */
     var me = framework;
 
     /**
@@ -48,8 +51,11 @@
 
             for(var i = 0, len = arguments.length; i < len; i++) {
                 try {
+
                     arguments[i]();
+
                 } catch(ignore) {
+
                 }
             }
 
@@ -76,9 +82,13 @@
 
             for(var i = 0, len = arguments.length; i < len; i++) {
                 try {
+
                     arguments[i]();
+
                     return;
+
                 } catch(ignore) {
+
                 }
             }
 

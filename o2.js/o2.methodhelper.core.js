@@ -4,9 +4,9 @@
  * @module methodhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
@@ -101,7 +101,9 @@
             var fn = args.shift();
 
             return function() {
+
                 return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
+
             };
 
         },
@@ -158,11 +160,11 @@
          * @return the modified <code>function</code>.
          */
         bind : function(base, fn) {
-            
+
             return function(/*args*/) {
-            
+
                 return fn.apply(base, arguments);
-            
+
             };
 
         }

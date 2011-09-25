@@ -21,6 +21,7 @@
      * Aliases.
      */
     var me = framework.DomHelper;
+    var $ = framework.$;
     var myName = framework.name;
     var toCamelCase = me.StringHelper.toCamelCase;
     var toDashedFromCamelCase = me.StringHelper.toDashedFromCamelCase;
@@ -29,6 +30,10 @@
      * Module configuration.
      */
     var config = {
+
+        /*
+         *
+         */
         constants : {
 
             /*
@@ -47,6 +52,7 @@
             }
 
         }
+
     };
 
     /**
@@ -67,12 +73,15 @@
      */
     me.addStyle = function(obj, style) {
 
-        var toCamelCaseCached = toCamelCase;
-
-        if(!obj || typeof obj != 'object') {
-
+        //
+        obj = $(obj);
+        
+        if(!obj) {
+            
             return;
         }
+
+        var toCamelCaseCached = toCamelCase;
 
         for(var key in style) {
             if(style.hasOwnProperty(key)) {
@@ -106,16 +115,29 @@
      */
     me.getStyle = function(obj, cssProperty) {
 
+        //
+        obj = $(obj);
+        
+        if(!obj) {
+            
+            return null;
+        }
+
         if(document.defaultView) {
             me.getStyle = function(obj, cssProperty) {
 
-                var defaultView = document.defaultView;
-                cssProperty = toCamelCase(cssProperty);
-
-                if(!obj || typeof obj != 'object') {
-
+                //
+                obj = $(obj);
+                
+                if(!obj) {
+                    
                     return null;
                 }
+
+                var defaultView = document.defaultView;
+                
+                //
+                cssProperty = toCamelCase(cssProperty);
 
                 //return the property if set inline.
                 var val = obj.style[cssProperty];
@@ -144,13 +166,18 @@
 
         me.getStyle = function(obj, cssProperty) {
 
-            var defaultView = window;
-            cssProperty = toCamelCase(cssProperty);
-
-            if(!obj || typeof obj != 'object') {
-
-                return null;
+            //
+            obj = $(obj);
+            
+            if(!obj) {
+                
+                return;
             }
+
+            var defaultView = window;
+
+            //
+            cssProperty = toCamelCase(cssProperty);
 
             var val = obj.style[cssProperty];
 
@@ -174,6 +201,7 @@
         };
 
         return me.getStyle(obj, cssProperty);
+        
     };
 
     /**
@@ -193,14 +221,48 @@
      */
     me.isVisible = function(obj) {
 
-        if(!obj || typeof obj != 'object') {
+        //
+        obj = $(obj);
+        
+        if(!obj) {
+            
+            return false;
+        }
+
+        // has offset dimensions 
+        // OR display IN (inline,block,'') 
+        // OR visibility in ('visible','')
+        //
+        // getStyle returns null if it cannot
+        // reliably determine the style (this happens in archaic
+        // browsers).
+        //
+        // So if there's no inline display/visibility attribute is set
+        // and cannot acquire those attributes
+        // from the computed style, then the method fails and returns
+        // false.
+        
+        var display = me.getStyle(obj, 'display');
+        var visibility = me.getStyle(obj, 'visibility');
+
+        if(visibility == 'hidden') {
 
             return false;
         }
 
-        return (obj.offsetWidth !== 0 || obj.offsetHeight !== 0) || (me.getStyle(obj, 'display') != 'none');
-        // even if it's not visible; it takes up space -- && getStyle(obj,
-        // 'visibility') == 'visible');
+        if(display == 'none') {
+
+            return false;
+        }
+
+        // @formatter:off
+        return (
+            obj.offsetWidth !== 0 || obj.offsetHeight !== 0) || 
+            ((display === null) && (visibility != 'hidden')) || 
+            ((visibility === null) && (display != 'none')) || 
+            ((display != 'none') && (visibility != 'hidden')
+        );
+        // @formtatter:on
 
     };
 

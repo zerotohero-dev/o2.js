@@ -1,9 +1,9 @@
-/*global o2, alert*/
+/*global o2*/
 
 /**
  * @module unit
- * @requires StringHelper
- * @requires Debugger
+ * @requires stringhelper.core
+ * @requires debugger
  *
  * <!--
  *  This program is distributed under
@@ -194,6 +194,7 @@
     function reportFatalError(unitTest) {
 
         var message = format(errorMessage.FATAL_ERROR_IN_UNIT_TEST, unitTest.description);
+
         didAssertion(unitTest, false, message);
 
     }

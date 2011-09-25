@@ -1,0 +1,96 @@
+###############################################################################
+#        This is a cross-dependency-tree for all the o2.js modules.           #
+#       Every module depends on o2.js, since it's the root namespace.         #
+#      All the other dependencies are listed and updated in this file.        #
+###############################################################################
+
+o2.ajax.js
+	o2.stringhelper.core.js
+o2.ajaxcontroller.js
+	o2.ajaxstate.js
+o2.jsonpstate.js
+	o2.methodhelper.core.js
+	o2.ajaxstate.js
+o2.stringhelper.transform.js
+	o2.stringhelper.core.js
+o2.stringhelper.strip.js
+	o2.stringhelper.core.js
+o2.stringhelper.encode.js
+	o2.stringhelper.core.js
+o2.eventhandler.extend.js
+	o2.eventhandler.core.js
+o2.eventhandler.core.js
+	o2.stringhelper.core.js
+o2.domhelper.ready.js
+	o2.domhelper.core.js
+o2.domhelper.traverse.js
+	o2.stringhelper.core.js
+	o2.domhelper.core.js
+o2.domhelper.style.js
+	o2.stringhelper.core.js
+	o2.domhelper.core.js
+o2.domhelper.scroll.js
+	o2.domhelper.core.js
+o2.domhelper.image.js
+	o2.domhelper.js
+o2.domhelper.form.js
+	o2.domhelper.core.js
+o2.domhelper.dimension.js
+	o2.domhelper.core.js
+o2.domhelper.class.js
+	o2.stringhelper.core.js
+	o2.domhelper.core.js
+o2.methodhelper.extend.js
+	o2.stringhelper.core.js
+	o2.methodhelper.core.js
+o2.objecthelper.js
+	o2.methodhelper.core.js
+o2.validator.regexp.js
+	o2.validator.core.js
+o2.unit.js
+	o2.stringhelper.core.js
+	o2.debugger.js
+
+
+###############################################################################
+# Counting all those dependencies, here is one of the many different orders   #
+# to load or compress the modules.                                            #
+###############################################################################
+
+o2.js
+o2.supports.js
+o2.extend.js
+o2.collectionhelper.js
+o2.stringhelper.core.js
+o2.stringhelper.transform.js
+o2.stringhelper.strip.js
+o2.stringhelper.encode.js
+o2.validator.core.js
+o2.validator.regexp.js
+o2.methodhelper.core.js
+o2.methodhelper.extend.js
+o2.objecthelper.js
+o2.domhelper.core.js
+o2.domhelper.ready.js
+o2.domhelper.traverse.js
+o2.domhelper.style.js
+o2.domhelper.scroll.js
+o2.domhelper.image.js
+o2.domhelper.form.js
+o2.domhelper.dimension.js
+o2.domhelper.class.js
+o2.ajax.js
+o2.ajaxstate.js
+o2.ajaxcontroller.js
+o2.jsonp.js
+o2.jsonpstate.js
+o2.jsonpcontroller.js
+o2.cookie.js
+o2.template.js
+o2.sortdelegate.js
+o2.queryparser.js
+o2.try.js
+o2.debugger.js
+o2.eventhandler.core.js
+o2.eventhandler.extend.js
+o2.unit.js

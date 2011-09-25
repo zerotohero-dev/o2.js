@@ -18,7 +18,7 @@
     /*
      * Aliases.
      */
-    var me =framework.DomHelper;
+    var me = framework.DomHelper;
     var myName = me.name;
     var generateGuid = me.StringHelper.generateGuid;
     var $ = me.$;
@@ -141,7 +141,7 @@
      */
     //TODO: add space delimited multiple classes.
     me.getChildrenByClassName = function(el, c) {
-        
+
         //
         el = $(el);
 
@@ -155,7 +155,7 @@
 
         if(el.querySelectorAll) {
             me.getChildrenByClassName = function(el, c) {
-                
+
                 //
                 el = $(el);
 

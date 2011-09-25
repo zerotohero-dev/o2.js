@@ -34,67 +34,80 @@
          * <code>DOM</code> node types.
          */
         nodeType : {
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.ELEMENT - element node.
              */
             ELEMENT : 1,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.ATTRIBUTE - atribute node.
              */
             ATTRIBUTE : 2,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.TEXT - text node.
              */
             TEXT : 3,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.CDATA - CDATA section.
              */
             CDATA : 4,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.ENTITY_REFERENCE - entity reference.
              */
             ENTITY_REFERENCE : 5,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.ENTITY - entity.
              */
             ENTITY : 6,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.PROCESSING_INSTRUCTION - processing
              * instruction.
              */
             PROCESSING_INSTRUCTION : 7,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.COMMENT - comment node.
              */
             COMMENT : 8,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.DOCUMENT - document (root) node.
              */
             DOCUMENT : 9,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.DOCUMENT_TYPE - DTD node.
              */
             DOCUMENT_TYPE : 10,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.DOCUMENT_FRAGMENT - document fragment.
              */
             DOCUMENT_FRAGMENT : 11,
+
             /**
              * @property {static const Integer}
              * DomHelper.nodeType.NOTATION - notation.
              */
             NOTATION : 12
+
         },
 
         /**

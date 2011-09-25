@@ -5,26 +5,33 @@
  * @requires stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
+    /*
+     * Aliases.
+     */
     var me = framework.StringHelper;
 
     /*
      * Module configuration.
      */
     var config = {
+
+        /*
+         *
+         */
         constants : {
-            
+
             /*
-             * 
+             *
              */
             regExp : {
                 NON_ALPHA : /[^A-Za-z ]+/g,
@@ -33,8 +40,9 @@
                 NUMERIC : /[0-9]/g,
                 TAG : /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig
             }
-            
+
         }
+
     };
 
     /**

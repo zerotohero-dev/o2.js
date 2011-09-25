@@ -22,6 +22,10 @@
      */
     var me = framework;
     var clone = me.MethodHelper.bind;
+    var base = me.AjaxState;
+    var baseProtected = base.protecteds;
+
+    var key = '';
 
     /**
      * @class {static} JsonpState
@@ -43,9 +47,7 @@
         }
     };
 
-    var base = me.AjaxState;
-    var baseProtected = base.protecteds;
-    var key = '';
+
 
     for(key in base) {
         if(base.hasOwnProperty(key)) {
