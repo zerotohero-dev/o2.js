@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.sortdelegate
- * @requires o2
+ * @module sortdelegate
  *
  * <!--
  *  This program is distributed under
@@ -12,17 +11,22 @@
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /**
-     * @class {static} o2.SortDelegate
+     * @class {static} SortDelegate
      *
      * <p>Custom delegates for <code>Array.sort</code> method.</p>
      */
-    o2.SortDelegate = {
+    me.SortDelegate = {
 
         /**
-         * @function o2.SortDelegate.sort
+         * @function SortDelegate.sort
          *
          * <p>A generic sort function.</p>
          * <p>If the collecion consists of <code>String</code>s and
@@ -53,15 +57,15 @@
         },
 
         /**
-         * @function o2.SortDelegate.sortDesc
+         * @function SortDelegate.sortDesc
          *
-         * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
+         * <p>Works similar to {link SortDelegate.sort}. The only difference
          * is that
          * the items are sorted in a <strong>descending</strong> order.</p>
          */
         sortDesc : function(a, b) {
 
-            return o2.SortDelegate.sort(a, b, true);
+            return me.SortDelegate.sort(a, b, true);
 
         }
 

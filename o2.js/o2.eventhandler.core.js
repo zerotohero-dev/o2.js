@@ -1,9 +1,8 @@
 /*global o2 */
 
 /**
- * @module o2.eventhandler.core
- * @requires o2
- * @requires o2.stringhelper.core
+ * @module eventhandler.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -13,13 +12,15 @@
  *
  * <p>A cross-browser event management object.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
     /*
      * Aliases.
      */
-    var $ = o2.$;
-    var format = o2.StringHelper.format;
+    var me = framework;
+    var nill = me.nill;
+    var $ = me.$;
+    var format =me.StringHelper.format;
 
     /*
      * Module configuration.
@@ -35,85 +36,85 @@
     };
 
     /**
-     * @class {static} o2.EventHandler
+     * @class {static} EventHandler
      *
      * <p>A cross-browser event handling and event utilities class.</p>
      */
-    o2.EventHandler = {
+    me.EventHandler = {
 
         /**
-         * @struct {static} o2.EventHandler.keyCode
+         * @struct {static} EventHandler.keyCode
          */
         keyCode : {
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.ENTER - enter key.
+             * EventHandler.keyCode.ENTER - enter key.
              */
             ENTER : 13,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.LEFT - left arrow key.
+             * EventHandler.keyCode.LEFT - left arrow key.
              */
             LEFT : 37,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.RIGHT - right arrow key.
+             * EventHandler.keyCode.RIGHT - right arrow key.
              */
             RIGHT : 39,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.TOP - top arrow key.
+             * EventHandler.keyCode.TOP - top arrow key.
              */
             TOP : 38,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.BOTTOM - bottom arrow key.
+             * EventHandler.keyCode.BOTTOM - bottom arrow key.
              */
             BOTTOM : 40,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.BACKSPACE - backspace key.
+             * EventHandler.keyCode.BACKSPACE - backspace key.
              */
             BACKSPACE : 8,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.TAB - TAB key.
+             * EventHandler.keyCode.TAB - TAB key.
              */
             TAB : 9,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.SHIFT - shift key.
+             * EventHandler.keyCode.SHIFT - shift key.
              */
             SHIFT : 16,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.CTRL - CTRL key.
+             * EventHandler.keyCode.CTRL - CTRL key.
              */
             CTRL : 17,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.ALT - ALT key.
+             * EventHandler.keyCode.ALT - ALT key.
              */
             ALT : 18,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.CAPS_LOCK - caps lock key.
+             * EventHandler.keyCode.CAPS_LOCK - caps lock key.
              */
             CAPS_LOCK : 20,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.ESCAPE - ESC key.
+             * EventHandler.keyCode.ESCAPE - ESC key.
              */
             ESCAPE : 27,
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.DELETE - DEL key.
+             * EventHandler.keyCode.DELETE - DEL key.
              */
             DELETE : 46
         },
 
         /**
-         * @function {static} o2.EventHandler.addEventListener
+         * @function {static} EventHandler.addEventListener
          *
          * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
          *
@@ -129,7 +130,7 @@
             var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
             var kCallbackNotDefined = format(kCallbackTemplate, 'addEventListener');
 
-            var obj = o2.$(node);
+            var obj = $(node);
 
             if(!obj) {
                 
@@ -137,15 +138,17 @@
             }
 
             if(obj.addEventListener) {
-                o2.EventHandler.addEventListener = function(node, evt, fn) {
+                me.EventHandler.addEventListener = function(node, evt, fn) {
 
-                    var obj = o2.$(node);
+                    var obj = $(node);
 
                     if(!obj) {
+                        
                         return;
                     }
 
                     if(!fn) {
+                        
                         throw kCallbackNotDefined;
                     }
 
@@ -163,21 +166,23 @@
                 };
 
 
-                o2.EventHandler.addEventListener(obj, evt, fn);
+                me.EventHandler.addEventListener(obj, evt, fn);
 
                 return;
             }
 
             if(obj.attachEvent) {
-                o2.EventHandler.addEventListener = function(node, evt, fn) {
+                me.EventHandler.addEventListener = function(node, evt, fn) {
 
-                    var obj = o2.$(node);
+                    var obj = $(node);
 
                     if(!obj) {
+                        
                         return;
                     }
 
                     if(!fn) {
+                        
                         throw kCallbackNotDefined;
                     }
 
@@ -187,14 +192,14 @@
                 };
 
 
-                o2.EventHandler.addEventListener(obj, evt, fn);
+                me.EventHandler.addEventListener(obj, evt, fn);
 
                 return;
             }
 
-            o2.EventHandler.addEventListener = function(node, evt, fn) {
+            me.EventHandler.addEventListener = function(node, evt, fn) {
 
-                var obj = o2.$(node);
+                var obj = $(node);
 
                 if(!obj) {
                     return;
@@ -210,7 +215,7 @@
             };
 
 
-            o2.EventHandler.addEventListener(obj, evt, fn);
+            me.EventHandler.addEventListener(obj, evt, fn);
         },
         
         //TODO: add documentation.
@@ -221,7 +226,7 @@
                   return;
               }
               
-              var listen = o2.EventHandler.addEventListener;
+              var listen = me.EventHandler.addEventListener;
               
               for(var key in collection){
                   if(collection.hasOwnProperty(key)){
@@ -233,7 +238,7 @@
         
 
         /**
-         * @function {static} o2.EventHandler.removeEventListener
+         * @function {static} EventHandler.removeEventListener
          *
          * <p>Removes an already-added new event listener from the DOM Node.</p>
          *
@@ -249,16 +254,16 @@
             var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
             var kCallbackNotDefined = format(kCallbackTemplate, 'removeEventListener');
 
-            var obj = o2.$(node);
+            var obj = $(node);
 
             if(!obj) {
                 return;
             }
 
             if(obj.removeEventListener) {
-                o2.EventHandler.removeEventListener = function(node, evt, fn) {
+                me.EventHandler.removeEventListener = function(node, evt, fn) {
 
-                    var obj = o2.$(node);
+                    var obj = $(node);
 
                     if(!obj) {
                         return;
@@ -273,15 +278,15 @@
                 };
 
 
-                o2.EventHandler.removeEventListener(obj, evt, fn);
+                me.EventHandler.removeEventListener(obj, evt, fn);
 
                 return;
             }
 
             if(obj.detachEvent) {
-                o2.EventHandler.removeEventListener = function(node, evt, fn) {
+                me.EventHandler.removeEventListener = function(node, evt, fn) {
 
-                    var obj = o2.$(node);
+                    var obj = $(node);
 
                     if(!obj) {
                         return;
@@ -297,14 +302,14 @@
                 };
 
 
-                o2.EventHandler.removeEventListener(obj, evt, fn);
+                me.EventHandler.removeEventListener(obj, evt, fn);
 
                 return;
             }
 
-            o2.EventHandler.removeEventListener = function(node, evt, fn) {
+            me.EventHandler.removeEventListener = function(node, evt, fn) {
 
-                var obj = o2.$(node);
+                var obj = $(node);
 
                 if(!obj) {
                     return;
@@ -315,27 +320,33 @@
                 }
 
                 var onEvent = ['on', evt].join('');
-                obj[onEvent] = o2.nill;
+                obj[onEvent] = nill;
 
             };
 
 
-            o2.EventHandler.removeEventListener(obj, evt, fn);
+            me.EventHandler.removeEventListener(obj, evt, fn);
+        
         },
 
+//TODO: removeAllEventListeners (obj)
+//TODO: removeAllEventListeners (obj, eventName)
+//TODO: removeAllEventListeners (eventName)
+//TODO: removeAllEventListeners ()
+
         /**
-         * @function {static} o2.EventHandler.getEventObject
+         * @function {static} EventHandler.getEventObject
          *
          * <p>Gets the actual event object.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally
-         * in {@link o2.EventHandler.addEventListener}
+         * in {@link EventHandler.addEventListener}
          * @return the actual <code>DOM Event</code> object.
          */
         getEventObject : function(evt) {
 
-            o2.EventHandler.getEventObject = window.event ? function() {
+            me.EventHandler.getEventObject = window.event ? function() {
 
                 return window.event;
 
@@ -345,36 +356,36 @@
 
             };
 
-            return o2.EventHandler.getEventObject(evt);
+            return me.EventHandler.getEventObject(evt);
         },
 
         /**
-         * @function {static} o2.EventHandler.getTarget
+         * @function {static} EventHandler.getTarget
          *
          * <p>Gets the originating source of the event.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally
-         * in {@link o2.EventHandler.addEventListener}
+         * in {@link EventHandler.addEventListener}
          * @return the actual DOM target of the event object.
          */
         getTarget : function(evt) {
 
-            var target = window.event ? o2.EventHandler.getTarget = function() {
+            var target = window.event ? me.EventHandler.getTarget = function() {
 
                 return window.event.srcElement;
 
-            } : o2.EventHandler.getTarget = function(e) {
+            } : me.EventHandler.getTarget = function(e) {
 
                 return e ? e.target : null;
 
             };
 
-            return o2.EventHandler.getTarget(evt);
+            return me.EventHandler.getTarget(evt);
         },
 
         /**
-         * @function {static} o2.EventHandler.preventDefault
+         * @function {static} EventHandler.preventDefault
          *
          * <p>Prevents the default action. When this method is called inside an
          * even
@@ -387,11 +398,11 @@
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally
-         * in {@link o2.EventHandler.addEventListener}
+         * in {@link EventHandler.addEventListener}
          */
         preventDefault : function(evt) {
 
-            o2.EventHandler.preventDefault = window.event ? function() {
+            me.EventHandler.preventDefault = window.event ? function() {
 
                 window.event.returnValue = false;
 
@@ -412,11 +423,11 @@
             };
 
 
-            o2.EventHandler.preventDefault(evt);
+            me.EventHandler.preventDefault(evt);
         },
 
         /**
-         * @function {static} o2.EventHandler.stopPropagation
+         * @function {static} EventHandler.stopPropagation
          *
          * <p>Stops the propagation of the event upwards in the DOM
          * hierarchy.</p>
@@ -426,11 +437,11 @@
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally
-         * in {@link o2.EventHandler.addEventListener}
+         * in {@link EventHandler.addEventListener}
          */
         stopPropagation : function(evt) {
 
-            o2.EventHandler.stopPropagation = window.event ? function() {
+            me.EventHandler.stopPropagation = window.event ? function() {
 
                 window.event.cancelBubble = true;
 
@@ -445,7 +456,7 @@
             };
 
 
-            o2.EventHandler.stopPropagation(evt);
+            me.EventHandler.stopPropagation(evt);
         }
 
     };

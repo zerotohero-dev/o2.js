@@ -1,23 +1,24 @@
 /*global o2*/
 
-if(!o2.Validator) {
-    o2.Validator = {};
-}
-
 /**
- * @module o2.validator.regexp
- * @requires o2
+ * @module validator.regexp
+ * @requires validator
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework.Validator;
 
     /*
      * Module configuration.
@@ -33,7 +34,7 @@ if(!o2.Validator) {
     };
 
     /**
-     * @function {static} o2.Validator.isEmail
+     * @function {static} Validator.isEmail
      *
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
@@ -41,22 +42,17 @@ if(!o2.Validator) {
      * <p>There is no good (and realistic) regular expression to match an e-mail
      * address.<p>
      * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
-     * for
-     * that.</p>
+     * for that.</p>
      * <p>This method matches <strong>e-mail</strong> addresses, while giving
-     * some
-     * false
-     * positives.</p>
+     * some false-positives.</p>
      * <p>The correct action to validate an <strong>e-mail</strong> address is to
      * validate by trying
      * (i.e. try sending an account activation <strong>e-mail</strong> to a newly
-     * registered user, for
-     * example.).</p>
+     * registered user, for example.).</p>
      *
      * @param {String} mail - the <strong>e-mail</strong> address to test.
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
-     * potentially valid e-mail,
-     * <code>false</code> otherwise.
+     * potentially valid e-mail, <code>false</code> otherwise.
      */
     me.isEmail = function(mail) {
 
@@ -65,7 +61,7 @@ if(!o2.Validator) {
     };
 
     /**
-     * @function {static} o2.Validator.isValidUrl
+     * @function {static} Validator.isValidUrl
      *
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
@@ -81,7 +77,7 @@ if(!o2.Validator) {
     };
 
     /**
-     * @function {static} o2.Validator.isWhitespace
+     * @function {static} Validator.isWhitespace
      *
      * <p>Checks whether the given argument consists of only whitespace
      * characters.</p>
@@ -96,4 +92,4 @@ if(!o2.Validator) {
 
     };
 
-}(o2.Validator, this));
+}(o2, this));

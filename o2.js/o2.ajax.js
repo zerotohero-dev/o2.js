@@ -1,9 +1,8 @@
 /*global o2, ActiveXObject */
 
 /**
- * @module o2.ajax.core
- * @requires o2
- * @requires o2.stringhelper.core
+ * @module ajax.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -13,43 +12,90 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
+    var generateGuid = me.StringHelper.generateGuid;
+    var concat = me.StringHelper.concat;
+    var nill = me.nill;
 
     /*
      * Module configuration.
      */
     var config = {
         constants : {
+
+            /*
+             *
+             */
             prefix : {
                 RANDOM : '?rnd='
             },
+
+            /*
+             *
+             */
             verb : {
                 GET : 'GET',
                 POST : 'POST'
             },
+
+            /*
+             *
+             */
             error : {
                 NO_XHR : 'Failed to create an XHR instance'
             },
+
+            /*
+             *
+             */
             readystate : {
                 COMPLETE : 4
             },
+
+            /*
+             *
+             */
             status : {
                 OK : 200,
                 CACHED : 304
             },
+
+            /*
+             *
+             */
             header : {
+
+                /*
+                 *
+                 */
                 common : [{
                     //setting X-Requested-With header causes problem in ejabberd
                     // requests.
                     //'X-Requested-With': 'XmlHTTPRequest',
                     'Accept' : 'text/javascript, text/html, application/xml, text/xml, */*'
                 }],
+
+                /*
+                 *
+                 */
                 post : [{
                     'Content-Type' : 'application/x-www-form-urlencoded'
                 }]
+
             },
+
+            /*
+             *
+             */
             GUID_MULTIPLIER : 10000
+
         },
+
         // @formatter:off
         progId : [
             'Msxml2.XMLHTTP',
@@ -60,14 +106,8 @@
             'Msxml2.XMLHTTP.3.0'
        ]
        // @formatter:on
-    };
 
-    /*
-     * Aliases.
-     */
-    var generateGuid = o2.StringHelper.generateGuid;
-    var concat = o2.StringHelper.concat;
-    var nill = o2.nill;
+    };
 
     /*
      * <p>Creates a brand new <code>XmlHttpRequest</code> object.</p>
@@ -82,19 +122,20 @@
 
         if(window.XMLHttpRequest) {
             createXhr = function() {
-                
+
                 return new XMLHttpRequest();
-                
+
             };
 
             request = createXhr();
 
             if(!request) {
-                
+
                 throw kNoXhr;
             }
 
             return request;
+
         }
 
         var progId = null;
@@ -104,22 +145,26 @@
             progId = progIds.shift();
 
             try {
+
                 request = new ActiveXObject(progId);
+
                 break;
+
             } catch(ignore) {
+
             }
         }
 
         if(!request) {
-            
+
             throw kNoXhr;
         }
-        
+
         //
         createXhr = function() {
-            
+
             return new ActiveXObject(progId);
-            
+
         };
 
         return request;
@@ -134,13 +179,13 @@
     function finalizeXhr(xhr) {
 
         if(!xhr) {
-            
+
             return;
         }
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
-        
+
     }
 
     /*
@@ -167,24 +212,23 @@
         var isSuccess = status == kOk || status == kCached;
 
         try {
-            
+
             if(isSuccess) {
                 oncomplete(xhr.responseText, xhr.responseXML, xhr);
-                
+
                 return;
             }
 
             onerror(xhr.status, xhr.statusText, xhr);
 
         } catch(ex) {
-            
+
             onexception(xhr, ex);
-            
 
         } finally {
-            
+
             finalizeXhr(xhr);
-            
+
         }
 
     }
@@ -202,16 +246,16 @@
     function registerCallbacks(xhr, callbacks) {
 
         if(!xhr) {
-            
+
             return;
         }
 
         if(xhr.isInitialized) {
-            
+
             return;
         }
 
-        var nillCached = o2.nill;
+        var nillCached = nill;
 
         var oncomplete = callbacks.oncomplete ? callbacks.oncomplete : nillCached;
         var onerror = callbacks.onerror ? callbacks.onerror : nillCached;
@@ -307,18 +351,21 @@
     /*
      * <p>Sends the request.</p>
      *
-     * @see {@link o2.Ajax.get} and {@link o2.Ajax.post} for details.
+     * @see {@link Ajax.get} and {@link Ajax.post} for details.
      * @return the original <code>XmlHttpRequest</code>
      */
     function send(url, verb, parameters, callbacks, isSync) {
 
         if(!url) {
-            
+
             return null;
         }
+        
+        //
         parameters = parameters || {};
         callbacks = callbacks || {};
         isSync = !!isSync;
+        
         var isAsync = !isSync;
 
         var kRandom = config.constants.prefix.RANDOM;
@@ -350,6 +397,7 @@
         addCommonRequestHeaders(xhr);
 
         if(isPost) {
+        
             // Add more headers.
             addPostRequestHeaders(xhr);
         }
@@ -359,16 +407,17 @@
 
         // Send the request.
         try {
-            
+
             xhr.send(postQuery);
-        
+
         } catch(exception) {
-        
+
             callbacks.onexception(xhr, exception);
-        
+
         }
 
         if(isSync) {
+        
             // If the request is sync, process response immediately.
             processCallbacks(xhr, callbacks);
         }
@@ -378,16 +427,16 @@
     }
 
     /**
-     * @class {static} o2.Ajax
+     * @class {static} Ajax
      *
      * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
      * <strong>GET</strong> and
      * <strong>POST</strong> requests.</p>
      */
-    o2.Ajax = {
+    me.Ajax = {
 
         /**
-         * @function {static} o2.Ajax.post
+         * @function {static} Ajax.post
          *
          * <p>Sends an <strong>AJAX POST</strong> request.</p>
          *
@@ -411,7 +460,7 @@
         },
 
         /**
-         * @function {static} o2.Ajax.get
+         * @function {static} Ajax.get
          *
          * <p>Sends and <strong>AJAX GET</strong> request.</p>
          *
@@ -436,15 +485,15 @@
         },
 
         /**
-         * @function {static} o2.Ajax.createXhr
+         * @function {static} Ajax.createXhr
          *
          * <p>Creates a native <code>XmlHttpRequest</code> object.
          * <p>This is a <strong>low-level</strong> function; it simply returns
          * the
          * browser's
          * native object.
-         * You may most probably want to use {@link o2.Ajax.get} or {@link
-         * o2.Ajax.post}
+         * You may most probably want to use {@link Ajax.get} or {@link
+         * Ajax.post}
          * instead, for more functionality.
          *
          * @return the created <code>XmlHttpRequest</code> object.

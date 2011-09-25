@@ -1,7 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.validator.core
+ * @module validator.core
  * @requires o2
  *
  * <!--
@@ -12,7 +12,12 @@
  *
  * <p>A validation helper.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /*
      * Module configuration.
@@ -38,7 +43,7 @@
     };
 
     /**
-     * @function {private} o2.Validator.is
+     * @function {private} Validator.is
      *
      * <p>Returns the type information of the given object.</p>
      * <p>The type can be any of the following:</p>
@@ -61,15 +66,15 @@
     }
 
     /**
-     * @class {static} o2.Validator
+     * @class {static} Validator
      *
      * <p>A simple class for validating various kinds of
      * <strong>object</strong>s.</p>
      */
-    o2.Validator = {
+    me.Validator = {
 
         /**
-         * @function {static} o2.Validator.isArray
+         * @function {static} Validator.isArray
          *
          * <p>Checks whether the object is an <code>Array</code>.</p>
          *
@@ -85,7 +90,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isBoolean
+         * @function {static} Validator.isBoolean
          *
          * <p>Checks whether the object is a <code>Boolean</code>.
          *
@@ -101,7 +106,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isDate
+         * @function {static} Validator.isDate
          *
          * <p>Checks whether the object is a <code>Date</code>.</p>
          *
@@ -146,7 +151,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isFunction
+         * @function {static} Validator.isFunction
          *
          * <p>Checks whether the object is a <code>Function</code>.</p>
          *
@@ -161,7 +166,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isNumber
+         * @function {static} Validator.isNumber
          *
          * <p>Checks whether the object is a <code>Number</code>.</p>
          *
@@ -177,7 +182,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isObject
+         * @function {static} Validator.isObject
          *
          * <p>Checks whether the object is an <code>Object</code>({}).</p>
          *
@@ -192,7 +197,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isRegExp
+         * @function {static} Validator.isRegExp
          *
          * <p>Checks whether the object is a <code>RegExp</code>.</p>
          *
@@ -208,7 +213,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isString
+         * @function {static} Validator.isString
          *
          * <p>Checks whether the object is a <code>String</code>.</p>
          *
@@ -222,7 +227,7 @@
         },
 
         /**
-         * @function {static} o2.Validator.isArguments
+         * @function {static} Validator.isArguments
          *
          * <p>Checks whether the object is an <code>arguments</code> object.</p>
          *

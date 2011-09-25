@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.queryparser
- * @requires o2
+ * @module queryparser
  *
  * <!--
  *  This program is distributed under
@@ -12,14 +11,19 @@
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /**
-     * @class {static} o2.QueryParser
+     * @class {static} QueryParser
      *
      * <p>Used for parsing the browser's <strong>query string</strong>.</p>
      */
-    o2.QueryParser = {
+    me.QueryParser = {
 
         /**
          * @function {static} parse
@@ -41,6 +45,7 @@
             var index = href.indexOf('?');
 
             if(index == -1) {
+       
                 return args;
             }
 

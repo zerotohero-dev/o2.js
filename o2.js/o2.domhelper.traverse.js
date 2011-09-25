@@ -1,10 +1,9 @@
 /*global o2 */
 
 /**
- * @module o2.domhelper.traverse
- * @requires o2
- * @requires o2.domhelper.core
- * @requires o2.stringhelper.core
+ * @module domhelper.traverse
+ * @requires domhelper.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -14,15 +13,22 @@
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-( function(o2, window, UNDEFINED) {
-    //VMERGE: merge with groups.fw after completing all todos here.
+( function(framework, window, UNDEFINED) {
 
-    var me = o2.DomHelper;
+    /*
+     * Aliases.
+     */
+    var me = framework.DomHelper;
+    var myName = framework.name;
+    var $ = framework.$;
+    var generateGuid = framework.StringHelper.generateGuid;
+    var getAttribute = me.getAttribute;
+
 
     /**
-     * @function {static} o2.DomHelper.findParent
+     * @function {static} DomHelper.getParent
      *
-     * <p>Finds the first parent element with the given node name.</p>
+     * <p>gets the first parent element with the given node name.</p>
      *
      * @param {DomNode} target - the current <strong>DOM</strong> node.
      * @param {String} nodeName - the node name to search.
@@ -33,9 +39,12 @@
      * otherwise.
      */
     //TODO: update documentation.
-    me.findParent = function(target, nodeName, shouldExcludeSelf) {
+    me.getParent = function(target, nodeName, shouldExcludeSelf) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -57,25 +66,25 @@
         var currentNodeName = '';
 
         while(target) {
-            nodes = nodeName.split(' ');
+            nodes = nodeName.split(',');
             targetNodeName = target.nodeName.toLowerCase();
-            
-            for(var i=0, len=nodes.length; i<len; i++){
+
+            for(var i = 0, len = nodes.length; i < len; i++) {
                 currentNodeName = nodes[i].toLowerCase();
-                
-                if(!currentNodeName){
-                    
+
+                if(!currentNodeName) {
+
                     continue;
                 }
-                
-                if(targetNodeName === currentNodeName){
+
+                if(targetNodeName === currentNodeName) {
                     hasParent = true;
-                    
+
                     break;
                 }
             }
-            
-            if(!hasParent){
+
+            if(!hasParent) {
 
                 continue;
             }
@@ -88,9 +97,9 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentByAttribute
+     * @function {static} DomHelper.getParentByAttribute
      *
-     * <p>Finds the first parent with an <strong>attribute</strong> equal to the
+     * <p>gets the first parent with an <strong>attribute</strong> equal to the
      * given <strong>value</strong>.</p>
      *
      * @param {DomNode} obj - the current <strong>DOM</strong> node.
@@ -101,11 +110,12 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    me.findParentByAttribute = function(obj, attribute, value, shouldExcludeSelf) {
+    me.getParentByAttribute = function(obj, attribute, value, shouldExcludeSelf) {
 
-        var getAttribute = o2.DomHelper.getAttribute;
+        //
+        obj = $(obj);
 
-        if(!obj || typeof obj != 'object') {
+        if(!obj) {
 
             return null;
         }
@@ -131,7 +141,7 @@
 
                 return obj;
             }
-            
+
             //
             obj = obj.parentNode;
         }
@@ -141,9 +151,9 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentWithAttribute
+     * @function {static} DomHelper.getParentWithAttribute
      *
-     * <p>Finds the first parent with a given <strong>attribute</strong>.</p>
+     * <p>gets the first parent with a given <strong>attribute</strong>.</p>
      *
      * @param {DomNode} obj - the current <strong>DOM</strong> node.
      * @param {String} attribute - the name of the attribute.
@@ -152,12 +162,15 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a space delimeted list of attributes.    
-    me.findParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
+    //TODO: I can have a space delimeted list of attributes.  (OR)
+    //TODO: I can also have a comma delimeted list of attributes. (AND) or a
+    // combination of two 'attr1,attr2 attr3 attr4,attr5 attr6' (comma is OR space is AND)
+    me.getParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
 
-        var getAttribute = o2.DomHelper.getAttribute;
+        //
+        obj = $(obj);
 
-        if(!obj || typeof obj != 'object') {
+        if(!obj) {
 
             return null;
         }
@@ -178,6 +191,7 @@
 
                 return obj;
             }
+
             //
             obj = obj.parentNode;
         }
@@ -187,55 +201,61 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentById
+     * @function {static} DomHelper.getParentById
      * <p>This is an alias to</p>
      * <pre>
-     * o2.DomHelper.findParentByAttribute(obj, 'id', shouldExcludeSelf)
+     * DomHelper.getParentByAttribute(obj, 'id', shouldExcludeSelf)
      * </pre>
      *
-     * @see o2.DomHelper.findParentByAttribute
+     * @see DomHelper.getParentByAttribute
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findParentById = function(obj, id, shouldExcludeSelf) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getParentById = function(obj, id, shouldExcludeSelf) {
 
-        if(!obj || typeof obj != 'object') {
+        //
+        obj = $(obj);
+
+        if(!obj) {
 
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
-        return me.findParentByAttribute(obj, 'id', id, isExcluded);
+        return me.getParentByAttribute(obj, 'id', id, isExcluded);
 
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentById
+     * @function {static} DomHelper.getParentById
      * <p>This is an alias to</p>
      * <pre>
-     * o2.DomHelper.findParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
+     * DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
      * </pre>
      *
-     * @see o2.DomHelper.findParentWithAttribute
+     * @see DomHelper.getParentWithAttribute
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findParentWithId = function(obj, value, shouldExcludeSelf) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getParentWithId = function(obj, value, shouldExcludeSelf) {
 
-        if(!obj || typeof obj != 'object') {
+        //
+        obj = $(obj);
+
+        if(!obj) {
 
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
-        return me.findParentWithAttribute(obj, 'id', isExcluded);
+        return me.getParentWithAttribute(obj, 'id', isExcluded);
 
     };
 
     /**
-     * @function {static} o2.DomHelper.findFirstChild
+     * @function {static} DomHelper.getFirstChild
      *
-     * <p>Finds the first child, which is not a text-node, with a given node
+     * <p>gets the first child, which is not a text-node, with a given node
      * name.</p>
      *
      * @param {DomNode} target - the current node.
@@ -243,25 +263,29 @@
      * optional. It defaults to '*', which will match any node name.)
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a space delimeted list of node names.
-    me.findFirstChild = function(target, nodeName) {
+    //TODO: I can have a space comma delimeted list of node names.
+    me.getFirstChild = function(target, nodeName) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
 
         }
 
         if(target.querySelector) {
-            me.findFirstchild = function(target, nodeName) {
+            me.getFirstchild = function(target, nodeName) {
+                target = $(target);
 
-                if(!target || typeof target != 'object') {
+                if(!target) {
 
                     return null;
                 }
 
                 if(!target.id) {
-                    target.id = ['o2', o2.StringHelper.generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join('');
                 }
 
                 var kTextNode = me.nodeType.TEXT;
@@ -273,12 +297,13 @@
 
             };
 
-            return me.findFirstChild(target, nodeName);
+            return me.getFirstChild(target, nodeName);
         }
 
-        me.findFirstChild = function(target, nodeName) {
+        me.getFirstChild = function(target, nodeName) {
+            target = $(target);
 
-            if(!target || typeof target != 'object') {
+            if(!target) {
 
                 return null;
             }
@@ -322,51 +347,58 @@
 
         };
 
-        return me.findFirstChild(target, nodeName);
+        return me.getFirstChild(target, nodeName);
 
     };
-    
-    //TODO: findChildrenById
 
     /**
-     * @function {static} o2.DomHelper.findFirstChildById
+     * @function {static} DomHelper.getFirstChildById
      *
-     * <p>Finds the first child that has the given id.</p>
+     * <p>gets the first child that has the given id.</p>
      *
      * @param {DomNode} target - the target to test.
      * @param {String} id - the id of the child.
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findFirstChildById = function(target, id) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getFirstChildById = function(target, id) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
 
         if(target.querySelector) {
-            me.findFirstChildById = function(target, id) {
+            me.getFirstChildById = function(target, id) {
 
-                if(!target || typeof target != 'object') {
+                //
+                target = $(target);
+
+                if(!target) {
 
                     return null;
                 }
 
                 if(!target.id) {
-                    target.id = ['o2', o2.StringHelper.generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join('');
                 }
 
                 return target.querySelector(['#', target.id, ' > #', id].join(''));
 
             };
 
-            return me.findFirstChildById(target, id);
+            return me.getFirstChildById(target, id);
         }
 
-        me.findFirstChildById = function(target, id) {
+        me.getFirstChildById = function(target, id) {
 
-            if(!target || typeof target != 'object') {
+            //
+            target = $(target);
+
+            if(!target) {
 
                 return null;
             }
@@ -384,7 +416,7 @@
 
                     return node;
                 }
-                
+
                 //
                 node = node.nextSibling;
             }
@@ -393,49 +425,54 @@
 
         };
 
-        return me.findFirstChildById(target, id);
+        return me.getFirstChildById(target, id);
 
     };
 
     /**
-     * @function {static} o2.DomHelper.findFirstChildWithId
+     * @function {static} DomHelper.getFirstChildWithId
      *
-     * <p>Finds the first child with an <strong>id</strong> attribute.</p>
+     * <p>gets the first child with an <strong>id</strong> attribute.</p>
      *
      * @param {DomNode} target - the target to test.
      * @return the first child with <strong>id</strong> if any, <code>null</code>
      * otherwise.
      */
-    me.findFirstChildWithId = function(target) {
+    me.getFirstChildWithId = function(target) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
 
         //querySelector => IE8+
         if(target.querySelector) {
-            me.findFirstChildWithId = function(target) {
+            me.getFirstChildWithId = function(target) {
+                target = $(target);
 
-                if(!target || typeof target != 'object') {
+                if(!target) {
 
                     return null;
                 }
 
                 if(!target.id) {
-                    target.id = ['o2', o2.StringHelper.generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join('');
                 }
 
                 return target.querySelector(['#', target.id, ' > [id]'].join(''));
 
             };
 
-            return me.findFirstChildWithId(target);
+            return me.getFirstChildWithId(target);
         }
 
-        me.findFirstChildWithId = function(target) {
+        me.getFirstChildWithId = function(target) {
+            target = $(target);
 
-            if(!target || typeof target != 'object') {
+            if(!target) {
 
                 return null;
             }
@@ -454,6 +491,7 @@
 
                     return node;
                 }
+
                 //
                 node = node.nextSibling;
             }
@@ -461,13 +499,13 @@
             return null;
         };
 
-        return me.findFirstChildWithId(target);
+        return me.getFirstChildWithId(target);
     };
 
     /**
-     * @function {static} o2.DomHelper.findLastChild
+     * @function {static} DomHelper.getLastChild
      *
-     * <p>Finds the last child, which is not a text-node, with a given node
+     * <p>gets the last child, which is not a text-node, with a given node
      * name.</p>
      *
      * @param {DomNode} target - the current node.
@@ -475,8 +513,11 @@
      * optional. It defaults to '*', which will match any node name.)
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a space delimeted list of node names.
-    me.findLastChild = function(target, nodeName) {
+    //TODO: I can have a comma delimeted list of node names.
+    me.getLastChild = function(target, nodeName) {
+
+        //
+        target = $(target);
 
         // Although this function may be speeded up using  obj.querySelector and
         // :last-child, the :last-child pseudoclass still cannot be reliably used
@@ -488,7 +529,7 @@
         // Your best bet is to explicitly add a last-child (or similar) class to
         // that item, and apply li.last-child instead.
 
-        if(!target || typeof target != 'object') {
+        if(!target) {
 
             return null;
         }
@@ -496,6 +537,8 @@
         var kTextNode = me.nodeType.TEXT;
         var children = target.childNodes;
         var kAll = '*';
+
+        //
         nodeName = nodeName || kAll;
         nodeName = nodeName.toLowerCase();
 
@@ -532,18 +575,19 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findLastChildById
+     * @function {static} DomHelper.getLastChildById
      *
-     * <p>Finds the last child that has the given id.</p>
+     * <p>gets the last child that has the given id.</p>
      *
      * @param {DomNode} target - the target to test.
      * @param {String} id - the id of the child.
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findLastChildById = function(target, id) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getLastChildById = function(target, id) {
+        target = $(target);
 
-        if(!target || typeof target != 'object') {
+        if(!target) {
 
             return null;
         }
@@ -562,6 +606,7 @@
 
                 return node;
             }
+
             //
             node = node.previousSibling;
         }
@@ -571,17 +616,20 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findLastChildWithId
+     * @function {static} DomHelper.getLastChildWithId
      *
-     * <p>Finds the last child with an <strong>id</strong> attribute.</p>
+     * <p>gets the last child with an <strong>id</strong> attribute.</p>
      *
      * @param {DomNode} target - the target to test.
      * @return the first child with <strong>id</strong> if any, <code>null</code>
      * otherwise.
      */
-    me.findLastChildWithId = function(target) {
+    me.getLastChildWithId = function(target) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -600,6 +648,7 @@
 
                 return node;
             }
+
             //
             node = node.previousSibling;
         }
@@ -608,17 +657,82 @@
 
     };
 
+    //TODO: add documentation.
+    me.getChildren = function(elem) {
+
+        var target = $(elem);
+
+        var nodes = target.childNodes;
+
+        var kTextNode = me.nodeType.TEXT;
+
+        var result = [];
+
+        var node = null;
+
+        for(var i = 0, len = nodes.length; i < len; i++) {
+            node = nodes[i];
+
+            if(nodes.nodeType != kTextNode) {
+                result.push(node);
+            }
+        }
+
+        return result;
+
+    };
+
+    //TODO: getChildrenById & comma delim
+
+    //TODO: getChildrenWithId & comma delim
+
+    //TODO: getElementsById & comma delim
+
+    //TODO: getElementsWithId & comma delim
+
+    //TODO: getElementsByAttribute & comma delim & space delim
+
+    //TODO: getElementsWithAttribute & comma delim & space delim
+    
+    //TODO: getElementsByClassName belongs here & comma delim & space delim
+    
+    //TODO: getElementsWithClassName & comma delim & space delim
+    
+    //TODO: getFirstChildById
+    
+    //TODO: getFirstChildWithId
+    
+    //TODO: getLastChildById
+    
+    //TODO: getLastChildWithID
+    
+    //TODO: getFirstChildByClassName
+    
+    //TODO: getFirstChildWithClassName
+    
+    //TODO: getFirstChildByAttribute
+    
+    //TODO: getFirstChildWithAttribute
+    
+    //TODO: getLastChildByAttribute
+    
+    //TODO: getLastChildWithAttribute
+
     /**
-     * @function {static} o2.DomHelper.findPrevious
+     * @function {static} DomHelper.getPrevious
      *
-     * <p>Finds the previous <stronng>DOM</strong> node sibling that's not a text
+     * <p>gets the previous <stronng>DOM</strong> node sibling that's not a text
      * node.</p>
      *
      * @param {DomNode} target - the node to start.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.findPrevious = function(target) {
+    //TODO: update ALL documentation of this file. for $(target)
+    me.getPrevious = function(target) {
+
+        //
+        target = $(target);
 
         if(!target || typeof target != 'object') {
 
@@ -632,14 +746,14 @@
             return null;
         }
 
-        var kTextNode = o2.DomHelper.nodeType.TEXT;
+        var kTextNode = me.nodeType.TEXT;
 
         while(node) {
             if(node.nodeType != kTextNode) {
 
                 return node;
             }
-            
+
             //
             node = node.previousSibling;
         }
@@ -649,19 +763,22 @@
     };
 
     /**
-     * @function o2.DomHelper.findPreviousById
+     * @function DomHelper.getPreviousById
      *
-     * <p>Finds the previous <strong>DOM</strong> node sibling by its id.</p>
+     * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
      *
      * @param {DomNode} target - the original node.
      * @param {String} id - the id to check.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findPreviousById = function(target, id) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getPreviousById = function(target, id) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -673,14 +790,14 @@
             return null;
         }
 
-        var kTextNode = o2.DomHelper.nodeType.TEXT;
+        var kTextNode = me.nodeType.TEXT;
 
         while(node) {
             if(node.id && node.id == id) {
 
                 return node;
             }
-            
+
             //
             node = node.previousSibling;
         }
@@ -689,18 +806,21 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findPreviousWithId
+     * @function {static} DomHelper.getPreviousWithId
      *
-     * <p>Finds the previous <strong>DOM</strong> node that has a defined
+     * <p>gets the previous <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
      * @param {DomNode} target - the node to start.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.findPreviousWithId = function(target) {
+    me.getPreviousWithId = function(target) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -719,7 +839,7 @@
 
                 return node;
             }
-            
+
             //
             node = node.previousSibling;
         }
@@ -729,18 +849,21 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findNext
+     * @function {static} DomHelper.getNext
      *
-     * <p>Finds the next <stronng>DOM</strong> node sibling that's not a text
+     * <p>gets the next <stronng>DOM</strong> node sibling that's not a text
      * node.</p>
      *
      * @param {DomNode} target - the node to start.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.findNext = function(target) {
+    me.getNext = function(target) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -759,7 +882,7 @@
 
                 return node;
             }
-            
+
             //
             node = node.nextSibling;
         }
@@ -769,19 +892,22 @@
     };
 
     /**
-     * @function o2.DomHelper.findNextById
+     * @function DomHelper.getNextById
      *
-     * <p>Finds the next <strong>DOM</strong> node sibling by its id.</p>
+     * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
      *
      * @param {DomNode} target - the original node.
      * @param {String} id - the id to check.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a space delimeted list of ids.
-    me.findNextById = function(target, id) {
+    //TODO: I can have a comma delimeted list of ids.
+    me.getNextById = function(target, id) {
 
-        if(!target || typeof target != 'object') {
+        //
+        target = $(target);
+
+        if(!target) {
 
             return null;
         }
@@ -800,7 +926,7 @@
 
                 return node;
             }
-            
+
             //
             node = node.nextSibling;
         }
@@ -810,18 +936,19 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findNextWithId
+     * @function {static} DomHelper.getNextWithId
      *
-     * <p>Finds the next <strong>DOM</strong> node that has a defined
+     * <p>gets the next <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
      * @param {DomNode} target - the node to start.
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.findNextWithId = function(target) {
+    me.getNextWithId = function(target) {
+        target = $(target);
 
-        if(!target || typeof target != 'object') {
+        if(!target) {
 
             return null;
         }
@@ -840,7 +967,7 @@
 
                 return node;
             }
-            
+
             //
             node = node.nextSibling;
         }

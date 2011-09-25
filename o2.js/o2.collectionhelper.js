@@ -1,10 +1,7 @@
 /*global o2 */
 
-//VMERGE: merge with fw
-
 /**
- * @module o2.collectionhelper
- * @requires o2
+ * @module collectionhelper
  *
  * <!--
  *  This program is distributed under
@@ -14,16 +11,26 @@
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+   
+   /*
+    * Aliases.
+    */
+    var me = framework;
 
     /*
      * Module configuration.
      */
     var config = {
         constants : {
+            
+            /*
+             * 
+             */
             ecmaScriptType : {
                 ARRAY : 'Array'
             }
+            
         }
     };
 
@@ -50,14 +57,14 @@
     }
 
     /**
-     * @class {static} o2.CollectionHelper
+     * @class {static} CollectionHelper
      *
      * <p>A <strong>class</strong> to modify collections.</p>
      */
-    o2.CollectionHelper = {
+    me.CollectionHelper = {
 
         /**
-         * @function {static} o2.CollectionHelper.merge
+         * @function {static} CollectionHelper.merge
          *
          * <p>Merges two objects.</p>
          *
@@ -75,7 +82,7 @@
 
             var value = null;
 
-            var merge = o2.CollectionHelper.merge;
+            var merge = me.CollectionHelper.merge;
 
             for(var key in fromObj) {
                 if(fromObj.hasOwnProperty(key)) {
@@ -100,7 +107,7 @@
         },
 
         /**
-         * @function {static} o2.CollectionHelper.indexOf
+         * @function {static} CollectionHelper.indexOf
          *
          * <p>Gets the index of the element in the given <code>Array</code>.</p>
          *
@@ -111,7 +118,7 @@
         indexOf : function(ar, elm) {
 
             if(Array.prototype.indexOf) {
-                o2.CollectionHelper.indexOf = function(ar, elm) {
+                me.CollectionHelper.indexOf = function(ar, elm) {
 
                     if(!ar) {
 
@@ -127,10 +134,10 @@
 
                 };
 
-                return o2.CollectionHelper.indexOf(ar, elm);
+                return me.CollectionHelper.indexOf(ar, elm);
             }
 
-            o2.CollectionHelper.indexOf = function(ar, elm) {
+            me.CollectionHelper.indexOf = function(ar, elm) {
 
                 if(!ar) {
 
@@ -153,14 +160,14 @@
 
             };
 
-            return o2.CollectionHelper.indexOf(ar, elm);
+            return me.CollectionHelper.indexOf(ar, elm);
 
         },
 
         /**
-         * @function {static} o2.CollectionHelper.contains
+         * @function {static} CollectionHelper.contains
          *
-         * <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
+         * <p>An <strong>alias</strong> to <code>CollectionHelper.indexOf(ar,
          * elm)
          * &gt;
          * -1</code>.</p>
@@ -172,12 +179,12 @@
          */
         contains : function(ar, elm) {
 
-            return o2.CollectionHelper.indexOf(ar, elm) > -1;
+            return me.CollectionHelper.indexOf(ar, elm) > -1;
 
         },
 
         /**
-         * @function {static} o2.CollectionHelper.copy
+         * @function {static} CollectionHelper.copy
          *
          * <p>Creates a clone of the given <code>Object</code>, and returns it;
          * leaving
@@ -206,7 +213,7 @@
                     value = ar[key];
 
                     if(shouldDeepCopy && ( typeof value == 'object')) {
-                        theCopy[key] = o2.CollectionHelper.copy(value, shouldDeepCopy);
+                        theCopy[key] = me.CollectionHelper.copy(value, shouldDeepCopy);
 
                         continue;
                     }
@@ -220,7 +227,7 @@
         },
 
         /**
-         * @function {static} o2.CollectionHelper.clear
+         * @function {static} CollectionHelper.clear
          *
          * <p>Removes all the elements of the <code>Object</code>.</p>
          *
@@ -242,6 +249,7 @@
 
             for(var key in ar) {
                 if(ar.hasOwnProperty(key)) {
+       
                     //
                     delete ar[key];
                 }
@@ -289,7 +297,7 @@
         },
 
         /**
-         * @function o2.CollectionHelper.getFirst
+         * @function CollectionHelper.getFirst
          *
          * <p>Gets the first element of the array.</p>
          *
@@ -313,7 +321,7 @@
         },
 
         /**
-         * @function o2.CollectionHelper.getLast
+         * @function CollectionHelper.getLast
          *
          * <p>Gets the last element of the array.</p>
          *
@@ -337,7 +345,7 @@
         },
 
         /**
-         * @function {static} o2.CollectionHelper.compact
+         * @function {static} CollectionHelper.compact
          *
          * <p>Remove <code>null</code>, and <code>undefined</code> members from
          * the
@@ -365,7 +373,7 @@
             }
 
             var value = null;
-            var compact = o2.CollectionHelper.compact;
+            var compact = me.CollectionHelper.compact;
 
             if(isArray(ar)) {
                 for(var i = 0, len = ar.length; i < len; i++) {
@@ -394,6 +402,7 @@
                     value = ar[key];
 
                     if(value === null || value === UNDEFINED) {
+       
                         //
                         delete ar[key];
                     }

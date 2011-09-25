@@ -1,27 +1,27 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
-
-//VMERGE: merge this file with fw.
-
 /**
- * @module o2.domhelper.class
- * @requires o2
- * @requires o2.stringhelper.core
+ * @module domhelper.class
+ * @requires stringhelper.core
+ * @requires domhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
-    var me = o2.DomHelper;
+    /*
+     * Aliases.
+     */
+    var me =framework.DomHelper;
+    var myName = me.name;
+    var generateGuid = me.StringHelper.generateGuid;
+    var $ = me.$;
 
     /*
      *
@@ -52,7 +52,7 @@ if(!o2.DomHelper) {
     }
 
     /**
-     * @function {static} o2.DomHelper.hasClass
+     * @function {static} DomHelper.hasClass
      *
      * <p>Checks whether an element has the given className.</p>
      *
@@ -63,12 +63,20 @@ if(!o2.DomHelper) {
      */
     me.hasClass = function(el, c) {
 
+        //
+        el = $(el);
+
+        if(!el) {
+
+            return false;
+        }
+
         return createClassNameRegExp(c).test(el.className);
 
     };
 
     /**
-     * @function {static} o2.DomHelper.addClass
+     * @function {static} DomHelper.addClass
      *
      * <p>Add a class to the given node.</p>
      *
@@ -77,8 +85,16 @@ if(!o2.DomHelper) {
      */
     me.addClass = function(el, c) {
 
+        //
+        el = $(el);
+
+        if(!el) {
+
+            return;
+        }
+
         if(me.hasClass(el, c)) {
-            
+
             return;
         }
 
@@ -87,7 +103,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.removeClass
+     * @function {static} DomHelper.removeClass
      *
      * <p>Removes a class from the given node.</p>
      *
@@ -96,8 +112,16 @@ if(!o2.DomHelper) {
      */
     me.removeClass = function(el, c) {
 
+        //
+        el = $(el);
+
+        if(!el) {
+
+            return;
+        }
+
         if(!me.hasClass(el, c)) {
-            
+
             return;
         }
 
@@ -106,7 +130,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.getChildrenByClassName
+     * @function {static} DomHelper.getChildrenByClassName
      *
      * <p>Gets immediate descendants, with a given class name, of the
      * element.</p>
@@ -115,10 +139,14 @@ if(!o2.DomHelper) {
      * @param {String} c - the className to test.
      * @return the immediate descendants with the given class name.
      */
+    //TODO: add space delimited multiple classes.
     me.getChildrenByClassName = function(el, c) {
+        
+        //
+        el = $(el);
 
         if(!el) {
-            
+
             return null;
         }
 
@@ -127,16 +155,19 @@ if(!o2.DomHelper) {
 
         if(el.querySelectorAll) {
             me.getChildrenByClassName = function(el, c) {
-
-                var children = el.childNodes;
+                
+                //
+                el = $(el);
 
                 if(!el) {
-                    
+
                     return null;
                 }
 
+                var children = el.childNodes;
+
                 if(!el.id) {
-                    el.id = ['o2', o2.StringHelper.generateGuid()].join('');
+                    el.id = [myName, generateGuid()].join('');
                 }
 
                 return el.querySelectorAll(['#', el.id, ' > .', c].join(''));
@@ -148,8 +179,11 @@ if(!o2.DomHelper) {
 
         me.getChildrenByClassName = function(el, c) {
 
+            //
+            el = $(el);
+
             if(!el) {
-                
+
                 return null;
             }
 
@@ -164,7 +198,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.getElementsByClassName
+     * @function {static} DomHelper.getElementsByClassName
      *
      * <p>Gets all children, with a given class name, of the element.</p>
      *
@@ -172,18 +206,25 @@ if(!o2.DomHelper) {
      * @param {String} c - the className to test.
      * @return all of the elements with the given class name.
      */
+    //TODO: add space delimeted multiple classes
     me.getElementsByClassName = function(el, c) {
 
+        //
+        el = $(el);
+
         if(!el) {
-            
+
             return null;
         }
 
         if(el.querySelectorAll) {
             me.getElementsByClassName = function(el, c) {
 
+                //
+                el = $(el);
+
                 if(!el) {
-                    
+
                     return null;
                 }
 
@@ -198,8 +239,11 @@ if(!o2.DomHelper) {
 
         me.getElementsByClassName = function(el, c) {
 
+            //
+            el = $(el);
+
             if(!el) {
-                
+
                 return null;
             }
 

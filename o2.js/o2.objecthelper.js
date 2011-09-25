@@ -1,9 +1,8 @@
 /*global o2 */
 
 /**
- * @module o2.objecthelper
- * @requires o2
- * @requires o2.methodhelper.core
+ * @module objecthelper
+ * @requires methodhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -13,23 +12,24 @@
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
     /*
      * Aliases
      */
-    var clone = o2.MethodHelper.bind;
+    var me = framework;
+    var clone = framework.MethodHelper.bind;
 
     /**
-     * @class {static} o2.ObjectHelper
+     * @class {static} ObjectHelper
      *
      * <p>A helper class for <strong>JavaScript</strong> <code>object</code>
      * inheritance.</p>
      */
-    o2.ObjectHelper = {
+    me.ObjectHelper = {
 
         /**
-         * @function {static} o2.ObjectHelper.copy
+         * @function {static} ObjectHelper.copy
          * <p>Copies <code>base</code>'s methods, to <code>child</code>.
          */
         copyMethods : function(child, base) {
@@ -41,14 +41,80 @@
                     shouldCopy = base.hasOwnProperty(key) && typeof base[key] == 'function';
 
                     if(!shouldCopy) {
+                        
                         continue;
                     }
 
-                    child[key] = clone(o2.JsonpState, base[key]);
+                    child[key] = clone(me.JsonpState, base[key]);
                 }
             }
+
+        },
+
+        //TODO: add documentation.
+        //TODO: enable deep conversion.
+        //TODO: implement methods like "pluck"
+        convertObjectToArray : function(obj) {
+    
+            if(!obj) {
+                
+                return [];
+            }
+
+            var result = [];
+
+            for(var key in obj) {
+                if(obj.hasOwnProperty(key)) {
+                    result.push(obj[key]);
+                }
+            }
+    
+        },
+
+        //TODO: ObjectHelper.extend -- and other useful methods.
+
+        //TODO: add recursion depth control.
+        dump : function(obj) {
+
+            var item = null;
+
+            var result = [];
+
+            if( typeof obj == 'function') {
+
+                return '-function-';
+            }
+
+            var dump = me.dump;
+
+            if( typeof obj == 'object') {
+                for(var key in obj) {
+                    if(obj.hasOwnProperty(key)) {
+                        item = obj[key];
+
+                        if( typeof item == 'function') {
+                            result.push([key, ':-function-'].join(''));
+
+                            continue;
+                        }
+
+                        if( typeof item == 'object') {
+                            result.push([key, ':{', dump(item), '}'].join(''));
+
+                            continue;
+                        }
+
+                        result.push([key, ':-', item, '-'].join(''));
+                    }
+                }
+
+                return result.join('');
+            }
+
+            return ['-', obj, '-'].join('');
 
         }
 
     };
+    
 }(o2, this));

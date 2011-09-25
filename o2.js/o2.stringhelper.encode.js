@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.StringHelper) {
-    o2.StringHelper = {};
-}
-
 /**
- * @module o2.stringhelper.encode
- * @requires o2
+ * @module stringhelper.encode
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under 
@@ -16,9 +12,12 @@ if(!o2.StringHelper) {
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
-    var me = o2.StringHelper;
+    /*
+     * Aliases.
+     */
+    var me = framework.StringHelper;
 
     /*
      * Module configuration.
@@ -103,10 +102,10 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.xssEncode
+     * @function {static} StringHelper.xssEncode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
-     * entities. Works similar to {link o2.StringHelper.encode}, with an
+     * entities. Works similar to {link StringHelper.encode}, with an
      * exception that it does not encode whitespace characters.</p>
      * <p>This method is specially designed to prevent cross-site script
      * injection attacks.</p>
@@ -136,7 +135,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.encode
+     * @function {static} StringHelper.encode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
      * entities.</p>
@@ -162,7 +161,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.decode
+     * @function {static} StringHelper.decode
      *
      * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
      * <p>If possible try using standard decoding methods like
@@ -186,7 +185,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.escape
+     * @function {static} StringHelper.escape
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
@@ -200,7 +199,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.encodeSafeHtml
+     * @function {static} StringHelper.encodeSafeHtml
      *
      * <p>Encodes the <code>String</code> by converting it into a text node and
      * returning the node's value.</p>

@@ -1,12 +1,9 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
 
 /**
- * @module o2.domhelper.image
- * @requires o2
+ * @module domhelper.image
+ * @requires domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -16,10 +13,16 @@ if(!o2.DomHelper) {
  *
  * <p>Includes image-related <strong>DOM</strong> helper methods.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework.DomHelper;
+    var nill = me.nill;
 
     /**
-     * @funciton {static} o2.DomHelper.loadImage
+     * @funciton {static} DomHelper.loadImage
      *
      * <p>Tries to load the image into a <strong>JavaScript</strong>
      * <code>Image</code> object; then triggers
@@ -37,8 +40,8 @@ if(!o2.DomHelper) {
      */
     me.loadImage = function(url, succesCallback, failureCallback) {
 
-        var succesCallbackCached = succesCallback || o2.nill;
-        var failureCallbackCached = failureCallback || o2.nill;
+        var succesCallbackCached = succesCallback || nill;
+        var failureCallbackCached = failureCallback || nill;
 
         var testImg = new Image();
 
@@ -51,4 +54,4 @@ if(!o2.DomHelper) {
 
     };
 
-}(o2.DomHelper, this));
+}(o2, this));

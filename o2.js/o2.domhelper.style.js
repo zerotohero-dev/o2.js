@@ -1,13 +1,9 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
-
 /**
- * @module o2.domhelper.style
- * @requires o2
- * @requires o2.stringhelper.transform
+ * @module domhelper.style
+ * @required domhelper.core
+ * @requires stringhelper.transform
  *
  * <!--
  *  This program is distributed under
@@ -19,31 +15,42 @@ if(!o2.DomHelper) {
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
     /*
      * Aliases.
      */
-    var toCamelCase = o2.StringHelper.toCamelCase;
-    var toDashedFromCamelCase = o2.StringHelper.toDashedFromCamelCase;
+    var me = framework.DomHelper;
+    var myName = framework.name;
+    var toCamelCase = me.StringHelper.toCamelCase;
+    var toDashedFromCamelCase = me.StringHelper.toDashedFromCamelCase;
 
     /*
      * Module configuration.
      */
     var config = {
         constants : {
+
+            /*
+             *
+             */
             regExp : {
                 CAMEL_CASE : /(\-[a-z])/g,
                 ALL_CAPS : /([A-Z])/g
             },
+
+            /*
+             *
+             */
             text : {
                 DASH : '-'
             }
+
         }
     };
 
     /**
-     * @function {static} o2.DomHelper.addStyle
+     * @function {static} DomHelper.addStyle
      *
      * <p>Adds style attributes to a <code>DOM</code> node.</p>
      *
@@ -63,7 +70,7 @@ if(!o2.DomHelper) {
         var toCamelCaseCached = toCamelCase;
 
         if(!obj || typeof obj != 'object') {
-            
+
             return;
         }
 
@@ -76,7 +83,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.getStyle
+     * @function {static} DomHelper.getStyle
      *
      * <p>Gets the <strong>style</strong> of a given property of the element.</p>
      * <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
@@ -106,7 +113,7 @@ if(!o2.DomHelper) {
                 cssProperty = toCamelCase(cssProperty);
 
                 if(!obj || typeof obj != 'object') {
-                    
+
                     return null;
                 }
 
@@ -114,17 +121,17 @@ if(!o2.DomHelper) {
                 var val = obj.style[cssProperty];
 
                 if(val) {
-                    
+
                     return val;
                 }
 
                 if(obj.currentStyle) {
-                    
+
                     return obj.currentStyle[cssProperty];
                 }
 
                 if(defaultView.getComputedStyle) {
-                    
+
                     return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
                 }
 
@@ -141,24 +148,24 @@ if(!o2.DomHelper) {
             cssProperty = toCamelCase(cssProperty);
 
             if(!obj || typeof obj != 'object') {
-                
+
                 return null;
             }
 
             var val = obj.style[cssProperty];
 
             if(val) {
-                
+
                 return val;
             }
 
             if(obj.currentStyle) {
-                
+
                 return obj.currentStyle[cssProperty];
             }
 
             if(defaultView.getComputedStyle) {
-                
+
                 return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
             }
 
@@ -170,7 +177,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.isVisible
+     * @function {static} DomHelper.isVisible
      *
      * <p>Checks whether the <strong>DOM</strong> node is visible.</p>
      * <p>Note that being visible does not necessarily mean being available
@@ -187,18 +194,18 @@ if(!o2.DomHelper) {
     me.isVisible = function(obj) {
 
         if(!obj || typeof obj != 'object') {
-            
+
             return false;
         }
 
-        return (obj.offsetWidth !== 0 || obj.offsetHeight !== 0) || (o2.DomHelper.getStyle(obj, 'display') != 'none');
+        return (obj.offsetWidth !== 0 || obj.offsetHeight !== 0) || (me.getStyle(obj, 'display') != 'none');
         // even if it's not visible; it takes up space -- && getStyle(obj,
         // 'visibility') == 'visible');
 
     };
 
     /**
-     * @function {static} o2.DomHelper.activateAlternateStylesheet
+     * @function {static} DomHelper.activateAlternateStylesheet
      *
      * <p>Activates the <strong>alternate stylesheet</strong> with the given
      * <code>title</code>.</p>
@@ -209,7 +216,7 @@ if(!o2.DomHelper) {
     me.activateAlternateStylesheet = function(title) {
 
         var link = null;
-        var t = o2.t;
+        var t = t;
         var links = t('link');
         var shouldDisable = false;
         var linkTitle = '';
@@ -231,12 +238,12 @@ if(!o2.DomHelper) {
     me.hide = function(obj) {
 
         if(!obj || typeof obj != 'object') {
-            
+
             return;
         }
 
         if(obj.style.display != 'none') {
-            obj.o2_oldDisplay = obj.style.display;
+            obj[[myName, '_oldDisplay'].join('')] = obj.style.display;
         }
 
         obj.style.display = 'none';
@@ -244,21 +251,22 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.show
+     * @function {static} DomHelper.show
      * <p>Shows the given object.</p>
      * @param {DomNode} obj - the <strong>DOM</strong> node to hide.
      */
     me.show = function(obj) {
 
         if(!obj || typeof obj != 'object') {
-            
+
             return;
         }
 
-        obj.style.display = obj.o2_oldDisplay ? obj.o2_oldDisplay : '';
+        obj.style.display = obj[[myName, '_oldDisplay'].join('')] ? obj[[myName, '_oldDisplay'].join('')] : '';
+
         //
-        delete obj.o2_oldDisplay;
+        delete obj[[myName, '_oldDisplay'].join('')];
 
     };
 
-}(o2.DomHelper, this));
+}(o2, this));

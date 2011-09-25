@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.methodhelper.core
- * @requires o2
+ * @module methodhelper.core
  *
  * <!--
  *  This program is distributed under 
@@ -13,16 +12,21 @@
  * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /**
-     * @class {static} o2.MethodHelper
+     * @class {static} MethodHelper
      * A method helper class.
      */
-    o2.MethodHelper = {
+    me.MethodHelper = {
 
         /**
-         * @function {static} o2.MethodHelper.memoize
+         * @function {static} MethodHelper.memoize
          *
          * <p><strong>Memoizes</strong> the given <code>function</code>'s outcome
          * and
@@ -31,7 +35,7 @@
          * <p>Sample Usage:</p>
          * <pre>
          * function multiply(a,b){return a*b; }
-         * var memoized = o2.MethodHelper.memoize(multiply);
+         * var memoized = MethodHelper.memoize(multiply);
          * var result = memoized(2,3);//fresh calculation.
          * result = memoized(4,2);//fresh calculation.
          * result = memoized(2,3);//retrieve from cache.
@@ -75,7 +79,7 @@
         },
 
         /**
-         * @function {static} o2.MethodHelper.curry
+         * @function {static} MethodHelper.curry
          *
          * <p>Curries the <code>function</code>.</p>
          * <p>See http://www.dustindiaz.com/javascript-curry/ for a
@@ -83,7 +87,7 @@
          * <p>Example usage:</p>
          * <pre>
          * function test(a,b,c) { return a+b+c; }
-         * var curried = o2.MethodHelper.curry(this, test, 1, 2);
+         * var curried = MethodHelper.curry(this, test, 1, 2);
          * var result = curried(3);//returns 6;
          * </pre>
          *
@@ -103,7 +107,7 @@
         },
 
         /**
-         * @function {static} o2.MethodHelper.partial
+         * @function {static} MethodHelper.partial
          *
          * <p>Defines a partial <code>function</code>.</p>
          * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
@@ -112,7 +116,7 @@
          * <p>Usage Example:</p>
          * <pre>
          * function test(a,b,c){ return a*b+c; }
-         * var partial = o2.MethodHelper.partial(test, 10, undefined, 20);
+         * var partial = MethodHelper.partial(test, 10, undefined, 20);
          * var result = partial(3);//returns 50;
          * </pre>
          *
@@ -142,7 +146,7 @@
         },
 
         /**
-         * @function o2.MethodHelper.bind
+         * @function MethodHelper.bind
          *
          * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
          * the

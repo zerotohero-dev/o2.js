@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.StringHelper) {
-    o2.StringHelper = {};
-}
-
 /**
- * @module o2.stringhelper.transform
- * @requires o2
+ * @module stringhelper.transform
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under 
@@ -17,12 +13,15 @@ if(!o2.StringHelper) {
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
-    var me = o2.StringHelper;
+    /*
+     * Aliases.
+     */
+    var me = framework.StringHelper;
 
     /**
-     * @struct {private} o2.StringHelper.config
+     * @struct {private} StringHelper.config
      *
      * <p>Module configuration.</p>
      */
@@ -35,7 +34,7 @@ if(!o2.StringHelper) {
             
             /**
              * @property {private const Integer}
-             * o2.StringHelper.config.constants.TRUNCATION_LENGTH
+             * StringHelper.config.constants.TRUNCATION_LENGTH
              *
              * <p>Maximum length, after which the string is truncated with an
              * ellipsis
@@ -68,7 +67,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.br2nl
+     * @function {static} StringHelper.br2nl
      *
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
@@ -84,7 +83,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.nl2br
+     * @function {static} StringHelper.nl2br
      *
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
      *
@@ -100,7 +99,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.removeTags
+     * @function {static} StringHelper.removeTags
      *
      * <p>Removes all the <strong>HTML</strong> tags in the
      * <code>String</code>.</p>
@@ -115,7 +114,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.truncate
+     * @function {static} StringHelper.truncate
      *
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
      * is
@@ -124,7 +123,7 @@ if(!o2.StringHelper) {
      *
      * @param {String} str - the <code>String</code> to process.
      * @param {Integer} maxLen - Optional (defaults to
-     * {@link o2.StringHelper.config.constants.TRUNCATION_LENGTH},
+     * {@link StringHelper.config.constants.TRUNCATION_LENGTH},
      * maximum <code>String</code> length that's allowed without truncation.
      * @return the processed <code>String</code>.
      */
@@ -143,7 +142,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.toCamelCase
+     * @function {static} StringHelper.toCamelCase
      *
      * <p>Converts the input to camel case.</p>
      * <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
@@ -166,7 +165,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.toDashedFromCamelCase
+     * @function {static} StringHelper.toDashedFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem-ipsum'.</p>
@@ -187,7 +186,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.toUnderscoreFromCamelCase
+     * @function {static} StringHelper.toUnderscoreFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem_ipsum'.</p>

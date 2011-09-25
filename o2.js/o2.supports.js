@@ -1,30 +1,36 @@
 /*global o2 */
 
 /**
- * @module o2.supports
+ * @module supports
  * @requires "all modules that the support will be checked"
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>An object support checker.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
+    var myName = me.name;
 
     /**
-     * @class {static} o2.Supports
+     * @class {static} Supports
      *
      * <p>Checks support for various objects and properties like
      * <strong>DOM</strong>
      * and <strong>cookie</strong>s.</p>
      */
-    o2.Supports = {
+    me.Supports = {
 
         /**
-         * @function {static} o2.Supports.cookie
+         * @function {static} Supports.cookie
          *
          * <p>Checks for <strong>cookie</strong> support.</p>
          *
@@ -33,8 +39,8 @@
          */
         cookie : function() {
 
-            var kTestCookie = 'o2jsTest';
-            var cookie = o2.Cookie;
+            var kTestCookie = [myName, 'tst'].join('');
+            var cookie = me.Cookie;
 
             cookie.save(kTestCookie, kTestCookie, 1);
 
@@ -56,7 +62,7 @@
         },
 
         /**
-         * @function {static} o2.Supports.dom
+         * @function {static} Supports.dom
          *
          * <p>Checks whether <strong>DOM</strong> is adequately supported.
          *
@@ -70,7 +76,7 @@
         },
 
         /**
-         * @function {static} o2.Supports.ajax
+         * @function {static} Supports.ajax
          *
          * <p>Checks whether <strong>AJAX</strong> is supported.
          *
@@ -79,7 +85,7 @@
          */
         ajax : function() {
 
-            return !!o2.Ajax.createXhr();
+            return !!me.Ajax.createXhr();
 
         }
 

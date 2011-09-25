@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.ajaxstate
- * @requires o2
+ * @module ajaxstate
  *
  * <!--
  *  This program is distributed under 
@@ -11,26 +10,31 @@
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
- * <p>An {@link o2.AjaxController} should be registered to this model.</p>
+ * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
     //*
+    
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /**
-     * @class {static} o2.AjaxState
+     * @class {static} AjaxState
      * @implements Observable
      *
-     * <p>A <code>Model</code> for the available <code>o2.AjaxController</code>
+     * <p>A <code>Model</code> for the available <code>AjaxController</code>
      * objects.</p>
      * <p>Implements the <code>Observable</code> interface.</p>
      *
      * <p>See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html</p>
      */
-    o2.AjaxState = {
+    me.AjaxState = {
 
         /**
-         * @function {static} o2.AjaxState.init
+         * @function {static} AjaxState.init
          *
          * <p>Initializes the <strong>object</strong> and starts notifying
          * registered
@@ -45,7 +49,7 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.addObserver
+         * @function {static} AjaxState.addObserver
          *
          * <p>An implementation of the <code>Observer.addObserver</code>
          * method.</p>
@@ -76,7 +80,7 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.deleteObserver
+         * @function {static} AjaxState.deleteObserver
          *
          * <p>An implementation of the <code>Observer.deleteObserver</code>
          * method.</p>
@@ -108,7 +112,7 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.countObservers
+         * @function {static} AjaxState.countObservers
          *
          * <p>An implementation of the <code>Observer.countObservers</code>
          * method.</p>
@@ -123,7 +127,7 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.deleteObservers
+         * @function {static} AjaxState.deleteObservers
          *
          * <p>An implementation of the <code>Observer.deleteObservers</code>
          * method.</p>
@@ -136,12 +140,12 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.timeoutObservers
+         * @function {static} AjaxState.timeoutObservers
          *
          * <p>Sends a timeout request and unregisters the given
          * <code>Observer</code>s.</p>
          *
-         * @param {Array} observers - A collection of {link o2.AjaxController}
+         * @param {Array} observers - A collection of {link AjaxController}
          * objects.
          * @param {Object} data - the data to pass to the <code>Observer</code>s.
          */
@@ -161,7 +165,7 @@
         },
 
         /**
-         * @function {static} o2.AjaxState.timeoutAllObservers
+         * @function {static} AjaxState.timeoutAllObservers
          *
          * <p>Sends a timeout request and unregisters all registered
          * <code>Observer</code>s.</p>
@@ -177,7 +181,7 @@
         protecteds : {
 
             /**
-             * @struct {protected readonly} o2.AjaxState.protecteds.config
+             * @struct {protected readonly} AjaxState.protecteds.config
              *
              * <p>Module configuration.</p>
              */
@@ -186,7 +190,7 @@
             },
 
             /**
-             * @struct {protected readonly} o2.AjaxState.state
+             * @struct {protected readonly} AjaxState.state
              *
              * <p>Internal state.</p>
              */
@@ -196,14 +200,14 @@
 
             /**
              * @property {protected readonly Array}
-             * o2.AjaxState.observers
+             * AjaxState.observers
              *
              * <p>A collection of the registered <code>Observer</code>s.</p>
              */
             observers : [],
 
             /**
-             * @function {static protected} o2.AjaxState.protecteds.hasObserver
+             * @function {static protected} AjaxState.protecteds.hasObserver
              *
              * <p>This method is protected, don't call it from outside.</p>
              */
@@ -212,15 +216,15 @@
                 // static scope:*
                 //
                 // That is to say, this method (and all other static methods in
-                // here) will see the scope of this closure ( ( function(o2,
+                // here) will see the scope of this closure ( ( function(...,
                 // window, UNDEFINED) { ... ) when they are extended via
                 //
-                // NewClass.hasObserver = o2.AjaxState.hasObserver
+                // NewClass.hasObserver = AjaxState.hasObserver
                 //
                 // even using
                 //
-                // NewClass.hasObserver = o2.MethodHelper.clone(NewClass,
-                // o2.AjaxState.hasObserver);
+                // NewClass.hasObserver = MethodHelper.clone(NewClass,
+                // AjaxState.hasObserver);
                 //
                 // will not change this fact.
 
@@ -238,7 +242,7 @@
             },
 
             /**
-             * @function {static protected} o2.AjaxState.protecteds.listen
+             * @function {static protected} AjaxState.protecteds.listen
              *
              * <p>This method is protected, don't call it from outside.</p>
              *

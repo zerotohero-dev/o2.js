@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.domhelper.core
- * @requires o2
+ * @module domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -12,93 +11,94 @@
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
     //TODO: update my documentation ($'s added).
 
     /*
      * Aliases.
      */
-    var $ = o2.$;
+    var me = framework;
+    var $ = $;
 
     /**
-     * @class {static} o2.DomHelper
+     * @class {static} DomHelper
      *
      * A cross-browser DOM manipulation helper.
      */
-    o2.DomHelper = {
+    me.DomHelper = {
 
         /**
-         * @struct {static} o2.DomHelper.nodeType
+         * @struct {static} DomHelper.nodeType
          *
          * <code>DOM</code> node types.
          */
         nodeType : {
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.ELEMENT - element node.
+             * DomHelper.nodeType.ELEMENT - element node.
              */
             ELEMENT : 1,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.ATTRIBUTE - atribute node.
+             * DomHelper.nodeType.ATTRIBUTE - atribute node.
              */
             ATTRIBUTE : 2,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.TEXT - text node.
+             * DomHelper.nodeType.TEXT - text node.
              */
             TEXT : 3,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.CDATA - CDATA section.
+             * DomHelper.nodeType.CDATA - CDATA section.
              */
             CDATA : 4,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.ENTITY_REFERENCE - entity reference.
+             * DomHelper.nodeType.ENTITY_REFERENCE - entity reference.
              */
             ENTITY_REFERENCE : 5,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.ENTITY - entity.
+             * DomHelper.nodeType.ENTITY - entity.
              */
             ENTITY : 6,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.PROCESSING_INSTRUCTION - processing
+             * DomHelper.nodeType.PROCESSING_INSTRUCTION - processing
              * instruction.
              */
             PROCESSING_INSTRUCTION : 7,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.COMMENT - comment node.
+             * DomHelper.nodeType.COMMENT - comment node.
              */
             COMMENT : 8,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.DOCUMENT - document (root) node.
+             * DomHelper.nodeType.DOCUMENT - document (root) node.
              */
             DOCUMENT : 9,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.DOCUMENT_TYPE - DTD node.
+             * DomHelper.nodeType.DOCUMENT_TYPE - DTD node.
              */
             DOCUMENT_TYPE : 10,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.DOCUMENT_FRAGMENT - document fragment.
+             * DomHelper.nodeType.DOCUMENT_FRAGMENT - document fragment.
              */
             DOCUMENT_FRAGMENT : 11,
             /**
              * @property {static const Integer}
-             * o2.DomHelper.nodeType.NOTATION - notation.
+             * DomHelper.nodeType.NOTATION - notation.
              */
             NOTATION : 12
         },
 
         /**
-         * @function {static} o2.DomHelper.isChild
+         * @function {static} DomHelper.isChild
          *
          * <p>Checks whether the give node is the child of another node.</p>
          *
@@ -161,7 +161,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.removeNode
+         * @function {static} DomHelper.removeNode
          *
          * <p>Removes the element from the <strong>DOM</strong> flow.</p>
          *
@@ -185,7 +185,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.removeEmptyTextNodes
+         * @function {static} DomHelper.removeEmptyTextNodes
          *
          * <p>Removes empty text nodes from the element.</p>
          *
@@ -212,14 +212,14 @@
             //
             isRecursive = !!isRecursive;
 
-            var kText = o2.DomHelper.nodeType.TEXT;
+            var kText = me.DomHelper.nodeType.TEXT;
             var regWhitespace = /^\s*$/;
 
             var nodeValue = '';
             var child = null;
             var shouldRemove = false;
 
-            var removeEmptyTextNodes = o2.DomHelper.removeEmptyTextNodes;
+            var removeEmptyTextNodes = me.DomHelper.removeEmptyTextNodes;
 
             for( i = 0; i < len; i++) {
                 child = children[i];
@@ -262,7 +262,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.insertAfter
+         * @function {static} DomHelper.insertAfter
          *
          * <p>Adds the node after the reference node.</p>
          *
@@ -287,7 +287,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.insertBefore
+         * @function {static} DomHelper.insertBefore
          *
          * <p>Adds the node before the reference node.</p>
          *
@@ -312,7 +312,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.createElement
+         * @function {static} DomHelper.createElement
          *
          * <p>Creates an element with given name and attributes.</p>
          *
@@ -374,7 +374,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.prepend
+         * @function {static} DomHelper.prepend
          *
          * <p>Prepends the element to the top of its parent.</p>
          *
@@ -403,7 +403,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.append
+         * @function {static} DomHelper.append
          *
          * <p>Appends the element to the bottom of its parent.</p>
          *
@@ -426,7 +426,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.getOffset
+         * @function {static} DomHelper.getOffset
          *
          * <p>Gets the left and top offset of a given element.</p>
          *
@@ -470,7 +470,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.getAttribute
+         * @function {static} DomHelper.getAttribute
          *
          * <p>Gets the attribute of a given node.</p>
          *

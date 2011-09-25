@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
-
 /**
- * @module o2.domhelper.scroll
- * @requires o2
+ * @module domhelper.scroll
+ * @requires domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -16,10 +12,15 @@ if(!o2.DomHelper) {
  *
  * <p>A window/div scroll helper.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework.DomHelper;
 
     /**
-     * @function {static} o2.DomHelper.scrollWindowToBottom
+     * @function {static} DomHelper.scrollWindowToBottom
      *
      * <p>Scrolls window to bottom.</p>
      */
@@ -50,7 +51,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.scrollWindowToTop
+     * @function {static} DomHelper.scrollWindowToTop
      *
      * <p>Scrolls window to top.</p>
      */
@@ -82,7 +83,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.scrollObjectToTop
+     * @function {static} DomHelper.scrollObjectToTop
      *
      * <p>Scrolls an element to top.</p>
      *
@@ -95,7 +96,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.scrollObjectToBottom
+     * @function {static} DomHelper.scrollObjectToBottom
      *
      * <p>Scrolls an element to bottom.</p>
      *
@@ -108,7 +109,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.scrollWindowToObject
+     * @function {static} DomHelper.scrollWindowToObject
      *
      * <p>Scrolls the window to the object's offset position..</p>
      *
@@ -116,13 +117,13 @@ if(!o2.DomHelper) {
      */
     me.scrollWindowToObject = function(obj) {
 
-        var offset = o2.DomHelper.getOffset(obj);
+        var offset = me.getOffset(obj);
         window.scrollTo(offset.left, offset.top);
 
     };
 
     /**
-     * @function {static} o2.DomHelper.getWindowScrollOffset
+     * @function {static} DomHelper.getWindowScrollOffset
      *
      * <p>Gets the <strong>window</strong>'s scroll offset.</p>
      *
@@ -180,4 +181,4 @@ if(!o2.DomHelper) {
 
     };
 
-}(o2.DomHelper, this));
+}(o2, this));

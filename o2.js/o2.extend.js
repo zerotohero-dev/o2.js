@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.extend
- * @requires o2
+ * @module extend
  *
  * <!--
  *  This program is distributed under 
@@ -10,26 +9,36 @@
  *  Please see the LICENSE file for details. 
  * -->
  *
- * Helpful extension functions to <code>o2</code> namespace.
+ * Helpful extension functions to the framework namespace.
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
     //TODO: add documentation.
     //TODO: complete me.
     
-    o2.first = function() {
+    var me = framework;
+    
+    me.first = function() {
 
     };
 
-    o2.last = function() {
+    me.last = function() {
 
     };
 
-    o2.parent = function() {
+    me.parent = function() {
 
     };
     
-    o2.remove = function(){
+    me.remove = function(){
         
-    }
+    };
+    
+    me.listen = function(){
+        
+    };
+    
+    me.create = function(){
+        
+    };
 
 }(o2, this));

@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.try
- * @requires o2
+ * @module try
  *
  * <!--
  *  This program is distributed under 
@@ -16,10 +15,12 @@
  * function
  * will be tried, disregarding the error.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    var me = framework;
 
     /**
-     * @class {static} o2.Try
+     * @class {static} Try
      *
      * <p>Used for consequentially executing a set of <code>function</code>s.</p>
      * <p>The <strong>function</strong>s are guaranteed to be called.</p>
@@ -27,10 +28,10 @@
      * <code>function</code>
      * will be tried, disregarding the error.</p>
      */
-    o2.Try = {
+    me.Try = {
 
         /**
-         * @function {static} o2.Try.all
+         * @function {static} Try.all
          *
          * <p>Executes all the given delegates one by one.</p>
          * <p>If an exception occurs while executing the argument, the next one
@@ -38,7 +39,7 @@
          * tried.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * o2.Try.all(fn1, fn2, fn3);
+         * Try.all(fn1, fn2, fn3);
          * </pre>
          *
          * @param {...} ... - each argument as a function.
@@ -55,7 +56,7 @@
         },
 
         /**
-         * @function {static} o2.Try.these
+         * @function {static} Try.these
          *
          * <p>Tries all the given delegates, will stop at the first successful
          * execution.</p>
@@ -66,7 +67,7 @@
          * functions will be executed.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * o2.Try.these(fn1, fn2, fn3);
+         * Try.these(fn1, fn2, fn3);
          * </pre>
          *
          * @param {...} ... - each argument as a function.

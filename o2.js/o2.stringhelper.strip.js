@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.StringHelper) {
-    o2.StringHelper = {};
-}
-
 /**
- * @module o2.stringhelper.strip
- * @requires o2
+ * @module stringhelper.strip
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under 
@@ -17,15 +13,19 @@ if(!o2.StringHelper) {
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
     
-    var me = o2.StringHelper;
+    var me = framework.StringHelper;
 
     /*
      * Module configuration.
      */
     var config = {
         constants : {
+            
+            /*
+             * 
+             */
             regExp : {
                 NON_ALPHA : /[^A-Za-z ]+/g,
                 NON_ALPHANUMERIC : /[^A-Za-z0-9 ]+/g,
@@ -33,11 +33,12 @@ if(!o2.StringHelper) {
                 NUMERIC : /[0-9]/g,
                 TAG : /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig
             }
+            
         }
     };
 
     /**
-     * @function {static} o2.StringHelper.stripNonAlpha
+     * @function {static} StringHelper.stripNonAlpha
      *
      * <p>Removes non alphabetical characters from the <code>String</code>
      * (excluding
@@ -53,7 +54,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.stripNonAlphanumeric
+     * @function {static} StringHelper.stripNonAlphanumeric
      *
      * <p>Removes alpha numeric characters from the <code>String</code>.</p>
      *
@@ -67,7 +68,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.stripNonNumeric
+     * @function {static} StringHelper.stripNonNumeric
      *
      * <p>Removes non numeric characters from the <code>String</code>.</p>
      *
@@ -81,7 +82,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.stripNumeric
+     * @function {static} StringHelper.stripNumeric
      *
      * <p>Removes numeric characters from the <code>String</code>.</p>
      *
@@ -95,7 +96,7 @@ if(!o2.StringHelper) {
     };
 
     /**
-     * @function {static} o2.StringHelper.stripTags
+     * @function {static} StringHelper.stripTags
      *
      * <p>Removes tags from the <code>String</code>.
      *

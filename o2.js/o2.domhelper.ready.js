@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
-
 /**
- * @module o2.domhelper.ready
- * @requires o2
+ * @module domhelper.ready
+ * @requires domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -16,23 +12,27 @@ if(!o2.DomHelper) {
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
-( function(o2, window, UNDEFINED) {
-
-    var me = o2.DomHelper;
+( function(framework, window, UNDEFINED) {
 
     /*
      * Aliases.
      */
-    var nill = o2.nill;
+    var me = framework.DomHelper;
+    var nill = me.nill;
 
     /*
      * Module configuration.
      */
     var config = {
         constants : {
+
+            /*
+             *
+             */
             regExp : {
                 REG_DOM_LOADED : /^loade|c/
             }
+
         }
     };
 
@@ -75,22 +75,31 @@ if(!o2.DomHelper) {
     var checkScrollLeft = function() {
 
         try {
+            
             window.document.documentElement.doScroll('left');
+            
         } catch(e) {
+            
             setTimeout(checkScrollLeft, 50);
+            
             return;
+        
         }
 
         flushReadyQueue();
+        
         //
-        checkScrollLeft =nill;
+        checkScrollLeft = nill;
 
     };
 
     var onMozDomContentLoaded = function(evt) {
 
         window.document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
+        
+        //
         flushReadyQueue();
+
         //
         onMozDomContentLoaded = nill;
 
@@ -99,7 +108,10 @@ if(!o2.DomHelper) {
     var onMozWindowLoad = function(evt) {
 
         window.document.removeEventListener('load', onMozWindowLoad, false);
+        
+        //
         flushReadyQueue();
+
         //
         onMozWindowLoad = nill;
 
@@ -108,10 +120,16 @@ if(!o2.DomHelper) {
     var onIEDomContentLoaded = function(evt) {
 
         if(!isDomContentReady()) {
+
             return;
         }
+        
+        //
         window.document.detachEvent('onreadystatechange', onIEDomContentLoaded);
+        
+        //
         flushReadyQueue();
+        
         //
         onIEDomContentLoaded = nill;
 
@@ -120,7 +138,10 @@ if(!o2.DomHelper) {
     var onIEWindowLoaded = function(evt) {
 
         window.detachEvent('onload', onIEWindowLoaded);
+        
+        //
         flushReadyQueue();
+        
         //
         onIEDomContentLoaded = nill;
 
@@ -132,6 +153,7 @@ if(!o2.DomHelper) {
 
         // Mozilla, Opera, webkit
         if(doc.addEventListener) {
+        
             //Listen to native on dom conten loaded event.
             doc.addEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
 
@@ -146,6 +168,7 @@ if(!o2.DomHelper) {
 
         // MSIE
         if(doc.attachEvent) {
+        
             // Listen to ready state change.
             doc.attachEvent('onreadystatechange', onIEDomContentLoaded);
 
@@ -169,7 +192,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.ready
+     * @function {static} DomHelper.ready
      *
      * <p>Fires when the <code>HTML DOM</code> is ready.</p>
      *
@@ -181,7 +204,7 @@ if(!o2.DomHelper) {
         // if DOM is ready, execute the delegate immediately.
         if(state.isApplicationReady) {
             delegate();
-            
+
             return;
         }
 
@@ -193,4 +216,4 @@ if(!o2.DomHelper) {
 
     };
 
-}(o2.DomHelper, this));
+}(o2, this));

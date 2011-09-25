@@ -1,12 +1,8 @@
 /*global o2 */
 
-if(!o2.DomHelper) {
-    o2.DomHelper = {};
-}
-
 /**
- * @module o2.domhelper.dimension
- * @requires o2
+ * @module domhelper.dimension
+ * @requires domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -17,10 +13,15 @@ if(!o2.DomHelper) {
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+    
+    /*
+     * Aliases
+     */
+    var me = framework.DomHelper;
 
     /**
-     * @function {static} o2.DomHelper.getDocumentDimension
+     * @function {static} DomHelper.getDocumentDimension
      *
      * <p>Gets the dimension of the document in the form <code>{width: w, height:
      * h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
@@ -93,7 +94,7 @@ if(!o2.DomHelper) {
     };
 
     /**
-     * @function {static} o2.DomHelper.getWindowInnerDimension
+     * @function {static} DomHelper.getWindowInnerDimension
      *
      * <p>Gets the dimension of the visible area of the browser in the form
      * <code>{width: w, height: h}</code>.
@@ -168,4 +169,4 @@ if(!o2.DomHelper) {
         return me.getWindowInnerDimension();
     };
 
-}(o2.DomHelper, this));
+}(o2, this));

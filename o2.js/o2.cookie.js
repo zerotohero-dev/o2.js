@@ -1,8 +1,7 @@
-/*global o2 */
+/*global o2, escape */
 
 /**
- * @module o2.cookie.core
- * @requires o2
+ * @module cookie.core
  *
  * <!--
  *  This program is distributed under
@@ -12,18 +11,22 @@
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-//VMERGE: merge with fw.
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /**
-     * @class {static} o2.Cookie
+     * @class {static} Cookie
      *
      * <p>A <strong>cookie</strong> helper class.</p>
      */
-    o2.Cookie = {
+    me.Cookie = {
 
         /**
-         * @function {static} o2.Cookie.save
+         * @function {static} Cookie.save
          *
          * <p>Saves a <strong>cookie</strong>.
          *
@@ -33,7 +36,7 @@
          * <strong>cookie</strong>
          * persist.
          */
-        save : function(name, value, days) {
+        save : function(name, value, days, path, domain, isSecure) {
 
             var ex = '';
 
@@ -45,12 +48,26 @@
                 ex = '';
             }
 
-            document.cookie = [name, '=', value, ex, '; path=/'].join('');
+            var cookiePath = path ? path : '/';
+
+            // Do not use encodeURICompoent for paths as it replaces / with
+            // %2F
+            var cookieString = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ex + '; path=' + escape(cookiePath);
+
+            if(domain) {
+                cookieString += '; domain=' + escape(domain);
+            }
+
+            if(isSecure) {
+                cookieString += '; secure';
+            }
+
+            document.cookie = cookieString;
 
         },
 
         /**
-         * @function {static} o2.Cookie.read
+         * @function {static} Cookie.read
          *
          * <p>Reads the value of the <strong>cookie</strong> with the given
          * name.</p>
@@ -63,7 +80,7 @@
          */
         read : function(name) {
 
-            var eq = [name, '='].join('');
+            var eq = [decodeURIComponent(name), '='].join('');
             var ca = document.cookie.split(';');
 
             for(var i = 0; i < ca.length; i++) {
@@ -84,21 +101,26 @@
         },
 
         /**
-         * @function {static} o2.Cookie.remove
+         * @function {static} Cookie.remove
          *
          * <p>Removes a <strong>cookie</strong>.</p>
          *
          * @param {String} name - the name of the <strong>cookie</strong> to
          * remove.
          */
-        remove : function(name) {
+        //TODO: update all documentation of this file.
+        remove : function(name, path, domain, isSecure) {
 
-            o2.Cookie.save(name, '', -1);
+            var cookiePath = path ? path : '/';
+            var cookieDomain = domain ? domain : null;
+            var isCookieSecure = !!isSecure;
+
+            me.Cookie.save(name, '', -1, cookiePath, cookieDomain, isCookieSecure);
 
         },
 
         /**
-         * @function {static} o2.Cookie.removeAll
+         * @function {static} Cookie.removeAll
          *
          * <p>Removes all the <strong>HttpOnly</strong> cookies the belong the
          * the current domain
@@ -114,7 +136,7 @@
 
             // document.cookie = name + "=; expires=" + +new Date + "; domain=" +
             // domain + "; path=" + path;
-            var remove = o2.Cookie.remove;
+            var remove = me.Cookie.remove;
 
             for(var i = 0, len = cookies.length; i < len; i++) {
                 remove(cookies[i].split('=')[0]);

@@ -1,18 +1,25 @@
 /*global o2 */
 
 /**
- * @module o2.template
- * @requires o2
+ * @module template
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A very fast templating engine.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    //TODO: this file need several enhancements to become a useful template
+    // engine.
+    
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /*
      * Module configuration.
@@ -69,8 +76,10 @@
 
         var buffer = [];
 
+        var parse = me.Template.parse;
+
         for(var i = 0, clen = collection.length; i < clen; i++) {
-            buffer.push(o2.Template.parse(collection[i], subTpl));
+            buffer.push(parse(collection[i], subTpl));
         }
 
         return buffer.join('');
@@ -99,14 +108,14 @@
     }
 
     /**
-     * @class {static} o2.Template
+     * @class {static} Template
      *
      * <p>A really fast template engine.</p>
      */
-    o2.Template = {
+    me.Template = {
 
         /**
-         * @function {static} o2.Template.parse
+         * @function {static} Template.parse
          *
          * <p>Parses the given template.</p>
          *

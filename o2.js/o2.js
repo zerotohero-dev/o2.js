@@ -1,5 +1,3 @@
-//VMERGE: merge with fw after completing the next milestone.
-
 /**
  *
  * <!--
@@ -19,7 +17,7 @@
      * Root namespace &ndash; magic goes here ;)
      * @namespace o2
      */
-    var o2 = window.o2 = {
+    var framework = window.o2 = {
 
         /**
          * @function nill
@@ -28,6 +26,15 @@
          */
         nill : function() {
         },
+        
+        //TODO: add documentation.
+        name : 'o2js',
+        
+        //TODO: add documentation.
+        url : 'http://o2js.com',
+        
+        //TODO: add documentation.
+        longName: 'o2.js JavaScript Framework',
 
         /**
          * @property {String} version
@@ -41,7 +48,7 @@
          *
          * @property {String} build
          */
-        build : '201109240855',
+        build : '201109251548',
 
         /**
          * @function {static} $
@@ -57,7 +64,7 @@
 
             if(obj === UNDEFINED) {
                 //TODO: to config.
-                throw 'o2.$: Object is not defined';
+                throw '$: Object is not defined';
             }
 
             if( typeof obj == 'string') {
@@ -82,7 +89,7 @@
         t : function(tagName, parent) {
             
             //
-            parent = o2.$(parent);
+            parent = framework.$(parent);
 
             var p = parent || document;
 
@@ -92,7 +99,7 @@
 
         /**
          * @function {static} tt
-         * <p>Acts similar to {link o2.t} -- with one exception: The method
+         * <p>Acts similar to {link t} -- with one exception: The method
          * returns the first matched node, instead of returning a node
          * collection.</p>
          * @param {String} tagName - the name of the tag to search.
@@ -105,9 +112,9 @@
         tt : function(tagName, parent) {
             
             //
-            parent = o2.$(parent);            
+            parent = framework.$(parent);            
 
-            var result = o2.t(tagName, parent);
+            var result = framework.t(tagName, parent);
 
             return result ? result[0] : null;
 
@@ -116,21 +123,21 @@
         /**
          * @function {static} ready
          *
-         * <p>An alias for <code>o2.DomHelper.ready</code>.</p>
+         * <p>An alias for <code>DomHelper.ready</code>.</p>
          *
          * @param {Function} callback - The callback to execute when DOM is
          * ready.
          */
         ready : function(callback) {
 
-            o2.DomHelper.ready(callback);
+            framework.DomHelper.ready(callback);
 
         },
 
         /**
          * @function {static} load
          *
-         * <p>An alias for <code>o2.EventHandler.addEventListener(window, 'load',
+         * <p>An alias for <code>EventHandler.addEventListener(window, 'load',
          * callback)</code>.</p>
          *
          * @param {Function} callback - The callback to execute when window is
@@ -138,7 +145,7 @@
          */
         load : function(callback) {
 
-            o2.EventHandler.addEventListener(window, 'load', callback);
+            framework.EventHandler.addEventListener(window, 'load', callback);
 
         }
 

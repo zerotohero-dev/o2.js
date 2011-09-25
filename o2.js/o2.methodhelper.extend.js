@@ -1,13 +1,9 @@
 /*global o2 */
 
-if(!o2.MethodHelper) {
-    o2.MethodHelper = {};
-}
-
 /**
- * @module o2.methodhelper.extend
- * @requires o2
- * @required o2.stringhelper.core
+ * @module methodhelper.extend
+ * @requires methodhelper
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under 
@@ -18,12 +14,13 @@ if(!o2.MethodHelper) {
  * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-( function(me, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
 
     /*
      * Aliases.
      */
-    var format = o2.StringHelper.format;
+    var me = framework.MethodHelper;
+    var format = framework.StringHelper.format;
 
     /*
      * Module configuration.
@@ -37,7 +34,7 @@ if(!o2.MethodHelper) {
     };
 
     /**
-     * @function {static} o2.MethodHelper.overload
+     * @function {static} MethodHelper.overload
      *
      * <p>Adds a method to the <code>Object</code>.</p>
      * <p>If parameters count is different but the name is same,
@@ -57,11 +54,13 @@ if(!o2.MethodHelper) {
             // If both function have identical # of arguments,
             // then call the cached function.
             if(fn.length == arguments.length) {
+                
                 return fn.apply(this, arguments);
             }
 
             // Otherwise try to call the old function, if any.
             if( typeof old == 'function') {
+                
                 return old.apply(this, arguments);
             }
 
@@ -70,7 +69,7 @@ if(!o2.MethodHelper) {
     };
 
     /**
-     * @function {static} o2.MethodHelper.requireAllArguments
+     * @function {static} MethodHelper.requireAllArguments
      *
      * <p>Checks the passed in arguments, and if all arguments are present,
      * executes
@@ -87,6 +86,7 @@ if(!o2.MethodHelper) {
 
             // throw an error if the arguments' length do not match.
             if(arguments.length < fn.length) {
+                
                 throw format(config.constants.error.ARGUMENT_COUNT_MISMATCH, fn.length, arguments.length);
             }
 
@@ -97,7 +97,7 @@ if(!o2.MethodHelper) {
     };
 
     /**
-     * @function {static} o2.MethodHelper.defer
+     * @function {static} MethodHelper.defer
      *
      * <p>Defers a <code>function</code> for a specified amount of time.</p>
      *
@@ -116,4 +116,4 @@ if(!o2.MethodHelper) {
 
     };
 
-}(o2.MethodHelper, this));
+}(o2, this));

@@ -1,8 +1,8 @@
 /*global o2 */
 
 /**
- * @module o2.ajaxcontroller
- * @requires o2
+ * @module ajaxcontroller
+ * @requires AjaxState
  *
  * <!--
  *  This program is distributed under
@@ -13,21 +13,28 @@
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+    
+    /*
+     * Aliases.
+     */
+    var me = framework;    
+    var nill = me.nill;
+    var addObserver = me.AjaxState.addObserver;
 
     /**
-     * @class o2.AjaxController
+     * @class AjaxController
      * @implements Observer
      *
      * <p>An AJAX <code>Controller</code>. Registers itself to {@link
-     * o2.AjaxState}
+     * AjaxState}
      * <code>Observable</code> upon construction.</p>
      *
      * <p>Implements the <code>Observer</code> interface.</p>
      */
 
     /**
-     * @constructor o2.AjaxController.AjaxController
+     * @constructor AjaxController.AjaxController
      *
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
@@ -37,19 +44,21 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    o2.AjaxController = function(xhr, args) {
+    me.AjaxController = function(xhr, args) {
 
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
-        this.ontimeout = (args && args.ontimeout) || o2.nill;
+        this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
-        o2.AjaxState.addObserver(this);
+        addObserver(this);
 
     };
+    
+    var apt = me.AjaxController.prototype;
 
     /**
-     * @function o2.AjaxController.update
+     * @function AjaxController.update
      *
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>
@@ -59,7 +68,7 @@
      * to
      * this <code>Observer</code>.
      */
-    o2.AjaxController.prototype.update = function(observable, data) {
+    apt.update = function(observable, data) {
 
         if(!data.isTimedOut) {
             
@@ -68,22 +77,24 @@
 
         // Unregister self from the observable.
         this.unregister(observable);
+   
         // Abort the request.
         this.xhr.abort();
+   
         // Execute callback.
         this.ontimeout();
 
     };
 
     /**
-     * @function o2.AjaxController.unregister
+     * @function AjaxController.unregister
      *
      * <p>Unregisters the object from the observer.</p>
      * <p>Call this when the <strong>AJAX</strong> request completes.</p>
      *
      * @param {Observable} observable - the responsible <code>Observable</code>.
      */
-    o2.AjaxController.prototype.unregister = function(observable) {
+    apt.unregister = function(observable) {
 
         if(this.isDeleted) {
             

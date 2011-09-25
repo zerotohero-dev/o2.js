@@ -1,68 +1,72 @@
 /*global o2*/
 
 /**
- * @module o2.stringhelper.core
- * @requires o2
+ * @module stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <code>String</code> helper.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
 
     /*
      * Module Configuration
      */
     var config = {
-        
+
         /*
-         * 
+         *
          */
         constants : {
-            
+
             /*
              * @property {private const Integer}
-             * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
+             * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
              * length for
              * generating a random String.
              */
             DEFAULT_RANDOM_LENGTH : 8,
-            
+
             /*
-             * 
+             *
              */
             RANDOM_CHAR_FEED : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
-            
+
             /*
-             * 
+             *
              */
             GUID_MULTIPLIER : 10000,
-            
+
             /*
-             * 
+             *
              */
             regExp : {
                 TRIM : /^\s+|\s+$/g,
                 WHITESPACE : /\s+/g
             }
-            
+
         }
-        
+
     };
 
     /**
-     * @class {static} o2.StringHelper
+     * @class {static} StringHelper
      *
      * <p>A <code>String</code> helper <strong>class</strong>.</p>
      */
-    o2.StringHelper = {
+    me.StringHelper = {
 
         /**
-         * @function {static} o2.StringHelper.generateGuid
+         * @function {static} StringHelper.generateGuid
          *
          * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
          * for that
@@ -77,12 +81,12 @@
         },
 
         /**
-         * @function {static} o2.StringHelper.generateRandom
+         * @function {static} StringHelper.generateRandom
          *
          * <p>Generates a random <code>String</code>.</p>
          *
          * @param {Integer} length - (optional - default: {@link
-         * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
+         * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
          *     length of the <code>String</code> to be generated.
          * @return the generated <code>String</code>.
          */
@@ -107,7 +111,7 @@
         },
 
         /**
-         * @function {static} o2.StringHelper.concat
+         * @function {static} StringHelper.concat
          *
          * <p>Concatanes all its arguments into a single <code>String</code>.
          * This is faster than adding those <code>String</code>s with
@@ -122,13 +126,13 @@
         },
 
         /**
-         * @function {static} o2.StringHelper.format
+         * @function {static} StringHelper.format
          *
          * <p>Works similar to <strong>C#</strong>'s
          * <code>String.Format</code>.</p>
          * <p>Usage Example:<p>
          * <pre>
-         * o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+         * StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
          * 'California');
          * //will return "Hello Ninja. What's going on in California"
          * </pre>
@@ -156,7 +160,7 @@
         },
 
         /**
-         * @function {static} o2.StringHelper.remove
+         * @function {static} StringHelper.remove
          *
          * <p>Simply removes the phrases that match the <code>RegExp</code> from
          * the
@@ -173,7 +177,7 @@
         },
 
         /**
-         * @function {static} o2.StringHelper.trim
+         * @function {static} StringHelper.trim
          *
          * <p>Trims white space from beginning and end of the
          * <code>String</code>.</p>
@@ -186,7 +190,6 @@
          * @return the processed <code>String</code>.
          */
         trim : function(str, shouldCompact) {
-
             shouldCompact = shouldCompact || false;
             var constants = config.constants;
             var regExp = constants.regExp;
@@ -194,29 +197,30 @@
             return shouldCompact ? str.replace(regExp.WHITESPACE, ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
 
         },
-        
+
         //TODO: add documentation.
-        strip: function(str) {
-            
-            return o2.StringHelper.trim(str, false);
-        
+        strip : function(str) {
+
+            return me.StringHelper.trim(str, false);
+
         },
 
         /**
-         * @function {static} o2.StringHelper.compact
+         * @function {static} StringHelper.compact
          *
-         * <p>Works identical to <code>o2.StringHelper.trim(str,
+         * <p>Works identical to <code>StringHelper.trim(str,
          * true)</code>.</p>
          *
          * @param {String} str - the <code>String</code> to process.
          * @return the processed <code>String</code>.
-         * @see o2.StringHelper.trim
+         * @see StringHelper.trim
          */
         compact : function(str) {
 
-            return o2.StringHelper.trim(str, true);
+            return me.StringHelper.trim(str, true);
 
         }
 
     };
+
 }(o2, this));

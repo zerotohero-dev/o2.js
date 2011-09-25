@@ -1,8 +1,7 @@
 /*global o2 */
 
 /**
- * @module o2.jsonp
- * @requires o2
+ * @module jsonp
  *
  * <!--
  *  This program is distributed under 
@@ -12,7 +11,14 @@
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+
+    /*
+     * Aliases.
+     */
+    var me = framework;
+    var myName = me.name;
+    var nill = me.nill;
 
     /*
      * Module configuration.
@@ -23,7 +29,7 @@
         },
         constants : {
             prefix : {
-                JSON : 'o2_json_'
+                JSON : [myName,'_json_'].join('')
             },
             key : {
                 CALLBACK : 'callback'
@@ -46,7 +52,7 @@
 
             if(!done && (!this.readyState || this.readyState == 'loaded')) {
                 done = true;
-                script.onload = script.onreadystatechange = o2.nill;
+                script.onload = script.onreadystatechange = nill;
 
                 if(script && script.parentNode) {
                     script.parentNode.removeChild(script);
@@ -61,14 +67,14 @@
     }
 
     /**
-     * @class {static} o2.Jsonp
+     * @class {static} Jsonp
      *
      * <p>An object to make <strong>JSONP</strong> calls.</p>
      */
-    o2.Jsonp = {
+    me.Jsonp = {
 
         /**
-         * @function {static} o2.Jsonp.get
+         * @function {static} Jsonp.get
          *
          * <p>Creates a <strong>JSONP</strong> request.</p>
          *

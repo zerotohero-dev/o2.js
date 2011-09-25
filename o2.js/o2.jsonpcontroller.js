@@ -1,8 +1,8 @@
 /*global o2 */
 
 /**
- * @module o2.jsonpcontroller
- * @requires o2.ajaxcontroller
+ * @module jsonpcontroller
+ * @requires ajaxcontroller
  *
  * <!--
  *  This program is distributed under
@@ -13,7 +13,13 @@
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-( function(o2, window, UNDEFINED) {
+( function(framework, window, UNDEFINED) {
+    
+    /*
+     * Aliases.
+     */
+    var me = framework;
+    var nill = me.nill;
 
     /*
      * State.
@@ -21,18 +27,18 @@
     var purgeQueue = [];
 
     /**
-     * @class o2.JsonpController
-     * @extends o2.AjaxController
+     * @class JsonpController
+     * @extends AjaxController
      *
      * <p>A JSONP <code>Controller</code>. Registers itself to {@link
-     * o2.JsonpState}
+     * JsonpState}
      * <code>Observable</code> upon construction.</p>
      *
      * <p>Implements the <code>Observer</code> interface.</p>
      */
 
     /**
-     * @constructor o2.JsonpController.JsonpController
+     * @constructor JsonpController.JsonpController
      *
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
@@ -42,34 +48,33 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    o2.JsonpController = function(jsonp, args) {
+    me.JsonpController = function(jsonp, args) {
 
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
-        this.ontimeout = (args && args.ontimeout) || o2.nill;
+        this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
-        o2.JsonpState.addObserver(this);
+        me.JsonpState.addObserver(this);
 
     };
 
-
-    o2.JsonpController.prototype = {
+    me.JsonpController.prototype = {
 
         /**
-         * @function o2.JsonpController.unregister
+         * @function JsonpController.unregister
          *
-         * Inherited from {@link o2.AjaxController.unregister}
-         * @see o2.AjaxController.unregister
+         * Inherited from {@link AjaxController.unregister}
+         * @see AjaxController.unregister
          */
-        unregister : o2.AjaxController.prototype.unregister,
+        unregister : me.AjaxController.prototype.unregister,
 
         /**
-         * @function o2.JsonpController.update
+         * @function JsonpController.update
          *
-         * Overloaded from {@link o2.AjaxController.update}
-         * @see o2.AjaxController.update
-         * @param {o2.JsonpState} observable - the <code>Observable</code> state
+         * Overloaded from {@link AjaxController.update}
+         * @see AjaxController.update
+         * @param {JsonpState} observable - the <code>Observable</code> state
          * object.
          * @param {Object} data - parameters passed from the
          * <code>Observable</code> to
@@ -82,12 +87,14 @@
                 this.unregister(observable);
 
                 // Abort the request.
-                window[this.jsonp] = o2.nill;
+                window[this.jsonp] = nill;
 
                 // Purge former requests to prevent memory leak.
                 purgeQueue.push(this.jsonp);
 
                 while(purgeQueue.length > 1) {
+                    
+                    //
                     delete window[purgeQueue.shift()];
                 }
 
