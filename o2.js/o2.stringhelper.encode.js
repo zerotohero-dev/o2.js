@@ -128,8 +128,7 @@
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
         str = ['', str].join('');
         
-        var config = config.map;
-        var map = shouldPreserveAmpersands ? config.xssEncodeNoAmp : config.xssEncode;
+        var map = shouldPreserveAmpersands ? config.map.xssEncodeNoAmp : config.map.xssEncode;
         var mapItem = null;
 
         for(var i = 0, len = map.length; i < len; i++) {

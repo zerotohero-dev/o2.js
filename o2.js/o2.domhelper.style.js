@@ -23,8 +23,8 @@
     var me = framework.DomHelper;
     var $ = framework.$;
     var myName = framework.name;
-    var toCamelCase = me.StringHelper.toCamelCase;
-    var toDashedFromCamelCase = me.StringHelper.toDashedFromCamelCase;
+    var toCamelCase = framework.StringHelper.toCamelCase;
+    var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
 
     /*
      * Module configuration.
@@ -256,12 +256,10 @@
         }
 
         // @formatter:off
-        return (
-            obj.offsetWidth !== 0 || obj.offsetHeight !== 0) || 
-            ((display === null) && (visibility != 'hidden')) || 
-            ((visibility === null) && (display != 'none')) || 
-            ((display != 'none') && (visibility != 'hidden')
-        );
+        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) || 
+               ((display    === null   ) && (visibility != 'hidden')) || 
+               ((visibility === null   ) && (display    != 'none'  )) || 
+               ((display    != 'none'  ) && (visibility != 'hidden'));
         // @formtatter:on
 
     };

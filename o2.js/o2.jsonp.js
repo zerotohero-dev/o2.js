@@ -17,8 +17,8 @@
      * Aliases.
      */
     var me = framework;
-    var myName = me.name;
-    var nill = me.nill;
+    var myName = framework.name;
+    var nill = framework.nill;
 
     /*
      * Module configuration.

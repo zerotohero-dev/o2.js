@@ -12,10 +12,10 @@
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
 ( function(framework, window, UNDEFINED) {
-   
-   /*
-    * Aliases.
-    */
+
+    /*
+     * Aliases.
+     */
     var me = framework;
 
     /*
@@ -23,14 +23,14 @@
      */
     var config = {
         constants : {
-            
+
             /*
-             * 
+             *
              */
             ecmaScriptType : {
                 ARRAY : 'Array'
             }
-            
+
         }
     };
 
@@ -249,7 +249,7 @@
 
             for(var key in ar) {
                 if(ar.hasOwnProperty(key)) {
-       
+
                     //
                     delete ar[key];
                 }
@@ -273,7 +273,11 @@
                     }
 
                     collection.splice(i, 1);
+                    
+                    //
                     i--;
+                    
+                    //
                     len = collection.length;
                 }
 
@@ -288,7 +292,7 @@
 
                         continue;
                     }
-                    
+
                     //
                     delete collection[key];
                 }
@@ -402,7 +406,7 @@
                     value = ar[key];
 
                     if(value === null || value === UNDEFINED) {
-       
+
                         //
                         delete ar[key];
                     }

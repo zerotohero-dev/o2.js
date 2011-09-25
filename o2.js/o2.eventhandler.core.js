@@ -18,9 +18,9 @@
      * Aliases.
      */
     var me = framework;
-    var nill = me.nill;
-    var $ = me.$;
-    var format = me.StringHelper.format;
+    var $ = framework.$;
+    var nill = framework.nill;
+    var format = framework.StringHelper.format;
 
     /*
      * Module configuration.
@@ -46,66 +46,79 @@
          * @struct {static} EventHandler.keyCode
          */
         keyCode : {
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.ENTER - enter key.
              */
             ENTER : 13,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.LEFT - left arrow key.
              */
             LEFT : 37,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.RIGHT - right arrow key.
              */
             RIGHT : 39,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.TOP - top arrow key.
              */
             TOP : 38,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.BOTTOM - bottom arrow key.
              */
             BOTTOM : 40,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.BACKSPACE - backspace key.
              */
             BACKSPACE : 8,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.TAB - TAB key.
              */
             TAB : 9,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.SHIFT - shift key.
              */
             SHIFT : 16,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.CTRL - CTRL key.
              */
             CTRL : 17,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.ALT - ALT key.
              */
             ALT : 18,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.CAPS_LOCK - caps lock key.
              */
             CAPS_LOCK : 20,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.ESCAPE - ESC key.
              */
             ESCAPE : 27,
+
             /**
              * @property {static const Integer}
              * EventHandler.keyCode.DELETE - DEL key.
@@ -152,15 +165,14 @@
                         throw kCallbackNotDefined;
                     }
 
-                    //
                     // 'false' is for not to use event capturing.
                     // Event capturing is not very useful, since its
-                    // implementation vastly
-                    // deviates among vendors' implementations.
+                    // implementation vastly deviates among vendors'
+                    // implementations.
                     //
                     // See:
                     // http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
-                    //
+
                     obj.addEventListener(evt, fn, false);
 
                 };

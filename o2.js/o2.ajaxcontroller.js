@@ -19,8 +19,8 @@
      * Aliases.
      */
     var me = framework;    
-    var nill = me.nill;
-    var addObserver = me.AjaxState.addObserver;
+    var nill = framework.nill;
+    var addObserver = framework.AjaxState.addObserver;
 
     /**
      * @class AjaxController

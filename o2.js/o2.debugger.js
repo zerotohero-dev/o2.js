@@ -17,8 +17,8 @@
      * Aliases.
      */
     var me = framework;
-    var $ = me.$;
-    var nill = me.nill;
+    var $ = framework.$;
+    var nill = framework.nill;
 
     /**
      * @struct {private} Debugger.config
@@ -260,7 +260,7 @@
             var outputNode = $(outputElement);
 
             // Can I use the browser's built-in console?
-            //(the double negation !!shouldUseConsole will convert the var to
+            // (the double negation !!shouldUseConsole will convert the var to
             // boolean.)
             config.isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
@@ -274,13 +274,13 @@
                 throw config.constants.text.ER_CANNOT_INITIALIZE;
             }
 
-            // Set the output element
+            // Set the output element.
             config.outputElement = outputNode;
 
             // Successfully initialized.
             config.isInitialized = true;
 
-            // Prevents initializing the object more than once.
+            // Prevent initializing the object more than once.
             me.Debugger.init = nill;
 
         },

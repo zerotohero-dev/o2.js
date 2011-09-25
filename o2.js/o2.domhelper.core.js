@@ -19,7 +19,7 @@
      * Aliases.
      */
     var me = framework;
-    var $ = $;
+    var $ = framework.$;
 
     /**
      * @class {static} DomHelper
@@ -502,7 +502,8 @@
                 return null;
             }
 
-            //DOM object may not have a getAttribute method.
+            //DOM object (obj) may not have a getAttribute method.
+            
             if( typeof obj.getAttribute == 'function') {
                 var value = obj.getAttribute(attribute);
 

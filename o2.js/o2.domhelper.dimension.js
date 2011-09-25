@@ -103,6 +103,7 @@
      * <code>{width: w, height: h}</code>.
      */
     me.getWindowInnerDimension = function() {
+        
         if(window.innerWidth !== UNDEFINED) {
             me.getWindowInnerDimension = function() {
 
@@ -167,6 +168,7 @@
         };
 
         return me.getWindowInnerDimension();
+        
     };
 
 }(o2, this));

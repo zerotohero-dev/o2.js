@@ -18,7 +18,7 @@
      * Aliases.
      */
     var me = framework;
-    var myName = me.name;
+    var myName = framework.name;
 
     /**
      * @class {static} Supports
@@ -40,6 +40,7 @@
         cookie : function() {
 
             var kTestCookie = [myName, 'tst'].join('');
+
             var cookie = me.Cookie;
 
             cookie.save(kTestCookie, kTestCookie, 1);

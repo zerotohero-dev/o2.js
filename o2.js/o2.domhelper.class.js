@@ -19,9 +19,10 @@
      * Aliases.
      */
     var me = framework.DomHelper;
-    var myName = me.name;
-    var generateGuid = me.StringHelper.generateGuid;
-    var $ = me.$;
+    var myName = framework.name;
+    var $ = framework.$;
+    var generateGuid = framework.StringHelper.generateGuid;
+
 
     /*
      *

@@ -21,8 +21,12 @@
      * Aliases.
      */
     var me = framework;
-    var clone = me.MethodHelper.bind;
-    var base = me.AjaxState;
+    var clone = framework.MethodHelper.bind;
+
+    /*
+     * Base Class.
+     */
+    var base = framework.AjaxState;
     var baseProtected = base.protecteds;
 
     var key = '';

@@ -18,9 +18,9 @@
      * Aliases.
      */
     var me = framework;
-    var generateGuid = me.StringHelper.generateGuid;
-    var concat = me.StringHelper.concat;
-    var nill = me.nill;
+    var generateGuid = framework.StringHelper.generateGuid;
+    var concat =framework.StringHelper.concat;
+    var nill = framework.nill;
 
     /*
      * Module configuration.

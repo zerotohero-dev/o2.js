@@ -53,6 +53,7 @@
             var nameValuePairs = query.split('&');
 
             var nameValuePair = null;
+            
             var kNameIndex = 0;
             var kValueIndex = 1;
 

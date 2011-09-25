@@ -19,7 +19,7 @@
      * Aliases.
      */
     var me = framework;
-    var nill = me.nill;
+    var nill = framework.nill;
 
     /*
      * State.

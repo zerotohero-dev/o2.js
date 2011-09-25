@@ -159,14 +159,21 @@
          * @param {Function} fn - the <code>function</code> to modify.
          * @return the modified <code>function</code>.
          */
-        bind : function(base, fn) {
+        bind : function(base, fn /*, args*/) {
 
+            var concat = Array.prototype.concat;
+            var slice = Array.prototype.slice;
+            var passedArguments = slice.call(arguments, 2);
+
+            // @formatter:off
             return function(/*args*/) {
 
-                return fn.apply(base, arguments);
+                var params = concat.call(passedArguments, slice.call(arguments, 0));
+
+                return fn.apply(base, params);
 
             };
-
+            // @formatter:on
         }
 
     };

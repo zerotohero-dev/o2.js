@@ -19,11 +19,10 @@
      * Aliases.
      */
     var me = framework.DomHelper;
-    var myName = framework.name;
-    var $ = framework.$;
-    var generateGuid = framework.StringHelper.generateGuid;
     var getAttribute = me.getAttribute;
-
+    var generateGuid = framework.StringHelper.generateGuid;
+    var $ = framework.$;
+    var myName = framework.name;
 
     /**
      * @function {static} DomHelper.getParent
@@ -85,7 +84,8 @@
             }
 
             if(!hasParent) {
-
+                target = target.parentNode;
+                
                 continue;
             }
 
@@ -276,7 +276,7 @@
         }
 
         if(target.querySelector) {
-            me.getFirstchild = function(target, nodeName) {
+            me.getFirstChild = function(target, nodeName) {
                 target = $(target);
 
                 if(!target) {
@@ -310,6 +310,8 @@
 
             var kTextNode = me.nodeType.TEXT;
             var kAll = '*';
+            
+            //
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
 
@@ -519,6 +521,11 @@
         //
         target = $(target);
 
+        if(!target) {
+
+            return null;
+        }
+
         // Although this function may be speeded up using  obj.querySelector and
         // :last-child, the :last-child pseudoclass still cannot be reliably used
         // across browsers.
@@ -529,15 +536,11 @@
         // Your best bet is to explicitly add a last-child (or similar) class to
         // that item, and apply li.last-child instead.
 
-        if(!target) {
-
-            return null;
-        }
-
         var kTextNode = me.nodeType.TEXT;
-        var children = target.childNodes;
         var kAll = '*';
-
+        
+        var children = target.childNodes;
+        
         //
         nodeName = nodeName || kAll;
         nodeName = nodeName.toLowerCase();
@@ -585,6 +588,8 @@
      */
     //TODO: I can have a comma delimeted list of ids.
     me.getLastChildById = function(target, id) {
+        
+        //
         target = $(target);
 
         if(!target) {
