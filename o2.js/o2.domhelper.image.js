@@ -1,6 +1,5 @@
 /*global o2 */
 
-
 /**
  * @module domhelper.image
  * @requires domhelper.core

@@ -434,7 +434,7 @@
     /**
      * @function {static} DomHelper.getFirstChildWithId
      *
-     * <p>gets the first child with an <strong>id</strong> attribute.</p>
+     * <p>Gets the first child with an <strong>id</strong> attribute.</p>
      *
      * @param {DomNode} target - the target to test.
      * @return the first child with <strong>id</strong> if any, <code>null</code>

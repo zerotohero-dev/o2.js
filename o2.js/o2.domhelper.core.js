@@ -148,6 +148,7 @@
 
                     return false;
                 }
+
                 //
                 theNode = theNode.parentNode;
             }
@@ -502,8 +503,7 @@
                 return null;
             }
 
-            //DOM object (obj) may not have a getAttribute method.
-            
+            //DOM object (obj) may not have a getAttribute method.   
             if( typeof obj.getAttribute == 'function') {
                 var value = obj.getAttribute(attribute);
 
