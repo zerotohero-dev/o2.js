@@ -12,7 +12,7 @@
  * <p>A debugging helper.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
     /*
      * Aliases.
      */
@@ -21,24 +21,24 @@
     var nill = framework.nill;
 
     /**
-     * @struct {private} Debugger.config
+     * @struct {private} o2.Debugger.config
      *
      * Module configuration
      */
     var config = {
 
         /**
-         * @property {private readonly DOMNode} Debugger.config.outputElement
+         * @property {private readonly DOMNode} o2.Debugger.config.outputElement
          *
-         * <p>A readonly property indicating
-         * the node to output the {@link Debugger} outcomes.</p>
+         * <p>A readonly property indicating the node to output the {@link
+         * Debugger} outcomes.</p>
          * <p>This value will be set after {@link Debugger.init} method is
          * called.</p>
          */
         outputElement : null,
 
         /**
-         * @property {private readonly Boolean} Debugger.config.isUsingConsole
+         * @property {private readonly Boolean} o2.Debugger.config.isUsingConsole
          *
          * <p>A reaodonly property.</p>
          * <p>If <code>true</code> browser's builting debug console is
@@ -48,26 +48,14 @@
         isUsingConsole : true,
 
         /**
-         * @property {private readonly Boolean} Debugger.config.isInitialized
-         *
-         * <p>A readonly property.</p>
-         * <p>If <code>true</code>, {@link Debugger} has been successfully
-         * initialized.</p>
-         * <p>If false Debugger is not initialized yet.</p>
-         * <p>This value will be set after {@link Debugger.init} method is
-         * called.</p>
-         */
-        isInitialized : false,
-
-        /**
-         * @struct {private} Debugger.config.constants
+         * @struct {private} o2.Debugger.config.constants
          *
          * Static constants
          */
         constants : {
 
             /**
-             * @struct {private} Debugger.config.constants.className
+             * @struct {private} o2.Debugger.config.constants.className
              *
              * <p>Common class names.</p>
              */
@@ -89,7 +77,7 @@
             },
 
             /**
-             * @struct {private} Debugger.config.constants.text
+             * @struct {private} o2.Debugger.config.constants.text
              *
              * <p>Localizable text.</p>
              */
@@ -112,53 +100,73 @@
         }
     };
 
+    /*
+     * The state of the object.
+     */
+    var state = {
+        isInitialized : false
+    };
+
+    /*
+     *
+     */
     function println(text, className) {
 
         var ccc = config.constants.className;
 
         switch(className) {
             case ccc.LOG:
+
                 try {
 
                     console.log(text);
-                
+
                 } catch(ignore1) {
+
                 }
 
                 break;
             case ccc.INFO:
+
                 try {
-                
+
                     console.info(text);
-                
+
                 } catch(ignore2) {
+
                 }
 
                 break;
             case ccc.WARN:
+
                 try {
-                
+
                     console.warn(text);
-                
+
                 } catch(ignore3) {
+
                 }
 
                 break;
             case ccc.ERROR:
+
                 try {
-                
+
                     console.error(text);
-                
+
                 } catch(ignore4) {
+
                 }
 
                 break;
             default:
+
                 try {
-                
+
                     console.log(text);
-                
+
                 } catch(ignore5) {
+
                 }
 
                 break;
@@ -239,21 +247,23 @@
      * //then inside your code use this syntax.
      * Debugger.println('stuff to debug');
      * </pre>
+     *
+     * @see o2.Unit
      */
     me.Debugger = {
 
         /**
-         * @function {static} Debugger.init
+         * @function {static} o2.Debugger.init
          *
-         * <p>Initializes the {@link Debugger} static class.</p>
-         * <p>Either <code>outputElement</code>, or
-         * <code>shouldUseConsole</code>, or
+         * <p>Initializes the {@link Debugger} <code>static</code> class.</p>
+         * <p>Either <strong>>outputElement</strong>>, or
+         * <strong>>shouldUseConsole</strong>, or
          * both should be provided.</p>
          *
-         * @param {DomNode} outputElement - the element to append debug messages.
+         * @param {Object} outputElement - Either the <strong>id</strong> of the
+         * element, or the element itself to append debug messages.
          * @param {Boolean} shouldUseConsole - should browser's built-in console
-         * be used,
-         * if available.
+         * be used, if available.
          */
         init : function(outputElement, shouldUseConsole) {
 
@@ -278,7 +288,7 @@
             config.outputElement = outputNode;
 
             // Successfully initialized.
-            config.isInitialized = true;
+            state.isInitialized = true;
 
             // Prevent initializing the object more than once.
             me.Debugger.init = nill;
@@ -286,20 +296,19 @@
         },
 
         /**
-         * @function {static} Debugger.println
+         * @function {static} o2.Debugger.println
          *
          * <p>Prints the string representation of value to the next line.</p>
          *
          * @param {String} value - the value to print.
          * @param {String} className - the CSS class name that is associated with
-         * the
-         * line.
+         * the line.
          */
         println : function(value, className) {
 
             // If not initialized, then we cannot use any of
             // Debugger's public methods.
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }
@@ -318,7 +327,7 @@
         },
 
         /**
-         * @function {static} Debugger.assert
+         * @function {static} o2.Debugger.assert
          *
          * <p>Checks the value of pass, and displays the message with a proper
          * className.</p>
@@ -326,7 +335,7 @@
          * Debugger.config.constants.className} members.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Debugger.assert((1==true), '1 == true');
+         * o2.Debugger.assert((1==true), '1 == true');
          * </pre>
          *
          * @param {Expression} pass - the expression to evaluate.
@@ -336,7 +345,7 @@
 
             var empty = '';
 
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }
@@ -355,12 +364,12 @@
         },
 
         /**
-         * @function {static} Debugger.error
+         * @function {static} o2.Debugger.error
          *
          * <p>Prints an error message to the output.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Debugger.error('A serious error occured');
+         * o2.Debugger.error('A serious error occured');
          * </pre>
          *
          * @param {String} message - the error message to display.
@@ -369,7 +378,7 @@
 
             var empty = '';
 
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }
@@ -382,12 +391,12 @@
         },
 
         /**
-         * @function {static} Debugger.info
+         * @function {static} o2.Debugger.info
          *
          * <p>Prints an info message to the output.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Debugger.info('An info.');
+         * o2.Debugger.info('An info.');
          * </pre>
          *
          * @param {String} message - the info message to display.
@@ -396,7 +405,7 @@
 
             var empty = '';
 
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }
@@ -409,12 +418,12 @@
         },
 
         /**
-         * @function {static} Debugger.warn
+         * @function {static} o2.Debugger.warn
          *
          * <p>Prints an warning message to the output.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Debugger.error('caution!');
+         * o2.Debugger.warn('caution!');
          * </pre>
          *
          * @param {String} message - the warning message to display.
@@ -423,7 +432,7 @@
 
             var empty = '';
 
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }
@@ -436,20 +445,20 @@
         },
 
         /**
-         * @function {static} Debugger.log
+         * @function {static} o2.Debugger.log
          *
          * <p>This is an alias to {@link Debugger.println}.</p>
          * <p>Simply logs a message.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Debugger.log('Hello world');
+         * o2.Debugger.log('Hello world');
          * </pre>
          *
          * @param {String} message - the message to log.
          */
         log : function(message) {
 
-            if(!config.isInitialized) {
+            if(!state.isInitialized) {
 
                 return;
             }

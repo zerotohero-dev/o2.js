@@ -57,22 +57,22 @@
     }
 
     /**
-     * @class {static} CollectionHelper
+     * @class {static} o2.CollectionHelper
      *
      * <p>A <strong>class</strong> to modify collections.</p>
      */
     me.CollectionHelper = {
 
         /**
-         * @function {static} CollectionHelper.merge
+         * @function {static} o2.CollectionHelper.merge
          *
          * <p>Merges two objects.</p>
          *
          * @param {Object} toObj - the <code>Object</code> to copy values to.
          * @param {Object} fromObj - the <code>Object</code> to copy values from.
          * @param {Boolean} isRecursive - (Optional, defaults to
-         * <code>false</code>) true
-         * if the merge is nested into child objects as well.
+         * <code>false</code>) <code>true</code> if the merge is nested into
+         * child objects as well.
          * @return a <strong>reference</strong> to the modified
          * <code>toObj</code>.
          */
@@ -107,7 +107,7 @@
         },
 
         /**
-         * @function {static} CollectionHelper.indexOf
+         * @function {static} o2.CollectionHelper.indexOf
          *
          * <p>Gets the index of the element in the given <code>Array</code>.</p>
          *
@@ -165,12 +165,10 @@
         },
 
         /**
-         * @function {static} CollectionHelper.contains
+         * @function {static} o2.CollectionHelper.contains
          *
-         * <p>An <strong>alias</strong> to <code>CollectionHelper.indexOf(ar,
-         * elm)
-         * &gt;
-         * -1</code>.</p>
+         * <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
+         * elm) &gt; -1</code>.</p>
          *
          * @param {Array} ar - the <code>Array</code> to search.
          * @param {Object} elm - the <code>Object</code> to match.
@@ -184,20 +182,16 @@
         },
 
         /**
-         * @function {static} CollectionHelper.copy
+         * @function {static} o2.CollectionHelper.copy
          *
          * <p>Creates a clone of the given <code>Object</code>, and returns it;
-         * leaving
-         * the original intact.</p>
+         * leaving the original intact.</p>
          *
          * @param {Object} ar - the object to clone.
          * @param {Boolean} isDeepCopy - (Optional; defaults to
-         * <code>false</code>) - if
-         * <code>true</code> and the object contains other <code>Object</code>s,
-         * these
-         * <code>Object</code>s will be cloned as well; non-primitive values will
-         * not be
-         * copied otherwise.
+         * <code>false</code>) - if <code>true</code> and the object contains
+         * other <code>Object</code>s, these <code>Object</code>s will be cloned
+         * as well; non-primitive values will not be copied otherwise.
          * @return the copied <code>Object</code>.
          */
         copy : function(ar, isDeepCopy) {
@@ -227,7 +221,7 @@
         },
 
         /**
-         * @function {static} CollectionHelper.clear
+         * @function {static} o2.CollectionHelper.clear
          *
          * <p>Removes all the elements of the <code>Object</code>.</p>
          *
@@ -259,13 +253,36 @@
 
         },
 
-        removeElementByValue : function(collection, name, value) {
+        /**
+         * @function {static} o2.CollectionHelper.removeElementByValue
+         *
+         * <p>Removes and element from the collection if it has a property named
+         * <strong>name</strong> with a value <strong>value</strong>.</p>
+         *
+         * @param {Object} collection - an <code>Object</code> or an
+         * <code>Array</code> to update.
+         * @param {String} name - the name of the property.
+         * @param {Object} value - the value to compare.
+         * @param {Boolean} isRecursive - (optionak; defaults to
+         * <code>false</code>) If <code>true</code> a nesterd search will be
+         * issued; otherwise the search will be single level.
+         */
+        removeElementByValue : function(collection, name, value, isRecursive) {
 
             var item = null;
+            var isNested = !!isRecursive;
+
+            var removeElementByValue = o2.CollectionHelper.removeElementByValue;
 
             if(isArray(collection)) {
                 for(var i = 0, len = collection.length; i < len; i++) {
                     item = collection[i];
+
+                    if( typeof item == 'object' && isNested) {
+                        removeElementByValue(item, name, value, isNested);
+
+                        continue;
+                    }
 
                     if(item[name] != value) {
 
@@ -273,10 +290,10 @@
                     }
 
                     collection.splice(i, 1);
-                    
+
                     //
                     i--;
-                    
+
                     //
                     len = collection.length;
                 }
@@ -287,6 +304,12 @@
             for(var key in collection) {
                 if(collection.hasOwnProperty(key)) {
                     item = collection[key];
+
+                    if( typeof item == 'object' && isNested) {
+                        removeElementByValue(item, name, value, isNested);
+
+                        continue;
+                    }
 
                     if(item[name] != value) {
 
@@ -301,9 +324,10 @@
         },
 
         /**
-         * @function CollectionHelper.getFirst
+         * @function o2.CollectionHelper.getFirst
          *
-         * <p>Gets the first element of the array.</p>
+         * <p>Gets the first element of the <code>Array</code> or
+         * <code>Object</code>.</p>
          *
          * @param {Object} ar - the <code>Object</code> to inspect.
          * @return the first element if exists, <code>null</code> otherwise.
@@ -317,7 +341,14 @@
 
             if(!isArray(ar)) {
 
-                return null;
+                if( typeof ar == 'object') {
+                    for(var key in ar) {
+                        if(ar.hasOwnProperty(key)) {
+
+                            return ar[key];
+                        }
+                    }
+                }
             }
 
             return ar[0];
@@ -325,11 +356,12 @@
         },
 
         /**
-         * @function CollectionHelper.getLast
+         * @function o2.CollectionHelper.getLast
          *
          * <p>Gets the last element of the array.</p>
          *
-         * @param {Object} ar - the <code>Object</code> to inspect.
+         * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
+         * inspect.
          * @return the last element if exists, <code>null</code> otherwise.
          */
         getLast : function(ar) {
@@ -341,6 +373,18 @@
 
             if(!isArray(ar)) {
 
+                if( typeof ar == 'object') {
+                    var lastItem = null;
+
+                    for(var key in ar) {
+                        if(ar.hasOwnProperty(key)) {
+                            lastItem = ar[key];
+                        }
+                    }
+
+                    return lastItem;
+                }
+
                 return null;
             }
 
@@ -349,21 +393,18 @@
         },
 
         /**
-         * @function {static} CollectionHelper.compact
+         * @function {static} o2.CollectionHelper.compact
          *
          * <p>Remove <code>null</code>, and <code>undefined</code> members from
-         * the
-         * <code>Object</code>.
+         * the <code>Object</code>.
          * This function alters the actual <code>Object</code>.</p>
          *
          * @param {Object} ar - the <code>Object</code> to clean.
          * @param {Boolean} isDeepClean - (Optional; defaults to
-         * <code>false</code>) - if
-         * <code>true</code> and the object contains other <code>Object</code>s,
-         * these
-         * <code>Object</code>s will be cleaned as well; non-primitive values
-         * will not be
-         * cleaned otherwise.
+         * <code>false</code>) - if <code>true</code> and the object contains
+         * other <code>Object</code>s,
+         * these <code>Object</code>s will be cleaned as well; non-primitive
+         * values will not be cleaned otherwise.
          * @return a reference to the <code>Object</code> itself.
          */
         compact : function(ar, isDeepClean) {

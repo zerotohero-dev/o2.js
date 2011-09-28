@@ -44,7 +44,7 @@
     };
 
     /**
-     * @function {static} Validator.isEmail
+     * @function {static} o2.Validator.isEmail
      *
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
@@ -71,7 +71,7 @@
     };
 
     /**
-     * @function {static} Validator.isValidUrl
+     * @function {static} o2.Validator.isValidUrl
      *
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
@@ -87,7 +87,7 @@
     };
 
     /**
-     * @function {static} Validator.isWhitespace
+     * @function {static} o2.Validator.isWhitespace
      *
      * <p>Checks whether the given argument consists of only whitespace
      * characters.</p>

@@ -19,7 +19,7 @@
      */
     var me = framework;
     var generateGuid = framework.StringHelper.generateGuid;
-    var concat =framework.StringHelper.concat;
+    var concat = framework.StringHelper.concat;
     var nill = framework.nill;
 
     /*
@@ -68,31 +68,31 @@
             /*
              *
              */
-            header : {
+            GUID_MULTIPLIER : 10000
 
-                /*
-                 *
-                 */
-                common : [{
-                    //setting X-Requested-With header causes problem in ejabberd
-                    // requests.
-                    //'X-Requested-With': 'XmlHTTPRequest',
-                    'Accept' : 'text/javascript, text/html, application/xml, text/xml, */*'
-                }],
+        },
 
-                /*
-                 *
-                 */
-                post : [{
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                }]
-
-            },
+        /*
+         *
+         */
+        header : {
 
             /*
              *
              */
-            GUID_MULTIPLIER : 10000
+            common : [{
+                //setting X-Requested-With header causes problem in ejabberd
+                // requests.
+                //'X-Requested-With': 'XmlHTTPRequest',
+                'Accept' : 'text/javascript, text/html, application/xml, text/xml, */*'
+            }],
+
+            /*
+             *
+             */
+            post : [{
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            }]
 
         },
 
@@ -145,7 +145,6 @@
             progId = progIds.shift();
 
             try {
-
                 request = new ActiveXObject(progId);
 
                 break;
@@ -185,6 +184,8 @@
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
+        //TODO: document about this.
+        xhr.isComplete = true;
 
     }
 
@@ -202,7 +203,7 @@
         var kComplete = constants.readystate.COMPLETE;
         var kOk = constants.status.OK;
         var kCached = constants.status.CACHED;
-        
+
         //
         callbacks = callbacks || {};
 
@@ -314,7 +315,7 @@
      */
     function addCommonRequestHeaders(xhr) {
 
-        addHeaders(xhr, config.constants.header.common);
+        addHeaders(xhr, config.header.common);
 
     }
 
@@ -326,7 +327,7 @@
      */
     function addPostRequestHeaders(xhr) {
 
-        addHeaders(xhr, config.constants.header.post);
+        addHeaders(xhr, config.header.post);
 
     }
 
@@ -362,12 +363,12 @@
 
             return null;
         }
-        
+
         //
         parameters = parameters || {};
         callbacks = callbacks || {};
         isSync = !!isSync;
-        
+
         var isAsync = !isSync;
 
         var kRandom = config.constants.prefix.RANDOM;
@@ -399,7 +400,7 @@
         addCommonRequestHeaders(xhr);
 
         if(isPost) {
-        
+
             // Add more headers.
             addPostRequestHeaders(xhr);
         }
@@ -419,7 +420,7 @@
         }
 
         if(isSync) {
-        
+
             // If the request is sync, process response immediately.
             processCallbacks(xhr, callbacks);
         }
@@ -429,16 +430,15 @@
     }
 
     /**
-     * @class {static} Ajax
+     * @class {static} o2.Ajax
      *
      * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
-     * <strong>GET</strong> and
-     * <strong>POST</strong> requests.</p>
+     * <strong>GET</strong> and <strong>POST</strong> requests.</p>
      */
     me.Ajax = {
 
         /**
-         * @function {static} Ajax.post
+         * @function {static} o2.Ajax.post
          *
          * <p>Sends an <strong>AJAX POST</strong> request.</p>
          *
@@ -462,7 +462,7 @@
         },
 
         /**
-         * @function {static} Ajax.get
+         * @function {static} o2.Ajax.get
          *
          * <p>Sends and <strong>AJAX GET</strong> request.</p>
          *
@@ -487,16 +487,13 @@
         },
 
         /**
-         * @function {static} Ajax.createXhr
+         * @function {static} o2.Ajax.createXhr
          *
          * <p>Creates a native <code>XmlHttpRequest</code> object.
          * <p>This is a <strong>low-level</strong> function; it simply returns
-         * the
-         * browser's
-         * native object.
+         * the browser's native object.
          * You may most probably want to use {@link Ajax.get} or {@link
-         * Ajax.post}
-         * instead, for more functionality.
+         * Ajax.post} instead, for more functionality.</p>
          *
          * @return the created <code>XmlHttpRequest</code> object.
          */

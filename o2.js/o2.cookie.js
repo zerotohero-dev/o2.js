@@ -26,15 +26,18 @@
     me.Cookie = {
 
         /**
-         * @function {static} Cookie.save
+         * @function {static} o2.Cookie.save
          *
          * <p>Saves a <strong>cookie</strong>.
          *
          * @param {String} name - the name of the <strong>cookie</strong>.
          * @param {String} value - the value of the <strong>cookie</strong>.
-         * @param {Integer} days - how many days should the
-         * <strong>cookie</strong>
-         * persist.
+         * @param {Integer} days - (optional) how many days should the
+         * <strong>cookie</strong persist.
+         * @param {String} path - (optional) the path of the cookie.
+         * @param {String} domain - (optional) the domain of the cookie.
+         * @param {Boolean} isSecure - (optional) will the cookie be used for a
+         * secure connection.
          */
         save : function(name, value, days, path, domain, isSecure) {
 
@@ -50,9 +53,11 @@
 
             var cookiePath = path ? path : '/';
 
-            // Do not use encodeURICompoent for paths as it replaces / with
-            // %2F
-            var cookieString = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ex + '; path=' + escape(cookiePath);
+            // @formatter:off
+            // Do not use encodeURICompoent for paths as it replaces / with %2F
+            var cookieString = encodeURIComponent(name) + '=' + encodeURIComponent(value) + 
+                ex + '; path=' + escape(cookiePath);
+            // @formatter:on
 
             if(domain) {
                 cookieString += '; domain=' + escape(domain);
@@ -67,7 +72,7 @@
         },
 
         /**
-         * @function {static} Cookie.read
+         * @function {static} o2.Cookie.read
          *
          * <p>Reads the value of the <strong>cookie</strong> with the given
          * name.</p>
@@ -75,8 +80,7 @@
          * @param {String} name - the name of the <strong>cookie</strong> to
          * read.
          * @return the value of the <strong>cookie</strong>; or <code>null</code>
-         * if the
-         * <strong>cookie</strong> is not found.
+         * if the <strong>cookie</strong> is not found.
          */
         read : function(name) {
 
@@ -107,8 +111,11 @@
          *
          * @param {String} name - the name of the <strong>cookie</strong> to
          * remove.
+         * @param {String} path - (optional) the path of the cookie.
+         * @param {String} domain - (optional) the domain of the cookie.
+         * @param {Boolean} isSecure - (optional) will the cookie be used for a
+         * secure connection.
          */
-        //TODO: update all documentation of this file.
         remove : function(name, path, domain, isSecure) {
 
             var cookiePath = path ? path : '/';
@@ -117,32 +124,11 @@
 
             me.Cookie.save(name, '', -1, cookiePath, cookieDomain, isCookieSecure);
 
-        },
-
-        /**
-         * @function {static} Cookie.removeAll
-         *
-         * <p>Removes all the <strong>HttpOnly</strong> cookies the belong the
-         * the current domain
-         * and all paths (i.e. "... <code>domain=example.com path=/;</code>"). If
-         * the cookie is set for a specific subdomain,
-         * or if it has a specific path other than "/", then it won't be deleted.
-         * Similarly, if the cookie is not marked with <strong>HttpOnly</strong>
-         * flag, it won't be deleted.</p>
-         */
-        removeAll : function() {
-
-            var cookies = document.cookie.split(";");
-
-            // document.cookie = name + "=; expires=" + +new Date + "; domain=" +
-            // domain + "; path=" + path;
-            var remove = me.Cookie.remove;
-
-            for(var i = 0, len = cookies.length; i < len; i++) {
-                remove(cookies[i].split('=')[0]);
-            }
-
         }
+
+        // removeAll makes thing too complicated if path, domain and isSecure
+        // come into the equation. Will not implement it.
+        // removeAll : function(){ }
 
     };
 

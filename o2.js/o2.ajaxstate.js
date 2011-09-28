@@ -21,7 +21,7 @@
     var me = framework;
 
     /**
-     * @class {static} AjaxState
+     * @class {static} o2.AjaxState
      * @implements Observable
      *
      * <p>A <code>Model</code> for the available <code>AjaxController</code>
@@ -34,7 +34,7 @@
     me.AjaxState = {
 
         /**
-         * @function {static} AjaxState.init
+         * @function {static} o2.AjaxState.init
          *
          * <p>Initializes the <strong>object</strong> and starts notifying
          * registered
@@ -49,7 +49,7 @@
         },
 
         /**
-         * @function {static} AjaxState.addObserver
+         * @function {static} o2.AjaxState.addObserver
          *
          * <p>An implementation of the <code>Observer.addObserver</code>
          * method.</p>
@@ -80,7 +80,7 @@
         },
 
         /**
-         * @function {static} AjaxState.deleteObserver
+         * @function {static} o2.AjaxState.deleteObserver
          *
          * <p>An implementation of the <code>Observer.deleteObserver</code>
          * method.</p>
@@ -112,7 +112,7 @@
         },
 
         /**
-         * @function {static} AjaxState.countObservers
+         * @function {static} o2.AjaxState.countObservers
          *
          * <p>An implementation of the <code>Observer.countObservers</code>
          * method.</p>
@@ -127,7 +127,7 @@
         },
 
         /**
-         * @function {static} AjaxState.deleteObservers
+         * @function {static} o2.AjaxState.deleteObservers
          *
          * <p>An implementation of the <code>Observer.deleteObservers</code>
          * method.</p>
@@ -140,7 +140,7 @@
         },
 
         /**
-         * @function {static} AjaxState.timeoutObservers
+         * @function {static} o2.AjaxState.timeoutObservers
          *
          * <p>Sends a timeout request and unregisters the given
          * <code>Observer</code>s.</p>
@@ -165,7 +165,7 @@
         },
 
         /**
-         * @function {static} AjaxState.timeoutAllObservers
+         * @function {static} o2.AjaxState.timeoutAllObservers
          *
          * <p>Sends a timeout request and unregisters all registered
          * <code>Observer</code>s.</p>
@@ -184,7 +184,7 @@
         protecteds : {
 
             /**
-             * @struct {protected readonly} AjaxState.protecteds.config
+             * @struct {protected readonly} o2.AjaxState.protecteds.config
              *
              * <p>Module configuration.</p>
              */
@@ -193,7 +193,7 @@
             },
 
             /**
-             * @struct {protected readonly} AjaxState.state
+             * @struct {protected readonly} o2.AjaxState.state
              *
              * <p>Internal state.</p>
              */
@@ -203,14 +203,14 @@
 
             /**
              * @property {protected readonly Array}
-             * AjaxState.observers
+             * o2.AjaxState.observers
              *
              * <p>A collection of the registered <code>Observer</code>s.</p>
              */
             observers : [],
 
             /**
-             * @function {static protected} AjaxState.protecteds.hasObserver
+             * @function {static protected} o2.AjaxState.protecteds.hasObserver
              *
              * <p>This method is protected, don't call it from outside.</p>
              */
@@ -245,7 +245,7 @@
             },
 
             /**
-             * @function {static protected} AjaxState.protecteds.listen
+             * @function {static protected} o2.AjaxState.protecteds.listen
              *
              * <p>This method is protected, don't call it from outside.</p>
              *
@@ -296,8 +296,8 @@
                         continue;
                     }
 
-                    // "These are not the droids you're looking for."; unregister
-                    // 'em.
+                    // "These are not the droids you're looking for."; 
+                    // unregister 'em.
                     unregisterQueue.push(observer);
                 }
 

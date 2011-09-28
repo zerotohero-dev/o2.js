@@ -22,14 +22,14 @@
     var $ = framework.$;
 
     /**
-     * @class {static} DomHelper
+     * @class {static} o2.DomHelper
      *
      * A cross-browser DOM manipulation helper.
      */
     me.DomHelper = {
 
         /**
-         * @struct {static} DomHelper.nodeType
+         * @struct {static} o2.DomHelper.nodeType
          *
          * <code>DOM</code> node types.
          */
@@ -37,86 +37,89 @@
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.ELEMENT - element node.
+             * o2.DomHelper.nodeType.ELEMENT - element node.
              */
             ELEMENT : 1,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.ATTRIBUTE - atribute node.
+             * o2.DomHelper.nodeType.ATTRIBUTE - atribute node.
              */
             ATTRIBUTE : 2,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.TEXT - text node.
+             * o2.DomHelper.nodeType.TEXT - text node.
              */
             TEXT : 3,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.CDATA - CDATA section.
+             * o2.DomHelper.nodeType.CDATA - CDATA section.
              */
             CDATA : 4,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.ENTITY_REFERENCE - entity reference.
+             * o2.DomHelper.nodeType.ENTITY_REFERENCE - entity reference.
              */
             ENTITY_REFERENCE : 5,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.ENTITY - entity.
+             * o2.DomHelper.nodeType.ENTITY - entity.
              */
             ENTITY : 6,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.PROCESSING_INSTRUCTION - processing
+             * o2.DomHelper.nodeType.PROCESSING_INSTRUCTION - processing
              * instruction.
              */
             PROCESSING_INSTRUCTION : 7,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.COMMENT - comment node.
+             * o2.DomHelper.nodeType.COMMENT - comment node.
              */
             COMMENT : 8,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.DOCUMENT - document (root) node.
+             * o2.DomHelper.nodeType.DOCUMENT - document (root) node.
              */
             DOCUMENT : 9,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.DOCUMENT_TYPE - DTD node.
+             * o2.DomHelper.nodeType.DOCUMENT_TYPE - DTD node.
              */
             DOCUMENT_TYPE : 10,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.DOCUMENT_FRAGMENT - document fragment.
+             * o2.DomHelper.nodeType.DOCUMENT_FRAGMENT - document fragment.
              */
             DOCUMENT_FRAGMENT : 11,
 
             /**
              * @property {static const Integer}
-             * DomHelper.nodeType.NOTATION - notation.
+             * o2.DomHelper.nodeType.NOTATION - notation.
              */
             NOTATION : 12
 
         },
 
         /**
-         * @function {static} DomHelper.isChild
+         * @function {static} o2.DomHelper.isChild
          *
          * <p>Checks whether the give node is the child of another node.</p>
          *
-         * @param {DomNode} testNode - the node to test.
-         * @param {DomNode} parentNode - the parent node.
+         * @param {Object} testNode - either the <strong>element</strong>, or
+         * the <strong>id</strong> of the node to test.
+         * @param {Object} parentNode - either the <strong>element</strong>, or
+         * the <strong>id</strong> of the parent node.
+         *
          * @return <code>true</code> if <strong>testNode</strong> is the child of
          * <strong>parentNode</strong>, <code>false</code> otherwise.
          */
@@ -157,29 +160,41 @@
 
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.DomHelper.create
+         *
+         * <p>Creates a <strong>DOM</strong> node with the given
+         * <strong>nodeName</strong> and returns it.</p>
+         *
+         * @param {String} nodeName - the name of the node. (like 'em', 'p',
+         * 'div', 'span')
+
+         * @return the newly created <strong>DOM</strong> element.
+         */
         create : function(nodeName) {
 
             if(!nodeName) {
 
                 return null;
             }
-            
-            if(typeof nodeName != 'string'){
+
+            if( typeof nodeName != 'string') {
 
                 return null;
             }
-            
+
             return document.createElement(nodeName);
-        
+
         },
 
         /**
-         * @function {static} DomHelper.removeNode
+         * @function {static} o2.DomHelper.removeNode
          *
          * <p>Removes the element from the <strong>DOM</strong> flow.</p>
          *
-         * @param {DomNode} elm - the node to remove.
+         * @param {Object} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it, to remove.
+         *
          * @return the removed node.
          */
         removeNode : function(elm) {
@@ -199,14 +214,14 @@
         },
 
         /**
-         * @function {static} DomHelper.removeEmptyTextNodes
+         * @function {static} o2.DomHelper.removeEmptyTextNodes
          *
          * <p>Removes empty text nodes from the element.</p>
          *
-         * @param {DomNode} elm - The element to process.
+         * @param {Object} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it to process.
          * @param {Boolean} isRecursive - if <code>true</code> do the same
-         * process for
-         * the child nodes of <code>elm</code> as well.
+         * process for the child nodes of <code>elm</code> as well.
          */
         removeEmptyTextNodes : function(elm, isRecursive) {
 
@@ -261,7 +276,14 @@
 
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.DomHelper.removeChildren
+         *
+         * <p>Removes all the children of the element.</p>
+         *
+         * @param {Object} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it to process.
+         */
         removeChildren : function(elm) {
 
             var node = $(elm);
@@ -503,7 +525,7 @@
                 return null;
             }
 
-            //DOM object (obj) may not have a getAttribute method.   
+            //DOM object (obj) may not have a getAttribute method.
             if( typeof obj.getAttribute == 'function') {
                 var value = obj.getAttribute(attribute);
 

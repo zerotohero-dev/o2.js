@@ -49,7 +49,7 @@
     };
 
     /**
-     * @function {private} Validator.is
+     * @function {private} o2.Validator.is
      *
      * <p>Returns the type information of the given object.</p>
      * <p>The type can be any of the following:</p>
@@ -72,7 +72,7 @@
     }
 
     /**
-     * @class {static} Validator
+     * @class {static} o2.Validator
      *
      * <p>A simple class for validating various kinds of
      * <strong>object</strong>s.</p>
@@ -80,7 +80,7 @@
     me.Validator = {
 
         /**
-         * @function {static} Validator.isArray
+         * @function {static} o2.Validator.isArray
          *
          * <p>Checks whether the object is an <code>Array</code>.</p>
          *
@@ -96,7 +96,7 @@
         },
 
         /**
-         * @function {static} Validator.isBoolean
+         * @function {static} o2.Validator.isBoolean
          *
          * <p>Checks whether the object is a <code>Boolean</code>.
          *
@@ -112,23 +112,20 @@
         },
 
         /**
-         * @function {static} Validator.isDate
+         * @function {static} o2.Validator.isDate
          *
          * <p>Checks whether the object is a <code>Date</code>.</p>
          *
          * @param {Arguments} varargin - if a single argument is given it checks
-         * whether
-         * it identifies a <code>Date</code> object. Otherwise the function takes
-         * three
-         * parameters (year, month, date) and cheks whether they denote a valid
+         * whether it identifies a <code>Date</code> object. Otherwise the function takes
+         * three parameters (year, month, date) and cheks whether they denote a valid
          * Date.
          * @return <code>true</code> if obj is a <code>Date</code>,
-         * <code>false</code>
-         * otherwise.
+         * <code>false</code> otherwise.
          */
         isDate : function(obj) {
 
-            if(arguments.length == 3) {
+            if(arguments.length == 3) {                
                 var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 var maxDay = 0;
                 var year = arguments[0];
@@ -159,7 +156,7 @@
         },
 
         /**
-         * @function {static} Validator.isFunction
+         * @function {static} o2.Validator.isFunction
          *
          * <p>Checks whether the object is a <code>Function</code>.</p>
          *
@@ -174,7 +171,7 @@
         },
 
         /**
-         * @function {static} Validator.isNumber
+         * @function {static} o2.Validator.isNumber
          *
          * <p>Checks whether the object is a <code>Number</code>.</p>
          *
@@ -190,7 +187,7 @@
         },
 
         /**
-         * @function {static} Validator.isObject
+         * @function {static} o2.Validator.isObject
          *
          * <p>Checks whether the object is an <code>Object</code>({}).</p>
          *
@@ -205,7 +202,7 @@
         },
 
         /**
-         * @function {static} Validator.isRegExp
+         * @function {static} o2.Validator.isRegExp
          *
          * <p>Checks whether the object is a <code>RegExp</code>.</p>
          *
@@ -221,7 +218,7 @@
         },
 
         /**
-         * @function {static} Validator.isString
+         * @function {static} o2.Validator.isString
          *
          * <p>Checks whether the object is a <code>String</code>.</p>
          *
@@ -235,7 +232,7 @@
         },
 
         /**
-         * @function {static} Validator.isArguments
+         * @function {static} o2.Validator.isArguments
          *
          * <p>Checks whether the object is an <code>arguments</code> object.</p>
          *

@@ -23,18 +23,17 @@
     var addObserver = framework.AjaxState.addObserver;
 
     /**
-     * @class AjaxController
+     * @class o2.AjaxController
      * @implements Observer
      *
      * <p>An AJAX <code>Controller</code>. Registers itself to {@link
-     * AjaxState}
-     * <code>Observable</code> upon construction.</p>
+     * AjaxState} <code>Observable</code> upon construction.</p>
      *
      * <p>Implements the <code>Observer</code> interface.</p>
      */
 
     /**
-     * @constructor AjaxController.AjaxController
+     * @constructor o2.AjaxController.AjaxController
      *
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
@@ -58,7 +57,7 @@
     var apt = me.AjaxController.prototype;
 
     /**
-     * @function AjaxController.update
+     * @function o2.AjaxController.update
      *
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>
@@ -87,7 +86,7 @@
     };
 
     /**
-     * @function AjaxController.unregister
+     * @function o2.AjaxController.unregister
      *
      * <p>Unregisters the object from the observer.</p>
      * <p>Call this when the <strong>AJAX</strong> request completes.</p>

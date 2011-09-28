@@ -23,7 +23,6 @@
     var $ = framework.$;
     var generateGuid = framework.StringHelper.generateGuid;
 
-
     /*
      *
      */
@@ -53,12 +52,12 @@
     }
 
     /**
-     * @function {static} DomHelper.hasClass
+     * @function {static} o2.DomHelper.hasClass
      *
-     * <p>Checks whether an element has the given className.</p>
+     * <p>Checks whether an <strong>element</strong> has the given <strong>className</strong>.</p>
      *
-     * @param {DomNode} el - the element to test.
-     * @param {String} c - the className to test.
+     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {String} c - the <strong>className</strong> to test.
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
@@ -77,12 +76,12 @@
     };
 
     /**
-     * @function {static} DomHelper.addClass
+     * @function {static} o2.DomHelper.addClass
      *
      * <p>Add a class to the given node.</p>
      *
-     * @param {DomNode} el - the element to add.
-     * @param {String} c - the className to add.
+     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {String} c - the <strong>className</strong> to add.
      */
     me.addClass = function(el, c) {
 
@@ -104,11 +103,11 @@
     };
 
     /**
-     * @function {static} DomHelper.removeClass
+     * @function {static} o2.DomHelper.removeClass
      *
-     * <p>Removes a class from the given node.</p>
+     * <p>Removes a <strong>class</strong> name from the given node.</p>
      *
-     * @param {DomNode} el - the element to remove the class of.
+     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
      * @param {String} c - the className to remove.
      */
     me.removeClass = function(el, c) {
@@ -131,12 +130,12 @@
     };
 
     /**
-     * @function {static} DomHelper.getChildrenByClassName
+     * @function {static} o2.DomHelper.getChildrenByClassName
      *
      * <p>Gets immediate descendants, with a given class name, of the
      * element.</p>
      *
-     * @param {DomNode} el - the element to test.
+     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
      * @param {String} c - the className to test.
      * @return the immediate descendants with the given class name.
      */
@@ -199,15 +198,14 @@
     };
 
     /**
-     * @function {static} DomHelper.getElementsByClassName
+     * @function {static} o2.DomHelper.getElementsByClassName
      *
      * <p>Gets all children, with a given class name, of the element.</p>
      *
-     * @param {DomNode} el - the element to test.
-     * @param {String} c - the className to test.
-     * @return all of the elements with the given class name.
+     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {String} c - the <strong>className</strong> to test.
+     * @return all of the <strong>element</strong>s with the given <strong>class name</strong>.
      */
-    //TODO: add space delimeted multiple classes
     me.getElementsByClassName = function(el, c) {
 
         //
