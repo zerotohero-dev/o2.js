@@ -109,7 +109,7 @@
     };
 
     /**
-     * @function {static} StringHelper.xssEncode
+     * @function {static} o2.StringHelper.xssEncode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
      * entities. Works similar to {link StringHelper.encode}, with an
@@ -141,7 +141,7 @@
     };
 
     /**
-     * @function {static} StringHelper.encode
+     * @function {static} o2.StringHelper.encode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
      * entities.</p>
@@ -167,7 +167,7 @@
     };
 
     /**
-     * @function {static} StringHelper.decode
+     * @function {static} o2.StringHelper.decode
      *
      * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
      * <p>If possible try using standard decoding methods like
@@ -191,7 +191,7 @@
     };
 
     /**
-     * @function {static} StringHelper.escape
+     * @function {static} o2.StringHelper.escape
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
@@ -205,7 +205,7 @@
     };
 
     /**
-     * @function {static} StringHelper.encodeSafeHtml
+     * @function {static} o2.StringHelper.encodeSafeHtml
      *
      * <p>Encodes the <code>String</code> by converting it into a text node and
      * returning the node's value.</p>

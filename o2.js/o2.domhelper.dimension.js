@@ -14,19 +14,18 @@
  * methods.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
     /*
      * Aliases
      */
     var me = framework.DomHelper;
 
     /**
-     * @function {static} DomHelper.getDocumentDimension
+     * @function {static} o2.DomHelper.getDocumentDimension
      *
      * <p>Gets the dimension of the document in the form <code>{width: w, height:
      * h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
-     * the
-     * document's height returns the height of the visible area as the height
+     * the document's height returns the height of the visible area as the height
      * portion.
      *
      * @return the dimension of the document in the form <code>{width: w, height:
@@ -41,7 +40,7 @@
 
                 // d.body can be null when refreshing.
                 if(!d || !d.body) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -72,7 +71,7 @@
             var d = document;
 
             if(!d || !d.body) {
-                
+
                 return {
                     width : 0,
                     height : 0
@@ -94,7 +93,7 @@
     };
 
     /**
-     * @function {static} DomHelper.getWindowInnerDimension
+     * @function {static} o2.DomHelper.getWindowInnerDimension
      *
      * <p>Gets the dimension of the visible area of the browser in the form
      * <code>{width: w, height: h}</code>.
@@ -103,12 +102,12 @@
      * <code>{width: w, height: h}</code>.
      */
     me.getWindowInnerDimension = function() {
-        
+
         if(window.innerWidth !== UNDEFINED) {
             me.getWindowInnerDimension = function() {
 
                 if(!window) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -131,7 +130,7 @@
                 var d = document.documentElement;
 
                 if(!d) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -153,7 +152,7 @@
             var d = document.body;
 
             if(!d) {
-                
+
                 return {
                     width : 0,
                     height : 0
@@ -168,7 +167,7 @@
         };
 
         return me.getWindowInnerDimension();
-        
+
     };
 
 }(o2, this));

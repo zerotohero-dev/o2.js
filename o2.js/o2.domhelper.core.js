@@ -13,8 +13,6 @@
  */
 ( function(framework, window, UNDEFINED) {
 
-    //TODO: update my documentation ($'s added).
-
     /*
      * Aliases.
      */
@@ -298,12 +296,12 @@
         },
 
         /**
-         * @function {static} DomHelper.insertAfter
+         * @function {static} o2.DomHelper.insertAfter
          *
          * <p>Adds the node after the reference node.</p>
          *
-         * @param {DomNode} newNode - the node to insert after.
-         * @param {DomNode} refNode - the reference node.
+         * @param {Object} newNode - the DOM node, or the <strong>id</strong> of the node, to insert after.
+         * @param {Object} refNode - the reference node, or the <strong>id</strong> of the node.
          */
         insertAfter : function(newNode, refNode) {
 
@@ -323,12 +321,12 @@
         },
 
         /**
-         * @function {static} DomHelper.insertBefore
+         * @function {static} o2.DomHelper.insertBefore
          *
          * <p>Adds the node before the reference node.</p>
          *
-         * @param {DomNode} newNode - the node to insert before.
-         * @param {DomNode} refNode - the reference node.
+         * @param {Object} newNode - the node, or the <strong>id</strong> of the node, to insert before.
+         * @param {Object} refNode - the reference, or the <strong>id</strong> of the node.
          */
         insertBefore : function(newNode, refNode) {
 
@@ -348,7 +346,7 @@
         },
 
         /**
-         * @function {static} DomHelper.createElement
+         * @function {static} o2.DomHelper.createElement
          *
          * <p>Creates an element with given name and attributes.</p>
          *
@@ -410,12 +408,12 @@
         },
 
         /**
-         * @function {static} DomHelper.prepend
+         * @function {static} o2.DomHelper.prepend
          *
          * <p>Prepends the element to the top of its parent.</p>
          *
-         * @param {DomNode} child - the child node to prepend.
-         * @param {DomNode} parent - the parent container.
+         * @param {Object} child - the child node, or the id of the node to prepend.
+         * @param {Object} parent - the parent container, or the id of the container.
          */
         prepend : function(child, parent) {
 
@@ -439,12 +437,12 @@
         },
 
         /**
-         * @function {static} DomHelper.append
+         * @function {static} o2.DomHelper.append
          *
          * <p>Appends the element to the bottom of its parent.</p>
          *
-         * @param {DomNode} child - the child node to append.
-         * @param {DomNode} parent - the parent container.
+         * @param {Object} child - the child node, or the <strong>id</strong> of the node to append.
+         * @param {Object} parent - the parent container, or the <strong>id</strong> of the container.
          */
         append : function(child, parent) {
 
@@ -462,14 +460,14 @@
         },
 
         /**
-         * @function {static} DomHelper.getOffset
+         * @function {static} o2.DomHelper.getOffset
          *
          * <p>Gets the left and top offset of a given element.</p>
          *
-         * @param {DomNode} elm - the element to get the offsets of.
+         * @param {Object} elm - the element, or the id of the element, to get the offsets of.
+
          * @return the offset from the top-left corner of the viewport, in the
-         * form
-         * <code>{left: l, top: t}</code>.
+         * form <code>{left: l, top: t}</code>.
          */
         getOffset : function(elm) {
 
@@ -506,11 +504,11 @@
         },
 
         /**
-         * @function {static} DomHelper.getAttribute
+         * @function {static} o2.DomHelper.getAttribute
          *
          * <p>Gets the attribute of a given node.</p>
          *
-         * @param {DomNode} obj - the node to get the attribute of.
+         * @param {Object} obj - the node, or the <strong>id</strong> of the node, to get the attribute of.
          * @param {String} attribute - the attribute to gather.
          * @return the value of the attribute if found; <code>null</code>
          * otherwise.

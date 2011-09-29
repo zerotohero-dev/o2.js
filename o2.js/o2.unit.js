@@ -89,7 +89,8 @@
         /*
          * All of the unit test suites have been completed.
          */
-        REPORT_GLOBAL_COMPLETION :  ['<p>All unit tests have been completed:</p>',
+        REPORT_GLOBAL_COMPLETION :  [
+            '<p>All unit tests have been completed:</p>',
             '<p style="text-align:right">(<b>total success: {0}', 
             '</b> , <b>total failure: {1}</b>)</p>'
         ].join('')
@@ -237,16 +238,25 @@
 
     }
 
-    /*
-     * @class {private} UnitTest
+    /**
+     * @class {isolated} o2.UnitTest
      *
      * <p>Defines a test unit.</p>
+     * <p>This <strong>class</strong> is <strong>isolated</strong>, and it is
+     * only available in the unit meta's callback given to the {@link
+     * o2.Unit.add} method.
      *
      * @param {String} description - the description of the unit test.
      * @param {String} totalAssertionCount - the overall number of assertions
      * that the <code>UnitTest</code>s <strong>testCase</strong> will run.
      * @param {Function} testCase - the test case to run when executing the
      * <code>UnitTest</code>.
+     *
+     * @param {String} description - the description of the test case.
+     * @param {Integer} totalAssertionCount - a non zero integer for the total assertion count in the test case.
+     * @param {Function} testCase - the actual test case reference.
+     *
+     * @see o2.Unit.add
      */
     function UnitTest(description, totalAssertionCount, testCase) {
 
@@ -259,7 +269,7 @@
     }
 
     /*
-     * Executes an <code>UnitTest</code> unit test.
+     * Executes an <code>o2.UnitTest</code> unit test.
      */
     function execute(unitTest) {
 
@@ -292,18 +302,19 @@
     }
 
     /**
-     * @class {static} Unit
+     * @class {static} o2.Unit
      *
-     * <p>A "unit test" runner.</p>
+     * <p>A "unit test" <strong>runner</strong>.</p>
      * <p>Runs <code>UnitTest</code>s.</p>
      */
     me.Unit = {
 
         /**
-         * @function {static} Unit.assert
+         * @function {static} o2.Unit.assert
          * <p>Asserts whether the given <strong>expression</strong> evaluates to
          * <code>true</code> or not.</p>
-         * @param {UnitTest} unitTest - the current active unit test.
+         *
+         * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Expression} expression - the expression to evaluate.
          * @param {String} message - the associated message.
          */
@@ -322,9 +333,10 @@
         },
 
         /**
-         * @function {static} Unit.assertEqual
+         * @function {static} o2.Unit.assertEqual
          * <p>Asserts whether two values are equal.</p>
-         * @param {UnitTest} unitTest - the current active unit test.
+         *
+         * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Object} currentValue - the current value to assert.
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
@@ -344,9 +356,10 @@
         },
 
         /**
-         * @function {static} Unit.assertNotEqual
+         * @function {static} o2.Unit.assertNotEqual
          * <p>Asserts whether two values are NOT equal.</p>
-         * @param {UnitTest} unitTest - the current active unit test.
+         *
+         * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Object} currentValue - the current value to assert.
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
@@ -366,10 +379,12 @@
         },
 
         /**
-         * @function {static} Unit.assertStrictEqual
+         * @function {static} o2.Unit.assertStrictEqual
+         *
          * <p>Asserts whether two values are strictly equal (by value and
          * type).</p>
-         * @param {UnitTest} unitTest - the current active unit test.
+         *
+         * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Object} currentValue - the current value to assert.
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
@@ -389,10 +404,12 @@
         },
 
         /**
-         * @function {static} Unit.assertStrictNotEqual
+         * @function {static} o2.Unit.assertStrictNotEqual
+         *         
          * <p>Asserts whether two values are strictly NOT equal (by value and
          * type).</p>
-         * @param {UnitTest} unitTest - the current active unit test.
+         *
+         * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Object} currentValue - the current value to assert.
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
@@ -412,7 +429,7 @@
         },
 
         /**
-         * @function {static} Unit.add
+         * @function {static} o2.Unit.add
          *
          * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
          * adds it to the test queue.</p>
@@ -439,12 +456,12 @@
         },
 
         /**
-         * @function {static} Unit.log
+         * @function {static} o2.Unit.log
          *
          * <p>Logs the <strong>message</strong>.</p>
          * <p>An alias to {@link Debugger.log}.</p>
          *
-         * @see {@link Debugger.log}
+         * @see o2.Debugger.log
          */
         log : function(message) {
 
@@ -453,7 +470,7 @@
         },
 
         /**
-         * @function {static} run
+         * @function {static} o2.Unit.run
          *
          * <p>Asynchronously runs all of the registered
          * <code>UnitTest</code>s, one after another.</p>

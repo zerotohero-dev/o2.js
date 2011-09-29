@@ -18,9 +18,9 @@
     /*
      * Aliases.
      */
+    var $ = framework.$;
     var me = framework.DomHelper;
     var myName = framework.name;
-    var $ = framework.$;
     var generateGuid = framework.StringHelper.generateGuid;
 
     /*
@@ -139,7 +139,6 @@
      * @param {String} c - the className to test.
      * @return the immediate descendants with the given class name.
      */
-    //TODO: add space delimited multiple classes.
     me.getChildrenByClassName = function(el, c) {
 
         //

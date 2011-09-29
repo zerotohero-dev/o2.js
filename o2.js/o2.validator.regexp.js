@@ -24,23 +24,23 @@
      * Module configuration.
      */
     var config = {
-        
+
         /*
-         * 
+         *
          */
         constants : {
-            
+
             /*
-             * 
+             *
              */
             regExp : {
                 EMAIL : /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
                 URL : /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
                 WHITESPACE : /^\s*$/
             }
-            
+
         }
-        
+
     };
 
     /**

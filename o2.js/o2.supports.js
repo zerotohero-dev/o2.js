@@ -21,7 +21,7 @@
     var myName = framework.name;
 
     /**
-     * @class {static} Supports
+     * @class {static} o2.Supports
      *
      * <p>Checks support for various objects and properties like
      * <strong>DOM</strong>
@@ -30,7 +30,7 @@
     me.Supports = {
 
         /**
-         * @function {static} Supports.cookie
+         * @function {static} o2.Supports.cookie
          *
          * <p>Checks for <strong>cookie</strong> support.</p>
          *
@@ -48,15 +48,14 @@
             var value = null;
 
             try {
-                
                 value = cookie.read(kTestCookie);
-            
+
             } catch(ignore) {
-            
+
             }
 
             if(!value) {
-            
+
                 return false;
             }
 
@@ -67,7 +66,7 @@
         },
 
         /**
-         * @function {static} Supports.dom
+         * @function {static} o2.Supports.dom
          *
          * <p>Checks whether <strong>DOM</strong> is adequately supported.
          *
@@ -81,7 +80,7 @@
         },
 
         /**
-         * @function {static} Supports.ajax
+         * @function {static} o2.Supports.ajax
          *
          * <p>Checks whether <strong>AJAX</strong> is supported.
          *

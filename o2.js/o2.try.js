@@ -23,7 +23,7 @@
     var me = framework;
 
     /**
-     * @class {static} Try
+     * @class {static} o2.Try
      *
      * <p>Used for consequentially executing a set of <code>function</code>s.</p>
      * <p>The <strong>function</strong>s are guaranteed to be called.</p>
@@ -34,7 +34,7 @@
     me.Try = {
 
         /**
-         * @function {static} Try.all
+         * @function {static} o2.Try.all
          *
          * <p>Executes all the given delegates one by one.</p>
          * <p>If an exception occurs while executing the argument, the next one
@@ -42,7 +42,7 @@
          * tried.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Try.all(fn1, fn2, fn3);
+         * o2.Try.all(fn1, fn2, fn3);
          * </pre>
          *
          * @param {...} ... - each argument as a function.
@@ -62,7 +62,7 @@
         },
 
         /**
-         * @function {static} Try.these
+         * @function {static} o2.Try.these
          *
          * <p>Tries all the given delegates, will stop at the first successful
          * execution.</p>
@@ -73,7 +73,7 @@
          * functions will be executed.</p>
          * <p>Usage Example:</p>
          * <pre>
-         * Try.these(fn1, fn2, fn3);
+         * o2.Try.these(fn1, fn2, fn3);
          * </pre>
          *
          * @param {...} ... - each argument as a function.

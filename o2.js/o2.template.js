@@ -13,9 +13,6 @@
  */
 ( function(framework, window, UNDEFINED) {
 
-    //TODO: this file need several enhancements to become a useful template
-    // engine.
-
     /*
      * Aliases.
      */

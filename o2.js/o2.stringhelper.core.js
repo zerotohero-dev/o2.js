@@ -30,7 +30,7 @@
 
             /*
              * @property {private const Integer}
-             * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
+             * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
              * length for
              * generating a random String.
              */
@@ -59,18 +59,17 @@
     };
 
     /**
-     * @class {static} StringHelper
+     * @class {static} o2.StringHelper
      *
      * <p>A <code>String</code> helper <strong>class</strong>.</p>
      */
     me.StringHelper = {
 
         /**
-         * @function {static} StringHelper.generateGuid
+         * @function {static} o2.StringHelper.generateGuid
          *
          * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
-         * for that
-         * browsing session.</p>
+         * for that browsing session.</p>
          *
          * @return a <strong>GUID</strong>.
          */
@@ -81,7 +80,7 @@
         },
 
         /**
-         * @function {static} StringHelper.generateRandom
+         * @function {static} o2.StringHelper.generateRandom
          *
          * <p>Generates a random <code>String</code>.</p>
          *
@@ -111,7 +110,7 @@
         },
 
         /**
-         * @function {static} StringHelper.concat
+         * @function {static} o2.StringHelper.concat
          *
          * <p>Concatanes all its arguments into a single <code>String</code>.
          * This is faster than adding those <code>String</code>s with
@@ -126,7 +125,7 @@
         },
 
         /**
-         * @function {static} StringHelper.format
+         * @function {static} o2.StringHelper.format
          *
          * <p>Works similar to <strong>C#</strong>'s
          * <code>String.Format</code>.</p>
@@ -164,7 +163,7 @@
         },
 
         /**
-         * @function {static} StringHelper.remove
+         * @function {static} o2.StringHelper.remove
          *
          * <p>Simply removes the phrases that match the <code>RegExp</code> from
          * the
@@ -181,7 +180,7 @@
         },
 
         /**
-         * @function {static} StringHelper.trim
+         * @function {static} o2.StringHelper.trim
          *
          * <p>Trims white space from beginning and end of the
          * <code>String</code>.</p>
@@ -205,7 +204,18 @@
 
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.StringHelper.strip
+         * 
+         * <p>Simply returns
+         * <code>o2.StringHelper.trim(str, false)</code>.
+         *
+         * @param {String} str - the <code>String</code> to strip.
+         *
+         * @return the stripped <code>String</code>.
+         *
+         * @see o2.StringHelper.trim
+         */
         strip : function(str) {
 
             return me.StringHelper.trim(str, false);
@@ -213,7 +223,7 @@
         },
 
         /**
-         * @function {static} StringHelper.compact
+         * @function {static} o2.StringHelper.compact
          *
          * <p>Works identical to <code>StringHelper.trim(str,
          * true)</code>.</p>

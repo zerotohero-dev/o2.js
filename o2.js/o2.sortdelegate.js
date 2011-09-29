@@ -18,15 +18,51 @@
      */
     var me = framework;
 
+    /*
+     *
+     */
+    function getSortOrder(a, b, isDescending) {
+
+        if(a == b) {
+
+            return 0;
+        }
+
+        if(a < b) {
+
+            return isDescending ? 1 : -1;
+        }
+
+        if(a > b) {
+
+            return isDescending ? -1 : 1;
+        }
+
+    }
+
+    /*
+     * 
+     */
+    function getNaNortOrder(a, b, isDescending) {
+        
+        if(isDescending) {
+
+            return (isNaN(b) ? -1 / 0 : b) - (isNaN(a) ? -1 / 0 : a);
+        }
+
+        return (isNaN(a) ? 1 / 0 : a) - (isNaN(b) ? 1 / 0 : b);
+
+    }
+
     /**
-     * @class {static} SortDelegate
+     * @class {static} o2.SortDelegate
      *
      * <p>Custom delegates for <code>Array.sort</code> method.</p>
      */
     me.SortDelegate = {
 
         /**
-         * @function SortDelegate.sort
+         * @function o2.SortDelegate.sort
          *
          * <p>A generic sort function.</p>
          * <p>If the collecion consists of <code>String</code>s and
@@ -39,32 +75,20 @@
             var isDescending = !!isDesc;
 
             if(isNaN(a) && isNaN(b)) {
-                if(a < b) {
 
-                    return isDescending ? 1 : -1;
-                } else if(a > b) {
-
-                    return isDescending ? -1 : 1;
-                }
-
-                return 0;
+                return getSortOrder(a, b, isDescending);
             }
 
-            if(isDescending) {
-
-                return (isNaN(b) ? -1 / 0 : b) - (isNaN(a) ? -1 / 0 : a);
-            }
-
-            return (isNaN(a) ? 1 / 0 : a) - (isNaN(b) ? 1 / 0 : b);
+            return getNaNortOrder(a, b, isDescending);
 
         },
 
         /**
-         * @function SortDelegate.sortDesc
+         * @function o2.SortDelegate.sortDesc
          *
-         * <p>Works similar to {link SortDelegate.sort}. The only difference
-         * is that
-         * the items are sorted in a <strong>descending</strong> order.</p>
+         * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
+         * is that the items are sorted in a <strong>descending</strong>
+         * order.</p>
          */
         sortDesc : function(a, b) {
 

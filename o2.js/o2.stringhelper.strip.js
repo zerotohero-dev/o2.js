@@ -46,7 +46,7 @@
     };
 
     /**
-     * @function {static} StringHelper.stripNonAlpha
+     * @function {static} o2.StringHelper.stripNonAlpha
      *
      * <p>Removes non alphabetical characters from the <code>String</code>
      * (excluding
@@ -62,7 +62,7 @@
     };
 
     /**
-     * @function {static} StringHelper.stripNonAlphanumeric
+     * @function {static} o2.StringHelper.stripNonAlphanumeric
      *
      * <p>Removes alpha numeric characters from the <code>String</code>.</p>
      *
@@ -76,7 +76,7 @@
     };
 
     /**
-     * @function {static} StringHelper.stripNonNumeric
+     * @function {static} o2.StringHelper.stripNonNumeric
      *
      * <p>Removes non numeric characters from the <code>String</code>.</p>
      *
@@ -90,7 +90,7 @@
     };
 
     /**
-     * @function {static} StringHelper.stripNumeric
+     * @function {static} o2.StringHelper.stripNumeric
      *
      * <p>Removes numeric characters from the <code>String</code>.</p>
      *
@@ -104,7 +104,7 @@
     };
 
     /**
-     * @function {static} StringHelper.stripTags
+     * @function {static} o2.StringHelper.stripTags
      *
      * <p>Removes tags from the <code>String</code>.
      *

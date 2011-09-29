@@ -21,7 +21,7 @@
     var me = framework.StringHelper;
 
     /**
-     * @struct {private} StringHelper.config
+     * @struct {private} o2.StringHelper.config
      *
      * <p>Module configuration.</p>
      */
@@ -34,7 +34,7 @@
             
             /**
              * @property {private const Integer}
-             * StringHelper.config.constants.TRUNCATION_LENGTH
+             * o2.StringHelper.config.constants.TRUNCATION_LENGTH
              *
              * <p>Maximum length, after which the string is truncated with an
              * ellipsis
@@ -67,7 +67,7 @@
     };
 
     /**
-     * @function {static} StringHelper.br2nl
+     * @function {static} o2.StringHelper.br2nl
      *
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
@@ -83,7 +83,7 @@
     };
 
     /**
-     * @function {static} StringHelper.nl2br
+     * @function {static} o2.StringHelper.nl2br
      *
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
      *
@@ -99,7 +99,7 @@
     };
 
     /**
-     * @function {static} StringHelper.removeTags
+     * @function {static} o2.StringHelper.removeTags
      *
      * <p>Removes all the <strong>HTML</strong> tags in the
      * <code>String</code>.</p>
@@ -114,7 +114,7 @@
     };
 
     /**
-     * @function {static} StringHelper.truncate
+     * @function {static} o2.StringHelper.truncate
      *
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
      * is
@@ -123,7 +123,7 @@
      *
      * @param {String} str - the <code>String</code> to process.
      * @param {Integer} maxLen - Optional (defaults to
-     * {@link StringHelper.config.constants.TRUNCATION_LENGTH},
+     * {@link o2.StringHelper.config.constants.TRUNCATION_LENGTH},
      * maximum <code>String</code> length that's allowed without truncation.
      * @return the processed <code>String</code>.
      */
@@ -143,7 +143,7 @@
     };
 
     /**
-     * @function {static} StringHelper.toCamelCase
+     * @function {static} o2.StringHelper.toCamelCase
      *
      * <p>Converts the input to camel case.</p>
      * <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
@@ -166,7 +166,7 @@
     };
 
     /**
-     * @function {static} StringHelper.toDashedFromCamelCase
+     * @function {static} o2.StringHelper.toDashedFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem-ipsum'.</p>
@@ -187,7 +187,7 @@
     };
 
     /**
-     * @function {static} StringHelper.toUnderscoreFromCamelCase
+     * @function {static} o2.StringHelper.toUnderscoreFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem_ipsum'.</p>

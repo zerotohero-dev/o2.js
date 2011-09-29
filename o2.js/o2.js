@@ -29,40 +29,61 @@ window.o2 = {};
      * Aliases.
      */
     var me = framework;
+    
+    var config = {
+        constants: {
+            errorMessage: {
+                OBJECT_NOT_DEFINED : ' : Object is not defined.'
+            }
+        }
+    };
 
     /**
-     * @function nill
+     * @function {static} o2.nill
      *
      * <p>An empty function.</p>
      */
     me.nill = function() {
     };
 
-    //TODO: add documentation.
+    /**
+     * @property {String} o2.name
+     *  
+     * <p>Short name of the framework, to be used in
+     * prefixes, class names etc.</p>
+     */
     me.name = 'o2js';
 
-    //TODO: add documentation.
+    /**
+     * @property {String} o2.url 
+     *
+     * <p>URL of the project.</p>
+     */
     me.url = 'http://o2js.com';
 
-    //TODO: add documentation.
+    /**
+     * @property {String} o2.longName
+     *
+     * <p>Full name of the project.</p>
+     */
     me.longName = 'o2.js JavaScript Framework';
 
     /**
-     * @property {String} version
+     * @property {String} o2.version
      *
      * <p>Project version.</p>
      */
     me.version = '0.23';
 
     /**
-     * <p>Project build number.</p>
+     * @property {String} o2.build
      *
-     * @property {String} build
+     * <p>Project build number.</p>     
      */
-    me.build = '201109261843';
+    me.build = '201109282149';
 
     /**
-     * @function {static} $
+     * @function {static} o2.$
      *
      * <p>An alias for <code>document.getElementById</code>.</p>
      *
@@ -74,11 +95,12 @@ window.o2 = {};
     me.$ = function(obj, UNDEFINED) {
 
         if(obj === UNDEFINED) {
-            //TODO: to config.
-            throw '$: Object is not defined';
+
+            throw [me.name, config.constants.errorMessage.OBJECT_NOT_DEFINED].join('');
         }
 
         if( typeof obj == 'string') {
+
             return document.getElementById(obj);
         }
 
@@ -87,7 +109,7 @@ window.o2 = {};
     };
 
     /**
-     * @function {static} t
+     * @function {static} o2.t
      *
      * <p>A <code>getElementsByTagName</code> wrapper.</p>
      *
@@ -112,14 +134,13 @@ window.o2 = {};
     };
 
     /**
-     * @function {static} tt
+     * @function {static} o2.tt
      * <p>Acts similar to {link t} -- with one exception: The method
      * returns the first matched node, instead of returning a node
      * collection.</p>
      * @param {String} tagName - the name of the tag to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the
-     * parent container to search.
+     * the parent container to search.
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
@@ -135,7 +156,7 @@ window.o2 = {};
     };
 
     /**
-     * @function {static} ready
+     * @function {static} o2.ready
      *
      * <p>An alias for <code>DomHelper.ready</code>.</p>
      *
@@ -149,7 +170,7 @@ window.o2 = {};
     };
 
     /**
-     * @function {static} load
+     * @function {static} o2.load
      *
      * <p>An alias for <code>EventHandler.addEventListener(window, 'load',
      * callback)</code>.</p>

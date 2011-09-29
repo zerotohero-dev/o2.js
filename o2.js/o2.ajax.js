@@ -81,9 +81,6 @@
              *
              */
             common : [{
-                //setting X-Requested-With header causes problem in ejabberd
-                // requests.
-                //'X-Requested-With': 'XmlHTTPRequest',
                 'Accept' : 'text/javascript, text/html, application/xml, text/xml, */*'
             }],
 
@@ -145,6 +142,8 @@
             progId = progIds.shift();
 
             try {
+                
+                //
                 request = new ActiveXObject(progId);
 
                 break;

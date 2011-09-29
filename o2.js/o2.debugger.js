@@ -116,7 +116,6 @@
 
         switch(className) {
             case ccc.LOG:
-
                 try {
 
                     console.log(text);
@@ -127,7 +126,6 @@
 
                 break;
             case ccc.INFO:
-
                 try {
 
                     console.info(text);
@@ -138,7 +136,6 @@
 
                 break;
             case ccc.WARN:
-
                 try {
 
                     console.warn(text);
@@ -149,7 +146,6 @@
 
                 break;
             case ccc.ERROR:
-
                 try {
 
                     console.error(text);
@@ -160,7 +156,6 @@
 
                 break;
             default:
-
                 try {
 
                     console.log(text);
@@ -198,9 +193,11 @@
                     println(value, className);
 
                     var debugContent = document.createElement(nodeName);
+
                     debugContent.className = className;
                     debugContent.innerHTML = value;
                     config.outputElement.appendChild(debugContent);
+
                 };
 
             } else if(config.isUsingConsole && !config.outputElement) {
@@ -216,6 +213,7 @@
                 return function(value, className) {
 
                     var debugContent = document.createElement(nodeName);
+
                     debugContent.className = className;
                     debugContent.innerHTML = value;
                     config.outputElement.appendChild(debugContent);
@@ -235,17 +233,17 @@
     };
 
     /**
-     * @class {static} Debugger
+     * @class {static} o2.Debugger
      *
      * <p>A static object for debugging purposes.</p>
      * <p>Sample Usage:</p>
      * <pre>
      * // note: initalize Debugger only once,
      * // possibly on window.load or dom content ready
-     * Debugger.init(someDomNode, true);
+     * o2.Debugger.init(someDomNode, true);
      *
      * //then inside your code use this syntax.
-     * Debugger.println('stuff to debug');
+     * o2.Debugger.println('stuff to debug');
      * </pre>
      *
      * @see o2.Unit

@@ -14,7 +14,7 @@
  * <strong>Observer</strong> pattern.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
     /*
      * Aliases.
      */
@@ -27,18 +27,17 @@
     var purgeQueue = [];
 
     /**
-     * @class JsonpController
-     * @extends AjaxController
+     * @class o2.JsonpController
+     * @extends o2.AjaxController
      *
      * <p>A JSONP <code>Controller</code>. Registers itself to {@link
-     * JsonpState}
-     * <code>Observable</code> upon construction.</p>
+     * JsonpState} <code>Observable</code> upon construction.</p>
      *
      * <p>Implements the <code>Observer</code> interface.</p>
      */
 
     /**
-     * @constructor JsonpController.JsonpController
+     * @constructor o2.JsonpController.JsonpController
      *
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
@@ -59,10 +58,11 @@
 
     };
 
+
     me.JsonpController.prototype = {
 
         /**
-         * @function JsonpController.unregister
+         * @function o2.JsonpController.unregister
          *
          * Inherited from {@link AjaxController.unregister}
          * @see AjaxController.unregister
@@ -70,15 +70,14 @@
         unregister : me.AjaxController.prototype.unregister,
 
         /**
-         * @function JsonpController.update
+         * @function o2.JsonpController.update
          *
          * Overloaded from {@link AjaxController.update}
          * @see AjaxController.update
          * @param {JsonpState} observable - the <code>Observable</code> state
          * object.
          * @param {Object} data - parameters passed from the
-         * <code>Observable</code> to
-         * this <code>Observer</code>.
+         * <code>Observable</code> to this <code>Observer</code>.
          */
         update : function(observable, data) {
 
@@ -93,7 +92,7 @@
                 purgeQueue.push(this.jsonp);
 
                 while(purgeQueue.length > 1) {
-                    
+
                     //
                     delete window[purgeQueue.shift()];
                 }

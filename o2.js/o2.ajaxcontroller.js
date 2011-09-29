@@ -64,8 +64,7 @@
      *
      * @param {Observable} observable - the responsible <code>Observable</code>.
      * @param {Object} data - parameters passed from the <code>Observable</code>
-     * to
-     * this <code>Observer</code>.
+     * to this <code>Observer</code>.
      */
     apt.update = function(observable, data) {
 

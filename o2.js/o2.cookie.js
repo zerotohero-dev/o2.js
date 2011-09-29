@@ -19,7 +19,7 @@
     var me = framework;
 
     /**
-     * @class {static} Cookie
+     * @class {static} o2.Cookie
      *
      * <p>A <strong>cookie</strong> helper class.</p>
      */
@@ -79,6 +79,7 @@
          *
          * @param {String} name - the name of the <strong>cookie</strong> to
          * read.
+         *
          * @return the value of the <strong>cookie</strong>; or <code>null</code>
          * if the <strong>cookie</strong> is not found.
          */
@@ -105,7 +106,7 @@
         },
 
         /**
-         * @function {static} Cookie.remove
+         * @function {static} o2.Cookie.remove
          *
          * <p>Removes a <strong>cookie</strong>.</p>
          *

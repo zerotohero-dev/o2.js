@@ -111,7 +111,8 @@
          *
          * <p>Gets the index of the element in the given <code>Array</code>.</p>
          *
-         * @param {Array} ar - the <code>Array</code> to search.
+         * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
+         * search.
          * @param {Object} elm - the <code>Object</code> to match.
          * @return the index of the element if found, <code>-1</code> otherwise.
          */
@@ -125,12 +126,30 @@
                         return -1;
                     }
 
-                    if(!isArray(ar)) {
+                    if(isArray(ar)) {
 
+                        return ar.indexOf(elm);
+                    }
+
+                    if( typeof ar == 'object') {
+                        var counter = 0;
+
+                        for(var key in ar) {
+                            if(ar.hasOwnProperty(key)) {
+                                if(ar[key] == elm) {
+
+                                    return counter;
+                                }
+
+                                //
+                                counter++;
+                            }
+                        }
+                        
                         return -1;
                     }
 
-                    return ar.indexOf(elm);
+                    return -1;
 
                 };
 
@@ -144,16 +163,34 @@
                     return -1;
                 }
 
-                if(!isArray(ar)) {
+                if(isArray(ar)) {
 
+                    for(var i = 0, len = ar.length; i < len; i++) {
+                        if(elm == ar[i]) {
+
+                            return i;
+                        }
+                    }
+                    
                     return -1;
                 }
 
-                for(var i = 0, len = ar.length; i < len; i++) {
-                    if(elm == ar[i]) {
+                if( typeof ar == 'object') {
+                    var counter = 0;
 
-                        return i;
+                    for(var key in ar) {
+                        if(ar.hasOwnProperty(key)) {
+                            if(ar[key] == elm) {
+
+                                return counter;
+                            }
+
+                            //
+                            counter++;
+                        }
                     }
+                    
+                    return -1;
                 }
 
                 return -1;

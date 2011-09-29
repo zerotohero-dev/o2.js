@@ -4,9 +4,9 @@
  * @module ajaxstate
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -14,7 +14,7 @@
  */
 ( function(framework, window, UNDEFINED) {
     //*
-    
+
     /*
      * Aliases.
      */
@@ -63,7 +63,7 @@
 
             //!
             if(hasObserver.apply(this.protecteds, [observer])) {
-                
+
                 return;
             }
 
@@ -93,7 +93,7 @@
             // This is an already-deleted zombie object.
             // No need for further processing.
             if(observer.isDeleted) {
-                
+
                 return true;
             }
 
@@ -102,7 +102,7 @@
             for(var i = 0, len = observers.length; i < len; i++) {
                 if(observer == observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
-                    
+
                     return true;
                 }
             }
@@ -155,10 +155,12 @@
 
             for(var i = 0, len = observers.length; i < len; i++) {
                 observer = observers[i].object;
+
                 observer.update(this, {
                     isTimedOut : true,
                     data : data
                 });
+
                 observer.unregister(this);
             }
 
@@ -235,7 +237,7 @@
 
                 for(var i = 0, len = observers.length; i < len; i++) {
                     if(observer.object === observers[i]) {
-                        
+
                         return true;
                     }
                 }
@@ -286,17 +288,17 @@
                     registrationTime = meta.registrationTime;
 
                     if(!timeout) {
-                        
+
                         throw 'Please specify timeout meta data for the observer';
                     }
                     shouldNotifyObserver = (now - registrationTime > timeout);
 
                     if(!shouldNotifyObserver) {
-                        
+
                         continue;
                     }
 
-                    // "These are not the droids you're looking for."; 
+                    // "These are not the droids you're looking for.";
                     // unregister 'em.
                     unregisterQueue.push(observer);
                 }
