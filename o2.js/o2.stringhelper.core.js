@@ -87,6 +87,7 @@
          * @param {Integer} length - (optional - default: {@link
          * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
          *     length of the <code>String</code> to be generated.
+         *
          * @return the generated <code>String</code>.
          */
         generateRandom : function(length) {
@@ -170,6 +171,7 @@
          *
          * @param {String} str - the <strong>String</strong> to process.
          * @param {RegExp} regExp - the <code>RegExp</code> to process agains.
+         *
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
@@ -189,6 +191,7 @@
          * <code>false</code>)
          *     if <code>true</code>, multiple whitespace is compacted into single
          * whitespace.
+         *
          * @return the processed <strong>String</strong>.
          */
         trim : function(str, shouldCompact) {
@@ -228,7 +231,9 @@
          * true)</code>.</p>
          *
          * @param {String} str - the <strong>String</strong> to process.
+         *
          * @return the processed <strong>String</strong>.
+         *
          * @see StringHelper.trim
          */
         compact : function(str) {

@@ -36,98 +36,98 @@
     };
 
     /**
-     * @class {static} EventHandler
+     * @class {static} o2.EventHandler
      *
      * <p>A cross-browser event handling and event utilities class.</p>
      */
     me.EventHandler = {
 
         /**
-         * @struct {static} EventHandler.keyCode
+         * @struct {static} o2.EventHandler.keyCode
          */
         keyCode : {
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.ENTER - enter key.
+             * o2.EventHandler.keyCode.ENTER - enter key.
              */
             ENTER : 13,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.LEFT - left arrow key.
+             * o2.EventHandler.keyCode.LEFT - left arrow key.
              */
             LEFT : 37,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.RIGHT - right arrow key.
+             * o2.EventHandler.keyCode.RIGHT - right arrow key.
              */
             RIGHT : 39,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.TOP - top arrow key.
+             * o2.EventHandler.keyCode.TOP - top arrow key.
              */
             TOP : 38,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.BOTTOM - bottom arrow key.
+             * o2.EventHandler.keyCode.BOTTOM - bottom arrow key.
              */
             BOTTOM : 40,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.BACKSPACE - backspace key.
+             * o2.EventHandler.keyCode.BACKSPACE - backspace key.
              */
             BACKSPACE : 8,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.TAB - TAB key.
+             * o2.EventHandler.keyCode.TAB - TAB key.
              */
             TAB : 9,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.SHIFT - shift key.
+             * o2.EventHandler.keyCode.SHIFT - shift key.
              */
             SHIFT : 16,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.CTRL - CTRL key.
+             * o2.EventHandler.keyCode.CTRL - CTRL key.
              */
             CTRL : 17,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.ALT - ALT key.
+             * o2.EventHandler.keyCode.ALT - ALT key.
              */
             ALT : 18,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.CAPS_LOCK - caps lock key.
+             * o2.EventHandler.keyCode.CAPS_LOCK - caps lock key.
              */
             CAPS_LOCK : 20,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.ESCAPE - ESC key.
+             * o2.EventHandler.keyCode.ESCAPE - ESC key.
              */
             ESCAPE : 27,
 
             /**
              * @property {static const Integer}
-             * EventHandler.keyCode.DELETE - DEL key.
+             * o2.EventHandler.keyCode.DELETE - DEL key.
              */
             DELETE : 46
         },
 
         /**
-         * @function {static} EventHandler.addEventListener
+         * @function {static} o2.EventHandler.addEventListener
          *
          * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
          *
@@ -136,6 +136,7 @@
          * @param {String} evt - the name of the event (like "click",
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
+         *
          * @throws {Exception} if <strong>fn</strong> callback is not defined.
          */
         addEventListener : function(node, evt, fn) {

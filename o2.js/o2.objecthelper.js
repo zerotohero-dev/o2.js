@@ -16,7 +16,7 @@
 ( function(framework, window, UNDEFINED) {
 
     /*
-     * Aliases
+     * Aliases.
      */
     var me = framework;
     var myName = framework.name;

@@ -27,12 +27,12 @@
      * <p>Gets the actual event object.</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally
-     * in {@link EventHandler.addEventListener}
+     * internally in {@link o2.EventHandler.addEventListener}
+     * 
      * @return the actual <code>DOM Event</code> object.
      */
     var getEventObject = function(evt) {
-        
+
         //
         getEventObject = window.event ? function() {
 
@@ -49,13 +49,13 @@
     };
 
     /**
-     * @function {static} EventHandler.getMouseCoordinates
+     * @function {static} o2.EventHandler.getMouseCoordinates
      *
      * <p>Gets the current mouse coordinates.</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally
-     * in {@link EventHandler.addEventListener}
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
      * @return the coordinates in the form of <code>{x: mouseX, y: mouseY}</code>
      * where <code>x</code> is the distance from the top of the screen, and
      * <code>y</code> is the distance from the left of the screen.
@@ -111,7 +111,7 @@
 
                 var clientX = e.clientX || 0;
                 var clientY = e.clientY || 0;
-                
+
                 //
                 posx = clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
                 posy = clientY + document.body.scrollTop + document.documentElement.scrollTop;
@@ -135,14 +135,13 @@
     };
 
     /**
-     * @function {static} EventHandler.getKeyCode
+     * @function {static} o2.EventHandler.getKeyCode
      *
      * <p>Gets the key code of the key-related event (keydown, keyup, keypress
      * etc.).</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally
-     * in {@link EventHandler.addEventListener}
+     * internally in {@link o2.EventHandler.addEventListener}
      * @return the <code>keyCode</code> associated with the event as an
      * <code>Integer</code>
      */
@@ -191,13 +190,13 @@
     };
 
     /**
-     * @function {static} EventHandler.isRightClick
+     * @function {static} o2.EventHandler.isRightClick
      *
      * <p>Checks whether or not the curent action is a right click action.</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally
-     * in {@link EventHandler.addEventListener}
+     * internally in {@link o2.EventHandler.addEventListener}.
+     *
      * @return <code>true</code> if the event is a right click event,
      * <code>false</code> otherwise.
      */

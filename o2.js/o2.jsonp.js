@@ -4,9 +4,9 @@
  * @module jsonp
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -24,17 +24,26 @@
      * Module configuration.
      */
     var config = {
-        state : {
-            counter : 0
-        },
+
+        /*
+         *
+         */
         constants : {
             prefix : {
-                JSON : [myName,'_json_'].join('')
+                JSON : [myName, '_json_'].join('')
             },
             key : {
                 CALLBACK : 'callback'
             }
         }
+
+    };
+
+    /*
+     * Module state.
+     */
+    var state = {
+        counter : 0
     };
 
     /*
@@ -79,12 +88,10 @@
          * <p>Creates a <strong>JSONP</strong> request.</p>
          *
          * @param {String} url - the <strong>URL</strong> of the
-         * <strong>JSONP</strong>
-         * Service
+         * <strong>JSONP</strong> service.
          * @param {Object} params - parameters in the form of {name1:value1,...}
          * @param {Function} callback - callback to execute after
-         * <strong>JSONP</strong>
-         * arrives.
+         * <strong>JSONP</strong> arrives.
          */
         get : function(url, params, callback) {
 
@@ -101,16 +108,16 @@
             var kJson = constants.prefix.JSON;
             var kCallback = constants.key.CALLBACK;
 
-            var jsonp = [kJson, (++config.state.counter)].join('');
+            var jsonp = [kJson, (++state.counter)].join('');
 
             window[jsonp] = function(data) {
-                
+
                 callback(data, params);
                 window[jsonp] = null;
-                
+
                 //
                 delete window[jsonp];
-            
+
             };
 
             load([url, '?', query, kCallback, '=', jsonp].join(''));

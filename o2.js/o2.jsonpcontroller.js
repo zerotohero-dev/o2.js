@@ -64,7 +64,8 @@
         /**
          * @function o2.JsonpController.unregister
          *
-         * Inherited from {@link AjaxController.unregister}
+         * Inherited from {@link o2.AjaxController.unregister}
+         *
          * @see AjaxController.unregister
          */
         unregister : me.AjaxController.prototype.unregister,
@@ -72,16 +73,19 @@
         /**
          * @function o2.JsonpController.update
          *
-         * Overloaded from {@link AjaxController.update}
-         * @see AjaxController.update
+         * Overloaded from {@link o2.AjaxController.update}
+         *
          * @param {JsonpState} observable - the <code>Observable</code> state
          * object.
          * @param {Object} data - parameters passed from the
          * <code>Observable</code> to this <code>Observer</code>.
+         *
+         * @see o2.AjaxController.update
          */
         update : function(observable, data) {
 
             if(data.isTimedOut) {
+
                 // Unregister self from the observable.
                 this.unregister(observable);
 

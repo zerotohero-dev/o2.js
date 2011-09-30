@@ -128,14 +128,14 @@
     }
 
     /**
-     * @class {static} Template
+     * @class {static} o2.Template
      *
      * <p>A really <strong>fast</strong> template engine.</p>
      */
     me.Template = {
 
         /**
-         * @function {static} Template.parse
+         * @function {static} o2.Template.parse
          *
          * <p>Parses the given template.</p>
          *

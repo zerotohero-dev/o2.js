@@ -32,26 +32,39 @@
     var key = '';
 
     /**
-     * @class {static} JsonpState
-     * @extends AjaxState
+     * @class {static} o2.JsonpState
+     * @extends o2.AjaxState
      *
      * <p>Implements all public methods of {@link AjaxState} for
      * <strong>JSONP</strong> requests.</p>
      */
     me.JsonpState = {
+
         // Note that JsonpState uses its own configutarion and state context:
         protecteds : {
+
+            /*
+             *
+             */
             config : {
                 LISTEN_TIMEOUT : 1001
             },
+
+            /*
+             *
+             */
             state : {
                 listenTimeoutId : null
             },
+
+            /*
+             *
+             */
             observers : []
+
         }
+
     };
-
-
 
     for(key in base) {
         if(base.hasOwnProperty(key)) {

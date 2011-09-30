@@ -6,9 +6,9 @@
  * @requires stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
@@ -54,13 +54,13 @@
             // If both function have identical # of arguments,
             // then call the cached function.
             if(fn.length == arguments.length) {
-                
+
                 return fn.apply(this, arguments);
             }
 
             // Otherwise try to call the old function, if any.
             if( typeof old == 'function') {
-                
+
                 return old.apply(this, arguments);
             }
 
@@ -72,8 +72,7 @@
      * @function {static} o2.MethodHelper.requireAllArguments
      *
      * <p>Checks the passed in arguments, and if all arguments are present,
-     * executes
-     * the <code>Function</code>. Otherwise throws an error.</p>
+     * executes <code>Function</code>. Otherwise throws an error.</p>
      *
      * @param {Function} fn - the <code>function</code> to check.
      * @return the applied <code>function</code>.
@@ -86,7 +85,7 @@
 
             // throw an error if the arguments' length do not match.
             if(arguments.length < fn.length) {
-                
+
                 throw format(config.constants.error.ARGUMENT_COUNT_MISMATCH, fn.length, arguments.length);
             }
 

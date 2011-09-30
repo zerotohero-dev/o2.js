@@ -5,9 +5,9 @@
  * @requires stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
@@ -23,11 +23,15 @@
      * Module configuration.
      */
     var config = {
-        
+
         /*
-         * 
+         *
          */
         map : {
+            
+            /*
+             * 
+             */
             xssEncodeNoAmp : [{
                 regExp : /</g,
                 replace : '&#60;'
@@ -42,6 +46,9 @@
                 replace : '&#34;'
             }],
 
+            /*
+             * 
+             */
             xssEncode : [{
                 regExp : /&/g,
                 replace : '&amp;'
@@ -59,6 +66,9 @@
                 replace : '&#34;'
             }],
 
+            /*
+             * 
+             */
             encode : [{
                 regExp : /&/g,
                 replace : '&amp;'
@@ -79,6 +89,9 @@
                 replace : '&nbsp;'
             }],
 
+            /*
+             * 
+             */
             decode : [{
                 regExp : /&#60;|&lt;/g,
                 replace : '<'
@@ -102,7 +115,7 @@
     };
 
     /*
-     * 
+     *
      */
     var state = {
         tempDiv : null
@@ -125,9 +138,10 @@
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
 
+        //
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
         str = ['', str].join('');
-        
+
         var map = shouldPreserveAmpersands ? config.map.xssEncodeNoAmp : config.map.xssEncode;
         var mapItem = null;
 
@@ -207,7 +221,8 @@
     /**
      * @function {static} o2.StringHelper.encodeSafeHtml
      *
-     * <p>Encodes the <strong>String</strong> by converting it into a text node and
+     * <p>Encodes the <strong>String</strong> by converting it into a text node
+     * and
      * returning the node's value.</p>
      *
      * @param {String} str - the <strong>String</strong> to process.

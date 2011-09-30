@@ -358,7 +358,7 @@
 
         /**
          * @function {static} o2.Unit.assertNotEqual
-         * <p>Asserts whether two values are NOT equal.</p>
+         * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
          *
          * @param {o2.UnitTest} unitTest - the current active unit test.
          * @param {Object} currentValue - the current value to assert.
@@ -407,7 +407,7 @@
         /**
          * @function {static} o2.Unit.assertStrictNotEqual
          *
-         * <p>Asserts whether two values are strictly NOT equal (by value and
+         * <p>Asserts whether two values are strictly <strong>NOT</strong> equal (by value and
          * type).</p>
          *
          * @param {o2.UnitTest} unitTest - the current active unit test.

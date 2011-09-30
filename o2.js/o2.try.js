@@ -45,7 +45,7 @@
          * o2.Try.all(fn1, fn2, fn3);
          * </pre>
          *
-         * @param {...} ... - each argument as a function.
+         * @param {Arguments} ... - each argument as a function.
          */
         all : function() {
 
@@ -76,7 +76,7 @@
          * o2.Try.these(fn1, fn2, fn3);
          * </pre>
          *
-         * @param {...} ... - each argument as a function.
+         * @param {Arguments} ... - each argument as a function.
          */
         these : function() {
 

@@ -12,8 +12,6 @@
  * Helpful extension functions to the framework namespace.
  */
 ( function(framework, window, UNDEFINED) {
-    //TODO: add documentation.
-    //TODO: complete me.
     
     var me = framework;
     

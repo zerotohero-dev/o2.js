@@ -124,7 +124,8 @@
          * @param {Object} base - the context of the newly created
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
-         * @param {varargin} - variable number of input arguments to be passed as
+         * @param {Arguments} varargin - variable number of input arguments to be
+         * passed as
          * initial set of arguments.
          *
          * @return the modified <code>function</code>.
@@ -167,7 +168,8 @@
          * @param {Object} base - the context of the newly created
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
-         * @param {varargin} - variable number of input arguments to be passed as
+         * @param {Arguments} varargin- variable number of input arguments to be
+         * passed as
          * initial set of arguments.
          *
          * @return the modified <code>function</code>.
@@ -187,6 +189,7 @@
 
             };
             // @formatter:on
+
         }
 
     };

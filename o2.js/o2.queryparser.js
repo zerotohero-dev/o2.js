@@ -32,8 +32,8 @@
          *
          * @param {String} url - (Optional) if given, parses the
          * <strong>URL</strong>.
-         * given,
-         * parses <code>window.location.href</code> otherwise.
+         * given, parses <code>window.location.href</code> otherwise.
+         *
          * @return the parsed <strong>query string</strong> as a {name1:value1,
          * name2:value2} <code>Object</code>.
          */
