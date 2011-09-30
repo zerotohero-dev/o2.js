@@ -6,7 +6,7 @@
  * -->
  */
 
-/**/
+
 div.fail {
     background: #cc0000;
     border: 1px #000000 solid;
@@ -14,11 +14,11 @@ div.fail {
     margin: 5px;
     padding: 10px;
 }
-/**/
+
 div.fail b {
     color: #000000;
 }
-/**/
+
 div.pass {
     background: #00cc00;
     border: 1px #000000 solid;
@@ -26,11 +26,11 @@ div.pass {
     margin: 5px;
     padding: 10px;
 }
-/**/
+
 div.pass b {
     color: #000000;
 }
-/**/
+
 div.log {
     background: #cccccc;
     border: 1px #666666 solid;

@@ -43,7 +43,7 @@
     /*
      * 
      */
-    function getNaNortOrder(a, b, isDescending) {
+    function getNanSortOrder(a, b, isDescending) {
         
         if(isDescending) {
 
@@ -65,10 +65,10 @@
          * @function o2.SortDelegate.sort
          *
          * <p>A generic sort function.</p>
-         * <p>If the collecion consists of <code>String</code>s and
-         * <code>Number</code>s,
-         * <code>String</code>s will be stored alphabeticaly at the bottom, and
-         * <code>Number</code>s will be sorted numerically before them.</p>
+         * <p>If the collecion consists of <strong>String</strong>s and
+         * <strong>Number</strong>s,
+         * <strong>String</strong>s will be stored alphabeticaly at the bottom, and
+         * <strong>Number</strong>s will be sorted numerically before them.</p>
          */
         sort : function(a, b, isDesc) {
 
@@ -79,7 +79,7 @@
                 return getSortOrder(a, b, isDescending);
             }
 
-            return getNaNortOrder(a, b, isDescending);
+            return getNanSortOrder(a, b, isDescending);
 
         },
 

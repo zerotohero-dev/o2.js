@@ -19,24 +19,23 @@
     var me = framework;
 
     /**
-     * @class {static} QueryParser
+     * @class {static} o2.QueryParser
      *
      * <p>Used for parsing the browser's <strong>query string</strong>.</p>
      */
     me.QueryParser = {
 
         /**
-         * @function {static} parse
+         * @function {static} o2.QueryParser.parse
          *
          * <p>Parses the <strong>query string</strong>.</p>
          *
          * @param {String} url - (Optional) if given, parses the
-         * <strong>URL</strong>
+         * <strong>URL</strong>.
          * given,
          * parses <code>window.location.href</code> otherwise.
          * @return the parsed <strong>query string</strong> as a {name1:value1,
-         * name2:value2}
-         * <code>Object</code>.
+         * name2:value2} <code>Object</code>.
          */
         parse : function(url) {
 

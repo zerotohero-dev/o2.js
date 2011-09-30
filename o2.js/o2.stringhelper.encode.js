@@ -10,7 +10,7 @@
  *  Please see the LICENSE file for details. 
  * -->
  *
- * <p>Responsible for encoding and decoding <code>String</code>s.</p>
+ * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
 ( function(framework, window, UNDEFINED) {
 
@@ -117,11 +117,11 @@
      * <p>This method is specially designed to prevent cross-site script
      * injection attacks.</p>
      *
-     * @param {String} str - the <code>String</code> to process
+     * @param {String} str - the <strong>String</strong> to process
      * @param {Boolean} shouldPreserveAmpersands - (Optional. Defaults to
      * <code>false</code>). If <code>true</code> & characters will not be
      * encoded, otherwise they will be.
-     * @return the processed <code>String</code>.
+     * @return the processed <strong>String</strong>.
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
 
@@ -149,8 +149,8 @@
      * <code>encodeURIComponent</code>,
      * instead of using this method.</p>
      *
-     * @param {String} str - the <code>String</code> to process
-     * @return the processed <code>String</code>.
+     * @param {String} str - the <strong>String</strong> to process
+     * @return the processed <strong>String</strong>.
      */
     me.encode = function(str) {
 
@@ -173,8 +173,8 @@
      * <p>If possible try using standard decoding methods like
      * <code>decodeURIComponent</code>, instead of using this method.</p>
      *
-     * @param {String} str - the <code>String</code> to process
-     * @return the processed <code>String</code>.
+     * @param {String} str - the <strong>String</strong> to process
+     * @return the processed <strong>String</strong>.
      */
     me.decode = function(str) {
 
@@ -195,8 +195,8 @@
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
-     * @param {String} str - the <code>String</code> to process
-     * @return the processed <code>String</code>.
+     * @param {String} str - the <strong>String</strong> to process
+     * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
 
@@ -207,11 +207,11 @@
     /**
      * @function {static} o2.StringHelper.encodeSafeHtml
      *
-     * <p>Encodes the <code>String</code> by converting it into a text node and
+     * <p>Encodes the <strong>String</strong> by converting it into a text node and
      * returning the node's value.</p>
      *
-     * @param {String} str - the <code>String</code> to process.
-     * @return the processed <code>String</code>.
+     * @param {String} str - the <strong>String</strong> to process.
+     * @return the processed <strong>String</strong>.
      */
     me.encodeSafeHtml = function(str) {
 

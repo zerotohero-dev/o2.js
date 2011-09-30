@@ -32,7 +32,7 @@
              * @property {private const Integer}
              * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
              * length for
-             * generating a random String.
+             * generating a random <strong>String</strong>s.
              */
             DEFAULT_RANDOM_LENGTH : 8,
 
@@ -61,7 +61,7 @@
     /**
      * @class {static} o2.StringHelper
      *
-     * <p>A <code>String</code> helper <strong>class</strong>.</p>
+     * <p>A <strong>String</strong> helper <strong>class</strong>.</p>
      */
     me.StringHelper = {
 
@@ -82,7 +82,7 @@
         /**
          * @function {static} o2.StringHelper.generateRandom
          *
-         * <p>Generates a random <code>String</code>.</p>
+         * <p>Generates a random <strong>String</strong>.</p>
          *
          * @param {Integer} length - (optional - default: {@link
          * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
@@ -112,11 +112,11 @@
         /**
          * @function {static} o2.StringHelper.concat
          *
-         * <p>Concatanes all its arguments into a single <code>String</code>.
-         * This is faster than adding those <code>String</code>s with
+         * <p>Concatanes all its arguments into a single <strong>String</strong>.
+         * This is faster than adding those <strong>String</strong>s with
          * <code>+</code>.</p>
          *
-         * @return the concataneted <code>String</code>.
+         * @return the concataneted <strong>String</strong>.
          */
         concat : function() {
 
@@ -131,12 +131,12 @@
          * <code>String.Format</code>.</p>
          * <p>Usage Example:<p>
          * <pre>
-         * StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+         * o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
          * 'California');
          * //will return "Hello Ninja. What's going on in California"
          * </pre>
          *
-         * @return the formated <code>String</code>.
+         * @return the formated <strong>String</strong>.
          */
         format : function(string) {
 
@@ -166,12 +166,11 @@
          * @function {static} o2.StringHelper.remove
          *
          * <p>Simply removes the phrases that match the <code>RegExp</code> from
-         * the
-         * <code>String</code>.</p>
+         * the <strong>String</strong>.</p>
          *
-         * @param {String} str - the <code>String</code> to process.
+         * @param {String} str - the <strong>String</strong> to process.
          * @param {RegExp} regExp - the <code>RegExp</code> to process agains.
-         * @return the processed <code>String</code>.
+         * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
 
@@ -183,14 +182,14 @@
          * @function {static} o2.StringHelper.trim
          *
          * <p>Trims white space from beginning and end of the
-         * <code>String</code>.</p>
+         * <strong>String</strong>.</p>
          *
-         * @param {String} str - the <code>String</code> to process.
+         * @param {String} str - the <strong>String</strong> to process.
          * @param {Boolean} shouldCompact - Optional (default:
          * <code>false</code>)
          *     if <code>true</code>, multiple whitespace is compacted into single
          * whitespace.
-         * @return the processed <code>String</code>.
+         * @return the processed <strong>String</strong>.
          */
         trim : function(str, shouldCompact) {
             
@@ -210,9 +209,9 @@
          * <p>Simply returns
          * <code>o2.StringHelper.trim(str, false)</code>.
          *
-         * @param {String} str - the <code>String</code> to strip.
+         * @param {String} str - the <strong>String</strong> to strip.
          *
-         * @return the stripped <code>String</code>.
+         * @return the stripped <strong>String</strong>.
          *
          * @see o2.StringHelper.trim
          */
@@ -228,8 +227,8 @@
          * <p>Works identical to <code>StringHelper.trim(str,
          * true)</code>.</p>
          *
-         * @param {String} str - the <code>String</code> to process.
-         * @return the processed <code>String</code>.
+         * @param {String} str - the <strong>String</strong> to process.
+         * @return the processed <strong>String</strong>.
          * @see StringHelper.trim
          */
         compact : function(str) {

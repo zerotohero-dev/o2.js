@@ -130,7 +130,7 @@
     /**
      * @class {static} Template
      *
-     * <p>A really fast template engine.</p>
+     * <p>A really <strong>fast</strong> template engine.</p>
      */
     me.Template = {
 

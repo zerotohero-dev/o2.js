@@ -26,7 +26,7 @@
     me.MethodHelper = {
 
         /**
-         * @function {static} MethodHelper.memoize
+         * @function {static} o2.MethodHelper.memoize
          *
          * <p><strong>Memoizes</strong> the given <code>function</code>'s outcome
          * and
@@ -35,7 +35,7 @@
          * <p>Sample Usage:</p>
          * <pre>
          * function multiply(a,b){return a*b; }
-         * var memoized = MethodHelper.memoize(multiply);
+         * var memoized = o2.MethodHelper.memoize(multiply);
          * var result = memoized(2,3);//fresh calculation.
          * result = memoized(4,2);//fresh calculation.
          * result = memoized(2,3);//retrieve from cache.
@@ -79,7 +79,7 @@
         },
 
         /**
-         * @function {static} MethodHelper.curry
+         * @function {static} o2.MethodHelper.curry
          *
          * <p>Curries the <code>function</code>.</p>
          * <p>See http://www.dustindiaz.com/javascript-curry/ for a
@@ -87,7 +87,7 @@
          * <p>Example usage:</p>
          * <pre>
          * function test(a,b,c) { return a+b+c; }
-         * var curried = MethodHelper.curry(this, test, 1, 2);
+         * var curried = o2.MethodHelper.curry(this, test, 1, 2);
          * var result = curried(3);//returns 6;
          * </pre>
          *
@@ -109,27 +109,29 @@
         },
 
         /**
-         * @function {static} MethodHelper.partial
+         * @function {static} o2.MethodHelper.partial
          *
          * <p>Defines a partial <code>function</code>.</p>
          * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
-         * detailed
-         * discussion.</p>
+         * detailed discussion.</p>
          * <p>Usage Example:</p>
          * <pre>
          * function test(a,b,c){ return a*b+c; }
-         * var partial = MethodHelper.partial(test, 10, undefined, 20);
+         * var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
          * var result = partial(3);//returns 50;
          * </pre>
          *
+         * @param {Object} base - the context of the newly created
+         * <code>function</code>.
+         * @param {Function} fn - the <code>function</code> to modify.
+         * @param {varargin} - variable number of input arguments to be passed as
+         * initial set of arguments.
+         *
          * @return the modified <code>function</code>.
          */
-        partial : function() {
+        partial : function(base, fn) {
 
-            var args = Array.prototype.slice.call(arguments);
-
-            var context = args.shift();
-            var fn = args.shift();
+            var args = Array.prototype.slice.call(arguments, 2);
 
             return function() {
 
@@ -141,36 +143,47 @@
                     }
                 }
 
-                return fn.apply(context, args);
+                return fn.apply(base, args);
 
             };
 
         },
 
         /**
-         * @function MethodHelper.bind
+         * @function o2.MethodHelper.bind
          *
          * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
-         * the
-         * "<code>this</code>" reference.</p>
+         * the "<code>this</code>" reference.</p>
+         * <p>Usage Example:</p>
+         * <pre>
+         * function test(a,b,c){ return this.number + (a*b+c); };
+         * var context = {number:10};
+         * var bound = o2.MethodHelper.bind(context, test);
+         * bound(20,2,10);//gives 60
+         * var bound2 = o2.MethodHelper.bind(context, test, 20);
+         * bound2(2, 10);//gives 60
+         * </pre>
          *
          * @param {Object} base - the context of the newly created
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
+         * @param {varargin} - variable number of input arguments to be passed as
+         * initial set of arguments.
+         *
          * @return the modified <code>function</code>.
          */
-        bind : function(base, fn /*, args*/) {
+        bind : function(base, fn) {
 
             var concat = Array.prototype.concat;
             var slice = Array.prototype.slice;
             var passedArguments = slice.call(arguments, 2);
 
             // @formatter:off
-            return function(/*args*/) {
+            return function() {
 
-                var params = concat.call(passedArguments, slice.call(arguments, 0));
+                var args = concat.call(passedArguments, slice.call(arguments));
 
-                return fn.apply(base, params);
+                return fn.apply(base, args);
 
             };
             // @formatter:on

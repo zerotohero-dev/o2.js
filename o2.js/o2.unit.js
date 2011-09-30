@@ -253,7 +253,8 @@
      * <code>UnitTest</code>.
      *
      * @param {String} description - the description of the test case.
-     * @param {Integer} totalAssertionCount - a non zero integer for the total assertion count in the test case.
+     * @param {Integer} totalAssertionCount - a non zero integer for the total
+     * assertion count in the test case.
      * @param {Function} testCase - the actual test case reference.
      *
      * @see o2.Unit.add
@@ -405,7 +406,7 @@
 
         /**
          * @function {static} o2.Unit.assertStrictNotEqual
-         *         
+         *
          * <p>Asserts whether two values are strictly NOT equal (by value and
          * type).</p>
          *

@@ -34,7 +34,7 @@
     };
 
     /**
-     * @function {static} MethodHelper.overload
+     * @function {static} o2.MethodHelper.overload
      *
      * <p>Adds a method to the <code>Object</code>.</p>
      * <p>If parameters count is different but the name is same,
@@ -69,11 +69,11 @@
     };
 
     /**
-     * @function {static} MethodHelper.requireAllArguments
+     * @function {static} o2.MethodHelper.requireAllArguments
      *
      * <p>Checks the passed in arguments, and if all arguments are present,
      * executes
-     * the <code>function</code>. Otherwise throws an error.</p>
+     * the <code>Function</code>. Otherwise throws an error.</p>
      *
      * @param {Function} fn - the <code>function</code> to check.
      * @return the applied <code>function</code>.
@@ -97,9 +97,9 @@
     };
 
     /**
-     * @function {static} MethodHelper.defer
+     * @function {static} o2.MethodHelper.defer
      *
-     * <p>Defers a <code>function</code> for a specified amount of time.</p>
+     * <p>Defers a <code>Function</code> for a specified amount of time.</p>
      *
      * @param {Function} fn - the <code>function</code> to defer.
      * @param {Integer} interval - the interval to defer in milliseconds.
