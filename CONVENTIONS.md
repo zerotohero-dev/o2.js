@@ -13,7 +13,24 @@ document.
 * Or the code should be **re-factored** to adhere **o2.js** **JavaScript**
 conventions.
 
+This document is, in particular, the basis for **o2.js** coding standards.
+In general, however, it *can* be used as a *guideline* for *any* large-scale 
+client-heavy **JavaScript** project.
+
 ## 2. WHY DO WE NEED CONVENTIONS?
+
+**Coding Conventions** is a must-have for any large-scale long-lived
+software project.
+
+*Nearly %80 of the development time* in large-scale software projects go
+to **maintenance**, **patching**, and **rewriting** the codebase. During their
+lifetime, these large-scale software projects are not coded and
+maintained by one person, and everyone's coding style and preferences
+differ.
+
+In this essence, **coding conventions** constitute a shared language
+between the developer team. It increases the readability of the code,
+and makes the code less error-prone.
 
 ## 3. o2.js JAVASCRIPT CODING STANDARDS
 
