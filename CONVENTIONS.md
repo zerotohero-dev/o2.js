@@ -105,6 +105,24 @@ Insert a blank line
 
         };
 
+* **Between** two **if** blocks
+
+            if(!ar) {
+
+                return -1;
+            }
+
+            if(isArray(ar)) {
+                for(var i = 0, len = ar.length; i < len; i++) {
+                    if(elm == ar[i]) {
+
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+
 ### 3.3. LINE LENGTH
 
 To sustain code readability, limit the line length to **160 characters**.
@@ -112,6 +130,13 @@ If the line (*including the indentation*) exceeds **160 characters**,
 continue from the next line.
 
 ### 3.4. BRACE POSITIONING
+
+The brace positions should be as follows:
+
+* **Same line**, in blocks (C-Style).
+* **Same line**, in function declarations (C-Style).
+* **Same line**, in switch statements (C-Style).
+* **Same line**, in case statements (C-Style).
 
 ### 3.5  NEW LINES
 
