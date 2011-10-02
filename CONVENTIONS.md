@@ -107,6 +107,10 @@ Insert a blank line
 
 ### 3.3. LINE LENGTH
 
+To sustain code readability, limit the line length to **160 characters**.
+If the line (*including the indentation*) exceeds **160 characters**, 
+continue from the next line.
+
 ### 3.4. BRACE POSITIONING
 
 ### 3.5  NEW LINES
