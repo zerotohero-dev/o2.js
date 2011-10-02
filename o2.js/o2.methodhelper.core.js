@@ -21,7 +21,8 @@
 
     /**
      * @class {static} MethodHelper
-     * A method helper class.
+     *
+     * <p>A method helper class.</p>
      */
     me.MethodHelper = {
 
@@ -29,10 +30,9 @@
          * @function {static} o2.MethodHelper.memoize
          *
          * <p><strong>Memoizes</strong> the given <code>function</code>'s outcome
-         * and
-         * presents it from cache, instead of recalculating.</p>
+         * and presents it from cache, instead of recalculating.</p>
          * <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
-         * <p>Sample Usage:</p>
+         * <p>Usage Example:</p>
          * <pre>
          * function multiply(a,b){return a*b; }
          * var memoized = o2.MethodHelper.memoize(multiply);
@@ -45,6 +45,7 @@
          * @param {Object} context - what should "this" refer to.
          * @param {...} ... - variable number of input arguments to pass
          * arguments to fn.
+         *
          * @return a reference to the memoized <code>function</code>.
          */
         memoize : function() {
@@ -84,7 +85,7 @@
          * <p>Curries the <code>function</code>.</p>
          * <p>See http://www.dustindiaz.com/javascript-curry/ for a
          * discussion.</p>
-         * <p>Example usage:</p>
+         * <p>Usage Example:</p>
          * <pre>
          * function test(a,b,c) { return a+b+c; }
          * var curried = o2.MethodHelper.curry(this, test, 1, 2);
@@ -125,8 +126,7 @@
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
          * @param {Arguments} varargin - variable number of input arguments to be
-         * passed as
-         * initial set of arguments.
+         * passed as initial set of arguments.
          *
          * @return the modified <code>function</code>.
          */
@@ -169,8 +169,7 @@
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
          * @param {Arguments} varargin- variable number of input arguments to be
-         * passed as
-         * initial set of arguments.
+         * passed as initial set of arguments.
          *
          * @return the modified <code>function</code>.
          */

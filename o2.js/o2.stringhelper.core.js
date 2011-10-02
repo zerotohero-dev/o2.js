@@ -86,7 +86,7 @@
          *
          * @param {Integer} length - (optional - default: {@link
          * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
-         *     length of the <code>String</code> to be generated.
+         * length of the <code>String</code> to be generated.
          *
          * @return the generated <code>String</code>.
          */

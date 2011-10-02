@@ -116,8 +116,8 @@
 
         switch(className) {
             case ccc.LOG:
-                try {
 
+                try {
                     console.log(text);
 
                 } catch(ignore1) {
@@ -126,8 +126,8 @@
 
                 break;
             case ccc.INFO:
-                try {
 
+                try {
                     console.info(text);
 
                 } catch(ignore2) {
@@ -136,8 +136,8 @@
 
                 break;
             case ccc.WARN:
-                try {
 
+                try {
                     console.warn(text);
 
                 } catch(ignore3) {
@@ -146,8 +146,8 @@
 
                 break;
             case ccc.ERROR:
-                try {
 
+                try {
                     console.error(text);
 
                 } catch(ignore4) {
@@ -156,8 +156,8 @@
 
                 break;
             default:
-                try {
 
+                try {
                     console.log(text);
 
                 } catch(ignore5) {
@@ -338,6 +338,8 @@
          *
          * @param {Expression} pass - the expression to evaluate.
          * @param {String} message - the message to display.
+         *
+         * @see o2.Unit.assert
          */
         assert : function(pass, message) {
 
@@ -453,6 +455,8 @@
          * </pre>
          *
          * @param {String} message - the message to log.
+         *
+         * @see o2.Unit.log
          */
         log : function(message) {
 

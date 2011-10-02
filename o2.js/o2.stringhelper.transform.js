@@ -72,6 +72,7 @@
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.br2nl = function(str) {
@@ -88,6 +89,7 @@
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.nl2br = function(str) {
@@ -105,6 +107,7 @@
      * <code>String</code>.</p>
      *
      * @param {String} str - the <code>String</code> to process.
+     *
      * @return the cleaned output.
      */
     me.removeTags = function(str) {
@@ -117,14 +120,13 @@
      * @function {static} o2.StringHelper.truncate
      *
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
-     * is
-     * greater
-     * than <code>maxLength</code>.</p>
+     * is greater than <code>maxLength</code>.</p>
      *
      * @param {String} str - the <code>String</code> to process.
      * @param {Integer} maxLen - Optional (defaults to
      * {@link o2.StringHelper.config.constants.TRUNCATION_LENGTH},
      * maximum <code>String</code> length that's allowed without truncation.
+     *
      * @return the processed <code>String</code>.
      */
     me.truncate = function(str, maxLen) {
@@ -151,6 +153,7 @@
      * to their <strong>DOM</strong> style representations.</p>
      *
      * @param {String} input - the <code>String</code> to convert.
+     *
      * @return the formatted String.
      */
     me.toCamelCase = function(input) {
@@ -172,6 +175,7 @@
      * 'lorem-ipsum'.</p>
      *
      * @param {String} input - the <code>String</code> to convert.
+     *
      * @return the formatted <code>String</code>.
      */
     me.toDashedFromCamelCase = function(input) {
@@ -193,6 +197,7 @@
      * 'lorem_ipsum'.</p>
      *
      * @param {String} input - the <code>String</code> to convert.
+     *
      * @return the formatted <code>String</code>.
      */
     me.toUnderscoreFromCamelCase = function(input) {

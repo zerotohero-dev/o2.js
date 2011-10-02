@@ -12,8 +12,7 @@
  * <p>Used for consequentially executing a set of <code>function</code>s.</p>
  * <p>The functions are guaranteed to be called.</p>
  * <p>Even if an error occurs when calling a <code>function</code>, the next
- * function
- * will be tried, disregarding the error.</p>
+ * function will be tried, disregarding the error.</p>
  */
 ( function(framework, window, UNDEFINED) {
 
@@ -28,8 +27,7 @@
      * <p>Used for consequentially executing a set of <code>function</code>s.</p>
      * <p>The <strong>function</strong>s are guaranteed to be called.</p>
      * <p>Even if an error occurs when calling a <code>function</code>, the next
-     * <code>function</code>
-     * will be tried, disregarding the error.</p>
+     * <code>function</code> will be tried, disregarding the error.</p>
      */
     me.Try = {
 
@@ -38,8 +36,7 @@
          *
          * <p>Executes all the given delegates one by one.</p>
          * <p>If an exception occurs while executing the argument, the next one
-         * will be
-         * tried.</p>
+         * will be tried.</p>
          * <p>Usage Example:</p>
          * <pre>
          * o2.Try.all(fn1, fn2, fn3);
@@ -67,8 +64,7 @@
          * <p>Tries all the given delegates, will stop at the first successful
          * execution.</p>
          * <p>If an exception occurs while executing the argument, the next one
-         * will be
-         * tried.</p>
+         * will be tried.</p>
          * <p>But after the first successful execution, with no error, no further
          * functions will be executed.</p>
          * <p>Usage Example:</p>

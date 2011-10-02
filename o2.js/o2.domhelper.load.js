@@ -2,10 +2,10 @@
 
 ( function(framework, window, UNDEFINED) {
     //TODO: add documentation.
-    
+
     var me = framework.DomHelper;
     var nill = framework.nill;
-    
+
     /**
      * @funciton {static} o2.DomHelper.loadImage
      *
@@ -37,8 +37,19 @@
 
         return testImg;
 
-    };    
+    };
 
+    /**
+     * @function {static} o2.DomHelper.loadScript
+     *
+     * <p>Asynchronously loads a <strong>script</script> with a given
+     * <strong>src</strong>.
+     * <p>Cross-domain loading is also okay: The <strong>script</script> does not
+     * have to be in the same domain as the web page.</strong>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>script</strong>.
+     */
     me.loadScript = function(src) {
 
         var s = document.createElement('script');
@@ -53,7 +64,17 @@
 
     };
 
-
+    /**
+     * @function {static} o2.DomHelper.loadCss
+     *
+     * <p>Asynchronously loads a <strong>css</script> file with a given
+     * <strong>src</strong>.
+     * <p>Cross-domain loading is also okay: The <strong>css</script> file does
+     * not have to be in the same domain as the web page.</strong>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>css</strong> file.
+     */
     me.loadCss = function(src) {
 
         var s = document.createElement('link');

@@ -18,36 +18,7 @@
      * Aliases.
      */
     var me = framework.EventHandler;
-
-    /*
-     * @function {static} getEventObject
-     *
-     * <p>Copied from eventhandler.core.js, to eliminate cross-dependency.</p>
-     *
-     * <p>Gets the actual event object.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link o2.EventHandler.addEventListener}
-     * 
-     * @return the actual <code>DOM Event</code> object.
-     */
-    var getEventObject = function(evt) {
-
-        //
-        getEventObject = window.event ? function() {
-
-            return window.event;
-
-        } : function(e) {
-
-            return e;
-
-        };
-
-        return getEventObject(evt);
-
-    };
-
+    
     /**
      * @function {static} o2.EventHandler.getMouseCoordinates
      *
@@ -62,7 +33,7 @@
      */
     me.getMouseCoordinates = function(evt) {
 
-        var e = getEventObject(evt);
+        var e = me.getEventObject(evt);
 
         if(!e) {
 
@@ -142,12 +113,13 @@
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
+     *
      * @return the <code>keyCode</code> associated with the event as an
      * <code>Integer</code>
      */
     me.getKeyCode = function(evt) {
 
-        var e = getEventObject(evt);
+        var e = me.getEventObject(evt);
 
         if(!e) {
 
@@ -202,7 +174,7 @@
      */
     me.isRightClick = function(evt) {
 
-        var e = getEventObject(evt);
+        var e = me.getEventObject(evt);
 
         //
         // According to W3C

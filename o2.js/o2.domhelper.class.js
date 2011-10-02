@@ -54,9 +54,11 @@
     /**
      * @function {static} o2.DomHelper.hasClass
      *
-     * <p>Checks whether an <strong>element</strong> has the given <strong>className</strong>.</p>
+     * <p>Checks whether an <strong>element</strong> has the given
+     * <strong>className</strong>.</p>
      *
-     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to test.
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
@@ -80,7 +82,8 @@
      *
      * <p>Add a class to the given node.</p>
      *
-     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to add.
      */
     me.addClass = function(el, c) {
@@ -107,7 +110,8 @@
      *
      * <p>Removes a <strong>class</strong> name from the given node.</p>
      *
-     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
      * @param {String} c - the className to remove.
      */
     me.removeClass = function(el, c) {
@@ -135,8 +139,10 @@
      * <p>Gets immediate descendants, with a given class name, of the
      * element.</p>
      *
-     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
      * @param {String} c - the className to test.
+     *
      * @return the immediate descendants with the given class name.
      */
     me.getChildrenByClassName = function(el, c) {
@@ -201,9 +207,12 @@
      *
      * <p>Gets all children, with a given class name, of the element.</p>
      *
-     * @param {DomNode} el - either the <strong>element</strong>, or the <strong>id</strong> of it.
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to test.
-     * @return all of the <strong>element</strong>s with the given <strong>class name</strong>.
+     *
+     * @return all of the <strong>element</strong>s with the given <strong>class
+     * name</strong>.
      */
     me.getElementsByClassName = function(el, c) {
 

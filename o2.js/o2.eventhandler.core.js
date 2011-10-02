@@ -219,6 +219,7 @@
                 }
 
                 if(!fn) {
+
                     throw kCallbackNotDefined;
                 }
 
@@ -232,7 +233,23 @@
 
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.EventHandler.addEventListeners
+         *
+         * <p>Adds a set of event handlers the the <strong>eventName</strong> of
+         * the given <strong>collection</strong>.</p>
+         *
+         * @param {Object} collection - an <code>Object</code> or an
+         * <code>Array</code> of <strong>DOM</strong> nodes, or their
+         * <strong>id</strong>s.
+         * @param {String} eventName - the name of the <strong>event</strong> to
+         * attach to.
+         * @param {Function} handler - the common event handling
+         * <strong>callback</strong>.
+         *
+         * @throws {Exception} if the <strong>handler</strong> callback is not
+         * defined.
+         */
         addEventListeners : function(collection, eventName, handler) {
 
             if(!collection) {
@@ -251,7 +268,7 @@
         },
 
         /**
-         * @function {static} EventHandler.removeEventListener
+         * @function {static} o2.EventHandler.removeEventListener
          *
          * <p>Removes an already-added new event listener from the DOM Node.</p>
          *
@@ -260,6 +277,7 @@
          * @param {String} evt - the name of the event (like "click",
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
+         *
          * @throws {Exception} if <strong>fn</strong> callback is not defined.
          */
         removeEventListener : function(node, evt, fn) {
@@ -349,19 +367,14 @@
 
         },
 
-        //TODO: removeAllEventListeners (obj)
-        //TODO: removeAllEventListeners (obj, eventName)
-        //TODO: removeAllEventListeners (eventName)
-        //TODO: removeAllEventListeners ()
-
         /**
-         * @function {static} EventHandler.getEventObject
+         * @function {static} o2.EventHandler.getEventObject
          *
          * <p>Gets the actual event object.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
-         * internally
-         * in {@link EventHandler.addEventListener}
+         * internally in {@link EventHandler.addEventListener}
+         *
          * @return the actual <code>DOM Event</code> object.
          */
         getEventObject : function(evt) {
@@ -381,14 +394,14 @@
         },
 
         /**
-         * @function {static} EventHandler.getTarget
+         * @function {static} o2.EventHandler.getTarget
          *
          * <p>Gets the originating source of the event.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
-         * internally
-         * in {@link EventHandler.addEventListener}
-         * @return the actual DOM target of the event object.
+         * internally in {@link EventHandler.addEventListener}
+         *
+         * @return the actual <strong>DOM</strong> target of the event object.
          */
         getTarget : function(evt) {
 
@@ -407,7 +420,7 @@
         },
 
         /**
-         * @function {static} EventHandler.preventDefault
+         * @function {static} o2.EventHandler.preventDefault
          *
          * <p>Prevents the default action. When this method is called inside an
          * even
@@ -419,8 +432,7 @@
          * not go to the <code>href</code> of that link.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
-         * internally
-         * in {@link EventHandler.addEventListener}
+         * internally in {@link EventHandler.addEventListener}
          */
         preventDefault : function(evt) {
 
@@ -451,7 +463,7 @@
         },
 
         /**
-         * @function {static} EventHandler.stopPropagation
+         * @function {static} o2.EventHandler.stopPropagation
          *
          * <p>Stops the propagation of the event upwards in the DOM
          * hierarchy.</p>
@@ -460,8 +472,7 @@
          * for details.</p>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
-         * internally
-         * in {@link EventHandler.addEventListener}
+         * internally in {@link EventHandler.addEventListener}
          */
         stopPropagation : function(evt) {
 

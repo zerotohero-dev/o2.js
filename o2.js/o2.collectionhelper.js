@@ -73,6 +73,7 @@
          * @param {Boolean} isRecursive - (Optional, defaults to
          * <code>false</code>) <code>true</code> if the merge is nested into
          * child objects as well.
+         *
          * @return a <strong>reference</strong> to the modified
          * <code>toObj</code>.
          */
@@ -114,6 +115,7 @@
          * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
          * search.
          * @param {Object} elm - the <code>Object</code> to match.
+         *
          * @return the index of the element if found, <code>-1</code> otherwise.
          */
         indexOf : function(ar, elm) {
@@ -145,7 +147,7 @@
                                 counter++;
                             }
                         }
-                        
+
                         return -1;
                     }
 
@@ -171,7 +173,7 @@
                             return i;
                         }
                     }
-                    
+
                     return -1;
                 }
 
@@ -189,7 +191,7 @@
                             counter++;
                         }
                     }
-                    
+
                     return -1;
                 }
 
@@ -209,6 +211,7 @@
          *
          * @param {Array} ar - the <code>Array</code> to search.
          * @param {Object} elm - the <code>Object</code> to match.
+         *
          * @return <code>true</code> if the <code>Array</code> contains the item,
          * <code>false</code> otherwise.
          */
@@ -229,6 +232,7 @@
          * <code>false</code>) - if <code>true</code> and the object contains
          * other <code>Object</code>s, these <code>Object</code>s will be cloned
          * as well; non-primitive values will not be copied otherwise.
+         *
          * @return the copied <code>Object</code>.
          */
         copy : function(ar, isDeepCopy) {
@@ -263,6 +267,7 @@
          * <p>Removes all the elements of the <code>Object</code>.</p>
          *
          * @param {Object} ar - the <code>Object</code> to clear.
+         *
          * @return a <strong>reference</strong> to the object itself.
          */
         clear : function(ar) {
@@ -367,6 +372,7 @@
          * <code>Object</code>.</p>
          *
          * @param {Object} ar - the <code>Object</code> to inspect.
+         *
          * @return the first element if exists, <code>null</code> otherwise.
          */
         getFirst : function(ar) {
@@ -399,6 +405,7 @@
          *
          * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
          * inspect.
+         *
          * @return the last element if exists, <code>null</code> otherwise.
          */
         getLast : function(ar) {
@@ -442,6 +449,7 @@
          * other <code>Object</code>s,
          * these <code>Object</code>s will be cleaned as well; non-primitive
          * values will not be cleaned otherwise.
+         *
          * @return a reference to the <code>Object</code> itself.
          */
         compact : function(ar, isDeepClean) {

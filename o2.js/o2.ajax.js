@@ -142,7 +142,7 @@
             progId = progIds.shift();
 
             try {
-                
+
                 //
                 request = new ActiveXObject(progId);
 
@@ -151,6 +151,7 @@
             } catch(ignore) {
 
             }
+
         }
 
         if(!request) {

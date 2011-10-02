@@ -20,7 +20,7 @@
     var me = framework.DomHelper;
 
     /**
-     * @function {static} DomHelper.scrollWindowToBottom
+     * @function {static} o2.DomHelper.scrollWindowToBottom
      *
      * <p>Scrolls window to bottom.</p>
      */
@@ -51,7 +51,7 @@
     };
 
     /**
-     * @function {static} DomHelper.scrollWindowToTop
+     * @function {static} o2.DomHelper.scrollWindowToTop
      *
      * <p>Scrolls window to top.</p>
      */
@@ -83,13 +83,21 @@
     };
 
     /**
-     * @function {static} DomHelper.scrollObjectToTop
+     * @function {static} o2.DomHelper.scrollObjectToTop
      *
      * <p>Scrolls an element to top.</p>
      *
-     * @param {DomNode} obj - the element to scroll.
+     * @param {Object} obj - the element, or the <strong>id</strong> of the element, to scroll.
      */
     me.scrollObjectToTop = function(obj) {
+
+        //
+        obj = o2.$(obj);
+        
+        if(!obj) {
+            
+            return;
+        }
 
         obj.scrollTop = 0;
 
@@ -100,30 +108,47 @@
      *
      * <p>Scrolls an element to bottom.</p>
      *
-     * @param {DomNode} obj - the element to scroll.
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to scroll.
      */
     me.scrollObjectToBottom = function(obj) {
+
+        //
+        obj = o2.$(obj);
+        
+        if(!obj) {
+            
+            return;
+        }
 
         obj.scrollTop = obj.scrollHeight;
 
     };
 
     /**
-     * @function {static} DomHelper.scrollWindowToObject
+     * @function {static} o2.DomHelper.scrollWindowToObject
      *
      * <p>Scrolls the window to the object's offset position..</p>
      *
-     * @param {DomNode} obj - the element to scroll to.
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to scroll.
      */
     me.scrollWindowToObject = function(obj) {
 
+        //
+        obj = o2.$(obj);
+        
+        if(!obj) {
+            
+            return;
+        }
+
         var offset = me.getOffset(obj);
+        
         window.scrollTo(offset.left, offset.top);
 
     };
 
     /**
-     * @function {static} DomHelper.getWindowScrollOffset
+     * @function {static} o2.DomHelper.getWindowScrollOffset
      *
      * <p>Gets the <strong>window</strong>'s scroll offset.</p>
      *

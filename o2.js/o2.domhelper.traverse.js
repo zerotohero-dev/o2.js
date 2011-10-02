@@ -25,19 +25,20 @@
     var myName = framework.name;
 
     /**
-     * @function {static} DomHelper.getParent
+     * @function {static} o2.DomHelper.getParent
      *
      * <p>gets the first parent element with the given node name.</p>
      *
-     * @param {DomNode} target - the current <strong>DOM</strong> node.
+     * @param {DomNode} target - the current <strong>DOM</strong> node, it its
+     * <strong>String</strong> id.
      * @param {String} nodeName - the node name to search.
      * @param {Boolean} shouldExcludeSelf - (optional: defaults to false).
      * If <code>true</code>, the current node (target) is disregarded while
      * seeking.
+     *
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    //TODO: update documentation.
     me.getParent = function(target, nodeName, shouldExcludeSelf) {
 
         //
@@ -85,7 +86,7 @@
 
             if(!hasParent) {
                 target = target.parentNode;
-                
+
                 continue;
             }
 
@@ -97,16 +98,18 @@
     };
 
     /**
-     * @function {static} DomHelper.getParentByAttribute
+     * @function {static} o2.DomHelper.getParentByAttribute
      *
      * <p>gets the first parent with an <strong>attribute</strong> equal to the
      * given <strong>value</strong>.</p>
      *
-     * @param {DomNode} obj - the current <strong>DOM</strong> node.
+     * @param {DomNode} obj - the current <strong>DOM</strong> node, or its
+     * <strong>String</strong> id.
      * @param {String} attribute - the name of the attribute.
      * @param {String} value - the value of the attribute.
      * @param {Boolean} shouldExcludeSelf - (optional: defaults to false).
      * If <code>true</code>, the current node (obj) is disregarded while seeking.
+     *
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
@@ -151,20 +154,19 @@
     };
 
     /**
-     * @function {static} DomHelper.getParentWithAttribute
+     * @function {static} o2.DomHelper.getParentWithAttribute
      *
-     * <p>gets the first parent with a given <strong>attribute</strong>.</p>
+     * <p>Gets the first parent with a given <strong>attribute</strong>.</p>
      *
-     * @param {DomNode} obj - the current <strong>DOM</strong> node.
+     * @param {DomNode} obj - the current <strong>DOM</strong> node, or its
+     * <strong>id</strong>.
      * @param {String} attribute - the name of the attribute.
      * @param {Boolean} shouldExcludeSelf - (optional: defaults to false).
      * If <code>true</code>, the current node (obj) is disregarded while seeking.
+     *
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a space delimeted list of attributes.  (OR)
-    //TODO: I can also have a comma delimeted list of attributes. (AND) or a
-    // combination of two 'attr1,attr2 attr3 attr4,attr5 attr6' (comma is OR space is AND)
     me.getParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
 
         //
@@ -201,15 +203,14 @@
     };
 
     /**
-     * @function {static} DomHelper.getParentById
+     * @function {static} o2.DomHelper.getParentById
      * <p>This is an alias to</p>
      * <pre>
-     * DomHelper.getParentByAttribute(obj, 'id', shouldExcludeSelf)
+     * o2.DomHelper.getParentByAttribute(obj, 'id', id, shouldExcludeSelf)
      * </pre>
      *
      * @see DomHelper.getParentByAttribute
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getParentById = function(obj, id, shouldExcludeSelf) {
 
         //
@@ -227,15 +228,14 @@
     };
 
     /**
-     * @function {static} DomHelper.getParentById
+     * @function {static} o2.DomHelper.getParentWithId
      * <p>This is an alias to</p>
      * <pre>
-     * DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
+     * o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
      * </pre>
      *
-     * @see DomHelper.getParentWithAttribute
+     * @see o2.DomHelper.getParentWithAttribute
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getParentWithId = function(obj, value, shouldExcludeSelf) {
 
         //
@@ -253,17 +253,18 @@
     };
 
     /**
-     * @function {static} DomHelper.getFirstChild
+     * @function {static} o2.DomHelper.getFirstChild
      *
-     * <p>gets the first child, which is not a text-node, with a given node
+     * <p>gets the first child that is not a text-node, and has the given node
      * name.</p>
      *
-     * @param {DomNode} target - the current node.
+     * @param {DomNode} target - the current node, or the <strong>id</strong> of
+     * it.
      * @param {String} nodeName - the node name to seek. (This parameters is
      * optional. It defaults to '*', which will match any node name.)
+     *
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a space comma delimeted list of node names.
     me.getFirstChild = function(target, nodeName) {
 
         //
@@ -310,7 +311,7 @@
 
             var kTextNode = me.nodeType.TEXT;
             var kAll = '*';
-            
+
             //
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
@@ -354,15 +355,15 @@
     };
 
     /**
-     * @function {static} DomHelper.getFirstChildById
+     * @function {static} o2.DomHelper.getFirstChildById
      *
      * <p>gets the first child that has the given id.</p>
      *
-     * @param {DomNode} target - the target to test.
+     * @param {DomNode} target - the target to test, or the <strong>id</strong>
+     * of it.
      * @param {String} id - the id of the child.
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getFirstChildById = function(target, id) {
 
         //
@@ -413,6 +414,7 @@
             }
 
             var node = children[0];
+
             while(node) {
                 if(node.id && node.id == id) {
 
@@ -432,11 +434,13 @@
     };
 
     /**
-     * @function {static} DomHelper.getFirstChildWithId
+     * @function {static} o2.DomHelper.getFirstChildWithId
      *
      * <p>Gets the first child with an <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the target to test.
+     * @param {DomNode} target - the target, or the <strong>id</strong> of the
+     * target to test.
+     *
      * @return the first child with <strong>id</strong> if any, <code>null</code>
      * otherwise.
      */
@@ -505,17 +509,18 @@
     };
 
     /**
-     * @function {static} DomHelper.getLastChild
+     * @function {static} o2.DomHelper.getLastChild
      *
      * <p>gets the last child, which is not a text-node, with a given node
      * name.</p>
      *
-     * @param {DomNode} target - the current node.
+     * @param {DomNode} target - the current node, or the <strong>id</strong> of
+     * it.
      * @param {String} nodeName - the node name to seek. (This parameters is
      * optional. It defaults to '*', which will match any node name.)
+     *
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a comma delimeted list of node names.
     me.getLastChild = function(target, nodeName) {
 
         //
@@ -538,9 +543,9 @@
 
         var kTextNode = me.nodeType.TEXT;
         var kAll = '*';
-        
+
         var children = target.childNodes;
-        
+
         //
         nodeName = nodeName || kAll;
         nodeName = nodeName.toLowerCase();
@@ -578,17 +583,18 @@
     };
 
     /**
-     * @function {static} DomHelper.getLastChildById
+     * @function {static} o2.DomHelper.getLastChildById
      *
      * <p>gets the last child that has the given id.</p>
      *
-     * @param {DomNode} target - the target to test.
+     * @param {DomNode} target - the target to test, or the <strong>id</strong>
+     * of it.
      * @param {String} id - the id of the child.
+     *
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getLastChildById = function(target, id) {
-        
+
         //
         target = $(target);
 
@@ -621,11 +627,13 @@
     };
 
     /**
-     * @function {static} DomHelper.getLastChildWithId
+     * @function {static} o2.DomHelper.getLastChildWithId
      *
      * <p>gets the last child with an <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the target to test.
+     * @param {DomNode} target - the target to test, or the <strong>id</strong>
+     * of the target.
+     *
      * @return the first child with <strong>id</strong> if any, <code>null</code>
      * otherwise.
      */
@@ -662,10 +670,25 @@
 
     };
 
-    //TODO: add documentation.
+    /**
+     * function {static} o2.DomHelper.getChildren
+     *
+     * <p>Gets the immediate children of the element.</p>
+     *
+     * @param {Object} elem - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of that node.
+     *
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
+     */
     me.getChildren = function(elem) {
 
         var target = $(elem);
+
+        if(!target) {
+
+            return [];
+        }
 
         var nodes = target.childNodes;
 
@@ -687,53 +710,18 @@
 
     };
 
-    //TODO: getChildrenById & comma delim
-
-    //TODO: getChildrenWithId & comma delim
-
-    //TODO: getElementsById & comma delim
-
-    //TODO: getElementsWithId & comma delim
-
-    //TODO: getElementsByAttribute & comma delim & space delim
-
-    //TODO: getElementsWithAttribute & comma delim & space delim
-    
-    //TODO: getElementsByClassName belongs here & comma delim & space delim
-    
-    //TODO: getElementsWithClassName & comma delim & space delim
-    
-    //TODO: getFirstChildById
-    
-    //TODO: getFirstChildWithId
-    
-    //TODO: getLastChildById
-    
-    //TODO: getLastChildWithID
-    
-    //TODO: getFirstChildByClassName
-    
-    //TODO: getFirstChildWithClassName
-    
-    //TODO: getFirstChildByAttribute
-    
-    //TODO: getFirstChildWithAttribute
-    
-    //TODO: getLastChildByAttribute
-    
-    //TODO: getLastChildWithAttribute
-
     /**
-     * @function {static} DomHelper.getPrevious
+     * @function {static} o2.DomHelper.getPrevious
      *
      * <p>gets the previous <stronng>DOM</strong> node sibling that's not a text
      * node.</p>
      *
-     * @param {DomNode} target - the node to start.
+     * @param {DomNode} target - the node to start, or the <strong>id</strong> of
+     * it.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    //TODO: update ALL documentation of this file. for $(target)
     me.getPrevious = function(target) {
 
         //
@@ -768,16 +756,17 @@
     };
 
     /**
-     * @function DomHelper.getPreviousById
+     * @function o2.DomHelper.getPreviousById
      *
      * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
      *
-     * @param {DomNode} target - the original node.
+     * @param {DomNode} target - the original node, or the <strong>id</strong> of
+     * it.
      * @param {String} id - the id to check.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getPreviousById = function(target, id) {
 
         //
@@ -811,12 +800,14 @@
     };
 
     /**
-     * @function {static} DomHelper.getPreviousWithId
+     * @function {static} o2.DomHelper.getPreviousWithId
      *
      * <p>gets the previous <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the node to start.
+     * @param {DomNode} target - the node to start, or the <strong>id</strong> of
+     * it.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
@@ -854,12 +845,13 @@
     };
 
     /**
-     * @function {static} DomHelper.getNext
+     * @function {static} o2.DomHelper.getNext
      *
      * <p>gets the next <stronng>DOM</strong> node sibling that's not a text
      * node.</p>
      *
      * @param {DomNode} target - the node to start.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
@@ -897,16 +889,17 @@
     };
 
     /**
-     * @function DomHelper.getNextById
+     * @function o2.DomHelper.getNextById
      *
      * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
      *
-     * @param {DomNode} target - the original node.
+     * @param {DomNode} target - the original node, or the <strong>id</strong> of
+     * it.
      * @param {String} id - the id to check.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    //TODO: I can have a comma delimeted list of ids.
     me.getNextById = function(target, id) {
 
         //
@@ -941,16 +934,20 @@
     };
 
     /**
-     * @function {static} DomHelper.getNextWithId
+     * @function {static} o2.DomHelper.getNextWithId
      *
      * <p>gets the next <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the node to start.
+     * @param {DomNode} target - the node to start, or the <strong>id</strong> of
+     * it.
+     *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
     me.getNextWithId = function(target) {
+
+        //
         target = $(target);
 
         if(!target) {

@@ -197,7 +197,7 @@
     };
 
     /**
-     * @function {static} DomHelper.ready
+     * @function {static} o2.DomHelper.ready
      *
      * <p>Fires when the <code>HTML DOM</code> is ready.</p>
      *

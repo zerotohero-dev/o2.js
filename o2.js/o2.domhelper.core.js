@@ -300,8 +300,10 @@
          *
          * <p>Adds the node after the reference node.</p>
          *
-         * @param {Object} newNode - the DOM node, or the <strong>id</strong> of the node, to insert after.
-         * @param {Object} refNode - the reference node, or the <strong>id</strong> of the node.
+         * @param {Object} newNode - the DOM node, or the <strong>id</strong> of
+         * the node, to insert after.
+         * @param {Object} refNode - the reference node, or the
+         * <strong>id</strong> of the node.
          */
         insertAfter : function(newNode, refNode) {
 
@@ -316,7 +318,13 @@
 
             var obj = refNode.parentNode;
 
-            return refNode.nextSibling ? obj.insertBefore(newNode, refNode.nextSibling) : obj.appendChild(newNode);
+            if(refNode.nextSibling){
+                obj.insertBefore(newNode, refNode.nextSibling);
+
+                return;
+            } 
+            
+            obj.appendChild(newNode);
 
         },
 
@@ -325,8 +333,10 @@
          *
          * <p>Adds the node before the reference node.</p>
          *
-         * @param {Object} newNode - the node, or the <strong>id</strong> of the node, to insert before.
-         * @param {Object} refNode - the reference, or the <strong>id</strong> of the node.
+         * @param {Object} newNode - the node, or the <strong>id</strong> of the
+         * node, to insert before.
+         * @param {Object} refNode - the reference, or the <strong>id</strong> of
+         * the node.
          */
         insertBefore : function(newNode, refNode) {
 
@@ -353,6 +363,7 @@
          * @param {String} name - the node name of the element (i.e. 'div', 'a').
          * @param {Object} attributes - an associative array in the form
          * <code>{att1:value1, att2:value2}</code>.
+         *
          * @return the created element.
          */
         createElement : function(name, attributes) {
@@ -412,8 +423,10 @@
          *
          * <p>Prepends the element to the top of its parent.</p>
          *
-         * @param {Object} child - the child node, or the id of the node to prepend.
-         * @param {Object} parent - the parent container, or the id of the container.
+         * @param {Object} child - the child node, or the id of the node to
+         * prepend.
+         * @param {Object} parent - the parent container, or the id of the
+         * container.
          */
         prepend : function(child, parent) {
 
@@ -441,8 +454,10 @@
          *
          * <p>Appends the element to the bottom of its parent.</p>
          *
-         * @param {Object} child - the child node, or the <strong>id</strong> of the node to append.
-         * @param {Object} parent - the parent container, or the <strong>id</strong> of the container.
+         * @param {Object} child - the child node, or the <strong>id</strong> of
+         * the node to append.
+         * @param {Object} parent - the parent container, or the
+         * <strong>id</strong> of the container.
          */
         append : function(child, parent) {
 
@@ -464,7 +479,8 @@
          *
          * <p>Gets the left and top offset of a given element.</p>
          *
-         * @param {Object} elm - the element, or the id of the element, to get the offsets of.
+         * @param {Object} elm - the element, or the id of the element, to get
+         * the offsets of.
 
          * @return the offset from the top-left corner of the viewport, in the
          * form <code>{left: l, top: t}</code>.
@@ -508,7 +524,8 @@
          *
          * <p>Gets the attribute of a given node.</p>
          *
-         * @param {Object} obj - the node, or the <strong>id</strong> of the node, to get the attribute of.
+         * @param {Object} obj - the node, or the <strong>id</strong> of the
+         * node, to get the attribute of.
          * @param {String} attribute - the attribute to gather.
          * @return the value of the attribute if found; <code>null</code>
          * otherwise.

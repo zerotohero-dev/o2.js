@@ -51,7 +51,7 @@
 
         object[name] = function() {
 
-            // If both function have identical # of arguments,
+            // If both functions have identical # of arguments,
             // then call the cached function.
             if(fn.length == arguments.length) {
 

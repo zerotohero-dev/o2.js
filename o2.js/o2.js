@@ -80,7 +80,7 @@ window.o2 = {};
      *
      * <p>Project build number.</p>     
      */
-    me.build = '201109302025';
+    me.build = '201110020951';
 
     /**
      * @function {static} o2.$
@@ -88,8 +88,10 @@ window.o2 = {};
      * <p>An alias for <code>document.getElementById</code>.</p>
      *
      * @param {Object} obj - the id to check.
+     *
      * @return document.getElementById(obj) if obj is a <code>String</code>;
      * obj itself otherwise.
+     *
      * @throws {Exception} if obj is <code>undefined</code>.
      */
     me.$ = function(obj, UNDEFINED) {
@@ -115,8 +117,8 @@ window.o2 = {};
      *
      * @param {String} tagName - the name of the tag to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the
-     * parent container to search.
+     * the parent container, or the id of the parent container, to search.
+     *
      * @return a collection of matching elements.
      */
     me.t = function(tagName, parent) {
@@ -125,6 +127,8 @@ window.o2 = {};
         if(parent === UNDEFINED) {
             parent = window.document;
         }
+        
+        //
         parent = framework.$(parent);
 
         var p = parent || document;
@@ -135,12 +139,15 @@ window.o2 = {};
 
     /**
      * @function {static} o2.tt
+     *
      * <p>Acts similar to {link t} -- with one exception: The method
      * returns the first matched node, instead of returning a node
      * collection.</p>
+     *
      * @param {String} tagName - the name of the tag to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the parent container to search.
+     * the parent container, or the id of the parent container, to search.
+     *
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */

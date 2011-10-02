@@ -49,10 +49,10 @@
      * @function {static} o2.StringHelper.stripNonAlpha
      *
      * <p>Removes non alphabetical characters from the <code>String</code>
-     * (excluding
-     * numbers).</p>
+     * (excluding numbers).</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlpha = function(str) {
@@ -64,9 +64,10 @@
     /**
      * @function {static} o2.StringHelper.stripNonAlphanumeric
      *
-     * <p>Removes alpha numeric characters from the <code>String</code>.</p>
+     * <p>Removes alpha-numeric characters from the <code>String</code>.</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlphanumeric = function(str) {
@@ -78,9 +79,10 @@
     /**
      * @function {static} o2.StringHelper.stripNonNumeric
      *
-     * <p>Removes non numeric characters from the <code>String</code>.</p>
+     * <p>Removes non-numeric characters from the <code>String</code>.</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     -
      * @return the formatted <code>String</code>.
      */
     me.stripNonNumeric = function(str) {
@@ -95,6 +97,7 @@
      * <p>Removes numeric characters from the <code>String</code>.</p>
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.stripNumeric = function(str) {
@@ -109,6 +112,7 @@
      * <p>Removes tags from the <code>String</code>.
      *
      * @param {String} str - the <code>String</code> to format.
+     *
      * @return the formatted <code>String</code>.
      */
     me.stripTags = function(str) {

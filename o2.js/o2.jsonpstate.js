@@ -11,8 +11,7 @@
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
- * etc.
- * An {@link JsonpController} should be registered to this
+ * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
 ( function(framework, window, UNDEFINED) {

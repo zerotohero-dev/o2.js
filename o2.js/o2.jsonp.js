@@ -76,14 +76,14 @@
     }
 
     /**
-     * @class {static} Jsonp
+     * @class {static} o2.Jsonp
      *
      * <p>An object to make <strong>JSONP</strong> calls.</p>
      */
     me.Jsonp = {
 
         /**
-         * @function {static} Jsonp.get
+         * @function {static} o2.Jsonp.get
          *
          * <p>Creates a <strong>JSONP</strong> request.</p>
          *

@@ -28,9 +28,9 @@
          *
          */
         map : {
-            
+
             /*
-             * 
+             *
              */
             xssEncodeNoAmp : [{
                 regExp : /</g,
@@ -47,7 +47,7 @@
             }],
 
             /*
-             * 
+             *
              */
             xssEncode : [{
                 regExp : /&/g,
@@ -67,7 +67,7 @@
             }],
 
             /*
-             * 
+             *
              */
             encode : [{
                 regExp : /&/g,
@@ -90,7 +90,7 @@
             }],
 
             /*
-             * 
+             *
              */
             decode : [{
                 regExp : /&#60;|&lt;/g,
@@ -134,6 +134,7 @@
      * @param {Boolean} shouldPreserveAmpersands - (Optional. Defaults to
      * <code>false</code>). If <code>true</code> & characters will not be
      * encoded, otherwise they will be.
+     *
      * @return the processed <strong>String</strong>.
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
@@ -163,7 +164,8 @@
      * <code>encodeURIComponent</code>,
      * instead of using this method.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process
+     * @param {String} str - the <strong>String</strong> to process.
+     *
      * @return the processed <strong>String</strong>.
      */
     me.encode = function(str) {
@@ -187,7 +189,8 @@
      * <p>If possible try using standard decoding methods like
      * <code>decodeURIComponent</code>, instead of using this method.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process
+     * @param {String} str - the <strong>String</strong> to process.
+     *
      * @return the processed <strong>String</strong>.
      */
     me.decode = function(str) {
@@ -209,7 +212,8 @@
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process
+     * @param {String} str - the <strong>String</strong> to process.
+     *
      * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
@@ -219,13 +223,27 @@
     };
 
     /**
+     * @function {static} o2.StringHelper.unescape
+     *
+     * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
+     *
+     * @param {String} str - the <strong>String</strong> to process.
+     *
+     * @return the processed <strong>String</strong>.
+     */    
+    me.unescape = function(str){
+        
+        return decodeURIComponent(str);
+    };
+
+    /**
      * @function {static} o2.StringHelper.encodeSafeHtml
      *
      * <p>Encodes the <strong>String</strong> by converting it into a text node
-     * and
-     * returning the node's value.</p>
+     * and returning the node's value.</p>
      *
      * @param {String} str - the <strong>String</strong> to process.
+     *
      * @return the processed <strong>String</strong>.
      */
     me.encodeSafeHtml = function(str) {
