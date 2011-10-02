@@ -63,6 +63,22 @@ Indent
 * Statements within a **case** body.
 * Statements inside a **closure**.
 
+### 3.3. BLANK LINES
+
+Leave **at most 2** blank lines.
+
+Insert a blank line
+
+* **After** function declarations.
+* **After** function declarations in an expression.
+* **After** the beginning of and **before** the ending of a **function** body.
+
+    function isArray(obj) {
+
+        return is(obj, config.constants.ecmaScriptType.ARRAY);
+
+    }
+
 ### 3.3. LINE LENGTH
 
 ### 3.4. BRACE POSITIONING
