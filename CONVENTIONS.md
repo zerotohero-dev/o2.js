@@ -70,15 +70,40 @@ Leave **at most 2** blank lines.
 Insert a blank line
 
 * **After** function declarations.
-* **After** function declarations in an expression.
-* **After** the beginning of and **before** the ending of a **function** body.
 
         function isArray(obj) {
 
             return is(obj, config.constants.ecmaScriptType.ARRAY);
 
         }
+        
+        function is(obj, type) {
 
+            var objectNameStartIndex = 8;
+            var trimLastBraceIndex = -1;
+            var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
+
+            return obj !== UNDEFINED && obj !== null && klass === type;
+
+        }        
+
+* **After** the beginning of and **before** the ending of a **function** body.
+
+        me.loadImage = function(url, succesCallback, failureCallback) {
+
+            var succesCallbackCached = succesCallback || nill;
+            var failureCallbackCached = failureCallback || nill;
+
+            var testImg = new Image();
+
+            testImg.onload = succesCallbackCached;
+            testImg.onerror = failureCallbackCached;
+            testImg.onabort = failureCallbackCached;
+            testImg.src = url;
+
+            return testImg;
+
+        };
 
 ### 3.3. LINE LENGTH
 
