@@ -2,6 +2,17 @@
 
 ## 1. INTRODUCTION
 
+This document includes **JavaScript** naming conventions, best practices 
+and recommendations to be used within **o2.js** source code, and examples.
+
+If there's a particular **JavaScript** usage that's not mentioned in this
+document
+
+* Either it should be proposed as an exceptional case and added to this
+document.
+* Or the code should be **re-factored** to adhere **o2.js** **JavaScript**
+conventions.
+
 ## 2. WHY DO WE NEED CONVENTIONS?
 
 ## 3. o2.js JAVASCRIPT CODING STANDARDS
