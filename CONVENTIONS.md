@@ -51,6 +51,18 @@ external file **outside** the project folder.
     
 ### 3.2. INDENTATION
 
+Code blocks are indented with **4 spaces**. Each `<TAB>` corresponds to 4
+spaces, and the actual `<TAB>` character is **NOT USED**. The IDE should be 
+set up to print **4 spaces** when pressing the `<TAB>` key.
+
+Indent
+
+* Statements within **blocks**.
+* Statements within a **function** body.
+* Statements within a **switch** body.
+* Statements within a **case** body.
+* Statements inside a **closure**.
+
 ### 3.3. LINE LENGTH
 
 ### 3.4. BRACE POSITIONING
@@ -129,7 +141,18 @@ external file **outside** the project folder.
 ### 6.20. INCOMPLETE LIBRARY CLASS
 
 
-------
+------ draft ---
+
+NEVER CHECK-IN INCOMPLETE/UNTESTED CODE
+
+The source code in the repository, at any given time, should not contain
+any build errors, syntax errors, runtime errors, or logic errors. This
+is only possible if *DO NOT* check-in garbage code.
+
+The Source Code Repository is not your FTP backup place. Only check in
+the code that you've *TESTED* (yes testing is *your* responsibility) and
+you are %100 sure that it works. Keep in mind that the checked in code
+should be "ready for release" *AT ANY TIME*.
 
 
 ### o2.js MODULES ###
