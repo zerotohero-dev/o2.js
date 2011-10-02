@@ -1,0 +1,3010 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <script>
+
+			(function()
+			{
+			    var loc = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+                loc = loc.split('\\');
+                loc = loc.join('/');					    
+			    loc = loc.split('/');
+			    loc.pop();
+			    loc = loc.join('/');
+			    loc += '/' + '../../';
+			
+			    document.write("<base href='" + loc + "'></base>");
+			})();
+         
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="jgdoc.css">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        	    <script type="text/javascript" src="navTree.js"></script>
+	    <script type="text/javascript" src="jgdoc.js"></script>
+	</head>
+    <body>
+        <div class="startup" id="startup">
+            <div class="banner" id="banner">
+                <h1 class="projectName">
+	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+                </h1>
+                <div class="bar">
+	                 version 0.23.201110021435
+	            </div>
+	         </div>
+             <div class="content" id="docContent">
+                  <div class="block">
+                        <div id="searchBlock">
+			                <div class="search" >
+			                    <div class="searchLabel">Search:</div>
+			                    <div class="searchBlock" style="height:100%">
+					                <input id="jgsSearchString" type="text" size="60" class="jgdSearchString"/>
+					                <div id="jgsSearchPanel" class="jgsSearchPanel" style="display:none">
+						                <div  class="jgdSearchRect" >
+						                    <div id="jgsSearchResults">
+						                        Loading....
+						                    </div>
+						                </div>
+					                   <div id="jgsInfo" class="jgsInfo" >No selection</div>
+                                    </div>
+                                 </div>
+			                </div>
+		                </div>
+		                <div id="docScroll" class="docScroll">
+		                    <div>
+			                    <hr/>
+						        <div>
+						        						        		<H2>
+        <span class="objType">Class</span> o2.DomHelper
+    </H2>
+    
+
+    <hr/>
+    <!-- description -->
+    <div>
+       <code>
+            <span class="modifiers">static</span>
+            <span class="objType">class</span> 
+            <b>o2.DomHelper</b>
+       </code>
+    </div>
+                <div class="comment">A cross-browser DOM manipulation helper.
+
+ </div>
+                                            <span class="definedIn">Defined in </span>
+        <a href="physical/domhelper/module-core.html">domhelper.core</a>
+        <hr/> 
+    <p />
+    
+            	
+                                
+                    
+    
+                    
+            
+                <div class="summaryTable function">
+            <div class="summaryTableHeader">
+                <span class="objType">Function</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___activateAlternateStylesheet"><span class="elementName">activateAlternateStylesheet</span></a>
+                (<span class="type">String</span>
+ title)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Activates the <strong>alternate stylesheet</strong> with the given
+ <code>title</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___addClass"><span class="elementName">addClass</span></a>
+                (<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Add a class to the given node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___addStyle"><span class="elementName">addStyle</span></a>
+                (<span class="type">Object</span>
+ obj, <span class="type">Object</span>
+ style)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds style attributes to a <code>DOM</code> node.</p>
+
+ <p>Note that adding and removing style attributes to a
+ <strong>DOM</strong>
+ not is considered "bad practice". Do not use inline styles to modify the
+ view;
+ assign <strong>className</strong>'s instead of <strong>style</strong>
+ values.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___append"><span class="elementName">append</span></a>
+                (<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ parent)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Appends the element to the bottom of its parent.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___compactField"><span class="elementName">compactField</span></a>
+                (<span class="type">Object</span>
+ field)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Trims a given field, and returns the compacted value.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___create"><span class="elementName">create</span></a>
+                (<span class="type">String</span>
+ nodeName)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <strong>DOM</strong> node with the given
+ <strong>nodeName</strong> and returns it.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___createElement"><span class="elementName">createElement</span></a>
+                (<span class="type">String</span>
+ name, <span class="type">Object</span>
+ attributes)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates an element with given name and attributes.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getAttribute"><span class="elementName">getAttribute</span></a>
+                (<span class="type">Object</span>
+ obj, <span class="type">String</span>
+ attribute)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the attribute of a given node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getChildrenByClassName"><span class="elementName">getChildrenByClassName</span></a>
+                (<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets immediate descendants, with a given class name, of the
+ element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getDocumentDimension"><span class="elementName">getDocumentDimension</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Gets the dimension of the document in the form <code>{width: w, height:
+ h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
+ the document's height returns the height of the visible area as the height
+ portion.    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getElementsByClassName"><span class="elementName">getElementsByClassName</span></a>
+                (<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets all children, with a given class name, of the element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getFirstChild"><span class="elementName">getFirstChild</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the first child that is not a text-node, and has the given node
+ name.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getFirstChildById"><span class="elementName">getFirstChildById</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the first child that has the given id.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getFirstChildWithId"><span class="elementName">getFirstChildWithId</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the first child with an <strong>id</strong> attribute.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getLastChild"><span class="elementName">getLastChild</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the last child, which is not a text-node, with a given node
+ name.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getLastChildById"><span class="elementName">getLastChildById</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the last child that has the given id.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getLastChildWithId"><span class="elementName">getLastChildWithId</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the last child with an <strong>id</strong> attribute.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getNext"><span class="elementName">getNext</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the next <strong>DOM</strong> node sibling that's not a text
+ node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getNextById"><span class="elementName">getNextById</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the next <strong>DOM</strong> node sibling by its id.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getNextWithId"><span class="elementName">getNextWithId</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the next <strong>DOM</strong> node that has a defined
+ <strong>id</strong> attribute.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getOffset"><span class="elementName">getOffset</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the left and top offset of a given element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getParent"><span class="elementName">getParent</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the first parent element with the given node name.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getParentByAttribute"><span class="elementName">getParentByAttribute</span></a>
+                (<span class="type">DomNode</span>
+ obj, <span class="type">String</span>
+ attribute, <span class="type">String</span>
+ value, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the first parent with an <strong>attribute</strong> equal to the
+ given <strong>value</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getParentById"><span class="elementName">getParentById</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>This is an alias to</p>
+ <pre>
+ o2.DomHelper.getParentByAttribute(obj, 'id', id, shouldExcludeSelf)
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getParentWithAttribute"><span class="elementName">getParentWithAttribute</span></a>
+                (<span class="type">DomNode</span>
+ obj, <span class="type">String</span>
+ attribute, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the first parent with a given <strong>attribute</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getParentWithId"><span class="elementName">getParentWithId</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>This is an alias to</p>
+ <pre>
+ o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getPrevious"><span class="elementName">getPrevious</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
+ node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getPreviousById"><span class="elementName">getPreviousById</span></a>
+                (<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getPreviousWithId"><span class="elementName">getPreviousWithId</span></a>
+                (<span class="type">DomNode</span>
+ target)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>gets the previous <strong>DOM</strong> node that has a defined
+ <strong>id</strong> attribute.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getStyle"><span class="elementName">getStyle</span></a>
+                (<span class="type">Object</span>
+ obj, <span class="type">String</span>
+ cssProperty)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the <strong>style</strong> of a given property of the element.</p>
+ <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
+ tries to calculate the style using <code>window.getComputedStyle</code>;
+ gets <code>obj.style</code> if everything else fails.
+
+ <p>Note that adding and removing style attributes to a
+ <strong>DOM</strong> not is considered "bad practice". Do not use inline
+ styles to modify the view;
+ assign <strong>className</strong>'s instead of <strong>style</strong>
+ values.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getWindowInnerDimension"><span class="elementName">getWindowInnerDimension</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Gets the dimension of the visible area of the browser in the form
+ <code>{width: w, height: h}</code>.    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getWindowScrollOffset"><span class="elementName">getWindowScrollOffset</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Gets the <strong>window</strong>'s scroll offset.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___hasClass"><span class="elementName">hasClass</span></a>
+                (<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether an <strong>element</strong> has the given
+ <strong>className</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___hide"><span class="elementName">hide</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Hides the given object.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___insertAfter"><span class="elementName">insertAfter</span></a>
+                (<span class="type">Object</span>
+ newNode, <span class="type">Object</span>
+ refNode)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds the node after the reference node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___insertBefore"><span class="elementName">insertBefore</span></a>
+                (<span class="type">Object</span>
+ newNode, <span class="type">Object</span>
+ refNode)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds the node before the reference node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___isChild"><span class="elementName">isChild</span></a>
+                (<span class="type">Object</span>
+ testNode, <span class="type">Object</span>
+ parentNode)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the give node is the child of another node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___isVisible"><span class="elementName">isVisible</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the <strong>DOM</strong> node is visible.</p>
+ <p>Note that being visible does not necessarily mean being available
+ inside the <strong>viewport</strong>.</p>
+ <p>If a <strong>DOM</strong> node has <code>display == 'none'</code>
+ or <code>visibility == 'hidden'</code> <strong>CSS</strong> properties,
+ then it's regarded as "invisible", otherwise it is considered to be
+ "visible".</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___loadCss"><span class="elementName">loadCss</span></a>
+                (<span class="type">String</span>
+ src)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Asynchronously loads a <strong>css</strong> file with a given
+ <strong>src</strong>.</p>
+ <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+ not have to be in the same domain as the web page.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___loadImage"><span class="elementName">loadImage</span></a>
+                (<span class="type">String</span>
+ url, <span class="type">Function</span>
+ successCallback, <span class="type">Function</span>
+ failureCallback)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Tries to load the image into a <strong>JavaScript</strong>
+ <code>Image</code> object; then triggers
+ <code>successCallback</code> or <code>failureCallback</code> depending on
+ the
+ result of the load attempt.</p>
+ <p>This function can be used for pre-loading or post-loading images.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___loadScript"><span class="elementName">loadScript</span></a>
+                (<span class="type">String</span>
+ src)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Asynchronously loads a <strong>script</strong> with a given
+ <strong>src</strong>.</p>
+ <p>Cross-domain loading is also okay: The <strong>script</strong> does not
+ have to be in the same domain as the web page.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___prepend"><span class="elementName">prepend</span></a>
+                (<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ parent)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Prepends the element to the top of its parent.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___ready"><span class="elementName">ready</span></a>
+                (<span class="type">Function</span>
+ delegate)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Fires when the <code>HTML DOM</code> is ready.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___removeChildren"><span class="elementName">removeChildren</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes all the children of the element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___removeClass"><span class="elementName">removeClass</span></a>
+                (<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes a <strong>class</strong> name from the given node.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___removeEmptyTextNodes"><span class="elementName">removeEmptyTextNodes</span></a>
+                (<span class="type">Object</span>
+ elm, <span class="type">Boolean</span>
+ isRecursive)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes empty text nodes from the element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___removeNode"><span class="elementName">removeNode</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes the element from the <strong>DOM</strong> flow.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollObjectToBottom"><span class="elementName">scrollObjectToBottom</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Scrolls an element to bottom.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollObjectToTop"><span class="elementName">scrollObjectToTop</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Scrolls an element to top.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollWindowToBottom"><span class="elementName">scrollWindowToBottom</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Scrolls window to bottom.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollWindowToObject"><span class="elementName">scrollWindowToObject</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Scrolls the window to the object's offset position..</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollWindowToTop"><span class="elementName">scrollWindowToTop</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Scrolls window to top.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___show"><span class="elementName">show</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Shows the given object.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___trimField"><span class="elementName">trimField</span></a>
+                (<span class="type">Object</span>
+ field)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Trims a given field, and returns the trimmed value.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+                    <!-- ============== Details coming here =================== -->
+    	    	    	    	            <div class="details function">
+            <h2 class="sectionHeader">Function Details</h2>
+                                                                    <h3>
+        <a name="___activateAlternateStylesheet">
+            <span class="objType">function</span>
+            <span class="objName">activateAlternateStylesheet</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    activateAlternateStylesheet(<span class="type">String</span>
+ title)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Activates the <strong>alternate stylesheet</strong> with the given
+ <code>title</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            title        </code>
+         - the <code>title</code> of the <strong>alternate
+ stylesheet</strong> to activate.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___addClass">
+            <span class="objType">function</span>
+            <span class="objName">addClass</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    addClass(<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Add a class to the given node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the <strong>className</strong> to add.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___addStyle">
+            <span class="objType">function</span>
+            <span class="objName">addStyle</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    addStyle(<span class="type">Object</span>
+ obj, <span class="type">Object</span>
+ style)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds style attributes to a <code>DOM</code> node.</p>
+
+ <p>Note that adding and removing style attributes to a
+ <strong>DOM</strong>
+ not is considered "bad practice". Do not use inline styles to modify the
+ view;
+ assign <strong>className</strong>'s instead of <strong>style</strong>
+ values.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the current <code>DOM</code> node, or the
+ <strong>id</strong> of that node, to add styles to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            style        </code>
+         - styles in the form <code>{style1:value1,
+ style2:value2}</code>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___append">
+            <span class="objType">function</span>
+            <span class="objName">append</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    append(<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ parent)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Appends the element to the bottom of its parent.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            child        </code>
+         - the child node, or the <strong>id</strong> of
+ the node to append.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parent        </code>
+         - the parent container, or the
+ <strong>id</strong> of the container.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___compactField">
+            <span class="objType">function</span>
+            <span class="objName">compactField</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    compactField(<span class="type">Object</span>
+ field)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Trims a given field, and returns the compacted value.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            field        </code>
+         - the field to be compacted, or its
+ <strong>id</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             field's compacted value.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___compact">o2.StringHelper.compact</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___create">
+            <span class="objType">function</span>
+            <span class="objName">create</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    create(<span class="type">String</span>
+ nodeName)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <strong>DOM</strong> node with the given
+ <strong>nodeName</strong> and returns it.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            nodeName        </code>
+         - the name of the node. (like 'em', 'p',
+ 'div', 'span')            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the newly created <strong>DOM</strong> element.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___createElement">
+            <span class="objType">function</span>
+            <span class="objName">createElement</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    createElement(<span class="type">String</span>
+ name, <span class="type">Object</span>
+ attributes)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates an element with given name and attributes.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - the node name of the element (i.e. 'div', 'a').            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attributes        </code>
+         - an associative array in the form
+ <code>{att1:value1, att2:value2}</code>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created element.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getAttribute">
+            <span class="objType">function</span>
+            <span class="objName">getAttribute</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getAttribute(<span class="type">Object</span>
+ obj, <span class="type">String</span>
+ attribute)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the attribute of a given node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the node, or the <strong>id</strong> of the
+ node, to get the attribute of.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attribute        </code>
+         - the attribute to gather.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the value of the attribute if found; <code>null</code>
+ otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getChildrenByClassName">
+            <span class="objType">function</span>
+            <span class="objName">getChildrenByClassName</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getChildrenByClassName(<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets immediate descendants, with a given class name, of the
+ element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the className to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the immediate descendants with the given class name.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getDocumentDimension">
+            <span class="objType">function</span>
+            <span class="objName">getDocumentDimension</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getDocumentDimension()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Gets the dimension of the document in the form <code>{width: w, height:
+ h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
+ the document's height returns the height of the visible area as the height
+ portion.
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the dimension of the document in the form <code>{width: w, height:
+ h}</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getElementsByClassName">
+            <span class="objType">function</span>
+            <span class="objName">getElementsByClassName</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getElementsByClassName(<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets all children, with a given class name, of the element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the <strong>className</strong> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             all of the <strong>element</strong>s with the given <strong>class
+ name</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getFirstChild">
+            <span class="objType">function</span>
+            <span class="objName">getFirstChild</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getFirstChild(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the first child that is not a text-node, and has the given node
+ name.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the current node, or the <strong>id</strong> of
+ it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            nodeName        </code>
+         - the node name to seek. (This parameters is
+ optional. It defaults to '*', which will match any node name.)            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getFirstChildById">
+            <span class="objType">function</span>
+            <span class="objName">getFirstChildById</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getFirstChildById(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the first child that has the given id.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the target to test, or the <strong>id</strong>
+ of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            id        </code>
+         - the id of the child.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getFirstChildWithId">
+            <span class="objType">function</span>
+            <span class="objName">getFirstChildWithId</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getFirstChildWithId(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the first child with an <strong>id</strong> attribute.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the target, or the <strong>id</strong> of the
+ target to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the first child with <strong>id</strong> if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getLastChild">
+            <span class="objType">function</span>
+            <span class="objName">getLastChild</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getLastChild(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the last child, which is not a text-node, with a given node
+ name.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the current node, or the <strong>id</strong> of
+ it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            nodeName        </code>
+         - the node name to seek. (This parameters is
+ optional. It defaults to '*', which will match any node name.)            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getLastChildById">
+            <span class="objType">function</span>
+            <span class="objName">getLastChildById</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getLastChildById(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the last child that has the given id.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the target to test, or the <strong>id</strong>
+ of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            id        </code>
+         - the id of the child.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getLastChildWithId">
+            <span class="objType">function</span>
+            <span class="objName">getLastChildWithId</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getLastChildWithId(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the last child with an <strong>id</strong> attribute.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the target to test, or the <strong>id</strong>
+ of the target.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the first child with <strong>id</strong> if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getNext">
+            <span class="objType">function</span>
+            <span class="objName">getNext</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getNext(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the next <strong>DOM</strong> node sibling that's not a text
+ node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the node to start.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getNextById">
+            <span class="objType">function</span>
+            <span class="objName">getNextById</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    getNextById(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the original node, or the <strong>id</strong> of
+ it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            id        </code>
+         - the id to check.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getNextWithId">
+            <span class="objType">function</span>
+            <span class="objName">getNextWithId</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getNextWithId(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the next <strong>DOM</strong> node that has a defined
+ <strong>id</strong> attribute.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the node to start, or the <strong>id</strong> of
+ it.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getOffset">
+            <span class="objType">function</span>
+            <span class="objName">getOffset</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getOffset(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the left and top offset of a given element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - the element, or the id of the element, to get
+ the offsets of.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the offset from the top-left corner of the viewport, in the
+ form <code>{left: l, top: t}</code>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getParent">
+            <span class="objType">function</span>
+            <span class="objName">getParent</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getParent(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ nodeName, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the first parent element with the given node name.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the current <strong>DOM</strong> node, it its
+ <strong>String</strong> id.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            nodeName        </code>
+         - the node name to search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            shouldExcludeSelf        </code>
+         - (optional: defaults to false).
+ If <code>true</code>, the current node (target) is disregarded while
+ seeking.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>DOM</strong> node if found, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getParentByAttribute">
+            <span class="objType">function</span>
+            <span class="objName">getParentByAttribute</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getParentByAttribute(<span class="type">DomNode</span>
+ obj, <span class="type">String</span>
+ attribute, <span class="type">String</span>
+ value, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the first parent with an <strong>attribute</strong> equal to the
+ given <strong>value</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the current <strong>DOM</strong> node, or its
+ <strong>String</strong> id.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attribute        </code>
+         - the name of the attribute.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            value        </code>
+         - the value of the attribute.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            shouldExcludeSelf        </code>
+         - (optional: defaults to false).
+ If <code>true</code>, the current node (obj) is disregarded while seeking.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>DOM</strong> node if found, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getParentById">
+            <span class="objType">function</span>
+            <span class="objName">getParentById</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getParentById()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>This is an alias to</p>
+ <pre>
+ o2.DomHelper.getParentByAttribute(obj, 'id', id, shouldExcludeSelf)
+ </pre>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails">DomHelper.getParentByAttribute</div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___getParentWithAttribute">
+            <span class="objType">function</span>
+            <span class="objName">getParentWithAttribute</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getParentWithAttribute(<span class="type">DomNode</span>
+ obj, <span class="type">String</span>
+ attribute, <span class="type">Boolean</span>
+ shouldExcludeSelf)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the first parent with a given <strong>attribute</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the current <strong>DOM</strong> node, or its
+ <strong>id</strong>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attribute        </code>
+         - the name of the attribute.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            shouldExcludeSelf        </code>
+         - (optional: defaults to false).
+ If <code>true</code>, the current node (obj) is disregarded while seeking.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>DOM</strong> node if found, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getParentWithId">
+            <span class="objType">function</span>
+            <span class="objName">getParentWithId</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getParentWithId()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>This is an alias to</p>
+ <pre>
+ o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
+ </pre>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParentWithAttribute">o2.DomHelper.getParentWithAttribute</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___getPrevious">
+            <span class="objType">function</span>
+            <span class="objName">getPrevious</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getPrevious(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
+ node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the node to start, or the <strong>id</strong> of
+ it.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getPreviousById">
+            <span class="objType">function</span>
+            <span class="objName">getPreviousById</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    getPreviousById(<span class="type">DomNode</span>
+ target, <span class="type">String</span>
+ id)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the original node, or the <strong>id</strong> of
+ it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            id        </code>
+         - the id to check.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getPreviousWithId">
+            <span class="objType">function</span>
+            <span class="objName">getPreviousWithId</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getPreviousWithId(<span class="type">DomNode</span>
+ target)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>gets the previous <strong>DOM</strong> node that has a defined
+ <strong>id</strong> attribute.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            target        </code>
+         - the node to start, or the <strong>id</strong> of
+ it.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getStyle">
+            <span class="objType">function</span>
+            <span class="objName">getStyle</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getStyle(<span class="type">Object</span>
+ obj, <span class="type">String</span>
+ cssProperty)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the <strong>style</strong> of a given property of the element.</p>
+ <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
+ tries to calculate the style using <code>window.getComputedStyle</code>;
+ gets <code>obj.style</code> if everything else fails.
+
+ <p>Note that adding and removing style attributes to a
+ <strong>DOM</strong> not is considered "bad practice". Do not use inline
+ styles to modify the view;
+ assign <strong>className</strong>'s instead of <strong>style</strong>
+ values.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the element, or the <strong>id</strong> of it, to
+ check.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            cssProperty        </code>
+         - the css property either
+ <strong>dash-separated</strong>
+ or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the calculated <strong>style</strong> value.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getWindowInnerDimension">
+            <span class="objType">function</span>
+            <span class="objName">getWindowInnerDimension</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getWindowInnerDimension()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Gets the dimension of the visible area of the browser in the form
+ <code>{width: w, height: h}</code>.
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the dimension of the visible area of the browser in the form
+ <code>{width: w, height: h}</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getWindowScrollOffset">
+            <span class="objType">function</span>
+            <span class="objName">getWindowScrollOffset</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getWindowScrollOffset()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Gets the <strong>window</strong>'s scroll offset.</p>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the the <strong>window</strong>'s scroll offset in the form
+ <code>{left: l, top: t}</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___hasClass">
+            <span class="objType">function</span>
+            <span class="objName">hasClass</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    hasClass(<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether an <strong>element</strong> has the given
+ <strong>className</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the <strong>className</strong> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if <strong>el</strong> has the
+ <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___hide">
+            <span class="objType">function</span>
+            <span class="objName">hide</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    hide(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Hides the given object.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <strong>DOM</strong> node, or the <strong>id</strong> to hide.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___insertAfter">
+            <span class="objType">function</span>
+            <span class="objName">insertAfter</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    insertAfter(<span class="type">Object</span>
+ newNode, <span class="type">Object</span>
+ refNode)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds the node after the reference node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            newNode        </code>
+         - the DOM node, or the <strong>id</strong> of
+ the node, to insert after.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            refNode        </code>
+         - the reference node, or the
+ <strong>id</strong> of the node.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___insertBefore">
+            <span class="objType">function</span>
+            <span class="objName">insertBefore</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    insertBefore(<span class="type">Object</span>
+ newNode, <span class="type">Object</span>
+ refNode)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds the node before the reference node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            newNode        </code>
+         - the node, or the <strong>id</strong> of the
+ node, to insert before.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            refNode        </code>
+         - the reference, or the <strong>id</strong> of
+ the node.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___isChild">
+            <span class="objType">function</span>
+            <span class="objName">isChild</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isChild(<span class="type">Object</span>
+ testNode, <span class="type">Object</span>
+ parentNode)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the give node is the child of another node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            testNode        </code>
+         - either the <strong>element</strong>, or
+ the <strong>id</strong> of the node to test.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parentNode        </code>
+         - either the <strong>element</strong>, or
+ the <strong>id</strong> of the parent node.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if <strong>testNode</strong> is the child of
+ <strong>parentNode</strong>, <code>false</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isVisible">
+            <span class="objType">function</span>
+            <span class="objName">isVisible</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isVisible(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the <strong>DOM</strong> node is visible.</p>
+ <p>Note that being visible does not necessarily mean being available
+ inside the <strong>viewport</strong>.</p>
+ <p>If a <strong>DOM</strong> node has <code>display == 'none'</code>
+ or <code>visibility == 'hidden'</code> <strong>CSS</strong> properties,
+ then it's regarded as "invisible", otherwise it is considered to be
+ "visible".</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <strong>DOM</strong> element, or the
+ <strong>id</strong> of it, to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the element is visible, <code>false</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___loadCss">
+            <span class="objType">function</span>
+            <span class="objName">loadCss</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    loadCss(<span class="type">String</span>
+ src)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Asynchronously loads a <strong>css</strong> file with a given
+ <strong>src</strong>.</p>
+ <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+ not have to be in the same domain as the web page.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            src        </code>
+         - the source <strong>URL</strong> of the
+ <strong>css</strong> file.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___loadImage">
+            <span class="objType">function</span>
+            <span class="objName">loadImage</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    loadImage(<span class="type">String</span>
+ url, <span class="type">Function</span>
+ successCallback, <span class="type">Function</span>
+ failureCallback)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Tries to load the image into a <strong>JavaScript</strong>
+ <code>Image</code> object; then triggers
+ <code>successCallback</code> or <code>failureCallback</code> depending on
+ the
+ result of the load attempt.</p>
+ <p>This function can be used for pre-loading or post-loading images.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            url        </code>
+         - the <strong>URL</strong> of the
+ <strong>image</strong>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            successCallback        </code>
+         - gets called when the
+ <strong>image</strong> is loaded successfully.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            failureCallback        </code>
+         - gets called when the
+ <strong>image</strong> can <strong>not</strong> be loaded successfully.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___loadScript">
+            <span class="objType">function</span>
+            <span class="objName">loadScript</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    loadScript(<span class="type">String</span>
+ src)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Asynchronously loads a <strong>script</strong> with a given
+ <strong>src</strong>.</p>
+ <p>Cross-domain loading is also okay: The <strong>script</strong> does not
+ have to be in the same domain as the web page.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            src        </code>
+         - the source <strong>URL</strong> of the
+ <strong>script</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___prepend">
+            <span class="objType">function</span>
+            <span class="objName">prepend</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    prepend(<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ parent)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Prepends the element to the top of its parent.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            child        </code>
+         - the child node, or the id of the node to
+ prepend.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parent        </code>
+         - the parent container, or the id of the
+ container.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___ready">
+            <span class="objType">function</span>
+            <span class="objName">ready</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    ready(<span class="type">Function</span>
+ delegate)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Fires when the <code>HTML DOM</code> is ready.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the callback that's called when the DOM is
+ ready.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___removeChildren">
+            <span class="objType">function</span>
+            <span class="objName">removeChildren</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeChildren(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes all the children of the element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___removeClass">
+            <span class="objType">function</span>
+            <span class="objName">removeClass</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeClass(<span class="type">DomNode</span>
+ el, <span class="type">String</span>
+ c)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes a <strong>class</strong> name from the given node.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the className to remove.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___removeEmptyTextNodes">
+            <span class="objType">function</span>
+            <span class="objName">removeEmptyTextNodes</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeEmptyTextNodes(<span class="type">Object</span>
+ elm, <span class="type">Boolean</span>
+ isRecursive)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes empty text nodes from the element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it to process.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isRecursive        </code>
+         - if <code>true</code> do the same
+ process for the child nodes of <code>elm</code> as well.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___removeNode">
+            <span class="objType">function</span>
+            <span class="objName">removeNode</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeNode(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes the element from the <strong>DOM</strong> flow.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it, to remove.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the removed node.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___scrollObjectToBottom">
+            <span class="objType">function</span>
+            <span class="objName">scrollObjectToBottom</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollObjectToBottom(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Scrolls an element to bottom.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the element, or the <strong>id</strong> of it, to scroll.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___scrollObjectToTop">
+            <span class="objType">function</span>
+            <span class="objName">scrollObjectToTop</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollObjectToTop(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Scrolls an element to top.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the element, or the <strong>id</strong> of the element, to scroll.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___scrollWindowToBottom">
+            <span class="objType">function</span>
+            <span class="objName">scrollWindowToBottom</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollWindowToBottom()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Scrolls window to bottom.</p>
+
+     </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___scrollWindowToObject">
+            <span class="objType">function</span>
+            <span class="objName">scrollWindowToObject</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollWindowToObject(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Scrolls the window to the object's offset position..</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the element, or the <strong>id</strong> of it, to scroll.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___scrollWindowToTop">
+            <span class="objType">function</span>
+            <span class="objName">scrollWindowToTop</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollWindowToTop()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Scrolls window to top.</p>
+
+     </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___show">
+            <span class="objType">function</span>
+            <span class="objName">show</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    show(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Shows the given object.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <strong>DOM</strong> node, or the <strong>id</strong> of it, to show.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___trimField">
+            <span class="objType">function</span>
+            <span class="objName">trimField</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    trimField(<span class="type">Object</span>
+ field)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Trims a given field, and returns the trimmed value.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            field        </code>
+         - the field to be trimmed, or its
+ <strong>id</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             field's trimmed value.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___trim">o2.StringHelper.trim</a></div>
+                    </div>      
+                                <hr/>       
+                                    </div>
+    	    	                                    						        </div>
+        		          </div>			                    
+		                </div>
+        	       </div>
+             </div>
+             <div class="navigation" id="navigation">
+    <ul class="navContent">
+        <li>
+            <div class="navTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Navigation</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                        <div>
+                            <a class="openAll" href="javascript:jgdoc.NavTree.onOpenAll()">Open All</a>
+                            <a class="closeAll" href="javascript:jgdoc.NavTree.onCloseAll()">Close All</a>
+                        </div>
+                        <div>
+                            <ul id = "content" class="contents">
+                                Loading...
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="fileTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Files</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="moduleTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Modules</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                    <div>
+                                <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxstate.html">ajaxstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/cookie/module-core.html">cookie.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-debugger.html">debugger</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-core.html">domhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-dimension.html">domhelper.dimension</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-scroll.html">domhelper.scroll</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-style.html">domhelper.style</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-traverse.html">domhelper.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-core.html">eventhandler.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-extend.html">eventhandler.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-extend.html">extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonp.html">jsonp</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-queryparser.html">queryparser</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-encode.html">stringhelper.encode</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-strip.html">stringhelper.strip</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-supports.html">supports</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-try.html">try</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-unit.html">unit</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-core.html">validator.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-regexp.html">validator.regexp</a>
+                            </div>                              
+                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+</div>  
+    
+		</div>	
+	</body>
+    <script type="text/javascript">
+        jgdoc.Searcher.start();
+        jgdoc.NavTree.initialize("o2.DomHelper");
+    </script>			
+	<script type="text/javascript" src="jsindex.js">
+    </script>
+</html>

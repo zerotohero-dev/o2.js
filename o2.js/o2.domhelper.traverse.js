@@ -713,7 +713,7 @@
     /**
      * @function {static} o2.DomHelper.getPrevious
      *
-     * <p>gets the previous <stronng>DOM</strong> node sibling that's not a text
+     * <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
      * node.</p>
      *
      * @param {DomNode} target - the node to start, or the <strong>id</strong> of
@@ -847,7 +847,7 @@
     /**
      * @function {static} o2.DomHelper.getNext
      *
-     * <p>gets the next <stronng>DOM</strong> node sibling that's not a text
+     * <p>Gets the next <strong>DOM</strong> node sibling that's not a text
      * node.</p>
      *
      * @param {DomNode} target - the node to start.

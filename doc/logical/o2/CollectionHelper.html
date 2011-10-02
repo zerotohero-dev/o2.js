@@ -1,0 +1,785 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <script>
+
+			(function()
+			{
+			    var loc = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+                loc = loc.split('\\');
+                loc = loc.join('/');					    
+			    loc = loc.split('/');
+			    loc.pop();
+			    loc = loc.join('/');
+			    loc += '/' + '../../';
+			
+			    document.write("<base href='" + loc + "'></base>");
+			})();
+         
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="jgdoc.css">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        	    <script type="text/javascript" src="navTree.js"></script>
+	    <script type="text/javascript" src="jgdoc.js"></script>
+	</head>
+    <body>
+        <div class="startup" id="startup">
+            <div class="banner" id="banner">
+                <h1 class="projectName">
+	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+                </h1>
+                <div class="bar">
+	                 version 0.23.201110021435
+	            </div>
+	         </div>
+             <div class="content" id="docContent">
+                  <div class="block">
+                        <div id="searchBlock">
+			                <div class="search" >
+			                    <div class="searchLabel">Search:</div>
+			                    <div class="searchBlock" style="height:100%">
+					                <input id="jgsSearchString" type="text" size="60" class="jgdSearchString"/>
+					                <div id="jgsSearchPanel" class="jgsSearchPanel" style="display:none">
+						                <div  class="jgdSearchRect" >
+						                    <div id="jgsSearchResults">
+						                        Loading....
+						                    </div>
+						                </div>
+					                   <div id="jgsInfo" class="jgsInfo" >No selection</div>
+                                    </div>
+                                 </div>
+			                </div>
+		                </div>
+		                <div id="docScroll" class="docScroll">
+		                    <div>
+			                    <hr/>
+						        <div>
+						        						        		<H2>
+        <span class="objType">Class</span> o2.CollectionHelper
+    </H2>
+    
+
+    <hr/>
+    <!-- description -->
+    <div>
+       <code>
+            <span class="modifiers">static</span>
+            <span class="objType">class</span> 
+            <b>o2.CollectionHelper</b>
+       </code>
+    </div>
+                <div class="comment"><p>A <strong>class</strong> to modify collections.</p>
+
+ </div>
+                                            <span class="definedIn">Defined in </span>
+        <a href="physical/module-collectionhelper.html">collectionhelper</a>
+        <hr/> 
+    <p />
+    
+            	
+                                
+                    
+    
+                    
+            
+                <div class="summaryTable function">
+            <div class="summaryTableHeader">
+                <span class="objType">Function</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___clear"><span class="elementName">clear</span></a>
+                (<span class="type">Object</span>
+ ar)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes all the elements of the <code>Object</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___compact"><span class="elementName">compact</span></a>
+                (<span class="type">Object</span>
+ ar, <span class="type">Boolean</span>
+ isDeepClean)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Remove <code>null</code>, and <code>undefined</code> members from
+ the <code>Object</code>.
+ This function alters the actual <code>Object</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___contains"><span class="elementName">contains</span></a>
+                (<span class="type">Array</span>
+ ar, <span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
+ elm) &gt; -1</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___copy"><span class="elementName">copy</span></a>
+                (<span class="type">Object</span>
+ ar, <span class="type">Boolean</span>
+ isDeepCopy)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a clone of the given <code>Object</code>, and returns it;
+ leaving the original intact.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___getFirst"><span class="elementName">getFirst</span></a>
+                (<span class="type">Object</span>
+ ar)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the first element of the <code>Array</code> or
+ <code>Object</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___getLast"><span class="elementName">getLast</span></a>
+                (<span class="type">Object</span>
+ ar)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the last element of the array.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___indexOf"><span class="elementName">indexOf</span></a>
+                (<span class="type">Object</span>
+ ar, <span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the index of the element in the given <code>Array</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___merge"><span class="elementName">merge</span></a>
+                (<span class="type">Object</span>
+ toObj, <span class="type">Object</span>
+ fromObj, <span class="type">Boolean</span>
+ isRecursive)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Merges two objects.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___removeElementByValue"><span class="elementName">removeElementByValue</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type">String</span>
+ name, <span class="type">Object</span>
+ value, <span class="type">Boolean</span>
+ isRecursive)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes and element from the collection if it has a property named
+ <strong>name</strong> with a value <strong>value</strong>.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+                    <!-- ============== Details coming here =================== -->
+    	    	    	    	            <div class="details function">
+            <h2 class="sectionHeader">Function Details</h2>
+                                                                    <h3>
+        <a name="___clear">
+            <span class="objType">function</span>
+            <span class="objName">clear</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    clear(<span class="type">Object</span>
+ ar)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes all the elements of the <code>Object</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Object</code> to clear.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a <strong>reference</strong> to the object itself.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___compact">
+            <span class="objType">function</span>
+            <span class="objName">compact</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    compact(<span class="type">Object</span>
+ ar, <span class="type">Boolean</span>
+ isDeepClean)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Remove <code>null</code>, and <code>undefined</code> members from
+ the <code>Object</code>.
+ This function alters the actual <code>Object</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Object</code> to clean.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isDeepClean        </code>
+         - (Optional; defaults to
+ <code>false</code>) - if <code>true</code> and the object contains
+ other <code>Object</code>s,
+ these <code>Object</code>s will be cleaned as well; non-primitive
+ values will not be cleaned otherwise.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a reference to the <code>Object</code> itself.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___contains">
+            <span class="objType">function</span>
+            <span class="objName">contains</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    contains(<span class="type">Array</span>
+ ar, <span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
+ elm) &gt; -1</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Array</code> to search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - the <code>Object</code> to match.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the <code>Array</code> contains the item,
+ <code>false</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___copy">
+            <span class="objType">function</span>
+            <span class="objName">copy</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    copy(<span class="type">Object</span>
+ ar, <span class="type">Boolean</span>
+ isDeepCopy)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a clone of the given <code>Object</code>, and returns it;
+ leaving the original intact.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the object to clone.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isDeepCopy        </code>
+         - (Optional; defaults to
+ <code>false</code>) - if <code>true</code> and the object contains
+ other <code>Object</code>s, these <code>Object</code>s will be cloned
+ as well; non-primitive values will not be copied otherwise.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the copied <code>Object</code>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getFirst">
+            <span class="objType">function</span>
+            <span class="objName">getFirst</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    getFirst(<span class="type">Object</span>
+ ar)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the first element of the <code>Array</code> or
+ <code>Object</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Object</code> to inspect.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the first element if exists, <code>null</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getLast">
+            <span class="objType">function</span>
+            <span class="objName">getLast</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    getLast(<span class="type">Object</span>
+ ar)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the last element of the array.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Array</code> or <code>Object</code> to
+ inspect.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the last element if exists, <code>null</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___indexOf">
+            <span class="objType">function</span>
+            <span class="objName">indexOf</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    indexOf(<span class="type">Object</span>
+ ar, <span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the index of the element in the given <code>Array</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ar        </code>
+         - the <code>Array</code> or <code>Object</code> to
+ search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - the <code>Object</code> to match.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the index of the element if found, <code>-1</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___merge">
+            <span class="objType">function</span>
+            <span class="objName">merge</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    merge(<span class="type">Object</span>
+ toObj, <span class="type">Object</span>
+ fromObj, <span class="type">Boolean</span>
+ isRecursive)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Merges two objects.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            toObj        </code>
+         - the <code>Object</code> to copy values to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fromObj        </code>
+         - the <code>Object</code> to copy values from.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isRecursive        </code>
+         - (Optional, defaults to
+ <code>false</code>) <code>true</code> if the merge is nested into
+ child objects as well.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a <strong>reference</strong> to the modified
+ <code>toObj</code>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___removeElementByValue">
+            <span class="objType">function</span>
+            <span class="objName">removeElementByValue</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeElementByValue(<span class="type">Object</span>
+ collection, <span class="type">String</span>
+ name, <span class="type">Object</span>
+ value, <span class="type">Boolean</span>
+ isRecursive)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes and element from the collection if it has a property named
+ <strong>name</strong> with a value <strong>value</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            collection        </code>
+         - an <code>Object</code> or an
+ <code>Array</code> to update.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - the name of the property.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            value        </code>
+         - the value to compare.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isRecursive        </code>
+         - (optionak; defaults to
+ <code>false</code>) If <code>true</code> a nesterd search will be
+ issued; otherwise the search will be single level.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                    </div>
+    	    	                                    						        </div>
+        		          </div>			                    
+		                </div>
+        	       </div>
+             </div>
+             <div class="navigation" id="navigation">
+    <ul class="navContent">
+        <li>
+            <div class="navTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Navigation</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                        <div>
+                            <a class="openAll" href="javascript:jgdoc.NavTree.onOpenAll()">Open All</a>
+                            <a class="closeAll" href="javascript:jgdoc.NavTree.onCloseAll()">Close All</a>
+                        </div>
+                        <div>
+                            <ul id = "content" class="contents">
+                                Loading...
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="fileTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Files</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="moduleTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Modules</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                    <div>
+                                <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxstate.html">ajaxstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/cookie/module-core.html">cookie.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-debugger.html">debugger</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-core.html">domhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-dimension.html">domhelper.dimension</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-scroll.html">domhelper.scroll</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-style.html">domhelper.style</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-traverse.html">domhelper.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-core.html">eventhandler.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-extend.html">eventhandler.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-extend.html">extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonp.html">jsonp</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-queryparser.html">queryparser</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-encode.html">stringhelper.encode</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-strip.html">stringhelper.strip</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-supports.html">supports</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-try.html">try</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-unit.html">unit</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-core.html">validator.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-regexp.html">validator.regexp</a>
+                            </div>                              
+                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+</div>  
+    
+		</div>	
+	</body>
+    <script type="text/javascript">
+        jgdoc.Searcher.start();
+        jgdoc.NavTree.initialize("o2.CollectionHelper");
+    </script>			
+	<script type="text/javascript" src="jsindex.js">
+    </script>
+</html>

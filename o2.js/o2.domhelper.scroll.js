@@ -104,7 +104,7 @@
     };
 
     /**
-     * @function {static} DomHelper.scrollObjectToBottom
+     * @function {static} o2.DomHelper.scrollObjectToBottom
      *
      * <p>Scrolls an element to bottom.</p>
      *

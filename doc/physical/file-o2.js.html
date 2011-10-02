@@ -1,0 +1,677 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <script>
+
+			(function()
+			{
+			    var loc = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+                loc = loc.split('\\');
+                loc = loc.join('/');					    
+			    loc = loc.split('/');
+			    loc.pop();
+			    loc = loc.join('/');
+			    loc += '/' + '../';
+			
+			    document.write("<base href='" + loc + "'></base>");
+			})();
+         
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="jgdoc.css">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        	    <script type="text/javascript" src="navTree.js"></script>
+	    <script type="text/javascript" src="jgdoc.js"></script>
+	</head>
+    <body>
+        <div class="startup" id="startup">
+            <div class="banner" id="banner">
+                <h1 class="projectName">
+	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+                </h1>
+                <div class="bar">
+	                 version 0.23.201110021435
+	            </div>
+	         </div>
+             <div class="content" id="docContent">
+                  <div class="block">
+                        <div id="searchBlock">
+			                <div class="search" >
+			                    <div class="searchLabel">Search:</div>
+			                    <div class="searchBlock" style="height:100%">
+					                <input id="jgsSearchString" type="text" size="60" class="jgdSearchString"/>
+					                <div id="jgsSearchPanel" class="jgsSearchPanel" style="display:none">
+						                <div  class="jgdSearchRect" >
+						                    <div id="jgsSearchResults">
+						                        Loading....
+						                    </div>
+						                </div>
+					                   <div id="jgsInfo" class="jgsInfo" >No selection</div>
+                                    </div>
+                                 </div>
+			                </div>
+		                </div>
+		                <div id="docScroll" class="docScroll">
+		                    <div>
+			                    <hr/>
+						        <div>
+						        						        		<H2>
+        <span class="objType">File</span> o2.js
+    </H2>
+    
+
+    <hr/>
+    <!-- description -->
+    <div>
+       <code>
+            <span class="modifiers"></span>
+            <span class="objType">file</span> 
+            <b>o2.js</b>
+       </code>
+    </div>
+                                            <hr/> 
+    <p />
+    
+            	
+                                
+                    
+    
+                <div class="summaryTable property">
+            <div class="summaryTableHeader">
+                <span class="objType">Property</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___build"><span class="elementName">build</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Project build number.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___longName"><span class="elementName">longName</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Full name of the project.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___name"><span class="elementName">name</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Short name of the framework, to be used in
+ prefixes, class names etc.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___url"><span class="elementName">url</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>URL of the project.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___version"><span class="elementName">version</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Project version.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+            
+                <div class="summaryTable function">
+            <div class="summaryTableHeader">
+                <span class="objType">Function</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___$"><span class="elementName">$</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An alias for <code>document.getElementById</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___load"><span class="elementName">load</span></a>
+                (<span class="type">Function</span>
+ callback)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An alias for <code>EventHandler.addEventListener(window, 'load',
+ callback)</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___nill"><span class="elementName">nill</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An empty function.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___ready"><span class="elementName">ready</span></a>
+                (<span class="type">Function</span>
+ callback)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An alias for <code>DomHelper.ready</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___t"><span class="elementName">t</span></a>
+                (<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>A <code>getElementsByTagName</code> wrapper.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___tt"><span class="elementName">tt</span></a>
+                (<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Acts similar to {link t} -- with one exception: The method
+ returns the first matched node, instead of returning a node
+ collection.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+                    <!-- ============== Details coming here =================== -->
+    	    	            <div class="details property">
+            <h2 class="sectionHeader">Property Details</h2>
+                                                            
+            <h3>
+        <a name="___build">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">build</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Project build number.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___longName">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">longName</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Full name of the project.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___name">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">name</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Short name of the framework, to be used in
+ prefixes, class names etc.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___url">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">url</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>URL of the project.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___version">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">version</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Project version.</p>
+
+     </div>    
+                                        <hr />  
+                                    </div>
+    	    	            <div class="details function">
+            <h2 class="sectionHeader">Function Details</h2>
+                                                                    <h3>
+        <a name="___$">
+            <span class="objType">function</span>
+            <span class="objName">$</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    $(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An alias for <code>document.getElementById</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the id to check.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             document.getElementById(obj) if obj is a <code>String</code>;
+ obj itself otherwise.
+
+ 	            	        </div>
+        </div>      
+            	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">exception - if obj is <code>undefined</code>.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
+        <a name="___load">
+            <span class="objType">function</span>
+            <span class="objName">load</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    load(<span class="type">Function</span>
+ callback)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An alias for <code>EventHandler.addEventListener(window, 'load',
+ callback)</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            callback        </code>
+         - The callback to execute when window is
+ loaded.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___nill">
+            <span class="objType">function</span>
+            <span class="objName">nill</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    nill()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An empty function.</p>
+
+     </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___ready">
+            <span class="objType">function</span>
+            <span class="objName">ready</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    ready(<span class="type">Function</span>
+ callback)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An alias for <code>DomHelper.ready</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            callback        </code>
+         - The callback to execute when DOM is
+ ready.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___t">
+            <span class="objType">function</span>
+            <span class="objName">t</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    t(<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>A <code>getElementsByTagName</code> wrapper.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            tagName        </code>
+         - the name of the tag to search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parent        </code>
+         - (optional defaults to <code>document</code>)
+ the parent container, or the id of the parent container, to search.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a collection of matching elements.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___tt">
+            <span class="objType">function</span>
+            <span class="objName">tt</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    tt(<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Acts similar to {link t} -- with one exception: The method
+ returns the first matched node, instead of returning a node
+ collection.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            tagName        </code>
+         - the name of the tag to search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parent        </code>
+         - (optional defaults to <code>document</code>)
+ the parent container, or the id of the parent container, to search.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the first matched element if found; <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                    </div>
+    	    	                                    						        </div>
+        		          </div>			                    
+		                </div>
+        	       </div>
+             </div>
+             <div class="navigation" id="navigation">
+    <ul class="navContent closed">
+        <li>
+            <div class="navTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Navigation</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                        <div>
+                            <a class="openAll" href="javascript:jgdoc.NavTree.onOpenAll()">Open All</a>
+                            <a class="closeAll" href="javascript:jgdoc.NavTree.onCloseAll()">Close All</a>
+                        </div>
+                        <div>
+                            <ul id = "content" class="contents">
+                                Loading...
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navContent">
+        <li>
+            <div class="fileTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Files</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="moduleTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Modules</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                    <div>
+                                <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxstate.html">ajaxstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/cookie/module-core.html">cookie.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-debugger.html">debugger</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-core.html">domhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-dimension.html">domhelper.dimension</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-scroll.html">domhelper.scroll</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-style.html">domhelper.style</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-traverse.html">domhelper.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-core.html">eventhandler.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-extend.html">eventhandler.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-extend.html">extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonp.html">jsonp</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-queryparser.html">queryparser</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-encode.html">stringhelper.encode</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-strip.html">stringhelper.strip</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-supports.html">supports</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-try.html">try</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-unit.html">unit</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-core.html">validator.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-regexp.html">validator.regexp</a>
+                            </div>                              
+                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+</div>  
+    
+		</div>	
+	</body>
+    <script type="text/javascript">
+        jgdoc.Searcher.start();
+        jgdoc.NavTree.initialize("file-o2.js");
+    </script>			
+	<script type="text/javascript" src="jsindex.js">
+    </script>
+</html>

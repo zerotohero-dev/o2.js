@@ -1,0 +1,1589 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <script>
+
+			(function()
+			{
+			    var loc = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+                loc = loc.split('\\');
+                loc = loc.join('/');					    
+			    loc = loc.split('/');
+			    loc.pop();
+			    loc = loc.join('/');
+			    loc += '/' + '../../';
+			
+			    document.write("<base href='" + loc + "'></base>");
+			})();
+         
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="jgdoc.css">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        	    <script type="text/javascript" src="navTree.js"></script>
+	    <script type="text/javascript" src="jgdoc.js"></script>
+	</head>
+    <body>
+        <div class="startup" id="startup">
+            <div class="banner" id="banner">
+                <h1 class="projectName">
+	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+                </h1>
+                <div class="bar">
+	                 version 0.23.201110021435
+	            </div>
+	         </div>
+             <div class="content" id="docContent">
+                  <div class="block">
+                        <div id="searchBlock">
+			                <div class="search" >
+			                    <div class="searchLabel">Search:</div>
+			                    <div class="searchBlock" style="height:100%">
+					                <input id="jgsSearchString" type="text" size="60" class="jgdSearchString"/>
+					                <div id="jgsSearchPanel" class="jgsSearchPanel" style="display:none">
+						                <div  class="jgdSearchRect" >
+						                    <div id="jgsSearchResults">
+						                        Loading....
+						                    </div>
+						                </div>
+					                   <div id="jgsInfo" class="jgsInfo" >No selection</div>
+                                    </div>
+                                 </div>
+			                </div>
+		                </div>
+		                <div id="docScroll" class="docScroll">
+		                    <div>
+			                    <hr/>
+						        <div>
+						        						        		<H2>
+        <span class="objType">Class</span> o2.StringHelper
+    </H2>
+    
+
+    <hr/>
+    <!-- description -->
+    <div>
+       <code>
+            <span class="modifiers">static</span>
+            <span class="objType">class</span> 
+            <b>o2.StringHelper</b>
+       </code>
+    </div>
+                <div class="comment"><p>A <strong>String</strong> helper <strong>class</strong>.</p>
+
+ </div>
+                                            <span class="definedIn">Defined in </span>
+        <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+        <hr/> 
+    <p />
+    
+            	
+                                
+                    
+    
+                    
+            
+                <div class="summaryTable function">
+            <div class="summaryTableHeader">
+                <span class="objType">Function</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___br2nl"><span class="elementName">br2nl</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Replaces HTML [br /] tags with new line.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___compact"><span class="elementName">compact</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Works identical to <code>StringHelper.trim(str,
+ true)</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___concat"><span class="elementName">concat</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Concatanes all its arguments into a single <strong>String</strong>.
+ This is faster than adding those <strong>String</strong>s with
+ <code>+</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___decode"><span class="elementName">decode</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
+ <p>If possible try using standard decoding methods like
+ <code>decodeURIComponent</code>, instead of using this method.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___encode"><span class="elementName">encode</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+ entities.</p>
+ <p>If possible try using standard encoding methods like
+ <code>encodeURIComponent</code>,
+ instead of using this method.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___encodeSafeHtml"><span class="elementName">encodeSafeHtml</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Encodes the <strong>String</strong> by converting it into a text node
+ and returning the node's value.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___escape"><span class="elementName">escape</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___format"><span class="elementName">format</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Works similar to <strong>C#</strong>'s
+ <code>String.Format</code>.</p>
+ <p>Usage Example:<p>
+ <pre>
+ o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+ 'California');
+ //will return "Hello Ninja. What's going on in California"
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___generateGuid"><span class="elementName">generateGuid</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
+ for that browsing session.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___generateRandom"><span class="elementName">generateRandom</span></a>
+                (<span class="type">Integer</span>
+ length)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Generates a random <strong>String</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___nl2br"><span class="elementName">nl2br</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Replaces new lines [\n] with HTML [br /] tags.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___remove"><span class="elementName">remove</span></a>
+                (<span class="type">String</span>
+ str, <span class="type">RegExp</span>
+ regExp)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Simply removes the phrases that match the <code>RegExp</code> from
+ the <strong>String</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___removeTags"><span class="elementName">removeTags</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes all the <strong>HTML</strong> tags in the
+ <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___strip"><span class="elementName">strip</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Simply returns
+ <code>o2.StringHelper.trim(str, false)</code>.    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___stripNonAlpha"><span class="elementName">stripNonAlpha</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes non alphabetical characters from the <code>String</code>
+ (excluding numbers).</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___stripNonAlphanumeric"><span class="elementName">stripNonAlphanumeric</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes alpha-numeric characters from the <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___stripNonNumeric"><span class="elementName">stripNonNumeric</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes non-numeric characters from the <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___stripNumeric"><span class="elementName">stripNumeric</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes numeric characters from the <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___stripTags"><span class="elementName">stripTags</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes tags from the <code>String</code>.    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___toCamelCase"><span class="elementName">toCamelCase</span></a>
+                (<span class="type">String</span>
+ input)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Converts the input to camel case.</p>
+ <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
+ <p>This is especially useful for converting <code>CSS</code> classes
+ to their <strong>DOM</strong> style representations.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___toDashedFromCamelCase"><span class="elementName">toDashedFromCamelCase</span></a>
+                (<span class="type">String</span>
+ input)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Converts a <code>String</code> of the form 'loremIpsum' to
+ 'lorem-ipsum'.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___toUnderscoreFromCamelCase"><span class="elementName">toUnderscoreFromCamelCase</span></a>
+                (<span class="type">String</span>
+ input)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Converts a <code>String</code> of the form 'loremIpsum' to
+ 'lorem_ipsum'.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___trim"><span class="elementName">trim</span></a>
+                (<span class="type">String</span>
+ str, <span class="type">Boolean</span>
+ shouldCompact)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Trims white space from beginning and end of the
+ <strong>String</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___truncate"><span class="elementName">truncate</span></a>
+                (<span class="type">String</span>
+ str, <span class="type">Integer</span>
+ maxLen)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
+ is greater than <code>maxLength</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___unescape"><span class="elementName">unescape</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___xssEncode"><span class="elementName">xssEncode</span></a>
+                (<span class="type">String</span>
+ str, <span class="type">Boolean</span>
+ shouldPreserveAmpersands)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+ entities. Works similar to {link StringHelper.encode}, with an
+ exception that it does not encode whitespace characters.</p>
+ <p>This method is specially designed to prevent cross-site script
+ injection attacks.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+                    <!-- ============== Details coming here =================== -->
+    	    	    	    	            <div class="details function">
+            <h2 class="sectionHeader">Function Details</h2>
+                                                                    <h3>
+        <a name="___br2nl">
+            <span class="objType">function</span>
+            <span class="objName">br2nl</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    br2nl(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Replaces HTML [br /] tags with new line.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___compact">
+            <span class="objType">function</span>
+            <span class="objName">compact</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    compact(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Works identical to <code>StringHelper.trim(str,
+ true)</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails">StringHelper.trim</div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___concat">
+            <span class="objType">function</span>
+            <span class="objName">concat</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    concat()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Concatanes all its arguments into a single <strong>String</strong>.
+ This is faster than adding those <strong>String</strong>s with
+ <code>+</code>.</p>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the concataneted <strong>String</strong>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___decode">
+            <span class="objType">function</span>
+            <span class="objName">decode</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    decode(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
+ <p>If possible try using standard decoding methods like
+ <code>decodeURIComponent</code>, instead of using this method.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___encode">
+            <span class="objType">function</span>
+            <span class="objName">encode</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    encode(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+ entities.</p>
+ <p>If possible try using standard encoding methods like
+ <code>encodeURIComponent</code>,
+ instead of using this method.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___encodeSafeHtml">
+            <span class="objType">function</span>
+            <span class="objName">encodeSafeHtml</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    encodeSafeHtml(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Encodes the <strong>String</strong> by converting it into a text node
+ and returning the node's value.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___escape">
+            <span class="objType">function</span>
+            <span class="objName">escape</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    escape(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___format">
+            <span class="objType">function</span>
+            <span class="objName">format</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    format()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Works similar to <strong>C#</strong>'s
+ <code>String.Format</code>.</p>
+ <p>Usage Example:<p>
+ <pre>
+ o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+ 'California');
+ //will return "Hello Ninja. What's going on in California"
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formated <strong>String</strong>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___generateGuid">
+            <span class="objType">function</span>
+            <span class="objName">generateGuid</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    generateGuid()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
+ for that browsing session.</p>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a <strong>GUID</strong>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___generateRandom">
+            <span class="objType">function</span>
+            <span class="objName">generateRandom</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    generateRandom(<span class="type">Integer</span>
+ length)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Generates a random <strong>String</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            length        </code>
+         - (optional - default: StringHelper.config.constants.DEFAULT_RANDOM_LENGTH)
+ length of the <code>String</code> to be generated.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the generated <code>String</code>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___nl2br">
+            <span class="objType">function</span>
+            <span class="objName">nl2br</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    nl2br(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Replaces new lines [\n] with HTML [br /] tags.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___remove">
+            <span class="objType">function</span>
+            <span class="objName">remove</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    remove(<span class="type">String</span>
+ str, <span class="type">RegExp</span>
+ regExp)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Simply removes the phrases that match the <code>RegExp</code> from
+ the <strong>String</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            regExp        </code>
+         - the <code>RegExp</code> to process agains.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___removeTags">
+            <span class="objType">function</span>
+            <span class="objName">removeTags</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeTags(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes all the <strong>HTML</strong> tags in the
+ <code>String</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the cleaned output.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___strip">
+            <span class="objType">function</span>
+            <span class="objName">strip</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    strip(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Simply returns
+ <code>o2.StringHelper.trim(str, false)</code>.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to strip.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the stripped <strong>String</strong>.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___trim">o2.StringHelper.trim</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___stripNonAlpha">
+            <span class="objType">function</span>
+            <span class="objName">stripNonAlpha</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stripNonAlpha(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes non alphabetical characters from the <code>String</code>
+ (excluding numbers).</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___stripNonAlphanumeric">
+            <span class="objType">function</span>
+            <span class="objName">stripNonAlphanumeric</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stripNonAlphanumeric(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes alpha-numeric characters from the <code>String</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___stripNonNumeric">
+            <span class="objType">function</span>
+            <span class="objName">stripNonNumeric</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stripNonNumeric(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes non-numeric characters from the <code>String</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.
+     -            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___stripNumeric">
+            <span class="objType">function</span>
+            <span class="objName">stripNumeric</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stripNumeric(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes numeric characters from the <code>String</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___stripTags">
+            <span class="objType">function</span>
+            <span class="objName">stripTags</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stripTags(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes tags from the <code>String</code>.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___toCamelCase">
+            <span class="objType">function</span>
+            <span class="objName">toCamelCase</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    toCamelCase(<span class="type">String</span>
+ input)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Converts the input to camel case.</p>
+ <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
+ <p>This is especially useful for converting <code>CSS</code> classes
+ to their <strong>DOM</strong> style representations.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            input        </code>
+         - the <code>String</code> to convert.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted String.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___toDashedFromCamelCase">
+            <span class="objType">function</span>
+            <span class="objName">toDashedFromCamelCase</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    toDashedFromCamelCase(<span class="type">String</span>
+ input)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Converts a <code>String</code> of the form 'loremIpsum' to
+ 'lorem-ipsum'.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            input        </code>
+         - the <code>String</code> to convert.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___toUnderscoreFromCamelCase">
+            <span class="objType">function</span>
+            <span class="objName">toUnderscoreFromCamelCase</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    toUnderscoreFromCamelCase(<span class="type">String</span>
+ input)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Converts a <code>String</code> of the form 'loremIpsum' to
+ 'lorem_ipsum'.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            input        </code>
+         - the <code>String</code> to convert.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___trim">
+            <span class="objType">function</span>
+            <span class="objName">trim</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    trim(<span class="type">String</span>
+ str, <span class="type">Boolean</span>
+ shouldCompact)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Trims white space from beginning and end of the
+ <strong>String</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            shouldCompact        </code>
+         - Optional (default:
+ <code>false</code>)
+     if <code>true</code>, multiple whitespace is compacted into single
+ whitespace.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___truncate">
+            <span class="objType">function</span>
+            <span class="objName">truncate</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    truncate(<span class="type">String</span>
+ str, <span class="type">Integer</span>
+ maxLen)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
+ is greater than <code>maxLength</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to process.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            maxLen        </code>
+         - Optional (defaults to
+ <a href="logical/o2/StringHelper/config/constants.html#___TRUNCATION_LENGTH">o2.StringHelper.config.constants.TRUNCATION_LENGTH</a>,
+ maximum <code>String</code> length that's allowed without truncation.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <code>String</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___unescape">
+            <span class="objType">function</span>
+            <span class="objName">unescape</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    unescape(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___xssEncode">
+            <span class="objType">function</span>
+            <span class="objName">xssEncode</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    xssEncode(<span class="type">String</span>
+ str, <span class="type">Boolean</span>
+ shouldPreserveAmpersands)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+ entities. Works similar to {link StringHelper.encode}, with an
+ exception that it does not encode whitespace characters.</p>
+ <p>This method is specially designed to prevent cross-site script
+ injection attacks.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <strong>String</strong> to process            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            shouldPreserveAmpersands        </code>
+         - (Optional. Defaults to
+ <code>false</code>). If <code>true</code> & characters will not be
+ encoded, otherwise they will be.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the processed <strong>String</strong>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                    </div>
+    	    	                                    						        </div>
+        		          </div>			                    
+		                </div>
+        	       </div>
+             </div>
+             <div class="navigation" id="navigation">
+    <ul class="navContent">
+        <li>
+            <div class="navTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Navigation</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                        <div>
+                            <a class="openAll" href="javascript:jgdoc.NavTree.onOpenAll()">Open All</a>
+                            <a class="closeAll" href="javascript:jgdoc.NavTree.onCloseAll()">Close All</a>
+                        </div>
+                        <div>
+                            <ul id = "content" class="contents">
+                                Loading...
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="fileTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Files</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="moduleTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Modules</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                    <div>
+                                <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxstate.html">ajaxstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/cookie/module-core.html">cookie.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-debugger.html">debugger</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-core.html">domhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-dimension.html">domhelper.dimension</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-scroll.html">domhelper.scroll</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-style.html">domhelper.style</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-traverse.html">domhelper.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-core.html">eventhandler.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-extend.html">eventhandler.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-extend.html">extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonp.html">jsonp</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-queryparser.html">queryparser</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-encode.html">stringhelper.encode</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-strip.html">stringhelper.strip</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-supports.html">supports</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-try.html">try</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-unit.html">unit</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-core.html">validator.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-regexp.html">validator.regexp</a>
+                            </div>                              
+                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+</div>  
+    
+		</div>	
+	</body>
+    <script type="text/javascript">
+        jgdoc.Searcher.start();
+        jgdoc.NavTree.initialize("o2.StringHelper");
+    </script>			
+	<script type="text/javascript" src="jsindex.js">
+    </script>
+</html>

@@ -1,16 +1,10 @@
 /*global window*/
 
 /**
- *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @author Volkan Ozcelik
+ * @version 0.23.201110021435
+ * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
@@ -80,7 +74,7 @@ window.o2 = {};
      *
      * <p>Project build number.</p>     
      */
-    me.build = '201110020951';
+    me.build = '201110021435';
 
     /**
      * @function {static} o2.$
@@ -92,7 +86,7 @@ window.o2 = {};
      * @return document.getElementById(obj) if obj is a <code>String</code>;
      * obj itself otherwise.
      *
-     * @throws {Exception} if obj is <code>undefined</code>.
+     * @throws exception - if obj is <code>undefined</code>.
      */
     me.$ = function(obj, UNDEFINED) {
 

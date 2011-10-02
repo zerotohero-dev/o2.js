@@ -137,7 +137,7 @@
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
          *
-         * @throws {Exception} if <strong>fn</strong> callback is not defined.
+         * @throws exception - if <strong>fn</strong> callback is not defined.
          */
         addEventListener : function(node, evt, fn) {
 
@@ -247,7 +247,7 @@
          * @param {Function} handler - the common event handling
          * <strong>callback</strong>.
          *
-         * @throws {Exception} if the <strong>handler</strong> callback is not
+         * @throws exception - if the <strong>handler</strong> callback is not
          * defined.
          */
         addEventListeners : function(collection, eventName, handler) {
@@ -278,7 +278,7 @@
          * "mousemove"...)
          * @param {Function} fn - a reference to the on[event] callback action.
          *
-         * @throws {Exception} if <strong>fn</strong> callback is not defined.
+         * @throws exception - if <strong>fn</strong> callback is not defined.
          */
         removeEventListener : function(node, evt, fn) {
 

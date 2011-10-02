@@ -41,7 +41,7 @@
     me.ObjectHelper = {
 
         /**
-         * @function {static} ObjectHelper.copy
+         * @function {static} o2.ObjectHelper.copyMethods
          * <p>Copies <strong>base</strong>'s methods, to
          * <strong>child</strong></p>.
          *
@@ -120,14 +120,14 @@
          * o2.ObjectHelper.toJson
          *
          * <p>Converts the <code>Object</code> to a <strong>JSON</strong>
-         * <strong>String</code>, if <strong>JSON</strong> is supported.
+         * <code>String</code>, if <strong>JSON</strong> is supported.
          * you can use 3rdparty/json2/json2.js to add cross-browser
-         * <stron>JSON</strong> support.</p>
+         * <strong>JSON</strong> support.</p>
          *
          * @param {Object} obj - the <code>Object</code> to convert to a
-         * <strong>JSON</strong> <strong>String</code>.
+         * <strong>JSON</strong> <code>String</code>.
          *
-         * @return the converted <strong>JSON</strong> <strong>String</code>.
+         * @return the converted <strong>JSON</strong> <code>String</code>.
          */
         toJson : function(obj) {
 

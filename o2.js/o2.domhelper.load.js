@@ -7,7 +7,7 @@
     var nill = framework.nill;
 
     /**
-     * @funciton {static} o2.DomHelper.loadImage
+     * @function {static} o2.DomHelper.loadImage
      *
      * <p>Tries to load the image into a <strong>JavaScript</strong>
      * <code>Image</code> object; then triggers
@@ -42,10 +42,10 @@
     /**
      * @function {static} o2.DomHelper.loadScript
      *
-     * <p>Asynchronously loads a <strong>script</script> with a given
-     * <strong>src</strong>.
-     * <p>Cross-domain loading is also okay: The <strong>script</script> does not
-     * have to be in the same domain as the web page.</strong>
+     * <p>Asynchronously loads a <strong>script</strong> with a given
+     * <strong>src</strong>.</p>
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
+     * have to be in the same domain as the web page.</p>
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>script</strong>.
@@ -67,10 +67,10 @@
     /**
      * @function {static} o2.DomHelper.loadCss
      *
-     * <p>Asynchronously loads a <strong>css</script> file with a given
-     * <strong>src</strong>.
-     * <p>Cross-domain loading is also okay: The <strong>css</script> file does
-     * not have to be in the same domain as the web page.</strong>
+     * <p>Asynchronously loads a <strong>css</strong> file with a given
+     * <strong>src</strong>.</p>
+     * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+     * not have to be in the same domain as the web page.</p>
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>css</strong> file.

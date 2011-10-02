@@ -245,6 +245,13 @@
      * <p>This <strong>class</strong> is <strong>isolated</strong>, and it is
      * only available in the unit meta's callback given to the {@link
      * o2.Unit.add} method.
+     */
+    
+    
+    /**
+     * @constructor o2.UnitTest.UnitTest
+     *
+     * <p>Creates a new <strong>o2.UnitTest</strong>.</p>
      *
      * @param {String} description - the description of the unit test.
      * @param {String} totalAssertionCount - the overall number of assertions

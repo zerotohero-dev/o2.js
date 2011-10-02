@@ -28,12 +28,12 @@
         /**
          * @function {static} o2.Cookie.save
          *
-         * <p>Saves a <strong>cookie</strong>.
+         * <p>Saves a <strong>cookie</strong>.</p>
          *
          * @param {String} name - the name of the <strong>cookie</strong>.
          * @param {String} value - the value of the <strong>cookie</strong>.
          * @param {Integer} days - (optional) how many days should the
-         * <strong>cookie</strong persist.
+         * <strong>cookie</strong> persist.
          * @param {String} path - (optional) the path of the cookie.
          * @param {String} domain - (optional) the domain of the cookie.
          * @param {Boolean} isSecure - (optional) will the cookie be used for a

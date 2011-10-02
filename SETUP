@@ -3,3 +3,5 @@ To test the examples you will need a LAMP (or WAMP) stack.
 Just copy the folder contents under http://localhost/o2.js/
 (i.e.: http://localhost/o2.js/SETUP should point to this SETUP file you are
 currently viewing.)
+
+To build documentation cd to "batch" folder and run "publish.sh".
