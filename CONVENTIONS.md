@@ -75,7 +75,7 @@ Insert a blank line
 
         function isArray(obj) {
 
-                return is(obj, config.constants.ecmaScriptType.ARRAY);
+            return is(obj, config.constants.ecmaScriptType.ARRAY);
 
         }
 
