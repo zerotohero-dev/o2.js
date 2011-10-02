@@ -65,7 +65,7 @@ Indent
 
 ### 3.3. BLANK LINES
 
-Leave **at most 2** blank lines.
+Leave **at most 1** blank lines.
 
 Insert a blank line
 
