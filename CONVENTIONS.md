@@ -6,7 +6,7 @@ This document includes **JavaScript** naming conventions, best practices
 and recommendations to be used within **o2.js** source code, and examples.
 
 If there's a particular **JavaScript** usage that's not mentioned in this
-document
+document,
 
 * Either it should be proposed as an exceptional case and added to this
 document.
@@ -23,9 +23,9 @@ client-heavy **JavaScript** project.
 software project.
 
 *Nearly %80 of the development time* in large-scale software projects go
-to **maintenance**, **patching**, and **rewriting** the codebase. During their
-lifetime, these large-scale software projects are not coded and
-maintained by one person, and everyone's coding style and preferences
+to **maintenance**, **patching**, and **rewriting** the codebase. 
+During their lifetime, these large-scale software projects are not coded 
+and maintained by one person, and everyone's coding style and preferences
 differ.
 
 In this essence, **coding conventions** constitute a shared language
@@ -35,6 +35,19 @@ and makes the code less error-prone.
 ## 3. o2.js JAVASCRIPT CODING STANDARDS
 
 ### 3.1. CODE CLEANLINESS
+
+The code should be kept clean. There should **not** be excessive logs,
+debug lines, print statements, or alerts.
+
+There should **not** be commented out code.
+
+The whole point of using a *version control system* is to eliminate the
+need of leaving commented out code in the source code. Instead of
+leaving the code commented out, one should utilize the version control
+system's *diff&merge* utility.
+
+If there is a code piece that you long to keep, save it in an 
+external file **outside** the project folder.
     
 ### 3.2. INDENTATION
 
