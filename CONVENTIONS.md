@@ -436,7 +436,7 @@ continue from the next line.
 
 The brace positions should be as follows:
 
-* **Same line**, in blocks (C-Style).
+* **Same line**, in blocks (*C-Style*).
 
         for(var key in ar) {
             if(ar.hasOwnProperty(key)) {
@@ -452,7 +452,7 @@ The brace positions should be as follows:
             }
         }
 
-* **Same line**, in function declarations (C-Style).
+* **Same line**, in function declarations (*C-Style*).
 
         removeElementByValue : function(collection, name, value, isRecursive) {
 
@@ -463,7 +463,7 @@ The brace positions should be as follows:
             
             ...
 
-* **Same line**, in switch statements (C-Style).
+* **Same line**, in switch statements (*C-Style*).
  
         switch(className) {
             case ccc.LOG:
