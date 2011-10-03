@@ -55,21 +55,170 @@ Code blocks are indented with **4 spaces**. Each `<TAB>` corresponds to 4
 spaces, and the actual `<TAB>` character is **NOT USED**. The IDE should be 
 set up to print **4 spaces** when pressing the `<TAB>` key.
 
-Indent
+Indent...
 
-* Statements within **blocks**.
-* Statements within a **function** body.
-* Statements within a **switch** body.
-* Statements within a **case** body.
-* Statements inside a **closure**.
+* Statements within **blocks**:
+
+        while(node) {
+            if(node.nodeType != kTextNode) {
+
+                return node;
+            }
+
+            //
+            node = node.nextSibling;
+        }
+
+* Statements within a **function** body:
+
+        me.getNextById = function(target, id) {
+
+            //
+            target = $(target);
+
+            if(!target) {
+
+                return null;
+            }
+
+            var node = target.nextSibling;
+
+            if(!node) {
+
+                return null;
+            }
+
+            var kTextNode = me.nodeType.TEXT;
+
+            while(node) {
+                if(node.id && node.id == id) {
+
+                    return node;
+                }
+
+                // get the next node.
+                node = node.nextSibling;
+            }
+
+            return null;
+
+        };
+
+* Statements within a **switch** body:
+
+        switch(className) {
+            case ccc.LOG:
+
+                try {
+                    console.log(text);
+
+                } catch(ignore1) {
+
+                }
+
+                break;
+            case ccc.INFO:
+
+                try {
+                    console.info(text);
+
+                } catch(ignore2) {
+
+                }
+
+                break;
+
+                ...
+
+* Statements within a **case** body:
+            
+            ...
+
+            case ccc.WARN:
+
+                try {
+                    console.warn(text);
+
+                } catch(ignore3) {
+
+                }
+
+                break;
+            case ccc.ERROR:
+
+                try {
+                    console.error(text);
+
+                } catch(ignore4) {
+
+                }
+
+                break;
+            default:
+
+                try {
+                    console.log(text);
+
+                } catch(ignore5) {
+
+                }
+
+                break;
+        }
+
+* Statements inside a **closure**:
+
+            me.EventHandler.preventDefault = window.event ? function() {
+    
+                window.event.returnValue = false;
+    
+                return false;
+    
+            } : function(e) {
+    
+                if(!e) {
+    
+                    return;
+                }
+    
+                if(e.preventDefault) {
+                        e.preventDefault();
+                }
+    
+                return false;
+    
+            };
+    
+    
+            me.EventHandler.preventDefault(evt);
 
 ### 3.3. BLANK LINES
 
-Leave **at most 1** blank lines.
+Leave **at most** one blank lines.
 
-Insert a blank line
+Insert **one** blank line...
 
-* **After** function declarations.
+* **After** function declerations:
+
+        me.EventHandler.stopPropagation = window.event ? function() {
+
+            window.event.cancelBubble = true;
+
+        } : function(e) {
+
+            if(!e) {
+
+                return;
+            }
+
+            e.stopPropagation();
+
+        };
+
+        // stop event propagation
+        me.EventHandler.stopPropagation(evt);
+
+* **After** inline functions:
 
         function isArray(obj) {
 
@@ -87,7 +236,7 @@ Insert a blank line
 
         }        
 
-* **After** the beginning of and **before** the ending of a **function** body.
+* **After** the beginning of and **before** the ending of a **function** body:
 
         me.loadImage = function(url, succesCallback, failureCallback) {
 
@@ -105,7 +254,7 @@ Insert a blank line
 
         };
 
-* **Between** two **if** blocks
+* **Between** two **if** blocks:
 
             if(!ar) {
 
@@ -123,7 +272,7 @@ Insert a blank line
                 return -1;
             }
 
-* **After** variable declerations
+* **After** variable declerations:
 
             var nodeName = 'div';
 
@@ -142,8 +291,129 @@ Insert a blank line
                 };
                 
                 ...
-                
-* **After** *function* declerations
+
+* **Before**, **after**, and inside a *try/catch/finally* construct:
+
+        function processCallbacks(xhr, callbacks) {
+    
+            var nillCached = nill;
+            var constants = config.constants;
+    
+            var kComplete = constants.readystate.COMPLETE;
+            var kOk = constants.status.OK;
+            var kCached = constants.status.CACHED;
+    
+            //
+            callbacks = callbacks || {};
+    
+            var oncomplete = callbacks.oncomplete || nillCached;
+            var onerror = callbacks.onerror || nillCached;
+            var onexception = callbacks.onexception || nillCached;
+    
+            var status = xhr.status;
+            var isSuccess = status == kOk || status == kCached;
+    
+            try {
+    
+                if(isSuccess) {
+                    oncomplete(xhr.responseText, xhr.responseXML, xhr);
+    
+                    return;
+                }
+    
+                onerror(xhr.status, xhr.statusText, xhr);
+    
+            } catch(ex) {
+    
+                onexception(xhr, ex);
+    
+            } finally {
+    
+                finalizeXhr(xhr);
+    
+            }
+    
+        }
+
+
+* **Before** *any* kind of *comment*:
+
+        ...
+    
+        }
+
+        /*
+         * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
+         *
+         * @param {XmlHttpRequest} xhr - the current <code>Xhr</code> instance.
+         * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
+         */
+        function processCallbacks(xhr, callbacks) {
+
+        ...
+    
+        //
+        parameters = parameters || {};
+        callbacks = callbacks || {};
+        isSync = !!isSync;
+
+        var isAsync = !isSync;
+
+        var kRandom = config.constants.prefix.RANDOM;
+        var kGet = config.constants.verb.GET;
+        var isPost = verb != kGet;
+
+        // name1=value1&name2=value2&name3=value3
+        var parametrizedQuery = generateParametrizeQueryString(parameters);
+
+        // &name1=value1&name2=value2&name3=value3 (for GET requests)
+        var query = isPost ? '' : ['&', parametrizedQuery].join('');
+
+        // name1=value1&name2=value2&name3=value3 (for POST requests)
+        var postQuery = isPost ? parametrizedQuery : '';
+
+        // A unique string to prevent caching.
+        var guid = generateGuid();
+    
+        // http://example.com + ?rnd= + {guid} + &name1=value1
+        url = concat(url, kRandom, guid, query);
+
+        // Create a cross-browse XmlHttpRequest.
+        var xhr = createXhr();
+
+        // Open the connection.
+        xhr.open(verb, url, isAsync);
+
+        // Add headers.
+        addCommonRequestHeaders(xhr);
+
+        if(isPost) {
+
+            // Add more headers.
+            addPostRequestHeaders(xhr);
+        }
+
+        // Register callbacks.
+        registerCallbacks(xhr, callbacks);
+
+        // Send the request.
+        try {
+
+            xhr.send(postQuery);
+
+        } catch(exception) {
+
+            callbacks.onexception(xhr, exception);
+
+        }
+
+        if(isSync) {
+
+            // If the request is sync, process response immediately.
+            processCallbacks(xhr, callbacks);
+        }
+
+        return xhr;    
 
 ### 3.3. LINE LENGTH
 
