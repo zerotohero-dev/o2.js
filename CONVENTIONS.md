@@ -665,34 +665,33 @@ you'd do in a normal sentence.
 
 * Use **is**, **has**, **should**... prefixes for methods that return a **boolean**.
 
-Example:
+    **Example**:
         
-    // Incorrect:
-        if(statusToState(user.status) == kLoggedIn) { // Status is a "noun".
-            userLogin(); // User is a "noun".
-        }
-
-        if(loggedIn()) {
-            stuff();// Stuff is a "noun".
-        }
-
-        if(goToNextPage()) { // this method returns a boolean.
-            nextPage(); // next is a "noun".
-        }
-
-    // Correct:
-        if(mapUserStatusToState(user.status) == kLoggedIn) {
-            logUserIn();
-        }
-
-        if(isLoggedIn) {
-            doStuff();
-        }
-
-        if(shouldGoToNextPage()) {
-            goToNextPage();
-        }
-
+        // Incorrect:
+            if(statusToState(user.status) == kLoggedIn) { // Status is a "noun".
+                userLogin(); // User is a "noun".
+            }
+    
+            if(loggedIn()) {
+                stuff();// Stuff is a "noun".
+            }
+    
+            if(goToNextPage()) { // this method returns a boolean.
+                nextPage(); // next is a "noun".
+            }
+    
+        // Correct:
+            if(mapUserStatusToState(user.status) == kLoggedIn) {
+                logUserIn();
+            }
+    
+            if(isLoggedIn) {
+                doStuff();
+            }
+    
+            if(shouldGoToNextPage()) {
+                goToNextPage();
+            }
 
 * Use **singular** names for **namespaces**:
 
