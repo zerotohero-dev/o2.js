@@ -198,6 +198,13 @@ Leave **at most** one blank line.
 
 Insert **one** blank line...
 
+* **Before** *throw*, *break*, *continue*, *return* statements:
+
+        if(!url) {
+
+            return null;
+        }
+
 * **After** function declerations:
 
         me.EventHandler.stopPropagation = window.event ? function() {
@@ -256,41 +263,41 @@ Insert **one** blank line...
 
 * **Between** two **if** blocks:
 
-            if(!ar) {
+        if(!ar) {
 
-                return -1;
-            }
+            return -1;
+        }
 
-            if(isArray(ar)) {
-                for(var i = 0, len = ar.length; i < len; i++) {
-                    if(elm == ar[i]) {
+        if(isArray(ar)) {
+            for(var i = 0, len = ar.length; i < len; i++) {
+                if(elm == ar[i]) {
 
-                        return i;
-                    }
+                    return i;
                 }
-
-                return -1;
             }
+
+            return -1;
+        }
 
 * **After** variable declerations:
 
-            var nodeName = 'div';
+        var nodeName = 'div';
 
-            if(config.isUsingConsole && config.outputElement) {
+        if(config.isUsingConsole && config.outputElement) {
 
-                return function(value, className) {
+            return function(value, className) {
 
-                    println(value, className);
+                println(value, className);
 
-                    var debugContent = document.createElement(nodeName);
+                var debugContent = document.createElement(nodeName);
 
-                    debugContent.className = className;
-                    debugContent.innerHTML = value;
-                    config.outputElement.appendChild(debugContent);
+                debugContent.className = className;
+                debugContent.innerHTML = value;
+                config.outputElement.appendChild(debugContent);
 
-                };
-                
-                ...
+            };
+            
+            ...
 
 * **Before**, **after**, and **inside** a *try/catch/finally* construct:
 
@@ -336,7 +343,7 @@ Insert **one** blank line...
         }
 
 
-* **Before** *any* kind of *comment*:
+* **Before** *any* kind of *comment*s:
 
         ...
     
@@ -533,14 +540,11 @@ Example:
             }
             
             // If-Else
-            if(false) {
-            
+            if(false) { 
                 alert('hello');
             } else if(a > 0) {
-            
                 alert(a);
             } else {
-            
                 alert(0);
             }
         
@@ -549,11 +553,11 @@ Example:
         // Switch-Case
         switch (a) {
             case 1:
-        
                 alert('1');
                 
                 break;
             case 2:
+            
                 break;
             default:
                 alert('none');
@@ -569,13 +573,40 @@ Example:
            name1: 'value1',
            name2: 'value2',
            name3: 10,
-           'float': 'left //float is a keyword and thus it's escaped.
+           
+           //float is a keyword and thus it's escaped.
+           'float': 'left 
         };
 
 
 ### 3.6  STRINGS
 
+Use single quotes ( `'` ) for string literals.
+
+Example:
+
+        //Incorrect:
+        var test = "lorem ipsum dolor sit amet";
+    
+        //Correct:
+        var test = 'lorem ipsum dolor sit amet';
+
 ### 3.7  COMMENTS
+
+Use [jsDoc syntax][1] for documenting modules, functions, objects, and
+structs. 
+
+Use **only** line comments ( `//` ) for in-line comments.
+
+You *MUST* comment critical or tricky parts of the code, or important
+changes you've made to the code, or anything that's not easy to grasp
+at a first glance.
+
+Feel free to **write descriptive comments**; your production **shall** be 
+*minified* and *obfuscated* anyway; and therefore your comments will not 
+have  any negative impact on *performance* or *file size*.
+
+[1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
 ### 3.8  VARIABLE & METHOD NAMING
 
