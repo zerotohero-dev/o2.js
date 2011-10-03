@@ -498,6 +498,11 @@ The spacing should be as follows:
 * Assignments: **before**: 1, **after**: 1
 * Conditional operators: before: 1, after: 1
 * Key-value (*{'a':'b'}*) operators: **before**: 1, **after**: 1
+* Inside a line comment: **after**: 1
+ 
+        //this is incoorrect
+
+        // This is correct with a space.
 
 ### 3.6  NEW LINES
 
@@ -507,7 +512,7 @@ The spacing should be as follows:
 * **DO NOT** insert a new line *before* finally statement.
 * **DO NOT** insert a new line *before* while in a do statement.
 * **DO** insert a new line *before* ' name : value ' pairs.
-* **DO** separate *logical code fragments* from each other *with a new line*.
+* **DO** separate *logical code fragments* from each other *with a new line
 
 Example:
 
@@ -591,7 +596,7 @@ Example:
         //Correct:
         var test = 'lorem ipsum dolor sit amet';
 
-### 3.7  COMMENTS
+### 3.8  COMMENTS
 
 Use [jsDoc syntax][1] for documenting modules, functions, objects, and
 structs. 
@@ -606,161 +611,184 @@ Feel free to **write descriptive comments**; your production **shall** be
 *minified* and *obfuscated* anyway; and therefore your comments will not 
 have  any negative impact on *performance* or *file size*.
 
+Use **full sentences** in both **documentation** and **inline** comments.
+Start each comment with **capital** letter, and it with a **full stop** as
+you'd do in a normal sentence.
+
+        Incorrect:
+            // sync request -- process response
+            processCallbacks(xhr, callbacks);
+
+        Correct:
+            // If the request is sync, then process the response immediately.
+            processCallbacks(xhr, callbacks);        
+
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
-### 3.8  VARIABLE & METHOD NAMING
+### 3.9  VARIABLE & METHOD NAMING
 
-se meaningful variable (and function) names:
+* Use meaningful variable (and function) names:
 
-    var kSixteen = 16; //incorrect.
-    var kNumberOfBits = 16; //better.
+        var kSixteen = 16; // incorrect.
+    
+        var kNumberOfBits = 16; // better.
 
-Use long and descriptive variable (and function) names.
+* Use **long and descriptive** variable (*and function*) names.
 
-    usrAvail = true;//incorrect.
-    isUserAvailable = true;
+        usrAvail = true;//incorrect.
 
-Choose readable variable names:
+        isUserAvailable = true; // better.
 
-    var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101); //WTF?
+* Choose readable variable names:
 
-Do not use hungarion notation:
+        var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101); //WTF?
 
-    var dblIncome = 100.12;//incorrect.
-    var income = 100.12;/correct -- no prefix.
+* **Do not use Hungarian Notation**:
 
-Exception:
-    It's okay to prefix form elements with txt, btn and the like.
-
-    var txtLogin = document.getElementById('loginInput'); //OK
-    var btnAction = document.getElementById('submitForm'); //OK
-    var optCountry = document.getElementById('countrySelection'); //OK
-
-Use verbs for function names.
-Use nouns for members, constants and variables.
-
-Use is, has, should... prefixes for methods that return a boolean.
-
-Example:
-    //Incorrect:
-        if(statusToState(user.status) == kLoggedIn){//status is a "noun"
-            userLogin();//user is a "noun".
-        }
-
-        if(loggedIn()){
-            stuff();//stoff is a "noun".
-        }
-
-        if(goToNextPage()){//this method returns a boolean.
-            nextPage(); //next is a "noun".
-        }
-
-    //Correct:
-        if(mapUserStatusToState(user.status) == kLoggedIn) {
-            logUserIn();
-        }
-
-        if(isLoggedIn){
-            doStuff();
-        }
-
-        if(shouldGoToNextPage()){
-            goToNextPage();
-        }
-
-
-
-
-
-Use *singular* names for constants:
-
-    var kFullName = constants.member.FULL_NAME //"member", not "members"
-
-Use *plural* names for collections:
-
-    var members = getOnlineMembers(); //"members", not "member".
-
-USE camelCase FOR METHODS and MEMBERS, use ALL_CAPS for constants.
-
-Example:
-
-    function getUserInfo(){
-    }
-
-    function renderNewLoginForm(){
-    }
-
-    var config = {
-        constants: {
-            memberRegistrationStatus: {
-                REGISTERED: 3,
-                WAITING_APPROVAL: 1,
-                NOT_INITIALIZED: 0
-            }
-        }
-    };
+        var dblIncome = 100.12; // incorrect.
+        var income = 100.12; // correct -- no prefix.
 
     Exception:
-        Event-handler callbacks is an exception to this naming convention.
-    Example:
-        groups.mobile.EventCallback = {
-            //not camelCase.
-            //format: domobject_eventname (all lowercase)
-            document_mousedown: function(evt){
+    It's okay to prefix form elements with txt, btn and the like.
 
+        var txtLogin = document.getElementById('loginInput'); //OK
+        var btnAction = document.getElementById('submitForm'); //OK
+        var optCountry = document.getElementById('countrySelection'); //OK
+
+* Use **verbs** for **function names**.
+
+* Use **nouns** for **members**, **constants** and **variables**.
+
+* Use **is**, **has**, **should**... prefixes for methods that return a **boolean**.
+
+    Example:
+        
+        // Incorrect:
+            if(statusToState(user.status) == kLoggedIn) { //status is a "noun"
+                userLogin(); //user is a "noun".
+            }
+    
+            if(loggedIn()) {
+                stuff();//stuff is a "noun".
+            }
+    
+            if(goToNextPage()) { //this method returns a boolean.
+                nextPage(); //next is a "noun".
+            }
+
+        //Correct:
+            if(mapUserStatusToState(user.status) == kLoggedIn) {
+                logUserIn();
+            }
+
+            if(isLoggedIn) {
+                doStuff();
+            }
+
+            if(shouldGoToNextPage()) {
+                goToNextPage();
+            }
+
+
+* Use **singular** names for **namespaces**:
+
+        var kFullName = constants.member.FULL_NAME // "member", not "members"
+
+* Use **plural** names for **collections**:
+
+        var members = getOnlineMembers(); // "members", not "member".
+
+
+* Use **camelCase** for **method names** and **member names**, use **ALL_CAPS** for **constants**.
+
+Example:
+
+        function getUserInfo(){
+        }
+    
+        function renderNewLoginForm(){
+        }
+    
+        var config = {
+            constants: {
+                memberRegistrationStatus: {
+                    REGISTERED: 3,
+                    WAITING_APPROVAL: 1,
+                    NOT_INITIALIZED: 0
+                }
             }
         };
 
-        groups.mobile.framework.addEventListener(document, 'mousedown',
-        groups.mobile.EventCallback.document_mousedown);
+    Exception:
+        Event-handler callbacks is an exception to this naming convention.
+    
+        Example:
+            var EventCallback = {
+                // Not in camelCase.
+                // Format: domobject_eventname (all lowercase)
+                document_mousedown: function(evt){
 
-Be consistent in naming your methods; do not give different names to two
-methods which are essentially doing the same thing.
+                }
+            };
 
-
-Summary:
-variables, object, functions       : camelCase ( getStatusRecord() )
-private variables, private methods : camelCase
-public variables, public methods   : camelCase
-enums and global constants         : ALL_CAPS
-local/global constant              : prefix with k ( kPipeTimeout )
-Parameters                         : camelCase
-Objects and Constructors           : PascalCase
-Packages                           : lowercase
-Methods                            : camelCase
+            o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
 
 
-Note: Use camelCase for acronyms.
+* **Be consistent** in naming your methods; do not give different names to 
+two methods which are essentially doing the same thing.
 
-groups.methodname.wcf.INSERT;// correct
-groups.methodname.WCF.INSERT;// incorrect
+**Summary:**
 
-groups.framework.StringHelper.htmlEncode()// correct
-groups.framework.StringHelper.HTMLEncode()// incorrect
+    variables, object, functions       : camelCase ( getStatusRecord() )
+    private variables, private methods : camelCase
+    public variables, public methods   : camelCase
+    enums and global constants         : ALL_CAPS
+    local/global constants             : prefix with k ( kPipeTimeout )
+    Parameters                         : camelCase
+    Objects and Constructors           : PascalCase
+    Packages/Namespaces                : lowercase
+    Methods                            : camelCase
 
-//local constant
-var kActiveProvider = livego.Enum.ProviderType.TWITTER;
 
-//do not start functions other than constructors with UpperCase.
-function user(){}
-var john = new user(); //incorrect
-function User(){}
-var john = new User(); //correct
+**Note:** Use camelCase for acronyms.
 
-function GetAccountDetails(){} //incorrect
-function getAccountDetails(){} //correct
+        methodName.wcf.INSERT;// correct
 
-### 3.9  FILE HEADERS
+        methodName.WCF.INSERT;// incorrect
+        
+        getDOMNode() // incorrect
+        
+        getDomNode() // correct
 
-### 3.10 CURLY LOVE
+        o2.StringHelper.htmlEncode() // correct
+        o2.StringHelper.HTMLEncode() // incorrect
 
-### 3.11 DEFAULT FALLBACKS
+Some more examples:
 
-### 3.12 BOOLEAN COMPARISONS
+        // Local constant:
+        var kActiveProvider = enums.ProviderType.TWITTER;
 
-### 3.13 VARIABLE ACCESS
+        // Do not start functions other than constructors with UpperCase.
+        function user(){}
+        var john = new user(); // incorrect
 
-### 3.14 STATEMENT TERMINATION
+        function User(){}
+        var john = new User(); // correct
+
+        function GetAccountDetails(){} // incorrect        
+        function getAccountDetails(){} // correct
+
+### 3.10  FILE HEADERS
+
+### 3.11 CURLY LOVE
+
+### 3.12 DEFAULT FALLBACKS
+
+### 3.13 BOOLEAN COMPARISONS
+
+### 3.14 VARIABLE ACCESS
+
+### 3.15 STATEMENT TERMINATION
 
 ## 4. o2.js JAVASCRIPT CODING BEST-PRACTICES
 
