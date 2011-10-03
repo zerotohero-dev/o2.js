@@ -22,8 +22,9 @@ client-heavy **JavaScript** project.
 **Coding Conventions** is a must-have for any large-scale long-lived
 software project.
 
-*Nearly %80 of the development time* in large-scale software projects go
-to **maintenance**, **patching**, and **rewriting** the codebase. 
+> *Nearly %80 of the development time* in large-scale software projects go
+> to **maintenance**, **patching**, and **rewriting** the codebase. 
+
 During their lifetime, these large-scale software projects are not coded 
 and maintained by one person, and everyone's coding style and preferences
 differ.
@@ -44,10 +45,10 @@ debug lines, print statements, or alerts.
 
 There should **not** be commented out code.
 
-The whole point of using a *version control system* is to eliminate the
-need of leaving commented out code in the source code. Instead of
-leaving the code commented out, one should utilize the version control
-system's *diff&merge* utility.
+> The whole point of using a *version control system* is to eliminate the
+> need of leaving commented out code in the source code. Instead of
+> leaving the code commented out, one should utilize the version control
+> system's *diff&merge* utility.
 
 If there is a code piece that you long to keep, save it in an 
 external file **outside** the project folder.
