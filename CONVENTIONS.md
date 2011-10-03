@@ -166,7 +166,7 @@ Indent...
                 break;
         }
 
-* Statements inside a **closure**:
+* Statements **inside** a *closure*:
 
             me.EventHandler.preventDefault = window.event ? function() {
     
@@ -292,7 +292,7 @@ Insert **one** blank line...
                 
                 ...
 
-* **Before**, **after**, and inside a *try/catch/finally* construct:
+* **Before**, **after**, and **inside** a *try/catch/finally* construct:
 
         function processCallbacks(xhr, callbacks) {
     
@@ -478,8 +478,99 @@ The brace positions should be as follows:
                 
                 ...
 
+### 3.5  SPACES
+
+The spacing should be as follows:
+
+* Commas: **before**: 0, **after**: 1
+* Parentheses: **before**: 0, **after**: 0
+* Semicolons in for statements: **before**: 0, **after**: 1
+* Arithmetic operators: **before**: 1, **after**: 1
+* Relational operators: **before**: 1, **after**: 1
+* Unary (*++, --*) operators: **before**: 0, **after**: 0
+* Assignments: **before**: 1, **after**: 1
+* Conditional operators: before: 1, after: 1
+* Key-value (*{'a':'b'}*) operators: **before**: 1, **after**: 1
+
 ### 3.5  NEW LINES
 
+* *DO NOT* insert a new line *before* else statement.
+* *DO NOT* insert a new line *before* if and else-if statement.
+* *DO NOT* insert a new line *before* catch statement.
+* *DO NOT* insert a new line *before* finally statement.
+* *DO NOT* insert a new line *before* while in a do statement.
+* **DO** insert a new line *before* ' name : value ' pairs.
+* **DO** separate *logical code fragments* from each other *with a new line*.
+
+Example:
+
+        // Functions
+        function foo() {
+        
+            do {
+            
+            } while(true);
+            
+            try {
+            
+                alert('hello');
+            
+            } catch(e) {
+            
+            
+            } finally {
+            
+            
+            }
+            
+        }
+    
+        function bar(a) {
+            
+            if(true) {
+            
+                return;
+            }
+            
+            // If-Else
+            if(false) {
+            
+                alert('hello');
+            } else if(a > 0) {
+            
+                alert(a);
+            } else {
+            
+                alert(0);
+            }
+        
+        }
+    
+        // Switch-Case
+        switch (a) {
+            case 1:
+        
+                alert('1');
+                
+                break;
+            case 2:
+                break;
+            default:
+                alert('none');
+        }
+    
+        // Closures
+        (function fooInGroup(a, b) {
+    
+        }(a, b));
+    
+        // Associative Objects
+        var associative = {
+           name1: 'value1',
+           name2: 'value2',
+           name3: 10,
+           'float': 'left //float is a keyword and thus it's escaped.
+        };
 
 
 ### 3.6  STRINGS
