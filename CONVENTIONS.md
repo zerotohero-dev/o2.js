@@ -927,7 +927,36 @@ Declare every variable on a new line:
 ## 4. o2.js JAVASCRIPT CODING BEST-PRACTICES
 
 ### 4.1.  JSLINT YOUR CODE
+
+[JSLint][2] is a **must-have** great tool written in **JavaScript** that allows you to validate your 
+**JavaScript** code against a **strict** and **rigrous** set of best practises. 
+
+Written by [Douglas Crockford][2] it is a must have for anyone keep theier code-base ship shape.
+
+[JSLint][2] your code to prevent bugs and surprises creep into it.
+
+Automate the usage of **JsLint** by integrating, **JSLint** validation to your web application's
+build & deployment cycle.
+
+[2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
+[3]: hhttp://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
+
 ### 4.2.  SHOW LOVE TO THE MODULE PATTERN
+
+**o2.js** files are organized in modules using the [module pattern][3]
+
+[3] http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
+
+Each o2.js module has the following basic structure.
+
+    ( function(framework, window, UNDEFINED) {
+
+        ... module code goes here ...
+
+    }(o2, this));
+
+
+
 ### 4.3.  DO NOT POLLUTE THE GLOBAL NAMESPACE
 ### 4.4.  AVOID GOD OBJECTS and GOD METHODS
 ### 4.5.  DO NOT INCLUDE TYPE INFORMATION WHILE NAMING VARIABLES
@@ -994,14 +1023,7 @@ should be "ready for release" *AT ANY TIME*.
 
 ### o2.js MODULES ###
 
-o2.js files are organized in modules using the module pattern [1]
-[1] http://o2js.com/2011/04/24/the-module-pattern/
 
-Each o2.js module has the following basic structure.
-
-( function(o2, window, UNDEFINED) {
-    ... module code goes here ...
-}(o2, this));
 
 ### Heading ###
 
