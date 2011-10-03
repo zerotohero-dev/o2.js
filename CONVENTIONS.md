@@ -738,6 +738,19 @@ Example:
     
         o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
 
+* Use *camelCase* for acronyms:
+
+        config.constants.methodName.wcf.INSERT;// correct
+    
+        config.constants.methodName.WCF.INSERT;// incorrect
+        
+        getDOMNode() // incorrect
+        
+        getDomNode() // correct
+    
+        o2.StringHelper.htmlEncode() // correct
+        o2.StringHelper.HTMLEncode() // incorrect
+
 * **Be consistent** in naming your methods; do not give different names to 
 two methods which are essentially doing the same thing.
 
@@ -752,20 +765,6 @@ two methods which are essentially doing the same thing.
     Objects and Constructors           : PascalCase
     Packages/Namespaces                : lowercase
     Methods                            : camelCase
-
-
-**Note:** Use *camelCase* for acronyms:
-
-    config.constants.methodName.wcf.INSERT;// correct
-
-    config.constants.methodName.WCF.INSERT;// incorrect
-    
-    getDOMNode() // incorrect
-    
-    getDomNode() // correct
-
-    o2.StringHelper.htmlEncode() // correct
-    o2.StringHelper.HTMLEncode() // incorrect
 
 Some more examples:
 
