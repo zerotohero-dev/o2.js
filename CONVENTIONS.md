@@ -943,9 +943,12 @@ build & deployment cycle.
 
 ### 4.2.  SHOW LOVE TO THE MODULE PATTERN
 
-**o2.js** files are organized in modules using the [module pattern][3]
+[Modules][3] are simply self-executing function literals. 
+They create their own *private* **static** context, and encapsulate the business
+logic inside. This will (*in theory*) enable developers safely write their own code,
+without effecting the code that others have been developing.
 
-[3] http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
+**o2.js** files are organized in modules using the [module pattern][3]
 
 Each o2.js module has the following basic structure.
 
@@ -955,9 +958,21 @@ Each o2.js module has the following basic structure.
 
     }(o2, this));
 
-
+[3] http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
 ### 4.3.  DO NOT POLLUTE THE GLOBAL NAMESPACE
+
+This is a corollary to 4.2. 
+
+**Avoid using public variables and public functions at all costs**.
+
+Global variables and functions are rarely, if ever, required.
+Using globals  cause naming conflicts between JavaScript source files
+and cause code  to break unexpectedly. For this reason, it is a good
+practice to encapsulate functionality within *namespaces*.
+
+Use namespaces and break code into modules.
+Modules, modules, modules. Not functions, functions, functions.
 ### 4.4.  AVOID GOD OBJECTS and GOD METHODS
 ### 4.5.  DO NOT INCLUDE TYPE INFORMATION WHILE NAMING VARIABLES
 ### 4.6.  DO NOT MIX HTML AND JAVASCRIPT
