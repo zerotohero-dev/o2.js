@@ -664,8 +664,6 @@ you'd do in a normal sentence.
 * Use **nouns** for **members**, **constants** and **variables**.
 
 * Use **is**, **has**, **should**... prefixes for methods that return a **boolean**.
-
-    **Example**:
         
         // Incorrect:
             if(statusToState(user.status) == kLoggedIn) { // Status is a "noun".
