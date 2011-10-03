@@ -29,10 +29,13 @@ and maintained by one person, and everyone's coding style and preferences
 differ.
 
 In this essence, **coding conventions** constitute a shared language
-between the developer team. It increases the readability of the code,
-and makes the code less error-prone.
+between the developer team. They increase the readability of the code,
+and make the code less error-prone.
 
 ## 3. o2.js JAVASCRIPT CODING STANDARDS
+
+Here are the main code conventions, standards, and guidelines used 
+within **o2.js** source files:
 
 ### 3.1. CODE CLEANLINESS
 
