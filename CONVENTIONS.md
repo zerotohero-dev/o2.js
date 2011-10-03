@@ -123,6 +123,28 @@ Insert a blank line
                 return -1;
             }
 
+* **After** variable declerations
+
+            var nodeName = 'div';
+
+            if(config.isUsingConsole && config.outputElement) {
+
+                return function(value, className) {
+
+                    println(value, className);
+
+                    var debugContent = document.createElement(nodeName);
+
+                    debugContent.className = className;
+                    debugContent.innerHTML = value;
+                    config.outputElement.appendChild(debugContent);
+
+                };
+                
+                ...
+                
+* **After** *function* declerations
+
 ### 3.3. LINE LENGTH
 
 To sustain code readability, limit the line length to **160 characters**.
@@ -134,11 +156,61 @@ continue from the next line.
 The brace positions should be as follows:
 
 * **Same line**, in blocks (C-Style).
+
+        for(var key in ar) {
+            if(ar.hasOwnProperty(key)) {
+                value = ar[key];
+
+                if(shouldDeepCopy && ( typeof value == 'object')) {
+                    theCopy[key] = me.CollectionHelper.copy(value, shouldDeepCopy);
+
+                    continue; 
+                }
+
+                theCopy[key] = value;
+            }
+        }
+
 * **Same line**, in function declarations (C-Style).
+
+        removeElementByValue : function(collection, name, value, isRecursive) {
+
+            var item = null;
+            var isNested = !!isRecursive;
+
+            var removeElementByValue = o2.CollectionHelper.removeElementByValue;
+            
+            ...
+
 * **Same line**, in switch statements (C-Style).
-* **Same line**, in case statements (C-Style).
+ 
+        switch(className) {
+            case ccc.LOG:
+
+                try {
+                    console.log(text);
+
+                } catch(ignore1) {
+
+                }
+
+                break;
+            case ccc.INFO:
+
+                try {
+                    console.info(text);
+
+                } catch(ignore2) {
+
+                }
+
+                break;
+                
+                ...
 
 ### 3.5  NEW LINES
+
+
 
 ### 3.6  STRINGS
 
@@ -251,3 +323,6 @@ Each o2.js module has the following basic structure.
 comment // and a space after -- proper sentence.
         // Open the connection.
         xhr.open(verb, url, isAsync);
+
+---
+documentation
