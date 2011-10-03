@@ -707,8 +707,6 @@ you'd do in a normal sentence.
 
 * Use **camelCase** for **method names** and **member names**, use **ALL_CAPS** for **constants**.
 
-    **Example**:
-
         function getUserInfo(){
         }
     
