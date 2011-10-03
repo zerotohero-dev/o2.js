@@ -651,9 +651,9 @@ you'd do in a normal sentence.
     Exception:
     It's okay to prefix form elements with txt, btn and the like.
 
-        var txtLogin = document.getElementById('loginInput'); //OK
-        var btnAction = document.getElementById('submitForm'); //OK
-        var optCountry = document.getElementById('countrySelection'); //OK
+        var txtLogin = document.getElementById('loginInput'); // OK
+        var btnAction = document.getElementById('submitForm'); / /OK
+        var optCountry = document.getElementById('countrySelection'); // OK
 
 * Use **verbs** for **function names**.
 
@@ -661,33 +661,33 @@ you'd do in a normal sentence.
 
 * Use **is**, **has**, **should**... prefixes for methods that return a **boolean**.
 
-    Example:
+Example:
         
-        // Incorrect:
-            if(statusToState(user.status) == kLoggedIn) { //status is a "noun"
-                userLogin(); //user is a "noun".
-            }
-    
-            if(loggedIn()) {
-                stuff();//stuff is a "noun".
-            }
-    
-            if(goToNextPage()) { //this method returns a boolean.
-                nextPage(); //next is a "noun".
-            }
+    // Incorrect:
+        if(statusToState(user.status) == kLoggedIn) { // Status is a "noun".
+            userLogin(); // User is a "noun".
+        }
 
-        //Correct:
-            if(mapUserStatusToState(user.status) == kLoggedIn) {
-                logUserIn();
-            }
+        if(loggedIn()) {
+            stuff();// Stuff is a "noun".
+        }
 
-            if(isLoggedIn) {
-                doStuff();
-            }
+        if(goToNextPage()) { // this method returns a boolean.
+            nextPage(); // next is a "noun".
+        }
 
-            if(shouldGoToNextPage()) {
-                goToNextPage();
-            }
+    // Correct:
+        if(mapUserStatusToState(user.status) == kLoggedIn) {
+            logUserIn();
+        }
+
+        if(isLoggedIn) {
+            doStuff();
+        }
+
+        if(shouldGoToNextPage()) {
+            goToNextPage();
+        }
 
 
 * Use **singular** names for **namespaces**:
@@ -701,7 +701,7 @@ you'd do in a normal sentence.
 
 * Use **camelCase** for **method names** and **member names**, use **ALL_CAPS** for **constants**.
 
-Example:
+**Example**:
 
         function getUserInfo(){
         }
@@ -719,19 +719,19 @@ Example:
             }
         };
 
-    Exception:
-        Event-handler callbacks is an exception to this naming convention.
-    
-        Example:
-            var EventCallback = {
-                // Not in camelCase.
-                // Format: domobject_eventname (all lowercase)
-                document_mousedown: function(evt){
+**Exception:**
 
-                }
-            };
+Event-handler callbacks is an exception to this naming convention:
 
-            o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
+    var EventCallback = {
+        // Not in camelCase.
+        // Format: domobject_eventname (all lowercase)
+        document_mousedown: function(evt){
+
+        }
+    };
+
+    o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
 
 
 * **Be consistent** in naming your methods; do not give different names to 
@@ -750,33 +750,33 @@ two methods which are essentially doing the same thing.
     Methods                            : camelCase
 
 
-**Note:** Use camelCase for acronyms.
+**Note:** Use *camelCase* for acronyms:
 
-        methodName.wcf.INSERT;// correct
+    config.constants.methodName.wcf.INSERT;// correct
 
-        methodName.WCF.INSERT;// incorrect
-        
-        getDOMNode() // incorrect
-        
-        getDomNode() // correct
+    config.constants.methodName.WCF.INSERT;// incorrect
+    
+    getDOMNode() // incorrect
+    
+    getDomNode() // correct
 
-        o2.StringHelper.htmlEncode() // correct
-        o2.StringHelper.HTMLEncode() // incorrect
+    o2.StringHelper.htmlEncode() // correct
+    o2.StringHelper.HTMLEncode() // incorrect
 
 Some more examples:
 
-        // Local constant:
-        var kActiveProvider = enums.ProviderType.TWITTER;
+    // Local constant:
+    var kActiveProvider = enums.ProviderType.TWITTER;
 
-        // Do not start functions other than constructors with UpperCase.
-        function user(){}
-        var john = new user(); // incorrect
+    // Do not start functions other than constructors with UpperCase.
+    function user(){}
+    var john = new user(); // incorrect
 
-        function User(){}
-        var john = new User(); // correct
+    function User(){}
+    var john = new User(); // correct
 
-        function GetAccountDetails(){} // incorrect        
-        function getAccountDetails(){} // correct
+    function GetAccountDetails(){} // incorrect        
+    function getAccountDetails(){} // correct
 
 ### 3.10  FILE HEADERS
 
