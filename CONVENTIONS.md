@@ -194,7 +194,7 @@ Indent...
 
 ### 3.3. BLANK LINES
 
-Leave **at most** one blank lines.
+Leave **at most** one blank line.
 
 Insert **one** blank line...
 
