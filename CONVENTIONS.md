@@ -426,13 +426,13 @@ Insert **one** blank line...
 
         return xhr;    
 
-### 3.3. LINE LENGTH
+### 3.4. LINE LENGTH
 
 To sustain code readability, limit the line length to **160 characters**.
 If the line (*including the indentation*) exceeds **160 characters**, 
 continue from the next line.
 
-### 3.4. BRACE POSITIONING
+### 3.5. BRACE POSITIONING
 
 The brace positions should be as follows:
 
@@ -489,7 +489,7 @@ The brace positions should be as follows:
                 
                 ...
 
-### 3.5  SPACES
+### 3.6.  SPACES
 
 The spacing should be as follows:
 
@@ -508,7 +508,7 @@ The spacing should be as follows:
 
         // This is correct with a space.
 
-### 3.6  NEW LINES
+### 3.7.  NEW LINES
 
 * **DO NOT** insert a new line *before* else statement.
 * **DO NOT** insert a new line *before* if and else-if statement.
@@ -521,6 +521,7 @@ The spacing should be as follows:
 Example:
 
         // Functions
+        
         function foo() {
         
             do {
@@ -549,6 +550,7 @@ Example:
             }
             
             // If-Else
+            
             if(false) { 
                 alert('hello');
             } else if(a > 0) {
@@ -560,6 +562,7 @@ Example:
         }
     
         // Switch-Case
+        
         switch (a) {
             case 1:
                 alert('1');
@@ -573,11 +576,13 @@ Example:
         }
     
         // Closures
+        
         (function fooInGroup(a, b) {
     
         }(a, b));
     
         // Associative Objects
+        
         var associative = {
            name1: 'value1',
            name2: 'value2',
@@ -588,7 +593,7 @@ Example:
         };
 
 
-### 3.7  STRINGS
+### 3.8.  STRINGS
 
 Use single quotes ( `'` ) for string literals.
 
@@ -600,7 +605,7 @@ Example:
         //Correct:
         var test = 'lorem ipsum dolor sit amet';
 
-### 3.8  COMMENTS
+### 3.9. COMMENTS
 
 Use [jsDoc syntax][1] for documenting modules, functions, objects, and
 structs. 
@@ -629,7 +634,7 @@ you'd do in a normal sentence.
 
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
-### 3.9  VARIABLE & METHOD NAMING
+### 3.10.  VARIABLE & METHOD NAMING
 
 * Use meaningful variable (and function) names:
 
@@ -780,7 +785,7 @@ Some more examples:
     function GetAccountDetails(){} // incorrect        
     function getAccountDetails(){} // correct
 
-### 3.10  FILE HEADERS
+### 3.11.  FILE HEADERS
 
 Each file (*module*) should have a descriptive header.
 The *module* header should also be in [JSDoc Format][1].
@@ -799,7 +804,7 @@ The *module* header should also be in [JSDoc Format][1].
      * methods.</p>
      */
 
-### 3.11 CURLY LOVE
+### 3.12. CURLY LOVE
 
 Use curly braces, even when they are not strictly necessary.
 
@@ -831,7 +836,7 @@ Use curly braces, even when they are not strictly necessary.
         }
     }
 
-### 3.12 DEFAULT FALLBACKS
+### 3.13. DEFAULT FALLBACKS
 
 All switch-case's should have a `default:` exit point. 
 That last fallback should at least have a log statement.
@@ -861,7 +866,7 @@ A single `if` statement may not be regarded as an if-else *"chain"*, so it's oka
             log('controller has more templates'); 
         } -- not required -- */
 
-### 3.13 BOOLEAN COMPARISONS
+### 3.14. BOOLEAN COMPARISONS
 
 **DO NOT** directly compare with **true**, or **false**.
 
@@ -877,9 +882,47 @@ A single `if` statement may not be regarded as an if-else *"chain"*, so it's oka
     // Correct:
     while(condition)
 
-### 3.14 VARIABLE ACCESS
+### 3.15. VARIABLE ACCESS
 
-### 3.15 STATEMENT TERMINATION
+* **DO NOT** access the same variable more than once:
+
+    v[i] = ++c;  // OK
+    v[i] = ++i;  // Incorrect. Misleading.
+    i = i + 1;   // OK
+    i = ++i + 1; // Incorrect an unnecessary;
+                 // i += 2 should have been better.
+                 
+* Aim to minimize the scope of variables. Use as little global variables, global configuration data,
+and global functions as possible. Use **modules** and **namespaces** to achieve that.
+
+### 3.16. STATEMENT TERMINATION
+
+Always terminate statements with a semicolon (`;`):
+
+    // Incorrect:
+    var i = 10 
+    
+    // Correct:
+    var i = 01;
+    
+    // Incorrect:
+    var test = function(){
+    }
+
+    // Correct:
+    var test = function(){
+    };
+    
+### 3.17.  VARIABLE DECLERATIONS
+
+Declare every variable on a new line:
+
+    // Incorrect:
+    var a, b;
+
+    // Correct.
+    var a;
+    var b;
 
 ## 4. o2.js JAVASCRIPT CODING BEST-PRACTICES
 
