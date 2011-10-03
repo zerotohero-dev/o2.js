@@ -706,7 +706,7 @@ Example:
 
 * Use **camelCase** for **method names** and **member names**, use **ALL_CAPS** for **constants**.
 
-**Example**:
+    **Example**:
 
         function getUserInfo(){
         }
@@ -724,20 +724,19 @@ Example:
             }
         };
 
-**Exception:**
+    **Exception:**
 
-Event-handler callbacks is an exception to this naming convention:
+    Event-handler callbacks is an exception to this naming convention:
 
-    var EventCallback = {
-        // Not in camelCase.
-        // Format: domobject_eventname (all lowercase)
-        document_mousedown: function(evt){
-
-        }
-    };
-
-    o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
-
+        var EventCallback = {
+            // Not in camelCase.
+            // Format: domobject_eventname (all lowercase)
+            document_mousedown: function(evt){
+    
+            }
+        };
+    
+        o2.addEventListener(document, 'mousedown', EventCallback.document_mousedown);
 
 * **Be consistent** in naming your methods; do not give different names to 
 two methods which are essentially doing the same thing.
