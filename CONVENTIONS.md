@@ -198,7 +198,7 @@ Leave **at most** one blank line.
 
 Insert **one** blank line...
 
-* **Before** *throw*, *break*, *continue*, *return* statements:
+* **Before** *throw*, *break*, *continue*, and *return* statements:
 
         if(!url) {
 
@@ -343,7 +343,7 @@ Insert **one** blank line...
         }
 
 
-* **Before** *any* kind of *comment*s:
+* **Before** *any* kind of *comment*:
 
         ...
     
@@ -499,13 +499,13 @@ The spacing should be as follows:
 * Conditional operators: before: 1, after: 1
 * Key-value (*{'a':'b'}*) operators: **before**: 1, **after**: 1
 
-### 3.5  NEW LINES
+### 3.6  NEW LINES
 
-* *DO NOT* insert a new line *before* else statement.
-* *DO NOT* insert a new line *before* if and else-if statement.
-* *DO NOT* insert a new line *before* catch statement.
-* *DO NOT* insert a new line *before* finally statement.
-* *DO NOT* insert a new line *before* while in a do statement.
+* **DO NOT** insert a new line *before* else statement.
+* **DO NOT** insert a new line *before* if and else-if statement.
+* **DO NOT** insert a new line *before* catch statement.
+* **DO NOT** insert a new line *before* finally statement.
+* **DO NOT** insert a new line *before* while in a do statement.
 * **DO** insert a new line *before* ' name : value ' pairs.
 * **DO** separate *logical code fragments* from each other *with a new line*.
 
@@ -579,7 +579,7 @@ Example:
         };
 
 
-### 3.6  STRINGS
+### 3.7  STRINGS
 
 Use single quotes ( `'` ) for string literals.
 
@@ -598,7 +598,7 @@ structs.
 
 Use **only** line comments ( `//` ) for in-line comments.
 
-You *MUST* comment critical or tricky parts of the code, or important
+You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
 at a first glance.
 
@@ -609,6 +609,146 @@ have  any negative impact on *performance* or *file size*.
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
 ### 3.8  VARIABLE & METHOD NAMING
+
+se meaningful variable (and function) names:
+
+    var kSixteen = 16; //incorrect.
+    var kNumberOfBits = 16; //better.
+
+Use long and descriptive variable (and function) names.
+
+    usrAvail = true;//incorrect.
+    isUserAvailable = true;
+
+Choose readable variable names:
+
+    var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101); //WTF?
+
+Do not use hungarion notation:
+
+    var dblIncome = 100.12;//incorrect.
+    var income = 100.12;/correct -- no prefix.
+
+Exception:
+    It's okay to prefix form elements with txt, btn and the like.
+
+    var txtLogin = document.getElementById('loginInput'); //OK
+    var btnAction = document.getElementById('submitForm'); //OK
+    var optCountry = document.getElementById('countrySelection'); //OK
+
+Use verbs for function names.
+Use nouns for members, constants and variables.
+
+Use is, has, should... prefixes for methods that return a boolean.
+
+Example:
+    //Incorrect:
+        if(statusToState(user.status) == kLoggedIn){//status is a "noun"
+            userLogin();//user is a "noun".
+        }
+
+        if(loggedIn()){
+            stuff();//stoff is a "noun".
+        }
+
+        if(goToNextPage()){//this method returns a boolean.
+            nextPage(); //next is a "noun".
+        }
+
+    //Correct:
+        if(mapUserStatusToState(user.status) == kLoggedIn) {
+            logUserIn();
+        }
+
+        if(isLoggedIn){
+            doStuff();
+        }
+
+        if(shouldGoToNextPage()){
+            goToNextPage();
+        }
+
+
+
+
+
+Use *singular* names for constants:
+
+    var kFullName = constants.member.FULL_NAME //"member", not "members"
+
+Use *plural* names for collections:
+
+    var members = getOnlineMembers(); //"members", not "member".
+
+USE camelCase FOR METHODS and MEMBERS, use ALL_CAPS for constants.
+
+Example:
+
+    function getUserInfo(){
+    }
+
+    function renderNewLoginForm(){
+    }
+
+    var config = {
+        constants: {
+            memberRegistrationStatus: {
+                REGISTERED: 3,
+                WAITING_APPROVAL: 1,
+                NOT_INITIALIZED: 0
+            }
+        }
+    };
+
+    Exception:
+        Event-handler callbacks is an exception to this naming convention.
+    Example:
+        groups.mobile.EventCallback = {
+            //not camelCase.
+            //format: domobject_eventname (all lowercase)
+            document_mousedown: function(evt){
+
+            }
+        };
+
+        groups.mobile.framework.addEventListener(document, 'mousedown',
+        groups.mobile.EventCallback.document_mousedown);
+
+Be consistent in naming your methods; do not give different names to two
+methods which are essentially doing the same thing.
+
+
+Summary:
+variables, object, functions       : camelCase ( getStatusRecord() )
+private variables, private methods : camelCase
+public variables, public methods   : camelCase
+enums and global constants         : ALL_CAPS
+local/global constant              : prefix with k ( kPipeTimeout )
+Parameters                         : camelCase
+Objects and Constructors           : PascalCase
+Packages                           : lowercase
+Methods                            : camelCase
+
+
+Note: Use camelCase for acronyms.
+
+groups.methodname.wcf.INSERT;// correct
+groups.methodname.WCF.INSERT;// incorrect
+
+groups.framework.StringHelper.htmlEncode()// correct
+groups.framework.StringHelper.HTMLEncode()// incorrect
+
+//local constant
+var kActiveProvider = livego.Enum.ProviderType.TWITTER;
+
+//do not start functions other than constructors with UpperCase.
+function user(){}
+var john = new user(); //incorrect
+function User(){}
+var john = new User(); //correct
+
+function GetAccountDetails(){} //incorrect
+function getAccountDetails(){} //correct
 
 ### 3.9  FILE HEADERS
 
