@@ -694,10 +694,10 @@ Example:
 
         var kFullName = config.constants.member.FULL_NAME // "member", not "members"
 
-**Exception**:
-
-One exception to this rule is the use of **constants** (*as above*), and **enums**, 
-in order to differentiate them from *constant* and *enum* keywords.
+    **Exception**:
+    
+    One exception to this rule is the use of **constants** (*as above*), and **enums**, 
+    in order to differentiate them from *constant* and *enum* keywords.
 
 * Use **plural** names for **collections**:
 
