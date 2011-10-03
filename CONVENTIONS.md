@@ -782,11 +782,100 @@ Some more examples:
 
 ### 3.10  FILE HEADERS
 
+Each file (*module*) should have a descriptive header.
+The *module* header should also be in [JSDoc Format][1].
+
+    /**
+     * @module domhelper.dimension
+     * @requires domhelper.core
+     *
+     * <!--
+     *  This program is distributed under
+     *  the terms of the MIT license.
+     *  Please see the LICENSE file for details.
+     * -->
+     *
+     * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
+     * methods.</p>
+     */
+
 ### 3.11 CURLY LOVE
+
+Use curly braces, even when they are not strictly necessary.
+
+    // Which 'if' belongs to which 'else' ?!
+    if (b1) if (b2) foo(); else bar();
+
+    // This is better:
+    if (b1) {
+        if (b2) {
+            foo();
+        } else {
+            bar();
+        }
+    }
+
+    // Incorrect:
+    function method() {
+        for(int i = 0; i < 10; i++)
+            if(i != 0)
+                foo();
+    }
+
+    // Correct:
+    function method() {
+        for(int i = 0; i < 10; i++) {
+            if(i != 0) {
+                foo();
+            }
+        }
+    }
 
 ### 3.12 DEFAULT FALLBACKS
 
+All switch-case's should have a `default:` exit point. 
+That last fallback should at least have a log statement.
+
+All if-else chains should have an `else` in the end. 
+That last else should at least have a log statement.
+
+        if ('no' == answer) {
+            alert('You said no');
+        } else if ('yes' == answer) {
+            alert('You said yes');
+        } else {
+
+            // This block should be here, even if we do not
+            // care about any outcome other than 'yes' or 'no
+            assert('I should not be here');
+        }
+
+*Exception*:
+
+A single `if` statement may not be regarded as an if-else *"chain"*, so it's okay to leave single if's without an else.
+
+        if(controller.isLoadingTemplates()) { 
+        
+            return; 
+        } /*else { 
+            log('controller has more templates'); 
+        } -- not required -- */
+
 ### 3.13 BOOLEAN COMPARISONS
+
+**DO NOT** directly compare with **true**, or **false**.
+
+    // Incorrect:
+    while(condition == false) 
+    
+    // Incorrect:
+    while(condition != true) 
+    
+    // You got the point:
+    While(((condition == true) == true) == true) 
+    
+    // Correct:
+    while(condition)
 
 ### 3.14 VARIABLE ACCESS
 
