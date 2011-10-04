@@ -624,13 +624,13 @@ Use **full sentences** in both **documentation** and **inline** comments.
 Start each comment with **capital** letter, and it with a **full stop** as
 you'd do in a normal sentence.
 
-        Incorrect:
-            // sync request -- process response
-            processCallbacks(xhr, callbacks);
+    Incorrect:
+        // sync request -- process response
+        processCallbacks(xhr, callbacks);
 
-        Correct:
-            // If the request is sync, then process the response immediately.
-            processCallbacks(xhr, callbacks);        
+    Correct:
+        // If the request is sync, then process the response immediately.
+        processCallbacks(xhr, callbacks);        
 
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
@@ -1048,7 +1048,7 @@ every page of the site, and if you need to change the functionality,
 you can do that in one document rather than going through and replacing
 each **onclick** event on every single template.
 
-> Do't be a lazy `b****`, and **decouple** your JavaScript!
+> Don't be a lazy `b****`, and **decouple** your JavaScript!
 
  **Coupling is bad**, and we know it. 
  
