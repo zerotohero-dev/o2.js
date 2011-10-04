@@ -1765,7 +1765,7 @@ The method should be taken out of the class and put into a library.
 The source code in the repository, at any given time, **SHOULD NOT** contain
 any build errors, syntax errors, runtime errors, or logic errors. 
 
-This is only possible if *DO NOT* check-in garbage code.
+This is only possible if **DO NOT** check-in garbage code.
 
 The Source Code Repository is not your FTP backup place. 
 
