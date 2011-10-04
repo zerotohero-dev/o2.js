@@ -1072,12 +1072,175 @@ In short;
 (PHP should not spit out thousands of lines of of server-generated JavaScript)
 
 ### 4.8.  USE EVENT-DELEGATION
+
+**Do not** register every single click event, on every single object. 
+
+When there are large numbers of objects, which the application has to listen
+and respond to, hanging around, adding an event handler to each and every
+single one of those objects will have a **huge** impact on **performance** and
+**memory utilization**.
+
+Use [event delegation][9] instead.
+
+[Event delegation][9] is **faster**, **scalable**, and **easier to maintain**.
+
+[9]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
+
 ### 4.9.  USE EVENT-DRIVEN PROGRAMMING
-### 4.10.  AVOID MAGIC STRINGS AND MAGIC NUMBERS
+
+Use [event-driven programming][10]. Web apps will **always** be event driven.
+
+You're either responding to a **user event**, or a **system event**.
+
+Architect and program your components as such.
+
+[10]: http://en.wikipedia.org/wiki/Event-driven_programming "Event-Driven Programming"
+
+### 4.10.  AVOID MAGIC STRINGS AND MAGIC NUMBERS LIKE PLAGUE
+
+Use **symbolic constants** for **numeric literals** and **string literals**.
+
+    // Incorrect:
+    
+    var j = 0;
+    for(var i=0, len=52, i<len; i++){
+        j = i + getRandomInt(53 - i) - 1;
+        swapDeck(i, j);
+    }
+
+
+What if we wish to use a deck size of 114 (2 decks).
+You can say that we can find/replace all "52"si with "114"s and
+we're done. But even a mass find/replace will not be able to catch
+the number 53 in the 3rd line, and it will pop-up as a logic error
+which we will hardly be able to find out.
+
+> The **rule-of-thumb** should be to store anything that's prone to change
+> (**numbers**, **parameters**, **strings**) in either symbolic constants 
+> or in **shared static public configuration structs** as constant members.
+
+Here's the correct way of doing the above deck shuffling:
+
+    var kDeckSize = 52;
+    var j = 0;
+    
+    for(var i=0, len=kDeckSize, i<len; i++){
+        j = i + getRandomInt(kDeckSize + 1 - i) - 1;
+        swapDeck(i, j);
+    }
+
+Moreover, if there's a relation between two symbolic constants, this
+relation should be **explicitly indicated**:
+
+    var kMaxItems = 32;
+    var kHighWaterRank = (3 * kMaxItems) / 4; //instead of 24.
+
 ### 4.11. DECOUPLE OBJECTS & MINIMIZE VARIABLE SCOPE
+
+Objects and methods should have as little information about each other as possible.
+That's the major motivator behind **object-oriented programming*.
+
+Minimize variable scopes. Use the [module pattern][11].
+
+> The larger the scope of the variables, the harder it is to maintain the code.
+
+*Avoid* global variables and global methods at all costs.
+
+[11]: http://o2js.com/2011/04/24/the-module-pattern/ "The JavaScript Module Pattern"
+
 ### 4.12. REPLACE TEMPORARY VARIABLES WITH QUERY METHODS
+
+Chaining temp variables with query functions, **reduces** the number of
+variables used in the code, and **decreases** the possibility to make an error.
+
+This usage might have a slight performance impact, which can be overcome by [memoization][12].
+
+[12]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "JavaScript Function Kung-Fu"
+
+Compare this:
+
+    var basePrice = quantity * itemPrice;
+
+    ...
+
+    // base price can be overridden anywhere in the code.
+
+    if (basePrice > 1000) {
+        return basePrice * 0.95;
+    } else {
+        return basePrice * 0.98;
+    }
+
+against this:
+
+    // Instead...
+    
+    function getBasePrice(){
+        return quantity * itemPrice;
+    }
+
+    // There's no risk in overriding the base price.
+
+    ...
+
+    if (getBasePrice() > 1000) {
+        return getBasePrice() * 0.95;
+    } else {
+        return getBasePrice() * 0.98;
+    }
+
 ### 4.13. PROGRAM DEFENSIVELY
+
+Adhere [defensive programming][13] best-practices. 
+
+[13]: http://en.wikipedia.org/wiki/Defensive_programming "Defensive Programming"
+
+All functions should work according to a given [contract][14].
+
+[14]: http://en.wikipedia.org/wiki/Design_by_Contract "Design by Contract"
+
+Their **in/out parameters**, exepected and unexpected **value ranges**,
+**side-effects**, **error** and **exception** situtaions etc. **SHALL** 
+be designed **before** writing the code.
+
+Use [guard-clauses][15] to avoid unexpected conditions.
+
+[15]: http://c2.com/cgi/wiki?GuardClause "Guard Clauses"
+
 ### 4.14. EXCEPTIONS ARE FOR EXCEPTIONAL CASES
+
+Exceptions are expensive. Using a nested structure of `try/catch`s 
+will increase the depth of the execution scope, which may slow down your
+code.
+
+Throw exceptions only in exceptional cases.
+If you know what's going on ("operation completed", "connection error",
+"end of stream"... etc) use return codes instead of throwing exceptions.
+
+Besides, hiding surprises inside `try { stuff() } catch(ignore){ }` kind
+of constructs, will result in logic errors that are hard to find.
+
+> `try/catch` != **CYA**
+
+Use `try/catch`s only if there's something out of your control 
+(a plugin, a custom user code that's late-bound and delegated, a queue structure
+where all the items should be processed even if some of the items do generate errors)
+
+These cases are rare and **exceptional**.
+
+And when you do use `try/catch/` blocks, remember to log the 
+errors in `catch` and cleanup state and resources in `finally`.
+
+Functions shall not throw exceptions; they
+should return meaningful error-codes instead.
+
+Summary:
+
+* `try { } catch { }` is an expensive construct in JavaScript. 
+* *DO NOT* use `try/catch`s within loops. 
+* *DO NOT* use nested `try/catch`es: Use one try-catch
+at the topmost level. 
+* **AVOID** using `try/catch`es unless it's absolutely necessary.
 
 ### 4.15. USE THE FORCE WISELY
 
