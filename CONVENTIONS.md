@@ -599,10 +599,10 @@ Use single quotes ( `'` ) for string literals.
 
 Example:
 
-        //Incorrect:
+        // Incorrect:
         var test = "lorem ipsum dolor sit amet";
     
-        //Correct:
+        // Correct:
         var test = 'lorem ipsum dolor sit amet';
 
 ### 3.9. COMMENTS
@@ -610,7 +610,34 @@ Example:
 Use [jsDoc syntax][1] for documenting modules, functions, objects, and
 structs. 
 
+[jsDoc][1]: references to method parameters shall be bold.
+
+    * @throws exception if <strong>fn</strong> callback is not defined.
+
+[jsDoc][1]: JavaScript objects should be enclosed in `<code></code>`.
+
+    * @param {DomNode} node - the DOM object (or its <code>String</code>.
+
 Use **only** line comments ( `//` ) for in-line comments.
+
+Put your inline comments on top of the part that the comment is explaining:
+
+This is correct:
+
+    // Cache the global function.
+    var fnDo = doStuff; 
+    
+This is not:
+
+    var fnDo = doStuff; // Cache the global function.
+
+This is even worse:
+
+    var fnDo = doStuff; 
+    // Cache the global function.
+
+> Keep in mind that using, or having a need to use, a lot of inline comment
+> may be an indicator that you need to split your code into subroutines.
 
 You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
@@ -1287,71 +1314,466 @@ To avoid memory leaks:
 [19]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
 
 ### 5.2. CONSIDER USING NATIVE METHODS WHENEVER POSSIBLE
+
+`for(...)` is around 3 times faster than, take for example, jQuery's 
+`$(this).each` (depending of the selector complexity, and the 
+collection size). There's no faster selector than 
+`document.getElementById()`. `Function.call` and `Function.apply` 
+are definitely faster than Prototype.js's `bind` method.
+
+The fact that you have a framework at hand, does not mean you 
+should excessively use it. Know (and learn) adequate JavaScript, 
+to use native methods in performance-and-memory-critical 
+parts of your code.
+
 ### 5.3. MINIMIZE SCOPE CHAIN AND NAMESPACE LOOKUP
+
+Instead of this...    
+
+    var lSide = collection.subcollection.items.all.left;
+    var rSide = collection.subcollection.items.all.right;
+    
+Do this:
+
+    var all = collection.subcollection.items.all;
+    var lSide = all.left; /*each dot is a namespace lookup.*/
+    var rSide = all.right;
+
+Things get worse, if the **collection** variable above is a **DOM Node**
+and the assignments are repeated in a `for` loop (both of which are not
+uncommon situtations).
+
 ### 5.4. USE ARRAY JOINS INSTEAD OF STRING CONCATENATION
+
+    // Instead of this...
+    var result = 'a' + 'b' + 'c' + 'd';
+    
+    // This is much faster:
+    var result = ['a','b','c','d'].join('');
+
 ### 5.5. USE FUNCTION POINTERS
+
+Instead of this...
+
+    function iterateOverMe(){
+        
+        for(var i = 0; i < 1000; i++){
+            lorem.ipsum.dolor.sit(i);
+        }
+        
+    }
+    
+This is much faster:
+
+    function iterateOverMe(){
+        
+        var sit = lorem.ipsum.dolor.sit;
+        
+        for(var i = 0; i < 1000; i++){
+            sit(i);
+        }
+    }
+
+As a sidenote, the first time a **function** is declared is more 
+expensive than its consecutive declerations, because the initial
+decleration both involves **namespace lookup** and **creation**;
+while the latter only involves **creation**:
+
+    //namespace lookup & creation;
+    var fnPtr = lorem.ipsum.dolor.sit;
+    
+    //second decleration is faster -- just namespace lookup.
+    var fnPtr2 = lorem.ipsum.dolor.sit;
+
+The more you reduce namespace lookups, the faster is your code.
+
 ### 5.6. ADD COMPLEX DOM SUBTREES OFFLINE
+
+Instead of this:
+
+    function tableTest() {
+    
+        var tableEl = null;
+        var rowEl = null;
+        var cellEl = null;
+        var numRows = 10;
+        var numCells = 5;
+
+        tableEl = document.createElement("TABLE");
+        tableEl = document.body.appendChild(tableEl);
+
+        for (i = 0; i < numRows; i++) {
+            rowEl = document.createElement("TR");
+
+            for (j = 0; j < numCells;j++) {
+                cellEl = document.createElement("TD");
+                cellEl.appendChild(
+                document.createTextNode("[row "+i+" cell "+j+ "]"));
+                rowEl.appendChild(cellEl);
+            }
+
+            tableEl.appendChild(rowEl);
+        }
+    
+    }
+    
+This is much faster:
+    
+    function tableTest() {
+    
+        var tableEl = null;
+        var rowEl = null;
+        var cellEl = null;
+        var numRows = 10;
+        var numCells = 5;
+
+        tableEl = document.createElement("TABLE");
+
+        for (i = 0; i < numRows; i++) {
+            rowEl = document.createElement("TR");
+
+            for (j = 0; j < numCells; j++) {
+                cellEl = document.createElement("TD");
+                cellEl.appendChild(document.createTextNode(
+                "[row "+i+" cell "+j+ "]"));
+                rowEl.appendChild(cellEl);
+            }
+
+            tableEl.appendChild(rowEl);
+        }
+
+        tableEl = document.body.appendChild(tableEl);
+    }
+
 ### 5.7. EDIT COMPLEX DOM SUBTREES OFFLINE
+
+Instead of this...
+
+    function subTrees(){
+    
+        var ul = document.getElementById("myUL");
+    
+        for (var i = 0; i < 200; i++) {
+            ul.appendChild(document.createElement("LI"));
+        }
+        
+    }
+
+This is much faster:
+
+    function subTrees(){
+        
+        var ul = document.getElementById("myUL");
+        var li = document.createElement("LI");
+        var parentNode = ul.parentNode;
+        
+        parentNode.removeChild(ul);
+
+        for (var i = 0; i < 200; i++) {
+            ul.appendChild(li.cloneNode(true));
+        }
+
+        parentNode.appendChild(ul);
+    
+    }
+
+
 ### 5.8. CACHE DOM COLLECTION LENGTH
+
+Instead of this...
+
+    function nodeJam(){
+        
+        nodes = document.getElementsByTagName('P');
+
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].innerHTML += 'test';
+        }
+        
+    }
+
+This is faster:
+
+    function nodeJam(){
+
+        nodes = document.getElementsByTagName('P');
+        
+        for (var i = 0, len = nodes.length; i < len; i++) {
+            nodes[i].innerHTML += 'test';
+        }
+        
+    }
+
 ### 5.9. USE MEMOIZATION FOR COMPUTATION-INTENSIVE FUNCTIONS
+
+If your functions are deterministic, you can use [memoization][20], 
+so that you don't need to do the same computations over and over again.
+
+[20] http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
+
 ### 5.10. CACHE FREQUENTLY USED GLOBAL METHODS AND OBJECTS FOR SPEED
+
+Last, but not the least, **always cache** global methods and object that you use within loops:
+
+So instead of this...
+
+    function loopMePlease(){
+
+        for(i=0;i<1000;i++){
+            doStuff();
+
+            if(n==12)
+                someBlock();
+            else if(n==26)
+                someOtherBlock();
+        }
+
+    }
+    
+This is faster:
+
+    function loopMePlease(){
+
+        // Cache the global function.
+        var fnDo = doStuff; 
+
+        for(i=0;i<1000;i++){
+            fnDo();
+
+            // Also, a switch/case is (negligibly) faster than an if-else chain
+            switch(n){
+                case 12:
+                    someBlock();
+                    break;
+                case 26:
+                    someOtherBlock();
+                    break;
+            }
+        }
+    }
+
+Also it's a good practice to cache DOM object collections,
+because executing the same selectors over and over again 
+to reach the same collection is resource intensive.
+
+> The less you mess up with DOM, the better.
+
+Instead of this...
+
+    select('div > li > a').show();
+    select('div > li > a').addClass('test');
+    select('div > li > a').click(function(){});
+
+This is much faster:
+
+    var collection = select('div > li > a');
+
+    collection.show();
+    collection.addClass('test');
+    collection.click(function(){});
 
 ## 6. CODE SMELLS
 
+Constantly follow these indicators, as they often show the quality
+(or lack thereof) of the code you're writing.
+
 ### 6.1.  COMMENTS
+
+There's a slight difference between comments that are explaining 
+what's being done and comments that are overly confusing.
+
+Comments should answer the question **"why?"**, not the question **"what?"**.
+
+If the number of "caveat" comments inside a code block is increasing,
+it may show that the code block is becoming more complicated.
+
+If possible, the code should be refactored, so that those "caveat"
+comments are not necessary anymore.
+
 ### 6.2   EXCESSIVELY LONG METHOD NAMES
+
+Explanatory method names are good.
+
+Keeping everything constant, a shorter method name is easier to read and
+understand. Method names should be shortened, without losing their
+meanings. Method names should be shorter enough, but not too sort.
+
+Besides a very long method name may be the indicator of a 
+**God Function**, which should be avoided anyway.
+
+If your function is named `doThisAndThatAndSomethingElse`, most probably 
+you can split it into `doThis`, `doThat`, and `doSomethingElse` parts.
+
 ### 6.3.  METHODS HAVING TOO MUCH PARAMETERS
+
+* The more parameters a method has, the more complex it is.
+* The more complex a method is, the more possible that it has more than
+one functionality.
+* The more functionality a method has, the closer it is to a **God Function**.
+
+And God Functions are bad.
+
+If a method has too much parameters:
+
+* Either reduce the number of method parameters, 
+* Or merge those parameters under a configuration object.
+
 ### 6.4.  CODE REPETITION (COPY / PASTE CODE)
+
+Seeing the same code over and over again is a clear indication of low code
+quality.
+
+Repeating code, should be consolidated in **helper methods**. If the code
+is duplicated in different modules, then **a new helper module** should be
+created and both of the modules should the the new module's helper
+method instead.
+
 ### 6.5.  CONDITIONAL COMPLEXITY
+
+If the code has a lot of `if/else` chains, nested `for`s `switch`es etc and
+it makes it harder to read the code; then it's time to **refactor** it.
+
 ### 6.6.  CODES DOING "ALMOST" THE SAME THING
+
+Codes doing almost the same thing should be regarded as code repetition,
+and should be **refactored** accordingly.
+
 ### 6.7.  A VERY LARGE MODULE / FUNCTION
+
+If a module has grown too large, then it's most probably doing more than
+it's supposed to do.
+
+If you have a swiss army knife module, then it's time to split it into
+sub-modules to make your code more manageable and less error prone.
+
 ### 6.8.  FUNCTION AND VARIABLES THAT ARE NOT TELLING WHAT THEY DO
+
+Or worse, functions that are giving a message that's totally unrelated to what
+they do. 
+
+Let's say we have a fictitious "executeIframeAjaxProxy" method which neither 
+uses an iframe, nor makes an ajax call, and is not a proxy to something.
+It's not uncommon to see these badly-named methods, if the project is
+more than a few years old. 
+
+Those methods should immediately be **renamed*, in order to relieve the frustration 
+that the next poor developer working on the code will have. Otherwise she'll be 
+spending hours of valuable development time to figure out what the 
+code does, or worse she'll be using the code with incorrect assumptions out of hassle.
+
+If a method has a misleading name, **rename it**.
+
 ### 6.9.  INCOHERENT NAMING
+
+> Don't look at the thesaurus, 
+> and use a different synonym of "get" each time 
+> you use a getter metod.
+> You are not a linguist, you are a "developer".
+> And part of your job is to give **boring** 
+> and **consistent** names to your methods.
+
+Have a standard terminology in naming your methods and adhere to it.
+
+Do not give different names to similar-behaving functions.
+
 ### 6.10. DEAD CODE
+
+If there's a code that's not working and not used anywhere; it should
+be removed from the code-base immediately. Fear is the enemy of code
+stability.
+
 ### 6.11. SPECULATIVE GENERALIZATION
+
+> Optimization without measurement is merely a waste of time.
+
+Do not try to solve the problem of 5 months later, now.
+
+First create a running prototype. Then test, optimize and benchmark
+your code.
+
 ### 6.12. "I DID IT, and IT WORKED" STYLE OF APPROACH
+
+If you've solved a problem, you should clearly understand 
+**why** and **how** you did it.
+
+> For instance if a parameter is happening to be "null" then adding an
+> "if not null" control is equivalent to sweeping the dust under the rug.
+
+If the parameter is null or undefined, then you should find out 
+**"why"** it's that way.
+
+If you devise a solution without going to the bottom of the problem;
+sooner or later your so-called "solution" will stab you in the back.
+
 ### 6.13. TEMPORARY VARIABLES
+
+The more temporary variables in the code, the harder to manage it.
+Temporary variables should be replaced with query methods when possible.
+
 ### 6.14. GLOBAL VARIABLES
+
+The more the number of global state variables in the code, the more
+dependent the modules are. And dependency means error-prone, and
+hard-to-manage code.
+
 ### 6.15. DATA CLUSTERS
+
+If you observe certain kind of data, variables, method etc, loosely
+lumping together in various parts of the code; then may be its better
+to take them and create a separate class.
+
 ### 6.16. CROSS-MODULE-INTIMACY
+
+Modules should now the least information possible about each other.
+Modules' public interface should be kept at a minimum.
+
+**If you don't have a reason to keep a method public, than you had better
+make that method private.**
+
 ### 6.17. ATTRIBUTE ENVY
+
+If some methods of module A calls a lot of methods from module B, then
+may be those methods of module A should actually belong to module B.
+Consider a refactoring.
+
 ### 6.18. LAZY CLASS
+
+Any newly added class, adds to the complexity of the project. If a class
+is unable to hold its weight, i.e. it's not used enough, then it should
+be merged with other classes.
+
 ### 6.19. SHOTGUN SURGERY
+
+If adding a single line of code, or extracting a single method requires
+changes in tens of unrelated methods and classes then the code needs
+some serious refactoring.
+
 ### 6.20. INCOMPLETE LIBRARY CLASS
 
+The method should belong to a library, but it's currently the private
+method of an unrelated class. This is a **clear invitation to code
+repetition** in other classes. 
 
------- draft ---
+The method should be taken out of the class and put into a library.
 
-NEVER CHECK-IN INCOMPLETE/UNTESTED CODE
+### 6.21. EXISTENCE OF INCOMPLETE CODE BLOCKS
 
-The source code in the repository, at any given time, should not contain
-any build errors, syntax errors, runtime errors, or logic errors. This
-is only possible if *DO NOT* check-in garbage code.
+**Never check-in incomplete/untested code**.
 
-The Source Code Repository is not your FTP backup place. Only check in
-the code that you've *TESTED* (yes testing is *your* responsibility) and
-you are %100 sure that it works. Keep in mind that the checked in code
-should be "ready for release" *AT ANY TIME*.
+The source code in the repository, at any given time, **SHOULD NOT** contain
+any build errors, syntax errors, runtime errors, or logic errors. 
 
+This is only possible if *DO NOT* check-in garbage code.
 
-### o2.js MODULES ###
+The Source Code Repository is not your FTP backup place. 
 
+Only check in the code that you've **tested** (yes testing is *your* responsibility) 
+and you are %100 sure that it works.
 
+Keep in mind that the checked in code should be "ready for release" **at any time**.
 
-### Heading ###
+...
 
-//TODO: there are a lots of things add to this document.
+That's the end of this conventions document.
+Feel free to contribute.
 
-//jsDoc references to method parameters shall be bold.
-* @throws {Exception} if <strong>fn</strong> callback is not defined.
-
-//enclose JavaScript objects in <code>...</coce>
-* @param {DomNode} node - the DOM object (or its <code>String</code>
-* reference) the evet shall be removed.
-
-comment // and a space after -- proper sentence.
-        // Open the connection.
-        xhr.open(verb, url, isAsync);
-
----
-documentation
