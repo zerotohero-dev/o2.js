@@ -636,12 +636,12 @@ This is even worse:
     var fnDo = doStuff; 
     // Cache the global function.
 
-> Keep in mind that using, or having a need to use, a lot of inline comment
-> may be an indicator that you need to split your code into subroutines.
-
 You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
 at a first glance.
+
+> Keep in mind that using, or having a need to use, a lot of inline comment
+> may be an indicator that you need to split your code into subroutines.
 
 Feel free to **write descriptive comments**; your production **shall** be 
 *minified* and *obfuscated* anyway; and therefore your comments will not 
