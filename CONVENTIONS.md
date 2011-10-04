@@ -1228,7 +1228,7 @@ where all the items should be processed even if some of the items do generate er
 
 These cases are rare and **exceptional**.
 
-And when you do use `try/catch/` blocks, remember to log the 
+And when you do use `try/catch` blocks, remember to log the 
 errors in `catch` and cleanup state and resources in `finally`.
 
 Functions shall not throw exceptions; they
@@ -1244,11 +1244,48 @@ at the topmost level.
 
 ### 4.15. USE THE FORCE WISELY
 
+Your application shall function degrade gracefully, when Javascript 
+is not available or when Javascript has been disabled. 
+
 JavaScript is for **enhancing** existing functionality.
+
+[Enhance progressively][16], and ensure tha your application
+is usable at all times.
+
+[16]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
 
 ## 5. PERFORMANCE AND MEMORY CONSIDEARATIONS
 
+Here are certain performance considerations, and guidelines to keep in mind 
+when designing a highly interactive, mostly single-page, client-heavy, 
+long-lasting (i.e. users will be on the same page for more than several hours) 
+web application:
+
 ### 5.1 KEY PERFORMANCE INDICATORS
+
+While coding try to **minimize** the following:
+
+* **Vertical complexity**: How deeply nested the code is.
+* **Horizontal complexity**: Number of lines per module/method.
+* **Token count**
+* **Variable count**
+* **Loop count**
+* **Conditional count** (i.e. if/else/switch count)
+* **Variable scope**
+
+Also note that using arrays excessively can degrade performance, 
+and leak memory.
+
+To avoid memory leaks:
+
+* **Use** the [delete operator][17] to deallocate members,
+* **Avoid** [closures][18] between DOM World and the JS World,
+* And **minimize** JS / DOM interaction.
+
+[17]: http://o2js.com/2011/04/24/javascript-objects/ "JavaScript Objects"
+[18]: http://o2js.com/2011/04/26/functions-and-closures-in-javascript/ "Functions and Closures in JavaScript"
+[19]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
+
 ### 5.2. CONSIDER USING NATIVE METHODS WHENEVER POSSIBLE
 ### 5.3. MINIMIZE SCOPE CHAIN AND NAMESPACE LOOKUP
 ### 5.4. USE ARRAY JOINS INSTEAD OF STRING CONCATENATION
