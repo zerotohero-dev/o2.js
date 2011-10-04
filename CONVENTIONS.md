@@ -1774,7 +1774,7 @@ and you are %100 sure that it works.
 
 Keep in mind that the checked in code should be "ready for release" **at any time**.
 
-...
+--------------------------------------------
 
 That's the end of this conventions document.
 Feel free to contribute.
