@@ -667,31 +667,40 @@ you'd do in a normal sentence.
 
 * Use meaningful variable (and function) names:
 
-        var kSixteen = 16; // incorrect.
-    
-        var kNumberOfBits = 16; // better.
+        // Incorrect:
+        var kSixteen = 16; 
+
+        // Better:
+        var kNumberOfBits = 16; 
 
 * Use **long and descriptive** variable (*and function*) names.
 
-        usrAvail = true;//incorrect.
+        // Incorrect:
+        usrAvail = true; 
 
-        isUserAvailable = true; // better.
+        // Better:
+        isUserAvailable = true;
 
 * Choose readable variable names:
 
-        var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101); //WTF?
+        // WTF?!
+        var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101); 
 
 * **Do not use Hungarian Notation**:
 
-        var dblIncome = 100.12; // incorrect.
-        var income = 100.12; // correct -- no prefix.
+        // Incorrect:
+        var dblIncome = 100.12; 
+        
+        // Correct -- no prefix:
+        var income = 100.12;
 
     Exception:
     It's okay to prefix form elements with txt, btn and the like.
 
-        var txtLogin = document.getElementById('loginInput'); // OK
-        var btnAction = document.getElementById('submitForm'); / /OK
-        var optCountry = document.getElementById('countrySelection'); // OK
+        // These are all OK:
+        var txtLogin = document.getElementById('loginInput');
+        var btnAction = document.getElementById('submitForm');
+        var optCountry = document.getElementById('countrySelection');
 
 * Use **verbs** for **function names**.
 
