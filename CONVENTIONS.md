@@ -1520,7 +1520,7 @@ This is faster:
 If your functions are deterministic, you can use [memoization][20], 
 so that you don't need to do the same computations over and over again.
 
-[20] http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
+[20]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
 
 ### 5.10. CACHE FREQUENTLY USED GLOBAL METHODS AND OBJECTS FOR SPEED
 
