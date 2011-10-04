@@ -618,7 +618,9 @@ structs.
 
     * @param {DomNode} node - the DOM object (or its <code>String</code>.
 
-Use **only** line comments ( `//` ) for in-line comments.
+Use **only** line comments ( `//` ) for in-line comments. 
+Do not use c-style comments (`/*..*/`) inside functions.
+Use c-style comments (`/**/`) only for *documentation*.
 
 Put your inline comments on top of the part that the comment is explaining:
 
@@ -640,7 +642,7 @@ You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
 at a first glance.
 
-> Keep in mind that using, or having a need to use, a lot of inline comment
+> Keep in mind that using, or having a need to use, lots of inline comments
 > may be an indicator that you need to split your code into subroutines.
 
 Feel free to **write descriptive comments**; your production **shall** be 
