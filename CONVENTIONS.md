@@ -943,12 +943,12 @@ build & deployment cycle.
 
 ### 4.2.  SHOW LOVE TO THE MODULE PATTERN
 
-[Modules][3] are simply self-executing function literals. 
+[Modules][4] are simply self-executing function literals. 
 They create their own *private* **static** context, and encapsulate the business
 logic inside. This will (*in theory*) enable developers safely write their own code,
 without effecting the code that others have been developing.
 
-**o2.js** files are organized in modules using the [module pattern][3]
+**o2.js** files are organized in modules using the [module pattern][4]
 
 Each o2.js module has the following basic structure.
 
@@ -958,7 +958,7 @@ Each o2.js module has the following basic structure.
 
     }(o2, this));
 
-[3] http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
+[4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
 ### 4.3.  DO NOT POLLUTE THE GLOBAL NAMESPACE
 
@@ -967,16 +967,110 @@ This is a corollary to 4.2.
 **Avoid using public variables and public functions at all costs**.
 
 Global variables and functions are rarely, if ever, required.
-Using globals  cause naming conflicts between JavaScript source files
+
+Using globals cause naming conflicts between JavaScript source files
 and cause code  to break unexpectedly. For this reason, it is a good
 practice to encapsulate functionality within *namespaces*.
 
 Use namespaces and break code into modules.
-Modules, modules, modules. Not functions, functions, functions.
+
+> Modules, *modules*, **modules**. **NOT** functions, *functions*, **functions**!
+
 ### 4.4.  AVOID GOD OBJECTS and GOD METHODS
+
+Each method **SHOULD** have one, and only one, clearly defined task.
+If a method is doing more than one thing, it should be **divided** into **subroutines**.
+
+Program your functions atomically. Aim to reduce [cyclomatic complexity][5].
+
+While writing a method the following should be taken into consideration:
+
+* The accepted input ranges, and data types,
+* Return values and their meanings,
+* Error conditions, exceptional cases, and how they are handled.
+* Whether the method has any [side effects[6]
+
+> A function with no side effects is a function that always returns the same value 
+> given the same arguments, and never changes the internal global state (MODEL), 
+> or the application's look & feel (VIEW). It takes some arguments, returns a value 
+> based on these arguments, and do not monkey around with anything else.
+
+[5]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
+[6]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
+
 ### 4.5.  DO NOT INCLUDE TYPE INFORMATION WHILE NAMING VARIABLES
+
+**DO NOT** include type information in variables. 
+
+Variables should be understandable by their behavior (*semantics*), **NOT** by their type.
+
+    // Incorrect:    
+        var eventType = framework.EventType;
+        var kAddBuddyEventType = eventType.ADD_BUDDY;
+
+    // Correct:    
+        /* eventType is an alias to type "framework.EventType" */
+        var eventType = framework.EventType;    
+        
+        /* kAddBuddy is of type "framework.Eventype" (when we think in non-strict terms) */
+        var kAddBuddy = eventType.ADD_BUDDY;
+
 ### 4.6.  DO NOT MIX HTML AND JAVASCRIPT
+
+Use a templating engine. Don't mix HTML markup within JavaScript code.
+
 ### 4.7.  DO NOT USE INLNE JAVASCRIPT EVENTS
+
+Using inline JavaScript events and server-side templating (e.g. *Smarty*),
+is a dangerous mix that may leave your code prone to **"script injection"** 
+attacks.
+
+**Event overriding** is yet another reason to avoid using inline JavaScript
+(i.e. *onclick=""*s). The way inline event handlers work is called
+**"DOM Level 0 Events"** 
+(`<a href="javascript:void()" onclick="foo();return false">...</a>` ... yuck!).  
+
+The issue with DOM Level 0 events is that you can only assign one event 
+handler to a node, using them.  With [unobtrusive JavaScript][7] and
+[behavioral separation][8] you actually assign event handlers to a higher 
+level (DOM Level 2 to be exact). This level allows for multiple event 
+handlers to be assigned to one event.
+
+[behavioral separation][8], is actually far more than that, but that's the
+topic of another story.
+
+[7]: http://en.wikipedia.org/wiki/Unobtrusive_JavaScript "Unobtrusive JavaScript"
+[8]: http://www.alistapart.com/articles/behavioralseparation "Behavioral Separation"
+
+One of the big powers of JavaScript is that it comes in a seperate file.
+Much like CSS, this means you can apply one collection of functions to
+every page of the site, and if you need to change the functionality,
+you can do that in one document rather than going through and replacing
+each **onclick** event on every single template.
+
+> Do't be a lazy `b****`, and **decouple** your JavaScript!
+
+ **Coupling is bad**, and we know it. 
+ 
+* We **decouple** our data access from our views,
+* We **decouple** our services from each other
+
+We try to keep coupling to a minimum in every piece of code we write... 
+except our JavaScript.
+
+Coupling of our JavaScript tto markup prevents you from changing your
+markup without addressing your JavaScript as well.
+
+In short;
+
+* Separate CSS from HTML (no `<style></style>` tags, no `style=""` attributes).
+* Separate JavaScript from HTML (no `<script>...</script>`s, no `onclick=""`s, 
+* no `onkeydown=""`s, or God forbid, no `href:"javascript:"`s ... you get the point.)
+* Separate HTML from JavaScript (no **HTML tagsoup** within JavaScript; use 
+* *templates** instead)
+* Separate PHP (or the server-side language of your choice) from JavaScript
+(PHP should not spit out thousands of lines of of server-generated JavaScript)
+
 ### 4.8.  USE EVENT-DELEGATION
 ### 4.9.  USE EVENT-DRIVEN PROGRAMMING
 ### 4.10.  AVOID MAGIC STRINGS AND MAGIC NUMBERS
@@ -984,6 +1078,10 @@ Modules, modules, modules. Not functions, functions, functions.
 ### 4.12. REPLACE TEMPORARY VARIABLES WITH QUERY METHODS
 ### 4.13. PROGRAM DEFENSIVELY
 ### 4.14. EXCEPTIONS ARE FOR EXCEPTIONAL CASES
+
+### 4.15. USE THE FORCE WISELY
+
+JavaScript is for **enhancing** existing functionality.
 
 ## 5. PERFORMANCE AND MEMORY CONSIDEARATIONS
 
