@@ -793,6 +793,14 @@ you'd do in a normal sentence.
         o2.StringHelper.htmlEncode() // correct
         o2.StringHelper.HTMLEncode() // incorrect
 
+* Use **lowercase** for event handler references:
+
+        // Incorrect:
+        var onComplete = globalCompletionCallback ? globalCompletionCallback : o2.nill;
+
+        // Correct:
+        var oncomplete = globalCompletionCallback ? globalCompletionCallback : o2.nill;
+
 * **Be consistent** in naming your methods; do not give different names to 
 two methods which are essentially doing the same thing.
 
