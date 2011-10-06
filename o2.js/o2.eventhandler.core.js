@@ -457,7 +457,7 @@
 
             };
 
-
+            // Cancel event's default action.
             me.EventHandler.preventDefault(evt);
 
         },
@@ -491,7 +491,7 @@
 
             };
 
-
+            // Stop event bubbling.
             me.EventHandler.stopPropagation(evt);
 
         }

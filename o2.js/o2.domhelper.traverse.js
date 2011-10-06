@@ -925,7 +925,7 @@
                 return node;
             }
 
-            //
+            // get the next node.
             node = node.nextSibling;
         }
 

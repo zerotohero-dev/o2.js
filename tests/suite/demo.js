@@ -13,9 +13,14 @@
      * Aliases.
      */
     var add = o2.Unit.add;
+    var run = o2.Unit.run;
     var assertStrictEqual = o2.Unit.assertStrictEqual;
     var logUserIn = Demo.logUserIn;
     var config = Demo.config;
+    
+    function processSuiteCompletionActions(){
+        debugger;
+    }
 
     /**
      *
@@ -166,7 +171,9 @@
 
             });
 
-            o2.Unit.run();
+            var suiteCompleteCallback = processSuiteCompletionActions;
+            
+            run(suiteCompleteCallback);
 
         }
 

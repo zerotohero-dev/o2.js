@@ -166,7 +166,6 @@
                 }
 
                 if(isArray(ar)) {
-
                     for(var i = 0, len = ar.length; i < len; i++) {
                         if(elm == ar[i]) {
 

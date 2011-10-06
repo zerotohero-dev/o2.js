@@ -63,14 +63,19 @@
 
                 /** @property {private const String} FAIL*/
                 FAIL : 'fail',
+
                 /** @property {private const String} PASS*/
                 PASS : 'pass',
+
                 /** @property {private const String} ERROR*/
                 ERROR : 'error',
+
                 /** @property {private const String} LOG*/
                 LOG : 'log',
+
                 /** @property {private const String} INFO*/
                 INFO : 'info',
+
                 /** @property {private const String} WARN*/
                 WARN : 'warn'
 
@@ -85,14 +90,19 @@
 
                 /** @property {private const String} PASS*/
                 PASS : '<b>PASS:</b> ',
+
                 /** @property {private const String} FAIL*/
                 FAIL : '<b>FAIL:</b> ',
+
                 /** @property {private const String} ERROR*/
                 ERROR : '<b>ERROR:</b> ',
+
                 /** @property {private const String} INFO*/
                 INFO : '<b>INFO:</b> ',
+
                 /** @property {private const String} WARN*/
                 WARN : '<b>WARN:</b> ',
+
                 /** @property {private const String} ER_CANNOT_INITIALIZE*/
                 ER_CANNOT_INITIALIZE : 'Debugger: cannot initialize outputElement'
 

@@ -186,7 +186,7 @@
         if(unitTest.remainingCount <= 0) {
             reportTestCompletion(unitTest);
         }
-
+        
     }
 
     /*
@@ -316,6 +316,25 @@
      * <p>Runs <code>UnitTest</code>s.</p>
      */
     me.Unit = {
+        
+        isRunning: false,
+
+        //TODO: add documentation        
+        getGlobalSuccessCount : function(){
+        
+            return state.globalSuccessCount;
+        
+        },
+        
+        //TODO: add documentation
+        getGlobalFailureCount : function(){
+            
+            return state.globalFailureCount;
+            
+        }
+        
+        
+        
 
         /**
          * @function {static} o2.Unit.assert
@@ -483,9 +502,18 @@
          * <p>Asynchronously runs all of the registered
          * <code>UnitTest</code>s, one after another.</p>
          */
-        run : function() {
+        run : function(globalCompletionCallback) {
+            
+            if(o2.Unit.isRunning){
+
+                return;
+            }
+            
+            o2.Unit.isRunning = true;
 
             var kCheckInterval = config.TEST_CHECK_INTERVAL;
+            
+            var oncomplete = globalCompletionCallback ? globalCompletionCallback : o2.nill;
 
             initializeDebugger();
 
@@ -502,20 +530,18 @@
                 // Grab the currently active UnitTest.
                 activeUnitTest = state.tests.shift();
 
-                if(!activeUnitTest) {
-                    reportGlobalCompletion();
+                var isSuiteComplete = !activeUnitTest || !activeUnitTest instanceof UnitTest;
 
+                if(isSuiteComplete) {
+                    
+                    reportGlobalCompletion();
+                    
+                    o2.Unit.isRunning = false;
+                    
                     // We are done with this unit test, so release the lock.
                     activeUnitTest = null;
-
-                    return;
-                }
-
-                if(!activeUnitTest instanceof UnitTest) {
-                    reportGlobalCompletion();
-
-                    // We are done with this unit test, so release the lock.
-                    activeUnitTest = null;
+                    
+                    oncomplete(o2.Unit);
 
                     return;
                 }
