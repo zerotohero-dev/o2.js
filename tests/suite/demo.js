@@ -18,8 +18,13 @@
     var logUserIn = Demo.logUserIn;
     var config = Demo.config;
     
-    function processSuiteCompletionActions(){
-        debugger;
+    function processSuiteCompletionActions(unit){
+        if(parent && parent.Runner){
+            parent.Runner.next({
+                successCount: unit.getGlobalSuccessCount(),
+                failureCount: unit.getGlobalFailureCount()                
+            });
+        }
     }
 
     /**
