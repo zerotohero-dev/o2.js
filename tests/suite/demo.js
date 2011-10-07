@@ -17,14 +17,22 @@
     var assertStrictEqual = o2.Unit.assertStrictEqual;
     var logUserIn = Demo.logUserIn;
     var config = Demo.config;
-    
-    function processSuiteCompletionActions(unit){
-        if(parent && parent.Runner){
-            parent.Runner.next({
-                successCount: unit.getGlobalSuccessCount(),
-                failureCount: unit.getGlobalFailureCount()                
-            });
+
+    /**
+     *
+     */
+    function processSuiteCompletionActions(unit) {
+
+        if(!parent && !parent.Runner) {
+
+            return;
         }
+
+        parent.Runner.next({
+            successCount : unit.getGlobalSuccessCount(),
+            failureCount : unit.getGlobalFailureCount()
+        });
+
     }
 
     /**
@@ -75,7 +83,6 @@
 
             });
 
-            
             add('logUserIn SHOULD return USERNAME_BLANK if trimmed username is empty', {
                 count : 5,
                 test : function() {
@@ -156,28 +163,28 @@
                     var ce = config.errorCode;
                     var kInvalidArguments = ce.INVALID_ARGUMENTS;
 
-                    // below is just to show that you can run async assertions as well:
-                    
-                    setTimeout(function(){
-                        
-                        assertStrictEqual(me, resultNoParam, kInvalidArguments, 'no arguments gives error');
-                    
-                    },2000);
+                    // below is just to show that you can run async assertions as
+                    // well:
 
-                  
-                    setTimeout(function(){
-                    
+                    setTimeout(function() {
+
+                        assertStrictEqual(me, resultNoParam, kInvalidArguments, 'no arguments gives error');
+
+                    }, 2000);
+
+                    setTimeout(function() {
+
                         assertStrictEqual(me, resultOneParam, kInvalidArguments, 'one argument gives error');
-                        assertStrictEqual(me, resultThreeParams, kInvalidArguments, 'three arguments gives error');                        
-                    
-                    },2000);
+                        assertStrictEqual(me, resultThreeParams, kInvalidArguments, 'three arguments gives error');
+
+                    }, 2000);
 
                 }
 
             });
 
             var suiteCompleteCallback = processSuiteCompletionActions;
-            
+
             run(suiteCompleteCallback);
 
         }
