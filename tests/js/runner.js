@@ -30,6 +30,21 @@
 
     var Runner = window.Runner = {
 
+       /**
+        *
+        */
+        processCompletedSuite(unit) {
+
+            window.Runner.next({
+                successCount : unit.getGlobalSuccessCount(),
+                failureCount : unit.getGlobalFailureCount()
+            });
+
+        }
+
+        /**
+         *
+         */
         next : function(meta) {
 
             var successCount = meta.successCount;
