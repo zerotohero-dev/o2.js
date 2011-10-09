@@ -21,23 +21,6 @@
     /**
      *
      */
-    function processSuiteCompletionActions(unit) {
-
-        if(!parent && !parent.Runner) {
-
-            return;
-        }
-
-        parent.Runner.next({
-            successCount : unit.getGlobalSuccessCount(),
-            failureCount : unit.getGlobalFailureCount()
-        });
-
-    }
-
-    /**
-     *
-     */
     var Suite = {
 
         /**
@@ -183,9 +166,7 @@
 
             });
 
-            var suiteCompleteCallback = processSuiteCompletionActions;
-
-            run(suiteCompleteCallback);
+            run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 
         }
 
