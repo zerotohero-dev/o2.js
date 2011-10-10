@@ -3,7 +3,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.201110092122
+ * @version 0.23.201110100927
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -74,7 +74,7 @@ window.o2 = {};
      *
      * <p>Project build number.</p>     
      */
-    me.build = '201110092122';
+    me.build = '201110100927';
 
     /**
      * @function {static} o2.$

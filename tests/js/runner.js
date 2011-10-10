@@ -1,5 +1,14 @@
+/*global o2*/
 ( function(window, UNDEFINED) {
 
+    /*
+     * Aliases.
+     */
+    var init = o2.Debugger.init;
+    var log = o2.Debugger.log;
+    var assert = o2.Debugger.assert;
+    var scrollToBottom = o2.DomHelper.scrollWindowToBottom;
+    
     // @formatter:off
     var queue = [
         'o2.ajaxcontroller',
@@ -45,6 +54,8 @@
 
     var state = {
         currentQueueItem : null,
+        totalSuccessCount : 0,
+        totalFailureCount : 0,
         results : {}
     };
 
@@ -54,7 +65,13 @@
         state.currentQueueItem = item;
 
         if(!item) {
-            window.o2.Debugger.log('All done!');
+            // @formatter:off
+            assert(state.totalFailureCount === 0, [
+                '<p><b>All done!</b> ',
+                'Total failure count: <b>', state.totalFailureCount, '</b>, ',
+                'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
+            ].join(''));
+            // @formatter:on
 
             return;
         }
@@ -73,13 +90,29 @@
          */
         processCompletedSuite : function(unit) {
 
-            window.Runner.next({
+            var successCount = unit.getGlobalSuccessCount();
+            var failureCount = unit.getGlobalFailureCount();
+            state.totalSuccessCount += successCount;
+            state.totalFailureCount += failureCount;
+
+            // @formatter:off
+            assert(failureCount===0, [
+                '<p>Test suite <b>"<a href="', 
+                state.currentQueueItem,
+                '.html">', state.currentQueueItem, '</a>"</b> has been completed. ', 
+                'Succes count: <b>', successCount, '</b> failure count: <b>', failureCount, '</b>.</p>'
+            ].join(''));
+            // @formatter:on
+
+            scrollToBottom();
+            
+            Runner.next({
                 successCount : unit.getGlobalSuccessCount(),
                 failureCount : unit.getGlobalFailureCount()
             });
 
-            window.scrollTop = window.scrollHeight;
-            
+
+
         },
 
         /**
@@ -95,17 +128,14 @@
                 failureCount : failureCount
             };
 
-            window.o2.Debugger.log('next...');
-            window.console.dir(state);
-
             run();
 
         },
 
         start : function() {
 
-            window.o2.Debugger.init('Output', true);
-            window.o2.Debugger.log('started...');
+            init('Output', true);
+            log('<p>Started <b>"Test Suite Runner"</b>.</p>');
 
             run();
 

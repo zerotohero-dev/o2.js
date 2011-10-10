@@ -38,3 +38,13 @@ div.log {
     margin: 5px;
     padding: 10px;
 }
+
+a {
+    background: #ffffff;
+    color: #0000cc;
+}
+
+a:hover {
+    background: #0000cc;
+    color: #ffffff;
+}
