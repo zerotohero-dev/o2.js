@@ -33,20 +33,40 @@
                 test : function() {
 
                     var me = this;
+                    
+                    var url = 'service/service.php';
+                    var params = {};
 
-                    assert(me, false, 'I pass.');
+                    o2.Ajax.post(url, params, {
+                        oncomplete: function(responseText, responseXml, transport){
+
+                            assertStrictEqual(me, responseText, '0', 'responseText is okay');
+                        
+                        }
+                    });
 
                 }
 
             });
 
-            add('o2.Ajax.post SHOULD return an object.', {
-                count : 1,
+            add('o2.Ajax.post SHOULD return an object and the object should be passed to success callback.', {
+                count : 2,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    var url = 'service/service.php';
+                    var params = {};
+                    
+                    var request = o2.Ajax.post(url, params, {
+                        oncomplete: function(responseText, responseXml, transport){
+
+                            assertStrictEqual(me, request, transport, 'request is transport.');
+
+                        }
+                    });                    
+
+                    assertStrictEqual(me, (typeof request), 'object', 'request is an object.');
 
                 }
 
@@ -150,7 +170,7 @@
 
             });
 
-            add('o2.Ajax.get SHOULD return an object.', {
+            add('o2.Ajax.get SHOULD return an object SHOULD return an object and the object should be passed to success callback.', {
                 count : 1,
                 test : function() {
 
