@@ -8,7 +8,7 @@
     var log = o2.Debugger.log;
     var assert = o2.Debugger.assert;
     var scrollToBottom = o2.DomHelper.scrollWindowToBottom;
-    
+
     // @formatter:off
     var queue = [
         'o2.ajaxcontroller',
@@ -60,7 +60,11 @@
     };
 
     function run() {
+
         var item = queue.pop();
+        
+        var kFrameId = 'TestFrame';
+        var kFileExtension = '.html';
 
         state.currentQueueItem = item;
 
@@ -76,11 +80,29 @@
             return;
         }
 
-        var url = [item, '.html'].join('');
+        var url = [item, kFileExtension].join('');
 
-        var frame = document.getElementById('TestFrame');
+        var frame = document.getElementById(kFrameId);
 
         frame.src = url;
+
+    }
+
+    /**
+     *
+     */
+    function next(meta) {
+
+        var successCount = meta.successCount;
+        var failureCount = meta.failureCount;
+
+        state.results[state.currentQueueItem] = {
+            successCount : successCount,
+            failureCount : failureCount
+        };
+
+        run();
+
     }
 
     var Runner = window.Runner = {
@@ -92,6 +114,8 @@
 
             var successCount = unit.getGlobalSuccessCount();
             var failureCount = unit.getGlobalFailureCount();
+
+            //
             state.totalSuccessCount += successCount;
             state.totalFailureCount += failureCount;
 
@@ -105,36 +129,19 @@
             // @formatter:on
 
             scrollToBottom();
-            
-            Runner.next({
+
+            next({
                 successCount : unit.getGlobalSuccessCount(),
                 failureCount : unit.getGlobalFailureCount()
             });
 
-
-
-        },
-
-        /**
-         *
-         */
-        next : function(meta) {
-
-            var successCount = meta.successCount;
-            var failureCount = meta.failureCount;
-
-            state.results[state.currentQueueItem] = {
-                successCount : successCount,
-                failureCount : failureCount
-            };
-
-            run();
-
         },
 
         start : function() {
+            
+            var kOutputContainerId = 'Output';
 
-            init('Output', true);
+            init(kOutputContainerId, true);
             log('<p>Started <b>"Test Suite Runner"</b>.</p>');
 
             run();

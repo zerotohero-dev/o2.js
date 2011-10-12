@@ -2054,6 +2054,24 @@
            elementType : "function"
        } ,         
        {
+           localName : "getGlobalFailureCount",
+           fullName : "o2.Unit.getGlobalFailureCount",
+           summary : "static function  getGlobalFailureCount()",
+           ref : "logical/o2/Unit.html#___getGlobalFailureCount",
+           parent : "o2.Unit",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getGlobalSuccessCount",
+           fullName : "o2.Unit.getGlobalSuccessCount",
+           summary : "static function  getGlobalSuccessCount()",
+           ref : "logical/o2/Unit.html#___getGlobalSuccessCount",
+           parent : "o2.Unit",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "log",
            fullName : "o2.Unit.log",
            summary : "static function  log()",
@@ -2065,7 +2083,7 @@
        {
            localName : "run",
            fullName : "o2.Unit.run",
-           summary : "static function  run()",
+           summary : "static function  run(Function globalCompletionCallback)",
            ref : "logical/o2/Unit.html#___run",
            parent : "o2.Unit",
            type : "function",

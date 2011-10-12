@@ -186,7 +186,7 @@
         if(unitTest.remainingCount <= 0) {
             reportTestCompletion(unitTest);
         }
-        
+
     }
 
     /*
@@ -246,8 +246,7 @@
      * only available in the unit meta's callback given to the {@link
      * o2.Unit.add} method.
      */
-    
-    
+
     /**
      * @constructor o2.UnitTest.UnitTest
      *
@@ -316,25 +315,34 @@
      * <p>Runs <code>UnitTest</code>s.</p>
      */
     me.Unit = {
-        
-        isRunning: false,
 
-        //TODO: add documentation        
-        getGlobalSuccessCount : function(){
-        
+        isRunning : false,
+
+        /**
+         * @function {static} o2.Unit.getGlobalSuccessCount
+         *
+         * <p>Gets the total number of successful assertions so far.</p>
+         *
+         * @return the total number of successful assertions.
+         */
+        getGlobalSuccessCount : function() {
+
             return state.globalSuccessCount;
-        
+
         },
-        
-        //TODO: add documentation
-        getGlobalFailureCount : function(){
-            
+
+        /**
+         * @function {static} o2.Unit.getGlobalFailureCount
+         *
+         * <p>Gets the total number of failed assertions so far.</p>
+         *
+         * @return the total number of failed assertions.
+         */
+        getGlobalFailureCount : function() {
+
             return state.globalFailureCount;
-            
+
         },
-        
-        
-        
 
         /**
          * @function {static} o2.Unit.assert
@@ -433,7 +441,8 @@
         /**
          * @function {static} o2.Unit.assertStrictNotEqual
          *
-         * <p>Asserts whether two values are strictly <strong>NOT</strong> equal (by value and
+         * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
+         * (by value and
          * type).</p>
          *
          * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -501,18 +510,21 @@
          *
          * <p>Asynchronously runs all of the registered
          * <code>UnitTest</code>s, one after another.</p>
+         *
+         * @param {Function} globalCompletionCallback - (Optional) this callback
+         * will be run with <code>o2.Unit</code> as a parameter passed to it.
          */
         run : function(globalCompletionCallback) {
-            
-            if(o2.Unit.isRunning){
+
+            if(o2.Unit.isRunning) {
 
                 return;
             }
-            
+
             o2.Unit.isRunning = true;
 
             var kCheckInterval = config.TEST_CHECK_INTERVAL;
-            
+
             var oncomplete = globalCompletionCallback ? globalCompletionCallback : o2.nill;
 
             initializeDebugger();
@@ -533,14 +545,14 @@
                 var isSuiteComplete = !activeUnitTest || !activeUnitTest instanceof UnitTest;
 
                 if(isSuiteComplete) {
-                    
+
                     reportGlobalCompletion();
-                    
+
                     o2.Unit.isRunning = false;
-                    
+
                     // We are done with this unit test, so release the lock.
                     activeUnitTest = null;
-                    
+
                     oncomplete(o2.Unit);
 
                     return;
