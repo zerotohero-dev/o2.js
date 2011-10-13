@@ -33,17 +33,39 @@
                 test : function() {
 
                     var me = this;
-                    
+
                     var url = 'service/service.php';
                     var params = {};
 
-                    o2.Ajax.post(url, params, {
-                        oncomplete: function(responseText, responseXml, transport){
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
 
                             assertStrictEqual(me, responseText, '0', 'responseText is okay');
-                        
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
                         }
+
                     });
+
+                    setTimeout(function() {
+
+                        if(!request.isComplete) {
+                            assert(me, false, 'Request timed out.');
+                        }
+
+                    }, 5000);
 
                 }
 
@@ -57,28 +79,85 @@
 
                     var url = 'service/service.php';
                     var params = {};
-                    
+
                     var request = o2.Ajax.post(url, params, {
-                        oncomplete: function(responseText, responseXml, transport){
+
+                        oncomplete : function(responseText, responseXml, transport) {
 
                             assertStrictEqual(me, request, transport, 'request is transport.');
 
-                        }
-                    });                    
+                        },
 
-                    assertStrictEqual(me, (typeof request), 'object', 'request is an object.');
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    assertStrictEqual(me, ( typeof request), 'object', 'request is an object.');
+
+                    setTimeout(function() {
+
+                        if(!request.isComplete) {
+                            assert(me, false, 'Request timed out.');
+                        }
+
+                    }, 5000);
 
                 }
 
             });
 
-            add('o2.Ajax.post SHOULD have an "complete" flag, set to true when a response is received.', {
+            add('o2.Ajax.post SHOULD have a "complete" flag, set to true when a response is received.', {
                 count : 1,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    var isComplete = null;
+
+                    var url = 'service/service.php';
+                    var params = {};
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assertStrictEqual(me, request.isComplete, true, 'request is complete.');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    assertStrictEqual(me, (request.isComplete), false, 'request is not complete.');
+
+                    setTimeout(function() {
+
+                        if(!request.isComplete) {
+                            assert(me, false, 'Request timed out.');
+                        }
+
+                    }, 5000);
 
                 }
 
@@ -90,13 +169,176 @@
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    var url = 'http://external.o2js.com/o2.js/tests/service/service.php';
+                    var params = {
+                        options : 1
+                    };
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assertStrictEqual(me, responseText, '0', 'cross-domain request is complete.');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    setTimeout(function() {
+
+                        if(!request.isComplete) {
+                            assert(me, false, 'Request timed out.');
+                        }
+
+                    }, 5000);
 
                 }
 
             });
 
-            add('o2.Ajax.post SHOULD clean up initial XHR object, when request is complete.', {
+            add('o2.Ajax.post SHOULD clean up initial XHR object, when request is complete with success.', {
+                count : 3,
+                test : function() {
+
+                    var me = this;
+
+                    var url = 'service/service.php';
+                    var params = {};
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assert(me, true, 'Request successfully completed.');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    setTimeout(function() {
+                        
+                        assert(me, request.isComplete, 'Request timely processed.');
+                        assert(me, request.isFinalized, 'Request cleaned up.');
+
+                    }, 1000);
+
+                }
+
+            });
+
+            add('o2.Ajax.post SHOULD clean up initial XHR object, when request is complete with error.', {
+                count : 3,
+                test : function() {
+
+                    var me = this;
+
+                    var url = 'service/service.php';
+                    var params = {
+                        error : 1
+                    };
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assert(me, false, 'Request successfully completed.');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, true, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    setTimeout(function() {
+
+                        assert(me, request.isComplete, 'Request timely processed.');
+                        assert(me, request.isFinalized, 'Request cleaned up.');
+
+                    }, 1000);
+
+                }
+
+            });
+
+            add('o2.Ajax.post SHOULD clean up initial XHR object, when request is complete with exception.', {
+                count : 4,
+                test : function() {
+
+                    var me = this;
+
+                    var url = 'service/service.php';
+                    var params = {};
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assert(me, true, 'Request successfully completed.');
+                            
+                            this.will.create.an.exception._.thats.the.point(';)');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error occured.');
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, true, 'An exception occured.');
+
+                        }
+
+                    });
+
+                    setTimeout(function() {
+
+                        assert(me, request.isComplete, 'Request timely processed.');
+                        assert(me, request.isFinalized, 'Request cleaned up.');
+
+                    }, 1000);
+
+                }
+
+            });
+
+            /*add('o2.Ajax.post SHOULD be able to send and receive UTF-8 data without loss.', {
                 count : 1,
                 test : function() {
 
@@ -106,9 +348,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.post SHOULD handle exceptional cases.', {
+            /*add('o2.Ajax.post SHOULD be able to send sync requests.', {
                 count : 1,
                 test : function() {
 
@@ -118,47 +360,11 @@
 
                 }
 
-            });
-
-            add('o2.Ajax.post SHOULD handle HTTP errors.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
-
-            add('o2.Ajax.post SHOULD be able to send and receive UTF-8 data without loss.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
-
-            add('o2.Ajax.post SHOULD be able to send sync requests.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            });*/
 
             /*-----------*/
 
-            add('o2.Ajax.get SHOULD receive a proper response if the request is on the same domain.', {
+            /*add('o2.Ajax.get SHOULD receive a proper response if the request is on the same domain.', {
                 count : 1,
                 test : function() {
 
@@ -168,9 +374,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD return an object SHOULD return an object and the object should be passed to success callback.', {
+            /*add('o2.Ajax.get SHOULD return an object SHOULD return an object and the object should be passed to success callback.', {
                 count : 1,
                 test : function() {
 
@@ -180,9 +386,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD have an "complete" flag, set to true when a response is received.', {
+            /*add('o2.Ajax.get SHOULD have a "complete" flag, set to true when a response is received.', {
                 count : 1,
                 test : function() {
 
@@ -192,9 +398,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD be able to send cross-domain requests, if an options header is set.', {
+            /*add('o2.Ajax.get SHOULD be able to send cross-domain requests, if an options header is set.', {
                 count : 1,
                 test : function() {
 
@@ -204,9 +410,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD clean up initial XHR object, when request is complete.', {
+            /*add('o2.Ajax.get SHOULD clean up initial XHR object, when request is complete.', {
                 count : 1,
                 test : function() {
 
@@ -216,9 +422,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD handle exceptional cases.', {
+            /*add('o2.Ajax.get SHOULD handle exceptional cases.', {
                 count : 1,
                 test : function() {
 
@@ -228,9 +434,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD handle HTTP errors.', {
+            /*add('o2.Ajax.get SHOULD handle HTTP errors.', {
                 count : 1,
                 test : function() {
 
@@ -240,9 +446,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD be able to send and receive UTF-8 data without loss.', {
+            /*add('o2.Ajax.get SHOULD be able to send and receive UTF-8 data without loss.', {
                 count : 1,
                 test : function() {
 
@@ -252,9 +458,9 @@
 
                 }
 
-            });
+            });*/
 
-            add('o2.Ajax.get SHOULD be able to send sync requests.', {
+            /*add('o2.Ajax.get SHOULD be able to send sync requests.', {
                 count : 1,
                 test : function() {
 
@@ -264,11 +470,11 @@
 
                 }
 
-            });
+            });*/
 
             /*-------------------*/
 
-            add('o2.Ajax.createXhr SHOULD return an object.', {
+            /*add('o2.Ajax.createXhr SHOULD return an object.', {
                 count : 1,
                 test : function() {
 
@@ -278,7 +484,7 @@
 
                 }
 
-            });
+            });*/
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

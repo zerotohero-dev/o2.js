@@ -1,6 +1,6 @@
 /*global o2*/
 
-/**
+/*
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.

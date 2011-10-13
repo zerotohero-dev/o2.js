@@ -120,18 +120,21 @@
         if(window.XMLHttpRequest) {
             createXhr = function() {
 
-                return new XMLHttpRequest();
+                var request =  new XMLHttpRequest();
+
+                if(!request) {
+    
+                    throw kNoXhr;
+                }
+                
+                // Request is not completed yet.
+                request.isComplete = false;
+                
+                return request;
 
             };
 
-            request = createXhr();
-
-            if(!request) {
-
-                throw kNoXhr;
-            }
-
-            return request;
+            return createXhr();
 
         }
 
@@ -162,11 +165,16 @@
         //
         createXhr = function() {
 
-            return new ActiveXObject(progId);
+            var request = new ActiveXObject(progId);
+
+            // Request is not completed yet.
+            request.isComplete = false;
+            
+            return request;
 
         };
 
-        return request;
+        return createXhr();
 
     };
 
@@ -184,9 +192,8 @@
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
-        //TODO: document about this.
-        xhr.isComplete = true;
 
+        xhr.isFinalized = true;
     }
 
     /*
@@ -213,6 +220,9 @@
 
         var status = xhr.status;
         var isSuccess = status == kOk || status == kCached;
+        
+        // Since the response has come, mark the request as "completed".
+        xhr.isComplete = true;
 
         try {
 
@@ -226,7 +236,7 @@
 
         } catch(ex) {
 
-            onexception(xhr, ex);
+            onexception(ex, xhr);
 
         } finally {
 

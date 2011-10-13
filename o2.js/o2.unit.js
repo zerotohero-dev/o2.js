@@ -91,8 +91,8 @@
          */
         REPORT_GLOBAL_COMPLETION :  [
             '<p>All unit tests have been completed:</p>',
-            '<p style="text-align:right">(<b>total success: {0}', 
-            '</b> , <b>total failure: {1}</b>)</p>'
+            '<p style="text-align:right">(<b>total success: {0}</b>, ', 
+            '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
         ].join('')
 
         // @formatter:on
@@ -117,7 +117,12 @@
         /*
          * The total number of failed assertions.
          */
-        globalFailureCount : 0
+        globalFailureCount : 0,
+        
+        /*
+         * Total number of completed unit tests.
+         */
+        globalCompletedUnitTestCount : 0
 
     };
 
@@ -136,6 +141,9 @@
 
         assert(isAllSuccess, message);
 
+        var kFinishedTestMessage = ['Completed unit test <strong>#', (++state.globalCompletedUnitTestCount), '</strong>'].join('');
+
+        log(kFinishedTestMessage);
     }
 
     /*
@@ -146,8 +154,9 @@
 
         var successCount = state.globalSuccessCount;
         var failureCount = state.globalFailureCount;
+        var testCount = state.globalCompletedUnitTestCount;
 
-        var message = format(template.REPORT_GLOBAL_COMPLETION, successCount, failureCount);
+        var message = format(template.REPORT_GLOBAL_COMPLETION, successCount, failureCount, testCount);
 
         assert(state.globalFailureCount <= 0, message);
 
@@ -187,6 +196,7 @@
             reportTestCompletion(unitTest);
         }
 
+        o2.DomHelper.scrollWindowToBottom();
     }
 
     /*
