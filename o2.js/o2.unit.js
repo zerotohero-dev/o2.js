@@ -24,6 +24,7 @@
     var assert = framework.Debugger.assert;
     var initDebugger = framework.Debugger.init;
     var format = framework.StringHelper.format;
+    var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
 
     /*
      * Module configuration.
@@ -144,6 +145,8 @@
         var kFinishedTestMessage = ['Completed unit test <strong>#', (++state.globalCompletedUnitTestCount), '</strong>'].join('');
 
         log(kFinishedTestMessage);
+        
+        scrollToBottom();
     }
 
     /*
@@ -160,6 +163,7 @@
 
         assert(state.globalFailureCount <= 0, message);
 
+        scrollToBottom();
     }
 
     /*
@@ -195,8 +199,7 @@
         if(unitTest.remainingCount <= 0) {
             reportTestCompletion(unitTest);
         }
-
-        o2.DomHelper.scrollWindowToBottom();
+        
     }
 
     /*
