@@ -120,16 +120,16 @@
         if(window.XMLHttpRequest) {
             createXhr = function() {
 
-                var request =  new XMLHttpRequest();
+                var request = new XMLHttpRequest();
 
                 if(!request) {
-    
+
                     throw kNoXhr;
                 }
-                
+
                 // Request is not completed yet.
                 request.isComplete = false;
-                
+
                 return request;
 
             };
@@ -169,7 +169,7 @@
 
             // Request is not completed yet.
             request.isComplete = false;
-            
+
             return request;
 
         };
@@ -194,6 +194,7 @@
         xhr.onreadystatechange = nill;
 
         xhr.isFinalized = true;
+
     }
 
     /*
@@ -220,7 +221,7 @@
 
         var status = xhr.status;
         var isSuccess = status == kOk || status == kCached;
-        
+
         // Since the response has come, mark the request as "completed".
         xhr.isComplete = true;
 
@@ -458,7 +459,7 @@
          * @param {Object} callbacks - An object of the form
          * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
          * statusText),
-         * onexception: fn(originalXhr, exception)}.
+         * onexception: fn(exception, originalXhr)}.
          * Any of these callbacks are optional.
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
          * Set this
@@ -483,7 +484,7 @@
          * @param {Object} callbacks - An object of the form
          * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
          * statusText),
-         * onexception: fn(originalXhr, exception)}.
+         * onexception: fn(exception, originalXhr)}.
          * Any of these callbacks are optional.
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
          * Set this
