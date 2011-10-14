@@ -287,6 +287,15 @@
         this.testCase = testCase;
 
     }
+    
+    var p = UnitTest.prototype;
+    
+    //TODO: add documentation.
+    p.terminate = function() {
+        
+        this.remainingCount = 0;
+    
+    };
 
     /*
      * Executes an <code>o2.UnitTest</code> unit test.

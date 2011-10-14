@@ -41,20 +41,21 @@
 
                         oncomplete : function(responseText, responseXml, transport) {
 
-                            assertStrictEqual(me, responseText, '0', 'responseText is okay');
+                            assertStrictEqual(me, responseText, '0', 'responseText is okay.');
 
                         },
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
-
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
+                            
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
-
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
                         }
 
                     });
@@ -62,8 +63,10 @@
                     setTimeout(function() {
 
                         if(!request.isComplete) {
-                            assert(me, false, 'Request timed out.');
+                            assert(me, false, 'Request has timed out.');
                         }
+                        
+                        me.terminate();
 
                     }, 5000);
 
@@ -90,13 +93,15 @@
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
 
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
 
                         }
 
@@ -107,8 +112,10 @@
                     setTimeout(function() {
 
                         if(!request.isComplete) {
-                            assert(me, false, 'Request timed out.');
+                            assert(me, false, 'Request has timed out.');
                         }
+
+                        me.terminate();
 
                     }, 5000);
 
@@ -117,7 +124,7 @@
             });
 
             add('o2.Ajax.post SHOULD have a "complete" flag, set to true when a response is received.', {
-                count : 1,
+                count : 2,
                 test : function() {
 
                     var me = this;
@@ -137,13 +144,15 @@
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
 
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
 
                         }
 
@@ -154,8 +163,10 @@
                     setTimeout(function() {
 
                         if(!request.isComplete) {
-                            assert(me, false, 'Request timed out.');
+                            assert(me, false, 'Request has timed out.');
                         }
+                        
+                        me.terminate();
 
                     }, 5000);
 
@@ -178,19 +189,21 @@
 
                         oncomplete : function(responseText, responseXml, transport) {
 
-                            assertStrictEqual(me, responseText, '0', 'cross-domain request is complete.');
+                            assertStrictEqual(me, responseText, '0', 'cross-domain request has been completed successfully.');
 
                         },
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
 
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
 
                         }
 
@@ -199,8 +212,10 @@
                     setTimeout(function() {
 
                         if(!request.isComplete) {
-                            assert(me, false, 'Request timed out.');
+                            assert(me, false, 'Request has timed out.');
                         }
+                        
+                        me.terminate();
 
                     }, 5000);
 
@@ -221,28 +236,32 @@
 
                         oncomplete : function(responseText, responseXml, transport) {
 
-                            assert(me, true, 'Request successfully completed.');
+                            assert(me, true, 'Request has been completed successfully.');
 
                         },
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
 
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
-
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
+                            
                         }
 
                     });
 
                     setTimeout(function() {
                         
-                        assert(me, request.isComplete, 'Request timely processed.');
-                        assert(me, request.isFinalized, 'Request cleaned up.');
+                        assert(me, request.isComplete, 'Request has been timely processed.');
+                        assert(me, request.isFinalized, 'Request has been cleaned up successfully.');
+
+                        me.terminate();
 
                     }, 1000);
 
@@ -266,28 +285,32 @@
                         oncomplete : function(responseText, responseXml, transport) {
 
                             assert(me, false, 'Request successfully completed.');
+                            me.terminate();
 
                         },
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, true, 'An error occured.');
+                            assert(me, true, 'An error has occured.');
 
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, false, 'An exception occured.');
-
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
+                            
                         }
 
                     });
 
                     setTimeout(function() {
 
-                        assert(me, request.isComplete, 'Request timely processed.');
-                        assert(me, request.isFinalized, 'Request cleaned up.');
+                        assert(me, request.isComplete, 'Request has been timely processed.');
+                        assert(me, request.isFinalized, 'Request has been cleaned up successfully.');
 
+                        me.terminate();
+                        
                     }, 1000);
 
                 }
@@ -315,13 +338,14 @@
 
                         onerror : function(status, statusText, transport) {
 
-                            assert(me, false, 'An error occured.');
-
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
+                            
                         },
 
                         onexception : function(exception, transport) {
 
-                            assert(me, true, 'An exception occured.');
+                            assert(me, true, 'An exception has occured.');
 
                         }
 
@@ -329,8 +353,9 @@
 
                     setTimeout(function() {
 
-                        assert(me, request.isComplete, 'Request timely processed.');
-                        assert(me, request.isFinalized, 'Request cleaned up.');
+                        assert(me, request.isComplete, 'Request has been timely processed.');
+                        assert(me, request.isFinalized, 'Request has been cleaned up successfully.');
+                        me.terminate();
 
                     }, 1000);
 
@@ -338,139 +363,109 @@
 
             });
 
-            /*add('o2.Ajax.post SHOULD be able to send and receive UTF-8 data without loss.', {
-                count : 1,
+            add('o2.Ajax.post SHOULD be able to send and receive UTF-8 data without loss.', {
+                count : 4,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    var url = 'service/service.php';
+                    var params = {data:'iüğşçöİÜĞŞÇÖIı', echo: 1};
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assert(me, true, 'Request has been completed successfully.');
+                            
+                            var data = JSON.parse(responseText);
+                            
+                            assert(me, data.data == params.data, 'Data has been received without loss.');
+
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
+                            
+                        }
+
+                    });
+
+                    setTimeout(function() {
+
+                        assert(me, request.isComplete, 'Request has been timely processed.');
+                        assert(me, request.isFinalized, 'Request has been cleaned up successfully.');
+                        me.terminate();
+
+                    }, 1000);
 
                 }
 
-            });*/
+            });
 
-            /*add('o2.Ajax.post SHOULD be able to send sync requests.', {
-                count : 1,
+            add('o2.Ajax.post SHOULD be able to send sync requests.', {
+                count : 3,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    var url = 'service/service.php';
+                    var params = {};
+
+                    var sequence = '';
+
+                    var request = o2.Ajax.post(url, params, {
+
+                        oncomplete : function(responseText, responseXml, transport) {
+
+                            assert(me, true, 'Request has been completed successfully.');
+                            
+                            sequence += '1';
+                            
+                        },
+
+                        onerror : function(status, statusText, transport) {
+
+                            assert(me, false, 'An error has occured.');
+                            me.terminate();
+
+                        },
+
+                        onexception : function(exception, transport) {
+
+                            assert(me, false, 'An exception has occured.');
+                            me.terminate();
+                            
+                        }
+
+                    }, true);
+                    
+                    sequence += '2';
+
+                    setTimeout(function() {
+
+                        assert(me, request.isComplete, 'Request has been timely processed.');
+                        assert(me, request.isFinalized, 'Request has been cleaned up successfully.');
+                        assert(me, sequence == '12', 'Sequence is correct.');
+                        me.terminate();
+
+                    }, 1000);
 
                 }
 
-            });*/
+            });
 
             /*-----------*/
 
-            /*add('o2.Ajax.get SHOULD receive a proper response if the request is on the same domain.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD return an object SHOULD return an object and the object should be passed to success callback.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD have a "complete" flag, set to true when a response is received.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD be able to send cross-domain requests, if an options header is set.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD clean up initial XHR object, when request is complete.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD handle exceptional cases.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD handle HTTP errors.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD be able to send and receive UTF-8 data without loss.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
-
-            /*add('o2.Ajax.get SHOULD be able to send sync requests.', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });*/
 
             /*-------------------*/
 
