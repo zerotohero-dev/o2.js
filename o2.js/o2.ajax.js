@@ -274,7 +274,7 @@
         var oncomplete = callbacks.oncomplete ? callbacks.oncomplete : nillCached;
         var onerror = callbacks.onerror ? callbacks.onerror : nillCached;
         var onexception = callbacks.onexception ? callbacks.onexception : nillCached;
-
+    
         xhr.onreadystatechange = function() {
 
             var status = null;
@@ -428,12 +428,6 @@
 
             callbacks.onexception(xhr, exception);
 
-        }
-
-        if(isSync) {
-
-            // If the request is sync, process response immediately.
-            processCallbacks(xhr, callbacks);
         }
 
         return xhr;

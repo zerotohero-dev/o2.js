@@ -28,6 +28,21 @@
          */
         init : function() {
 
+            add('o2.AjaxState.addObserver SHOULD increment observer count.');
+            
+            add('o2.AjaxState.deleteObserver SHOULD decrement observer count.');
+            
+            add('o2.AjaxState.countObservers SHOULD give the obsever count.');
+            
+            add('o2.AjaxState.deleteObservers SHOULD remove all observers.');
+            
+            add('o2.AjaxState.timeoutObservers SHOULD timeout given observers.');
+            
+            add('o2.AjaxState.timeoutAllObservers SHOULD timeout all observers.');
+            
+            add('o2.AjaxState.init SHOULD start listening.');
+            
+
             add('dummy test case', {
                 count : 1,
                 test : function() {

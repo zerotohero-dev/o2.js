@@ -1,3 +1,4 @@
+
 /*global o2 */
 
 /**
@@ -90,8 +91,8 @@
                     value = fromObj[key];
 
                     if(shouldRecurse && typeof value == 'object') {
-                        if( typeof toObj[key] != 'object') {
-                            toObj[key] = {};
+                        if( typeof toObj[key] != 'object') {                            
+                            toObj[key] = isArray(value) ? [] : {};
                         }
 
                         merge(toObj[key], fromObj[key], shouldRecurse);
@@ -391,6 +392,8 @@
                         }
                     }
                 }
+                
+                return null;
             }
 
             return ar[0];

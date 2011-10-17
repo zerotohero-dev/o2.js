@@ -119,7 +119,7 @@
          * The total number of failed assertions.
          */
         globalFailureCount : 0,
-        
+
         /*
          * Total number of completed unit tests.
          */
@@ -145,8 +145,7 @@
         var kFinishedTestMessage = ['Completed unit test <strong>#', (++state.globalCompletedUnitTestCount), '</strong>'].join('');
 
         log(kFinishedTestMessage);
-        
-        scrollToBottom();
+
     }
 
     /*
@@ -199,7 +198,8 @@
         if(unitTest.remainingCount <= 0) {
             reportTestCompletion(unitTest);
         }
-        
+
+        scrollToBottom();
     }
 
     /*
@@ -287,14 +287,19 @@
         this.testCase = testCase;
 
     }
-    
+
     var p = UnitTest.prototype;
-    
-    //TODO: add documentation.
+
+    /**
+     * @function {static} o2.UnitTest.terminate
+     *
+     * <p>Terminates the unit test by setting remaining assertion count to
+     * zero.</p>
+     */
     p.terminate = function() {
-        
+
         this.remainingCount = 0;
-    
+
     };
 
     /*
@@ -308,7 +313,7 @@
 
         } catch(executionException) {
 
-            unitTest.remainingCount = 0;
+            unitTest.terminate();
             reportFatalError(unitTest);
 
         }

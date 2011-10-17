@@ -2,7 +2,7 @@
 
 /**
  * @module ajaxcontroller
- * @requires AjaxState
+ * @requires ajaxstate
  *
  * <!--
  *  This program is distributed under
