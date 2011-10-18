@@ -139,7 +139,7 @@
                 return false;
             }
 
-            while(theNode.nodeName.toLowerCase() != 'body') {
+            while(theNode) {
                 if(theNode == parentNode) {
 
                     return true;
@@ -218,7 +218,8 @@
          *
          * @param {Object} elm - either the <strong>element</strong>, or the
          * <strong>id</strong> of it to process.
-         * @param {Boolean} isRecursive - if <code>true</code> do the same
+         * @param {Boolean} isRecursive - (Optional, default to
+         * <code>true</code>) if <code>true</code> do the same
          * process for the child nodes of <code>elm</code> as well.
          */
         removeEmptyTextNodes : function(elm, isRecursive) {
@@ -235,6 +236,11 @@
             var arRemove = [];
             var len = children.length;
             var i = 0;
+
+            //
+            if(isRecursive == UNDEFINED) {
+                isRecursive = true;
+            }
 
             //
             isRecursive = !!isRecursive;
@@ -296,6 +302,20 @@
         },
 
         /**
+         * @function {static} o2.DomHelper.removeChildren
+         *
+         * <p>An alias to {@link o2.DomHelper.removeChildren}.</p>
+         *
+         * @param {Object} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it to process.
+         */
+        empty : function(elm) {
+
+            o2.DomHelper.removeChildren(elm);
+
+        },
+
+        /**
          * @function {static} o2.DomHelper.insertAfter
          *
          * <p>Adds the node after the reference node.</p>
@@ -318,12 +338,12 @@
 
             var obj = refNode.parentNode;
 
-            if(refNode.nextSibling){
+            if(refNode.nextSibling) {
                 obj.insertBefore(newNode, refNode.nextSibling);
 
                 return;
-            } 
-            
+            }
+
             obj.appendChild(newNode);
 
         },
@@ -395,6 +415,7 @@
                         // as a read/write string called cssText, which is a
                         // property of the style object, which itself is a
                         // property of the element.
+                        //
                         // Note, however, that it is not supported very well;
                         // Safari does not support it up to version 1.1 (reading
                         // it produces the value null)
@@ -540,9 +561,29 @@
                 return null;
             }
 
+            var value = null;
+
+            if(attribute == 'class' || attribute == 'className') {
+                value = obj.className;
+
+                if(value !== UNDEFINED) {
+
+                    return value;
+                }
+            }
+
+            if(attribute == 'style' || attribute == 'css' || attribute == 'cssText') {
+                value = obj.cssText;
+
+                if(value !== UNDEFINED) {
+
+                    return value;
+                }
+            }
+
             //DOM object (obj) may not have a getAttribute method.
             if( typeof obj.getAttribute == 'function') {
-                var value = obj.getAttribute(attribute);
+                value = obj.getAttribute(attribute);
 
                 if(value !== UNDEFINED) {
 

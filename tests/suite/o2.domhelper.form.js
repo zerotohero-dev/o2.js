@@ -28,17 +28,10 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.DomHelper.trimField SHOULD trim the value of a field.');
+            add('o2.DomHelper.trimField SHOULD work equally well with string IDs.');
+            add('o2.DomHelper.compactField SHOULD compact the value of a field.');
+            add('o2.DomHelper.compactField SHOULD work equally well with string IDs.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

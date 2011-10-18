@@ -28,13 +28,13 @@
          */
         init : function() {
 
-            add('dummy test case', {
+            add('debugger SHOULD work', {
                 count : 1,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    assert(me, true, 'o2.Debugger is assumed to work properly since all "Test Suite"s depend on it.');
 
                 }
 

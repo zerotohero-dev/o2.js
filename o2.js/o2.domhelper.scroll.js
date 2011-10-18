@@ -18,6 +18,7 @@
      * Aliases.
      */
     var me = framework.DomHelper;
+    var $ = o2.$;
 
     /**
      * @function {static} o2.DomHelper.scrollWindowToBottom
@@ -87,15 +88,16 @@
      *
      * <p>Scrolls an element to top.</p>
      *
-     * @param {Object} obj - the element, or the <strong>id</strong> of the element, to scroll.
+     * @param {Object} obj - the element, or the <strong>id</strong> of the
+     * element, to scroll.
      */
     me.scrollObjectToTop = function(obj) {
 
         //
-        obj = o2.$(obj);
-        
+        obj = $(obj);
+
         if(!obj) {
-            
+
             return;
         }
 
@@ -108,15 +110,16 @@
      *
      * <p>Scrolls an element to bottom.</p>
      *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to scroll.
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+     * scroll.
      */
     me.scrollObjectToBottom = function(obj) {
 
         //
-        obj = o2.$(obj);
-        
+        obj = $(obj);
+
         if(!obj) {
-            
+
             return;
         }
 
@@ -129,20 +132,21 @@
      *
      * <p>Scrolls the window to the object's offset position..</p>
      *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to scroll.
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+     * scroll.
      */
     me.scrollWindowToObject = function(obj) {
 
         //
-        obj = o2.$(obj);
-        
+        obj = $(obj);
+
         if(!obj) {
-            
+
             return;
         }
 
         var offset = me.getOffset(obj);
-        
+
         window.scrollTo(offset.left, offset.top);
 
     };
@@ -203,6 +207,19 @@
         };
 
         return me.getWindowScrollOffset();
+
+    };
+
+
+    me.getObjectScrollOfset = function(obj) {
+
+        //
+        obj = $(obj);
+
+        return {
+            left : obj.scrollLeft,
+            top : obj.scrollTop
+        };
 
     };
 

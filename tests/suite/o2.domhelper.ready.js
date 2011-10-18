@@ -28,17 +28,7 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.DomHelper.ready SHOULD fire all registered callbacks when DOM is ready');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

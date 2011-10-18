@@ -28,17 +28,10 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.DomHelper.loadImage SHOULD asynchronously load an image with success callback');
+            add('o2.DomHelper.loadImage SHOULD asynchronously load an image with fail callback');
+            add('o2.DomHelper.loadScript SHOULD asynchronously load a script');
+            add('o2.DomHelper.loadCss SHOULD asynchronously load a cSS');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 
