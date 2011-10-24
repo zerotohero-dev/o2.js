@@ -890,9 +890,9 @@ That last fallback should at least have a log statement.
 All if-else chains should have an `else` in the end. 
 That last else should at least have a log statement.
 
-        if ('no' == answer) {
+        if (answer == 'no') {
             alert('You said no');
-        } else if ('yes' == answer) {
+        } else if (answer == 'yes') {
             alert('You said yes');
         } else {
 
