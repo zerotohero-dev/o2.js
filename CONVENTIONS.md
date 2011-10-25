@@ -987,6 +987,29 @@ build & deployment cycle.
 [2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
 [3]: hhttp://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
 
+The version of **JSLint** used to validate **o2.js** modules can be found at
+
+    /3rdparty/jslint/jslint.js
+    
+folder of this bundle.
+
+The **JSLint** validation preferences used are as follows:
+
+    var JSLINT_PREFS = {
+        browser:true,
+        evil:false,
+        laxbreak:true,
+        maxerr: 1000,
+        newcap: true,
+        nomen: true,
+        passfail:false,
+        plusplus: true,
+        rhino: true,
+        undef:true,
+        vars: true,
+        white: true
+    };
+
 ### 4.2.  SHOW LOVE TO THE MODULE PATTERN
 
 [Modules][4] are simply self-executing function literals. 
