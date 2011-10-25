@@ -1008,6 +1008,7 @@ The **JSLint** validation preferences used are as follows:
         undef:true,
         vars: true,
         white: true
+        regexp: true
     };
 
 ### 4.2.  SHOW LOVE TO THE MODULE PATTERN
