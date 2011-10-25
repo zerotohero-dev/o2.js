@@ -987,9 +987,9 @@ build & deployment cycle.
 [2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
 [3]: hhttp://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
 
-The version of **JSLint** used to validate **o2.js** modules can be found at
+The version of **JSLint** used to validate **o2.js** modules can be found at:
 
-    /3rdparty/jslint/jslint.js
+    ./3rdparty/jslint/jslint.js
     
 folder of this bundle.
 
