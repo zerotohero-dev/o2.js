@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module sortdelegate
  *
@@ -11,7 +9,10 @@
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -23,7 +24,7 @@
      */
     function getSortOrder(a, b, isDescending) {
 
-        if(a == b) {
+        if(a === b) {
 
             return 0;
         }
@@ -41,16 +42,16 @@
     }
 
     /*
-     * 
+     *
      */
     function getNanSortOrder(a, b, isDescending) {
-        
+
         if(isDescending) {
 
-            return (isNaN(b) ? -1 / 0 : b) - (isNaN(a) ? -1 / 0 : a);
+            return (isNaN(b) ? -Infinity : b) - (isNaN(a) ? -Infinity : a);
         }
 
-        return (isNaN(a) ? 1 / 0 : a) - (isNaN(b) ? 1 / 0 : b);
+        return (isNaN(a) ? Infinity : a) - (isNaN(b) ? Infinity : b);
 
     }
 
@@ -67,7 +68,8 @@
          * <p>A generic sort function.</p>
          * <p>If the collecion consists of <strong>String</strong>s and
          * <strong>Number</strong>s,
-         * <strong>String</strong>s will be stored alphabeticaly at the bottom, and
+         * <strong>String</strong>s will be stored alphabeticaly at the bottom,
+         * and
          * <strong>Number</strong>s will be sorted numerically before them.</p>
          */
         sort : function(a, b, isDesc) {
@@ -98,4 +100,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

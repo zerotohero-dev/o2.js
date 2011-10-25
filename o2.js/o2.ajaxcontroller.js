@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module ajaxcontroller
  * @requires ajaxstate
@@ -13,12 +11,15 @@
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-( function(framework, window, UNDEFINED) {
-    
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
+
     /*
      * Aliases.
      */
-    var me = framework;    
+    var me = framework;
     var nill = framework.nill;
     var addObserver = framework.AjaxState.addObserver;
 
@@ -53,7 +54,7 @@
         addObserver(this);
 
     };
-    
+
     var apt = me.AjaxController.prototype;
 
     /**
@@ -69,16 +70,16 @@
     apt.update = function(observable, data) {
 
         if(!data.isTimedOut) {
-            
+
             return;
         }
 
         // Unregister self from the observable.
         this.unregister(observable);
-   
+
         // Abort the request.
         this.xhr.abort();
-   
+
         // Execute callback.
         this.ontimeout();
 
@@ -95,7 +96,7 @@
     apt.unregister = function(observable) {
 
         if(this.isDeleted) {
-            
+
             return;
         }
 
@@ -103,4 +104,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

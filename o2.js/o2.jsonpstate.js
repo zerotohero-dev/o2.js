@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module jsonpstate
  * @requires ajaxstate
@@ -14,7 +12,10 @@
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -67,7 +68,7 @@
 
     for(key in base) {
         if(base.hasOwnProperty(key)) {
-            if( typeof base[key] == 'function') {
+            if( typeof base[key] === 'function') {
                 me.JsonpState[key] = clone(me.JsonpState, base[key]);
             }
         }
@@ -75,10 +76,10 @@
 
     for(key in baseProtected) {
         if(baseProtected.hasOwnProperty(key)) {
-            if( typeof baseProtected[key] == 'function') {
+            if( typeof baseProtected[key] === 'function') {
                 me.JsonpState.protecteds[key] = clone(me.JsonpState.protecteds, baseProtected[key]);
             }
         }
     }
 
-}(o2, this));
+}(this.o2));

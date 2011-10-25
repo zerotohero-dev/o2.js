@@ -12,7 +12,10 @@
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -73,4 +76,4 @@
         return field.value;
     };
 
-}(o2, this));
+}(this.o2));

@@ -1,5 +1,3 @@
-/*global o2*/
-
 /**
  * @module stringhelper.core
  *
@@ -11,7 +9,11 @@
  *
  * <p>A <code>String</code> helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
+
 
     /*
      * Aliases.
@@ -96,12 +98,12 @@
 
             var len = length || config.constants.DEFAULT_RANDOM_LENGTH;
             var charsLength = chars.length;
-            var randomString = '';
             var randomNumber = 0;
 
             var buffer = [];
+            var i = 0;
 
-            for(var i = 0; i < len; i++) {
+            for(i = 0; i < len; i++) {
                 randomNumber = Math.floor(Math.random() * charsLength);
                 buffer.push(chars.substring(randomNumber, randomNumber + 1));
             }
@@ -139,7 +141,7 @@
          *
          * @return the formated <strong>String</strong>.
          */
-        format : function(string) {
+        format : function() {
 
             var args = arguments;
 
@@ -148,15 +150,18 @@
                 return null;
             }
 
-            if(args.length == 1) {
+            if(args.length === 1) {
             
                 return args[0];
             }
 
-            var pattern = RegExp(['{', '([0-', (args.length - 2), '])', '}'].join(''), 'g');
+            var pattern = new RegExp(['{', '([0-', (args.length - 2), '])', '}'].join(''), 'g');
+            var lastMatch = null;
 
             return args[0].replace(pattern, function(match, index) {
-            
+                
+                lastMatch = match;
+
                 return args[+index + 1];
             
             });
@@ -202,7 +207,10 @@
             var constants = config.constants;
             var regExp = constants.regExp;
 
-            return shouldCompact ? str.replace(regExp.WHITESPACE, ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
+            // @formatter:off
+            return shouldCompact ? str.replace(regExp.WHITESPACE, 
+                ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
+            // @formatter:on
 
         },
 
@@ -244,4 +252,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

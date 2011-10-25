@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.traverse
  * @requires domhelper.core
@@ -14,7 +12,10 @@
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -24,7 +25,7 @@
     var generateGuid = framework.StringHelper.generateGuid;
     var $ = framework.$;
     var myName = framework.name;
-    var createClassNameRegExp = o2.DomHelper.createClassNameRegExp;
+    var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
 
     /*
      *
@@ -33,8 +34,10 @@
 
         var child = null;
         var result = [];
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = children.length; i < len; i++) {
+        for( i = 0, len = children.length; i < len; i++) {
             child = children[i];
             if(regClassName.test(child.className)) {
                 result.push(children[i]);
@@ -85,33 +88,30 @@
         var hasParent = false;
         var targetNodeName = '';
         var currentNodeName = '';
+        var i = 0;
+        var len = 0;
 
         while(target) {
             nodes = nodeName.split(',');
             targetNodeName = target.nodeName.toLowerCase();
 
-            for(var i = 0, len = nodes.length; i < len; i++) {
+            for( i = 0, len = nodes.length; i < len; i++) {
                 currentNodeName = nodes[i].toLowerCase();
 
-                if(!currentNodeName) {
+                if(currentNodeName) {
+                    if(targetNodeName === currentNodeName) {
+                        hasParent = true;
 
-                    continue;
-                }
-
-                if(targetNodeName === currentNodeName) {
-                    hasParent = true;
-
-                    break;
+                        break;
+                    }
                 }
             }
 
-            if(!hasParent) {
-                target = target.parentNode;
+            if(hasParent) {
 
-                continue;
+                return target;
             }
-
-            return target;
+            target = target.parentNode;
         }
 
         return null;
@@ -257,7 +257,7 @@
      *
      * @see o2.DomHelper.getParentWithAttribute
      */
-    me.getParentWithId = function(obj, value, shouldExcludeSelf) {
+    me.getParentWithId = function(obj, shouldExcludeSelf) {
 
         //
         obj = $(obj);
@@ -310,7 +310,6 @@
                     target.id = [myName, generateGuid()].join('');
                 }
 
-                var kTextNode = me.nodeType.TEXT;
                 var kAll = '*';
                 nodeName = nodeName || kAll;
                 nodeName = nodeName.toLowerCase();
@@ -347,24 +346,18 @@
             var node = children[0];
 
             while(node) {
-                if(node.nodeType == kTextNode) {
-                    node = node.nextSibling;
+                if(node.nodeType !== kTextNode) {
+                    if(nodeName === kAll) {
 
-                    continue;
+                        return node;
+                    }
+
+                    if(node.nodeName.toLowerCase() === nodeName) {
+
+                        return node;
+                    }
                 }
-
-                if(nodeName == kAll) {
-
-                    return node;
-                }
-
-                if(node.nodeName.toLowerCase() != nodeName) {
-                    node = node.nextSibling;
-
-                    continue;
-                }
-
-                return node;
+                node = node.nextSibling;
             }
 
             return null;
@@ -437,7 +430,7 @@
             var node = children[0];
 
             while(node) {
-                if(node.id && node.id == id) {
+                if(node.id && node.id === id) {
 
                     return node;
                 }
@@ -579,24 +572,18 @@
         var node = children[children.length - 1];
 
         while(node) {
-            if(node.nodeType == kTextNode) {
-                node = node.previousSibling;
+            if(node.nodeType !== kTextNode) {
+                if(nodeName === kAll) {
 
-                continue;
+                    return node;
+                }
+
+                if(node.nodeName.toLowerCase() === nodeName) {
+
+                    return node;
+                }
             }
-
-            if(nodeName == kAll) {
-
-                return node;
-            }
-
-            if(node.nodeName.toLowerCase() != nodeName) {
-                node = node.previousSibling;
-
-                continue;
-            }
-
-            return node;
+            node = node.previousSibling;
         }
 
         return null;
@@ -634,7 +621,7 @@
         var node = children[children.length - 1];
 
         while(node) {
-            if(node.id && node.id == id) {
+            if(node.id && node.id === id) {
 
                 return node;
             }
@@ -712,22 +699,88 @@
         }
 
         var nodes = target.childNodes;
-
         var kTextNode = me.nodeType.TEXT;
-
         var result = [];
-
         var node = null;
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = nodes.length; i < len; i++) {
+        for( i = 0, len = nodes.length; i < len; i++) {
             node = nodes[i];
 
-            if(nodes.nodeType != kTextNode) {
+            if(nodes.nodeType !== kTextNode) {
                 result.push(node);
             }
         }
 
         return result;
+
+    };
+
+    /**
+     * @function {static} o2.DomHelper.getChildrenByClassName
+     *
+     * <p>Gets immediate descendants, with a given class name, of the
+     * element.</p>
+     *
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
+     * @param {String} c - the className to test.
+     *
+     * @return the immediate descendants with the given class name.
+     */
+    me.getChildrenByClassName = function(el, c) {
+
+        //
+        el = $(el);
+
+        if(!el) {
+
+            return null;
+        }
+
+        //NOTE: IE7+ supports child selector ( > ), IE8+ supports
+        // querySelectorAll
+
+        if(el.querySelectorAll) {
+            me.getChildrenByClassName = function(el, c) {
+
+                //
+                el = $(el);
+
+                if(!el) {
+
+                    return null;
+                }
+
+                if(!el.id) {
+                    el.id = [myName, generateGuid()].join('');
+                }
+
+                return el.querySelectorAll(['#', el.id, ' > .', c].join(''));
+
+            };
+
+            return me.getChildrenByClassName(el, c);
+        }
+
+        me.getChildrenByClassName = function(el, c) {
+
+            //
+            el = $(el);
+
+            if(!el) {
+
+                return null;
+            }
+
+            var children = el.childNodes;
+
+            return filterChildren(children, createClassNameRegExp(c));
+
+        };
+
+        return me.getChildrenByClassName(el, c);
 
     };
 
@@ -748,7 +801,7 @@
         //
         target = $(target);
 
-        if(!target || typeof target != 'object') {
+        if(!target || typeof target !== 'object') {
 
             return null;
         }
@@ -763,7 +816,7 @@
         var kTextNode = me.nodeType.TEXT;
 
         while(node) {
-            if(node.nodeType != kTextNode) {
+            if(node.nodeType !== kTextNode) {
 
                 return node;
             }
@@ -805,10 +858,8 @@
             return null;
         }
 
-        var kTextNode = me.nodeType.TEXT;
-
         while(node) {
-            if(node.id && node.id == id) {
+            if(node.id && node.id === id) {
 
                 return node;
             }
@@ -848,8 +899,6 @@
 
             return null;
         }
-
-        var kTextNode = me.nodeType.TEXT;
 
         while(node) {
             if(node.id) {
@@ -896,7 +945,7 @@
         var kTextNode = me.nodeType.TEXT;
 
         while(node) {
-            if(node.nodeType != kTextNode) {
+            if(node.nodeType !== kTextNode) {
 
                 return node;
             }
@@ -938,10 +987,8 @@
             return null;
         }
 
-        var kTextNode = me.nodeType.TEXT;
-
         while(node) {
-            if(node.id && node.id == id) {
+            if(node.id && node.id === id) {
 
                 return node;
             }
@@ -983,8 +1030,6 @@
             return null;
         }
 
-        var kTextNode = me.nodeType.TEXT;
-
         while(node) {
             if(node.id) {
 
@@ -996,75 +1041,6 @@
         }
 
         return null;
-
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getChildrenByClassName
-     *
-     * <p>Gets immediate descendants, with a given class name, of the
-     * element.</p>
-     *
-     * @param {DomNode} el - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it.
-     * @param {String} c - the className to test.
-     *
-     * @return the immediate descendants with the given class name.
-     */
-    me.getChildrenByClassName = function(el, c) {
-
-        //
-        el = $(el);
-
-        if(!el) {
-
-            return null;
-        }
-
-        //NOTE: IE7+ supports child selector ( > ), IE8+ supports
-        // querySelectorAll
-
-        if(el.querySelectorAll) {
-            me.getChildrenByClassName = function(el, c) {
-
-                //
-                el = $(el);
-
-                if(!el) {
-
-                    return null;
-                }
-
-                var children = el.childNodes;
-
-                if(!el.id) {
-                    el.id = [myName, generateGuid()].join('');
-                }
-
-                return el.querySelectorAll(['#', el.id, ' > .', c].join(''));
-
-            };
-
-            return me.getChildrenByClassName(el, c);
-        }
-
-        me.getChildrenByClassName = function(el, c) {
-
-            //
-            el = $(el);
-
-            if(!el) {
-
-                return null;
-            }
-
-            var children = el.childNodes;
-
-            return filterChildren(children, createClassNameRegExp(c));
-
-        };
-
-        return me.getChildrenByClassName(el, c);
 
     };
 
@@ -1101,8 +1077,6 @@
                     return null;
                 }
 
-                var children = el.getElementsByTagName('*');
-
                 return el.querySelectorAll(['.', c].join(''));
 
             };
@@ -1130,4 +1104,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

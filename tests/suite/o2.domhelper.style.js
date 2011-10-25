@@ -28,17 +28,13 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
+            add('o2.DomHelper.addStyle SHOULD add style to the element.');
+            add('o2.DomHelper.getStyle SHOULD retrieve the style of the element.');
+            add('o2.DomHelper.isVisible SHOULD return true if the element is not hidden or it\'s display is not set to "none".');
+            add('o2.DomHelper.activateAlternateStyleSheet SHOULD activate an alternate style sheet.');
+            add('o2.DomHelper.hide SHOULD hide the element');
+            add('o2.DomHelper.show SHOULD show the element');
 
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

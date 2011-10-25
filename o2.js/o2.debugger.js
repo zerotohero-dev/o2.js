@@ -1,5 +1,3 @@
-/*global o2, console */
-
 /**
  * @module debugger
  *
@@ -11,7 +9,10 @@
  *
  * <p>A debugging helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document, console) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -128,6 +129,7 @@
             case ccc.LOG:
 
                 try {
+                    
                     console.log(text);
 
                 } catch(ignore1) {
@@ -138,6 +140,7 @@
             case ccc.INFO:
 
                 try {
+
                     console.info(text);
 
                 } catch(ignore2) {
@@ -148,6 +151,7 @@
             case ccc.WARN:
 
                 try {
+
                     console.warn(text);
 
                 } catch(ignore3) {
@@ -158,6 +162,7 @@
             case ccc.ERROR:
 
                 try {
+                    
                     console.error(text);
 
                 } catch(ignore4) {
@@ -168,6 +173,7 @@
             default:
 
                 try {
+                    
                     console.log(text);
 
                 } catch(ignore5) {
@@ -232,9 +238,7 @@
 
             } else {
 
-                return function(value) {
-
-                };
+                return framework.nill;
 
             }
 
@@ -280,7 +284,7 @@
             // Can I use the browser's built-in console?
             // (the double negation !!shouldUseConsole will convert the var to
             // boolean.)
-            config.isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
+            config.isUsingConsole = (console !== undefined && !!shouldUseConsole);
 
             // Is everything ok? -- I should either use the output element, or
             // the console.
@@ -481,4 +485,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document, this.console));

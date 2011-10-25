@@ -12,13 +12,16 @@
  *
  * <p>A window/div scroll helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
      */
     var me = framework.DomHelper;
-    var $ = o2.$;
+    var $ = framework.$;
 
     /**
      * @function {static} o2.DomHelper.scrollWindowToBottom
@@ -162,7 +165,7 @@
     me.getWindowScrollOffset = function() {
 
         if(document.documentElement) {
-            if(document.body && document.body.scrollLeft !== UNDEFINED) {
+            if(document.body && document.body.scrollLeft !== undefined) {
                 me.getWindowScrollOffset = function() {
 
                     var left = Math.max(document.body.scrollLeft, document.documentElement.scrollLeft);
@@ -223,4 +226,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this, this.document));

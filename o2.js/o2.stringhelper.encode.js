@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module stringhelper.encode
  * @requires stringhelper.core
@@ -12,7 +10,10 @@
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -145,8 +146,10 @@
 
         var map = shouldPreserveAmpersands ? config.map.xssEncodeNoAmp : config.map.xssEncode;
         var mapItem = null;
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = map.length; i < len; i++) {
+        for( i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
@@ -172,8 +175,10 @@
 
         var map = config.map.encode;
         var mapItem = null;
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = map.length; i < len; i++) {
+        for( i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
@@ -197,8 +202,10 @@
 
         var map = config.map.decode;
         var mapItem = null;
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = map.length; i < len; i++) {
+        for( i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
@@ -230,10 +237,11 @@
      * @param {String} str - the <strong>String</strong> to process.
      *
      * @return the processed <strong>String</strong>.
-     */    
-    me.unescape = function(str){
-        
+     */
+    me.unescape = function(str) {
+
         return decodeURIComponent(str);
+
     };
 
     /**
@@ -261,4 +269,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document));

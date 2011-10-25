@@ -1,5 +1,3 @@
-/*global o2*/
-
 /**
  * @module unit
  * @requires stringhelper.core
@@ -14,7 +12,10 @@
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, setTimeout) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -25,6 +26,7 @@
     var initDebugger = framework.Debugger.init;
     var format = framework.StringHelper.format;
     var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
+    var nill = framework.nill;
 
     /*
      * Module configuration.
@@ -327,7 +329,7 @@
      */
     function expectProperArgumentLength(localParameterCount, argumentsLength, methodName) {
 
-        if(argumentsLength == localParameterCount) {
+        if(argumentsLength === localParameterCount) {
 
             return;
         }
@@ -411,7 +413,7 @@
 
             expectProperArgumentLength(kRequiredLocalParameterCount, kArgumentsLength, kMethodName);
 
-            var result = (currentValue == expectedValue);
+            var result = (currentValue === expectedValue);
 
             didAssertion(unitTest, result, message);
 
@@ -434,7 +436,7 @@
 
             expectProperArgumentLength(kRequiredLocalParameterCount, kArgumentsLength, kMethodName);
 
-            var result = (currentValue != expectedValue);
+            var result = (currentValue !== expectedValue);
 
             didAssertion(unitTest, result, message);
 
@@ -543,16 +545,16 @@
          */
         run : function(globalCompletionCallback) {
 
-            if(o2.Unit.isRunning) {
+            if(framework.Unit.isRunning) {
 
                 return;
             }
 
-            o2.Unit.isRunning = true;
+            framework.Unit.isRunning = true;
 
             var kCheckInterval = config.TEST_CHECK_INTERVAL;
 
-            var oncomplete = globalCompletionCallback ? globalCompletionCallback : o2.nill;
+            var oncomplete = globalCompletionCallback || nill;
 
             initializeDebugger();
 
@@ -575,12 +577,12 @@
 
                     reportGlobalCompletion();
 
-                    o2.Unit.isRunning = false;
+                    framework.Unit.isRunning = false;
 
                     // We are done with this unit test, so release the lock.
                     activeUnitTest = null;
 
-                    oncomplete(o2.Unit);
+                    oncomplete(framework.Unit);
 
                     return;
                 }
@@ -601,4 +603,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.setTimeout));

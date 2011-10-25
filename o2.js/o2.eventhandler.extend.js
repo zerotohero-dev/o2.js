@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module eventhandler.extend
  * @requires eventhandler.core
@@ -12,13 +10,16 @@
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
      */
     var me = framework.EventHandler;
-    
+
     /**
      * @function {static} o2.EventHandler.getMouseCoordinates
      *
@@ -84,8 +85,9 @@
                 var clientY = e.clientY || 0;
 
                 //
-                posx = clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-                posy = clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                var wd = document;
+                posx = clientX + wd.body.scrollLeft + wd.documentElement.scrollLeft;
+                posy = clientY + wd.body.scrollTop + wd.documentElement.scrollTop;
 
                 return {
                     x : posx,
@@ -202,7 +204,7 @@
         if(e.which) {
             me.isRightClick = function(e) {
 
-                return e.which == 3;
+                return e.which === 3;
             };
 
             return me.isRightClick(evt);
@@ -211,7 +213,7 @@
         if(e.button) {
             me.isRightClick = function(e) {
 
-                return e.button == 2;
+                return e.button === 2;
             };
 
             return me.isRightClick(evt);
@@ -221,4 +223,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document));

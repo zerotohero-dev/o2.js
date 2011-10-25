@@ -1,42 +1,48 @@
-/*global o2 */
-
 /**
  * @module extend
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * Helpful extension functions to the framework namespace.
  */
-( function(framework, window, UNDEFINED) {
-    
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
+
     var me = framework;
-    
+
     me.first = function() {
 
     };
+
 
     me.last = function() {
 
     };
 
+
     me.parent = function() {
 
     };
-    
-    me.remove = function(){
-        
-    };
-    
-    me.listen = function(){
-        
-    };
-    
-    me.create = function(){
-        
+
+
+    me.remove = function() {
+
     };
 
-}(o2, this));
+
+    me.listen = function() {
+
+    };
+
+
+    me.create = function() {
+
+    };
+
+}(this.o2));

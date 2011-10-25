@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.ready
  * @requires domhelper.core
@@ -12,7 +10,10 @@
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, document, setTimeout) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -46,7 +47,7 @@
      */
     function isDomContentReady() {
 
-        return (config.constants.regExp.REG_DOM_LOADED).test(window.document.readyState);
+        return (config.constants.regExp.REG_DOM_LOADED).test(document.readyState);
 
     }
 
@@ -79,13 +80,16 @@
      */
     var checkScrollLeft = function() {
 
+        var kCheckIntervalMs = 50;
+        var kPropertyToCheck = 'left';
+
         try {
 
-            window.document.documentElement.doScroll('left');
+            document.documentElement.doScroll(kPropertyToCheck);
 
         } catch(e) {
 
-            setTimeout(checkScrollLeft, 50);
+            setTimeout(checkScrollLeft, kCheckIntervalMs);
 
             return;
 
@@ -98,9 +102,9 @@
 
     };
 
-    var onMozDomContentLoaded = function(evt) {
+    var onMozDomContentLoaded = function() {
 
-        window.document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
+        document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
 
         //
         flushReadyQueue();
@@ -110,9 +114,9 @@
 
     };
 
-    var onMozWindowLoad = function(evt) {
+    var onMozWindowLoad = function() {
 
-        window.document.removeEventListener('load', onMozWindowLoad, false);
+        document.removeEventListener('load', onMozWindowLoad, false);
 
         //
         flushReadyQueue();
@@ -122,7 +126,7 @@
 
     };
 
-    var onIEDomContentLoaded = function(evt) {
+    var onIEDomContentLoaded = function() {
 
         if(!isDomContentReady()) {
 
@@ -130,7 +134,7 @@
         }
 
         //
-        window.document.detachEvent('onreadystatechange', onIEDomContentLoaded);
+        document.detachEvent('onreadystatechange', onIEDomContentLoaded);
 
         //
         flushReadyQueue();
@@ -140,7 +144,7 @@
 
     };
 
-    var onIEWindowLoaded = function(evt) {
+    var onIEWindowLoaded = function() {
 
         window.detachEvent('onload', onIEWindowLoaded);
 
@@ -154,7 +158,7 @@
 
     var bindReadyListeners = function() {
 
-        var doc = window.document;
+        var doc = document;
 
         // Mozilla, Opera, webkit
         if(doc.addEventListener) {
@@ -181,7 +185,7 @@
             window.attachEvent('onload', onIEWindowLoaded);
 
             // If the document is not an IFRAME then ready state has no use,
-            var isIframe = window.self != window.top;
+            var isIframe = window.self !== window.top;
 
             // so apply an alternative trick.
             if(!isIframe) {
@@ -221,4 +225,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this, this.document, this.setTimeout));

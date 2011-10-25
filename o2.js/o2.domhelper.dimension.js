@@ -13,7 +13,10 @@
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases
@@ -103,7 +106,7 @@
      */
     me.getWindowInnerDimension = function() {
 
-        if(window.innerWidth !== UNDEFINED) {
+        if(window.innerWidth !== undefined) {
             me.getWindowInnerDimension = function() {
 
                 if(!window) {
@@ -170,4 +173,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this, this.document));

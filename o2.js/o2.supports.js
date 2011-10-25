@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module supports
  * @requires "all modules that the support will be checked"
@@ -12,7 +10,10 @@
  *
  * <p>An object support checker.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -95,4 +96,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document));

@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module methodhelper.extend
  * @requires methodhelper
@@ -14,7 +12,11 @@
  * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, setTimeout) {
+
+    // Strict mode on.
+    'use strict';
+
 
     /*
      * Aliases.
@@ -53,13 +55,13 @@
 
             // If both functions have identical # of arguments,
             // then call the cached function.
-            if(fn.length == arguments.length) {
+            if(fn.length === arguments.length) {
 
                 return fn.apply(this, arguments);
             }
 
             // Otherwise try to call the old function, if any.
-            if( typeof old == 'function') {
+            if( typeof old === 'function') {
 
                 return old.apply(this, arguments);
             }
@@ -115,4 +117,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.setTimeout));

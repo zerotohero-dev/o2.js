@@ -1,6 +1,3 @@
-
-/*global o2 */
-
 /**
  * @module collectionhelper
  *
@@ -12,7 +9,10 @@
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -44,7 +44,7 @@
         var trimLastBraceIndex = -1;
         var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
 
-        return obj !== UNDEFINED && obj !== null && klass === type;
+        return obj !== undefined && obj !== null && klass === type;
 
     }
 
@@ -85,22 +85,21 @@
             var value = null;
 
             var merge = me.CollectionHelper.merge;
+            var key = null;
 
-            for(var key in fromObj) {
+            for(key in fromObj) {
                 if(fromObj.hasOwnProperty(key)) {
                     value = fromObj[key];
 
-                    if(shouldRecurse && typeof value == 'object') {
-                        if( typeof toObj[key] != 'object') {                            
-                            toObj[key] = isArray(value) ? [] : {};
-                        }
-
-                        merge(toObj[key], fromObj[key], shouldRecurse);
-
-                        continue;
+                    if(!shouldRecurse || typeof value !== 'object') {
+                        toObj[key] = fromObj[key];
                     }
 
-                    toObj[key] = fromObj[key];
+                    if( typeof toObj[key] !== 'object') {
+                        toObj[key] = isArray(value) ? [] : {};
+                    }
+
+                    merge(toObj[key], fromObj[key], shouldRecurse);
                 }
             }
 
@@ -134,12 +133,13 @@
                         return ar.indexOf(elm);
                     }
 
-                    if( typeof ar == 'object') {
+                    if( typeof ar === 'object') {
                         var counter = 0;
+                        var key = null;
 
-                        for(var key in ar) {
+                        for(key in ar) {
                             if(ar.hasOwnProperty(key)) {
-                                if(ar[key] == elm) {
+                                if(ar[key] === elm) {
 
                                     return counter;
                                 }
@@ -166,9 +166,12 @@
                     return -1;
                 }
 
+                var i = 0;
+                var len = 0;
+
                 if(isArray(ar)) {
-                    for(var i = 0, len = ar.length; i < len; i++) {
-                        if(elm == ar[i]) {
+                    for( i = 0, len = ar.length; i < len; i++) {
+                        if(elm === ar[i]) {
 
                             return i;
                         }
@@ -177,12 +180,13 @@
                     return -1;
                 }
 
-                if( typeof ar == 'object') {
+                if( typeof ar === 'object') {
                     var counter = 0;
+                    var key = null;
 
-                    for(var key in ar) {
+                    for(key in ar) {
                         if(ar.hasOwnProperty(key)) {
-                            if(ar[key] == elm) {
+                            if(ar[key] === elm) {
 
                                 return counter;
                             }
@@ -238,22 +242,19 @@
         copy : function(ar, isDeepCopy) {
 
             var shouldDeepCopy = !!isDeepCopy;
-
             var theCopy = isArray(ar) ? [] : {};
-
             var value = null;
+            var key = null;
 
-            for(var key in ar) {
+            for(key in ar) {
                 if(ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(shouldDeepCopy && ( typeof value == 'object')) {
-                        theCopy[key] = me.CollectionHelper.copy(value, shouldDeepCopy);
-
-                        continue;
+                    if(!shouldDeepCopy || ( typeof value !== 'object')) {
+                        theCopy[key] = value;
                     }
 
-                    theCopy[key] = value;
+                    theCopy[key] = me.CollectionHelper.copy(value, shouldDeepCopy);
                 }
             }
 
@@ -283,7 +284,9 @@
                 return ar;
             }
 
-            for(var key in ar) {
+            var key = null;
+
+            for(key in ar) {
                 if(ar.hasOwnProperty(key)) {
 
                     //
@@ -314,52 +317,42 @@
             var item = null;
             var isNested = !!isRecursive;
 
-            var removeElementByValue = o2.CollectionHelper.removeElementByValue;
+            var removeElementByValue = framework.CollectionHelper.removeElementByValue;
+            var i = 0;
+            var len = 0;
+            var key = null;
 
             if(isArray(collection)) {
-                for(var i = 0, len = collection.length; i < len; i++) {
+                for( i = 0, len = collection.length; i < len; i++) {
                     item = collection[i];
 
-                    if( typeof item == 'object' && isNested) {
+                    if( typeof item === 'object' && isNested) {
                         removeElementByValue(item, name, value, isNested);
+                    } else if(item[name] === value) {
+                        collection.splice(i, 1);
 
-                        continue;
+                        //
+                        i--;
+
+                        //
+                        len = collection.length;
                     }
-
-                    if(item[name] != value) {
-
-                        continue;
-                    }
-
-                    collection.splice(i, 1);
-
-                    //
-                    i--;
-
-                    //
-                    len = collection.length;
                 }
 
                 return;
             }
 
-            for(var key in collection) {
+            for(key in collection) {
                 if(collection.hasOwnProperty(key)) {
                     item = collection[key];
 
-                    if( typeof item == 'object' && isNested) {
+                    if( typeof item === 'object' && isNested) {
                         removeElementByValue(item, name, value, isNested);
+                    } else if(item[name] === value) {
 
-                        continue;
+                        //
+                        delete collection[key];
                     }
-
-                    if(item[name] != value) {
-
-                        continue;
-                    }
-
-                    //
-                    delete collection[key];
                 }
             }
 
@@ -382,17 +375,19 @@
                 return null;
             }
 
+            var key = null;
+
             if(!isArray(ar)) {
 
-                if( typeof ar == 'object') {
-                    for(var key in ar) {
+                if( typeof ar === 'object') {
+                    for(key in ar) {
                         if(ar.hasOwnProperty(key)) {
 
                             return ar[key];
                         }
                     }
                 }
-                
+
                 return null;
             }
 
@@ -417,12 +412,13 @@
                 return null;
             }
 
+            var key = null;
+            var lastItem = null;
+
             if(!isArray(ar)) {
 
-                if( typeof ar == 'object') {
-                    var lastItem = null;
-
-                    for(var key in ar) {
+                if( typeof ar === 'object') {
+                    for(key in ar) {
                         if(ar.hasOwnProperty(key)) {
                             lastItem = ar[key];
                         }
@@ -466,43 +462,38 @@
 
             var value = null;
             var compact = me.CollectionHelper.compact;
+            var i = 0;
+            var len = 0;
+            var key = null;
 
             if(isArray(ar)) {
-                for(var i = 0, len = ar.length; i < len; i++) {
+                for( i = 0, len = ar.length; i < len; i++) {
                     value = ar[i];
 
-                    if(value === null || value === UNDEFINED) {
+                    if(value === null || value === undefined) {
                         ar.splice(i, 1);
                         i = i - 1;
                         len = ar.length;
-
-                        continue;
-                    }
-
-                    if(isArray(value) && isDeepClean) {
+                    } else if(isArray(value) && isDeepClean) {
                         compact(value, isDeepClean);
-
-                        continue;
                     }
                 }
 
                 return ar;
             }
 
-            for(var key in ar) {
+            for(key in ar) {
                 if(ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(value === null || value === UNDEFINED) {
+                    if(value === null || value === undefined) {
 
                         //
                         delete ar[key];
                     }
 
-                    if( typeof value == 'object' && isDeepClean) {
+                    if( typeof value === 'object' && isDeepClean) {
                         compact(value);
-
-                        continue;
                     }
                 }
             }
@@ -513,4 +504,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

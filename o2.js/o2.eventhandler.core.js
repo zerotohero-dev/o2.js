@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module eventhandler.core
  * @requires stringhelper.core
@@ -12,7 +10,10 @@
  *
  * <p>A cross-browser event management object.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -258,8 +259,9 @@
             }
 
             var listen = me.EventHandler.addEventListener;
+            var key = null;
 
-            for(var key in collection) {
+            for(key in collection) {
                 if(collection.hasOwnProperty(key)) {
                     listen(collection[key], eventName, handler);
                 }
@@ -405,15 +407,21 @@
          */
         getTarget : function(evt) {
 
-            var target = window.event ? me.EventHandler.getTarget = function() {
+            if(window.event) {
+                me.EventHandler.getTarget = function() {
 
-                return window.event.srcElement;
+                    return window.event.srcElement;
 
-            } : me.EventHandler.getTarget = function(e) {
+                };
 
-                return e ? e.target : null;
+            } else {
+                me.EventHandler.getTarget = function(e) {
 
-            };
+                    return e ? e.target : null;
+
+                };
+
+            }
 
             return me.EventHandler.getTarget(evt);
 
@@ -498,4 +506,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

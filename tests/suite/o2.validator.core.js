@@ -28,17 +28,16 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.Validator.isArray SHOULD return true given a valid Array.');
+            add('o2.Validator.isBoolean SHOULD return true given a valid Boolean.');
+            add('o2.Validator.isDate SHOULD return true given a proper date triplet.');
+            add('o2.Validator.isDate SHOULD return true given a valid Date object.');
+            add('o2.Validator.isFunction SHOULD return true given a valid Function.');
+            add('o2.Validator.isNumber SHOULD return true given a valid Number.');
+            add('o2.Validator.isObject SHOULD return true given a valid Object.');
+            add('o2.Validator.isRegExp SHOULD return true given a valid RegExp.');
+            add('o2.Validator.isString SHOULD return true given a proper String.');
+            add('o2.Validator.isArguments SHOULD return true given the parameter is an arguments object.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

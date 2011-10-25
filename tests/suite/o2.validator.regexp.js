@@ -28,17 +28,9 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.Validator.isEmail SHOULD match a valid e-mail.');
+            add('o2.Validator.isValidUrl SHOULD match a valid url.');
+            add('o2.Validator.isWhiteSpace SHOULD match whitespace-only strings.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

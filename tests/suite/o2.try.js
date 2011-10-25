@@ -28,17 +28,8 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.Try.all SHOULD execute all delegates');
+            add('o2.Try.these SHOULD try until first successful delegate');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

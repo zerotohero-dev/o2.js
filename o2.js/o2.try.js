@@ -1,12 +1,10 @@
-/*global o2 */
-
 /**
  * @module try
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>Used for consequentially executing a set of <code>function</code>s.</p>
@@ -14,7 +12,10 @@
  * <p>Even if an error occurs when calling a <code>function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -46,7 +47,10 @@
          */
         all : function() {
 
-            for(var i = 0, len = arguments.length; i < len; i++) {
+            var i = 0;
+            var len = 0;
+
+            for( i = 0, len = arguments.length; i < len; i++) {
                 try {
 
                     arguments[i]();
@@ -76,7 +80,10 @@
          */
         these : function() {
 
-            for(var i = 0, len = arguments.length; i < len; i++) {
+            var i = 0;
+            var len = 0;
+
+            for( i = 0, len = arguments.length; i < len; i++) {
                 try {
 
                     arguments[i]();
@@ -92,4 +99,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

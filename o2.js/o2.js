@@ -1,9 +1,7 @@
-/*global window*/
-
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.201110121129
+ * @version 0.23.201110252321
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -12,21 +10,24 @@
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
  */
-window.o2 = {};
+this.o2 = {};
 
 /**
  *
  */
-( function(framework, UNDEFINED) {
+( function(framework, window, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
      */
     var me = framework;
-    
+
     var config = {
-        constants: {
-            errorMessage: {
+        constants : {
+            errorMessage : {
                 OBJECT_NOT_DEFINED : ' : Object is not defined.'
             }
         }
@@ -42,14 +43,14 @@ window.o2 = {};
 
     /**
      * @property {String} o2.name
-     *  
+     *
      * <p>Short name of the framework, to be used in
      * prefixes, class names etc.</p>
      */
     me.name = 'o2js';
 
     /**
-     * @property {String} o2.url 
+     * @property {String} o2.url
      *
      * <p>URL of the project.</p>
      */
@@ -72,9 +73,9 @@ window.o2 = {};
     /**
      * @property {String} o2.build
      *
-     * <p>Project build number.</p>     
+     * <p>Project build number.</p>
      */
-    me.build = '201110121129';
+    me.build = '201110252321';
 
     /**
      * @function {static} o2.$
@@ -95,12 +96,12 @@ window.o2 = {};
             throw [me.name, config.constants.errorMessage.OBJECT_NOT_DEFINED].join('');
         }
 
-        if( typeof obj == 'string') {
+        if( typeof obj === 'string') {
 
             return document.getElementById(obj);
         }
 
-        return obj ? obj : null;
+        return obj || null;
 
     };
 
@@ -118,10 +119,10 @@ window.o2 = {};
     me.t = function(tagName, parent) {
 
         //
-        if(parent === UNDEFINED) {
-            parent = window.document;
+        if(parent === undefined) {
+            parent = document;
         }
-        
+
         //
         parent = framework.$(parent);
 
@@ -185,4 +186,4 @@ window.o2 = {};
 
     };
 
-}(window.o2));
+}(this.o2, this, this.document));

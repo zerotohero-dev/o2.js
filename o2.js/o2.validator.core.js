@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module validator.core
  *
@@ -11,7 +9,10 @@
  *
  * <p>A validation helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -22,12 +23,12 @@
      * Module configuration.
      */
     var config = {
-        
+
         /*
-         * 
+         *
          */
         constants : {
-        
+
             /*
              * A struct containing all valid
              * EcmaScript types.
@@ -43,9 +44,9 @@
                 ARGUMENTS : 'Arguments',
                 REGEXP : 'RegExp'
             }
-        
+
         }
-    
+
     };
 
     /**
@@ -67,7 +68,7 @@
         var trimLastBraceIndex = -1;
         var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
 
-        return obj !== UNDEFINED && obj !== null && klass === type;
+        return obj !== undefined && obj !== null && klass === type;
 
     }
 
@@ -117,20 +118,24 @@
          * <p>Checks whether the object is a <code>Date</code>.</p>
          *
          * @param {Arguments} varargin - if a single argument is given it checks
-         * whether it identifies a <code>Date</code> object. Otherwise the function takes
-         * three parameters (year, month, date) and cheks whether they denote a valid
+         * whether it identifies a <code>Date</code> object. Otherwise the
+         * function takes
+         * three parameters (year, month, date) and cheks whether they denote a
+         * valid
          * Date.
          * @return <code>true</code> if obj is a <code>Date</code>,
          * <code>false</code> otherwise.
          */
-        isDate : function(obj) {
+        isDate : function(objYear, objMonth, objDay) {
 
-            if(arguments.length == 3) {                
+            var kYmdArgumentLength = 3;
+
+            if(arguments.length === kYmdArgumentLength) {
                 var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 var maxDay = 0;
-                var year = arguments[0];
-                var month = arguments[1];
-                var day = arguments[2];
+                var year = objYear;
+                var month = objMonth;
+                var day = objDay;
 
                 if(!year || !month || !day) {
 
@@ -151,7 +156,7 @@
                 return true;
             }
 
-            return is(obj, config.constants.ecmaScriptType.DATE);
+            return is(objYear, config.constants.ecmaScriptType.DATE);
 
         },
 
@@ -248,4 +253,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

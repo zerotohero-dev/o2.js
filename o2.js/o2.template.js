@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module template
  *
@@ -11,7 +9,10 @@
  *
  * <p>A very fast templating engine.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -59,7 +60,7 @@
             return '';
         }
 
-        if(len == 1) {
+        if(len === 1) {
 
             return line[0];
         }
@@ -79,14 +80,14 @@
         //
         directiveKey = directive[0];
 
-        if(directiveKey != constants.command.EACH) {
+        if(directiveKey !== constants.command.EACH) {
 
             return subTpl.join('');
         }
 
         var collection = collectionKey ? data[collectionKey] : data;
 
-        if( typeof collection != 'object') {
+        if( typeof collection !== 'object') {
 
             return subTpl.join('');
         }
@@ -94,8 +95,10 @@
         var buffer = [];
 
         var parse = me.Template.parse;
+        var i = 0;
+        var clen = 0;
 
-        for(var i = 0, clen = collection.length; i < clen; i++) {
+        for( i = 0, clen = collection.length; i < clen; i++) {
             buffer.push(parse(collection[i], subTpl));
         }
 
@@ -110,18 +113,14 @@
 
         var regTemplate = config.constants.regExp.TEMPLATE;
 
-        var directive = '';
-        var subTpl = null;
-        var collection = null;
-
-        if( typeof line != 'string') {
+        if( typeof line !== 'string') {
 
             return parseDirective(line, data);
         }
 
-        return line.replace(regTemplate, function(str, p1, offset, total) {
+        return line.replace(regTemplate, function(str, p1/*, offset, total*/) {
 
-            return data[p1] !== UNDEFINED ? data[p1] : str;
+            return data[p1] !== undefined ? data[p1] : str;
 
         });
 
@@ -147,11 +146,13 @@
         parse : function(data, tpl) {
 
             var buffer = [];
-            
+            var i = 0;
+            var len = 0;
+
             //
             data = data || {};
 
-            for(var i = 0, len = tpl.length; i < len; i++) {
+            for( i = 0, len = tpl.length; i < len; i++) {
                 buffer.push(parse(tpl[i], data));
             }
 
@@ -161,4 +162,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

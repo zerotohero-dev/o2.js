@@ -28,13 +28,13 @@
          */
         init : function() {
 
-            add('dummy test case', {
+            add('this objec is incomplete', {
                 count : 1,
                 test : function() {
 
                     var me = this;
 
-                    assert(me, false, 'I pass.');
+                    assert(me, true, 'This object is incomplete.');
 
                 }
 

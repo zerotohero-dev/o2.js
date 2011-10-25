@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.core
  *
@@ -11,7 +9,10 @@
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -134,13 +135,13 @@
                 return false;
             }
 
-            if(testNode == parentNode) {
+            if(testNode === parentNode) {
 
                 return false;
             }
 
             while(theNode) {
-                if(theNode == parentNode) {
+                if(theNode === parentNode) {
 
                     return true;
                 }
@@ -176,7 +177,7 @@
                 return null;
             }
 
-            if( typeof nodeName != 'string') {
+            if( typeof nodeName !== 'string') {
 
                 return null;
             }
@@ -238,7 +239,7 @@
             var i = 0;
 
             //
-            if(isRecursive == UNDEFINED) {
+            if(isRecursive === undefined) {
                 isRecursive = true;
             }
 
@@ -247,8 +248,6 @@
 
             var kText = me.DomHelper.nodeType.TEXT;
             var regWhitespace = /^\s*$/;
-
-            var nodeValue = '';
             var child = null;
             var shouldRemove = false;
 
@@ -257,19 +256,16 @@
             for( i = 0; i < len; i++) {
                 child = children[i];
 
-                if(child.hasChildNodes()) {
-                    if(isRecursive) {
-                        removeEmptyTextNodes(child, true);
-                    }
+                if(!child.hasChildNodes()) {
+                    shouldRemove = child.nodeType === kText && regWhitespace.test(child.nodeValue);
 
-                    continue;
-                }
+                    if(shouldRemove) {
+                        arRemove.push(child);
+                    }                                        
+                } 
 
-                //
-                shouldRemove = child.nodeType == kText && regWhitespace.test(child.nodeValue);
-
-                if(shouldRemove) {
-                    arRemove.push(child);
+                if(isRecursive) {
+                    removeEmptyTextNodes(child, true);
                 }
             }
 
@@ -311,7 +307,7 @@
          */
         empty : function(elm) {
 
-            o2.DomHelper.removeChildren(elm);
+            framework.DomHelper.removeChildren(elm);
 
         },
 
@@ -391,6 +387,7 @@
             var e = document.createElement(name);
 
             var value = '';
+            var key = null;
 
             // Internet Explorer 7- (and some minor browsers) cannot set values
             // for style, class or event handlers, using setAttribute.
@@ -399,17 +396,19 @@
             // in standards mode. A few more browsers also have trouble reading
             // these attributes using getAttribute.
 
-            for(var key in attributes) {
+            var isClass = false;
+            var isStyle = false;
+
+            for(key in attributes) {
                 if(attributes.hasOwnProperty(key)) {
                     value = attributes[key];
 
-                    if(key == 'class' || key == 'className') {
+                    isClass = key === 'class' || key === 'className';
+                    isStyle = key === 'style' || key === 'css' || key === 'cssText';
+
+                    if(isClass) {
                         e.className = value;
-
-                        continue;
-                    }
-
-                    if(key == 'style' || key == 'css' || key == 'cssText') {
+                    } else if(isStyle) {
 
                         // The string value of the style attribute is available
                         // as a read/write string called cssText, which is a
@@ -424,14 +423,11 @@
                         //
                         // To avoid problems a combination of cssText and
                         // getAttribute/setAttribute can be used.
-
                         e.style.cssText = value;
                         e.setAttribute('style', value);
-
-                        continue;
+                    } else {
+                        e[key] = attributes[key];
                     }
-
-                    e[key] = attributes[key];
                 }
             }
 
@@ -563,38 +559,38 @@
 
             var value = null;
 
-            if(attribute == 'class' || attribute == 'className') {
+            if(attribute === 'class' || attribute === 'className') {
                 value = obj.className;
 
-                if(value !== UNDEFINED) {
+                if(value !== undefined) {
 
                     return value;
                 }
             }
 
-            if(attribute == 'style' || attribute == 'css' || attribute == 'cssText') {
+            if(attribute === 'style' || attribute === 'css' || attribute === 'cssText') {
                 value = obj.cssText;
 
-                if(value !== UNDEFINED) {
+                if(value !== undefined) {
 
                     return value;
                 }
             }
 
             //DOM object (obj) may not have a getAttribute method.
-            if( typeof obj.getAttribute == 'function') {
+            if( typeof obj.getAttribute === 'function') {
                 value = obj.getAttribute(attribute);
 
-                if(value !== UNDEFINED) {
+                if(value !== undefined) {
 
                     return value;
                 }
             }
 
-            return obj[attribute] ? obj[attribute] : null;
+            return obj[attribute] || null;
 
         }
 
     };
 
-}(o2, this));
+}(this.o2, this.document));

@@ -28,17 +28,11 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.StringHelper.stripNonAlpha SHOULD strip non alphabetical characters from a string.');
+            add('o2.StringHelper.stripNonAlphaNumeric SHOULD strip non alphanumeric characters from a string.');
+            add('o2.StringHelper.stripNonNumeric SHOULD strip non numeric characters from a string.');
+            add('o2.StringHelper.stripNumeric SHOULD strip numeric characters from a string.');
+            add('o2.StringHelper.stripTags SHOULD strip tags from a string');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

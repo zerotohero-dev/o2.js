@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module stringhelper.strip
  * @requires stringhelper.core
@@ -13,7 +11,10 @@
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -121,4 +122,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

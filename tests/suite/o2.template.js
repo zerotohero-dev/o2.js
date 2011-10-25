@@ -28,17 +28,9 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.Template.parse SHOULD parse a simple template.');
+            add('o2.Template.parse SHOULD parse a template with variables.');
+            add('o2.Template.parse SHOULD iteratively parse a template.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module methodhelper.core
  *
@@ -12,7 +10,10 @@
  * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -60,14 +61,15 @@
                 // Copy the arguments object into an array:
                 // this allows it to be used as a cache key.
                 var args = [];
+                var i = 0;
 
-                for(var i = 0; i < arguments.length; i++) {
+                for( i = 0; i < arguments.length; i++) {
                     args[i] = arguments[i];
                 }
 
                 // Evaluate the memoized function if it hasn't
                 // been evaluated with these arguments before.
-                if(!( args in pad)) {
+                if(!pad.hasOwnProperty(args)) {
                     pad[args] = self.apply(obj, arguments);
                 }
 
@@ -137,9 +139,10 @@
             return function() {
 
                 var arg = 0;
+                var i = 0;
 
-                for(var i = 0; i < args.length && arg < arguments.length; i++) {
-                    if(args[i] === UNDEFINED) {
+                for( i = 0; i < args.length && arg < arguments.length; i++) {
+                    if(args[i] === undefined) {
                         args[i] = arguments[arg++];
                     }
                 }
@@ -193,4 +196,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

@@ -1,5 +1,3 @@
-/*global o2*/
-
 /**
  * @module validator.regexp
  * @requires validator
@@ -13,7 +11,10 @@
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -102,4 +103,4 @@
 
     };
 
-}(o2, this));
+}(this.o2));

@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module jsonpcontroller
  * @requires ajaxcontroller
@@ -13,7 +11,10 @@
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.

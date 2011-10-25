@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module queryparser
  *
@@ -11,7 +9,10 @@
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -40,11 +41,11 @@
         parse : function(url) {
 
             var args = {};
-            var href = url ? url : window.location.href;
+            var href = url || window.location.href;
             var index = href.indexOf('?');
 
-            if(index == -1) {
-       
+            if(index === -1) {
+
                 return args;
             }
 
@@ -52,11 +53,12 @@
             var nameValuePairs = query.split('&');
 
             var nameValuePair = null;
-            
+
             var kNameIndex = 0;
             var kValueIndex = 1;
+            var i = 0;
 
-            for(var i = 0; i < nameValuePairs.length; i++) {
+            for( i = 0; i < nameValuePairs.length; i++) {
                 nameValuePair = nameValuePairs[i].split('=');
                 args[nameValuePair[kNameIndex]] = decodeURIComponent(nameValuePair[kValueIndex]);
             }
@@ -67,4 +69,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

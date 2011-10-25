@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.style
  * @requires domhelper.core
@@ -15,7 +13,10 @@
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -25,35 +26,6 @@
     var myName = framework.name;
     var toCamelCase = framework.StringHelper.toCamelCase;
     var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
-
-    /*
-     * Module configuration.
-     */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             *
-             */
-            regExp : {
-                CAMEL_CASE : /(\-[a-z])/g,
-                ALL_CAPS : /([A-Z])/g
-            },
-
-            /*
-             *
-             */
-            text : {
-                DASH : '-'
-            }
-
-        }
-
-    };
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -83,8 +55,9 @@
         }
 
         var toCamelCaseCached = toCamelCase;
+        var key = null;
 
-        for(var key in style) {
+        for(key in style) {
             if(style.hasOwnProperty(key)) {
                 obj.style[toCamelCaseCached(key)] = style[key];
             }
@@ -248,21 +221,21 @@
         var display = me.getStyle(obj, 'display');
         var visibility = me.getStyle(obj, 'visibility');
 
-        if(visibility == 'hidden') {
+        if(visibility === 'hidden') {
 
             return false;
         }
 
-        if(display == 'none') {
+        if(display === 'none') {
 
             return false;
         }
 
         // @formatter:off
-        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) || 
-               ((display    === null   ) && (visibility != 'hidden')) || 
-               ((visibility === null   ) && (display    != 'none'  )) || 
-               ((display    != 'none'  ) && (visibility != 'hidden'));
+        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0     )) || 
+               ((display    ===  null   ) && (visibility !== 'hidden')) || 
+               ((visibility ===  null   ) && (display    !== 'none'  )) || 
+               ((display    !== 'none'  ) && (visibility !== 'hidden'));
         // @formtatter:on
 
     };
@@ -279,16 +252,18 @@
     me.activateAlternateStylesheet = function(title) {
 
         var link = null;
-        var t = t;
+        var t = framework.t;
         var links = t('link');
         var shouldDisable = false;
         var linkTitle = '';
+        var i = 0;
+        var len = 0;
 
-        for(var i = 0, len = links.length; i < len; i++) {
+        for(i = 0, len = links.length; i < len; i++) {
             link = links[i];
             linkTitle = link.getAttribute('title');
-            shouldDisable = link.getAttribute('rel').indexOf('style') != -1 && title;
-            link.disabled = (linkTitle == title) ? false : shouldDisable;
+            shouldDisable = link.getAttribute('rel').indexOf('style') !== -1 && title;
+            link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
 
     };
@@ -302,12 +277,12 @@
      */
     me.hide = function(obj) {
 
-        if(!obj || typeof obj != 'object') {
+        if(!obj || typeof obj !== 'object') {
 
             return;
         }
 
-        if(obj.style.display != 'none') {
+        if(obj.style.display !== 'none') {
             obj[[myName, '_oldDisplay'].join('')] = obj.style.display;
         }
 
@@ -324,16 +299,16 @@
      */
     me.show = function(obj) {
 
-        if(!obj || typeof obj != 'object') {
+        if(!obj || typeof obj !== 'object') {
 
             return;
         }
 
-        obj.style.display = obj[[myName, '_oldDisplay'].join('')] ? obj[[myName, '_oldDisplay'].join('')] : '';
+        obj.style.display = obj[[myName, '_oldDisplay'].join('')] || '';
 
         //
         delete obj[[myName, '_oldDisplay'].join('')];
 
     };
 
-}(o2, this))
+}(this.o2, this, this.document));

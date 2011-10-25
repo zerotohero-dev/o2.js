@@ -1,7 +1,7 @@
-/*global o2 */
+( function(framework, document, Image) {
 
-( function(framework, window, UNDEFINED) {
-    //TODO: add documentation.
+    // Strict mode on.
+    'use strict';
 
     var me = framework.DomHelper;
     var nill = framework.nill;
@@ -58,7 +58,10 @@
         s.async = true;
         s.src = src;
 
-        var x = document.getElementsByTagName('script')[0] || document.getElementsByTagName('head')[0];
+        // @formatter:off
+        var x = document.getElementsByTagName('script')[0] || 
+            document.getElementsByTagName('head')[0];
+        // @formatter:on
 
         x.parentNode.insertBefore(s, x);
 
@@ -89,4 +92,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document, this.Image));

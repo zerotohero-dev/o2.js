@@ -1,10 +1,8 @@
-/*global o2 */
-
 /**
  * @module objecthelper
  * @requires methodhelper.core
  * @requires stringhelper.core
- * 
+ *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
@@ -13,7 +11,10 @@
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -23,11 +24,11 @@
     var format = framework.StringHelper.format;
     var concat = framework.StringHelper.concat;
     var clone = framework.MethodHelper.bind;
-    
+
     var config = {
-        constants: {
+        constants : {
             errorMessage : {
-                NO_JSON_SUPPORT: concat(myName,': {0}: No JSON support. quitting')
+                NO_JSON_SUPPORT : concat(myName, ': {0}: No JSON support. quitting')
             }
         }
     };
@@ -53,17 +54,15 @@
         copyMethods : function(child, base) {
 
             var shouldCopy = false;
+            var key = null;
 
-            for(var key in base) {
+            for(key in base) {
                 if(base.hasOwnProperty(key)) {
-                    shouldCopy = base.hasOwnProperty(key) && typeof base[key] == 'function';
+                    shouldCopy = base.hasOwnProperty(key) && typeof base[key] === 'function';
 
-                    if(!shouldCopy) {
-
-                        continue;
+                    if(shouldCopy) {
+                        child[key] = clone(me.JsonpState, base[key]);
                     }
-
-                    child[key] = clone(me.JsonpState, base[key]);
                 }
             }
 
@@ -97,18 +96,17 @@
             var result = [];
 
             var item = null;
+            var key = null;
 
-            for(var key in obj) {
+            for(key in obj) {
                 if(obj.hasOwnProperty(key)) {
                     item = obj[key];
 
-                    if(isDeep && typeof item == 'object') {
+                    if(isDeep && typeof item === 'object') {
                         result.push(me.ObjectHelper.convertObjectToArray(item, isDeep));
-
-                        continue;
+                    } else {
+                        result.push(item);
                     }
-
-                    result.push(item);
                 }
             }
 
@@ -132,7 +130,7 @@
         toJson : function(obj) {
 
             if(window.JSON) {
-                
+
                 return JSON.stringify(obj);
             }
 
@@ -144,4 +142,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this));

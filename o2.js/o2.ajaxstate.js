@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module ajaxstate
  *
@@ -12,7 +10,11 @@
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, setTimeout, clearTimeout) {
+
+    // Strict mode on.
+    'use strict';
+
     //*
 
     /*
@@ -98,9 +100,11 @@
             }
 
             var observers = this.protecteds.observers;
+            var i = 0;
+            var len = 0;
 
-            for(var i = 0, len = observers.length; i < len; i++) {
-                if(observer == observers[i].object) {
+            for( i = 0, len = observers.length; i < len; i++) {
+                if(observer === observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
 
                     return true;
@@ -152,8 +156,10 @@
         timeoutObservers : function(observers, data) {
 
             var observer = null;
+            var i = 0;
+            var len = 0;
 
-            for(var i = 0, len = observers.length; i < len; i++) {
+            for( i = 0, len = observers.length; i < len; i++) {
                 observer = observers[i].object;
 
                 observer.update(this, {
@@ -234,8 +240,10 @@
                 // will not change this fact.
 
                 var observers = this.observers;
+                var i = 0;
+                var len = 0;
 
-                for(var i = 0, len = observers.length; i < len; i++) {
+                for( i = 0, len = observers.length; i < len; i++) {
                     if(observer.object === observers[i]) {
 
                         return true;
@@ -293,20 +301,17 @@
                     }
                     shouldNotifyObserver = (now - registrationTime > timeout);
 
-                    if(!shouldNotifyObserver) {
+                    if(shouldNotifyObserver) {
 
-                        continue;
+                        // "These are not the droids you're looking for.";
+                        // unregister 'em.
+                        unregisterQueue.push(observer);
                     }
-
-                    // "These are not the droids you're looking for.";
-                    // unregister 'em.
-                    unregisterQueue.push(observer);
                 }
 
                 stateObject.timeoutObservers(unregisterQueue);
 
                 clearTimeout(state.listenTimeoutId);
-
                 state.listenTimeoutId = setTimeout(function() {
                     stateObject.protecteds.listen(stateObject);
                 }, config.LISTEN_TIMEOUT);
@@ -316,4 +321,4 @@
         }
     };
 
-}(o2, this));
+}(this.o2, this.setTimeout, this.clearTimeout));

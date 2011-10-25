@@ -1,5 +1,3 @@
-/*global o2, escape */
-
 /**
  * @module cookie.core
  *
@@ -11,7 +9,10 @@
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, document, escape) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -51,7 +52,7 @@
                 ex = '';
             }
 
-            var cookiePath = path ? path : '/';
+            var cookiePath = path || '/';
 
             // @formatter:off
             // Do not use encodeURICompoent for paths as it replaces / with %2F
@@ -87,11 +88,12 @@
 
             var eq = [decodeURIComponent(name), '='].join('');
             var ca = document.cookie.split(';');
+            var i = 0;
 
-            for(var i = 0; i < ca.length; i++) {
+            for( i = 0; i < ca.length; i++) {
                 var c = ca[i];
 
-                while(c.charAt(0) == ' ') {
+                while(c.charAt(0) === ' ') {
                     c = c.substring(1, c.length);
                 }
 
@@ -119,8 +121,8 @@
          */
         remove : function(name, path, domain, isSecure) {
 
-            var cookiePath = path ? path : '/';
-            var cookieDomain = domain ? domain : null;
+            var cookiePath = path || '/';
+            var cookieDomain = domain || null;
             var isCookieSecure = !!isSecure;
 
             me.Cookie.save(name, '', -1, cookiePath, cookieDomain, isCookieSecure);
@@ -133,4 +135,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this.document, this.escape));

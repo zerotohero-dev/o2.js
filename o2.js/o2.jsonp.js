@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module jsonp
  *
@@ -11,7 +9,10 @@
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, document) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -57,9 +58,11 @@
         script.async = true;
         script.src = url;
 
+        var kLoaded = 'loaded';
+
         script.onload = script.onreadystatechange = function() {
 
-            if(!done && (!this.readyState || this.readyState == 'loaded')) {
+            if(!done && (!this.readyState || this.readyState === kLoaded)) {
                 done = true;
                 script.onload = script.onreadystatechange = nill;
 
@@ -98,7 +101,9 @@
             var query = '';
             params = params || {};
 
-            for(var key in params) {
+            var key = null;
+
+            for(key in params) {
                 if(params.hasOwnProperty(key)) {
                     query = [query, key, '=', encodeURIComponent(params[key]), '&'].join('');
                 }
@@ -128,4 +133,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this, this.document));

@@ -28,17 +28,9 @@
          */
         init : function() {
 
-            add('dummy test case', {
-                count : 1,
-                test : function() {
-
-                    var me = this;
-
-                    assert(me, false, 'I pass.');
-
-                }
-
-            });
+            add('o2.Supports.cookie SHOULD check for cookie support.');
+            add('o2.Supports.dom SHOULD check for DOM support.');
+            add('o2.Supports.ajax SHOULD check for AJAX support.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 

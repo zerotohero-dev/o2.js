@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.class
  * @requires stringhelper.core
@@ -13,15 +11,16 @@
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
      */
     var $ = framework.$;
     var me = framework.DomHelper;
-    var myName = framework.name;
-    var generateGuid = framework.StringHelper.generateGuid;
 
     /**
      *
@@ -55,7 +54,7 @@
             return false;
         }
 
-        return o2.DomHelper.createClassNameRegExp(c).test(el.className);
+        return me.createClassNameRegExp(c).test(el.className);
 
     };
 
@@ -111,8 +110,8 @@
             return;
         }
 
-        el.className = el.className.replace(o2.DomHelper.createClassNameRegExp(c), ' ');
+        el.className = el.className.replace(me.createClassNameRegExp(c), ' ');
 
     };
 
-}(o2, this));
+}(this.o2, this));

@@ -1,19 +1,20 @@
-/*global o2 */
-
 /**
  * @module stringhelper.transform
  * @requires stringhelper.core
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -26,12 +27,12 @@
      * <p>Module configuration.</p>
      */
     var config = {
-        
+
         /**
-         * 
+         *
          */
         constants : {
-            
+
             /**
              * @property {private const Integer}
              * o2.StringHelper.config.constants.TRUNCATION_LENGTH
@@ -41,9 +42,9 @@
              * (...)</p>
              */
             TRUNCATION_LENGTH : 100,
-            
+
             /*
-             * 
+             *
              */
             regExp : {
                 BR_2_NL : /<br\s*\/?>/g,
@@ -52,9 +53,9 @@
                 CAMEL_CASE : /(\-[a-z])/g,
                 ALL_CAPS : /([A-Z])/g
             },
-            
+
             /*
-             * 
+             *
              */
             text : {
                 ELLIPSIS : '&hellip;',
@@ -133,10 +134,10 @@
 
         var ellipsis = config.constants.text.ELLIPSIS;
         var eLen = ellipsis.length;
-        var maxLength = maxLen ? maxLen : config.constants.TRUNCATION_LENGTH;
+        var maxLength = maxLen || config.constants.TRUNCATION_LENGTH;
 
         if(str.length > maxLength) {
-        
+
             return [str.substr(0, maxLength - eLen), ellipsis].join('');
         }
 
@@ -161,9 +162,9 @@
         var constants = config.constants;
 
         return input.replace(constants.regExp.CAMEL_CASE, function(match) {
-            
+
             return match.toUpperCase().replace(constants.text.DASH, '');
-        
+
         });
 
     };
@@ -183,9 +184,9 @@
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
-            
+
             return [constants.text.DASH, match.toLowerCase()].join('');
-        
+
         });
 
     };
@@ -205,11 +206,11 @@
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
-            
+
             return [constants.text.UNDERSCORE, match.toLowerCase()].join('');
-        
+
         });
 
     };
 
-}(o2, this));
+}(this.o2));

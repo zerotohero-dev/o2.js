@@ -1,5 +1,3 @@
-/*global o2, ActiveXObject */
-
 /**
  * @module ajax.core
  * @requires stringhelper.core
@@ -12,7 +10,10 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-( function(framework, window, UNDEFINED) {
+( function(framework, window, ActiveXObject, XMLHttpRequest) {
+
+    // Strict mode on.
+    'use strict';
 
     /*
      * Aliases.
@@ -208,7 +209,6 @@
         var nillCached = nill;
         var constants = config.constants;
 
-        var kComplete = constants.readystate.COMPLETE;
         var kOk = constants.status.OK;
         var kCached = constants.status.CACHED;
 
@@ -220,7 +220,7 @@
         var onexception = callbacks.onexception || nillCached;
 
         var status = xhr.status;
-        var isSuccess = status == kOk || status == kCached;
+        var isSuccess = status === kOk || status === kCached;
 
         // Since the response has come, mark the request as "completed".
         xhr.isComplete = true;
@@ -269,24 +269,12 @@
             return;
         }
 
-        var nillCached = nill;
-
-        var oncomplete = callbacks.oncomplete ? callbacks.oncomplete : nillCached;
-        var onerror = callbacks.onerror ? callbacks.onerror : nillCached;
-        var onexception = callbacks.onexception ? callbacks.onexception : nillCached;
-    
         xhr.onreadystatechange = function() {
 
-            var status = null;
-            var isSuccess = false;
-
             var constants = config.constants;
-
             var kComplete = constants.readystate.COMPLETE;
-            var kOk = constants.status.OK;
-            var kCached = constants.status.CACHED;
 
-            if(xhr.readyState == kComplete) {
+            if(xhr.readyState === kComplete) {
                 processCallbacks(xhr, callbacks);
             }
 
@@ -306,11 +294,14 @@
     function addHeaders(xhr, headers) {
 
         var header = null;
+        var i = 0;
+        var len = 0;
+        var key = 0;
 
-        for(var i = 0, len = headers.length; i < len; i++) {
+        for( i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
 
-            for(var key in header) {
+            for(key in header) {
                 if(header.hasOwnProperty(key)) {
                     xhr.setRequestHeader(key, header[key]);
                 }
@@ -348,11 +339,10 @@
      */
     function generateParametrizeQueryString(params) {
 
-        var name = '';
-        var value = '';
         var buffer = [];
+        var key = null;
 
-        for(var key in params) {
+        for(key in params) {
             if(params.hasOwnProperty(key)) {
                 buffer.push([encodeURIComponent(key), '=', encodeURIComponent(params[key])].join(''));
             }
@@ -384,7 +374,7 @@
 
         var kRandom = config.constants.prefix.RANDOM;
         var kGet = config.constants.verb.GET;
-        var isPost = verb != kGet;
+        var isPost = verb !== kGet;
 
         // name1=value1&name2=value2&name3=value3
         var parametrizedQuery = generateParametrizeQueryString(parameters);
@@ -510,4 +500,4 @@
 
     };
 
-}(o2, this));
+}(this.o2, this, this.ActiveXObject, this.XMLHttpRequest));
