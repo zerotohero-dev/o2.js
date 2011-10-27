@@ -10,9 +10,7 @@
  * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -63,22 +61,20 @@
                 var args = [];
                 var i = 0;
 
-                for( i = 0; i < arguments.length; i++) {
+                for (i = 0; i < arguments.length; i++) {
                     args[i] = arguments[i];
                 }
 
                 // Evaluate the memoized function if it hasn't
                 // been evaluated with these arguments before.
-                if(!pad.hasOwnProperty(args)) {
+                if (!pad.hasOwnProperty(args)) {
                     pad[args] = self.apply(obj, arguments);
                 }
 
                 return pad[args];
-
             };
 
             return memoizedFn;
-
         },
 
         /**
@@ -97,18 +93,14 @@
          * @return the modified <code>function</code>.
          */
         curry : function() {
-
             var args = [].slice.call(arguments);
-
             var context = args.shift();
             var fn = args.shift();
 
             return function() {
-
-                return fn.apply(context, args.concat(Array.prototype.slice.call(arguments)));
-
+                return fn.apply(context, args.concat(
+                    Array.prototype.slice.call(arguments)));
             };
-
         },
 
         /**
@@ -133,7 +125,6 @@
          * @return the modified <code>function</code>.
          */
         partial : function(base, fn) {
-
             var args = Array.prototype.slice.call(arguments, 2);
 
             return function() {
@@ -141,16 +132,14 @@
                 var arg = 0;
                 var i = 0;
 
-                for( i = 0; i < args.length && arg < arguments.length; i++) {
-                    if(args[i] === undefined) {
+                for (i = 0; i < args.length && arg < arguments.length; i++) {
+                    if (args[i] === undefined) {
                         args[i] = arguments[arg++];
                     }
                 }
 
                 return fn.apply(base, args);
-
             };
-
         },
 
         /**
@@ -177,23 +166,15 @@
          * @return the modified <code>function</code>.
          */
         bind : function(base, fn) {
-
             var concat = Array.prototype.concat;
             var slice = Array.prototype.slice;
             var passedArguments = slice.call(arguments, 2);
 
-            // @formatter:off
             return function() {
-
                 var args = concat.call(passedArguments, slice.call(arguments));
 
                 return fn.apply(base, args);
-
             };
-            // @formatter:on
-
         }
-
     };
-
 }(this.o2));

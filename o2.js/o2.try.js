@@ -12,9 +12,7 @@
  * <p>Even if an error occurs when calling a <code>function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -46,20 +44,15 @@
          * @param {Arguments} ... - each argument as a function.
          */
         all : function() {
-
             var i = 0;
             var len = 0;
 
-            for( i = 0, len = arguments.length; i < len; i++) {
+            for (i = 0, len = arguments.length; i < len; i++) {
                 try {
-
                     arguments[i]();
-
                 } catch(ignore) {
-
                 }
             }
-
         },
 
         /**
@@ -79,24 +72,17 @@
          * @param {Arguments} ... - each argument as a function.
          */
         these : function() {
-
             var i = 0;
             var len = 0;
 
-            for( i = 0, len = arguments.length; i < len; i++) {
+            for(i = 0, len = arguments.length; i < len; i++) {
                 try {
-
                     arguments[i]();
 
                     return;
-
                 } catch(ignore) {
-
                 }
             }
-
         }
-
     };
-
 }(this.o2));

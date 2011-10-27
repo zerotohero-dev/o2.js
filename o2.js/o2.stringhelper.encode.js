@@ -10,9 +10,7 @@
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
-( function(framework, document) {
-
-    // Strict mode on.
+(function(framework, document) {
     'use strict';
 
     /*
@@ -139,23 +137,21 @@
      * @return the processed <strong>String</strong>.
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
-
-        //
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
         str = ['', str].join('');
 
-        var map = shouldPreserveAmpersands ? config.map.xssEncodeNoAmp : config.map.xssEncode;
+        var cm = config.map;
+        var map = shouldPreserveAmpersands ? cm.xssEncodeNoAmp : cm.xssEncode;
         var mapItem = null;
         var i = 0;
         var len = 0;
 
-        for( i = 0, len = map.length; i < len; i++) {
+        for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
 
         return str;
-
     };
 
     /**
@@ -172,19 +168,17 @@
      * @return the processed <strong>String</strong>.
      */
     me.encode = function(str) {
-
         var map = config.map.encode;
         var mapItem = null;
         var i = 0;
         var len = 0;
 
-        for( i = 0, len = map.length; i < len; i++) {
+        for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
 
         return str;
-
     };
 
     /**
@@ -199,19 +193,17 @@
      * @return the processed <strong>String</strong>.
      */
     me.decode = function(str) {
-
         var map = config.map.decode;
         var mapItem = null;
         var i = 0;
         var len = 0;
 
-        for( i = 0, len = map.length; i < len; i++) {
+        for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
             str = str.replace(mapItem.regExp, mapItem.replace);
         }
 
         return str;
-
     };
 
     /**
@@ -224,9 +216,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
-
         return encodeURIComponent(str);
-
     };
 
     /**
@@ -239,9 +229,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.unescape = function(str) {
-
         return decodeURIComponent(str);
-
     };
 
     /**
@@ -255,10 +243,9 @@
      * @return the processed <strong>String</strong>.
      */
     me.encodeSafeHtml = function(str) {
-
         var tmp = state.tempDiv;
 
-        if(!tmp) {
+        if (!tmp) {
             state.tempDiv = document.createElement('div');
         }
 
@@ -266,7 +253,5 @@
         tmp.appendChild(document.createTextNode(str));
 
         return tmp.innerHTML;
-
     };
-
 }(this.o2, this.document));

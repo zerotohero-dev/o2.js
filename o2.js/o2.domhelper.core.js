@@ -10,8 +10,6 @@
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
 ( function(framework, document) {
-
-    // Strict mode on.
     'use strict';
 
     /*
@@ -106,7 +104,6 @@
              * o2.DomHelper.nodeType.NOTATION - notation.
              */
             NOTATION : 12
-
         },
 
         /**
@@ -123,40 +120,32 @@
          * <strong>parentNode</strong>, <code>false</code> otherwise.
          */
         isChild : function(testNode, parentNode) {
-
-            //
             testNode = $(testNode);
             parentNode = $(parentNode);
 
             var theNode = testNode;
 
-            if(!testNode || !parentNode) {
-
+            if (!testNode || !parentNode) {
                 return false;
             }
 
-            if(testNode === parentNode) {
-
+            if (testNode === parentNode) {
                 return false;
             }
 
-            while(theNode) {
-                if(theNode === parentNode) {
-
+            while (theNode) {
+                if (theNode === parentNode) {
                     return true;
                 }
 
-                if(!theNode.parentNode) {
-
+                if (!theNode.parentNode) {
                     return false;
                 }
 
-                //
                 theNode = theNode.parentNode;
             }
 
             return false;
-
         },
 
         /**
@@ -171,19 +160,15 @@
          * @return the newly created <strong>DOM</strong> element.
          */
         create : function(nodeName) {
-
-            if(!nodeName) {
-
+            if (!nodeName) {
                 return null;
             }
 
-            if( typeof nodeName !== 'string') {
-
+            if (typeof nodeName !== 'string') {
                 return null;
             }
 
             return document.createElement(nodeName);
-
         },
 
         /**
@@ -197,19 +182,15 @@
          * @return the removed node.
          */
         removeNode : function(elm) {
-
-            //
             elm = $(elm);
 
-            if(!elm) {
-
+            if (!elm) {
                 return null;
             }
 
             elm.parentNode.removeChild(elm);
 
             return elm;
-
         },
 
         /**
@@ -224,12 +205,9 @@
          * process for the child nodes of <code>elm</code> as well.
          */
         removeEmptyTextNodes : function(elm, isRecursive) {
-
-            //
             elm = $(elm);
 
-            if(!elm) {
-
+            if (!elm) {
                 return;
             }
 
@@ -238,12 +216,10 @@
             var len = children.length;
             var i = 0;
 
-            //
-            if(isRecursive === undefined) {
+            if (isRecursive === undefined) {
                 isRecursive = true;
             }
 
-            //
             isRecursive = !!isRecursive;
 
             var kText = me.DomHelper.nodeType.TEXT;
@@ -253,23 +229,23 @@
 
             var removeEmptyTextNodes = me.DomHelper.removeEmptyTextNodes;
 
-            for( i = 0; i < len; i++) {
+            for (i = 0; i < len; i++) {
                 child = children[i];
 
-                if(!child.hasChildNodes()) {
+                if (!child.hasChildNodes()) {
                     shouldRemove = child.nodeType === kText && regWhitespace.test(child.nodeValue);
 
-                    if(shouldRemove) {
+                    if (shouldRemove) {
                         arRemove.push(child);
-                    }                                        
-                } 
+                    }
+                }
 
-                if(isRecursive) {
+                if (isRecursive) {
                     removeEmptyTextNodes(child, true);
                 }
             }
 
-            for( i = 0, len = arRemove.length; i < len; i++) {
+            for (i = 0, len = arRemove.length; i < len; i++) {
                 child = arRemove[i];
                 child.parentNode.removeChild(child);
             }
@@ -288,13 +264,11 @@
 
             var node = $(elm);
 
-            if(!node) {
-
+            if (!node) {
                 return;
             }
 
             node.innerHTML = '';
-
         },
 
         /**
@@ -306,9 +280,7 @@
          * <strong>id</strong> of it to process.
          */
         empty : function(elm) {
-
             framework.DomHelper.removeChildren(elm);
-
         },
 
         /**
@@ -322,26 +294,22 @@
          * <strong>id</strong> of the node.
          */
         insertAfter : function(newNode, refNode) {
-
-            //
             newNode = $(newNode);
             refNode = $(refNode);
 
-            if(!newNode || !refNode) {
-
+            if (!newNode || !refNode) {
                 return;
             }
 
             var obj = refNode.parentNode;
 
-            if(refNode.nextSibling) {
+            if (refNode.nextSibling) {
                 obj.insertBefore(newNode, refNode.nextSibling);
 
                 return;
             }
 
             obj.appendChild(newNode);
-
         },
 
         /**
@@ -355,20 +323,16 @@
          * the node.
          */
         insertBefore : function(newNode, refNode) {
-
-            //
             newNode = $(newNode);
             refNode = $(refNode);
 
-            if(!newNode || !refNode) {
-
+            if (!newNode || !refNode) {
                 return;
             }
 
             var obj = refNode.parentNode;
 
             obj.insertBefore(newNode, refNode);
-
         },
 
         /**
@@ -383,9 +347,7 @@
          * @return the created element.
          */
         createElement : function(name, attributes) {
-
             var e = document.createElement(name);
-
             var value = '';
             var key = null;
 
@@ -399,16 +361,16 @@
             var isClass = false;
             var isStyle = false;
 
-            for(key in attributes) {
-                if(attributes.hasOwnProperty(key)) {
+            for (key in attributes) {
+                if (attributes.hasOwnProperty(key)) {
                     value = attributes[key];
 
                     isClass = key === 'class' || key === 'className';
                     isStyle = key === 'style' || key === 'css' || key === 'cssText';
 
-                    if(isClass) {
+                    if (isClass) {
                         e.className = value;
-                    } else if(isStyle) {
+                    } else if (isStyle) {
 
                         // The string value of the style attribute is available
                         // as a read/write string called cssText, which is a
@@ -451,12 +413,11 @@
             child = $(child);
             parent = $(parent);
 
-            if(!child || !parent) {
-
+            if (!child || !parent) {
                 return;
             }
 
-            if(parent.childNodes.length === 0) {
+            if (parent.childNodes.length === 0) {
                 parent.appendChild(child);
 
                 return;
@@ -482,8 +443,7 @@
             child = $(child);
             parent = $(parent);
 
-            if(!child || !parent) {
-
+            if (!child || !parent) {
                 return;
             }
 
@@ -503,28 +463,24 @@
          * form <code>{left: l, top: t}</code>.
          */
         getOffset : function(elm) {
-
-            //
             elm = $(elm);
 
             var ol = -1;
             var ot = -1;
 
-            if(!elm) {
-
+            if (!elm) {
                 return {
                     left : ol,
                     top : ot
                 };
             }
 
-            while(true) {
+            while (true) {
                 ol += elm.offsetLeft;
                 ot += elm.offsetTop;
                 elm = elm.offsetParent;
 
                 if(!elm) {
-
                     break;
                 }
             }
@@ -548,18 +504,15 @@
          * otherwise.
          */
         getAttribute : function(obj, attribute) {
-
-            //
             obj = $(obj);
 
-            if(!obj || !attribute) {
-
+            if (!obj || !attribute) {
                 return null;
             }
 
             var value = null;
 
-            if(attribute === 'class' || attribute === 'className') {
+            if (attribute === 'class' || attribute === 'className') {
                 value = obj.className;
 
                 if(value !== undefined) {
@@ -568,11 +521,10 @@
                 }
             }
 
-            if(attribute === 'style' || attribute === 'css' || attribute === 'cssText') {
+            if (attribute === 'style' || attribute === 'css' || attribute === 'cssText') {
                 value = obj.cssText;
 
-                if(value !== undefined) {
-
+                if (value !== undefined) {
                     return value;
                 }
             }
@@ -582,15 +534,11 @@
                 value = obj.getAttribute(attribute);
 
                 if(value !== undefined) {
-
                     return value;
                 }
             }
 
             return obj[attribute] || null;
-
         }
-
     };
-
 }(this.o2, this.document));

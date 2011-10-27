@@ -1,10 +1,34 @@
-( function(framework, document, Image) {
-
-    // Strict mode on.
+/**
+ * @module domhelper.load
+ *
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ * -->
+ *
+ * <p>This package is for asynchronously loading resources such as images and
+ * scripts.</p>
+ */
+(function(framework, document, Image) {
     'use strict';
 
+    /*
+     * Aliases.
+     */
     var me = framework.DomHelper;
     var nill = framework.nill;
+
+    /*
+     * Common strings.
+     */
+    var kLink = 'link';
+    var kHead = 'head';
+    var kRel = 'rel';
+    var kSheet = 'stylesheet';
+    var kScript = 'script';
+    var kSheetType = 'text/css';
+    var kScriptType = 'text/javascript';
 
     /**
      * @function {static} o2.DomHelper.loadImage
@@ -24,10 +48,8 @@
      * <strong>image</strong> can <strong>not</strong> be loaded successfully.
      */
     me.loadImage = function(url, succesCallback, failureCallback) {
-
         var succesCallbackCached = succesCallback || nill;
         var failureCallbackCached = failureCallback || nill;
-
         var testImg = new Image();
 
         testImg.onload = succesCallbackCached;
@@ -36,7 +58,6 @@
         testImg.src = url;
 
         return testImg;
-
     };
 
     /**
@@ -51,20 +72,15 @@
      * <strong>script</strong>.
      */
     me.loadScript = function(src) {
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
 
-        var s = document.createElement('script');
-
-        s.type = 'text/javascript';
+        s.type = kScriptType;
         s.async = true;
         s.src = src;
 
-        // @formatter:off
-        var x = document.getElementsByTagName('script')[0] || 
-            document.getElementsByTagName('head')[0];
-        // @formatter:on
-
         x.parentNode.insertBefore(s, x);
-
     };
 
     /**
@@ -79,17 +95,13 @@
      * <strong>css</strong> file.
      */
     me.loadCss = function(src) {
+        var s = document.createElement(kLink);
+        var x = document.getElementsByTagName(kHead)[0];
 
-        var s = document.createElement('link');
-
-        s.setAttribute('rel', 'stylesheet');
-        s.type = 'text/css';
+        s.setAttribute(kRel, kSheet);
+        s.type = kSheetType;
         s.href = src;
 
-        var x = document.getElementsByTagName('head')[0];
-
         x.appendChild(s);
-
     };
-
 }(this.o2, this.document, this.Image));

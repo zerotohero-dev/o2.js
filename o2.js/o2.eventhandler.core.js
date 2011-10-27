@@ -10,9 +10,7 @@
  *
  * <p>A cross-browser event management object.</p>
  */
-( function(framework, window) {
-
-    // Strict mode on.
+(function(framework, window) {
     'use strict';
 
     /*
@@ -147,23 +145,20 @@
 
             var obj = $(node);
 
-            if(!obj) {
-
+            if (!obj) {
                 return;
             }
 
-            if(obj.addEventListener) {
+            if (obj.addEventListener) {
                 me.EventHandler.addEventListener = function(node, evt, fn) {
 
                     var obj = $(node);
 
-                    if(!obj) {
-
+                    if (!obj) {
                         return;
                     }
 
-                    if(!fn) {
-
+                    if (!fn) {
                         throw kCallbackNotDefined;
                     }
 
@@ -176,35 +171,29 @@
                     // http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
 
                     obj.addEventListener(evt, fn, false);
-
                 };
-
 
                 me.EventHandler.addEventListener(obj, evt, fn);
 
                 return;
             }
 
-            if(obj.attachEvent) {
+            if (obj.attachEvent) {
                 me.EventHandler.addEventListener = function(node, evt, fn) {
 
                     var obj = $(node);
 
-                    if(!obj) {
-
+                    if (!obj) {
                         return;
                     }
 
-                    if(!fn) {
-
+                    if (!fn) {
                         throw kCallbackNotDefined;
                     }
 
                     var onEvent = ['on', evt].join('');
                     obj.attachEvent(onEvent, fn);
-
                 };
-
 
                 me.EventHandler.addEventListener(obj, evt, fn);
 
@@ -212,26 +201,21 @@
             }
 
             me.EventHandler.addEventListener = function(node, evt, fn) {
-
                 var obj = $(node);
 
-                if(!obj) {
+                if (!obj) {
                     return;
                 }
 
-                if(!fn) {
-
+                if (!fn) {
                     throw kCallbackNotDefined;
                 }
 
                 var onEvent = ['on', evt].join('');
                 obj[onEvent] = fn;
-
             };
 
-
             me.EventHandler.addEventListener(obj, evt, fn);
-
         },
 
         /**
@@ -252,17 +236,15 @@
          * defined.
          */
         addEventListeners : function(collection, eventName, handler) {
-
-            if(!collection) {
-
+            if (!collection) {
                 return;
             }
 
             var listen = me.EventHandler.addEventListener;
             var key = null;
 
-            for(key in collection) {
-                if(collection.hasOwnProperty(key)) {
+            for (key in collection) {
+                if (collection.hasOwnProperty(key)) {
                     listen(collection[key], eventName, handler);
                 }
             }
@@ -283,34 +265,27 @@
          * @throws exception - if <strong>fn</strong> callback is not defined.
          */
         removeEventListener : function(node, evt, fn) {
-
             var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
             var kCallbackNotDefined = format(kCallbackTemplate, 'removeEventListener');
-
             var obj = $(node);
 
-            if(!obj) {
-
+            if (!obj) {
                 return;
             }
 
-            if(obj.removeEventListener) {
+            if (obj.removeEventListener) {
                 me.EventHandler.removeEventListener = function(node, evt, fn) {
-
                     var obj = $(node);
 
-                    if(!obj) {
-
+                    if (!obj) {
                         return;
                     }
 
-                    if(!fn) {
-
+                    if (!fn) {
                         throw kCallbackNotDefined;
                     }
 
                     obj.removeEventListener(evt, fn, false);
-
                 };
 
 
@@ -319,24 +294,20 @@
                 return;
             }
 
-            if(obj.detachEvent) {
+            if (obj.detachEvent) {
                 me.EventHandler.removeEventListener = function(node, evt, fn) {
-
                     var obj = $(node);
 
-                    if(!obj) {
-
+                    if (!obj) {
                         return;
                     }
 
-                    if(!fn) {
-
+                    if (!fn) {
                         throw kCallbackNotDefined;
                     }
 
                     var onEvent = ['on', evt].join('');
                     obj.detachEvent(onEvent, fn);
-
                 };
 
 
@@ -346,27 +317,21 @@
             }
 
             me.EventHandler.removeEventListener = function(node, evt, fn) {
-
                 var obj = $(node);
 
-                if(!obj) {
-
+                if (!obj) {
                     return;
                 }
 
-                if(!fn) {
-
+                if (!fn) {
                     throw kCallbackNotDefined;
                 }
 
                 var onEvent = ['on', evt].join('');
                 obj[onEvent] = nill;
-
             };
 
-
             me.EventHandler.removeEventListener(obj, evt, fn);
-
         },
 
         /**
@@ -382,17 +347,12 @@
         getEventObject : function(evt) {
 
             me.EventHandler.getEventObject = window.event ? function() {
-
                 return window.event;
-
             } : function(e) {
-
                 return e;
-
             };
 
             return me.EventHandler.getEventObject(evt);
-
         },
 
         /**
@@ -406,25 +366,17 @@
          * @return the actual <strong>DOM</strong> target of the event object.
          */
         getTarget : function(evt) {
-
-            if(window.event) {
+            if (window.event) {
                 me.EventHandler.getTarget = function() {
-
                     return window.event.srcElement;
-
                 };
-
             } else {
                 me.EventHandler.getTarget = function(e) {
-
                     return e ? e.target : null;
-
                 };
-
             }
 
             return me.EventHandler.getTarget(evt);
-
         },
 
         /**
@@ -443,17 +395,12 @@
          * internally in {@link EventHandler.addEventListener}
          */
         preventDefault : function(evt) {
-
             me.EventHandler.preventDefault = window.event ? function() {
-
                 window.event.returnValue = false;
 
                 return false;
-
             } : function(e) {
-
                 if(!e) {
-
                     return;
                 }
 
@@ -462,12 +409,10 @@
                 }
 
                 return false;
-
             };
 
             // Cancel event's default action.
             me.EventHandler.preventDefault(evt);
-
         },
 
         /**
@@ -483,27 +428,18 @@
          * internally in {@link EventHandler.addEventListener}
          */
         stopPropagation : function(evt) {
-
             me.EventHandler.stopPropagation = window.event ? function() {
-
                 window.event.cancelBubble = true;
-
             } : function(e) {
-
                 if(!e) {
-
                     return;
                 }
 
                 e.stopPropagation();
-
             };
 
             // Stop event bubbling.
             me.EventHandler.stopPropagation(evt);
-
         }
-
     };
-
 }(this.o2, this));

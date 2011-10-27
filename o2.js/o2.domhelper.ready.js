@@ -10,9 +10,7 @@
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
-( function(framework, window, document, setTimeout) {
-
-    // Strict mode on.
+(function(framework, window, document, setTimeout) {
     'use strict';
 
     /*
@@ -43,12 +41,25 @@
     };
 
     /*
+     * Common regular expressions.
+     */
+    var kRegDomLoaded = config.constants.regExp.REG_DOM_LOADED;
+
+    /*
+     * Common constants.
+     */
+    var kCheckIntervalMs = 50;
+    var kPropertyToCheck = 'left';
+    var kDomContentLoaded = 'DOMContentLoaded';
+    var kLoad = 'load';
+    var kOnReadyStateChange = 'onreadystatechange';
+    var kOnLoad = 'onload';
+
+    /*
      *
      */
     function isDomContentReady() {
-
-        return (config.constants.regExp.REG_DOM_LOADED).test(document.readyState);
-
+        return (kRegDomLoaded).test(document.readyState);
     }
 
     /*
@@ -60,18 +71,19 @@
     };
 
     /*
+     * Common collections.
+     */
+    var queue = state.readyQueue;
+
+    /*
      *
      */
     function flushReadyQueue() {
-
         state.isApplicationReady = true;
-
-        var queue = state.readyQueue;
 
         while(queue.length > 0) {
             queue.pop()();
         }
-
     }
 
     /*
@@ -79,95 +91,66 @@
      * http://javascript.nwbox.com/IEContentLoaded/
      */
     var checkScrollLeft = function() {
-
-        var kCheckIntervalMs = 50;
-        var kPropertyToCheck = 'left';
-
         try {
-
             document.documentElement.doScroll(kPropertyToCheck);
-
         } catch(e) {
-
             setTimeout(checkScrollLeft, kCheckIntervalMs);
 
             return;
-
         }
 
         flushReadyQueue();
 
-        //
         checkScrollLeft = nill;
-
     };
 
     var onMozDomContentLoaded = function() {
+        document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded, false);
 
-        document.removeEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
-
-        //
         flushReadyQueue();
 
-        //
         onMozDomContentLoaded = nill;
-
     };
 
     var onMozWindowLoad = function() {
+        document.removeEventListener(kLoad, onMozWindowLoad, false);
 
-        document.removeEventListener('load', onMozWindowLoad, false);
-
-        //
         flushReadyQueue();
 
-        //
         onMozWindowLoad = nill;
-
     };
 
     var onIEDomContentLoaded = function() {
-
-        if(!isDomContentReady()) {
+        if (!isDomContentReady()) {
 
             return;
         }
 
-        //
-        document.detachEvent('onreadystatechange', onIEDomContentLoaded);
+        document.detachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
-        //
         flushReadyQueue();
 
-        //
         onIEDomContentLoaded = nill;
-
     };
 
     var onIEWindowLoaded = function() {
+        window.detachEvent(kOnLoad, onIEWindowLoaded);
 
-        window.detachEvent('onload', onIEWindowLoaded);
-
-        //
         flushReadyQueue();
 
-        //
         onIEDomContentLoaded = nill;
-
     };
 
     var bindReadyListeners = function() {
 
-        var doc = document;
-
         // Mozilla, Opera, webkit
-        if(doc.addEventListener) {
+        if (document.addEventListener) {
 
             //Listen to native on dom conten loaded event.
-            doc.addEventListener('DOMContentLoaded', onMozDomContentLoaded, false);
+            document.addEventListener(kDomContentLoaded, onMozDomContentLoaded, false);
 
             //Worst-case fallback
-            window.addEventListener('load', onMozWindowLoad, false);
+            window.addEventListener(kLoad, onMozWindowLoad, false);
 
             //Do not process further calls.
             bindReadyListeners = nill;
@@ -176,19 +159,19 @@
         }
 
         // MSIE
-        if(doc.attachEvent) {
+        if (document.attachEvent) {
 
             // Listen to ready state change.
-            doc.attachEvent('onreadystatechange', onIEDomContentLoaded);
+            document.attachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
             // Worst-case fallback
-            window.attachEvent('onload', onIEWindowLoaded);
+            window.attachEvent(kOnLoad, onIEWindowLoaded);
 
             // If the document is not an IFRAME then ready state has no use,
             var isIframe = window.self !== window.top;
 
             // so apply an alternative trick.
-            if(!isIframe) {
+            if (!isIframe) {
                 checkScrollLeft();
             }
 
@@ -197,7 +180,6 @@
 
             return;
         }
-
     };
 
     /**
@@ -211,7 +193,7 @@
     me.ready = function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
-        if(state.isApplicationReady) {
+        if (state.isApplicationReady) {
             delegate();
 
             return;
@@ -222,7 +204,5 @@
 
         // this queue will be processed "only once" after DOM is ready.
         state.readyQueue.push(delegate);
-
     };
-
 }(this.o2, this, this.document, this.setTimeout));

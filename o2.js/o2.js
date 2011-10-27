@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.201110252321
+ * @version 0.23.201110271912
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -15,9 +15,7 @@ this.o2 = {};
 /**
  *
  */
-( function(framework, window, document) {
-
-    // Strict mode on.
+(function(framework, window, document) {
     'use strict';
 
     /*
@@ -32,6 +30,12 @@ this.o2 = {};
             }
         }
     };
+
+    /*
+     * Common string constants.
+     */
+    var kString = 'string';
+    var kLoad = 'load';
 
     /**
      * @function {static} o2.nill
@@ -75,7 +79,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '201110252321';
+    me.build = '201110271912';
 
     /**
      * @function {static} o2.$
@@ -89,20 +93,16 @@ this.o2 = {};
      *
      * @throws exception - if obj is <code>undefined</code>.
      */
-    me.$ = function(obj, UNDEFINED) {
-
-        if(obj === UNDEFINED) {
-
+    me.$ = function(obj) {
+        if (obj === undefined) {
             throw [me.name, config.constants.errorMessage.OBJECT_NOT_DEFINED].join('');
         }
 
-        if( typeof obj === 'string') {
-
+        if (typeof obj === kString) {
             return document.getElementById(obj);
         }
 
         return obj || null;
-
     };
 
     /**
@@ -117,19 +117,15 @@ this.o2 = {};
      * @return a collection of matching elements.
      */
     me.t = function(tagName, parent) {
-
-        //
-        if(parent === undefined) {
+        if (parent === undefined) {
             parent = document;
         }
 
-        //
         parent = framework.$(parent);
 
         var p = parent || document;
 
         return p.getElementsByTagName(tagName);
-
     };
 
     /**
@@ -147,14 +143,11 @@ this.o2 = {};
      * otherwise.
      */
     me.tt = function(tagName, parent) {
-
-        //
         parent = framework.$(parent);
 
         var result = framework.t(tagName, parent);
 
         return result ? result[0] : null;
-
     };
 
     /**
@@ -166,9 +159,7 @@ this.o2 = {};
      * ready.
      */
     me.ready = function(callback) {
-
         framework.DomHelper.ready(callback);
-
     };
 
     /**
@@ -181,9 +172,6 @@ this.o2 = {};
      * loaded.
      */
     me.load = function(callback) {
-
-        framework.EventHandler.addEventListener(window, 'load', callback);
-
+        framework.EventHandler.addEventListener(window, kLoad, callback);
     };
-
 }(this.o2, this, this.document));

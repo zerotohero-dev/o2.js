@@ -11,9 +11,7 @@
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-( function(framework, window) {
-
-    // Strict mode on.
+(function(framework, window) {
     'use strict';
 
     /*
@@ -49,17 +47,17 @@
      * both attributes are optional.
      */
     me.JsonpController = function(jsonp, args) {
-
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
         me.JsonpState.addObserver(this);
-
     };
 
-
+    /*
+     *
+     */
     me.JsonpController.prototype = {
 
         /**
@@ -84,8 +82,7 @@
          * @see o2.AjaxController.update
          */
         update : function(observable, data) {
-
-            if(data.isTimedOut) {
+            if (data.isTimedOut) {
 
                 // Unregister self from the observable.
                 this.unregister(observable);
@@ -96,19 +93,13 @@
                 // Purge former requests to prevent memory leak.
                 purgeQueue.push(this.jsonp);
 
-                while(purgeQueue.length > 1) {
-
-                    //
+                while (purgeQueue.length > 1) {
                     delete window[purgeQueue.shift()];
                 }
 
                 // Execute callback.
                 this.ontimeout();
-
             }
-
         }
-
     };
-
 }(o2, this));

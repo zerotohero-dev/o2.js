@@ -9,9 +9,7 @@
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -23,36 +21,28 @@
      *
      */
     function getSortOrder(a, b, isDescending) {
-
-        if(a === b) {
-
+        if (a === b) {
             return 0;
         }
 
-        if(a < b) {
-
+        if (a < b) {
             return isDescending ? 1 : -1;
         }
 
-        if(a > b) {
-
+        if (a > b) {
             return isDescending ? -1 : 1;
         }
-
     }
 
     /*
      *
      */
     function getNanSortOrder(a, b, isDescending) {
-
-        if(isDescending) {
-
+        if (isDescending) {
             return (isNaN(b) ? -Infinity : b) - (isNaN(a) ? -Infinity : a);
         }
 
         return (isNaN(a) ? Infinity : a) - (isNaN(b) ? Infinity : b);
-
     }
 
     /**
@@ -73,16 +63,13 @@
          * <strong>Number</strong>s will be sorted numerically before them.</p>
          */
         sort : function(a, b, isDesc) {
-
             var isDescending = !!isDesc;
 
-            if(isNaN(a) && isNaN(b)) {
-
+            if (isNaN(a) && isNaN(b)) {
                 return getSortOrder(a, b, isDescending);
             }
 
             return getNanSortOrder(a, b, isDescending);
-
         },
 
         /**
@@ -93,11 +80,7 @@
          * order.</p>
          */
         sortDesc : function(a, b) {
-
             return me.SortDelegate.sort(a, b, true);
-
         }
-
     };
-
 }(this.o2, this));

@@ -9,9 +9,7 @@
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -36,16 +34,24 @@
     };
 
     /*
+     * Common numeric constants.
+     */
+    var kObjectNameStartIndex = 8;
+    var kTrimLastBraceIndex = -1;
+
+    /*
+     * Common string constants.
+     */
+    var kObject = 'object';
+
+    /*
      *
      */
     function is(obj, type) {
-
-        var objectNameStartIndex = 8;
-        var trimLastBraceIndex = -1;
-        var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
+        var klass = Object.prototype.toString.call(obj).slice(
+            kObjectNameStartIndex, kTrimLastBraceIndex);
 
         return obj !== undefined && obj !== null && klass === type;
-
     }
 
     /*
@@ -54,7 +60,6 @@
     function isArray(obj) {
 
         return is(obj, config.constants.ecmaScriptType.ARRAY);
-
     }
 
     /**
@@ -79,23 +84,20 @@
          * <code>toObj</code>.
          */
         merge : function(toObj, fromObj, isRecursive) {
-
             var shouldRecurse = !!isRecursive;
-
             var value = null;
-
-            var merge = me.CollectionHelper.merge;
             var key = null;
+            var merge = me.CollectionHelper.merge;
 
-            for(key in fromObj) {
-                if(fromObj.hasOwnProperty(key)) {
+            for (key in fromObj) {
+                if (fromObj.hasOwnProperty(key)) {
                     value = fromObj[key];
 
-                    if(!shouldRecurse || typeof value !== 'object') {
+                    if (!shouldRecurse || typeof value !== kObject) {
                         toObj[key] = fromObj[key];
                     }
 
-                    if( typeof toObj[key] !== 'object') {
+                    if (typeof toObj[key] !== kObject) {
                         toObj[key] = isArray(value) ? [] : {};
                     }
 
@@ -104,7 +106,6 @@
             }
 
             return toObj;
-
         },
 
         /**
@@ -119,32 +120,27 @@
          * @return the index of the element if found, <code>-1</code> otherwise.
          */
         indexOf : function(ar, elm) {
-
-            if(Array.prototype.indexOf) {
+            if (Array.prototype.indexOf) {
                 me.CollectionHelper.indexOf = function(ar, elm) {
+                    var counter = 0;
+                    var key = null;
 
-                    if(!ar) {
-
+                    if (!ar) {
                         return -1;
                     }
 
-                    if(isArray(ar)) {
+                    if (isArray(ar)) {
 
                         return ar.indexOf(elm);
                     }
 
-                    if( typeof ar === 'object') {
-                        var counter = 0;
-                        var key = null;
-
-                        for(key in ar) {
-                            if(ar.hasOwnProperty(key)) {
-                                if(ar[key] === elm) {
-
+                    if (typeof ar === kObject) {
+                        for (key in ar) {
+                            if (ar.hasOwnProperty(key)) {
+                                if (ar[key] === elm) {
                                     return counter;
                                 }
 
-                                //
                                 counter++;
                             }
                         }
@@ -153,26 +149,24 @@
                     }
 
                     return -1;
-
                 };
 
                 return me.CollectionHelper.indexOf(ar, elm);
             }
 
             me.CollectionHelper.indexOf = function(ar, elm) {
+                var i = 0;
+                var len = 0;
+                var counter = 0;
+                var key = null;
 
-                if(!ar) {
-
+                if (!ar) {
                     return -1;
                 }
 
-                var i = 0;
-                var len = 0;
-
-                if(isArray(ar)) {
-                    for( i = 0, len = ar.length; i < len; i++) {
-                        if(elm === ar[i]) {
-
+                if (isArray(ar)) {
+                    for (i = 0, len = ar.length; i < len; i++) {
+                        if (elm === ar[i]) {
                             return i;
                         }
                     }
@@ -180,18 +174,13 @@
                     return -1;
                 }
 
-                if( typeof ar === 'object') {
-                    var counter = 0;
-                    var key = null;
-
-                    for(key in ar) {
-                        if(ar.hasOwnProperty(key)) {
-                            if(ar[key] === elm) {
-
+                if (typeof ar === kObject) {
+                    for (key in ar) {
+                        if (ar.hasOwnProperty(key)) {
+                            if (ar[key] === elm) {
                                 return counter;
                             }
 
-                            //
                             counter++;
                         }
                     }
@@ -200,11 +189,9 @@
                 }
 
                 return -1;
-
             };
 
             return me.CollectionHelper.indexOf(ar, elm);
-
         },
 
         /**
@@ -220,9 +207,7 @@
          * <code>false</code> otherwise.
          */
         contains : function(ar, elm) {
-
             return me.CollectionHelper.indexOf(ar, elm) > -1;
-
         },
 
         /**
@@ -240,7 +225,6 @@
          * @return the copied <code>Object</code>.
          */
         copy : function(ar, isDeepCopy) {
-
             var shouldDeepCopy = !!isDeepCopy;
             var theCopy = isArray(ar) ? [] : {};
             var value = null;
@@ -250,7 +234,7 @@
                 if(ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(!shouldDeepCopy || ( typeof value !== 'object')) {
+                    if(!shouldDeepCopy || ( typeof value !== kObject)) {
                         theCopy[key] = value;
                     }
 
@@ -259,7 +243,6 @@
             }
 
             return theCopy;
-
         },
 
         /**
@@ -272,9 +255,9 @@
          * @return a <strong>reference</strong> to the object itself.
          */
         clear : function(ar) {
+            var key = null;
 
             if(!ar) {
-
                 return null;
             }
 
@@ -284,18 +267,13 @@
                 return ar;
             }
 
-            var key = null;
-
             for(key in ar) {
                 if(ar.hasOwnProperty(key)) {
-
-                    //
                     delete ar[key];
                 }
             }
 
             return ar;
-
         },
 
         /**
@@ -313,28 +291,22 @@
          * issued; otherwise the search will be single level.
          */
         removeElementByValue : function(collection, name, value, isRecursive) {
-
             var item = null;
             var isNested = !!isRecursive;
-
             var removeElementByValue = framework.CollectionHelper.removeElementByValue;
             var i = 0;
             var len = 0;
             var key = null;
 
-            if(isArray(collection)) {
-                for( i = 0, len = collection.length; i < len; i++) {
+            if (isArray(collection)) {
+                for (i = 0, len = collection.length; i < len; i++) {
                     item = collection[i];
 
-                    if( typeof item === 'object' && isNested) {
+                    if (typeof item === kObject && isNested) {
                         removeElementByValue(item, name, value, isNested);
                     } else if(item[name] === value) {
                         collection.splice(i, 1);
-
-                        //
                         i--;
-
-                        //
                         len = collection.length;
                     }
                 }
@@ -342,20 +314,17 @@
                 return;
             }
 
-            for(key in collection) {
-                if(collection.hasOwnProperty(key)) {
+            for (key in collection) {
+                if (collection.hasOwnProperty(key)) {
                     item = collection[key];
 
-                    if( typeof item === 'object' && isNested) {
+                    if (typeof item === kObject && isNested) {
                         removeElementByValue(item, name, value, isNested);
                     } else if(item[name] === value) {
-
-                        //
                         delete collection[key];
                     }
                 }
             }
-
         },
 
         /**
@@ -369,20 +338,16 @@
          * @return the first element if exists, <code>null</code> otherwise.
          */
         getFirst : function(ar) {
+            var key = null;
 
-            if(!ar) {
-
+            if (!ar) {
                 return null;
             }
 
-            var key = null;
-
-            if(!isArray(ar)) {
-
-                if( typeof ar === 'object') {
-                    for(key in ar) {
-                        if(ar.hasOwnProperty(key)) {
-
+            if (!isArray(ar)) {
+                if (typeof ar === kObject) {
+                    for (key in ar) {
+                        if (ar.hasOwnProperty(key)) {
                             return ar[key];
                         }
                     }
@@ -392,7 +357,6 @@
             }
 
             return ar[0];
-
         },
 
         /**
@@ -406,20 +370,17 @@
          * @return the last element if exists, <code>null</code> otherwise.
          */
         getLast : function(ar) {
-
-            if(!ar) {
-
-                return null;
-            }
-
             var key = null;
             var lastItem = null;
 
-            if(!isArray(ar)) {
+            if (!ar) {
+                return null;
+            }
 
-                if( typeof ar === 'object') {
-                    for(key in ar) {
-                        if(ar.hasOwnProperty(key)) {
+            if (!isArray(ar)) {
+                if (typeof ar === kObject) {
+                    for (key in ar) {
+                        if (ar.hasOwnProperty(key)) {
                             lastItem = ar[key];
                         }
                     }
@@ -431,7 +392,6 @@
             }
 
             return ar[ar.length - 1];
-
         },
 
         /**
@@ -451,57 +411,48 @@
          * @return a reference to the <code>Object</code> itself.
          */
         compact : function(ar, isDeepClean) {
-
-            //
-            isDeepClean = !!isDeepClean;
-
-            if(!ar) {
-
-                return null;
-            }
-
-            var value = null;
             var compact = me.CollectionHelper.compact;
+            var value = null;
             var i = 0;
             var len = 0;
             var key = null;
+            var shouldRecurse = !!isDeepClean;
 
-            if(isArray(ar)) {
-                for( i = 0, len = ar.length; i < len; i++) {
+            if (!ar) {
+                return null;
+            }
+
+            if (isArray(ar)) {
+                for (i = 0, len = ar.length; i < len; i++) {
                     value = ar[i];
 
-                    if(value === null || value === undefined) {
+                    if (value === null || value === undefined) {
                         ar.splice(i, 1);
                         i = i - 1;
                         len = ar.length;
-                    } else if(isArray(value) && isDeepClean) {
-                        compact(value, isDeepClean);
+                    } else if (isArray(value) && shouldRecurse) {
+                        compact(value, shouldRecurse);
                     }
                 }
 
                 return ar;
             }
 
-            for(key in ar) {
-                if(ar.hasOwnProperty(key)) {
+            for (key in ar) {
+                if (ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(value === null || value === undefined) {
-
-                        //
+                    if (value === null || value === undefined) {
                         delete ar[key];
                     }
 
-                    if( typeof value === 'object' && isDeepClean) {
+                    if (typeof value === kObject && shouldRecurse) {
                         compact(value);
                     }
                 }
             }
 
             return ar;
-
         }
-
     };
-
 }(this.o2, this));

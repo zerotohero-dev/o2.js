@@ -9,15 +9,14 @@
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-( function(framework, document, escape) {
-
-    // Strict mode on.
+(function(framework, document, escape) {
     'use strict';
 
     /*
      * Aliases.
      */
     var me = framework;
+    var concat = framework.StringHelper.concat;
 
     /**
      * @class {static} o2.Cookie
@@ -41,11 +40,10 @@
          * secure connection.
          */
         save : function(name, value, days, path, domain, isSecure) {
-
             var ex = '';
+            var d = new Date();
 
-            if(days) {
-                var d = new Date();
+            if (days) {
                 d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
                 ex = '; expires=' + d.toGMTString();
             } else {
@@ -54,22 +52,21 @@
 
             var cookiePath = path || '/';
 
-            // @formatter:off
             // Do not use encodeURICompoent for paths as it replaces / with %2F
-            var cookieString = encodeURIComponent(name) + '=' + encodeURIComponent(value) + 
-                ex + '; path=' + escape(cookiePath);
-            // @formatter:on
+            var cookieString = concat(
+                encodeURIComponent(name), '=', encodeURIComponent(value),
+                ex, '; path=', escape(cookiePath)
+            );
 
-            if(domain) {
-                cookieString += '; domain=' + escape(domain);
+            if (domain) {
+                cookieString = concat(cookieString, '; domain=', escape(domain));
             }
 
-            if(isSecure) {
-                cookieString += '; secure';
+            if (isSecure) {
+                cookieString = concat(cookieString, '; secure');
             }
 
             document.cookie = cookieString;
-
         },
 
         /**
@@ -85,26 +82,23 @@
          * if the <strong>cookie</strong> is not found.
          */
         read : function(name) {
-
             var eq = [decodeURIComponent(name), '='].join('');
             var ca = document.cookie.split(';');
             var i = 0;
 
-            for( i = 0; i < ca.length; i++) {
+            for (i = 0; i < ca.length; i++) {
                 var c = ca[i];
 
-                while(c.charAt(0) === ' ') {
+                while (c.charAt(0) === ' ') {
                     c = c.substring(1, c.length);
                 }
 
-                if(c.indexOf(eq) === 0) {
-
+                if (c.indexOf(eq) === 0) {
                     return c.substring(eq.length, c.length);
                 }
             }
 
             return null;
-
         },
 
         /**
@@ -120,19 +114,15 @@
          * secure connection.
          */
         remove : function(name, path, domain, isSecure) {
-
             var cookiePath = path || '/';
             var cookieDomain = domain || null;
             var isCookieSecure = !!isSecure;
 
             me.Cookie.save(name, '', -1, cookiePath, cookieDomain, isCookieSecure);
-
         }
 
         // removeAll makes thing too complicated if path, domain and isSecure
         // come into the equation. Will not implement it.
         // removeAll : function(){ }
-
     };
-
 }(this.o2, this.document, this.escape));

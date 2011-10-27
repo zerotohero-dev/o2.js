@@ -10,10 +10,7 @@
  * <p>A <code>String</code> helper.</p>
  */
 ( function(framework) {
-
-    // Strict mode on.
     'use strict';
-
 
     /*
      * Aliases.
@@ -55,9 +52,7 @@
                 TRIM : /^\s+|\s+$/g,
                 WHITESPACE : /\s+/g
             }
-
         }
-
     };
 
     /**
@@ -76,9 +71,8 @@
          * @return a <strong>GUID</strong>.
          */
         generateGuid : function() {
-
-            return [(new Date()).getTime(), Math.floor(config.constants.GUID_MULTIPLIER * Math.random())].join('');
-
+            return [(new Date()).getTime(), Math.floor(
+                config.constants.GUID_MULTIPLIER * Math.random())].join('');
         },
 
         /**
@@ -93,23 +87,19 @@
          * @return the generated <code>String</code>.
          */
         generateRandom : function(length) {
-
             var chars = config.constants.RANDOM_CHAR_FEED;
-
             var len = length || config.constants.DEFAULT_RANDOM_LENGTH;
             var charsLength = chars.length;
             var randomNumber = 0;
-
             var buffer = [];
             var i = 0;
 
-            for(i = 0; i < len; i++) {
+            for (i = 0; i < len; i++) {
                 randomNumber = Math.floor(Math.random() * charsLength);
                 buffer.push(chars.substring(randomNumber, randomNumber + 1));
             }
 
             return buffer.join('');
-
         },
 
         /**
@@ -122,9 +112,7 @@
          * @return the concataneted <strong>String</strong>.
          */
         concat : function() {
-
             return Array.prototype.slice.call(arguments).join('');
-
         },
 
         /**
@@ -142,16 +130,13 @@
          * @return the formated <strong>String</strong>.
          */
         format : function() {
-
             var args = arguments;
 
-            if(args.length === 0) {
-            
+            if (args.length === 0) {
                 return null;
             }
 
-            if(args.length === 1) {
-            
+            if (args.length === 1) {
                 return args[0];
             }
 
@@ -159,13 +144,10 @@
             var lastMatch = null;
 
             return args[0].replace(pattern, function(match, index) {
-                
                 lastMatch = match;
 
                 return args[+index + 1];
-            
             });
-
         },
 
         /**
@@ -180,9 +162,7 @@
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
-
             return str.replace(regExp, '');
-
         },
 
         /**
@@ -200,23 +180,18 @@
          * @return the processed <strong>String</strong>.
          */
         trim : function(str, shouldCompact) {
-            
-            //
             shouldCompact = shouldCompact || false;
-            
+
             var constants = config.constants;
             var regExp = constants.regExp;
 
-            // @formatter:off
-            return shouldCompact ? str.replace(regExp.WHITESPACE, 
+            return shouldCompact ? str.replace(regExp.WHITESPACE,
                 ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
-            // @formatter:on
-
         },
 
         /**
          * @function {static} o2.StringHelper.strip
-         * 
+         *
          * <p>Simply returns
          * <code>o2.StringHelper.trim(str, false)</code>.
          *
@@ -227,9 +202,7 @@
          * @see o2.StringHelper.trim
          */
         strip : function(str) {
-
             return me.StringHelper.trim(str, false);
-
         },
 
         /**
@@ -245,11 +218,7 @@
          * @see StringHelper.trim
          */
         compact : function(str) {
-
             return me.StringHelper.trim(str, true);
-
         }
-
     };
-
 }(this.o2));

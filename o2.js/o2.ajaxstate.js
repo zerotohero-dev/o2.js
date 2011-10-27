@@ -10,9 +10,7 @@
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-( function(framework, setTimeout, clearTimeout) {
-
-    // Strict mode on.
+(function(framework, setTimeout, clearTimeout) {
     'use strict';
 
     //*
@@ -21,6 +19,11 @@
      * Aliases.
      */
     var me = framework;
+
+    /*
+     * Common string constants.
+     */
+    var kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
 
     /**
      * @class {static} o2.AjaxState
@@ -43,11 +46,8 @@
          * <strong>observer</strong>s.</p>
          */
         init : function() {
-
             var listen = this.protecteds.listen;
-
             listen(this);
-
         },
 
         /**
@@ -60,12 +60,10 @@
          * @param {Object} observer - the <code>Observer</code> to register.
          */
         addObserver : function(observer) {
-
             var hasObserver = this.protecteds.hasObserver;
 
             //!
-            if(hasObserver.apply(this.protecteds, [observer])) {
-
+            if (hasObserver.apply(this.protecteds, [observer])) {
                 return;
             }
 
@@ -78,7 +76,6 @@
                     timeout : (observer.timeout || null)
                 }
             });
-
         },
 
         /**
@@ -91,20 +88,18 @@
          * @param {Object} observer - the <code>Observer</code> to remove.
          */
         deleteObserver : function(observer) {
-
-            // This is an already-deleted zombie object.
-            // No need for further processing.
-            if(observer.isDeleted) {
-
-                return true;
-            }
-
             var observers = this.protecteds.observers;
             var i = 0;
             var len = 0;
 
-            for( i = 0, len = observers.length; i < len; i++) {
-                if(observer === observers[i].object) {
+            // This is an already-deleted zombie object.
+            // No need for further processing.
+            if (observer.isDeleted) {
+                return true;
+            }
+
+            for ( i = 0, len = observers.length; i < len; i++) {
+                if (observer === observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
 
                     return true;
@@ -112,7 +107,6 @@
             }
 
             return false;
-
         },
 
         /**
@@ -125,9 +119,7 @@
          * @return the number of registered <code>Observer</code>s.
          */
         countObservers : function() {
-
             return this.protecteds.observers.length;
-
         },
 
         /**
@@ -138,9 +130,7 @@
          * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
          */
         deleteObservers : function() {
-
             this.protecteds.observers.length = 0;
-
         },
 
         /**
@@ -154,12 +144,11 @@
          * @param {Object} data - the data to pass to the <code>Observer</code>s.
          */
         timeoutObservers : function(observers, data) {
-
             var observer = null;
             var i = 0;
             var len = 0;
 
-            for( i = 0, len = observers.length; i < len; i++) {
+            for ( i = 0, len = observers.length; i < len; i++) {
                 observer = observers[i].object;
 
                 observer.update(this, {
@@ -169,7 +158,6 @@
 
                 observer.unregister(this);
             }
-
         },
 
         /**
@@ -181,9 +169,7 @@
          * @param {Object} data - the data to pass to the <code>Observer</code>s.
          */
         timeoutAllObservers : function(data) {
-
             this.timeoutObservers(this.protecteds.observers, data);
-
         },
 
         /**
@@ -243,15 +229,13 @@
                 var i = 0;
                 var len = 0;
 
-                for( i = 0, len = observers.length; i < len; i++) {
-                    if(observer.object === observers[i]) {
-
+                for ( i = 0, len = observers.length; i < len; i++) {
+                    if (observer.object === observers[i]) {
                         return true;
                     }
                 }
 
                 return false;
-
             },
 
             /**
@@ -263,22 +247,21 @@
              * method in the <code>Observer</code> pattern.
              */
             listen : function(stateObject) {
-
                 var now = (new Date()).getTime();
-                var i = 0;
-                var observers = stateObject.protecteds.observers;
-                var config = stateObject.protecteds.config;
-                var state = stateObject.protecteds.state;
-                var len = observers.length;
                 var observer = null;
                 var meta = null;
                 var timeout = null;
                 var registrationTime = null;
                 var shouldNotifyObserver = false;
-
+                var unregisterQueue = [];
+                var i = 0;
+                var observers = stateObject.protecteds.observers;
+                var config = stateObject.protecteds.config;
+                var state = stateObject.protecteds.state;
                 var listen = stateObject.protecteds.listen;
+                var len = observers.length;
 
-                if(!len) {
+                if (!len) {
                     clearTimeout(state.listenTimeoutId);
                     state.listenTimeoutId = setTimeout(function() {
                         listen(stateObject);
@@ -287,21 +270,20 @@
                     return;
                 }
 
-                var unregisterQueue = [];
-
-                for( i = 0, len = observers.length; i < len; i++) {
+                for (i = 0, len = observers.length; i < len; i++) {
                     observer = observers[i];
                     meta = observer.meta;
                     timeout = meta.timeout;
                     registrationTime = meta.registrationTime;
 
-                    if(!timeout) {
+                    if (!timeout) {
 
-                        throw 'Please specify timeout meta data for the observer';
+                        throw kNoTimeoutMetaData;
                     }
+
                     shouldNotifyObserver = (now - registrationTime > timeout);
 
-                    if(shouldNotifyObserver) {
+                    if (shouldNotifyObserver) {
 
                         // "These are not the droids you're looking for.";
                         // unregister 'em.
@@ -317,8 +299,6 @@
                 }, config.LISTEN_TIMEOUT);
 
             }
-
         }
     };
-
 }(this.o2, this.setTimeout, this.clearTimeout));

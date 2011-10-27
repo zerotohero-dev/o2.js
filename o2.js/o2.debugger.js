@@ -9,10 +9,8 @@
  *
  * <p>A debugging helper.</p>
  */
-( function(framework, document, console) {
-
-    // Strict mode on.
-    'use strict';
+(function(framework, document, console) {
+   'use strict';
 
     /*
      * Aliases.
@@ -119,70 +117,74 @@
     };
 
     /*
+     * Common class names.
+     */
+    var ccc = config.constants.className;
+    var kLog = ccc.LOG;
+    var kInfo = ccc.INFO;
+    var kWarn = ccc.WARN;
+    var kError = ccc.ERROR;
+    var kPass = ccc.PASS;
+    var kFail = ccc.FAIL;
+
+    /*
+     * Common strings.
+     */
+    var kDefaultContainer = 'div';
+    var kEmpty = '';
+
+     /*
+      * Common errors.
+      */
+    var cct = config.constants.text;
+    var kCannotInitialize = cct.ER_CANNOT_INITIALIZE;
+    var kWarnText = cct.WARN;
+    var kPassText = cct.PASS;
+    var kFailText = cct.FAIL;
+    var kErrorText = cct.ERROR;
+    var kInfoText = cct.INFO;
+
+    /*
      *
      */
     function println(text, className) {
-
-        var ccc = config.constants.className;
-
-        switch(className) {
-            case ccc.LOG:
-
+        switch (className) {
+            case kLog:
                 try {
-                    
                     console.log(text);
-
                 } catch(ignore1) {
-
                 }
 
                 break;
-            case ccc.INFO:
-
+            case kInfo:
                 try {
-
                     console.info(text);
-
                 } catch(ignore2) {
-
                 }
 
                 break;
-            case ccc.WARN:
-
+            case kWarn:
                 try {
-
                     console.warn(text);
-
                 } catch(ignore3) {
-
                 }
 
                 break;
-            case ccc.ERROR:
-
+            case kError:
                 try {
-                    
                     console.error(text);
-
                 } catch(ignore4) {
-
                 }
 
                 break;
             default:
-
                 try {
-                    
                     console.log(text);
-
                 } catch(ignore5) {
-
                 }
 
                 break;
         }
-
     }
 
     /*
@@ -199,51 +201,35 @@
          * @return {Function} the proper delegate.
          */
         create : function(config) {
+            var output = config.outputElement;
+            var isUsingConsole = config.isUsingConsole;
 
-            var nodeName = 'div';
-
-            if(config.isUsingConsole && config.outputElement) {
-
+            if(isUsingConsole && output) {
                 return function(value, className) {
-
-                    println(value, className);
-
-                    var debugContent = document.createElement(nodeName);
+                    var debugContent = document.createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
-                    config.outputElement.appendChild(debugContent);
-
-                };
-
-            } else if(config.isUsingConsole && !config.outputElement) {
-
-                return function(value, className) {
+                    output.appendChild(debugContent);
 
                     println(value, className);
-
                 };
-
-            } else if(!config.isUsingConsole && config.outputElement) {
-
+            } else if(isUsingConsole && !output) {
                 return function(value, className) {
-
-                    var debugContent = document.createElement(nodeName);
+                    println(value, className);
+                };
+            } else if(!isUsingConsole && output) {
+                return function(value, className) {
+                    var debugContent = document.createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
-                    config.outputElement.appendChild(debugContent);
-
+                    output.appendChild(debugContent);
                 };
-
             } else {
-
-                return framework.nill;
-
+                return nill;
             }
-
         }
-
     };
 
     /**
@@ -278,7 +264,6 @@
          * be used, if available.
          */
         init : function(outputElement, shouldUseConsole) {
-
             var outputNode = $(outputElement);
 
             // Can I use the browser's built-in console?
@@ -291,9 +276,8 @@
             // If I can use neither of them, then it's a fatal situation.
             var isConfigOk = ((outputNode && outputNode.nodeName) || config.isUsingConsole);
 
-            if(!isConfigOk) {
-
-                throw config.constants.text.ER_CANNOT_INITIALIZE;
+            if (!isConfigOk) {
+                throw kCannotInitialize;
             }
 
             // Set the output element.
@@ -304,7 +288,6 @@
 
             // Prevent initializing the object more than once.
             me.Debugger.init = nill;
-
         },
 
         /**
@@ -320,14 +303,13 @@
 
             // If not initialized, then we cannot use any of
             // Debugger's public methods.
-            if(!state.isInitialized) {
-
+            if (!state.isInitialized) {
                 return;
             }
 
             // Reset className if not given.
-            if(!className) {
-                className = config.constants.className.LOG;
+            if (!className) {
+                className = kLog;
             }
 
             // Create a new printer method.
@@ -335,7 +317,6 @@
 
             // Call the newly created method.
             me.Debugger.println(value, className);
-
         },
 
         /**
@@ -356,25 +337,17 @@
          * @see o2.Unit.assert
          */
         assert : function(pass, message) {
+            if (!state.isInitialized) {
+                return;
+            }
 
-            var empty = '';
-
-            if(!state.isInitialized) {
+            if (pass) {
+                me.Debugger.println([kPassText, message].join(kEmpty), kPass);
 
                 return;
             }
 
-            var className = config.constants.className;
-            var text = config.constants.text;
-
-            if(pass) {
-                me.Debugger.println([text.PASS, message].join(empty), className.PASS);
-
-                return;
-            }
-
-            me.Debugger.println([text.FAIL, message].join(empty), className.FAIL);
-
+            me.Debugger.println([kFailText, message].join(kEmpty), kFail);
         },
 
         /**
@@ -389,19 +362,11 @@
          * @param {String} message - the error message to display.
          */
         error : function(message) {
-
-            var empty = '';
-
-            if(!state.isInitialized) {
-
+            if (!state.isInitialized) {
                 return;
             }
 
-            var className = config.constants.className;
-            var text = config.constants.text;
-
-            me.Debugger.println([text.ERROR, message].join(empty), className.ERROR);
-
+            me.Debugger.println([kErrorText, message].join(kEmpty), kError);
         },
 
         /**
@@ -416,19 +381,11 @@
          * @param {String} message - the info message to display.
          */
         info : function(message) {
-
-            var empty = '';
-
-            if(!state.isInitialized) {
-
+            if (!state.isInitialized) {
                 return;
             }
 
-            var className = config.constants.className;
-            var text = config.constants.text;
-
-            me.Debugger.println([text.INFO, message].join(empty), className.INFO);
-
+            me.Debugger.println([kInfoText, message].join(kEmpty), kInfo);
         },
 
         /**
@@ -443,19 +400,12 @@
          * @param {String} message - the warning message to display.
          */
         warn : function(message) {
-
-            var empty = '';
-
-            if(!state.isInitialized) {
+            if (!state.isInitialized) {
 
                 return;
             }
 
-            var className = config.constants.className;
-            var text = config.constants.text;
-
-            me.Debugger.println([text.WARN, message].join(empty), className.WARN);
-
+            me.Debugger.println([kWarnText, message].join(kEmpty), kWarn);
         },
 
         /**
@@ -473,14 +423,11 @@
          * @see o2.Unit.log
          */
         log : function(message) {
-
-            if(!state.isInitialized) {
-
+            if (!state.isInitialized) {
                 return;
             }
 
-            me.Debugger.println(message, config.constants.className.LOG);
-
+            me.Debugger.println(message, kLog);
         }
 
     };

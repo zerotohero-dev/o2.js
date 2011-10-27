@@ -11,9 +11,7 @@
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -66,9 +64,7 @@
      * potentially valid e-mail, <code>false</code> otherwise.
      */
     me.isEmail = function(mail) {
-
         return (config.constants.regExp.EMAIL).test(mail);
-
     };
 
     /**
@@ -82,9 +78,7 @@
      * <code>false</code> otherwise.
      */
     me.isValidUrl = function(url) {
-
         return (config.constants.regExp.URL).test(url);
-
     };
 
     /**
@@ -98,9 +92,6 @@
      * characters, <code>false</code> otherwise.
      */
     me.isWhitespace = function(text) {
-
         return (config.constants.regExp.WHITESPACE).test(text);
-
     };
-
 }(this.o2));

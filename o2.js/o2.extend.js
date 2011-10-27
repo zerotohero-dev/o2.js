@@ -9,15 +9,12 @@
  *
  * Helpful extension functions to the framework namespace.
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     var me = framework;
 
     me.first = function() {
-
     };
 
 
@@ -27,22 +24,16 @@
 
 
     me.parent = function() {
-
     };
 
 
     me.remove = function() {
-
     };
 
 
     me.listen = function() {
-
     };
-
 
     me.create = function() {
-
     };
-
 }(this.o2));

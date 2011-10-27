@@ -9,9 +9,7 @@
  *
  * <p>A validation helper.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -44,9 +42,7 @@
                 ARGUMENTS : 'Arguments',
                 REGEXP : 'RegExp'
             }
-
         }
-
     };
 
     /**
@@ -63,13 +59,12 @@
      * the <strong>type</strong> parameter, <code>false</code> otherwise.
      */
     function is(obj, type) {
-
         var objectNameStartIndex = 8;
         var trimLastBraceIndex = -1;
-        var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex, trimLastBraceIndex);
+        var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex,
+            trimLastBraceIndex);
 
         return obj !== undefined && obj !== null && klass === type;
-
     }
 
     /**
@@ -91,9 +86,7 @@
          * otherwise.
          */
         isArray : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.ARRAY);
-
         },
 
         /**
@@ -107,9 +100,7 @@
          * otherwise.
          */
         isBoolean : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.BOOLEAN);
-
         },
 
         /**
@@ -121,13 +112,11 @@
          * whether it identifies a <code>Date</code> object. Otherwise the
          * function takes
          * three parameters (year, month, date) and cheks whether they denote a
-         * valid
-         * Date.
+         * valid Date.
          * @return <code>true</code> if obj is a <code>Date</code>,
          * <code>false</code> otherwise.
          */
         isDate : function(objYear, objMonth, objDay) {
-
             var kYmdArgumentLength = 3;
 
             if(arguments.length === kYmdArgumentLength) {
@@ -138,18 +127,15 @@
                 var day = objDay;
 
                 if(!year || !month || !day) {
-
                     return false;
                 }
 
-                // @formatter:off
-                months[1] = ((parseInt(year, 10) % 4 === 0 && parseInt(year, 10) % 100 !== 0) || 
+                months[1] = ((parseInt(year, 10) % 4 === 0 &&
+                    parseInt(year, 10) % 100 !== 0) ||
                     parseInt(year, 10) % 400 === 0) ? 29 : 28;
                 maxDay = months[parseInt(month, 10) - 1];
-                // @formatter:on
 
                 if(parseInt(day, 10) > maxDay) {
-
                     return false;
                 }
 
@@ -157,7 +143,6 @@
             }
 
             return is(objYear, config.constants.ecmaScriptType.DATE);
-
         },
 
         /**
@@ -170,9 +155,7 @@
          * <code>false</code> otherwise.
          */
         isFunction : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.FUNCTION);
-
         },
 
         /**
@@ -186,9 +169,7 @@
          * otherwise.
          */
         isNumber : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.NUMBER);
-
         },
 
         /**
@@ -201,9 +182,7 @@
          * <code>false</code> otherwise.
          */
         isObject : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.OBJECT);
-
         },
 
         /**
@@ -217,9 +196,7 @@
          * otherwise.
          */
         isRegExp : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.REGEXP);
-
         },
 
         /**
@@ -231,9 +208,7 @@
          * @return true if obj is a String, false otherwise.
          */
         isString : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.STRING);
-
         },
 
         /**
@@ -246,11 +221,7 @@
          * <code>false</code> otherwise.
          */
         isArguments : function(obj) {
-
             return is(obj, config.constants.ecmaScriptType.ARGUMENTS);
-
         }
-
     };
-
 }(this.o2));

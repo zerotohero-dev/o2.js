@@ -12,9 +12,7 @@
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -35,12 +33,9 @@
      * @see o2.StringHelper.trim
      */
     me.trimField = function(field) {
-
-        //
         field = o2.$(field);
 
-        if(!field) {
-
+        if (!field) {
             return null;
         }
 
@@ -62,12 +57,9 @@
      * @see o2.StringHelper.compact
      */
     me.compactField = function(field) {
-
-        //
         field = o2.$(field);
 
-        if(!field) {
-
+        if (!field) {
             return null;
         }
 
@@ -75,5 +67,4 @@
 
         return field.value;
     };
-
 }(this.o2));

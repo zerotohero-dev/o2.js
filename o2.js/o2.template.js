@@ -9,9 +9,7 @@
  *
  * <p>A very fast templating engine.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -52,78 +50,63 @@
      *
      */
     function parseDirective(line, data) {
-
         var len = line.length;
 
-        if(len === 0) {
-
-            return '';
-        }
-
-        if(len === 1) {
-
-            return line[0];
+        switch(len) {
+            case 0:
+                return '';
+            case 1:
+                return line[0];
         }
 
         var constants = config.constants;
-
         var directive = line[0].split(constants.regExp.SEPARATOR);
         var subTpl = line[1];
-
         var directiveKey = '';
         var collectionKey = '';
 
-        if(directive.length > 1) {
+        if (directive.length > 1) {
             collectionKey = directive[1];
         }
 
-        //
         directiveKey = directive[0];
 
-        if(directiveKey !== constants.command.EACH) {
+        if (directiveKey !== constants.command.EACH) {
 
             return subTpl.join('');
         }
 
         var collection = collectionKey ? data[collectionKey] : data;
 
-        if( typeof collection !== 'object') {
-
+        if (typeof collection !== 'object') {
             return subTpl.join('');
         }
 
         var buffer = [];
-
         var parse = me.Template.parse;
         var i = 0;
         var clen = 0;
 
-        for( i = 0, clen = collection.length; i < clen; i++) {
+        for (i = 0, clen = collection.length; i < clen; i++) {
             buffer.push(parse(collection[i], subTpl));
         }
 
         return buffer.join('');
-
     }
 
     /*
      *
      */
     function parse(line, data) {
-
         var regTemplate = config.constants.regExp.TEMPLATE;
 
-        if( typeof line !== 'string') {
-
+        if (typeof line !== 'string') {
             return parseDirective(line, data);
         }
 
         return line.replace(regTemplate, function(str, p1/*, offset, total*/) {
-
             return data[p1] !== undefined ? data[p1] : str;
-
         });
-
     }
 
     /**
@@ -144,22 +127,17 @@
          * @return {String} the parsed template.
          */
         parse : function(data, tpl) {
-
             var buffer = [];
             var i = 0;
             var len = 0;
 
-            //
             data = data || {};
 
-            for( i = 0, len = tpl.length; i < len; i++) {
+            for (i = 0, len = tpl.length; i < len; i++) {
                 buffer.push(parse(tpl[i], data));
             }
 
             return buffer.join('');
-
         }
-
     };
-
 }(this.o2));

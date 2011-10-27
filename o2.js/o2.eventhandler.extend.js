@@ -10,9 +10,7 @@
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
  */
-( function(framework, document) {
-
-    // Strict mode on.
+(function(framework, document) {
     'use strict';
 
     /*
@@ -33,11 +31,9 @@
      * <code>y</code> is the distance from the left of the screen.
      */
     me.getMouseCoordinates = function(evt) {
-
         var e = me.getEventObject(evt);
 
-        if(!e) {
-
+        if (!e) {
             return {
                 x : 0,
                 y : 0
@@ -47,16 +43,15 @@
         var posx = 0;
         var posy = 0;
 
-        if(e.pageX) {
+        if (e.pageX) {
             me.getMouseCoordinates = function(e) {
-
-                if(!e) {
-
+                if (!e) {
                     return {
                         x : 0,
                         y : 0
                     };
                 }
+
                 posx = e.pageX || 0;
                 posy = e.pageY || 0;
 
@@ -64,7 +59,6 @@
                     x : posx,
                     y : posy
                 };
-
             };
 
             return me.getMouseCoordinates(evt);
@@ -72,9 +66,7 @@
 
         if(e.clientX) {
             me.getMouseCoordinates = function(e) {
-
-                if(!e) {
-
+                if (!e) {
                     return {
                         x : 0,
                         y : 0
@@ -83,9 +75,8 @@
 
                 var clientX = e.clientX || 0;
                 var clientY = e.clientY || 0;
-
-                //
                 var wd = document;
+
                 posx = clientX + wd.body.scrollLeft + wd.documentElement.scrollLeft;
                 posy = clientY + wd.body.scrollTop + wd.documentElement.scrollTop;
 
@@ -93,7 +84,6 @@
                     x : posx,
                     y : posy
                 };
-
             };
 
             return me.getMouseCoordinates(evt);
@@ -104,7 +94,6 @@
             x : 0,
             y : 0
         };
-
     };
 
     /**
@@ -120,30 +109,23 @@
      * <code>Integer</code>
      */
     me.getKeyCode = function(evt) {
-
         var e = me.getEventObject(evt);
 
-        if(!e) {
-
+        if (!e) {
             return null;
         }
 
-        if(e.charCode) {
-
+        if (e.charCode) {
             me.getKeyCode = function(e) {
-
                 return e.charCode;
-
             };
 
             return me.getKeyCode(evt);
         }
 
-        if(e.keyCode) {
+        if (e.keyCode) {
             me.getKeyCode = function(e) {
-
                 return e.keyCode;
-
             };
 
             return me.getKeyCode(evt);
@@ -151,16 +133,13 @@
 
         if(e.which) {
             me.getKeyCode = function(e) {
-
                 return e.which;
-
             };
 
             return me.getKeyCode(evt);
         }
 
         return null;
-
     };
 
     /**
@@ -175,7 +154,6 @@
      * <code>false</code> otherwise.
      */
     me.isRightClick = function(evt) {
-
         var e = me.getEventObject(evt);
 
         //
@@ -197,13 +175,11 @@
         //
 
         if(!e) {
-
             return false;
         }
 
         if(e.which) {
             me.isRightClick = function(e) {
-
                 return e.which === 3;
             };
 
@@ -212,7 +188,6 @@
 
         if(e.button) {
             me.isRightClick = function(e) {
-
                 return e.button === 2;
             };
 
@@ -220,7 +195,6 @@
         }
 
         return false;
-
     };
 
 }(this.o2, this.document));

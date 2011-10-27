@@ -11,7 +11,7 @@
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-( function(framework) {
+(function(framework) {
 
     // Strict mode on.
     'use strict';
@@ -27,9 +27,7 @@
      */
     //TODO: add documentation.
     me.createClassNameRegExp = function(c) {
-
         return new RegExp(['(\\s|^)', c, '(\\s|$)'].join(''));
-
     };
 
     /**
@@ -45,17 +43,13 @@
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
     me.hasClass = function(el, c) {
-
-        //
         el = $(el);
 
-        if(!el) {
-
+        if (!el) {
             return false;
         }
 
         return me.createClassNameRegExp(c).test(el.className);
-
     };
 
     /**
@@ -68,22 +62,17 @@
      * @param {String} c - the <strong>className</strong> to add.
      */
     me.addClass = function(el, c) {
-
-        //
         el = $(el);
 
-        if(!el) {
-
+        if (!el) {
             return;
         }
 
-        if(me.hasClass(el, c)) {
-
+        if (me.hasClass(el, c)) {
             return;
         }
 
         el.className += [' ', c].join('');
-
     };
 
     /**
@@ -100,18 +89,14 @@
         //
         el = $(el);
 
-        if(!el) {
-
+        if (!el) {
             return;
         }
 
-        if(!me.hasClass(el, c)) {
-
+        if (!me.hasClass(el, c)) {
             return;
         }
 
         el.className = el.className.replace(me.createClassNameRegExp(c), ' ');
-
     };
-
 }(this.o2, this));

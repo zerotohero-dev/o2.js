@@ -11,9 +11,7 @@
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-( function(framework, window) {
-
-    // Strict mode on.
+(function(framework, window) {
     'use strict';
 
     /*
@@ -52,20 +50,18 @@
          * methods from.
          */
         copyMethods : function(child, base) {
-
             var shouldCopy = false;
             var key = null;
 
-            for(key in base) {
-                if(base.hasOwnProperty(key)) {
+            for (key in base) {
+                if (base.hasOwnProperty(key)) {
                     shouldCopy = base.hasOwnProperty(key) && typeof base[key] === 'function';
 
-                    if(shouldCopy) {
+                    if (shouldCopy) {
                         child[key] = clone(me.JsonpState, base[key]);
                     }
                 }
             }
-
         },
 
         /**
@@ -84,25 +80,21 @@
          * @return the converted <code>Array</code>.
          */
         convertObjectToArray : function(obj, isDeep) {
-
-            //
             isDeep = !!isDeep;
 
             if(!obj) {
-
                 return [];
             }
 
             var result = [];
-
             var item = null;
             var key = null;
 
-            for(key in obj) {
-                if(obj.hasOwnProperty(key)) {
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
                     item = obj[key];
 
-                    if(isDeep && typeof item === 'object') {
+                    if (isDeep && typeof item === 'object') {
                         result.push(me.ObjectHelper.convertObjectToArray(item, isDeep));
                     } else {
                         result.push(item);
@@ -111,7 +103,6 @@
             }
 
             return result;
-
         },
 
         /**
@@ -129,7 +120,7 @@
          */
         toJson : function(obj) {
 
-            if(window.JSON) {
+            if (window.JSON) {
 
                 return JSON.stringify(obj);
             }
@@ -137,9 +128,6 @@
             var kMethodName = 'ObjectHelper.toJson';
 
             throw format(config.constant.errorMessage.NO_JSON_SUPPORT, kMethodName);
-
         }
-
     };
-
 }(this.o2, this));

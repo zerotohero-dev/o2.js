@@ -11,9 +11,7 @@
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -45,14 +43,12 @@
      * both attributes are optional.
      */
     me.AjaxController = function(xhr, args) {
-
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
         addObserver(this);
-
     };
 
     var apt = me.AjaxController.prototype;
@@ -68,9 +64,7 @@
      * to this <code>Observer</code>.
      */
     apt.update = function(observable, data) {
-
-        if(!data.isTimedOut) {
-
+        if (!data.isTimedOut) {
             return;
         }
 
@@ -82,7 +76,6 @@
 
         // Execute callback.
         this.ontimeout();
-
     };
 
     /**
@@ -94,14 +87,10 @@
      * @param {Observable} observable - the responsible <code>Observable</code>.
      */
     apt.unregister = function(observable) {
-
-        if(this.isDeleted) {
-
+        if (this.isDeleted) {
             return;
         }
 
         observable.deleteObserver(this);
-
     };
-
 }(this.o2, this));

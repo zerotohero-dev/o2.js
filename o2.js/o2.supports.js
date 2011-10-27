@@ -10,9 +10,7 @@
  *
  * <p>An object support checker.</p>
  */
-( function(framework, document) {
-
-    // Strict mode on.
+(function(framework, document) {
     'use strict';
 
     /*
@@ -39,31 +37,24 @@
          * <code>false</code> otherwise.
          */
         cookie : function() {
-
             var kTestCookie = [myName, 'tst'].join('');
-
             var cookie = me.Cookie;
+            var value = null;
 
             cookie.save(kTestCookie, kTestCookie, 1);
 
-            var value = null;
-
             try {
                 value = cookie.read(kTestCookie);
-
             } catch(ignore) {
-
             }
 
             if(!value) {
-
                 return false;
             }
 
             cookie.remove(kTestCookie);
 
             return true;
-
         },
 
         /**
@@ -75,9 +66,8 @@
          * <code>false</code> otherwise.
          */
         dom : function() {
-
-            return document.getElementById && document.createElement && document.getElementsByTagName;
-
+            return document.getElementById && document.createElement &&
+                document.getElementsByTagName;
         },
 
         /**
@@ -89,11 +79,7 @@
          * <code>false</code> otherwise.
          */
         ajax : function() {
-
             return !!me.Ajax.createXhr();
-
         }
-
     };
-
 }(this.o2, this.document));

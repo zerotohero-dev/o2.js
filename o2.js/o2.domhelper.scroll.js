@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.scroll
  * @requires domhelper.core
@@ -12,9 +10,7 @@
  *
  * <p>A window/div scroll helper.</p>
  */
-( function(framework, window, document) {
-
-    // Strict mode on.
+(function(framework, window, document) {
     'use strict';
 
     /*
@@ -29,15 +25,11 @@
      * <p>Scrolls window to bottom.</p>
      */
     me.scrollWindowToBottom = function() {
-
         if(document.documentElement) {
             me.scrollWindowToBottom = function() {
-
                 document.body.scrollTop = document.body.scrollHeight;
                 document.documentElement.scrollTop = document.documentElement.scrollHeight;
-
             };
-
 
             me.scrollWindowToBottom();
 
@@ -45,11 +37,8 @@
         }
 
         me.scrollWindowToBottom = function() {
-
             document.body.scrollTop = document.body.scrollHeight;
-
         };
-
 
         me.scrollWindowToBottom();
     };
@@ -60,28 +49,21 @@
      * <p>Scrolls window to top.</p>
      */
     me.scrollWindowToTop = function() {
-
         if(document.documentElement) {
             me.scrollWindowToTop = function() {
-
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
 
             };
 
-
             me.scrollWindowToTop();
 
             return;
-
         }
 
         me.scrollWindowToTop = function() {
-
             document.body.scrollTop = 0;
-
         };
-
 
         me.scrollWindowToTop();
     };
@@ -95,17 +77,13 @@
      * element, to scroll.
      */
     me.scrollObjectToTop = function(obj) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return;
         }
 
         obj.scrollTop = 0;
-
     };
 
     /**
@@ -117,17 +95,13 @@
      * scroll.
      */
     me.scrollObjectToBottom = function(obj) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return;
         }
 
         obj.scrollTop = obj.scrollHeight;
-
     };
 
     /**
@@ -139,11 +113,9 @@
      * scroll.
      */
     me.scrollWindowToObject = function(obj) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
+        if (!obj) {
 
             return;
         }
@@ -151,7 +123,6 @@
         var offset = me.getOffset(obj);
 
         window.scrollTo(offset.left, offset.top);
-
     };
 
     /**
@@ -163,13 +134,13 @@
      * <code>{left: l, top: t}</code>.
      */
     me.getWindowScrollOffset = function() {
-
         if(document.documentElement) {
             if(document.body && document.body.scrollLeft !== undefined) {
                 me.getWindowScrollOffset = function() {
-
-                    var left = Math.max(document.body.scrollLeft, document.documentElement.scrollLeft);
-                    var top = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+                    var left = Math.max(document.body.scrollLeft,
+                        document.documentElement.scrollLeft);
+                    var top = Math.max(document.body.scrollTop,
+                        document.documentElement.scrollTop);
 
                     return {
                         left : left,
@@ -182,7 +153,6 @@
             }
 
             me.getWindowScrollOffset = function() {
-
                 var left = document.documentElement.scrollLeft;
                 var top = document.documentElement.scrollTop;
 
@@ -198,7 +168,6 @@
 
         // IE quirksmode
         me.getWindowScrollOffset = function() {
-
             var left = document.body.scrollLeft;
             var top = document.body.scrollTop;
 
@@ -206,7 +175,6 @@
                 left : left,
                 top : top
             };
-
         };
 
         return me.getWindowScrollOffset();
@@ -215,15 +183,11 @@
 
 
     me.getObjectScrollOfset = function(obj) {
-
-        //
         obj = $(obj);
 
         return {
             left : obj.scrollLeft,
             top : obj.scrollTop
         };
-
     };
-
 }(this.o2, this, this.document));

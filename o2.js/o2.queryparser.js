@@ -9,9 +9,7 @@
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-( function(framework, window) {
-
-    // Strict mode on.
+(function(framework, window) {
     'use strict';
 
     /*
@@ -39,34 +37,27 @@
          * name2:value2} <code>Object</code>.
          */
         parse : function(url) {
-
             var args = {};
             var href = url || window.location.href;
             var index = href.indexOf('?');
 
-            if(index === -1) {
-
+            if (index === -1) {
                 return args;
             }
 
             var query = href.substring(index + 1);
             var nameValuePairs = query.split('&');
-
             var nameValuePair = null;
-
             var kNameIndex = 0;
             var kValueIndex = 1;
             var i = 0;
 
-            for( i = 0; i < nameValuePairs.length; i++) {
+            for (i = 0; i < nameValuePairs.length; i++) {
                 nameValuePair = nameValuePairs[i].split('=');
                 args[nameValuePair[kNameIndex]] = decodeURIComponent(nameValuePair[kValueIndex]);
             }
 
             return args;
-
         }
-
     };
-
 }(this.o2, this));

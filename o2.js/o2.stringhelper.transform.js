@@ -12,8 +12,6 @@
  * operations.</p>
  */
 ( function(framework) {
-
-    // Strict mode on.
     'use strict';
 
     /*
@@ -77,11 +75,9 @@
      * @return the formatted <code>String</code>.
      */
     me.br2nl = function(str) {
-
         var constants = config.constants;
 
         return str.replace(constants.regExp.BR_2_NL, constants.text.NEW_LINE);
-
     };
 
     /**
@@ -94,11 +90,9 @@
      * @return the formatted <code>String</code>.
      */
     me.nl2br = function(str) {
-
         var constants = config.constants;
 
         return str.replace(constants.regExp.NL_2_BR, constants.text.BR);
-
     };
 
     /**
@@ -112,9 +106,7 @@
      * @return the cleaned output.
      */
     me.removeTags = function(str) {
-
         return str.replace(config.constants.regExp.REMOVE_TAGS, '');
-
     };
 
     /**
@@ -131,18 +123,15 @@
      * @return the processed <code>String</code>.
      */
     me.truncate = function(str, maxLen) {
-
         var ellipsis = config.constants.text.ELLIPSIS;
         var eLen = ellipsis.length;
         var maxLength = maxLen || config.constants.TRUNCATION_LENGTH;
 
         if(str.length > maxLength) {
-
             return [str.substr(0, maxLength - eLen), ellipsis].join('');
         }
 
         return str;
-
     };
 
     /**
@@ -158,13 +147,10 @@
      * @return the formatted String.
      */
     me.toCamelCase = function(input) {
-
         var constants = config.constants;
 
         return input.replace(constants.regExp.CAMEL_CASE, function(match) {
-
             return match.toUpperCase().replace(constants.text.DASH, '');
-
         });
 
     };
@@ -180,15 +166,11 @@
      * @return the formatted <code>String</code>.
      */
     me.toDashedFromCamelCase = function(input) {
-
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
-
             return [constants.text.DASH, match.toLowerCase()].join('');
-
         });
-
     };
 
     /**
@@ -202,15 +184,10 @@
      * @return the formatted <code>String</code>.
      */
     me.toUnderscoreFromCamelCase = function(input) {
-
         var constants = config.constants;
 
         return input.replace(constants.regExp.ALL_CAPS, function(match) {
-
             return [constants.text.UNDERSCORE, match.toLowerCase()].join('');
-
         });
-
     };
-
 }(this.o2));

@@ -10,9 +10,7 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-( function(framework, window, ActiveXObject, XMLHttpRequest) {
-
-    // Strict mode on.
+(function(framework, window, ActiveXObject, XMLHttpRequest) {
     'use strict';
 
     /*
@@ -70,7 +68,6 @@
              *
              */
             GUID_MULTIPLIER : 10000
-
         },
 
         /*
@@ -94,7 +91,6 @@
 
         },
 
-        // @formatter:off
         progId : [
             'Msxml2.XMLHTTP',
             'Microsoft.XMLHTTP',
@@ -103,28 +99,44 @@
             'Msxml2.XMLHTTP.5.0',
             'Msxml2.XMLHTTP.3.0'
        ]
-       // @formatter:on
-
     };
+
+    /*
+     * Common string constants.
+     */
+    var constants = config.constants;
+    var kNoXhr = constants.error.NO_XHR;
+    var kOk = constants.status.OK;
+    var kCached = constants.status.CACHED;
+    var kComplete = constants.readystate.COMPLETE;
+    var kEquals = '=';
+    var kAnd = '&';
+    var kPlus = '+';
+    var kRandom = config.constants.prefix.RANDOM;
+    var kGet = config.constants.verb.GET;
+
+    /*
+     * Common collections.
+     */
+    var progIds = config.progId;
+
+    /*
+     * Common regular expressions.
+     */
+    var kUrlSpaceRegExp = /%20/g;
 
     /*
      * <p>Creates a brand new <code>XmlHttpRequest</code> object.</p>
      */
     var createXhr = function() {
-
         var request = null;
+        var progId = null;
 
-        var constants = config.constants;
-
-        var kNoXhr = constants.error.NO_XHR;
-
-        if(window.XMLHttpRequest) {
+        if (window.XMLHttpRequest) {
             createXhr = function() {
-
                 var request = new XMLHttpRequest();
 
-                if(!request) {
-
+                if (!request) {
                     throw kNoXhr;
                 }
 
@@ -132,51 +144,36 @@
                 request.isComplete = false;
 
                 return request;
-
             };
 
             return createXhr();
-
         }
 
-        var progId = null;
-        var progIds = config.progId;
-
-        while(progIds.length > 0) {
+        while (progIds.length > 0) {
             progId = progIds.shift();
 
             try {
-
-                //
                 request = new ActiveXObject(progId);
 
                 break;
-
             } catch(ignore) {
-
             }
-
         }
 
-        if(!request) {
-
+        if (!request) {
             throw kNoXhr;
         }
 
-        //
         createXhr = function() {
-
             var request = new ActiveXObject(progId);
 
             // Request is not completed yet.
             request.isComplete = false;
 
             return request;
-
         };
 
         return createXhr();
-
     };
 
     /*
@@ -185,9 +182,7 @@
      * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
      */
     function finalizeXhr(xhr) {
-
-        if(!xhr) {
-
+        if (!xhr) {
             return;
         }
 
@@ -195,7 +190,6 @@
         xhr.onreadystatechange = nill;
 
         xhr.isFinalized = true;
-
     }
 
     /*
@@ -205,28 +199,19 @@
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-
         var nillCached = nill;
-        var constants = config.constants;
-
-        var kOk = constants.status.OK;
-        var kCached = constants.status.CACHED;
-
-        //
-        callbacks = callbacks || {};
-
         var oncomplete = callbacks.oncomplete || nillCached;
         var onerror = callbacks.onerror || nillCached;
         var onexception = callbacks.onexception || nillCached;
-
         var status = xhr.status;
         var isSuccess = status === kOk || status === kCached;
+
+        callbacks = callbacks || {};
 
         // Since the response has come, mark the request as "completed".
         xhr.isComplete = true;
 
         try {
-
             if(isSuccess) {
                 oncomplete(xhr.responseText, xhr.responseXML, xhr);
 
@@ -234,17 +219,11 @@
             }
 
             onerror(xhr.status, xhr.statusText, xhr);
-
         } catch(ex) {
-
             onexception(ex, xhr);
-
         } finally {
-
             finalizeXhr(xhr);
-
         }
-
     }
 
     /*
@@ -258,31 +237,21 @@
      * optional.
      */
     function registerCallbacks(xhr, callbacks) {
-
-        if(!xhr) {
-
+        if (!xhr) {
             return;
         }
 
-        if(xhr.isInitialized) {
-
+        if (xhr.isInitialized) {
             return;
         }
 
         xhr.onreadystatechange = function() {
-
-            var constants = config.constants;
-            var kComplete = constants.readystate.COMPLETE;
-
-            if(xhr.readyState === kComplete) {
+            if (xhr.readyState === kComplete) {
                 processCallbacks(xhr, callbacks);
             }
-
         };
 
-
         xhr.isInitialized = true;
-
     }
 
     /*
@@ -292,22 +261,20 @@
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
-
         var header = null;
         var i = 0;
         var len = 0;
         var key = 0;
 
-        for( i = 0, len = headers.length; i < len; i++) {
+        for (i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
 
-            for(key in header) {
-                if(header.hasOwnProperty(key)) {
+            for (key in header) {
+                if (header.hasOwnProperty(key)) {
                     xhr.setRequestHeader(key, header[key]);
                 }
             }
         }
-
     }
 
     /*
@@ -316,9 +283,7 @@
      * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
      */
     function addCommonRequestHeaders(xhr) {
-
         addHeaders(xhr, config.header.common);
-
     }
 
     /*
@@ -328,9 +293,7 @@
      * object.
      */
     function addPostRequestHeaders(xhr) {
-
         addHeaders(xhr, config.header.post);
-
     }
 
     /*
@@ -338,18 +301,17 @@
      * the form "&name1=value1&name2=value2"</p>
      */
     function generateParametrizeQueryString(params) {
-
         var buffer = [];
         var key = null;
 
-        for(key in params) {
-            if(params.hasOwnProperty(key)) {
-                buffer.push([encodeURIComponent(key), '=', encodeURIComponent(params[key])].join(''));
+        for (key in params) {
+            if (params.hasOwnProperty(key)) {
+                buffer.push([encodeURIComponent(key), kEquals,
+                    encodeURIComponent(params[key])].join(''));
             }
         }
 
-        return buffer.join('&').replace(/%20/g, '+');
-
+        return buffer.join(kAnd).replace(kUrlSpaceRegExp, kPlus);
     }
 
     /*
@@ -359,69 +321,36 @@
      * @return the original <code>XmlHttpRequest</code>
      */
     function send(url, verb, parameters, callbacks, isSync) {
-
-        if(!url) {
-
+        if (!url) {
             return null;
         }
 
-        //
-        parameters = parameters || {};
-        callbacks = callbacks || {};
-        isSync = !!isSync;
-
-        var isAsync = !isSync;
-
-        var kRandom = config.constants.prefix.RANDOM;
-        var kGet = config.constants.verb.GET;
+        var ajaxParameters = parameters || {};
+        var ajaxCallbacks = callbacks || {};
+        var isAsync = !!!isSync;
         var isPost = verb !== kGet;
-
-        // name1=value1&name2=value2&name3=value3
-        var parametrizedQuery = generateParametrizeQueryString(parameters);
-
-        // &name1=value1&name2=value2&name3=value3 (for GET requests)
-        var query = isPost ? '' : ['&', parametrizedQuery].join('');
-
-        // name1=value1&name2=value2&name3=value3 (for POST requests)
+        var xhr = createXhr();
+        var parametrizedQuery = generateParametrizeQueryString(ajaxParameters);
+        var getQuery = isPost ? '' : concat(kAnd, parametrizedQuery);
         var postQuery = isPost ? parametrizedQuery : '';
 
-        // A unique string to prevent caching.
-        var guid = generateGuid();
+        xhr.open(verb, concat(url, kRandom, generateGuid(), getQuery), isAsync);
 
-        // http://example.com + ?rnd= + {guid} + &name1=value1
-        url = concat(url, kRandom, guid, query);
-
-        // Create a cross-browse XmlHttpRequest.
-        var xhr = createXhr();
-
-        // Open the connection.
-        xhr.open(verb, url, isAsync);
-
-        // Add headers.
         addCommonRequestHeaders(xhr);
 
-        if(isPost) {
-
-            // Add more headers.
+        if (isPost) {
             addPostRequestHeaders(xhr);
         }
 
-        // Register callbacks.
-        registerCallbacks(xhr, callbacks);
+        registerCallbacks(xhr, ajaxCallbacks);
 
-        // Send the request.
         try {
-
             xhr.send(postQuery);
-
         } catch(exception) {
-
-            callbacks.onexception(xhr, exception);
-
+            ajaxCallbacks.onerror(xhr.status, xhr.statusText, xhr);
         }
 
         return xhr;
-
     }
 
     /**
@@ -451,9 +380,8 @@
          * @return the original <code>XmlHttpRequest</code> object.
          */
         post : function(url, parameters, callbacks, isSync) {
-
-            return send(url, config.constants.verb.POST, parameters, callbacks, isSync);
-
+            return send(url, config.constants.verb.POST, parameters, callbacks,
+                isSync);
         },
 
         /**
@@ -476,9 +404,8 @@
          * @return the original <code>XmlHttpRequest</code> object.
          */
         get : function(url, parameters, callbacks, isSync) {
-
-            return send(url, config.constants.verb.GET, parameters, callbacks, isSync);
-
+            return send(url, config.constants.verb.GET, parameters, callbacks,
+                isSync);
         },
 
         /**
@@ -493,11 +420,7 @@
          * @return the created <code>XmlHttpRequest</code> object.
          */
         createXhr : function() {
-
             return createXhr();
-
         }
-
     };
-
 }(this.o2, this, this.ActiveXObject, this.XMLHttpRequest));

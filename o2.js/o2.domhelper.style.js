@@ -13,19 +13,33 @@
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-( function(framework, window, document) {
-
-    // Strict mode on.
-    'use strict';
+(function(framework, window, document) {
+   'use strict';
 
     /*
      * Aliases.
      */
     var me = framework.DomHelper;
     var $ = framework.$;
+    var t = framework.t;
     var myName = framework.name;
     var toCamelCase = framework.StringHelper.toCamelCase;
     var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
+
+    /*
+     * Common strings.
+     */
+    var kObject = 'object';
+    var kOldDisplay = '_oldDisplay';
+    var kNone = 'none';
+    var kHidden = 'hidden';
+    var kEmpty = '';
+    var kDisplay = 'display';
+    var kVisibility = 'visibility';
+    var kTitle = 'title';
+    var kLink = 'link';
+    var kRel = 'rel';
+    var kStyle = 'style';
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -45,24 +59,20 @@
      * style2:value2}</code>.
      */
     me.addStyle = function(obj, style) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return;
         }
 
         var toCamelCaseCached = toCamelCase;
         var key = null;
 
-        for(key in style) {
-            if(style.hasOwnProperty(key)) {
+        for (key in style) {
+            if (style.hasOwnProperty(key)) {
                 obj.style[toCamelCaseCached(key)] = style[key];
             }
         }
-
     };
 
     /**
@@ -88,94 +98,74 @@
      * @return the calculated <strong>style</strong> value.
      */
     me.getStyle = function(obj, cssProperty) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
-        if(document.defaultView) {
+        if (document.defaultView) {
             me.getStyle = function(obj, cssProperty) {
-
-                //
                 obj = $(obj);
 
-                if(!obj) {
-
+                if (!obj) {
                     return null;
                 }
 
                 var defaultView = document.defaultView;
 
-                //
                 cssProperty = toCamelCase(cssProperty);
 
                 //return the property if set inline.
                 var val = obj.style[cssProperty];
 
-                if(val) {
-
+                if (val) {
                     return val;
                 }
 
-                if(obj.currentStyle) {
-
+                if (obj.currentStyle) {
                     return obj.currentStyle[cssProperty];
                 }
 
-                if(defaultView.getComputedStyle) {
-
-                    return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
+                if (defaultView.getComputedStyle) {
+                    return defaultView.getComputedStyle(obj, kEmpty
+                        ).getPropertyValue(toDashedFromCamelCase(cssProperty));
                 }
 
                 return null;
-
             };
 
             return me.getStyle(obj, cssProperty);
         }
 
         me.getStyle = function(obj, cssProperty) {
-
-            //
             obj = $(obj);
 
-            if(!obj) {
-
+            if (!obj) {
                 return;
             }
 
             var defaultView = window;
-
-            //
-            cssProperty = toCamelCase(cssProperty);
-
+            var camelizedCss = toCamelCase(cssProperty);
             var val = obj.style[cssProperty];
 
-            if(val) {
-
+            if (val) {
                 return val;
             }
 
-            if(obj.currentStyle) {
-
-                return obj.currentStyle[cssProperty];
+            if (obj.currentStyle) {
+                return obj.currentStyle[camelizedCss];
             }
 
-            if(defaultView.getComputedStyle) {
-
-                return defaultView.getComputedStyle(obj, '').getPropertyValue(toDashedFromCamelCase(cssProperty));
+            if (defaultView.getComputedStyle) {
+                return defaultView.getComputedStyle(obj, kEmpty
+                    ).getPropertyValue(toDashedFromCamelCase(camelizedCss));
             }
 
             return null;
-
         };
 
         return me.getStyle(obj, cssProperty);
-
     };
 
     /**
@@ -196,12 +186,9 @@
      * otherwise.
      */
     me.isVisible = function(obj) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return false;
         }
 
@@ -218,26 +205,21 @@
         // from the computed style, then the method fails and returns
         // false.
 
-        var display = me.getStyle(obj, 'display');
-        var visibility = me.getStyle(obj, 'visibility');
+        var display = me.getStyle(obj, kDisplay);
+        var visibility = me.getStyle(obj, kVisibility);
 
-        if(visibility === 'hidden') {
-
+        if (visibility === kHidden) {
             return false;
         }
 
-        if(display === 'none') {
-
+        if (display === kNone) {
             return false;
         }
 
-        // @formatter:off
-        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0     )) || 
-               ((display    ===  null   ) && (visibility !== 'hidden')) || 
-               ((visibility ===  null   ) && (display    !== 'none'  )) || 
-               ((display    !== 'none'  ) && (visibility !== 'hidden'));
-        // @formtatter:on
-
+        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) ||
+               ((display    ===  null  ) && (visibility !== kHidden)) ||
+               ((visibility ===  null  ) && (display    !== kNone  )) ||
+               ((display    !== kNone  ) && (visibility !== kHidden));
     };
 
     /**
@@ -250,22 +232,19 @@
      * stylesheet</strong> to activate.
      */
     me.activateAlternateStylesheet = function(title) {
-
         var link = null;
-        var t = framework.t;
-        var links = t('link');
+        var links = t(kLink);
         var shouldDisable = false;
-        var linkTitle = '';
+        var linkTitle = kEmpty;
         var i = 0;
         var len = 0;
 
-        for(i = 0, len = links.length; i < len; i++) {
+        for (i = 0, len = links.length; i < len; i++) {
             link = links[i];
-            linkTitle = link.getAttribute('title');
-            shouldDisable = link.getAttribute('rel').indexOf('style') !== -1 && title;
+            linkTitle = link.getAttribute(kTitle);
+            shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 && title;
             link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
-
     };
 
     /**
@@ -273,21 +252,19 @@
      *
      * <p>Hides the given object.</p>
      *
-     * @param {Object} obj - the <strong>DOM</strong> node, or the <strong>id</strong> to hide.
+     * @param {Object} obj - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> to hide.
      */
     me.hide = function(obj) {
-
-        if(!obj || typeof obj !== 'object') {
-
+        if (!obj || typeof obj !== kObject) {
             return;
         }
 
-        if(obj.style.display !== 'none') {
-            obj[[myName, '_oldDisplay'].join('')] = obj.style.display;
+        if (obj.style.display !== kNone) {
+            obj[[myName, kOldDisplay].join(kEmpty)] = obj.style.display;
         }
 
-        obj.style.display = 'none';
-
+        obj.style.display = kNone;
     };
 
     /**
@@ -295,20 +272,17 @@
      *
      * <p>Shows the given object.</p>
      *
-     * @param {Object} obj - the <strong>DOM</strong> node, or the <strong>id</strong> of it, to show.
+     * @param {Object} obj - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of it, to show.
      */
     me.show = function(obj) {
-
-        if(!obj || typeof obj !== 'object') {
-
+        if (!obj || typeof obj !== kObject) {
             return;
         }
 
-        obj.style.display = obj[[myName, '_oldDisplay'].join('')] || '';
+        obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
 
-        //
-        delete obj[[myName, '_oldDisplay'].join('')];
-
+        delete obj[[myName, kOldDisplay].join(kEmpty)];
     };
 
 }(this.o2, this, this.document));

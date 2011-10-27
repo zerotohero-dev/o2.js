@@ -13,8 +13,6 @@
  * <strong>model</strong>.
  */
 ( function(framework) {
-
-    // Strict mode on.
     'use strict';
 
     /*
@@ -61,25 +59,23 @@
              *
              */
             observers : []
-
         }
-
     };
 
-    for(key in base) {
-        if(base.hasOwnProperty(key)) {
-            if( typeof base[key] === 'function') {
+    for (key in base) {
+        if (base.hasOwnProperty(key)) {
+            if (typeof base[key] === 'function') {
                 me.JsonpState[key] = clone(me.JsonpState, base[key]);
             }
         }
     }
 
-    for(key in baseProtected) {
-        if(baseProtected.hasOwnProperty(key)) {
-            if( typeof baseProtected[key] === 'function') {
-                me.JsonpState.protecteds[key] = clone(me.JsonpState.protecteds, baseProtected[key]);
+    for (key in baseProtected) {
+        if (baseProtected.hasOwnProperty(key)) {
+            if (typeof baseProtected[key] === 'function') {
+                me.JsonpState.protecteds[key] = clone(me.JsonpState.protecteds,
+                    baseProtected[key]);
             }
         }
     }
-
 }(this.o2));

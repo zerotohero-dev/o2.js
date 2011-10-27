@@ -13,8 +13,6 @@
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
 ( function(framework) {
-
-    // Strict mode on.
     'use strict';
 
     /*
@@ -31,21 +29,20 @@
      *
      */
     function filterChildren(children, regClassName) {
-
         var child = null;
         var result = [];
         var i = 0;
         var len = 0;
 
-        for( i = 0, len = children.length; i < len; i++) {
+        for (i = 0, len = children.length; i < len; i++) {
             child = children[i];
-            if(regClassName.test(child.className)) {
+
+            if (regClassName.test(child.className)) {
                 result.push(children[i]);
             }
         }
 
         return result;
-
     }
 
     /**
@@ -64,23 +61,19 @@
      * otherwise.
      */
     me.getParent = function(target, nodeName, shouldExcludeSelf) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
-        if(isExcluded) {
+        if (isExcluded) {
             target = target.parentNode;
         }
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
@@ -91,15 +84,15 @@
         var i = 0;
         var len = 0;
 
-        while(target) {
+        while (target) {
             nodes = nodeName.split(',');
             targetNodeName = target.nodeName.toLowerCase();
 
-            for( i = 0, len = nodes.length; i < len; i++) {
+            for (i = 0, len = nodes.length; i < len; i++) {
                 currentNodeName = nodes[i].toLowerCase();
 
-                if(currentNodeName) {
-                    if(targetNodeName === currentNodeName) {
+                if (currentNodeName) {
+                    if (targetNodeName === currentNodeName) {
                         hasParent = true;
 
                         break;
@@ -107,15 +100,14 @@
                 }
             }
 
-            if(hasParent) {
-
+            if (hasParent) {
                 return target;
             }
+
             target = target.parentNode;
         }
 
         return null;
-
     };
 
     /**
@@ -135,43 +127,35 @@
      * otherwise.
      */
     me.getParentByAttribute = function(obj, attribute, value, shouldExcludeSelf) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
-        if(isExcluded) {
+        if (isExcluded) {
             obj = obj.parentNode;
         }
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
-        if(getAttribute(obj, attribute) === value) {
-
+        if (getAttribute(obj, attribute) === value) {
             return obj;
         }
 
-        while(obj) {
+        while (obj) {
             if(getAttribute(obj, attribute) === value) {
-
                 return obj;
             }
 
-            //
             obj = obj.parentNode;
         }
 
         return null;
-
     };
 
     /**
@@ -189,12 +173,9 @@
      * otherwise.
      */
     me.getParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
@@ -205,22 +186,18 @@
         }
 
         if(!obj) {
-
             return null;
         }
 
-        while(obj) {
+        while (obj) {
             if(getAttribute(obj, attribute) !== null) {
-
                 return obj;
             }
 
-            //
             obj = obj.parentNode;
         }
 
         return null;
-
     };
 
     /**
@@ -233,19 +210,15 @@
      * @see DomHelper.getParentByAttribute
      */
     me.getParentById = function(obj, id, shouldExcludeSelf) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
         return me.getParentByAttribute(obj, 'id', id, isExcluded);
-
     };
 
     /**
@@ -258,19 +231,15 @@
      * @see o2.DomHelper.getParentWithAttribute
      */
     me.getParentWithId = function(obj, shouldExcludeSelf) {
-
-        //
         obj = $(obj);
 
-        if(!obj) {
-
+        if (!obj) {
             return null;
         }
 
         var isExcluded = !!shouldExcludeSelf;
 
         return me.getParentWithAttribute(obj, 'id', isExcluded);
-
     };
 
     /**
@@ -287,35 +256,31 @@
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
     me.getFirstChild = function(target, nodeName) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
-
         }
 
         if(target.querySelector) {
             me.getFirstChild = function(target, nodeName) {
                 target = $(target);
 
-                if(!target) {
-
+                if (!target) {
                     return null;
                 }
 
-                if(!target.id) {
+                if (!target.id) {
                     target.id = [myName, generateGuid()].join('');
                 }
 
                 var kAll = '*';
+
                 nodeName = nodeName || kAll;
                 nodeName = nodeName.toLowerCase();
 
-                return target.querySelector(['#', target.id, ' > ', nodeName].join(''));
-
+                return target.querySelector(['#', target.id, ' > ',
+                    nodeName].join(''));
             };
 
             return me.getFirstChild(target, nodeName);
@@ -324,7 +289,7 @@
         me.getFirstChild = function(target, nodeName) {
             target = $(target);
 
-            if(!target) {
+            if (!target) {
 
                 return null;
             }
@@ -332,40 +297,35 @@
             var kTextNode = me.nodeType.TEXT;
             var kAll = '*';
 
-            //
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
 
             var children = target.childNodes;
 
-            if(!children || children.length === 0) {
-
+            if (!children || children.length === 0) {
                 return null;
             }
 
             var node = children[0];
 
-            while(node) {
-                if(node.nodeType !== kTextNode) {
-                    if(nodeName === kAll) {
-
+            while (node) {
+                if (node.nodeType !== kTextNode) {
+                    if (nodeName === kAll) {
                         return node;
                     }
 
-                    if(node.nodeName.toLowerCase() === nodeName) {
-
+                    if (node.nodeName.toLowerCase() === nodeName) {
                         return node;
                     }
                 }
+
                 node = node.nextSibling;
             }
 
             return null;
-
         };
 
         return me.getFirstChild(target, nodeName);
-
     };
 
     /**
@@ -379,72 +339,58 @@
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
     me.getFirstChildById = function(target, id) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
-        if(target.querySelector) {
+        if (target.querySelector) {
             me.getFirstChildById = function(target, id) {
-
-                //
                 target = $(target);
 
-                if(!target) {
-
+                if (!target) {
                     return null;
                 }
 
-                if(!target.id) {
+                if (!target.id) {
                     target.id = [myName, generateGuid()].join('');
                 }
 
                 return target.querySelector(['#', target.id, ' > #', id].join(''));
-
             };
 
             return me.getFirstChildById(target, id);
         }
 
         me.getFirstChildById = function(target, id) {
-
-            //
             target = $(target);
 
-            if(!target) {
+            if (!target) {
 
                 return null;
             }
 
             var children = target.childNodes;
 
-            if(!children || children.length === 0) {
-
+            if (!children || children.length === 0) {
                 return null;
             }
 
             var node = children[0];
 
-            while(node) {
-                if(node.id && node.id === id) {
-
+            while (node) {
+                if (node.id && node.id === id) {
                     return node;
                 }
 
-                //
                 node = node.nextSibling;
             }
 
             return null;
-
         };
 
         return me.getFirstChildById(target, id);
-
     };
 
     /**
@@ -459,12 +405,9 @@
      * otherwise.
      */
     me.getFirstChildWithId = function(target) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
@@ -474,16 +417,14 @@
                 target = $(target);
 
                 if(!target) {
-
                     return null;
                 }
 
-                if(!target.id) {
+                if (!target.id) {
                     target.id = [myName, generateGuid()].join('');
                 }
 
                 return target.querySelector(['#', target.id, ' > [id]'].join(''));
-
             };
 
             return me.getFirstChildWithId(target);
@@ -492,27 +433,23 @@
         me.getFirstChildWithId = function(target) {
             target = $(target);
 
-            if(!target) {
-
+            if (!target) {
                 return null;
             }
 
             var children = target.childNodes;
 
-            if(!children || children.length === 0) {
-
+            if (!children || children.length === 0) {
                 return null;
             }
 
             var node = children[0];
 
-            while(node) {
-                if(node.id) {
-
+            while (node) {
+                if (node.id) {
                     return node;
                 }
 
-                //
                 node = node.nextSibling;
             }
 
@@ -536,12 +473,9 @@
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
     me.getLastChild = function(target, nodeName) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
@@ -557,37 +491,32 @@
 
         var kTextNode = me.nodeType.TEXT;
         var kAll = '*';
-
         var children = target.childNodes;
 
-        //
         nodeName = nodeName || kAll;
         nodeName = nodeName.toLowerCase();
 
-        if(!children || children.length === 0) {
-
+        if (!children || children.length === 0) {
             return null;
         }
 
         var node = children[children.length - 1];
 
-        while(node) {
-            if(node.nodeType !== kTextNode) {
-                if(nodeName === kAll) {
-
+        while (node) {
+            if (node.nodeType !== kTextNode) {
+                if (nodeName === kAll) {
                     return node;
                 }
 
-                if(node.nodeName.toLowerCase() === nodeName) {
-
+                if (node.nodeName.toLowerCase() === nodeName) {
                     return node;
                 }
             }
+
             node = node.previousSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -602,36 +531,29 @@
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
     me.getLastChildById = function(target, id) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var children = target.childNodes;
 
-        if(!children || children.length === 0) {
-
+        if (!children || children.length === 0) {
             return null;
         }
 
         var node = children[children.length - 1];
 
-        while(node) {
-            if(node.id && node.id === id) {
-
+        while (node) {
+            if (node.id && node.id === id) {
                 return node;
             }
 
-            //
             node = node.previousSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -646,36 +568,29 @@
      * otherwise.
      */
     me.getLastChildWithId = function(target) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var children = target.childNodes;
 
-        if(!children || children.length === 0) {
-
+        if (!children || children.length === 0) {
             return null;
         }
 
         var node = children[children.length - 1];
 
-        while(node) {
-            if(node.id) {
-
+        while (node) {
+            if (node.id) {
                 return node;
             }
 
-            //
             node = node.previousSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -690,11 +605,9 @@
      * <code>Array</code> if nothing is found.
      */
     me.getChildren = function(elem) {
-
         var target = $(elem);
 
-        if(!target) {
-
+        if (!target) {
             return [];
         }
 
@@ -705,16 +618,15 @@
         var i = 0;
         var len = 0;
 
-        for( i = 0, len = nodes.length; i < len; i++) {
+        for (i = 0, len = nodes.length; i < len; i++) {
             node = nodes[i];
 
-            if(nodes.nodeType !== kTextNode) {
+            if (nodes.nodeType !== kTextNode) {
                 result.push(node);
             }
         }
 
         return result;
-
     };
 
     /**
@@ -730,12 +642,9 @@
      * @return the immediate descendants with the given class name.
      */
     me.getChildrenByClassName = function(el, c) {
-
-        //
         el = $(el);
 
-        if(!el) {
-
+        if (!el) {
             return null;
         }
 
@@ -744,44 +653,35 @@
 
         if(el.querySelectorAll) {
             me.getChildrenByClassName = function(el, c) {
-
-                //
                 el = $(el);
 
-                if(!el) {
-
+                if (!el) {
                     return null;
                 }
 
-                if(!el.id) {
+                if (!el.id) {
                     el.id = [myName, generateGuid()].join('');
                 }
 
                 return el.querySelectorAll(['#', el.id, ' > .', c].join(''));
-
             };
 
             return me.getChildrenByClassName(el, c);
         }
 
         me.getChildrenByClassName = function(el, c) {
-
-            //
             el = $(el);
 
-            if(!el) {
-
+            if (!el) {
                 return null;
             }
 
             var children = el.childNodes;
 
             return filterChildren(children, createClassNameRegExp(c));
-
         };
 
         return me.getChildrenByClassName(el, c);
-
     };
 
     /**
@@ -797,36 +697,29 @@
      * otherwise.
      */
     me.getPrevious = function(target) {
-
-        //
         target = $(target);
 
-        if(!target || typeof target !== 'object') {
-
+        if (!target || typeof target !== 'object') {
             return null;
         }
 
         var node = target.previousSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
         var kTextNode = me.nodeType.TEXT;
 
-        while(node) {
-            if(node.nodeType !== kTextNode) {
-
+        while (node) {
+            if (node.nodeType !== kTextNode) {
                 return node;
             }
 
-            //
             node = node.previousSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -842,29 +735,24 @@
      * otherwise.
      */
     me.getPreviousById = function(target, id) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var node = target.previousSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
         while(node) {
-            if(node.id && node.id === id) {
+            if (node.id && node.id === id) {
 
                 return node;
             }
 
-            //
             node = node.previousSibling;
         }
 
@@ -884,34 +772,27 @@
      * otherwise.
      */
     me.getPreviousWithId = function(target) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var node = target.previousSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
-        while(node) {
-            if(node.id) {
-
+        while (node) {
+            if (node.id) {
                 return node;
             }
 
-            //
             node = node.previousSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -926,36 +807,29 @@
      * otherwise.
      */
     me.getNext = function(target) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var node = target.nextSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
         var kTextNode = me.nodeType.TEXT;
 
-        while(node) {
-            if(node.nodeType !== kTextNode) {
-
+        while (node) {
+            if (node.nodeType !== kTextNode) {
                 return node;
             }
 
-            //
             node = node.nextSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -971,34 +845,27 @@
      * otherwise.
      */
     me.getNextById = function(target, id) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var node = target.nextSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
-        while(node) {
-            if(node.id && node.id === id) {
-
+        while (node) {
+            if (node.id && node.id === id) {
                 return node;
             }
 
-            // get the next node.
             node = node.nextSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -1014,34 +881,27 @@
      * otherwise.
      */
     me.getNextWithId = function(target) {
-
-        //
         target = $(target);
 
-        if(!target) {
-
+        if (!target) {
             return null;
         }
 
         var node = target.nextSibling;
 
-        if(!node) {
-
+        if (!node) {
             return null;
         }
 
-        while(node) {
-            if(node.id) {
-
+        while (node) {
+            if (node.id) {
                 return node;
             }
 
-            //
             node = node.nextSibling;
         }
 
         return null;
-
     };
 
     /**
@@ -1057,39 +917,30 @@
      * name</strong>.
      */
     me.getElementsByClassName = function(el, c) {
-
-        //
         el = $(el);
 
-        if(!el) {
-
+        if (!el) {
             return null;
         }
 
-        if(el.querySelectorAll) {
+        if (el.querySelectorAll) {
             me.getElementsByClassName = function(el, c) {
-
-                //
                 el = $(el);
 
-                if(!el) {
-
+                if (!el) {
                     return null;
                 }
 
                 return el.querySelectorAll(['.', c].join(''));
-
             };
 
             return me.getElementsByClassName(el, c);
         }
 
         me.getElementsByClassName = function(el, c) {
-
-            //
             el = $(el);
 
-            if(!el) {
+            if (!el) {
 
                 return null;
             }
@@ -1097,11 +948,8 @@
             var children = el.getElementsByTagName('*');
 
             return filterChildren(children, createClassNameRegExp(c));
-
         };
 
         return me.getElementsByClassName(el, c);
-
     };
-
 }(this.o2, this));

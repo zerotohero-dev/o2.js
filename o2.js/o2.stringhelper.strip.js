@@ -11,9 +11,7 @@
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-( function(framework) {
-
-    // Strict mode on.
+(function(framework) {
     'use strict';
 
     /*
@@ -41,9 +39,7 @@
                 NUMERIC : /[0-9]/g,
                 TAG : /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig
             }
-
         }
-
     };
 
     /**
@@ -57,9 +53,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlpha = function(str) {
-
         return str.replace(config.constants.regExp.NON_ALPHA, '');
-
     };
 
     /**
@@ -72,9 +66,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlphanumeric = function(str) {
-
         return str.replace(config.constants.regExp.NON_ALPHANUMERIC, '');
-
     };
 
     /**
@@ -87,9 +79,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonNumeric = function(str) {
-
         return str.replace(config.constants.regExp.NON_NUMERIC, '');
-
     };
 
     /**
@@ -102,9 +92,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNumeric = function(str) {
-
         return str.replace(config.constants.regExp.NUMERIC, '');
-
     };
 
     /**
@@ -117,9 +105,6 @@
      * @return the formatted <code>String</code>.
      */
     me.stripTags = function(str) {
-
         return str.replace(config.constants.regExp.TAG, '');
-
     };
-
 }(this.o2));
