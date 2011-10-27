@@ -58,7 +58,6 @@
      *
      */
     function isArray(obj) {
-
         return is(obj, config.constants.ecmaScriptType.ARRAY);
     }
 
@@ -130,7 +129,6 @@
                     }
 
                     if (isArray(ar)) {
-
                         return ar.indexOf(elm);
                     }
 
@@ -230,15 +228,16 @@
             var value = null;
             var key = null;
 
-            for(key in ar) {
-                if(ar.hasOwnProperty(key)) {
+            for (key in ar) {
+                if (ar.hasOwnProperty(key)) {
                     value = ar[key];
 
-                    if(!shouldDeepCopy || ( typeof value !== kObject)) {
+                    if (!shouldDeepCopy || (typeof value !== kObject)) {
                         theCopy[key] = value;
                     }
 
-                    theCopy[key] = me.CollectionHelper.copy(value, shouldDeepCopy);
+                    theCopy[key] = me.CollectionHelper.copy(value,
+                        shouldDeepCopy);
                 }
             }
 
@@ -257,18 +256,18 @@
         clear : function(ar) {
             var key = null;
 
-            if(!ar) {
+            if (!ar) {
                 return null;
             }
 
-            if(isArray(ar)) {
+            if (isArray(ar)) {
                 ar.length = 0;
 
                 return ar;
             }
 
-            for(key in ar) {
-                if(ar.hasOwnProperty(key)) {
+            for (key in ar) {
+                if (ar.hasOwnProperty(key)) {
                     delete ar[key];
                 }
             }

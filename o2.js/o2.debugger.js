@@ -204,9 +204,10 @@
             var output = config.outputElement;
             var isUsingConsole = config.isUsingConsole;
 
-            if(isUsingConsole && output) {
+            if (isUsingConsole && output) {
                 return function(value, className) {
-                    var debugContent = document.createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -214,13 +215,14 @@
 
                     println(value, className);
                 };
-            } else if(isUsingConsole && !output) {
+            } else if (isUsingConsole && !output) {
                 return function(value, className) {
                     println(value, className);
                 };
-            } else if(!isUsingConsole && output) {
+            } else if (!isUsingConsole && output) {
                 return function(value, className) {
-                    var debugContent = document.createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -269,12 +271,14 @@
             // Can I use the browser's built-in console?
             // (the double negation !!shouldUseConsole will convert the var to
             // boolean.)
-            config.isUsingConsole = (console !== undefined && !!shouldUseConsole);
+            config.isUsingConsole = (console !== undefined &&
+                !!shouldUseConsole);
 
             // Is everything ok? -- I should either use the output element, or
             // the console.
             // If I can use neither of them, then it's a fatal situation.
-            var isConfigOk = ((outputNode && outputNode.nodeName) || config.isUsingConsole);
+            var isConfigOk = ((outputNode && outputNode.nodeName) ||
+                config.isUsingConsole);
 
             if (!isConfigOk) {
                 throw kCannotInitialize;

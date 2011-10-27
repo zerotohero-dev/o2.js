@@ -12,7 +12,7 @@
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
-( function(framework) {
+(function(framework) {
     'use strict';
 
     /*
@@ -26,8 +26,8 @@
      */
     var base = framework.AjaxState;
     var baseProtected = base.protecteds;
-
     var key = '';
+    var kFunction = 'function';
 
     /**
      * @class {static} o2.JsonpState
@@ -64,7 +64,7 @@
 
     for (key in base) {
         if (base.hasOwnProperty(key)) {
-            if (typeof base[key] === 'function') {
+            if (typeof base[key] === kFunction) {
                 me.JsonpState[key] = clone(me.JsonpState, base[key]);
             }
         }
@@ -72,7 +72,7 @@
 
     for (key in baseProtected) {
         if (baseProtected.hasOwnProperty(key)) {
-            if (typeof baseProtected[key] === 'function') {
+            if (typeof baseProtected[key] === kFunction) {
                 me.JsonpState.protecteds[key] = clone(me.JsonpState.protecteds,
                     baseProtected[key]);
             }

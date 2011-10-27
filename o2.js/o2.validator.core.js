@@ -45,6 +45,11 @@
         }
     };
 
+    /*
+     * Common constants.
+     */
+    var kYmdArgumentLength = 3;
+
     /**
      * @function {private} o2.Validator.is
      *
@@ -61,8 +66,8 @@
     function is(obj, type) {
         var objectNameStartIndex = 8;
         var trimLastBraceIndex = -1;
-        var klass = Object.prototype.toString.call(obj).slice(objectNameStartIndex,
-            trimLastBraceIndex);
+        var klass = Object.prototype.toString.call(obj).slice(
+            objectNameStartIndex, trimLastBraceIndex);
 
         return obj !== undefined && obj !== null && klass === type;
     }
@@ -117,16 +122,14 @@
          * <code>false</code> otherwise.
          */
         isDate : function(objYear, objMonth, objDay) {
-            var kYmdArgumentLength = 3;
-
-            if(arguments.length === kYmdArgumentLength) {
+            if (arguments.length === kYmdArgumentLength) {
                 var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 var maxDay = 0;
                 var year = objYear;
                 var month = objMonth;
                 var day = objDay;
 
-                if(!year || !month || !day) {
+                if (!year || !month || !day) {
                     return false;
                 }
 
@@ -135,7 +138,7 @@
                     parseInt(year, 10) % 400 === 0) ? 29 : 28;
                 maxDay = months[parseInt(month, 10) - 1];
 
-                if(parseInt(day, 10) > maxDay) {
+                if (parseInt(day, 10) > maxDay) {
                     return false;
                 }
 

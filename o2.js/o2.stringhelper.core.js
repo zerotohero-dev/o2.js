@@ -38,7 +38,8 @@
             /*
              *
              */
-            RANDOM_CHAR_FEED : '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
+            RANDOM_CHAR_FEED :
+                '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
             /*
              *
@@ -54,6 +55,17 @@
             }
         }
     };
+
+    /*
+     * Common constants.
+     */
+    var kGuidMultiplier = config.constants.GUID_MULTIPLIER;
+    var kBlank = ' ';
+    var kEmpty = '';
+    var kDefaultRandomLength = config.constants.DEFAULT_RANDOM_LENGTH;
+    var kRandomCharFeed = config.constants.RANDOM_CHAR_FEED;
+    var kRegWhitespace = config.constants.regExp.WHITESPACE;
+    var kRegTrim = config.constants.regExp.TRIM;
 
     /**
      * @class {static} o2.StringHelper
@@ -72,7 +84,7 @@
          */
         generateGuid : function() {
             return [(new Date()).getTime(), Math.floor(
-                config.constants.GUID_MULTIPLIER * Math.random())].join('');
+                kGuidMultiplier * Math.random())].join(kEmpty);
         },
 
         /**
@@ -87,8 +99,8 @@
          * @return the generated <code>String</code>.
          */
         generateRandom : function(length) {
-            var chars = config.constants.RANDOM_CHAR_FEED;
-            var len = length || config.constants.DEFAULT_RANDOM_LENGTH;
+            var chars = kRandomCharFeed;
+            var len = length || kDefaultRandomLength;
             var charsLength = chars.length;
             var randomNumber = 0;
             var buffer = [];
@@ -140,7 +152,8 @@
                 return args[0];
             }
 
-            var pattern = new RegExp(['{', '([0-', (args.length - 2), '])', '}'].join(''), 'g');
+            var pattern = new RegExp(['{', '([0-', (args.length - 2),
+                '])', '}'].join(''), 'g');
             var lastMatch = null;
 
             return args[0].replace(pattern, function(match, index) {
@@ -162,7 +175,7 @@
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
-            return str.replace(regExp, '');
+            return str.replace(regExp, kEmpty);
         },
 
         /**
@@ -182,11 +195,9 @@
         trim : function(str, shouldCompact) {
             shouldCompact = shouldCompact || false;
 
-            var constants = config.constants;
-            var regExp = constants.regExp;
-
-            return shouldCompact ? str.replace(regExp.WHITESPACE,
-                ' ').replace(regExp.TRIM, '') : str.replace(regExp.TRIM, '');
+            return shouldCompact ? str.replace(kRegWhitespace,
+                kBlank).replace(kRegTrim, kEmpty) :
+                str.replace(kRegTrim, kEmpty);
         },
 
         /**

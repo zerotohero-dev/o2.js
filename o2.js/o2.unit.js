@@ -59,7 +59,8 @@
         /*
          * Problem initializing debugger.
          */
-        FAILED_TO_INITIALIZE_DEBUGGER : 'Failed to initialize Debugger. No "UnitTest"s will be run!',
+        FAILED_TO_INITIALIZE_DEBUGGER :
+            'Failed to initialize Debugger. No "UnitTest"s will be run!',
 
         /*
          * An error occured in a test suite.
@@ -89,14 +90,13 @@
         /*
          * All of the unit test suites have been completed.
          */
-        REPORT_GLOBAL_COMPLETION :  concat(
+        REPORT_GLOBAL_COMPLETION : concat(
             '<p>All unit tests have been completed:</p>',
             '<p style="text-align:right">(<b>total success: {0}</b>, ',
             '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
         ),
 
         FINISHED_UNIT_TEST : 'Completed unit test <strong>#{0}</strong>'
-
     };
 
     /*
@@ -410,7 +410,8 @@
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
          */
-        assertNotEqual : function(unitTest, currentValue, expectedValue, message) {
+        assertNotEqual : function(unitTest, currentValue, expectedValue,
+                    message) {
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertNotEqual';
             var kArgumentsLength = arguments.length;
@@ -433,7 +434,8 @@
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
          */
-        assertStrictEqual : function(unitTest, currentValue, expectedValue, message) {
+        assertStrictEqual : function(unitTest, currentValue, expectedValue,
+                    message) {
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertStrictEqual';
             var kArgumentsLength = arguments.length;
@@ -457,7 +459,8 @@
          * @param {Object} expectedValue - the expected value to check against.
          * @param {String} message - the associated message.
          */
-        assertStrictNotEqual : function(unitTest, currentValue, expectedValue, message) {
+        assertStrictNotEqual : function(unitTest, currentValue, expectedValue,
+                    message) {
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertStrictNotEqual';
             var kArgumentsLength = arguments.length;
@@ -491,7 +494,8 @@
             expectProperArgumentLength(kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
-            state.tests.push(new UnitTest(description, totalAssertionCount, testCase));
+            state.tests.push(new UnitTest(description, totalAssertionCount,
+                testCase));
         },
 
         /**
@@ -516,7 +520,7 @@
          * will be run with <code>o2.Unit</code> as a parameter passed to it.
          */
         run : function(globalCompletionCallback) {
-            if(framework.Unit.isRunning) {
+            if (framework.Unit.isRunning) {
                 return;
             }
 
@@ -529,7 +533,7 @@
             var activeUnitTest = null;
 
             setTimeout(function waitForUnitTest() {
-                if(isLocked(activeUnitTest)) {
+                if (isLocked(activeUnitTest)) {
                     setTimeout(waitForUnitTest, kCheckInterval);
 
                     return;

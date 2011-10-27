@@ -34,6 +34,15 @@
         }
     };
 
+    /*
+     * Common constants.
+     */
+    var kRemoveEventListener = 'removeEventListener';
+    var kAddEventListener = 'addEventListener';
+    var kOn = 'on';
+    var kEmpty = '';
+    var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
+
     /**
      * @class {static} o2.EventHandler
      *
@@ -139,9 +148,7 @@
          * @throws exception - if <strong>fn</strong> callback is not defined.
          */
         addEventListener : function(node, evt, fn) {
-
-            var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
-            var kCallbackNotDefined = format(kCallbackTemplate, 'addEventListener');
+            var kCallbackNotDefined = format(kCallbackTemplate, kAddEventListener);
 
             var obj = $(node);
 
@@ -191,7 +198,7 @@
                         throw kCallbackNotDefined;
                     }
 
-                    var onEvent = ['on', evt].join('');
+                    var onEvent = [kOn, evt].join(kEmpty);
                     obj.attachEvent(onEvent, fn);
                 };
 
@@ -211,7 +218,8 @@
                     throw kCallbackNotDefined;
                 }
 
-                var onEvent = ['on', evt].join('');
+                var onEvent = [kOn, evt].join(kEmpty);
+
                 obj[onEvent] = fn;
             };
 
@@ -265,8 +273,7 @@
          * @throws exception - if <strong>fn</strong> callback is not defined.
          */
         removeEventListener : function(node, evt, fn) {
-            var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
-            var kCallbackNotDefined = format(kCallbackTemplate, 'removeEventListener');
+            var kCallbackNotDefined = format(kCallbackTemplate, kRemoveEventListener);
             var obj = $(node);
 
             if (!obj) {
@@ -306,7 +313,7 @@
                         throw kCallbackNotDefined;
                     }
 
-                    var onEvent = ['on', evt].join('');
+                    var onEvent = [kOn, evt].join(kEmpty);
                     obj.detachEvent(onEvent, fn);
                 };
 
@@ -327,7 +334,8 @@
                     throw kCallbackNotDefined;
                 }
 
-                var onEvent = ['on', evt].join('');
+                var onEvent = [kOn, evt].join(kEmpty);
+
                 obj[onEvent] = nill;
             };
 
@@ -345,7 +353,6 @@
          * @return the actual <code>DOM Event</code> object.
          */
         getEventObject : function(evt) {
-
             me.EventHandler.getEventObject = window.event ? function() {
                 return window.event;
             } : function(e) {
@@ -400,11 +407,11 @@
 
                 return false;
             } : function(e) {
-                if(!e) {
+                if (!e) {
                     return;
                 }
 
-                if(e.preventDefault) {
+                if (e.preventDefault) {
                     e.preventDefault();
                 }
 
@@ -431,7 +438,7 @@
             me.EventHandler.stopPropagation = window.event ? function() {
                 window.event.cancelBubble = true;
             } : function(e) {
-                if(!e) {
+                if (!e) {
                     return;
                 }
 

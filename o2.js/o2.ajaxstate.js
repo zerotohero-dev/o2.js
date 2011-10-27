@@ -148,7 +148,7 @@
             var i = 0;
             var len = 0;
 
-            for ( i = 0, len = observers.length; i < len; i++) {
+            for (i = 0, len = observers.length; i < len; i++) {
                 observer = observers[i].object;
 
                 observer.update(this, {
@@ -229,7 +229,7 @@
                 var i = 0;
                 var len = 0;
 
-                for ( i = 0, len = observers.length; i < len; i++) {
+                for (i = 0, len = observers.length; i < len; i++) {
                     if (observer.object === observers[i]) {
                         return true;
                     }
@@ -277,7 +277,6 @@
                     registrationTime = meta.registrationTime;
 
                     if (!timeout) {
-
                         throw kNoTimeoutMetaData;
                     }
 
@@ -297,7 +296,6 @@
                 state.listenTimeoutId = setTimeout(function() {
                     stateObject.protecteds.listen(stateObject);
                 }, config.LISTEN_TIMEOUT);
-
             }
         }
     };

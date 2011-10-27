@@ -19,6 +19,9 @@
      * Aliases.
      */
     var me = framework.DomHelper;
+    var $ = framework.$;
+    var compact = framework.StringHelper.compact;
+    var trim = framework.StringHelper.trim;
 
     /**
      * @function {static} o2.DomHelper.trimField
@@ -33,13 +36,13 @@
      * @see o2.StringHelper.trim
      */
     me.trimField = function(field) {
-        field = o2.$(field);
+        field = $(field);
 
         if (!field) {
             return null;
         }
 
-        field.value = o2.StringHelper.trim(field.value);
+        field.value = trim(field.value);
 
         return field.value;
     };
@@ -57,13 +60,13 @@
      * @see o2.StringHelper.compact
      */
     me.compactField = function(field) {
-        field = o2.$(field);
+        field = $(field);
 
         if (!field) {
             return null;
         }
 
-        field.value = o2.StringHelper.compact(field.value);
+        field.value = compact(field.value);
 
         return field.value;
     };

@@ -81,7 +81,7 @@
     function flushReadyQueue() {
         state.isApplicationReady = true;
 
-        while(queue.length > 0) {
+        while (queue.length > 0) {
             queue.pop()();
         }
     }
@@ -105,7 +105,8 @@
     };
 
     var onMozDomContentLoaded = function() {
-        document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded, false);
+        document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded,
+            false);
 
         flushReadyQueue();
 
@@ -122,7 +123,6 @@
 
     var onIEDomContentLoaded = function() {
         if (!isDomContentReady()) {
-
             return;
         }
 

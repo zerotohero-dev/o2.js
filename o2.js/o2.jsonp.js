@@ -74,6 +74,7 @@
         script.onload = script.onreadystatechange = function() {
             if (!done && (!this.readyState || this.readyState === kLoaded)) {
                 done = true;
+
                 script.onload = script.onreadystatechange = nill;
 
                 if (script && script.parentNode) {

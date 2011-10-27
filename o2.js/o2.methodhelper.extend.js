@@ -37,6 +37,11 @@
      */
     var kArgumentCountMismatch = config.constants.error.ARGUMENT_COUNT_MISMATCH;
 
+    /*
+     * Common strings.
+     */
+    var kFunction = 'function';
+
     /**
      * @function {static} o2.MethodHelper.overload
      *
@@ -61,7 +66,7 @@
             }
 
             // Otherwise try to call the old function, if any.
-            if (typeof old === 'function') {
+            if (typeof old === kFunction) {
                 return old.apply(this, arguments);
             }
         };
@@ -79,12 +84,12 @@
      * <code>function</code>.
      */
     me.requireAllArguments = function(fn) {
-
         return function() {
 
             // throw an error if the arguments' length do not match.
             if (arguments.length < fn.length) {
-                throw format(kArgumentCountMismatch, fn.length, arguments.length);
+                throw format(kArgumentCountMismatch, fn.length,
+                    arguments.length);
             }
 
             return fn.apply(this, arguments);

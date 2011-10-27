@@ -41,10 +41,18 @@
                 TEMPLATE : /\{\{(.*?)\}\}/g,
                 SEPARATOR : /\s+/
             }
-
         }
-
     };
+
+    /*
+     * Common constants.
+     */
+    var kObject = 'object';
+    var kString = 'string';
+    var kEmpty = '';
+    var constants = config.constants;
+    var kRegSeparator = constants.regExp.SEPARATOR;
+    var kEach = constants.command.EACH;
 
     /*
      *
@@ -52,18 +60,17 @@
     function parseDirective(line, data) {
         var len = line.length;
 
-        switch(len) {
+        switch (len) {
             case 0:
-                return '';
+                return kEmpty;
             case 1:
                 return line[0];
         }
 
-        var constants = config.constants;
-        var directive = line[0].split(constants.regExp.SEPARATOR);
+        var directive = line[0].split(kRegSeparator);
         var subTpl = line[1];
-        var directiveKey = '';
-        var collectionKey = '';
+        var directiveKey = kEmpty;
+        var collectionKey = kEmpty;
 
         if (directive.length > 1) {
             collectionKey = directive[1];
@@ -71,14 +78,13 @@
 
         directiveKey = directive[0];
 
-        if (directiveKey !== constants.command.EACH) {
-
-            return subTpl.join('');
+        if (directiveKey !== kEach) {
+            return subTpl.join(kEmpty);
         }
 
         var collection = collectionKey ? data[collectionKey] : data;
 
-        if (typeof collection !== 'object') {
+        if (typeof collection !== kObject) {
             return subTpl.join('');
         }
 
@@ -100,7 +106,7 @@
     function parse(line, data) {
         var regTemplate = config.constants.regExp.TEMPLATE;
 
-        if (typeof line !== 'string') {
+        if (typeof line !== kString) {
             return parseDirective(line, data);
         }
 
@@ -137,7 +143,7 @@
                 buffer.push(parse(tpl[i], data));
             }
 
-            return buffer.join('');
+            return buffer.join(kEmpty);
         }
     };
 }(this.o2));

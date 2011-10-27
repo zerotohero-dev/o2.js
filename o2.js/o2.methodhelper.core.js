@@ -48,7 +48,6 @@
          * @return a reference to the memoized <code>function</code>.
          */
         memoize : function() {
-
             var pad = {};
             var args = Array.prototype.slice.call(arguments);
             var self = args.shift();

@@ -26,6 +26,15 @@
     var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
 
     /*
+     * Common constants.
+     */
+    var kTextNode = me.nodeType.TEXT;
+    var kAll = '*';
+    var kObject = 'object';
+    var kEmpty = '';
+    var kId = 'id';
+
+    /*
      *
      */
     function filterChildren(children, regClassName) {
@@ -61,6 +70,13 @@
      * otherwise.
      */
     me.getParent = function(target, nodeName, shouldExcludeSelf) {
+        var nodes = null;
+        var hasParent = false;
+        var targetNodeName = kEmpty;
+        var currentNodeName = kEmpty;
+        var i = 0;
+        var len = 0;
+
         target = $(target);
 
         if (!target) {
@@ -76,13 +92,6 @@
         if (!target) {
             return null;
         }
-
-        var nodes = null;
-        var hasParent = false;
-        var targetNodeName = '';
-        var currentNodeName = '';
-        var i = 0;
-        var len = 0;
 
         while (target) {
             nodes = nodeName.split(',');
@@ -127,13 +136,13 @@
      * otherwise.
      */
     me.getParentByAttribute = function(obj, attribute, value, shouldExcludeSelf) {
+        var isExcluded = !!shouldExcludeSelf;
+
         obj = $(obj);
 
         if (!obj) {
             return null;
         }
-
-        var isExcluded = !!shouldExcludeSelf;
 
         if (isExcluded) {
             obj = obj.parentNode;
@@ -148,7 +157,7 @@
         }
 
         while (obj) {
-            if(getAttribute(obj, attribute) === value) {
+            if (getAttribute(obj, attribute) === value) {
                 return obj;
             }
 
@@ -173,15 +182,15 @@
      * otherwise.
      */
     me.getParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
+        var isExcluded = !!shouldExcludeSelf;
+
         obj = $(obj);
 
         if (!obj) {
             return null;
         }
 
-        var isExcluded = !!shouldExcludeSelf;
-
-        if(isExcluded) {
+        if (isExcluded) {
             obj = obj.parentNode;
         }
 
@@ -190,7 +199,7 @@
         }
 
         while (obj) {
-            if(getAttribute(obj, attribute) !== null) {
+            if (getAttribute(obj, attribute) !== null) {
                 return obj;
             }
 
@@ -210,13 +219,13 @@
      * @see DomHelper.getParentByAttribute
      */
     me.getParentById = function(obj, id, shouldExcludeSelf) {
+        var isExcluded = !!shouldExcludeSelf;
+
         obj = $(obj);
 
         if (!obj) {
             return null;
         }
-
-        var isExcluded = !!shouldExcludeSelf;
 
         return me.getParentByAttribute(obj, 'id', id, isExcluded);
     };
@@ -231,15 +240,15 @@
      * @see o2.DomHelper.getParentWithAttribute
      */
     me.getParentWithId = function(obj, shouldExcludeSelf) {
+        var isExcluded = !!shouldExcludeSelf;
+
         obj = $(obj);
 
         if (!obj) {
             return null;
         }
 
-        var isExcluded = !!shouldExcludeSelf;
-
-        return me.getParentWithAttribute(obj, 'id', isExcluded);
+        return me.getParentWithAttribute(obj, kId, isExcluded);
     };
 
     /**
@@ -262,7 +271,7 @@
             return null;
         }
 
-        if(target.querySelector) {
+        if (target.querySelector) {
             me.getFirstChild = function(target, nodeName) {
                 target = $(target);
 
@@ -271,16 +280,14 @@
                 }
 
                 if (!target.id) {
-                    target.id = [myName, generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join(kEmpty);
                 }
-
-                var kAll = '*';
 
                 nodeName = nodeName || kAll;
                 nodeName = nodeName.toLowerCase();
 
                 return target.querySelector(['#', target.id, ' > ',
-                    nodeName].join(''));
+                    nodeName].join(kEmpty));
             };
 
             return me.getFirstChild(target, nodeName);
@@ -293,9 +300,6 @@
 
                 return null;
             }
-
-            var kTextNode = me.nodeType.TEXT;
-            var kAll = '*';
 
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
@@ -354,10 +358,11 @@
                 }
 
                 if (!target.id) {
-                    target.id = [myName, generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join(kEmpty);
                 }
 
-                return target.querySelector(['#', target.id, ' > #', id].join(''));
+                return target.querySelector(['#', target.id, ' > #', id
+                    ].join(kEmpty));
             };
 
             return me.getFirstChildById(target, id);
@@ -367,7 +372,6 @@
             target = $(target);
 
             if (!target) {
-
                 return null;
             }
 
@@ -421,10 +425,11 @@
                 }
 
                 if (!target.id) {
-                    target.id = [myName, generateGuid()].join('');
+                    target.id = [myName, generateGuid()].join(kEmpty);
                 }
 
-                return target.querySelector(['#', target.id, ' > [id]'].join(''));
+                return target.querySelector(['#', target.id, ' > [id]'
+                    ].join(kEmpty));
             };
 
             return me.getFirstChildWithId(target);
@@ -489,8 +494,6 @@
         // Your best bet is to explicitly add a last-child (or similar) class to
         // that item, and apply li.last-child instead.
 
-        var kTextNode = me.nodeType.TEXT;
-        var kAll = '*';
         var children = target.childNodes;
 
         nodeName = nodeName || kAll;
@@ -660,10 +663,11 @@
                 }
 
                 if (!el.id) {
-                    el.id = [myName, generateGuid()].join('');
+                    el.id = [myName, generateGuid()].join(kEmpty);
                 }
 
-                return el.querySelectorAll(['#', el.id, ' > .', c].join(''));
+                return el.querySelectorAll(['#', el.id, ' > .', c
+                    ].join(kEmpty));
             };
 
             return me.getChildrenByClassName(el, c);
@@ -699,7 +703,7 @@
     me.getPrevious = function(target) {
         target = $(target);
 
-        if (!target || typeof target !== 'object') {
+        if (!target || typeof target !== kObject) {
             return null;
         }
 
@@ -931,7 +935,7 @@
                     return null;
                 }
 
-                return el.querySelectorAll(['.', c].join(''));
+                return el.querySelectorAll(['.', c].join(kEmpty));
             };
 
             return me.getElementsByClassName(el, c);
@@ -945,7 +949,7 @@
                 return null;
             }
 
-            var children = el.getElementsByTagName('*');
+            var children = el.getElementsByTagName(kAll);
 
             return filterChildren(children, createClassNameRegExp(c));
         };

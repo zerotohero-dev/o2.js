@@ -12,8 +12,6 @@
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
 (function(framework) {
-
-    // Strict mode on.
     'use strict';
 
     /*
@@ -21,6 +19,12 @@
      */
     var $ = framework.$;
     var me = framework.DomHelper;
+
+    /*
+     * Common constants.
+     */
+    var kBlank = ' ';
+    var kEmpty = '';
 
     /**
      *
@@ -72,7 +76,7 @@
             return;
         }
 
-        el.className += [' ', c].join('');
+        el.className += [kBlank, c].join(kEmpty);
     };
 
     /**
@@ -85,8 +89,6 @@
      * @param {String} c - the className to remove.
      */
     me.removeClass = function(el, c) {
-
-        //
         el = $(el);
 
         if (!el) {
@@ -97,6 +99,7 @@
             return;
         }
 
-        el.className = el.className.replace(me.createClassNameRegExp(c), ' ');
+        el.className = el.className.replace(me.createClassNameRegExp(c),
+            kBlank);
     };
 }(this.o2, this));

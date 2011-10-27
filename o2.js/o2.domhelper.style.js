@@ -242,7 +242,8 @@
         for (i = 0, len = links.length; i < len; i++) {
             link = links[i];
             linkTitle = link.getAttribute(kTitle);
-            shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 && title;
+            shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
+                title;
             link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
     };

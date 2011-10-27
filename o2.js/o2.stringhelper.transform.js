@@ -60,10 +60,25 @@
                 DASH : '-',
                 UNDERSCORE : '_',
                 NEW_LINE : '\n',
-                BR : '<br />'
+                BR : '<br />',
+                EMPTY : ''
             }
         }
     };
+
+    var constants = config.constants;
+    var kRegBr2Nl = constants.regExp.BR_2_NL;
+    var kRegNl2Br = constants.regExp.NL_2_BR;
+    var kRegRemoveTags = constants.regExp.REMOVE_TAGS;
+    var kRegCamelCase = constants.regExp.CAMEL_CASE;
+    var kRegAllCaps = constants.regExp.ALL_CAPS;
+    var kNewLine = constants.text.NEW_LINE;
+    var kBr = constants.text.BR;
+    var kUnderscore = constants.text.UNDERSCORE;
+    var kDash = constants.text.DASH;
+    var kEmpty = constants.text.EMPTY;
+    var kEllipsis = constants.text.ELLIPSIS;
+    var kTruncationLength = constants.TRUNCATION_LENGTH;
 
     /**
      * @function {static} o2.StringHelper.br2nl
@@ -75,9 +90,7 @@
      * @return the formatted <code>String</code>.
      */
     me.br2nl = function(str) {
-        var constants = config.constants;
-
-        return str.replace(constants.regExp.BR_2_NL, constants.text.NEW_LINE);
+        return str.replace(kRegBr2Nl, kNewLine);
     };
 
     /**
@@ -90,9 +103,7 @@
      * @return the formatted <code>String</code>.
      */
     me.nl2br = function(str) {
-        var constants = config.constants;
-
-        return str.replace(constants.regExp.NL_2_BR, constants.text.BR);
+        return str.replace(kRegNl2Br, kBr);
     };
 
     /**
@@ -106,7 +117,7 @@
      * @return the cleaned output.
      */
     me.removeTags = function(str) {
-        return str.replace(config.constants.regExp.REMOVE_TAGS, '');
+        return str.replace(kRegRemoveTags, kEmpty);
     };
 
     /**
@@ -123,12 +134,12 @@
      * @return the processed <code>String</code>.
      */
     me.truncate = function(str, maxLen) {
-        var ellipsis = config.constants.text.ELLIPSIS;
+        var ellipsis = kEllipsis;
         var eLen = ellipsis.length;
-        var maxLength = maxLen || config.constants.TRUNCATION_LENGTH;
+        var maxLength = maxLen || kTruncationLength;
 
-        if(str.length > maxLength) {
-            return [str.substr(0, maxLength - eLen), ellipsis].join('');
+        if (str.length > maxLength) {
+            return [str.substr(0, maxLength - eLen), ellipsis].join(kEmpty);
         }
 
         return str;
@@ -147,12 +158,9 @@
      * @return the formatted String.
      */
     me.toCamelCase = function(input) {
-        var constants = config.constants;
-
-        return input.replace(constants.regExp.CAMEL_CASE, function(match) {
-            return match.toUpperCase().replace(constants.text.DASH, '');
+        return input.replace(kRegCamelCase, function(match) {
+            return match.toUpperCase().replace(kDash, kEmpty);
         });
-
     };
 
     /**
@@ -166,10 +174,8 @@
      * @return the formatted <code>String</code>.
      */
     me.toDashedFromCamelCase = function(input) {
-        var constants = config.constants;
-
-        return input.replace(constants.regExp.ALL_CAPS, function(match) {
-            return [constants.text.DASH, match.toLowerCase()].join('');
+        return input.replace(kRegAllCaps, function(match) {
+            return [kDash, match.toLowerCase()].join(kEmpty);
         });
     };
 
@@ -184,10 +190,8 @@
      * @return the formatted <code>String</code>.
      */
     me.toUnderscoreFromCamelCase = function(input) {
-        var constants = config.constants;
-
-        return input.replace(constants.regExp.ALL_CAPS, function(match) {
-            return [constants.text.UNDERSCORE, match.toLowerCase()].join('');
+        return input.replace(kRegAllCaps, function(match) {
+            return [kUnderscore, match.toLowerCase()].join(kEmpty);
         });
     };
 }(this.o2));

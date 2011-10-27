@@ -18,6 +18,23 @@
     var me = framework;
     var $ = framework.$;
 
+    /*
+     * Common constants.
+     */
+    var kFunction = 'function';
+    var kString = 'string';
+    var kClass = 'class';
+    var kClassName = 'className';
+    var kStyle = 'style';
+    var kCss = 'css';
+    var kCssText = 'cssText';
+    var kEmpty = '';
+
+    /*
+     * Common regular expressions.
+     */
+    var kRegWhitespace = /^\s*$/;
+
     /**
      * @class {static} o2.DomHelper
      *
@@ -164,7 +181,7 @@
                 return null;
             }
 
-            if (typeof nodeName !== 'string') {
+            if (typeof nodeName !== kString) {
                 return null;
             }
 
@@ -205,6 +222,12 @@
          * process for the child nodes of <code>elm</code> as well.
          */
         removeEmptyTextNodes : function(elm, isRecursive) {
+            var kText = me.DomHelper.nodeType.TEXT;
+            var arRemove = [];
+            var i = 0;
+            var child = null;
+            var shouldRemove = false;
+
             elm = $(elm);
 
             if (!elm) {
@@ -212,9 +235,7 @@
             }
 
             var children = elm.childNodes;
-            var arRemove = [];
             var len = children.length;
-            var i = 0;
 
             if (isRecursive === undefined) {
                 isRecursive = true;
@@ -222,18 +243,14 @@
 
             isRecursive = !!isRecursive;
 
-            var kText = me.DomHelper.nodeType.TEXT;
-            var regWhitespace = /^\s*$/;
-            var child = null;
-            var shouldRemove = false;
-
             var removeEmptyTextNodes = me.DomHelper.removeEmptyTextNodes;
 
             for (i = 0; i < len; i++) {
                 child = children[i];
 
                 if (!child.hasChildNodes()) {
-                    shouldRemove = child.nodeType === kText && regWhitespace.test(child.nodeValue);
+                    shouldRemove = child.nodeType === kText &&
+                        kRegWhitespace.test(child.nodeValue);
 
                     if (shouldRemove) {
                         arRemove.push(child);
@@ -261,14 +278,13 @@
          * <strong>id</strong> of it to process.
          */
         removeChildren : function(elm) {
-
             var node = $(elm);
 
             if (!node) {
                 return;
             }
 
-            node.innerHTML = '';
+            node.innerHTML = kEmpty;
         },
 
         /**
@@ -350,6 +366,8 @@
             var e = document.createElement(name);
             var value = '';
             var key = null;
+            var isClass = false;
+            var isStyle = false;
 
             // Internet Explorer 7- (and some minor browsers) cannot set values
             // for style, class or event handlers, using setAttribute.
@@ -358,15 +376,13 @@
             // in standards mode. A few more browsers also have trouble reading
             // these attributes using getAttribute.
 
-            var isClass = false;
-            var isStyle = false;
-
             for (key in attributes) {
                 if (attributes.hasOwnProperty(key)) {
                     value = attributes[key];
 
-                    isClass = key === 'class' || key === 'className';
-                    isStyle = key === 'style' || key === 'css' || key === 'cssText';
+                    isClass = key === kClass || key === kClassName;
+                    isStyle = key === kStyle || key === kCss ||
+                        key === kCssText;
 
                     if (isClass) {
                         e.className = value;
@@ -386,7 +402,7 @@
                         // To avoid problems a combination of cssText and
                         // getAttribute/setAttribute can be used.
                         e.style.cssText = value;
-                        e.setAttribute('style', value);
+                        e.setAttribute(kStyle, value);
                     } else {
                         e[key] = attributes[key];
                     }
@@ -438,8 +454,6 @@
          * <strong>id</strong> of the container.
          */
         append : function(child, parent) {
-
-            //
             child = $(child);
             parent = $(parent);
 
@@ -512,7 +526,7 @@
 
             var value = null;
 
-            if (attribute === 'class' || attribute === 'className') {
+            if (attribute === kClass || attribute === kClassName) {
                 value = obj.className;
 
                 if(value !== undefined) {
@@ -521,7 +535,8 @@
                 }
             }
 
-            if (attribute === 'style' || attribute === 'css' || attribute === 'cssText') {
+            if (attribute === kStyle || attribute === kCss ||
+                        attribute === kCssText) {
                 value = obj.cssText;
 
                 if (value !== undefined) {
@@ -530,10 +545,10 @@
             }
 
             //DOM object (obj) may not have a getAttribute method.
-            if( typeof obj.getAttribute === 'function') {
+            if( typeof obj.getAttribute === kFunction) {
                 value = obj.getAttribute(attribute);
 
-                if(value !== undefined) {
+                if (value !== undefined) {
                     return value;
                 }
             }

@@ -75,7 +75,7 @@
             var i = 0;
             var len = 0;
 
-            for(i = 0, len = arguments.length; i < len; i++) {
+            for (i = 0, len = arguments.length; i < len; i++) {
                 try {
                     arguments[i]();
 

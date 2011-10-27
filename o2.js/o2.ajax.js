@@ -79,7 +79,8 @@
              *
              */
             common : [{
-                'Accept' : 'text/javascript, text/html, application/xml, text/xml, */*'
+                'Accept' :
+                'text/javascript, text/html, application/xml, text/xml, */*'
             }],
 
             /*
@@ -212,7 +213,7 @@
         xhr.isComplete = true;
 
         try {
-            if(isSuccess) {
+            if (isSuccess) {
                 oncomplete(xhr.responseText, xhr.responseXML, xhr);
 
                 return;

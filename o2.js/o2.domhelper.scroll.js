@@ -25,10 +25,11 @@
      * <p>Scrolls window to bottom.</p>
      */
     me.scrollWindowToBottom = function() {
-        if(document.documentElement) {
+        if (document.documentElement) {
             me.scrollWindowToBottom = function() {
                 document.body.scrollTop = document.body.scrollHeight;
-                document.documentElement.scrollTop = document.documentElement.scrollHeight;
+                document.documentElement.scrollTop =
+                    document.documentElement.scrollHeight;
             };
 
             me.scrollWindowToBottom();
@@ -116,7 +117,6 @@
         obj = $(obj);
 
         if (!obj) {
-
             return;
         }
 
@@ -134,8 +134,8 @@
      * <code>{left: l, top: t}</code>.
      */
     me.getWindowScrollOffset = function() {
-        if(document.documentElement) {
-            if(document.body && document.body.scrollLeft !== undefined) {
+        if (document.documentElement) {
+            if (document.body && document.body.scrollLeft !== undefined) {
                 me.getWindowScrollOffset = function() {
                     var left = Math.max(document.body.scrollLeft,
                         document.documentElement.scrollLeft);
@@ -178,9 +178,7 @@
         };
 
         return me.getWindowScrollOffset();
-
     };
-
 
     me.getObjectScrollOfset = function(obj) {
         obj = $(obj);

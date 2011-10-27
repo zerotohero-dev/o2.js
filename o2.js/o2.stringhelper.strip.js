@@ -42,6 +42,21 @@
         }
     };
 
+    /*
+     * Common regular expressions.
+     */
+    var ccr = config.constants.regExp;
+    var kRegNonAlpha = ccr.NON_ALPHA;
+    var kRegNonAlphaNumeric = ccr.NON_ALPHANUMERIC;
+    var kRegNonNumeric = ccr.NON_NUMERIC;
+    var kRegNumeric = ccr.NUMERIC;
+    var kRegTag = ccr.TAG;
+
+    /*
+     * Common strings.
+     */
+    var kEmpty = '';
+
     /**
      * @function {static} o2.StringHelper.stripNonAlpha
      *
@@ -53,7 +68,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlpha = function(str) {
-        return str.replace(config.constants.regExp.NON_ALPHA, '');
+        return str.replace(kRegNonAlpha, kEmpty);
     };
 
     /**
@@ -66,7 +81,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlphanumeric = function(str) {
-        return str.replace(config.constants.regExp.NON_ALPHANUMERIC, '');
+        return str.replace(kRegNonAlphaNumeric, kEmpty);
     };
 
     /**
@@ -79,7 +94,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonNumeric = function(str) {
-        return str.replace(config.constants.regExp.NON_NUMERIC, '');
+        return str.replace(kRegNonNumeric, kEmpty);
     };
 
     /**
@@ -92,7 +107,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNumeric = function(str) {
-        return str.replace(config.constants.regExp.NUMERIC, '');
+        return str.replace(kRegNumeric, kEmpty);
     };
 
     /**
@@ -105,6 +120,6 @@
      * @return the formatted <code>String</code>.
      */
     me.stripTags = function(str) {
-        return str.replace(config.constants.regExp.TAG, '');
+        return str.replace(kRegTag, kEmpty);
     };
 }(this.o2));

@@ -67,8 +67,7 @@
         me.getDocumentDimension = function() {
             var d = document;
 
-            if(!d || !d.body) {
-
+            if (!d || !d.body) {
                 return {
                     width : 0,
                     height : 0
@@ -104,7 +103,6 @@
         if (window.innerWidth !== undefined) {
             me.getWindowInnerDimension = function() {
                 if (!window) {
-
                     return {
                         width : 0,
                         height : 0

@@ -77,8 +77,10 @@
                 var clientY = e.clientY || 0;
                 var wd = document;
 
-                posx = clientX + wd.body.scrollLeft + wd.documentElement.scrollLeft;
-                posy = clientY + wd.body.scrollTop + wd.documentElement.scrollTop;
+                posx = clientX + wd.body.scrollLeft +
+                    wd.documentElement.scrollLeft;
+                posy = clientY + wd.body.scrollTop +
+                    wd.documentElement.scrollTop;
 
                 return {
                     x : posx,
@@ -174,11 +176,11 @@
         // http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
         //
 
-        if(!e) {
+        if (!e) {
             return false;
         }
 
-        if(e.which) {
+        if (e.which) {
             me.isRightClick = function(e) {
                 return e.which === 3;
             };
@@ -186,7 +188,7 @@
             return me.isRightClick(evt);
         }
 
-        if(e.button) {
+        if (e.button) {
             me.isRightClick = function(e) {
                 return e.button === 2;
             };

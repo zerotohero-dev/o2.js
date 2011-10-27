@@ -18,6 +18,8 @@
      */
     var me = framework;
     var myName = framework.name;
+    var kTestCookiePrefix = 'tst';
+    var kEmpty = '';
 
     /**
      * @class {static} o2.Supports
@@ -37,7 +39,7 @@
          * <code>false</code> otherwise.
          */
         cookie : function() {
-            var kTestCookie = [myName, 'tst'].join('');
+            var kTestCookie = [myName, kTestCookiePrefix].join(kEmpty);
             var cookie = me.Cookie;
             var value = null;
 
@@ -48,7 +50,7 @@
             } catch(ignore) {
             }
 
-            if(!value) {
+            if (!value) {
                 return false;
             }
 
