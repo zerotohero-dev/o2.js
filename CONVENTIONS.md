@@ -1072,11 +1072,11 @@ Always terminate statements with a semicolon (`;`):
 		var i = 10;
 
 		// Incorrect:
-		var test = function(){
+		var test = function() {
 		}
 
 		// Correct:
-		var test = function(){
+		var test = function() {
 		};
 
 ### Variable Declerations
@@ -1144,7 +1144,7 @@ code, without effecting the code that others have been developing.
 
 Each o2.js module has the following basic structure.
 
-		( function(framework, window) {
+		(function(framework, window) {
 
 			... module code goes here ...
 
