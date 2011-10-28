@@ -502,7 +502,7 @@ The brace positions should be as follows:
 
                 ...
 
-### 3.6.  SPACES
+### SPACES
 
 The spacing should be as follows:
 
@@ -533,7 +533,7 @@ The spacing should be as follows:
         doAction();
     }
 
-### 3.7.  NEW LINES
+### NEW LINES
 
 * **DO NOT** insert a new line *before* else statement.
 * **DO NOT** insert a new line *before* if and else-if statement.
@@ -703,7 +703,7 @@ you'd do in a normal sentence.
 
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
-### 3.10.  VARIABLE & METHOD NAMING
+### VARIABLE & METHOD NAMING
 
 * Use meaningful variable (and function) names:
 
@@ -991,7 +991,7 @@ Use curly braces, even when they are not strictly necessary.
             }
         }
 
-### 3.13. DEFAULT FALLBACKS
+### DEFAULT FALLBACKS
 
 All switch-case's should have a `default:` exit point.
 That last fallback should at least have a log statement.
@@ -1021,7 +1021,7 @@ okay to leave single if's without an else.
             log('controller has more templates');
         } -- not required -- */
 
-### 3.14. BOOLEAN COMPARISONS
+### BOOLEAN COMPARISONS
 
 **DO NOT** directly compare with **true**, or **false**.
 
@@ -1037,7 +1037,7 @@ okay to leave single if's without an else.
         // Correct:
         while(condition)
 
-### 3.15. VARIABLE ACCESS
+### VARIABLE ACCESS
 
 * **DO NOT** access the same variable more than once:
 
@@ -1051,7 +1051,7 @@ okay to leave single if's without an else.
 global configuration data, and global functions as possible.
 Use **modules** and **namespaces** to achieve that.
 
-### 3.16. STATEMENT TERMINATION
+### STATEMENT TERMINATION
 
 Always terminate statements with a semicolon (`;`):
 
@@ -1069,7 +1069,7 @@ Always terminate statements with a semicolon (`;`):
         var test = function(){
         };
 
-### 3.17.  VARIABLE DECLERATIONS
+### VARIABLE DECLERATIONS
 
 Declare every variable on a new line:
 
@@ -1080,9 +1080,9 @@ Declare every variable on a new line:
         var a;
         var b;
 
-## 4. o2.js JAVASCRIPT CODING BEST-PRACTICES
+## o2.js JAVASCRIPT CODING BEST-PRACTICES
 
-### 4.1.  JSLINT YOUR CODE
+### JSLINT YOUR CODE
 
 [JSLint][2] is a **must-have** great tool written in **JavaScript** that allows
 you to validate your **JavaScript** code against a **strict** and **rigorous**
@@ -1123,7 +1123,7 @@ The **JSLint** validation preferences used are as follows:
         regexp: true
     };
 
-### 4.2.  SHOW LOVE TO THE MODULE PATTERN
+### SHOW LOVE TO THE MODULE PATTERN
 
 [Modules][4] are simply self-executing function literals.
 They create their own *private* **static** context, and encapsulate the business
@@ -1142,7 +1142,7 @@ Each o2.js module has the following basic structure.
 
 [4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
-### 4.3.  DO NOT POLLUTE THE GLOBAL NAMESPACE
+### DO NOT POLLUTE THE GLOBAL NAMESPACE
 
 This is a corollary to 4.2.
 
@@ -1160,7 +1160,7 @@ Use namespaces and break code into modules.
 > **NOT**
 > functions, *functions*, **functions**!
 
-### 4.4.  AVOID GOD OBJECTS and GOD METHODS
+### AVOID GOD OBJECTS and GOD METHODS
 
 Each method **SHOULD** have one, and only one, clearly defined task.
 If a method is doing more than one thing, it should be **divided**
@@ -1184,7 +1184,7 @@ While writing a method the following should be taken into consideration:
 [5]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
 [6]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
 
-### 4.5.  DO NOT INCLUDE TYPE INFORMATION WHILE NAMING VARIABLES
+### DO NOT INCLUDE TYPE INFORMATION WHILE NAMING VARIABLES
 
 **DO NOT** include type information in variables.
 
@@ -1213,11 +1213,11 @@ Variables should be understandable by their behavior (*semantics*),
         var kDomLoaded = 'domloaded';
         var kDomLoadedRegExp = /domloaded/g;
 
-### 4.6.  DO NOT MIX HTML AND JAVASCRIPT
+### DO NOT MIX HTML AND JAVASCRIPT
 
 Use a templating engine. Don't mix HTML markup within JavaScript code.
 
-### 4.7.  DO NOT USE INLNE JAVASCRIPT EVENTS
+### DO NOT USE INLNE JAVASCRIPT EVENTS
 
 Using inline JavaScript events and server-side templating (e.g. *Smarty*),
 is a dangerous mix that may leave your code prone to **"script injection"**
@@ -1269,7 +1269,7 @@ In short;
 * Separate PHP (or the server-side language of your choice) from JavaScript
 (PHP should not spit out thousands of lines of of server-generated JavaScript)
 
-### 4.8.  USE EVENT-DELEGATION
+### USE EVENT-DELEGATION
 
 **DO NOT** register every single click event, on every single object.
 
@@ -1284,7 +1284,7 @@ Use [event delegation][9] instead.
 
 [9]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
 
-### 4.9.  USE EVENT-DRIVEN PROGRAMMING
+### USE EVENT-DRIVEN PROGRAMMING
 
 Use [event-driven programming][10]. Web apps will **always** be event driven.
 
@@ -1294,7 +1294,7 @@ Architect and program your components as such.
 
 [10]: http://en.wikipedia.org/wiki/Event-driven_programming "Event-Driven Programming"
 
-### 4.10.  AVOID MAGIC STRINGS AND MAGIC NUMBERS LIKE PLAGUE
+### AVOID MAGIC STRINGS AND MAGIC NUMBERS LIKE PLAGUE
 
 Use **symbolic constants** for **numeric literals** and **string literals**.
 
@@ -1332,7 +1332,7 @@ relation should be **explicitly indicated**:
     var kMaxItems = 32;
     var kHighWaterRank = (3 * kMaxItems) / 4; //instead of 24.
 
-### 4.11. DECOUPLE OBJECTS & MINIMIZE VARIABLE SCOPE
+### DECOUPLE OBJECTS & MINIMIZE VARIABLE SCOPE
 
 Objects and methods should have as little information about each other as possible.
 That's the major motivator behind **object-oriented programming*.
@@ -1345,7 +1345,7 @@ Minimize variable scopes. Use the [module pattern][11].
 
 [11]: http://o2js.com/2011/04/24/the-module-pattern/ "The JavaScript Module Pattern"
 
-### 4.12. REPLACE TEMPORARY VARIABLES WITH QUERY METHODS
+### REPLACE TEMPORARY VARIABLES WITH QUERY METHODS
 
 Chaining temp variables with query functions, **reduces** the number of
 variables used in the code, and **decreases** the possibility to make an error.
@@ -1386,7 +1386,7 @@ against this:
             return getBasePrice() * 0.98;
         }
 
-### 4.13. PROGRAM DEFENSIVELY
+### PROGRAM DEFENSIVELY
 
 Adhere [defensive programming][13] best-practices.
 
@@ -1404,7 +1404,7 @@ Use [guard-clauses][15] to avoid unexpected conditions.
 
 [15]: http://c2.com/cgi/wiki?GuardClause "Guard Clauses"
 
-### 4.14. EXCEPTIONS ARE FOR EXCEPTIONAL CASES
+### EXCEPTIONS ARE FOR EXCEPTIONAL CASES
 
 Exceptions are expensive. Using a nested structure of `try/catch`s
 will increase the depth of the execution scope, which may slow down your
@@ -1439,7 +1439,7 @@ Summary:
 at the topmost level.
 * **AVOID** using `try/catch`es unless it's absolutely necessary.
 
-### 4.15. USE THE FORCE WISELY
+### USE THE FORCE WISELY
 
 Your application shall function degrade gracefully, when Javascript
 is not available or when Javascript has been disabled.
@@ -1451,14 +1451,14 @@ is usable at all times.
 
 [16]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
 
-## 5. PERFORMANCE AND MEMORY CONSIDEARATIONS
+## PERFORMANCE AND MEMORY CONSIDEARATIONS
 
 Here are certain performance considerations, and guidelines to keep in mind
 when designing a highly interactive, mostly single-page, client-heavy,
 long-lasting (i.e. users will be on the same page for more than several hours)
 web application:
 
-### 5.1 KEY PERFORMANCE INDICATORS
+### KEY PERFORMANCE INDICATORS
 
 While coding try to **minimize** the following:
 
@@ -1483,7 +1483,7 @@ To avoid memory leaks:
 [18]: http://o2js.com/2011/04/26/functions-and-closures-in-javascript/ "Functions and Closures in JavaScript"
 [19]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
 
-### 5.2. CONSIDER USING NATIVE METHODS WHENEVER POSSIBLE
+### CONSIDER USING NATIVE METHODS WHENEVER POSSIBLE
 
 `for(...)` is around 3 times faster than, take for example, jQuery's
 `$(this).each` (depending of the selector complexity, and the
@@ -1496,24 +1496,24 @@ should excessively use it. Know (and learn) adequate JavaScript,
 to use native methods in performance-and-memory-critical
 parts of your code.
 
-### 5.3. MINIMIZE SCOPE CHAIN AND NAMESPACE LOOKUP
+### MINIMIZE SCOPE CHAIN AND NAMESPACE LOOKUP
 
 Instead of this...
 
-    var lSide = collection.subcollection.items.all.left;
-    var rSide = collection.subcollection.items.all.right;
+        var lSide = collection.subcollection.items.all.left;
+        var rSide = collection.subcollection.items.all.right;
 
 Do this:
 
-    var all = collection.subcollection.items.all;
-    var lSide = all.left; /*each dot is a namespace lookup.*/
-    var rSide = all.right;
+        var all = collection.subcollection.items.all;
+        var lSide = all.left; /*each dot is a namespace lookup.*/
+        var rSide = all.right;
 
 Things get worse, if the **collection** variable above is a **DOM Node**
 and the assignments are repeated in a `for` loop (both of which are not
 uncommon situtations).
 
-### 5.4. USE ARRAY JOINS INSTEAD OF STRING CONCATENATION
+### USE ARRAY JOINS INSTEAD OF STRING CONCATENATION
 
         // Instead of this...
         var result = 'a' + 'b' + 'c' + 'd';
@@ -1521,7 +1521,7 @@ uncommon situtations).
         // This is much faster:
         var result = ['a','b','c','d'].join('');
 
-### 5.5. USE FUNCTION POINTERS
+### USE FUNCTION POINTERS
 
 Instead of this...
 
@@ -1554,7 +1554,7 @@ while the latter only involves **creation**:
 
 The more you reduce namespace lookups, the faster is your code.
 
-### 5.6. ADD COMPLEX DOM SUBTREES OFFLINE
+### ADD COMPLEX DOM SUBTREES OFFLINE
 
 Instead of this:
 
@@ -1609,7 +1609,7 @@ This is much faster:
             tableEl = document.body.appendChild(tableEl);
         }
 
-### 5.7. EDIT COMPLEX DOM SUBTREES OFFLINE
+### EDIT COMPLEX DOM SUBTREES OFFLINE
 
 Instead of this...
 
@@ -1638,7 +1638,7 @@ This is much faster:
         }
 
 
-### 5.8. CACHE DOM COLLECTION LENGTH
+### CACHE DOM COLLECTION LENGTH
 
 Instead of this...
 
@@ -1660,14 +1660,14 @@ This is faster:
             }
         }
 
-### 5.9. USE MEMOIZATION FOR COMPUTATION-INTENSIVE FUNCTIONS
+### USE MEMOIZATION FOR COMPUTATION-INTENSIVE FUNCTIONS
 
 If your functions are deterministic, you can use [memoization][20],
 so that you don't need to do the same computations over and over again.
 
 [20]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
 
-### 5.10. CACHE FREQUENTLY USED GLOBAL METHODS AND OBJECTS FOR SPEED
+### CACHE FREQUENTLY USED GLOBAL METHODS AND OBJECTS FOR SPEED
 
 Last, but not the least, **always cache** global methods and object that you
 use within loops:
@@ -1729,12 +1729,12 @@ This is much faster:
         collection.addClass('test');
         collection.click(function(){});
 
-## 6. CODE SMELLS
+## CODE SMELLS
 
 Constantly follow these indicators, as they often show the quality
 (or lack thereof) of the code you're writing.
 
-### 6.1.  COMMENTS
+### COMMENTS
 
 There's a slight difference between comments that are explaining
 what's being done and comments that are overly confusing.
@@ -1747,7 +1747,7 @@ it may show that the code block is becoming more complicated.
 If possible, the code should be refactored, so that those "caveat"
 comments are not necessary anymore.
 
-### 6.2   EXCESSIVELY LONG METHOD NAMES
+### EXCESSIVELY LONG METHOD NAMES
 
 Explanatory method names are good.
 
@@ -1761,7 +1761,7 @@ Besides a very long method name may be the indicator of a
 If your function is named `doThisAndThatAndSomethingElse`, most probably
 you can split it into `doThis`, `doThat`, and `doSomethingElse` parts.
 
-### 6.3.  METHODS HAVING TOO MUCH PARAMETERS
+### METHODS HAVING TOO MUCH PARAMETERS
 
 * The more parameters a method has, the more complex it is.
 * The more complex a method is, the more possible that it has more than
@@ -1775,7 +1775,7 @@ If a method has too much parameters:
 * Either reduce the number of method parameters,
 * Or merge those parameters under a configuration object.
 
-### 6.4.  CODE REPETITION (COPY / PASTE CODE)
+### CODE REPETITION (COPY / PASTE CODE)
 
 Seeing the same code over and over again is a clear indication of low code
 quality.
@@ -1785,17 +1785,17 @@ is duplicated in different modules, then **a new helper module** should be
 created and both of the modules should the the new module's helper
 method instead.
 
-### 6.5.  CONDITIONAL COMPLEXITY
+### CONDITIONAL COMPLEXITY
 
 If the code has a lot of `if/else` chains, nested `for`s `switch`es etc and
 it makes it harder to read the code; then it's time to **refactor** it.
 
-### 6.6.  CODES DOING "ALMOST" THE SAME THING
+### CODES DOING "ALMOST" THE SAME THING
 
 Codes doing almost the same thing should be regarded as code repetition,
 and should be **refactored** accordingly.
 
-### 6.7.  A VERY LARGE MODULE / FUNCTION
+### A VERY LARGE MODULE / FUNCTION
 
 If a module has grown too large, then it's most probably doing more than
 it's supposed to do.
@@ -1803,7 +1803,7 @@ it's supposed to do.
 If you have a swiss army knife module, then it's time to split it into
 sub-modules to make your code more manageable and less error prone.
 
-### 6.8.  FUNCTION AND VARIABLES THAT ARE NOT TELLING WHAT THEY DO
+### FUNCTION AND VARIABLES THAT ARE NOT TELLING WHAT THEY DO
 
 Or worse, functions that are giving a message that's totally unrelated to what
 they do.
@@ -1821,7 +1821,7 @@ out of hassle.
 
 If a method has a misleading name, **rename it**.
 
-### 6.9.  INCOHERENT NAMING
+### INCOHERENT NAMING
 
 > Don't look at the thesaurus,
 > and use a different synonym of "get" each time
@@ -1834,13 +1834,13 @@ Have a standard terminology in naming your methods and adhere to it.
 
 Do not give different names to similar-behaving functions.
 
-### 6.10. DEAD CODE
+### DEAD CODE
 
 If there's a code that's not working and not used anywhere; it should
 be removed from the code-base immediately. Fear is the enemy of code
 stability.
 
-### 6.11. SPECULATIVE GENERALIZATION
+### SPECULATIVE GENERALIZATION
 
 > Optimization without measurement is merely a waste of time.
 
@@ -1849,7 +1849,7 @@ Do not try to solve the problem of 5 months later, now.
 First create a running prototype. Then test, optimize and benchmark
 your code.
 
-### 6.12. "I DID IT, and IT WORKED" STYLE OF APPROACH
+### "I DID IT, and IT WORKED" STYLE OF APPROACH
 
 If you've solved a problem, you should clearly understand
 **why** and **how** you did it.
@@ -1863,24 +1863,24 @@ If the parameter is null or undefined, then you should find out
 If you devise a solution without going to the bottom of the problem;
 sooner or later your so-called "solution" will stab you in the back.
 
-### 6.13. TEMPORARY VARIABLES
+### TEMPORARY VARIABLES
 
 The more temporary variables in the code, the harder to manage it.
 Temporary variables should be replaced with query methods when possible.
 
-### 6.14. GLOBAL VARIABLES
+### GLOBAL VARIABLES
 
 The more the number of global state variables in the code, the more
 dependent the modules are. And dependency means error-prone, and
 hard-to-manage code.
 
-### 6.15. DATA CLUSTERS
+### DATA CLUSTERS
 
 If you observe certain kind of data, variables, method etc, loosely
 lumping together in various parts of the code; then may be its better
 to take them and create a separate class.
 
-### 6.16. CROSS-MODULE-INTIMACY
+### CROSS-MODULE-INTIMACY
 
 Modules should now the least information possible about each other.
 Modules' public interface should be kept at a minimum.
@@ -1888,25 +1888,25 @@ Modules' public interface should be kept at a minimum.
 **If you don't have a reason to keep a method public, than you had better
 make that method private.**
 
-### 6.17. ATTRIBUTE ENVY
+### ATTRIBUTE ENVY
 
 If some methods of module A calls a lot of methods from module B, then
 may be those methods of module A should actually belong to module B.
 Consider a refactoring.
 
-### 6.18. LAZY CLASS
+### LAZY CLASS
 
 Any newly added class, adds to the complexity of the project. If a class
 is unable to hold its weight, i.e. it's not used enough, then it should
 be merged with other classes.
 
-### 6.19. SHOTGUN SURGERY
+### SHOTGUN SURGERY
 
 If adding a single line of code, or extracting a single method requires
 changes in tens of unrelated methods and classes then the code needs
 some serious refactoring.
 
-### 6.20. INCOMPLETE LIBRARY CLASS
+### INCOMPLETE LIBRARY CLASS
 
 The method should belong to a library, but it's currently the private
 method of an unrelated class. This is a **clear invitation to code
@@ -1914,7 +1914,7 @@ repetition** in other classes.
 
 The method should be taken out of the class and put into a library.
 
-### 6.21. EXISTENCE OF INCOMPLETE CODE BLOCKS
+### EXISTENCE OF INCOMPLETE CODE BLOCKS
 
 **Never check-in incomplete/untested code**.
 
