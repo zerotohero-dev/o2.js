@@ -10,7 +10,7 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-(function(framework, window, ActiveXObject, XMLHttpRequest) {
+(function(framework, window) {
     'use strict';
 
     /*
@@ -20,6 +20,8 @@
     var generateGuid = framework.StringHelper.generateGuid;
     var concat = framework.StringHelper.concat;
     var nill = framework.nill;
+    var ActiveXObject = window.ActiveXObject;
+    var XMLHttpRequest = window.XMLHttpRequest;
 
     /*
      * Module configuration.
@@ -424,4 +426,4 @@
             return createXhr();
         }
     };
-}(this.o2, this, this.ActiveXObject, this.XMLHttpRequest));
+}(this.o2, this));
