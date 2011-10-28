@@ -69,7 +69,7 @@ Indent...
 
 * Statements within **blocks**:
 
-        	while (node) {
+        while (node) {
 			if (node.nodeType != kTextNode) {
 				return node;
 			}
@@ -158,29 +158,29 @@ Technically speaking, *any function* is also a *closure*. Therefore statements
 inside **any function** should be indented one level with respect to that
 *function*'s body.
 
-			me.EventHandler.preventDefault = window.event ? function() {
-				window.event.returnValue = false;
+		me.EventHandler.preventDefault = window.event ? function() {
+			window.event.returnValue = false;
 
-				return false;
-			} : function(e) {
-				if (!e) {
-					return;
-				}
+			return false;
+		} : function(e) {
+			if (!e) {
+				return;
+			}
 
-				if (e.preventDefault) {
-					e.preventDefault();
-				}
+			if (e.preventDefault) {
+				e.preventDefault();
+			}
 
-				return false;
-			};
+			return false;
+		};
 
-			me.EventHandler.preventDefault(evt);
+		me.EventHandler.preventDefault(evt);
 
 * Parts of the statement that are folded to the next line because they exceed
 the 80-character line length limit:
 
-			application.RenderController.repaintUserInfo(messageId, userId,
-				options, callback); //<-- 1x indented.
+		application.RenderController.repaintUserInfo(messageId, userId,
+			options, callback); //<-- 1x indented.
 
 Triple indent...
 
@@ -524,15 +524,15 @@ The spacing should be as follows:
 
 * Negation: **after**: 0
 
-	// Incorrect:
-	if(! stuff && ! otherStuff) {
-		doAction();
-	}
+		// Incorrect:
+		if(! stuff && ! otherStuff) {
+			doAction();
+		}
 
-	// Correct:
-	if (!stuff && !otherStuff) {
-		doAction();
-	}
+		// Correct:
+		if (!stuff && !otherStuff) {
+			doAction();
+		}
 
 ### New Lines
 
@@ -649,11 +649,11 @@ Example:
 Use [jsDoc syntax][1] for documenting modules, functions, objects, and
 structs.
 
-[jsDoc][1]: references to method parameters shall be bold.
+* [jsDoc][1] references to method parameters shall be bold.
 
 		* @throws exception if <strong>fn</strong> callback is not defined.
 
-[jsDoc][1]: JavaScript objects should be enclosed in `<code></code>`.
+* [jsDoc][1] JavaScript objects should be enclosed in `<code></code>`.
 
 		* @param {DomNode} node - the DOM object (or its <code>String</code>.
 
@@ -735,7 +735,8 @@ you'd do in a normal sentence.
 		// Correct -- no prefix:
 		var income = 100.12;
 
-	**Exception:**
+	**Exception**:
+
 	It's okay to prefix form elements with txt, btn and the like.
 
 		// These are all OK:
@@ -812,7 +813,7 @@ you'd do in a normal sentence.
 			}
 		};
 
-	**Exception:**
+	**Exception**:
 
 	Event-handler callbacks is an exception to this naming convention:
 
@@ -1013,10 +1014,10 @@ That last else should at least have a log statement.
 			assert('I should not be here');
 		}
 
-*Exception*:
+	**Exception**:
 
-A single `if` statement may not be regarded as an if-else *"chain"*, so it's
-okay to leave single if's without an else.
+	A single `if` statement may not be regarded as an if-else *"chain"*, so it's
+	okay to leave single if's without an else.
 
 		if(controller.isLoadingTemplates()) {
 			return;
@@ -1104,27 +1105,27 @@ web application's build & deployment cycle.
 
 The version of **JSLint** used to validate **o2.js** modules can be found at:
 
-	./3rdparty/jslint/jslint.js
+		./3rdparty/jslint/jslint.js
 
 folder of this bundle.
 
 The **JSLint** validation preferences used are as follows:
 
-	var JSLINT_PREFS = {
-		browser:true,
-		evil:false,
-		laxbreak:true,
-		maxerr: 1000,
-		newcap: true,
-		nomen: true,
-		passfail:false,
-		plusplus: true,
-		rhino: true,
-		undef:true,
-		vars: true,
-		white: true
-		regexp: true
-	};
+		var JSLINT_PREFS = {
+			browser:true,
+			evil:false,
+			laxbreak:true,
+			maxerr: 1000,
+			newcap: true,
+			nomen: true,
+			passfail:false,
+			plusplus: true,
+			rhino: true,
+			undef:true,
+			vars: true,
+			white: true,
+			regexp: true
+		};
 
 ### Show Love To the [Module Pattern][4]
 
@@ -1137,11 +1138,11 @@ code, without effecting the code that others have been developing.
 
 Each o2.js module has the following basic structure.
 
-	( function(framework, window) {
+		( function(framework, window) {
 
-		... module code goes here ...
+			... module code goes here ...
 
-	}(this.o2, this));
+		}(this.o2, this));
 
 [4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
