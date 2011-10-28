@@ -900,7 +900,7 @@ function.
             }
         }
 
-### GROUP LOGICALLY-RELATED STATEMENTS TOGETHER USING PARENTHESIS (`()`)
+### GROUP LOGICALLY-RELATED STATEMENTS TOGETHER USING PARENTHESES (`( )`)
 
 Although `&&` has precedence over `||`, mixing them together without grouping
 may decrease readability.
