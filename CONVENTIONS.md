@@ -1154,8 +1154,6 @@ Each o2.js module has the following basic structure.
 
 ### Do Not Pollute The Global Namespace
 
-This is a corollary to 4.2.
-
 **Avoid using public variables and public functions at all costs**.
 
 Global variables and functions are rarely, if ever, required.
