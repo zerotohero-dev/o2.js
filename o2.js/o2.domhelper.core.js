@@ -33,7 +33,7 @@
     /*
      * Common regular expressions.
      */
-    var kRegWhitespace = /^\s*$/;
+    var kWhiteSpaceRegExp = /^\s*$/;
 
     /**
      * @class {static} o2.DomHelper
@@ -250,7 +250,7 @@
 
                 if (!child.hasChildNodes()) {
                     shouldRemove = child.nodeType === kText &&
-                        kRegWhitespace.test(child.nodeValue);
+                        kWhiteSpaceRegExp.test(child.nodeValue);
 
                     if (shouldRemove) {
                         arRemove.push(child);

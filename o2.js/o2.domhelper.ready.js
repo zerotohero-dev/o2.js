@@ -43,7 +43,7 @@
     /*
      * Common regular expressions.
      */
-    var kRegDomLoaded = config.constants.regExp.REG_DOM_LOADED;
+    var kDomLoadedRegExp = config.constants.regExp.REG_DOM_LOADED;
 
     /*
      * Common constants.
@@ -59,7 +59,7 @@
      *
      */
     function isDomContentReady() {
-        return (kRegDomLoaded).test(document.readyState);
+        return (kDomLoadedRegExp).test(document.readyState);
     }
 
     /*

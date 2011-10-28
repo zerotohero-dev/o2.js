@@ -46,11 +46,11 @@
      * Common regular expressions.
      */
     var ccr = config.constants.regExp;
-    var kRegNonAlpha = ccr.NON_ALPHA;
-    var kRegNonAlphaNumeric = ccr.NON_ALPHANUMERIC;
-    var kRegNonNumeric = ccr.NON_NUMERIC;
-    var kRegNumeric = ccr.NUMERIC;
-    var kRegTag = ccr.TAG;
+    var kNonAlphaRegExp = ccr.NON_ALPHA;
+    var kNonAlphaNumericRegExp = ccr.NON_ALPHANUMERIC;
+    var kNonNumericRegExp = ccr.NON_NUMERIC;
+    var kNumericRegExp = ccr.NUMERIC;
+    var kTagRegExp = ccr.TAG;
 
     /*
      * Common strings.
@@ -68,7 +68,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlpha = function(str) {
-        return str.replace(kRegNonAlpha, kEmpty);
+        return str.replace(kNonAlphaRegExp, kEmpty);
     };
 
     /**
@@ -81,7 +81,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonAlphanumeric = function(str) {
-        return str.replace(kRegNonAlphaNumeric, kEmpty);
+        return str.replace(kNonAlphaNumericRegExp, kEmpty);
     };
 
     /**
@@ -94,7 +94,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNonNumeric = function(str) {
-        return str.replace(kRegNonNumeric, kEmpty);
+        return str.replace(kNonNumericRegExp, kEmpty);
     };
 
     /**
@@ -107,7 +107,7 @@
      * @return the formatted <code>String</code>.
      */
     me.stripNumeric = function(str) {
-        return str.replace(kRegNumeric, kEmpty);
+        return str.replace(kNumericRegExp, kEmpty);
     };
 
     /**
@@ -120,6 +120,6 @@
      * @return the formatted <code>String</code>.
      */
     me.stripTags = function(str) {
-        return str.replace(kRegTag, kEmpty);
+        return str.replace(kTagRegExp, kEmpty);
     };
 }(this.o2));

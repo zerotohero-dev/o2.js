@@ -67,8 +67,8 @@
     };
 
     var constants = config.constants;
-    var kRegBr2Nl = constants.regExp.BR_2_NL;
-    var kRegNl2Br = constants.regExp.NL_2_BR;
+    var kLineBreakToNewLineRegExp = constants.regExp.BR_2_NL;
+    var kNewLineToLineBreakRegExp = constants.regExp.NL_2_BR;
     var kRegRemoveTags = constants.regExp.REMOVE_TAGS;
     var kRegCamelCase = constants.regExp.CAMEL_CASE;
     var kRegAllCaps = constants.regExp.ALL_CAPS;
@@ -90,7 +90,7 @@
      * @return the formatted <code>String</code>.
      */
     me.br2nl = function(str) {
-        return str.replace(kRegBr2Nl, kNewLine);
+        return str.replace(kLineBreakToNewLineRegExp, kNewLine);
     };
 
     /**
@@ -103,7 +103,7 @@
      * @return the formatted <code>String</code>.
      */
     me.nl2br = function(str) {
-        return str.replace(kRegNl2Br, kBr);
+        return str.replace(kNewLineToLineBreakRegExp, kBr);
     };
 
     /**

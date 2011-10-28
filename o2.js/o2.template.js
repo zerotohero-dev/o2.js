@@ -51,7 +51,7 @@
     var kString = 'string';
     var kEmpty = '';
     var constants = config.constants;
-    var kRegSeparator = constants.regExp.SEPARATOR;
+    var kSeparatorRegExp = constants.regExp.SEPARATOR;
     var kEach = constants.command.EACH;
 
     /*
@@ -67,7 +67,7 @@
                 return line[0];
         }
 
-        var directive = line[0].split(kRegSeparator);
+        var directive = line[0].split(kSeparatorRegExp);
         var subTpl = line[1];
         var directiveKey = kEmpty;
         var collectionKey = kEmpty;

@@ -64,8 +64,8 @@
     var kEmpty = '';
     var kDefaultRandomLength = config.constants.DEFAULT_RANDOM_LENGTH;
     var kRandomCharFeed = config.constants.RANDOM_CHAR_FEED;
-    var kRegWhitespace = config.constants.regExp.WHITESPACE;
-    var kRegTrim = config.constants.regExp.TRIM;
+    var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
+    var kTrimRegExp = config.constants.regExp.TRIM;
 
     /**
      * @class {static} o2.StringHelper
@@ -195,9 +195,9 @@
         trim : function(str, shouldCompact) {
             shouldCompact = shouldCompact || false;
 
-            return shouldCompact ? str.replace(kRegWhitespace,
-                kBlank).replace(kRegTrim, kEmpty) :
-                str.replace(kRegTrim, kEmpty);
+            return shouldCompact ? str.replace(kWhitespaceRegExp,
+                kBlank).replace(kTrimRegExp, kEmpty) :
+                str.replace(kTrimRegExp, kEmpty);
         },
 
         /**
