@@ -904,7 +904,7 @@ function.
 			}
 		}
 
-### Group Logically-related Statements Together Using Parentheses (`( )`)
+### Group Related Statements Together Using Parentheses (`( )`)
 
 Although `&&` has precedence over `||`, mixing them together without grouping
 may decrease readability.
@@ -1146,7 +1146,7 @@ Each o2.js module has the following basic structure.
 
 [4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
-### DO NOT POLLUTE THE GLOBAL NAMESPACE
+### Do Not Pollute The Global Namespace
 
 This is a corollary to 4.2.
 
