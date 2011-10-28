@@ -1945,7 +1945,7 @@ While using your judgmenet though, keep in mind that this document is mainly
 based on [K&R Style Coding][22]. So you can safely follow [K&R Indent Style][22]
 for situations that are not covered in this document.
 
-[22] http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
+[22]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
 
 --------------------------------------------
 
