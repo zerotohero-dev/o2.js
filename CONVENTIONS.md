@@ -226,6 +226,7 @@ Insert **one** blank line...
 			return null;
 		}
 
+
 	**Exception**:
 
 	If the *return*, *throw*, *break*... statement is the **only**
@@ -325,6 +326,7 @@ Insert **one** blank line...
 				finalizeXhr(xhr);
 			}
 		}
+
 
 	**Exception**:
 
@@ -735,6 +737,7 @@ you'd do in a normal sentence.
 		// Correct -- no prefix:
 		var income = 100.12;
 
+
 	**Exception**:
 
 	It's okay to prefix form elements with txt, btn and the like.
@@ -782,6 +785,7 @@ you'd do in a normal sentence.
 		// "member", not "members"
 		var kFullName = config.constants.member.FULL_NAME
 
+
 	**Exception**:
 
 	One exception to this rule is the use of **constants** (*as above*),
@@ -813,6 +817,7 @@ you'd do in a normal sentence.
 			}
 		};
 
+
 	**Exception**:
 
 	Event-handler callbacks is an exception to this naming convention:
@@ -828,7 +833,7 @@ you'd do in a normal sentence.
 		o2.addEventListener(document, 'mousedown',
 			EventCallback.document_mousedown);
 
-* Use *camelCase* for acronyms:
+* Use **camelCase** for acronyms:
 
 		config.constants.methodName.wcf.INSERT;// Correct
 
@@ -1014,10 +1019,11 @@ That last else should at least have a log statement.
 			assert('I should not be here');
 		}
 
-	**Exception**:
 
-	A single `if` statement may not be regarded as an if-else *"chain"*, so it's
-	okay to leave single if's without an else.
+**Exception**:
+
+A single `if` statement may not be regarded as an if-else *"chain"*, so it's
+okay to leave single if's without an else.
 
 		if(controller.isLoadingTemplates()) {
 			return;
@@ -1063,7 +1069,7 @@ Always terminate statements with a semicolon (`;`):
 		var i = 10
 
 		// Correct:
-		var i = 01;
+		var i = 10;
 
 		// Incorrect:
 		var test = function(){
@@ -1209,10 +1215,11 @@ Variables should be understandable by their behavior (*semantics*),
 			   (when we think in non-strict terms) */
 			var kAddBuddy = eventType.ADD_BUDDY;
 
-	**Exception**:
 
-	If there are two similar constants, we may want to include type information
-	instead of renaming those constants, as in the following case:
+**Exception**:
+
+If there are two similar constants, we may want to include type information
+instead of renaming those constants, as in the following case:
 
 		var kDomLoaded = 'domloaded';
 		var kDomLoadedRegExp = /domloaded/g;
