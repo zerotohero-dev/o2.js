@@ -190,26 +190,26 @@ Triple indent...
 This will clearly indicate that those parameters are **not** a part of the
 function's body.
 
-			var InstantChatMessageRenderer = {
+		var InstantChatMessageRenderer = {
 
-				/*
-				 *
-				 */
-				render : function(conversation, chatListItem, message,
-							timeStamp, messageId, userId) { //<-- 3x indented.
-					prepareChatListItem(chatListItem, message,
-						(new Date()).getTime());
+			/*
+			 *
+			 */
+			render : function(conversation, chatListItem, message,
+						timeStamp, messageId, userId) { //<-- 3x indented.
+				prepareChatListItem(chatListItem, message,
+					(new Date()).getTime());
 
-					conversation.appendChild(chatListItem);
+				conversation.appendChild(chatListItem);
 
-					application.RenderController.repaintUserInfo(messageId,
-						userId); //<-- 1x indented.
+				application.RenderController.repaintUserInfo(messageId,
+					userId); //<-- 1x indented.
 
-					scrollToBottom(conversation);
+				scrollToBottom(conversation);
 
-				}
+			}
 
-			};
+		};
 
 
 ### Blank Lines
