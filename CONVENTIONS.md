@@ -69,7 +69,7 @@ Indent...
 
 * Statements within **blocks**:
 
-        while (node) {
+		while (node) {
 			if (node.nodeType != kTextNode) {
 				return node;
 			}
@@ -1288,7 +1288,7 @@ Use [event delegation][9] instead.
 
 [9]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
 
-### USE EVENT-DRIVEN PROGRAMMING
+### Use Event-driven Programming
 
 Use [event-driven programming][10]. Web apps will **always** be event driven.
 
@@ -1671,7 +1671,7 @@ so that you don't need to do the same computations over and over again.
 
 [20]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
 
-### CACHE FREQUENTLY USED GLOBAL METHODS AND OBJECTS FOR SPEED
+### Cache Frequently Used Global Methods And Objects For Speed
 
 Last, but not the least, **always cache** global methods and object that you
 use within loops:
@@ -1794,7 +1794,7 @@ method instead.
 If the code has a lot of `if/else` chains, nested `for`s `switch`es etc and
 it makes it harder to read the code; then it's time to **refactor** it.
 
-### CODES DOING "ALMOST" THE SAME THING
+### Codes Doing "almost" the Same Thing
 
 Codes doing almost the same thing should be regarded as code repetition,
 and should be **refactored** accordingly.
@@ -1807,7 +1807,7 @@ it's supposed to do.
 If you have a swiss army knife module, then it's time to split it into
 sub-modules to make your code more manageable and less error prone.
 
-### FUNCTION AND VARIABLES THAT ARE NOT TELLING WHAT THEY DO
+### Function And Variables That Are Not Telling What They Do
 
 Or worse, functions that are giving a message that's totally unrelated to what
 they do.
@@ -1872,7 +1872,7 @@ sooner or later your so-called "solution" will stab you in the back.
 The more temporary variables in the code, the harder to manage it.
 Temporary variables should be replaced with query methods when possible.
 
-### GLOBAL VARIABLES
+### Global Variables
 
 The more the number of global state variables in the code, the more
 dependent the modules are. And dependency means error-prone, and
