@@ -33,7 +33,7 @@ In this essence, **coding conventions** constitute a shared language
 between the developer team. They increase the readability of the code,
 and make the code less error-prone.
 
-## o2.js JAvascript Coding Standards
+## o2.js Javascript Coding Standards
 
 Here are the main code conventions, standards, and guidelines used
 within **o2.js** source files:
@@ -154,9 +154,9 @@ Indent...
 
 * Statements **inside** a *closure*:
 
-Technically speaking, *any function* is also a *closure*. Therefore statements
-inside **any function** should be indented one level with respect to that
-*function*'s body.
+	Technically speaking, *any function* is also a *closure*. Therefore statements
+	inside **any function** should be indented one level with respect to that
+	*function*'s body.
 
 		me.EventHandler.preventDefault = window.event ? function() {
 			window.event.returnValue = false;
@@ -187,8 +187,8 @@ Triple indent...
 * Method parameters that are folded to the next line because they exceed the
 80-character line length limit.
 
-This will clearly indicate that those parameters are **not** a part of the
-function's body.
+	This will clearly indicate that those parameters are **not** a part of the
+	function's body.
 
 		var InstantChatMessageRenderer = {
 
