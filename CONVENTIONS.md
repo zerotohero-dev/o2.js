@@ -1222,7 +1222,7 @@ instead of renaming those constants, as in the following case:
 		var kDomLoaded = 'domloaded';
 		var kDomLoadedRegExp = /domloaded/g;
 
-### **DO NOT** Mix Html And Javascript
+### **DO NOT** Mix HTML and Javascript
 
 Use a templating engine. Don't mix HTML markup within JavaScript code.
 
