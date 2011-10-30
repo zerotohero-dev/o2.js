@@ -29,25 +29,25 @@
         init : function() {
 
             add('o2.Cookie.save SHOULD save a cookie with a limited life time.');
-            
+
             add('o2.Cookie.save SHOULD save a session cookie.');
-            
+
             add('o2.Cookie.save SHOULD save cookies for subdomains.');
-            
+
             add('o2.Cookie.save SHOULD save cookies for paths.');
-            
+
             add('o2.Cookie.save SHOULD save secure cookies.');
-            
+
             add('o2.Cookie.read SHOULD read a valid cookie.');
-            
+
             add('o2.Cookie.remove SHOULD delete a cookie with a limited life time.');
-            
+
             add('o2.Cookie.remove SHOULD delete a session cookie.');
-            
+
             add('o2.Cookie.remove SHOULD delete cookies for subdomains.');
-            
+
             add('o2.Cookie.remove SHOULD delete cookies for paths.');
-            
+
             add('o2.Cookie.remove SHOULD delete secure cookies.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);

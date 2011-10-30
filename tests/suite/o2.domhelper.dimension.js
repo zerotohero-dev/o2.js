@@ -29,7 +29,7 @@
         init : function() {
 
             add('o2.DomHelper.getDocumentDimension SHOULD get the dimensions of the document');
-            
+
             add('o2.DomHelper.getWindowInnerDimension SHOULD get the dimensions of the visible area');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);

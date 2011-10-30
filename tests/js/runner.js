@@ -57,7 +57,7 @@
         'o2.try',
         'o2.unit',
         'o2.validator.core',
-        'o2.validator.regexp'      
+        'o2.validator.regexp'
     ];
     // @formatter:on
 
@@ -71,7 +71,7 @@
     function run() {
 
         var item = queue.pop();
-        
+
         var kFrameId = 'TestFrame';
         var kFileExtension = '.html';
 
@@ -130,9 +130,9 @@
 
             // @formatter:off
             assert(failureCount===0, [
-                '<p>Test suite <b>"<a href="', 
+                '<p>Test suite <b>"<a href="',
                 state.currentQueueItem,
-                '.html">', state.currentQueueItem, '</a>"</b> has been completed. ', 
+                '.html">', state.currentQueueItem, '</a>"</b> has been completed. ',
                 'Succes count: <b>', successCount, '</b> failure count: <b>', failureCount, '</b>.</p>'
             ].join(''));
             // @formatter:on
@@ -147,7 +147,7 @@
         },
 
         start : function() {
-            
+
             var kOutputContainerId = 'Output';
 
             init(kOutputContainerId, true);
