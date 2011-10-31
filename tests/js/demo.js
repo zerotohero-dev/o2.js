@@ -45,14 +45,14 @@ var Demo = {
         var kPasswordBlank = errorCode.PASSWORD_BLANK;
         var kSuccess = errorCode.SUCCESS;
         var kInvalidArguments = errorCode.INVALID_ARGUMENTS;
-        
+
         var kAllowedArgumentCount = 2;
-        
+
         if(arguments.length != kAllowedArgumentCount){
-            
+
             return kInvalidArguments;
         }
-        
+
         var isCredentialsValid = (username !== null && username !== UNDEFINED && password !== null && password !== UNDEFINED);
 
         if(!isCredentialsValid) {
@@ -66,16 +66,16 @@ var Demo = {
 
             return kUsernameBlank;
         }
-        
+
         if(!password){
-            
+
             return kPasswordBlank;
         }
-        
+
         if(username && password){
             return kSuccess;
         }
-        
+
         return kInvalidCredentials;
 
     }

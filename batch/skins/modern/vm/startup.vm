@@ -9,4 +9,4 @@
 		<frame src="#if($jg.properties.defaultView)$jg.properties.defaultView#{else}allclasses-frame.html#end" name="packageFrame" title="All classes and interfaces (except non-static nested types)"/>
 		<FRAME src="overview-summary-log.html" name="classFrame" title="Package, class and interface descriptions" scrolling="yes"/>
 	</FRAMESET>
-</html>    
+</html>

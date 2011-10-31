@@ -29,9 +29,9 @@
         init : function() {
 
             add('o2.DomHelper.hasClass SHOULD check if an object has a given class.');
-            
+
             add('o2.DomHelper.addClass SHOULD add a class to an object.');
-            
+
             add('o2.DomHelper.removeClass SHOULD remove a class from an object.');
 
 

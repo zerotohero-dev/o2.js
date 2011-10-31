@@ -49,7 +49,7 @@ var report = function(data) {
             if(!data) {
                 continue;
             }
-            
+
 			data.evidence = trim(data.evidence);
 			data.file = file;
 
@@ -106,4 +106,4 @@ pushln(
 );
 pushln(repeat('=', 70), 2);
 
-print( report(data) );	
+print( report(data) );
