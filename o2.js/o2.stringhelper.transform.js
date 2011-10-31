@@ -11,7 +11,7 @@
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-( function(framework) {
+(function(framework) {
     'use strict';
 
     /*

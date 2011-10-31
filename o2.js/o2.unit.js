@@ -12,7 +12,7 @@
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-(function(framework, setTimeout) {
+(function(framework, window) {
     'use strict';
 
     /*
@@ -26,6 +26,7 @@
     var concat = framework.StringHelper.concat;
     var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
     var nill = framework.nill;
+    var setTimeout = window.setTimeout;
 
     /*
      * Module configuration.
@@ -571,4 +572,4 @@
             }, kCheckInterval);
         }
     };
-}(this.o2, this.setTimeout));
+}(this.o2, this));

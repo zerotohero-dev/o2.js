@@ -9,7 +9,7 @@
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-(function(framework, document, escape) {
+(function(framework, window, document) {
     'use strict';
 
     /*
@@ -17,6 +17,7 @@
      */
     var me = framework;
     var concat = framework.StringHelper.concat;
+    var escape = window.escape;
 
     /**
      * @class {static} o2.Cookie
@@ -125,4 +126,4 @@
         // come into the equation. Will not implement it.
         // removeAll : function(){ }
     };
-}(this.o2, this.document, this.escape));
+}(this.o2, this, this.document));

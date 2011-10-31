@@ -452,6 +452,31 @@
             }
 
             return ar;
+        },
+
+        //TODO: add documentation:
+        map : function(collection, evaluator, selfRef) {
+            var result = [];
+            var evaluated = null;
+            var key = null;
+            var arrayIndex = 0;
+
+            for (key in collection) {
+                if (collection.hasOwnProperty(key)) {
+                    evaluated = evaluator(collection[key], arrayIndex++, selfRef);
+
+                    if (evaluated) {
+                        result.push(evaluated);
+                    }
+
+                }
+            }
+
+            return result;
         }
+
+
+
+    }
     };
 }(this.o2, this));

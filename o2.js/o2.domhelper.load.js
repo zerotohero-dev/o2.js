@@ -10,14 +10,15 @@
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-(function(framework, document, Image) {
+(function(framework, window, document) {
     'use strict';
 
     /*
      * Aliases.
      */
-    var me = framework.DomHelper;
+    var me = framework.DomHelper
     var nill = framework.nill;
+    var Image = window.Image;
 
     /*
      * Common strings.
@@ -104,4 +105,4 @@
 
         x.appendChild(s);
     };
-}(this.o2, this.document, this.Image));
+}(this.o2, this, this.document));

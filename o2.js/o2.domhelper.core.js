@@ -199,6 +199,11 @@
          * @return the removed node.
          */
         removeNode : function(elm) {
+            return framework.DomHelper.remove(elm);
+        },
+
+        //TODO: add documentation.
+        remove : function(elm) {
             elm = $(elm);
 
             if (!elm) {
@@ -208,7 +213,7 @@
             elm.parentNode.removeChild(elm);
 
             return elm;
-        },
+        }
 
         /**
          * @function {static} o2.DomHelper.removeEmptyTextNodes
@@ -266,7 +271,6 @@
                 child = arRemove[i];
                 child.parentNode.removeChild(child);
             }
-
         },
 
         /**
@@ -362,7 +366,7 @@
          *
          * @return the created element.
          */
-        createElement : function(name, attributes) {
+        create : function(name, attributes) {
             var e = document.createElement(name);
             var value = '';
             var key = null;
@@ -410,8 +414,12 @@
             }
 
             return e;
-
         },
+
+        //TODO: add documentation.
+        createElement : function(name, attributes) {
+            return framework.DomHelper.create(name, attributes);
+        }
 
         /**
          * @function {static} o2.DomHelper.prepend
@@ -424,8 +432,6 @@
          * container.
          */
         prepend : function(child, parent) {
-
-            //
             child = $(child);
             parent = $(parent);
 
@@ -440,7 +446,6 @@
             }
 
             parent.insertBefore(child, parent.childNodes[0]);
-
         },
 
         /**

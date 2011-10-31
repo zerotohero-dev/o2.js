@@ -12,7 +12,7 @@
  * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
-(function(framework, setTimeout) {
+(function(framework, window) {
     'use strict';
 
     /*
@@ -20,6 +20,7 @@
      */
     var me = framework.MethodHelper;
     var format = framework.StringHelper.format;
+    var setTimeout = window.setTimeout;
 
     /*
      * Module configuration.
@@ -111,4 +112,4 @@
             return fn.apply(context, args);
         }, interval);
     };
-}(this.o2, this.setTimeout));
+}(this.o2, this));

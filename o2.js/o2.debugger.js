@@ -9,7 +9,7 @@
  *
  * <p>A debugging helper.</p>
  */
-(function(framework, document, console) {
+(function(framework, window, document) {
    'use strict';
 
     /*
@@ -18,6 +18,7 @@
     var me = framework;
     var $ = framework.$;
     var nill = framework.nill;
+    var console = window.console;
 
     /**
      * @struct {private} o2.Debugger.config
@@ -436,4 +437,4 @@
 
     };
 
-}(this.o2, this.document, this.console));
+}(this.o2, this, this.document));

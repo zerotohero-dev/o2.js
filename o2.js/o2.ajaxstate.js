@@ -10,8 +10,11 @@
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-(function(framework, setTimeout, clearTimeout) {
+(function(framework, window) {
     'use strict';
+
+    var setTimeout = window.setTimeout;
+    var clearTimeout = window.clearTimeout;
 
     //*
 
@@ -299,4 +302,4 @@
             }
         }
     };
-}(this.o2, this.setTimeout, this.clearTimeout));
+}(this.o2, this));

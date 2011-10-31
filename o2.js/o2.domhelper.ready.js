@@ -10,7 +10,7 @@
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
-(function(framework, window, document, setTimeout) {
+(function(framework, window, document) {
     'use strict';
 
     /*
@@ -18,6 +18,7 @@
      */
     var me = framework.DomHelper;
     var nill = framework.nill;
+    var setTimeout = window.setTimeout;
 
     /*
      * Module configuration.
