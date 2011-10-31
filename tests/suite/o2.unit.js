@@ -27,7 +27,7 @@
          *
          */
         init : function() {
-            
+
             add('o2.Unit SHOULD have all assertions working as expected');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);

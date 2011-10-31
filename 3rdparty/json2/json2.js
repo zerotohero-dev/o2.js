@@ -3,7 +3,7 @@
  *    2011-02-23
  *    Public Domain.
  *    See http://www.JSON.org/js.html
- */ 
+ */
 
 /*
     This file creates a global JSON object containing two methods: stringify

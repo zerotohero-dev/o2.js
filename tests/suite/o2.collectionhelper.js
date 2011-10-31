@@ -69,11 +69,11 @@
             add('o2.CollectionHelper.removeElementByValue SHOULD do a nested removal of an element matching a value.');
 
             add('o2.CollectionHelper.getFirst SHOULD get the first element of an Array.');
-            
+
             add('o2.CollectionHelper.getFirst SHOULD get the first element of an object.');
 
             add('o2.CollectionHelper.getLast SHOULD get the last element of an Array.');
-            
+
             add('o2.CollectionHelper.getLast SHOULD get the last element of an object.');
 
             add('o2.CollectionHelper.compact SHOULD do a shallow removal of null and undefined values from an Array.');

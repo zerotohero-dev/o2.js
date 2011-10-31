@@ -411,7 +411,7 @@
     var config = {
         
         /*
-         * 
+         *
          */
         map : {
             xssEncodeNoAmp : [{
@@ -488,7 +488,7 @@
     };
 
     /*
-     * 
+     *
      */
     var state = {
         tempDiv : null
@@ -765,7 +765,7 @@
     var config = {
         
         /**
-         * 
+         *
          */
         constants : {
             
@@ -780,7 +780,7 @@
             TRUNCATION_LENGTH : 100,
             
             /*
-             * 
+             *
              */
             regExp : {
                 BR_2_NL : /<br\s*\/?>/g,
@@ -791,7 +791,7 @@
             },
             
             /*
-             * 
+             *
              */
             text : {
                 ELLIPSIS : '&hellip;',
@@ -1520,10 +1520,10 @@
                     }
 
                     collection.splice(i, 1);
-                    
+
                     //
                     i--;
-                    
+
                     //
                     len = collection.length;
                 }
@@ -2580,14 +2580,14 @@
 
                 return null;
             }
-            
+
             if(typeof nodeName != 'string'){
 
                 return null;
             }
-            
+
             return document.createElement(nodeName);
-        
+
         },
 
         /**
@@ -2920,7 +2920,7 @@
             }
 
             //DOM object (obj) may not have a getAttribute method.
-            
+
             if( typeof obj.getAttribute == 'function') {
                 var value = obj.getAttribute(attribute);
 
@@ -3248,7 +3248,7 @@
 
             if(!hasParent) {
                 target = target.parentNode;
-                
+
                 continue;
             }
 
@@ -3473,7 +3473,7 @@
 
             var kTextNode = me.nodeType.TEXT;
             var kAll = '*';
-            
+
             //
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
@@ -3701,9 +3701,9 @@
 
         var kTextNode = me.nodeType.TEXT;
         var kAll = '*';
-        
+
         var children = target.childNodes;
-        
+
         //
         nodeName = nodeName || kAll;
         nodeName = nodeName.toLowerCase();
@@ -3751,7 +3751,7 @@
      */
     //TODO: I can have a comma delimeted list of ids.
     me.getLastChildById = function(target, id) {
-        
+
         //
         target = $(target);
 
@@ -3861,29 +3861,29 @@
     //TODO: getElementsByAttribute & comma delim & space delim
 
     //TODO: getElementsWithAttribute & comma delim & space delim
-    
+
     //TODO: getElementsByClassName belongs here & comma delim & space delim
-    
+
     //TODO: getElementsWithClassName & comma delim & space delim
-    
+
     //TODO: getFirstChildById
-    
+
     //TODO: getFirstChildWithId
-    
+
     //TODO: getLastChildById
-    
+
     //TODO: getLastChildWithID
-    
+
     //TODO: getFirstChildByClassName
-    
+
     //TODO: getFirstChildWithClassName
-    
+
     //TODO: getFirstChildByAttribute
-    
+
     //TODO: getFirstChildWithAttribute
-    
+
     //TODO: getLastChildByAttribute
-    
+
     //TODO: getLastChildWithAttribute
 
     /**
@@ -4222,9 +4222,9 @@
 
         //
         obj = $(obj);
-        
+
         if(!obj) {
-            
+
             return;
         }
 
@@ -4264,9 +4264,9 @@
 
         //
         obj = $(obj);
-        
+
         if(!obj) {
-            
+
             return null;
         }
 
@@ -4275,14 +4275,14 @@
 
                 //
                 obj = $(obj);
-                
+
                 if(!obj) {
-                    
+
                     return null;
                 }
 
                 var defaultView = document.defaultView;
-                
+
                 //
                 cssProperty = toCamelCase(cssProperty);
 
@@ -4315,9 +4315,9 @@
 
             //
             obj = $(obj);
-            
+
             if(!obj) {
-                
+
                 return;
             }
 
@@ -4348,7 +4348,7 @@
         };
 
         return me.getStyle(obj, cssProperty);
-        
+
     };
 
     /**
@@ -4370,14 +4370,14 @@
 
         //
         obj = $(obj);
-        
+
         if(!obj) {
-            
+
             return false;
         }
 
-        // has offset dimensions 
-        // OR display IN (inline,block,'') 
+        // has offset dimensions
+        // OR display IN (inline,block,'')
         // OR visibility in ('visible','')
         //
         // getStyle returns null if it cannot
@@ -4388,7 +4388,7 @@
         // and cannot acquire those attributes
         // from the computed style, then the method fails and returns
         // false.
-        
+
         var display = me.getStyle(obj, 'display');
         var visibility = me.getStyle(obj, 'visibility');
 
@@ -4403,9 +4403,9 @@
         }
 
         // @formatter:off
-        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) || 
-               ((display    === null   ) && (visibility != 'hidden')) || 
-               ((visibility === null   ) && (display    != 'none'  )) || 
+        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) ||
+               ((display    === null   ) && (visibility != 'hidden')) ||
+               ((visibility === null   ) && (display    != 'none'  )) ||
                ((display    != 'none'  ) && (visibility != 'hidden'));
         // @formtatter:on
 
@@ -4729,33 +4729,33 @@
     var me = framework.DomHelper;
 
     me.trimField = function(field){
-        
+
         //
         field = o2.$(field);
-        
+
         if(!field){
-            
+
             return null;
         }
-        
+
         field.value = o2.StringHelper.trim(field.value);
-        
+
         return field.value;
     };
-    
+
     me.compactField = function(field){
-        
+
         //
         field = o2.$(field);
-        
+
         if(!field){
-            
+
             return null;
         }
-        
+
         field.value = o2.StringHelper.compact(field.value);
-        
-        return field.value;        
+
+        return field.value;
     };
 
 }(o2, this));
@@ -4775,7 +4775,7 @@
  * methods.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
     /*
      * Aliases
      */
@@ -4802,7 +4802,7 @@
 
                 // d.body can be null when refreshing.
                 if(!d || !d.body) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -4810,11 +4810,11 @@
                 }
 
                 // @formatter:off
-                var height = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight, 
-                    d.body.offsetHeight, d.documentElement.offsetHeight, 
+                var height = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight,
+                    d.body.offsetHeight, d.documentElement.offsetHeight,
                     d.body.clientHeight, d.documentElement.clientHeight);
-                var width = Math.max(d.body.scrollWidth, d.documentElement.scrollWidth, 
-                       d.body.offsetWidth, d.documentElement.offsetWidth, 
+                var width = Math.max(d.body.scrollWidth, d.documentElement.scrollWidth,
+                       d.body.offsetWidth, d.documentElement.offsetWidth,
                        d.body.clientWidth, d.documentElement.clientWidth);
                 // @formatter:on
 
@@ -4833,7 +4833,7 @@
             var d = document;
 
             if(!d || !d.body) {
-                
+
                 return {
                     width : 0,
                     height : 0
@@ -4864,12 +4864,12 @@
      * <code>{width: w, height: h}</code>.
      */
     me.getWindowInnerDimension = function() {
-        
+
         if(window.innerWidth !== UNDEFINED) {
             me.getWindowInnerDimension = function() {
 
                 if(!window) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -4892,7 +4892,7 @@
                 var d = document.documentElement;
 
                 if(!d) {
-                    
+
                     return {
                         width : 0,
                         height : 0
@@ -4914,7 +4914,7 @@
             var d = document.body;
 
             if(!d) {
-                
+
                 return {
                     width : 0,
                     height : 0
@@ -4929,7 +4929,7 @@
         };
 
         return me.getWindowInnerDimension();
-        
+
     };
 
 }(o2, this));
@@ -5198,7 +5198,7 @@
 
 ( function(framework, window, UNDEFINED) {
     //TODO: add documentation.
-    
+
     var me = framework.DomHelper;
 
     me.loadScript = function(src) {
@@ -5897,9 +5897,9 @@
  * @module ajaxstate
  *
  * <!--
- *  This program is distributed under 
+ *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details. 
+ *  Please see the LICENSE file for details.
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -5907,7 +5907,7 @@
  */
 ( function(framework, window, UNDEFINED) {
     //*
-    
+
     /*
      * Aliases.
      */
@@ -5956,7 +5956,7 @@
 
             //!
             if(hasObserver.apply(this.protecteds, [observer])) {
-                
+
                 return;
             }
 
@@ -5986,7 +5986,7 @@
             // This is an already-deleted zombie object.
             // No need for further processing.
             if(observer.isDeleted) {
-                
+
                 return true;
             }
 
@@ -5995,7 +5995,7 @@
             for(var i = 0, len = observers.length; i < len; i++) {
                 if(observer == observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
-                    
+
                     return true;
                 }
             }
@@ -6125,7 +6125,7 @@
 
                 for(var i = 0, len = observers.length; i < len; i++) {
                     if(observer.object === observers[i]) {
-                        
+
                         return true;
                     }
                 }
@@ -6176,13 +6176,13 @@
                     registrationTime = meta.registrationTime;
 
                     if(!timeout) {
-                        
+
                         throw 'Please specify timeout meta data for the observer';
                     }
                     shouldNotifyObserver = (now - registrationTime > timeout);
 
                     if(!shouldNotifyObserver) {
-                        
+
                         continue;
                     }
 
@@ -6221,11 +6221,11 @@
  * Pattern</strong>.</p>
  */
 ( function(framework, window, UNDEFINED) {
-    
+
     /*
      * Aliases.
      */
-    var me = framework;    
+    var me = framework;
     var nill = framework.nill;
     var addObserver = framework.AjaxState.addObserver;
 
@@ -6261,7 +6261,7 @@
         addObserver(this);
 
     };
-    
+
     var apt = me.AjaxController.prototype;
 
     /**
@@ -6278,16 +6278,16 @@
     apt.update = function(observable, data) {
 
         if(!data.isTimedOut) {
-            
+
             return;
         }
 
         // Unregister self from the observable.
         this.unregister(observable);
-   
+
         // Abort the request.
         this.xhr.abort();
-   
+
         // Execute callback.
         this.ontimeout();
 
@@ -6304,7 +6304,7 @@
     apt.unregister = function(observable) {
 
         if(this.isDeleted) {
-            
+
             return;
         }
 

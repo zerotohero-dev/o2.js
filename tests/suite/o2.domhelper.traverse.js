@@ -67,7 +67,7 @@
             add('o2.DomHelper.getChildren SHOULD return non-textual immediate children of an element.');
             add('o2.DomHelper.getChildren SHOULD work equally well with string IDs.');
             add('o2.DomHelper.getChildrenByClassName SHOULD get the immediate children with a given class name');
-            add('o2.DomHelper.getChildrenByClassName SHOULD work equally well with string IDs.');            
+            add('o2.DomHelper.getChildrenByClassName SHOULD work equally well with string IDs.');
             add('o2.DomHelper.getPrevious SHOULD get the previous sibling');
             add('o2.DomHelper.getPrevious SHOULD work equally well with string IDs.');
             add('o2.DomHelper.getPreviousById SHOULD get the first previous sibling by a given ID.');
@@ -79,8 +79,8 @@
             add('o2.DomHelper.getNextById SHOULD get the first next sibling by a given ID.');
             add('o2.DomHelper.getNextById SHOULD work equally well with string Ids.');
             add('o2.DomHelper.getNextWithId SHOULD get the first next sibling that has an ID.');
-            add('o2.DomHelper.getNextWithId SHOULD work equally well with string IDs.');            
-            add('o2.DomHelper.getElementsByClassName SHOULD get all the elements within the node, by a given class name.');                       
+            add('o2.DomHelper.getNextWithId SHOULD work equally well with string IDs.');
+            add('o2.DomHelper.getElementsByClassName SHOULD get all the elements within the node, by a given class name.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
 
