@@ -120,9 +120,10 @@
     };
 
     //TODO: add documentation
-    me.parent = function(elm, nodeName, shouldExcludeSelf) {
-        return me.getParent(elm, nodeNam, shouldExcludeSelf);
-    }
+    me.parent = me.closest = me.findParent = function(elm, nodeName,
+                shouldExcludeSelf) {
+        return me.getParent(elm, nodeName, shouldExcludeSelf);
+    };
 
     /**
      * @function {static} o2.DomHelper.getParentByAttribute
@@ -140,7 +141,8 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    me.getParentByAttribute = function(obj, attribute, value, shouldExcludeSelf) {
+    me.getParentByAttribute = function(obj, attribute, value,
+                shouldExcludeSelf) {
         var isExcluded = !!shouldExcludeSelf;
 
         obj = $(obj);
@@ -170,6 +172,12 @@
         }
 
         return null;
+    };
+
+    //TODO: add documentation.
+    me.findParentByAttribute = function(obj, attribute, value,
+                shouldExcludeSelf) {
+        return me.getParentByAttribute(obj, attribute, value, shouldExcludeSelf);
     };
 
     /**
@@ -214,6 +222,11 @@
         return null;
     };
 
+    //TODO: add documentation.
+    me.findParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
+        return me.getParentWithAttribute(obj, attribute, shouldExcludeSelf);
+    };
+
     /**
      * @function {static} o2.DomHelper.getParentById
      * <p>This is an alias to</p>
@@ -232,7 +245,12 @@
             return null;
         }
 
-        return me.getParentByAttribute(obj, 'id', id, isExcluded);
+        return me.getParentByAttribute(obj, kId, id, isExcluded);
+    };
+
+    //TODO: add documentation.
+    me.findParentById = function(obj, id, shouldExcludeSelf) {
+        return me.getParentById(obj, id, shouldExcludeSelf);
     };
 
     /**
@@ -254,6 +272,11 @@
         }
 
         return me.getParentWithAttribute(obj, kId, isExcluded);
+    };
+
+    //TODO: add documentation.
+    me.findParentWithId = function(obj, shouldExcludeSelf) {
+        return me.getParentWithId(obj, shouldExcludeSelf);
     };
 
     /**
@@ -338,9 +361,9 @@
     };
 
     //TODO: add documentation.
-    me.first = function(target, nodeName) {
+    me.first = me.findFirstChild = function(target, nodeName) {
         return me.getFirstChild(target, nodeName);
-    }
+    };
 
     /**
      * @function {static} o2.DomHelper.getFirstChildById
@@ -404,6 +427,11 @@
             return null;
         };
 
+        return me.getFirstChildById(target, id);
+    };
+
+    //TODO: add documentation.
+    me.findFirstChildById = function(target, id) {
         return me.getFirstChildById(target, id);
     };
 
@@ -474,6 +502,11 @@
         return me.getFirstChildWithId(target);
     };
 
+    //TODO: add documentation.
+    me.findFirstChildWithId = function(target) {
+        return me.getFirstChildWithId(target);
+    };
+
     /**
      * @function {static} o2.DomHelper.getLastChild
      *
@@ -533,9 +566,9 @@
     };
 
     //TODO: add documentation.
-    me.last = function(target, nodeName) {
+    me.last = me.findLastChild = function(target, nodeName) {
         return me.getLastChild(target, nodeName);
-    }
+    };
 
     /**
      * @function {static} o2.DomHelper.getLastChildById
@@ -572,6 +605,11 @@
         }
 
         return null;
+    };
+
+    //TODO: add documentation.
+    me.findLastChildById = function(target, id) {
+        return me.getLastChildById(target, id);
     };
 
     /**
@@ -611,6 +649,11 @@
         return null;
     };
 
+    //TODO: add documentation.
+    me.findLastChildWithId = function(target) {
+        return me.getLastChildWithId(target);
+    };
+
     /**
      * function {static} o2.DomHelper.getChildren
      *
@@ -623,26 +666,22 @@
      * <code>Array</code> if nothing is found.
      */
     me.getChildren = function(elem, nodeName) {
-
         var target = $(elem);
 
-        //
-        nodeName = nodeName ? nodeName : '';
+        nodeName = nodeName || kEmpty;
 
         var nodes = target.childNodes;
-
-        var kTextNode = me.nodeType.TEXT;
-
         var result = [];
-
+        var i = 0;
+        var len = 0;
         var node = null;
 
-        for(var i = 0, len = nodes.length; i < len; i++) {
+        for (i = 0, len = nodes.length; i < len; i++) {
             node = nodes[i];
 
-            if(node.nodeType != kTextNode) {
-                if(nodeName) {
-                    if(node.nodeName.toLowerCase() == nodeName.toLowerCase()) {
+            if (node.nodeType !== kTextNode) {
+                if (nodeName) {
+                    if (node.nodeName.toLowerCase() === nodeName.toLowerCase()) {
                         result.push(node);
                     }
                 } else {
@@ -653,13 +692,12 @@
         }
 
         return result;
-
     };
 
     //TODO: add documentation.
-    me.children = function(elm) {
+    me.children = me.findChildren = function(elm) {
         return me.getChildren(elm);
-    }
+    };
 
     /**
      * @function {static} o2.DomHelper.getChildrenByClassName
@@ -717,6 +755,11 @@
         return me.getChildrenByClassName(el, c);
     };
 
+    //TODO: add documentation.
+    me.findChildrenByClassName = function(el, c) {
+        return me.getLastChildWithId(el, c);
+    };
+
     /**
      * @function {static} o2.DomHelper.getPrevious
      *
@@ -756,9 +799,9 @@
     };
 
     //TODO: add documentation.
-    me.prev = function(elm) {
+    me.prev = me.findPrevious = function(elm) {
         return me.getPrevious(elm);
-    }
+    };
 
     /**
      * @function o2.DomHelper.getPreviousById
@@ -797,6 +840,11 @@
         return null;
     };
 
+    //TODO: add documentation.
+    me.findPreviousById = function(target, id) {
+        return me.getPreviousById(target, id);
+    };
+
     /**
      * @function {static} o2.DomHelper.getPreviousWithId
      *
@@ -831,6 +879,11 @@
         }
 
         return null;
+    };
+
+    //TODO: add documentation.
+    me.findPreviousWithId = function(target, id) {
+        return me.getPreviousWithId(target, id);
     };
 
     /**
@@ -871,7 +924,7 @@
     };
 
     //TODO: add documentation.
-    me.next = function(elm) {
+    me.next = me.findNext = function(elm) {
         return me.getNext(elm);
     };
 
@@ -911,6 +964,11 @@
         return null;
     };
 
+    //TODO: add documentation.
+    me.findNextById = function(target, id) {
+        return me.getNextById(target, id);
+    };
+
     /**
      * @function {static} o2.DomHelper.getNextWithId
      *
@@ -945,6 +1003,11 @@
         }
 
         return null;
+    };
+
+    //TODO: add documentation.
+    me.findNextWithId = function(target) {
+        return me.getNextWithId(target);
     };
 
     /**
@@ -1008,7 +1071,7 @@
         node = node.previousSibling;
 
         while (node) {
-            if (node.nodeType != kText) {
+            if (node.nodeType !== kTextNode) {
                 result.push(node);
                 node = node.previousSibling;
             }
@@ -1034,7 +1097,7 @@
         node = node.nextSibling;
 
         while (node) {
-            if (node.nodeType != kText) {
+            if (node.nodeType !== kTextNode) {
                 result.push(node);
                 node = node.nextSibling;
             }
@@ -1046,5 +1109,5 @@
     //TODO: add documentation.
     me.getAllNext = function(elm) {
         return me.nextAll(elm);
-    }
+    };
 }(this.o2, this));

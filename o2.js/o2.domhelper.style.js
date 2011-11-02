@@ -70,10 +70,21 @@
 
         for (key in style) {
             if (style.hasOwnProperty(key)) {
-                obj.style[toCamelCaseCached(key)] = style[key];
+                if (key === 'float') {
+                    obj.style.cssFloat = style[key];
+                } else {
+                    obj.style[toCamelCaseCached(key)] = style[key];
+                }
             }
         }
     };
+
+    //TODO: add documentation.
+    me.setStyle = function(obj, style) {
+        me.addStyle(obj, style);
+    };
+
+
 
     /**
      * @function {static} o2.DomHelper.getStyle
@@ -97,16 +108,18 @@
      *
      * @return the calculated <strong>style</strong> value.
      */
-    me.getStyle = function(obj, cssProperty) {
+     //TODO: modify documentation (extra param)
+    me.getStyle = function(obj, cssProperty, noForce) {
         obj = $(obj);
 
         if (!obj) {
             return null;
         }
 
-        if (document.defaultView) {
-            me.getStyle = function(obj, cssProperty) {
+        if (document.defaultView && document.defaultView.getComputedStyle) {
+            me.getStyle = function(obj, cssProperty, noForce) {
                 obj = $(obj);
+                noForce = !!noForce;
 
                 if (!obj) {
                     return null;
@@ -114,58 +127,110 @@
 
                 var defaultView = document.defaultView;
 
-                cssProperty = toCamelCase(cssProperty);
-
-                //return the property if set inline.
-                var val = obj.style[cssProperty];
-
-                if (val) {
-                    return val;
+                if(cssProperty === 'float') {
+                    cssProperty = 'cssFloat';
+                } else {
+                    cssProperty = toCamelCase(cssProperty);
                 }
 
-                if (obj.currentStyle) {
-                    return obj.currentStyle[cssProperty];
+                if(noForce) {
+                    //return the property if set inline.
+                    var val = obj.style[cssProperty];
+
+                    if (val) {
+                        return val;
+                    }
+
+                    return null;
                 }
 
-                if (defaultView.getComputedStyle) {
-                    return defaultView.getComputedStyle(obj, kEmpty
-                        ).getPropertyValue(toDashedFromCamelCase(cssProperty));
-                }
+                return defaultView.getComputedStyle(obj, kEmpty
+                    ).getPropertyValue(toDashedFromCamelCase(cssProperty));
 
-                return null;
             };
 
             return me.getStyle(obj, cssProperty);
         }
 
-        me.getStyle = function(obj, cssProperty) {
+        me.getStyle = function(obj, cssProperty, noForce) {
             obj = $(obj);
+            noForce = !!noForce;
 
             if (!obj) {
                 return;
             }
 
             var defaultView = window;
-            var camelizedCss = toCamelCase(cssProperty);
-            var val = obj.style[cssProperty];
 
-            if (val) {
-                return val;
+            if(cssProperty === 'float') {
+                cssProperty = 'cssFloat';
+            } else {
+                cssProperty = toCamelCase(cssProperty);
+            }
+
+            var camelizedCss = toCamelCase(cssProperty);
+
+            if(noForce) {
+                var val = obj.style[cssProperty];
+
+                if (val) {
+                    return val;
+                }
+
+                return null;
             }
 
             if (obj.currentStyle) {
-                return obj.currentStyle[camelizedCss];
-            }
+                var value = obj.currentStyle[camelizedCss];
+                var kRegPixelNumber = /^-?\d+(?:px)?$/i;
+                var kRegNumber = /^-?\d/;
+                var isImproper = !kRegPixelNumber.test(value) &&
+                    kRegNumber.test(value);
 
-            if (defaultView.getComputedStyle) {
-                return defaultView.getComputedStyle(obj, kEmpty
-                    ).getPropertyValue(toDashedFromCamelCase(camelizedCss));
+                //
+                // Dean Edwards:
+                //
+                // MSIE6+ has special pixelLeft/Width/Height etc properties.
+                // They represent the current pixel value of the equivalent
+                // style setting.
+                // So, if you have style.width=8em then style.pixelWidth would
+                // return the pixel equivalent. MSIE also supports an override
+                // style called runtimeStyle.
+                //
+                // Setting properties on runtimeStyle overrides all other style
+                // properties.
+                //
+                // This trick works by setting style.left and then getting MSIE
+                // to convert it by calling style.pixelLeft.
+                //
+                // To stop the element moving around the screen when we do this,
+                // we set runtimeStyle.left with the current left value. After
+                // we’ve done the conversion we set everything back to the
+                // way it was.
+                //
+                // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
+                //
+                if (isImproper) {
+                    var left = obj.style.left;
+                    var runtimeLeft = obj.runtimeStyle.left;
+
+                    obj.runtimeStyle.left = obj.currentStyle.left;
+                    obj.style.left = (value || 0);
+                    value = obj.style.pixelLeft + 'px';
+
+                    obj.style.left = left;
+                    obj.runtimeStyle.left = runtimeLeft;
+
+                    return value;
+                }
+
+                return value;
             }
 
             return null;
         };
 
-        return me.getStyle(obj, cssProperty);
+        return me.getStyle(obj, cssProperty, noForce);
     };
 
     /**
