@@ -92,13 +92,16 @@
          * @return the modified <code>function</code>.
          */
         curry : function() {
-            var args = [].slice.call(arguments);
+            var args = Array.prototype.slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
 
             return function() {
-                return fn.apply(context, args.concat(
-                    Array.prototype.slice.call(arguments)));
+                return fn.apply(context,
+                    args.concat(
+                        Array.prototype.slice.call(arguments)
+                    )
+                );
             };
         },
 
@@ -123,11 +126,12 @@
          *
          * @return the modified <code>function</code>.
          */
-        partial : function(base, fn) {
-            var args = Array.prototype.slice.call(arguments, 2);
+        partial : function() {
+            var args = Array.prototype.slice.call(arguments);
+            var context = args.shift();
+            var fn = args.shift();
 
             return function() {
-
                 var arg = 0;
                 var i = 0;
 
@@ -137,7 +141,7 @@
                     }
                 }
 
-                return fn.apply(base, args);
+                return fn.apply(context, args);
             };
         },
 
@@ -146,6 +150,9 @@
          *
          * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
          * the "<code>this</code>" reference.</p>
+         *
+         * <p><strong>bind</strong> can often be used to bind a different context
+         * to a <strong>curried</strong> function.
          * <p>Usage Example:</p>
          * <pre>
          * function test(a,b,c){ return this.number + (a*b+c); };
@@ -164,15 +171,22 @@
          *
          * @return the modified <code>function</code>.
          */
-        bind : function(base, fn) {
+        bind : function() {
             var concat = Array.prototype.concat;
             var slice = Array.prototype.slice;
-            var passedArguments = slice.call(arguments, 2);
+            var args = slice.call(arguments);
+            var context = args.shift();
+            var fn = args.shift();
+
+            if(Function.prototype.bind) {
+                return fn.bind(context, args);
+            }
 
             return function() {
-                var args = concat.call(passedArguments, slice.call(arguments));
-
-                return fn.apply(base, args);
+                return fn.apply(
+                    context,
+                    concat.call(args, slice.call(arguments))
+                );
             };
         }
     };

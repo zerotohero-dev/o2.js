@@ -112,4 +112,37 @@
             return fn.apply(context, args);
         }, interval);
     };
+
+    //TODO: add documentation.
+    me.flip = function(fn, index1, index2) {
+        return function() {
+            var temporary = arguments[index1];
+            arguments[index1] = arguments[index2];
+            arguments[index2] = temporary;
+
+            return fn.apply(this, arguments);
+        }
+    };
+
+    //TODO: add documentation.
+    me.compose = function(invoker, fn) {
+        return function() {
+            return invoker.call(this, fn.apply(this, arguments));
+        }
+    };
+
+    //TODO: add documentation.
+    me.fold = function fold(collection, fn, initial) {
+        var args = Array.prototype.splice.call(collection, 0);
+        var result = initial;
+        var i = 0;
+        var len = 0;
+
+        for(i = 0, len = arg.length; i < len; i++) {
+            result = fn(result, args[i]);
+        }
+
+        return result;
+    };
+
 }(this.o2, this));

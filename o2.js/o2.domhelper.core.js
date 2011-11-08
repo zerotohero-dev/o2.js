@@ -535,7 +535,6 @@
                 value = obj.className;
 
                 if(value !== undefined) {
-
                     return value;
                 }
             }
@@ -559,6 +558,29 @@
             }
 
             return obj[attribute] || null;
+        },
+
+        //TODO: add documentation.
+        setAttribute : function(obj, attribute, value) {
+            obj = $(obj);
+
+            if (!obj || !attribute) {
+                return;
+            }
+
+            if(attribute === 'class'  || attribute === 'className'){
+                obj.className = value;
+
+                return;
+            }
+
+            if (typeof obj.setAttribute == 'function') {
+                obj.setAttribute(attribute, value);
+
+                return;
+            }
+
+            obj[attribute] = value;
         }
     };
 }(this.o2, this.document));

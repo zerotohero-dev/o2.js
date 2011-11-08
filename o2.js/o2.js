@@ -118,7 +118,7 @@ this.o2 = {};
      * @return a collection of matching elements.
      */
     me.t = function(tagName, parent) {
-        if (parent === undefined) {
+        if (!parent) {
             parent = document;
         }
 
@@ -127,6 +127,30 @@ this.o2 = {};
         var p = parent || document;
 
         return p.getElementsByTagName(tagName);
+    };
+
+    //TODO: add documentation.
+    me.n = function(name, parent) {
+        var collection = document.getElementsByName(name);
+        var i = 0;
+        var len = 0;
+        var isParent = o2.DomHelper.isParent;
+        var result = [];
+        var item = null;
+
+        if (!parent) {
+            return collection;
+        }
+
+        for (i = 0, len = collection.length; i < len; i++) {
+            item = collection[i];
+
+            if (isParent(parent, item)) {
+                result.push(item);
+            }
+        }
+
+        return result;
     };
 
     /**

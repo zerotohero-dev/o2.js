@@ -125,6 +125,36 @@
         return me.getParent(elm, nodeName, shouldExcludeSelf);
     };
 
+    //TODO: add documentation.
+    me.isChild = function(child, parent, shouldExcludeSelf) {
+        shouldExcludeSelf == !!shouldExcludeSelf;
+
+        if (!child || !parent) {
+            return false;
+        }
+
+        if (!shouldExcludeSelf && child === parent) {
+            return true;
+        }
+
+        var node = child.parentNode;
+
+        while (node) {
+            if (node === parent) {
+                return true;
+            }
+
+            node = node.parentNode;
+        }
+
+        return false;
+    };
+
+    //TODO: add documentation.
+    me.isParent = function(parent, child, shouldExcludeSelf) {
+        return me.isChild(child, parent, shouldExcludeSelf);
+    }
+
     /**
      * @function {static} o2.DomHelper.getParentByAttribute
      *

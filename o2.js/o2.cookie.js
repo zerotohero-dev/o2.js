@@ -114,12 +114,8 @@
          * @param {Boolean} isSecure - (optional) will the cookie be used for a
          * secure connection.
          */
-        remove : function(name, path, domain, isSecure) {
-            var cookiePath = path || '/';
-            var cookieDomain = domain || null;
-            var isCookieSecure = !!isSecure;
-
-            me.Cookie.save(name, '', -1, cookiePath, cookieDomain, isCookieSecure);
+        remove : function(name, path, domain) {
+            me.Cookie.save(name, '', -1, path || '/', domain || null);
         }
 
         // removeAll makes thing too complicated if path, domain and isSecure

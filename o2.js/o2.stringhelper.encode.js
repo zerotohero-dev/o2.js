@@ -172,6 +172,7 @@
         var mapItem = null;
         var i = 0;
         var len = 0;
+        str = ['', str].join('');
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -197,6 +198,7 @@
         var mapItem = null;
         var i = 0;
         var len = 0;
+        str = ['', str].join('');
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -216,6 +218,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
+        str = ['', str].join('');
         return encodeURIComponent(str);
     };
 
@@ -229,6 +232,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.unescape = function(str) {
+        str = ['', str].join('');
         return decodeURIComponent(str);
     };
 
@@ -244,6 +248,7 @@
      */
     me.encodeSafeHtml = function(str) {
         var tmp = state.tempDiv;
+        str = ['', str].join('');
 
         if (!tmp) {
             state.tempDiv = document.createElement('div');

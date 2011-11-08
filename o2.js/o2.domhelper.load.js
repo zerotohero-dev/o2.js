@@ -72,7 +72,8 @@
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>script</strong>.
      */
-    me.loadScript = function(src) {
+    //TODO: update documentation.
+    me.loadScript = function(src, callback) {
         var s = document.createElement(kScript);
         var x = document.getElementsByTagName(kScript)[0] ||
             document.getElementsByTagName(kHead)[0];
@@ -82,6 +83,20 @@
         s.src = src;
 
         x.parentNode.insertBefore(s, x);
+
+        if(!callback) {
+            return;
+        }
+
+        //TODO: test the below callbacks in a wide spectrum of browsers:
+
+        s.onreadystatechange = function(){
+             /loaded|complete/.test(s.readyState) && callback();
+        };
+
+        s.onload = function() {
+            callback();
+        }
     };
 
     /**
@@ -95,7 +110,8 @@
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>css</strong> file.
      */
-    me.loadCss = function(src) {
+    //TODO: update documentation.
+    me.loadCss = function(src, callback) {
         var s = document.createElement(kLink);
         var x = document.getElementsByTagName(kHead)[0];
 
@@ -104,5 +120,33 @@
         s.href = src;
 
         x.appendChild(s);
+
+        if(!callback) {
+            return;
+        }
+
+        //TODO: test the below callbacks in a wide spectrum of browsers:
+
+        s.onreadystatechange = function(){
+             /loaded|complete/.test(s.readyState) && callback();
+        };
+
+        s.onload = callback;
+
+        (function check(){
+            try {
+                s.sheet.cssRule;
+            } catch(e){
+                setTimeout(check, 20);
+                return;
+            };
+            callback();
+        })();
+    };
+
+    me.loadImage = function(src, callback) {
+        var img = new Image();
+        img.onload = callback;
+        img.src = src;
     };
 }(this.o2, this, this.document));

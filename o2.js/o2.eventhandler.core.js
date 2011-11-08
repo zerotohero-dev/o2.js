@@ -53,6 +53,7 @@
         /**
          * @struct {static} o2.EventHandler.keyCode
          */
+         //TODO: move me.
         keyCode : {
 
             /**
@@ -75,16 +76,27 @@
 
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.TOP - top arrow key.
+             * o2.EventHandler.keyCode.TOP - up arrow key.
              */
             TOP : 38,
 
             /**
              * @property {static const Integer}
-             * o2.EventHandler.keyCode.BOTTOM - bottom arrow key.
+             * o2.EventHandler.keyCode.BOTTOM - down arrow key.
              */
             BOTTOM : 40,
 
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.UP - up arrow key.
+             */
+            UP : 38,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.DOWN - down arrow key.
+             */
+            DOWN : 40,
             /**
              * @property {static const Integer}
              * o2.EventHandler.keyCode.BACKSPACE - backspace key.
@@ -131,7 +143,49 @@
              * @property {static const Integer}
              * o2.EventHandler.keyCode.DELETE - DEL key.
              */
-            DELETE : 46
+            DELETE : 46,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.SPACE - SPACE key.
+             */
+            SPACE : 32,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.PAGE_UP - PAGE UP key.
+             */
+            PAGE_UP : 33,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.PAGE_DOWN - PAGE DOWN key.
+             */
+            PAGE_DOWN : 34,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.END - END key.
+             */
+            END : 35,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.HOME - HOME key.
+             */
+            HOME : 36,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.NUMPAD_ENTER - NUMPAD ENTER key.
+             */
+            NUMPAD_ENTER : 108,
+
+            /**
+             * @property {static const Integer}
+             * o2.EventHandler.keyCode.COMMA - COMMA key.
+             */
+            COMMA : 188
         },
 
         /**
@@ -408,7 +462,7 @@
                 return false;
             } : function(e) {
                 if (!e) {
-                    return;
+                    return false;
                 }
 
                 if (e.preventDefault) {
@@ -427,6 +481,17 @@
          *
          * <p>Stops the propagation of the event upwards in the DOM
          * hierarchy.</p>
+         *
+         * <p>Note that "change" event does not bubble.</p>
+         *
+         * <p>Also, events: change, submit, reset, focus, blur do not bubble
+         * in Internet Explorer.</p>
+         *
+         * <p>According to specification, "focus" and "blur" should not bubble,
+         * while "change", "submit", "reset" should.</p>
+         *
+         * <p>This behavior implemented properly in all web browsers but IE.</p>
+         *
          * <p>See {@link
          * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
          * for details.</p>
@@ -445,7 +510,7 @@
                 e.stopPropagation();
             };
 
-            // Stop event bubbling.
+            // This stops event bubbling.
             me.EventHandler.stopPropagation(evt);
         }
     };

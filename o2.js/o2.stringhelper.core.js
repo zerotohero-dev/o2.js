@@ -53,6 +53,11 @@
                 TRIM : /^\s+|\s+$/g,
                 WHITESPACE : /\s+/g
             }
+        },
+
+        formatDelimeter : {
+            start: '{',
+            end : '}'
         }
     };
 
@@ -67,12 +72,20 @@
     var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
     var kTrimRegExp = config.constants.regExp.TRIM;
 
+    var cfd = config.constants.formatDelimeter;
+
     /**
      * @class {static} o2.StringHelper
      *
      * <p>A <strong>String</strong> helper <strong>class</strong>.</p>
      */
     me.StringHelper = {
+
+        //TODO: add documentation.
+        setFormatDelimeter : function(delims) {
+            cfd.start = delims.start;
+            cfd.end = delims.end;
+        };
 
         /**
          * @function {static} o2.StringHelper.generateGuid
@@ -144,6 +157,9 @@
         format : function() {
             var args = arguments;
 
+            var kFormatStart = cfd.start;
+            var kFormatEnd = cfd.end;
+
             if (args.length === 0) {
                 return null;
             }
@@ -152,13 +168,11 @@
                 return args[0];
             }
 
-            var pattern = new RegExp(['{', '([0-', (args.length - 2),
-                '])', '}'].join(''), 'g');
+            var pattern = new RegExp([kFormatStart, '([0-', (args.length - 2),
+                '])', kFormatEnd].join(''), 'g');
             var lastMatch = null;
 
             return args[0].replace(pattern, function(match, index) {
-                lastMatch = match;
-
                 return args[+index + 1];
             });
         },
@@ -175,7 +189,7 @@
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
-            return str.replace(regExp, kEmpty);
+            return me.StringHelper.concat('', str).replace(regExp, kEmpty);
         },
 
         /**
@@ -195,9 +209,21 @@
         trim : function(str, shouldCompact) {
             shouldCompact = shouldCompact || false;
 
+            str = me.StringHelper.concat('', str);
+
             return shouldCompact ? str.replace(kWhitespaceRegExp,
                 kBlank).replace(kTrimRegExp, kEmpty) :
                 str.replace(kTrimRegExp, kEmpty);
+        },
+
+        //TODO: add documentation.
+        strip : function(str) {
+            return me.StringHelper.trim(str, false);
+        }
+
+        //TODO: add documentation.
+        truncate : function(str, len) {
+            //TODO: implement this.
         },
 
         /**
@@ -229,7 +255,8 @@
          * @see StringHelper.trim
          */
         compact : function(str) {
-            return me.StringHelper.trim(str, true);
+            return me.StringHelper.trim(
+                me.StringHelper.concat('', str), true);
         }
     };
 }(this.o2));
