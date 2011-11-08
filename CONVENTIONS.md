@@ -949,6 +949,16 @@ operators:
 
 [21]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
 
+### File, Folder and Path Naming
+
+Use **lowercase** for *files*, *folders* and *paths*.
+
+                // Incorrect: 
+                /wwwRoot/Script/mainController.js
+
+                // Correct: 
+                /wwwroot/script/maincontroller.js
+
 ### File Headers
 
 Each file (*module*) should have a descriptive header.
