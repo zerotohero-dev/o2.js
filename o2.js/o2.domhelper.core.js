@@ -269,7 +269,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.removeChildren
+         * @function {static} o2.DomHelper.empty
          *
          * <p>An alias to {@link o2.DomHelper.removeChildren}.</p>
          *
@@ -333,7 +333,7 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.createElement
+         * @function {static} o2.DomHelper.create
          *
          * <p>Creates an element with given name and attributes.</p>
          *

@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.201110121129
+	                 version 0.23.201111091143
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -161,23 +161,22 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___create"><span class="elementName">create</span></a>
                 (<span class="type">String</span>
- nodeName)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Creates a <strong>DOM</strong> node with the given
- <strong>nodeName</strong> and returns it.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___createElement"><span class="elementName">createElement</span></a>
-                (<span class="type">String</span>
  name, <span class="type">Object</span>
  attributes)
             </div>          
                 <div class="summaryItemDesc">
         <p>Creates an element with given name and attributes.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___empty"><span class="elementName">empty</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -966,45 +965,6 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     create(<span class="type">String</span>
- nodeName)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Creates a <strong>DOM</strong> node with the given
- <strong>nodeName</strong> and returns it.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            nodeName        </code>
-         - the name of the node. (like 'em', 'p',
- 'div', 'span')            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the newly created <strong>DOM</strong> element.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___createElement">
-            <span class="objType">function</span>
-            <span class="objName">createElement</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    createElement(<span class="type">String</span>
  name, <span class="type">Object</span>
  attributes)
                 </code> 
@@ -1037,6 +997,38 @@
          	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___empty">
+            <span class="objType">function</span>
+            <span class="objName">empty</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    empty(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - either the <strong>element</strong>, or the
+ <strong>id</strong> of it to process.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
                                                                                     <h3>
         <a name="___getAttribute">
             <span class="objType">function</span>
@@ -2120,7 +2112,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the <strong>DOM</strong> node, or the <strong>id</strong> to hide.            </div>   
+         - the <strong>DOM</strong> node, or the
+ <strong>id</strong> to hide.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2581,7 +2574,8 @@
                                                 <div class="param paddedDetails">
         <code>
             isRecursive        </code>
-         - if <code>true</code> do the same
+         - (Optional, default to
+ <code>true</code>) if <code>true</code> do the same
  process for the child nodes of <code>elm</code> as well.            </div>   
                                         </div>
                 </div>
@@ -2651,7 +2645,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the element, or the <strong>id</strong> of it, to scroll.            </div>   
+         - the element, or the <strong>id</strong> of it, to
+ scroll.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2682,7 +2677,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the element, or the <strong>id</strong> of the element, to scroll.            </div>   
+         - the element, or the <strong>id</strong> of the
+ element, to scroll.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2731,7 +2727,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the element, or the <strong>id</strong> of it, to scroll.            </div>   
+         - the element, or the <strong>id</strong> of it, to
+ scroll.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2780,7 +2777,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the <strong>DOM</strong> node, or the <strong>id</strong> of it, to show.            </div>   
+         - the <strong>DOM</strong> node, or the
+ <strong>id</strong> of it, to show.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2865,16 +2863,13 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
-                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
-                            </div>                              
-                                                                                                                                                                                                                                                                                                                            <div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
                                 <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                         <div>
                                 <a href="physical/file-o2.js.html">o2.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                 </ul>
             </div>
         </li>       
@@ -2916,6 +2911,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-load.html">domhelper.load</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
@@ -2979,6 +2977,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-timer.html">timer</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-try.html">try</a>

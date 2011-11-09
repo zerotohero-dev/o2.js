@@ -308,6 +308,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "map",
+           fullName : "o2.CollectionHelper.map",
+           summary : "static function  map(Object collection, Function evaluator, Object selfRef)",
+           ref : "logical/o2/CollectionHelper.html#___map",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "merge",
            fullName : "o2.CollectionHelper.merge",
            summary : "static function  merge(Object toObj, Object fromObj, Boolean isRecursive)",
@@ -652,17 +661,17 @@
        {
            localName : "create",
            fullName : "o2.DomHelper.create",
-           summary : "static function  create(String nodeName)",
+           summary : "static function  create(String name, Object attributes)",
            ref : "logical/o2/DomHelper.html#___create",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
        } ,         
        {
-           localName : "createElement",
-           fullName : "o2.DomHelper.createElement",
-           summary : "static function  createElement(String name, Object attributes)",
-           ref : "logical/o2/DomHelper.html#___createElement",
+           localName : "empty",
+           fullName : "o2.DomHelper.empty",
+           summary : "static function  empty(Object elm)",
+           ref : "logical/o2/DomHelper.html#___empty",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -1325,6 +1334,15 @@
            elementType : "variable"
        } ,         
        {
+           localName : "COMMA",
+           fullName : "o2.EventHandler.keyCode.COMMA",
+           summary : "static property const Integer COMMA",
+           ref : "logical/o2/EventHandler/keyCode.html#___COMMA",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
            localName : "CTRL",
            fullName : "o2.EventHandler.keyCode.CTRL",
            summary : "static property const Integer CTRL",
@@ -1338,6 +1356,24 @@
            fullName : "o2.EventHandler.keyCode.DELETE",
            summary : "static property const Integer DELETE",
            ref : "logical/o2/EventHandler/keyCode.html#___DELETE",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "DOWN",
+           fullName : "o2.EventHandler.keyCode.DOWN",
+           summary : "static property const Integer DOWN",
+           ref : "logical/o2/EventHandler/keyCode.html#___DOWN",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "END",
+           fullName : "o2.EventHandler.keyCode.END",
+           summary : "static property const Integer END",
+           ref : "logical/o2/EventHandler/keyCode.html#___END",
            parent : "o2.EventHandler.keyCode",
            type : "property",
            elementType : "variable"
@@ -1361,10 +1397,46 @@
            elementType : "variable"
        } ,         
        {
+           localName : "HOME",
+           fullName : "o2.EventHandler.keyCode.HOME",
+           summary : "static property const Integer HOME",
+           ref : "logical/o2/EventHandler/keyCode.html#___HOME",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
            localName : "LEFT",
            fullName : "o2.EventHandler.keyCode.LEFT",
            summary : "static property const Integer LEFT",
            ref : "logical/o2/EventHandler/keyCode.html#___LEFT",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "NUMPAD_ENTER",
+           fullName : "o2.EventHandler.keyCode.NUMPAD_ENTER",
+           summary : "static property const Integer NUMPAD_ENTER",
+           ref : "logical/o2/EventHandler/keyCode.html#___NUMPAD_ENTER",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "PAGE_DOWN",
+           fullName : "o2.EventHandler.keyCode.PAGE_DOWN",
+           summary : "static property const Integer PAGE_DOWN",
+           ref : "logical/o2/EventHandler/keyCode.html#___PAGE_DOWN",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "PAGE_UP",
+           fullName : "o2.EventHandler.keyCode.PAGE_UP",
+           summary : "static property const Integer PAGE_UP",
+           ref : "logical/o2/EventHandler/keyCode.html#___PAGE_UP",
            parent : "o2.EventHandler.keyCode",
            type : "property",
            elementType : "variable"
@@ -1388,6 +1460,15 @@
            elementType : "variable"
        } ,         
        {
+           localName : "SPACE",
+           fullName : "o2.EventHandler.keyCode.SPACE",
+           summary : "static property const Integer SPACE",
+           ref : "logical/o2/EventHandler/keyCode.html#___SPACE",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
            localName : "TAB",
            fullName : "o2.EventHandler.keyCode.TAB",
            summary : "static property const Integer TAB",
@@ -1401,6 +1482,15 @@
            fullName : "o2.EventHandler.keyCode.TOP",
            summary : "static property const Integer TOP",
            ref : "logical/o2/EventHandler/keyCode.html#___TOP",
+           parent : "o2.EventHandler.keyCode",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
+           localName : "UP",
+           fullName : "o2.EventHandler.keyCode.UP",
+           summary : "static property const Integer UP",
+           ref : "logical/o2/EventHandler/keyCode.html#___UP",
            parent : "o2.EventHandler.keyCode",
            type : "property",
            elementType : "variable"
@@ -2105,6 +2195,15 @@
            ref : "logical/o2/UnitTest.html#___UnitTest",
            parent : "o2.UnitTest",
            type : "constructor",
+           elementType : "function"
+       } ,         
+       {
+           localName : "terminate",
+           fullName : "o2.UnitTest.terminate",
+           summary : "static function  terminate()",
+           ref : "logical/o2/UnitTest.html#___terminate",
+           parent : "o2.UnitTest",
+           type : "function",
            elementType : "function"
        } ,         
        {

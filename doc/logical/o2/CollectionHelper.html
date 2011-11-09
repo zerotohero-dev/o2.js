@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.201110121129
+	                 version 0.23.201111091143
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -174,6 +174,21 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the index of the element in the given <code>Array</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___map"><span class="elementName">map</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type">Function</span>
+ evaluator, <span class="type">Object</span>
+ selfRef)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Executes the <strong>evaluator</strong> over every element of the
+ <strong>collection</strong> and returns an <code>Array</code> of
+ mapped elements</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -504,6 +519,56 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___map">
+            <span class="objType">function</span>
+            <span class="objName">map</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    map(<span class="type">Object</span>
+ collection, <span class="type">Function</span>
+ evaluator, <span class="type">Object</span>
+ selfRef)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Executes the <strong>evaluator</strong> over every element of the
+ <strong>collection</strong> and returns an <code>Array</code> of
+ mapped elements</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            collection        </code>
+         - The collection to map.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            evaluator        </code>
+         - A <code>Function</code> reference in the
+ form fn(currentItem, itemIndex, selfRef).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            selfRef        </code>
+         - A reference to the collection itself.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             an <code>Array</code> of mapped items.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___merge">
             <span class="objType">function</span>
             <span class="objName">merge</span>            
@@ -640,16 +705,13 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
-                                <a href="physical/file-o2/domhelper/load.js.html">o2.domhelper.load.js</a>
-                            </div>                              
-                                                                                                                                                                                                                                                                                                                            <div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
                                 <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                         <div>
                                 <a href="physical/file-o2.js.html">o2.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                 </ul>
             </div>
         </li>       
@@ -691,6 +753,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-form.html">domhelper.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-load.html">domhelper.load</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-ready.html">domhelper.ready</a>
@@ -754,6 +819,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/module-template.html">template</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-timer.html">timer</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-try.html">try</a>
