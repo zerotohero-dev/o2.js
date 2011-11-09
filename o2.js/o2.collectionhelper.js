@@ -454,7 +454,20 @@
             return ar;
         },
 
-        //TODO: add documentation:
+        /**
+         * @function {static} o2.CollectionHelper.map
+         *
+         * <p>Executes the <strong>evaluator</strong> over every element of the
+         * <strong>collection</strong> and returns an <code>Array</code> of
+         * mapped elements</p>
+         *
+         * @param {Object} collection - The collection to map.
+         * @param {Function} evaluator - A <code>Function</code> reference in the
+         * form fn(currentItem, itemIndex, selfRef).
+         * @param {Object} selfRef - A reference to the collection itself.
+         *
+         * @return an <code>Array</code> of mapped items.
+         */
         map : function(collection, evaluator, selfRef) {
             var result = [];
             var evaluated = null;
@@ -474,9 +487,5 @@
 
             return result;
         }
-
-
-
-    }
     };
 }(this.o2, this));

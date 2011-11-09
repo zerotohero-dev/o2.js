@@ -22,7 +22,7 @@
      * Common constants.
      */
     var kFunction = 'function';
-    var kString = 'string';
+ //   var kString = 'string';
     var kClass = 'class';
     var kClassName = 'className';
     var kStyle = 'style';
@@ -166,29 +166,6 @@
         },
 
         /**
-         * @function {static} o2.DomHelper.create
-         *
-         * <p>Creates a <strong>DOM</strong> node with the given
-         * <strong>nodeName</strong> and returns it.</p>
-         *
-         * @param {String} nodeName - the name of the node. (like 'em', 'p',
-         * 'div', 'span')
-
-         * @return the newly created <strong>DOM</strong> element.
-         */
-        create : function(nodeName) {
-            if (!nodeName) {
-                return null;
-            }
-
-            if (typeof nodeName !== kString) {
-                return null;
-            }
-
-            return document.createElement(nodeName);
-        },
-
-        /**
          * @function {static} o2.DomHelper.removeNode
          *
          * <p>Removes the element from the <strong>DOM</strong> flow.</p>
@@ -213,7 +190,7 @@
             elm.parentNode.removeChild(elm);
 
             return elm;
-        }
+        },
 
         /**
          * @function {static} o2.DomHelper.removeEmptyTextNodes
@@ -419,7 +396,7 @@
         //TODO: add documentation.
         createElement : function(name, attributes) {
             return framework.DomHelper.create(name, attributes);
-        }
+        },
 
         /**
          * @function {static} o2.DomHelper.prepend
@@ -574,7 +551,7 @@
                 return;
             }
 
-            if (typeof obj.setAttribute == 'function') {
+            if (typeof obj.setAttribute === 'function') {
                 obj.setAttribute(attribute, value);
 
                 return;

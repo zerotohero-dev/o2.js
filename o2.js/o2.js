@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.201111081140
+ * @version 0.23.201111091143
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -80,7 +80,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '201111081140';
+    me.build = '201111091143';
 
     /**
      * @function {static} o2.$
@@ -134,7 +134,7 @@ this.o2 = {};
         var collection = document.getElementsByName(name);
         var i = 0;
         var len = 0;
-        var isParent = o2.DomHelper.isParent;
+        var isParent = me.DomHelper.isParent;
         var result = [];
         var item = null;
 

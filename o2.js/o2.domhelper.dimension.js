@@ -19,6 +19,7 @@
      * Aliases.
      */
     var me = framework.DomHelper;
+    var $ = framework.$;
     var concat = framework.StringHelper.concat;
 
     /*
@@ -187,19 +188,17 @@
     me.getDimension = function(obj) {
         obj = $(obj);
 
-        if (!obj || obj.offsetWidth != undefined) {
+        if (!obj || obj.offsetWidth !== undefined) {
             return {
                 width : 0,
                 height : 0
             };
         }
 
-        if(!)
-
         return {
             width : obj.offsetWidth,
             height : obj.offsetHeight
-        }
+        };
     };
 
     me.getWidth = function(obj) {
@@ -226,8 +225,8 @@
         // we can only change the element's width through it's style
         // collection.
 
-        if (obj.offsetWidth != undefined) {
-            me.setStyle(obj, kWidth, concat(width, kPixel);
+        if (obj.offsetWidth !== undefined) {
+            me.setStyle(obj, kWidth, concat(width, kPixel));
             difference = obj.offsetWidth - width;
         }
 
@@ -254,8 +253,8 @@
         var difference = 0;
         var cssHeight = 0;
 
-        if (obj.offsetWidth != undefined) {
-            me.setStyle(obj, kHeight, concat(height, kPixel);
+        if (obj.offsetWidth !== undefined) {
+            me.setStyle(obj, kHeight, concat(height, kPixel));
             difference = obj.offsetHeight - height;
         }
 
@@ -284,7 +283,9 @@
         me.setHeight(obj, dimension.height);
     };
 
-    me.getOffset = function(obj) {
+    //TODO: complete me.
+
+    me.getOffset = function(/*obj*/) {
 
     };
 
@@ -292,15 +293,15 @@
         return me.getOffset(obj);
     };
 
-    me.getOffsetHeight = function(obj) {
+    me.getOffsetHeight = function(/*obj*/) {
 
     };
 
     me.offsetHeight = function(obj) {
         return me.getOffsetHeight(obj);
-    }
+    };
 
-    me.getOffsetWidth = function(obj) {
+    me.getOffsetWidth = function(/*obj*/) {
 
     };
 

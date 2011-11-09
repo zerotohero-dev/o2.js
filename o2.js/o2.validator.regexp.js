@@ -40,6 +40,13 @@
         }
     };
 
+    /*
+     * Common regular expressions.
+     */
+    var kEmailRegExp = config.constants.regExp.EMAIL;
+    var kUrlRegExp = config.constants.regExp.URL;
+    var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
+
     /**
      * @function {static} o2.Validator.isEmail
      *
@@ -58,11 +65,12 @@
      * registered user, for example.).</p>
      *
      * @param {String} mail - the <strong>e-mail</strong> address to test.
+     *
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
      * potentially valid e-mail, <code>false</code> otherwise.
      */
     me.isEmail = function(mail) {
-        return (config.constants.regExp.EMAIL).test(mail);
+        return kEmailRegExp.test(mail);
     };
 
     /**
@@ -72,11 +80,12 @@
      * address.</p>
      *
      * @param {String} url - the address to check.
+     *
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
      * <code>false</code> otherwise.
      */
     me.isValidUrl = function(url) {
-        return (config.constants.regExp.URL).test(url);
+        return kUrlRegExp.test(url);
     };
 
     /**
@@ -86,10 +95,11 @@
      * characters.</p>
      *
      * @param {String} text - the text to check.
+     *
      * @return <code>true</code> if the argument consists of only whitespace
      * characters, <code>false</code> otherwise.
      */
     me.isWhitespace = function(text) {
-        return (config.constants.regExp.WHITESPACE).test(text);
+        return kWhitespaceRegExp.test(text);
     };
 }(this.o2));

@@ -49,6 +49,16 @@
      * Common constants.
      */
     var kYmdArgumentLength = 3;
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var kArray = config.constants.ecmaScriptType.ARRAY;
+    var kBoolean = config.constants.ecmaScriptType.BOOLEAN;
+    var kDate = config.constants.ecmaScriptType.DATE;
+    var kFunction = config.constants.ecmaScriptType.FUNCTION;
+    var kNumber = config.constants.ecmaScriptType.NUMBER;
+    var kObject = config.constants.ecmaScriptType.OBJECT;
+    var kRegExp = config.constants.ecmaScriptType.REGEXP;
+    var kString = config.constants.ecmaScriptType.STRING;
+    var kArguments = config.constants.ecmaScriptType.ARGUMENTS;
 
     /**
      * @function {private} o2.Validator.is
@@ -91,7 +101,7 @@
          * otherwise.
          */
         isArray : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.ARRAY);
+            return is(obj, kArray);
         },
 
         /**
@@ -105,7 +115,7 @@
          * otherwise.
          */
         isBoolean : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.BOOLEAN);
+            return is(obj, kBoolean);
         },
 
         /**
@@ -123,7 +133,6 @@
          */
         isDate : function(objYear, objMonth, objDay) {
             if (arguments.length === kYmdArgumentLength) {
-                var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
                 var maxDay = 0;
                 var year = objYear;
                 var month = objMonth;
@@ -145,7 +154,7 @@
                 return true;
             }
 
-            return is(objYear, config.constants.ecmaScriptType.DATE);
+            return is(objYear, kDate);
         },
 
         /**
@@ -158,7 +167,7 @@
          * <code>false</code> otherwise.
          */
         isFunction : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.FUNCTION);
+            return is(obj, kFunction);
         },
 
         /**
@@ -172,7 +181,7 @@
          * otherwise.
          */
         isNumber : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.NUMBER);
+            return is(obj, kNumber);
         },
 
         /**
@@ -185,7 +194,7 @@
          * <code>false</code> otherwise.
          */
         isObject : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.OBJECT);
+            return is(obj, kObject);
         },
 
         /**
@@ -199,7 +208,7 @@
          * otherwise.
          */
         isRegExp : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.REGEXP);
+            return is(obj, kRegExp);
         },
 
         /**
@@ -211,7 +220,7 @@
          * @return true if obj is a String, false otherwise.
          */
         isString : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.STRING);
+            return is(obj, kString);
         },
 
         /**
@@ -224,7 +233,7 @@
          * <code>false</code> otherwise.
          */
         isArguments : function(obj) {
-            return is(obj, config.constants.ecmaScriptType.ARGUMENTS);
+            return is(obj, kArguments);
         }
     };
 }(this.o2));

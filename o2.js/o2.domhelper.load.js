@@ -16,9 +16,10 @@
     /*
      * Aliases.
      */
-    var me = framework.DomHelper
+    var me = framework.DomHelper;
     var nill = framework.nill;
     var Image = window.Image;
+    var setTimeout = window.setTimeout;
 
     /*
      * Common strings.
@@ -90,13 +91,15 @@
 
         //TODO: test the below callbacks in a wide spectrum of browsers:
 
-        s.onreadystatechange = function(){
-             /loaded|complete/.test(s.readyState) && callback();
+        s.onreadystatechange = function() {
+            if((/loaded|complete/).test(s.readyState)) {
+                callback();
+            }
         };
 
         s.onload = function() {
             callback();
-        }
+        };
     };
 
     /**
@@ -128,20 +131,24 @@
         //TODO: test the below callbacks in a wide spectrum of browsers:
 
         s.onreadystatechange = function(){
-             /loaded|complete/.test(s.readyState) && callback();
+            if(/loaded|complete/.test(s.readyState)) {
+                callback();
+            }
         };
 
         s.onload = callback;
 
         (function check(){
             try {
-                s.sheet.cssRule;
+                var temp = null;
+                temp = s.sheet.cssRule;
             } catch(e){
                 setTimeout(check, 20);
                 return;
-            };
+            }
+
             callback();
-        })();
+        }());
     };
 
     me.loadImage = function(src, callback) {

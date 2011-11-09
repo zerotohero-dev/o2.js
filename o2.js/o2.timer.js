@@ -17,14 +17,18 @@
     var timers = {};
     var kPrefix = 't';
 
+    var concat = framework.StringHelper.concat;
+
     /*
     o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
     o2.Timer.stop(kCheckId);
     o2.Timer.start(kCheckId);
      */
 
+    //TODO: add documentation.
     framework.Timer = {
 
+        //TODO: add documentation.
         set : function(id, delegate, timeout, options) {
             window.clearTimeout(id);
 
@@ -35,9 +39,9 @@
                 delete timers[timerId];
             }
 
-            options = options || {}
+            options = options || {};
 
-            if(options.start === undefined) {
+            if (options.start === undefined) {
                 options.start = true;
             }
 
@@ -51,18 +55,19 @@
 
             timers[concat(kPrefix, id)] = {};
 
-            var shouldStrat = options.start;
+            var shouldStart = options.start;
 
-            if(!!shouldStart) {
+            if (!!shouldStart) {
                 framework.Timer.start(id);
             }
         },
 
+        //TODO: add documentation.
         start: function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
             if (meta) {
-                if(meta.shouldRepeat) {
+                if (meta.shouldRepeat) {
                     window.clearInterval(meta.id);
                     meta.id = window.setInterval(function(){
                         meta.delegate();
@@ -78,11 +83,12 @@
             }
         },
 
+        //TODO: add documentation.
         stop: function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
             if (meta) {
-                if(meta.shouldRepeat) {
+                if (meta.shouldRepeat) {
                     window.clearInterval(meta.id);
 
                     return;
@@ -91,8 +97,5 @@
                 window.clearTimeout(meta.id);
             }
         }
-
-
     };
-
 }(this.o2, this));

@@ -6,9 +6,9 @@
 if (typeof jgdoc == 'undefined')
 {
     jgdoc = {}
-    
+
     jgdoc._dataHandlers = [];
-    
+
     jgdoc.setData = function(data)
     {
         for (var i = 0; i < jgdoc._dataHandlers.length; i++)
@@ -18,7 +18,7 @@ if (typeof jgdoc == 'undefined')
     }
 }
 
-jgdoc.Searcher = 
+jgdoc.Searcher =
 {
     initialize : function()
     {
@@ -35,7 +35,7 @@ jgdoc.Searcher =
         this.addListener(window, 'resize', this.dispatcher);
         var width = this._searchBox.offsetWidth - 4;
         this._searchPanel.style.width = width + 'px';
-        
+
         /*var node = this._searchBox;
         var current = 0;
         var currentTop = 0;
@@ -45,12 +45,12 @@ jgdoc.Searcher =
             currentTop += node.offsetTop;
             node = node.offsetParent;
         }
-        
+
         this._searchPanel.style.left = current + 'px';*/
         this.positionBox();
         return this;
     },
-    
+
     positionBox : function()
     {
         var node = this._searchBox;
@@ -62,22 +62,22 @@ jgdoc.Searcher =
             currentTop += node.offsetTop;
             node = node.offsetParent;
         }
-        
+
         this._searchPanel.style.left = current + 'px';
         this._searchPanel.style.top = (currentTop + this._searchBox.offsetHeight) + "px";
-    	
+
     },
-    
+
     _getEvent : function(event)
     {
         return window.event? window.event : event;
     },
-    
+
     _getTarget : function(event)
     {
         return event.target || event.srcElement
     },
-    
+
     addClass : function(element, className)
     {
     	var s = element.className;
@@ -92,7 +92,7 @@ jgdoc.Searcher =
     	a.push(className);
     	element.className = a.join(' ');
     },
-    
+
     removeClass : function(element, className)
     {
         var s = element.className;
@@ -106,33 +106,33 @@ jgdoc.Searcher =
             }
         }
         element.className = a.join(' ');
-    	
+
     },
-    
+
     dispatcher : function(event)
-    {   
-        if (this != jgdoc.Searcher) 
+    {
+        if (this != jgdoc.Searcher)
         {
             arguments.callee.apply(jgdoc.Searcher, arguments)
             return;
-        }        
+        }
         event = this._getEvent(event);
         var type = event.type;
         var handler = "on" + type;
         this[handler](event, this._getTarget(event));
     },
-    
+
     onclick : function(event, target)
     {
     	// workaround for IE bug
         window.location.href = target.getAttribute("href", 1);
     },
-    
+
     onmouseover : function(event, target)
     {
         this.selectItem(target.index);
     },
-    
+
     onresize : function(event, target)
     {
     	if (this._searchPanel.style.display != 'none')
@@ -140,28 +140,28 @@ jgdoc.Searcher =
     		this.positionBox();
     	}
     },
-    
+
     onmouseout : function(event, target)
     {
         this.unselectItem(target.index);
     },
-    
+
     onfocus : function(event, target)
     {
     	this._searchPanel.style.display = '';
     	this.positionBox();
     },
-    
+
     onblur : function(event, target)
     {
     	var athis = this;
     	window.setTimeout(function()
     	{
-            athis._searchPanel.style.display = 'none';    		
+            athis._searchPanel.style.display = 'none';
     	}, 300);
-        
+
     },
-    
+
     selectItem : function(index)
     {
         if (index != this._currentItem)
@@ -173,7 +173,7 @@ jgdoc.Searcher =
             this._info.innerHTML = text;
         }
     },
-    
+
     unselectItem : function(index)
     {
         this._currentItem = -1;
@@ -181,16 +181,16 @@ jgdoc.Searcher =
         this.removeClass(item, 'jgdSelectedItem');
         this._info.innerHTML = 'No selection';
     },
-    
+
     openItem : function(name)
     {
-    	
+
     },
-   
+
 
     onTimer : function()
     {
-        if (this != jgdoc.Searcher) 
+        if (this != jgdoc.Searcher)
         {
             arguments.callee.apply(jgdoc.Searcher, arguments)
             return;
@@ -202,14 +202,14 @@ jgdoc.Searcher =
             this.redraw();
         }
     },
-    
+
     setData : function(data)
     {
         this._data = data;
         this.redraw();
         //this._searchBox.focus();
     },
-    
+
     addListener : function(element, eventName, handler)
     {
         if (element.addEventListener)
@@ -221,7 +221,7 @@ jgdoc.Searcher =
             element.attachEvent('on' + eventName, handler);
         }
     },
-    
+
     removeListener : function(element, eventName, handler)
     {
         if (element.removeEventListener)
@@ -232,8 +232,8 @@ jgdoc.Searcher =
         {
             element.detachEvent('on' + eventName, handler);
         }
-    },    
-    
+    },
+
     findMatches : function()
     {
         var result = [];
@@ -247,12 +247,12 @@ jgdoc.Searcher =
                 {
                     result.push(item);
                 }
-            } 
+            }
         }
         return result;
     },
-    
-    
+
+
     clearItem : function(item)
     {
        item._data = null;
@@ -260,7 +260,7 @@ jgdoc.Searcher =
        this.removeListener(item, 'mouseover', this.dispatcher);
        this.removeListener(item, 'mouseout', this.dispatcher);
     },
-    
+
     clear : function()
     {
         for (var i = 0; i < this._currentItems.length; i++)
@@ -271,13 +271,13 @@ jgdoc.Searcher =
         this._searchResults.innerHTML = "";
         this._currentItem = -1;
     },
-    
-    
+
+
     createItem : function(item, index)
     {
         var d1 = document.createElement("div");
         d1.innerHTML = "<a href='" + item.ref + "'>" + item.fullName + "</a>";
-        d = d1.firstChild; 
+        d = d1.firstChild;
         /*d.href = item.ref;
         item.ref = d.href;*/
         d.className = "searchItem";
@@ -288,10 +288,10 @@ jgdoc.Searcher =
         this.addListener(d, 'click', this.dispatcher);
         this.addListener(d, 'mouseover', this.dispatcher);
         this.addListener(d, 'mouseout', this.dispatcher);
-        //todo - set listeners
+
         return d;
     },
-    
+
     redraw : function()
     {
         this.clear();
@@ -311,12 +311,12 @@ jgdoc.Searcher =
            this._searchResults.innerHTML = s;
         }
     },
-    
+
     start : function()
     {
 	    var instance = jgdoc.Searcher.initialize();
 	    instance.setData([]);
-	    instance._timer = window.setInterval(instance.onTimer, 100);    
+	    instance._timer = window.setInterval(instance.onTimer, 100);
     }
 }
 

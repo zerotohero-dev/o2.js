@@ -13,7 +13,7 @@
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-(function(framework, window, document) {
+(function(framework, document) {
    'use strict';
 
     /*
@@ -159,8 +159,6 @@
             if (!obj) {
                 return;
             }
-
-            var defaultView = window;
 
             if(cssProperty === 'float') {
                 cssProperty = 'cssFloat';
@@ -351,4 +349,4 @@
         delete obj[[myName, kOldDisplay].join(kEmpty)];
     };
 
-}(this.o2, this, this.document));
+}(this.o2, this.document));

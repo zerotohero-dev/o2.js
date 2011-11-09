@@ -85,7 +85,7 @@
         setFormatDelimeter : function(delims) {
             cfd.start = delims.start;
             cfd.end = delims.end;
-        };
+        },
 
         /**
          * @function {static} o2.StringHelper.generateGuid
@@ -170,10 +170,12 @@
 
             var pattern = new RegExp([kFormatStart, '([0-', (args.length - 2),
                 '])', kFormatEnd].join(''), 'g');
-            var lastMatch = null;
+//            var lastMatch = null;
 
             return args[0].replace(pattern, function(match, index) {
-                return args[+index + 1];
+                var currentMatch = null;
+                currentMatch = match;
+                return args[index + 1];
             });
         },
 
@@ -217,12 +219,7 @@
         },
 
         //TODO: add documentation.
-        strip : function(str) {
-            return me.StringHelper.trim(str, false);
-        }
-
-        //TODO: add documentation.
-        truncate : function(str, len) {
+        truncate : function(/*str, len*/) {
             //TODO: implement this.
         },
 

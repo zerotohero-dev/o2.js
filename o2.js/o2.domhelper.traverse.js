@@ -127,7 +127,7 @@
 
     //TODO: add documentation.
     me.isChild = function(child, parent, shouldExcludeSelf) {
-        shouldExcludeSelf == !!shouldExcludeSelf;
+        shouldExcludeSelf = (!!shouldExcludeSelf);
 
         if (!child || !parent) {
             return false;
@@ -153,7 +153,7 @@
     //TODO: add documentation.
     me.isParent = function(parent, child, shouldExcludeSelf) {
         return me.isChild(child, parent, shouldExcludeSelf);
-    }
+    };
 
     /**
      * @function {static} o2.DomHelper.getParentByAttribute
