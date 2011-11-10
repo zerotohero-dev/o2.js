@@ -168,14 +168,13 @@
                 return args[0];
             }
 
-            var pattern = new RegExp([kFormatStart, '([0-', (args.length - 2),
-                '])', kFormatEnd].join(''), 'g');
-//            var lastMatch = null;
+            var pattern = new RegExp([kFormatStart, '([0-9]+)',
+                kFormatEnd].join(''), 'g');
 
             return args[0].replace(pattern, function(match, index) {
                 var currentMatch = null;
                 currentMatch = match;
-                return args[index + 1];
+                return args[(+index) + 1];
             });
         },
 
