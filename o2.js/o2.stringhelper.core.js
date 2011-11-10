@@ -72,7 +72,7 @@
     var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
     var kTrimRegExp = config.constants.regExp.TRIM;
 
-    var cfd = config.constants.formatDelimeter;
+    var cfd = config.formatDelimeter;
 
     /**
      * @class {static} o2.StringHelper
