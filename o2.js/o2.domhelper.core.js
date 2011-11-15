@@ -514,7 +514,7 @@
         /**
          * @function {static} o2.DomHelper.getOffsetLeft
          *
-         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</p>
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
          *
          * @see o2.DomHelper.getOffset
          */
@@ -525,7 +525,7 @@
         /**
          * @function {static} o2.DomHelper.offsetLeft
          *
-         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</p>
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
          *
          * @see o2.DomHelper.getOffset
          */
@@ -536,7 +536,7 @@
         /**
          * @function {static} o2.DomHelper.getOffsetTop
          *
-         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</p>
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
          *
          * @see o2.DomHelper.getOffset
          */
@@ -547,7 +547,7 @@
         /**
          * @function {static} o2.DomHelper.offsetTop
          *
-         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</p>
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
          *
          * @see o2.DomHelper.getOffset
          */

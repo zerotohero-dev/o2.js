@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1320909763#
+	                 version 0.23.#1321342646#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -116,6 +116,21 @@
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___compose"><span class="elementName">compose</span></a>
+                (<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ fn)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.    </div>  
+                            </div>
+                    <div class="summaryItem">
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -145,6 +160,35 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Defers a <code>Function</code> for a specified amount of time.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___flip"><span class="elementName">flip</span></a>
+                (<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Flips two arguments of the given <code>function</code>, and returns a
+ new <code>function</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___fold"><span class="elementName">fold</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ initial)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Runs through the collection, accumulating the reuslts by executing
+ <code>result = fn(result, currentItem)</code>, where <strong>currentItem</strong>
+ is the item of the collection at the current index.    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -287,6 +331,51 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___compose">
+            <span class="objType">function</span>
+            <span class="objName">compose</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    compose(<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ fn)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            invoker        </code>
+         - the invoker.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the invokee.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___curry">
             <span class="objType">function</span>
             <span class="objName">curry</span>            
@@ -360,6 +449,97 @@
         <code>
             args        </code>
          - arguments to pass to the function.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___flip">
+            <span class="objType">function</span>
+            <span class="objName">flip</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    flip(<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Flips two arguments of the given <code>function</code>, and returns a
+ new <code>function</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the delegate to flip arguments of.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index1        </code>
+         - the index of the first argument.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index2        </code>
+         - the index of the second argument.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___fold">
+            <span class="objType">function</span>
+            <span class="objName">fold</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    fold(<span class="type">Object</span>
+ collection, <span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ initial)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Runs through the collection, accumulating the reuslts by executing
+ <code>result = fn(result, currentItem)</code>, where <strong>currentItem</strong>
+ is the item of the collection at the current index.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            collection        </code>
+         - The collection to iterate.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the <code>Function</code> to map.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            initial        </code>
+         - the initial seed.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -465,7 +645,13 @@
                                         </div>
                 </div>
                     </div>
-                                                    <hr/>       
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the overloaded <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                                                                     <h3>
         <a name="___partial">
             <span class="objType">function</span>
@@ -557,13 +743,14 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the applied <code>function</code>.
+	            	             the applied <code>Function</code>.
+
  	            	        </div>
         </div>      
             	<div class="throws">
 	        <span class="descSection">Throws:</span><br/>
 	        	                <div class="paddedDetails">excpetion if all of the arguments is not provided to the
- <code>function</code>.</div>
+ <code>Function</code>.</div>
 	                </div>
                                             <hr/>       
                                     </div>
@@ -606,7 +793,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             <div>
                                 <a href="physical/file-o2/effect.js.html">o2.effect.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                                                                                                                                            <div>
                                 <a href="physical/file-o2.js.html">o2.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </li>
@@ -666,6 +853,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-traverse.html">domhelper.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/eventhandler/module-constants.html">eventhandler.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/eventhandler/module-core.html">eventhandler.core</a>

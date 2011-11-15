@@ -260,7 +260,7 @@
     };
 
     /**
-     * @function o2.DomHelper.findParentbyAttribute
+     * @function o2.DomHelper.findParentByAttribute
      *
      * <p>An alias to {@link o2.DomHelper.getParentByAttribute}.</p>
      *
