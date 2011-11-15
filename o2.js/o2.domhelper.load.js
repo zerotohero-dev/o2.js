@@ -72,8 +72,9 @@
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>script</strong>.
+     * @param {Function} callback - the callback to execute when the load
+     * operation completes.
      */
-    //TODO: update documentation.
     me.loadScript = function(src, callback) {
         var s = document.createElement(kScript);
         var x = document.getElementsByTagName(kScript)[0] ||
@@ -88,8 +89,6 @@
         if(!callback) {
             return;
         }
-
-        //TODO: test the below callbacks in a wide spectrum of browsers:
 
         s.onreadystatechange = function() {
             if((/loaded|complete/).test(s.readyState)) {
@@ -112,8 +111,9 @@
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>css</strong> file.
+     * @param {Function} callback - the callback to execute when the load
+     * operation completes.
      */
-    //TODO: update documentation.
     me.loadCss = function(src, callback) {
         var s = document.createElement(kLink);
         var x = document.getElementsByTagName(kHead)[0];
@@ -127,8 +127,6 @@
         if(!callback) {
             return;
         }
-
-        //TODO: test the below callbacks in a wide spectrum of browsers:
 
         s.onreadystatechange = function(){
             if(/loaded|complete/.test(s.readyState)) {
@@ -151,6 +149,17 @@
         }());
     };
 
+    /**
+     * @function {static} o2.DomHelper.loadImage
+     *
+     * <p>Asynchronously loads (precaches) an <strong>image</strong> file
+     * with a given <strong>src</strong>.</p>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>image</strong> file.
+     * @param {Function} callback - the callback to execute when the load
+     * operation completes.
+     */
     me.loadImage = function(src, callback) {
         var img = new Image();
         img.onload = callback;

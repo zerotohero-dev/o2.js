@@ -12,11 +12,19 @@
 (function(framework, window) {
     'use strict';
 
-    //TODO: add documentation.
-
+    /*
+     * A collection of timers.
+     */
     var timers = {};
+
+    /*
+     * Common constants.
+     */
     var kPrefix = 't';
 
+    /*
+     * Method aliases.
+     */
     var concat = framework.StringHelper.concat;
 
     /*
@@ -25,10 +33,30 @@
     o2.Timer.start(kCheckId);
      */
 
-    //TODO: add documentation.
+    /**
+     * @class {static} o2.Timer
+     *
+     * <p>A class for executing repeated timed actions.</p>
+     */
     framework.Timer = {
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.Timer.set
+         *
+         * <p>Sets and optionally starts a new timer.</p>
+         *
+         * @param {String} id - a unique identifier for the timer.
+         * @param {Function} delegate - action to be done when the timer ticks.
+         * @param {Integer} timeout - interval of the timer in milliseconds.
+         * @param {Object} option - optional configuration in the form
+         * <code>{start: true, repeat: true}</code>, if <strong>start</strong>
+         * is <code>true</code> timer will start after being set; otherwise
+         * it should be explicitly started using the
+         * {@link o2.Timer.start} method. If <strong>repeat</strong> is
+         * <code>false</code> the delegate will be executed only once, othwerwise
+         * it will be executed at each interval until {@link o2.Timer.stop}
+         * is called.
+         */
         set : function(id, delegate, timeout, options) {
             window.clearTimeout(id);
 
@@ -36,6 +64,7 @@
 
             if (timers[timerId]) {
                 framework.Timer.stop(timerId);
+
                 delete timers[timerId];
             }
 
@@ -62,13 +91,21 @@
             }
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.Timer.start
+         *
+         * <p>Starts/restarts the timer with the given id.
+         *
+         * @param {String} id - the id of the timer to start.
+         */
         start: function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
+
             if (meta) {
                 if (meta.shouldRepeat) {
                     window.clearInterval(meta.id);
+
                     meta.id = window.setInterval(function(){
                         meta.delegate();
                     }, meta.timeout);
@@ -77,16 +114,24 @@
                 }
 
                 window.clearTimeout(meta.id);
+
                 meta.id = window.setTimeout(function(){
                     meta.delegate();
                 }, meta.timeout);
             }
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.Timer.stop
+         *
+         * <p>Stops the timer with the given id.</p>
+         *
+         * @param {String} id - the id of the timer to stop.
+         */
         stop: function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
+
             if (meta) {
                 if (meta.shouldRepeat) {
                     window.clearInterval(meta.id);

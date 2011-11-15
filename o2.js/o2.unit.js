@@ -334,7 +334,8 @@
     me.Unit = {
 
         /**
-         * //TODO: add documentation.
+         * @property {readonlu Boolean} o2.Unit.isRunning - a flag to incicate
+         * whether the current test unit is running.
          */
         isRunning : false,
 

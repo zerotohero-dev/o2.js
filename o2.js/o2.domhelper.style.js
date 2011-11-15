@@ -79,12 +79,16 @@
         }
     };
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.DomHelper.setStyle
+     * 
+     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     * 
+     * @see o2.DomHelper.addStyle
+     */
     me.setStyle = function(obj, style) {
         me.addStyle(obj, style);
     };
-
-
 
     /**
      * @function {static} o2.DomHelper.getStyle
@@ -105,10 +109,12 @@
      * @param {String} cssProperty - the css property either
      * <strong>dash-separated</strong>
      * or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')
+     * @param {Boolean} noForce - (optional; defaults to <code>false</code>) if
+     * <code>true</code> inherited values from the CSS files will also be parsed,
+     * otherwise, only inline styles will be parsed.
      *
      * @return the calculated <strong>style</strong> value.
      */
-     //TODO: modify documentation (extra param)
     me.getStyle = function(obj, cssProperty, noForce) {
         obj = $(obj);
 
@@ -149,7 +155,7 @@
 
             };
 
-            return me.getStyle(obj, cssProperty);
+            return me.getStyle(obj, cssProperty, noForce);
         }
 
         me.getStyle = function(obj, cssProperty, noForce) {
@@ -284,6 +290,17 @@
                ((visibility ===  null  ) && (display    !== kNone  )) ||
                ((display    !== kNone  ) && (visibility !== kHidden));
     };
+
+    /**
+     * @function o2.DomHelper.visible
+     *
+     * <p>An alias to {@link o2.DomHelper.isVisible}.</p>
+     *
+     * @see o2.DomHelper.isVisible
+     */
+    me.visible = function(obj) {
+        return me.isVisible(obj);
+    }
 
     /**
      * @function {static} o2.DomHelper.activateAlternateStylesheet

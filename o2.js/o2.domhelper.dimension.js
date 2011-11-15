@@ -23,7 +23,7 @@
     var concat = framework.StringHelper.concat;
 
     /*
-     * Common constants
+     * Common constants.
      */
     var kWidth = 'width';
     var kHeight = 'height';
@@ -100,11 +100,24 @@
         return me.getDocumentDimension();
     };
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.DomHelper.getDocumentWidth
+     *
+     * <p>Gets the total width of the document in pixels.</p>
+     *
+     * @return the document's width.
+     */
     me.getDocumentWidth = function() {
         return me.getDocumentDimension().width;
     };
 
+    /**
+     * @function {static} o2.DomHelper.getDocumentHeight
+     *
+     * <p>Gets the total height of the document in pixels.</p>
+     *
+     * @return the document's height.
+     */
     me.getDocumentHeight = function() {
         return me.getDocumentDimension().height;
     };
@@ -139,7 +152,7 @@
         }
 
         if(document.documentElement && document.documentElement.clientWidth) {
-            me.getWindowInnerDimensions = function() {
+            me.getWindowInnerDimension = function() {
                 var d = document.documentElement;
 
                 if (!d) {
@@ -177,14 +190,41 @@
         return me.getWindowInnerDimension();
     };
 
+    /**
+     * @function {static} o2.DomHelper.getWindowInnerWidth
+     *
+     * <p>Gets the inner width of the visible area.</p>
+     *
+     * @return the inner width of the window in pixels.
+     */
     me.getWindowInnerWidth = function() {
         return me.getWindowInnerDimension().width;
     };
 
+    /**
+     * @function {static} o2.DomHelper.getWindowInnerHeight
+     *
+     * <p>Gets the inner height of the visible area.</p>
+     *
+     * @return the inner height of the window in pixels.
+     */
     me.getWindowInnerHeight = function() {
         return me.getWindowInnerDimension().height;
     };
 
+    /**
+     * @function {static} o2.DomHelper.getDimension
+     * 
+     * <p>Gets the dimension of the given element in the form 
+     * <code>{width: w, height: h}</code>, where <strong>w</strong> and
+     * <strong>h</strong> are in pixels.
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the dimension of the <strong>DOMNode</strong> in the form
+     * <code>{width: w, height: h}</code>.
+     */
     me.getDimension = function(obj) {
         obj = $(obj);
 
@@ -201,14 +241,43 @@
         };
     };
 
+    /**
+     * @function {static} o2.DomHelper.getWidth
+     *
+     * <p>Gets the <strong>width</strong> of the given element, in pixels.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the width of the element, in pixels.
+     */
     me.getWidth = function(obj) {
         return me.getDimension(obj).width;
     };
 
+    /**
+     * @function {static} o2.DomHelper.getHeight
+     *
+     * <p>Gets the <strong>height</strong> of the given element, in pixels.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the height of the element, in pixels.
+     */
     me.getHeight = function(obj) {
         return me.getDimension(obj).height;
     };
 
+    /**
+     * @function {static} o2.DomHelper.setWidth
+     *
+     * <p>Sets the <strong>width</strong> of the given element.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Integer} width - the new width in pixels.
+     */
     me.setWidth = function(obj, width) {
         obj = $(obj);
 
@@ -243,6 +312,15 @@
         me.setStyle(obj, kWidth, concat(width, kPixel));
     };
 
+    /**
+     * @function {static} o2.DomHelper.setHeight
+     *
+     * <p>Sets the <strong>height</strong> of the given element.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Integer} height - the new height in pixels.
+     */
     me.setHeight = function(obj, height) {
         obj = $(obj);
 
@@ -271,7 +349,16 @@
         me.setStyle(obj, kHeight, concat(height, kPixel));
     };
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.DomHelper.setDimension
+     *
+     * <p>Sets the dimension of the given element.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Object} dimension - the new dimension in the form
+     * <code>{width: w, height: h}</code>.
+     */
     me.setDimension = function(obj, dimension) {
         obj = $(obj);
 
@@ -281,31 +368,5 @@
 
         me.setWidth(obj, dimension.width);
         me.setHeight(obj, dimension.height);
-    };
-
-    //TODO: complete me.
-
-    me.getOffset = function(/*obj*/) {
-
-    };
-
-    me.offset = me.getOffset = function(obj) {
-        return me.getOffset(obj);
-    };
-
-    me.getOffsetHeight = function(/*obj*/) {
-
-    };
-
-    me.offsetHeight = function(obj) {
-        return me.getOffsetHeight(obj);
-    };
-
-    me.getOffsetWidth = function(/*obj*/) {
-
-    };
-
-    me.offsetWidth = function(obj) {
-        return me.getOffsetWidth(obj);
     };
 }(this.o2, this, this.document));

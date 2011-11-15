@@ -81,7 +81,18 @@
      */
     me.StringHelper = {
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.StringHelper.setFormatDelimeter
+         *
+         * <p>The default format delimeter is <code>{start: '{', end: '}'}</code>.
+         * These delimeters are used to create <code>RegExp</code>s for
+         * {@link o2.StringHelper.format}. You can override this default values,
+         * if necessary. Once set, the new values will be used for the rest
+         * of the application.</p>
+         *
+         * @param {Object} delims - An object in the form
+         * <code>{start: startDelim, end: endDelim}</code>.
+         */
         setFormatDelimeter : function(delims) {
             cfd.start = delims.start;
             cfd.end = delims.end;
@@ -215,11 +226,6 @@
             return shouldCompact ? str.replace(kWhitespaceRegExp,
                 kBlank).replace(kTrimRegExp, kEmpty) :
                 str.replace(kTrimRegExp, kEmpty);
-        },
-
-        //TODO: add documentation.
-        truncate : function(/*str, len*/) {
-            //TODO: implement this.
         },
 
         /**

@@ -54,6 +54,8 @@
      * @param {Object} object - the <code>Object</code> to add methods to.
      * @param {String} name - the name of the method.
      * @param {Function} fn - the method reference.
+     *
+     * @return the overloaded <code>Function</code>.
      */
     me.overload = function(object, name, fn) {
         var old = object[name];
@@ -80,9 +82,11 @@
      * executes <code>Function</code>. Otherwise throws an error.</p>
      *
      * @param {Function} fn - the <code>function</code> to check.
-     * @return the applied <code>function</code>.
+     *
+     * @return the applied <code>Function</code>.
+     *
      * @throws excpetion if all of the arguments is not provided to the
-     * <code>function</code>.
+     * <code>Function</code>.
      */
     me.requireAllArguments = function(fn) {
         return function() {
@@ -113,7 +117,18 @@
         }, interval);
     };
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.MethodHelper.flip
+     *
+     * <p>Flips two arguments of the given <code>function</code>, and returns a
+     * new <code>function</code>.</p>
+     *
+     * @param {Function} fn - the delegate to flip arguments of.
+     * @param {Integer} index1 - the index of the first argument.
+     * @param {Integer} index2 - the index of the second argument.
+     *
+     * @return the created <code>Function</code>.
+     */
     me.flip = function(fn, index1, index2) {
         return function() {
             var args = Array.prototype.slice.call(arguments);
@@ -125,15 +140,37 @@
         };
     };
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.MethodHelper.compose
+     *
+     * <p>Create a method that calls the <strong>invoker</strong> with the
+     * return value of the evaluated function <strong>fn</strong>. The current
+     * arguments are passed to <strong>fn</strong>, and the evaluated result
+     * is passed to the <strong>invoker</strong>.
+     *
+     * @param {Function} invoker - the invoker.
+     * @param {Function} fn - the invokee.
+     *
+     * @return the created <code>Function</code>.
+     */
     me.compose = function(invoker, fn) {
         return function() {
             return invoker.call(this, fn.apply(this, arguments));
         };
     };
 
-    //TODO: add documentation.
-    me.fold = function fold(collection, fn, initial) {
+    /**
+     * @function {static} o2.MethodHelper.fold
+     *
+     * <p>Runs through the collection, accumulating the reuslts by executing
+     * <code>result = fn(result, currentItem)</code>, where <strong>currentItem</strong>
+     * is the item of the collection at the current index.
+     *
+     * @param {Object} collection - The collection to iterate.
+     * @param {Function} fn - the <code>Function</code> to map.
+     * @param {Object} initial - the initial seed.
+     */
+    me.fold = function(collection, fn, initial) {
         var args = Array.prototype.splice.call(collection, 0);
         var result = initial;
         var i = 0;
@@ -145,5 +182,4 @@
 
         return result;
     };
-
 }(this.o2, this));

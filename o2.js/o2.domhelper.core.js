@@ -168,6 +168,17 @@
         /**
          * @function {static} o2.DomHelper.removeNode
          *
+         * <p>An alias to {@link o2.DomHelper.remove}.</p>
+         *
+         * @see o2.DomHelper.remove
+         */
+        removeNode : function(elm) {
+            return framework.DomHelper.remove(elm);
+        },
+
+        /**
+         * @function {static} o2.DomHelper.remove
+         *
          * <p>Removes the element from the <strong>DOM</strong> flow.</p>
          *
          * @param {Object} elm - either the <strong>element</strong>, or the
@@ -175,11 +186,6 @@
          *
          * @return the removed node.
          */
-        removeNode : function(elm) {
-            return framework.DomHelper.remove(elm);
-        },
-
-        //TODO: add documentation.
         remove : function(elm) {
             elm = $(elm);
 
@@ -393,7 +399,13 @@
             return e;
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.DomHelper.createElement
+         *
+         * <p>An alias to {@link o2.DomHelper.create}.</p>
+         *
+         * @see o2.DomHelper.create
+         */
         createElement : function(name, attributes) {
             return framework.DomHelper.create(name, attributes);
         },
@@ -454,7 +466,7 @@
          *
          * @param {Object} elm - the element, or the id of the element, to get
          * the offsets of.
-
+         *
          * @return the offset from the top-left corner of the viewport, in the
          * form <code>{left: l, top: t}</code>.
          */
@@ -486,6 +498,61 @@
                 top : ot
             };
 
+        },
+
+        /**
+         * @function {static} o2.DomHelper.offset
+         *
+         * <p>An alias to {@link o2.DomHelper.getOffset}
+         *
+         * @see o2.DomHelper.getOffset
+         */
+        offset : function(obj) {
+            return me.getOffset(obj);
+        },
+
+        /**
+         * @function {static} o2.DomHelper.getOffsetLeft
+         *
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</p>
+         *
+         * @see o2.DomHelper.getOffset
+         */
+        getOffsetLeft : function(obj) {
+            return me.getOffset(obj).left;
+        },
+
+        /**
+         * @function {static} o2.DomHelper.offsetLeft
+         *
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</p>
+         *
+         * @see o2.DomHelper.getOffset
+         */
+        offsetLeft : function(obj) {
+            return me.getOffset(obj).left;
+        },
+
+        /**
+         * @function {static} o2.DomHelper.getOffsetTop
+         *
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</p>
+         *
+         * @see o2.DomHelper.getOffset
+         */
+        getOffsetTop : function(obj) {
+            return me.getOffset(obj).top;
+        },
+
+        /**
+         * @function {static} o2.DomHelper.offsetTop
+         *
+         * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</p>
+         *
+         * @see o2.DomHelper.getOffset
+         */
+        offsetTop : function(obj) {
+            return me.getOffset(obj).top;
         },
 
         /**
@@ -526,7 +593,7 @@
             }
 
             //DOM object (obj) may not have a getAttribute method.
-            if( typeof obj.getAttribute === kFunction) {
+            if (typeof obj.getAttribute === kFunction) {
                 value = obj.getAttribute(attribute);
 
                 if (value !== undefined) {
@@ -537,7 +604,15 @@
             return obj[attribute] || null;
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.DomHelper.setAttribute
+         *
+         * <p>Sets the attribute of the given object.</p>
+         *
+         * @param {Object} obj - the object or the <code>String</code> id of it.
+         * @param {String} attribute - the name of the attribute.
+         * @param {String} value - the value of the attribute.
+         */
         setAttribute : function(obj, attribute, value) {
             obj = $(obj);
 
@@ -545,13 +620,13 @@
                 return;
             }
 
-            if(attribute === 'class'  || attribute === 'className'){
+            if (attribute === kClass  || attribute === kClassName){
                 obj.className = value;
 
                 return;
             }
 
-            if (typeof obj.setAttribute === 'function') {
+            if (typeof obj.setAttribute === kFunction) {
                 obj.setAttribute(attribute, value);
 
                 return;

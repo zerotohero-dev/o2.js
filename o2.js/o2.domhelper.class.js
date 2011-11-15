@@ -27,9 +27,15 @@
     var kEmpty = '';
 
     /**
+     * @function {static} o2.DomHelper.createClassNameRegExp
      *
+     * <p>Creates a regular expression that will match a given
+     * <strong>CSS</strong> class name.</p>
+     *
+     * @param {String} c - The name of the class.
+     *
+     * @returns a <code>RegExp</code> that matches the given class name.
      */
-    //TODO: add documentation.
     me.createClassNameRegExp = function(c) {
         return new RegExp(['(\\s|^)', c, '(\\s|$)'].join(''));
     };

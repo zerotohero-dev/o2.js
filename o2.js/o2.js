@@ -129,7 +129,18 @@ this.o2 = {};
         return p.getElementsByTagName(tagName);
     };
 
-    //TODO: add documentation.
+
+    /**
+     * @function {static} o2.n
+     *
+     * <p>A <code>getElementsByName</code> wrapper.</p>
+     *
+     * @param {String} tagName - the name of the form item to search.
+     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
+     * the parent container, or the id of the parent container, to search.
+     *
+     * @return a collection of matching elements.
+     */
     me.n = function(name, parent) {
         var collection = document.getElementsByName(name);
         var i = 0;
