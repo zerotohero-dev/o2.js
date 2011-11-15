@@ -81,9 +81,9 @@
 
     /**
      * @function {static} o2.DomHelper.setStyle
-     * 
+     *
      * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
-     * 
+     *
      * @see o2.DomHelper.addStyle
      */
     me.setStyle = function(obj, style) {
@@ -300,7 +300,7 @@
      */
     me.visible = function(obj) {
         return me.isVisible(obj);
-    }
+    };
 
     /**
      * @function {static} o2.DomHelper.activateAlternateStylesheet

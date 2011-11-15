@@ -19,8 +19,8 @@
      */
     var me = framework.EventHandler;
     var $ = framework.$;
-    var nill = framework.nill;
     var format = framework.StringHelper.format;
+    var nill = framework.nill;
 
     /*
      * Module configuration.
@@ -132,7 +132,7 @@
             obj[onEvent] = fn;
         };
 
-        me..addEventListener(obj, evt, fn);
+        me.addEventListener(obj, evt, fn);
     };
 
     /**

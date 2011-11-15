@@ -9,7 +9,7 @@
  *
  * <p>A <code>String</code> helper.</p>
  */
-( function(framework) {
+(function(framework) {
     'use strict';
 
     /*

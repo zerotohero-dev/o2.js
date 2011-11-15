@@ -11,6 +11,7 @@
  */
 (function(framework){
     'use strict';
+
     /**
      * @class {static} o2.EventHandler
      *

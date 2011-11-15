@@ -9,7 +9,7 @@
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-( function(framework, document) {
+(function(framework, document) {
     'use strict';
 
     /*

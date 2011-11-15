@@ -12,7 +12,7 @@
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-( function(framework) {
+(function(framework) {
     'use strict';
 
     /*
