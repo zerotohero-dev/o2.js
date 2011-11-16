@@ -2864,10 +2864,10 @@
            elementType : "function"
        } ,         
        {
-           localName : "isValidUrl",
-           fullName : "o2.Validator.isValidUrl",
-           summary : "static function  isValidUrl(String url)",
-           ref : "logical/o2/Validator.html#___isValidUrl",
+           localName : "isUrl",
+           fullName : "o2.Validator.isUrl",
+           summary : "static function  isUrl(String url)",
+           ref : "logical/o2/Validator.html#___isUrl",
            parent : "o2.Validator",
            type : "function",
            elementType : "function"

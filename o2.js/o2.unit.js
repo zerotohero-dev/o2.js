@@ -247,6 +247,7 @@
         try {
             initDebugger(kOutputContainer, kShouldUseConsole);
         } catch (failedToInitializeException) {
+            log(failedToInitializeException);
             throw kFailedToInitializeDebugger;
         }
     }
@@ -305,6 +306,7 @@
         try {
             unitTest.testCase.apply(unitTest, []);
         } catch (executionException) {
+            log(executionException);
             unitTest.terminate();
             reportFatalError(unitTest);
         }

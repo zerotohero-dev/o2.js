@@ -74,7 +74,7 @@
     };
 
     /**
-     * @function {static} o2.Validator.isValidUrl
+     * @function {static} o2.Validator.isUrl
      *
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
@@ -84,7 +84,7 @@
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
      * <code>false</code> otherwise.
      */
-    me.isValidUrl = function(url) {
+    me.isUrl = function(url) {
         return kUrlRegExp.test(url);
     };
 
