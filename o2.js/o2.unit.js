@@ -397,7 +397,9 @@
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertEqual';
             var kArgumentsLength = arguments.length;
-            var result = (currentValue === expectedValue);
+
+            // JSLint valitation error on purpose.
+            var result = (currentValue == expectedValue);
 
             expectProperArgumentLength(kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
@@ -419,7 +421,9 @@
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertNotEqual';
             var kArgumentsLength = arguments.length;
-            var result = (currentValue !== expectedValue);
+
+            // JSLint validation error on purpose:
+            var result = (currentValue != expectedValue);
 
             expectProperArgumentLength(kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
