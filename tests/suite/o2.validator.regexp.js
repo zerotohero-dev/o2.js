@@ -5,7 +5,7 @@
  *  Please see the LICENSE file for details.
  * -->
  */
-(function(o2) {
+(function(o2, window) {
     'use strict';
 
     /*
@@ -14,6 +14,7 @@
     var add = o2.Unit.add;
     var run = o2.Unit.run;
     var assertStrictEqual = o2.Unit.assertStrictEqual;
+    var parent = window.parent;
 
     /**
      *
@@ -92,4 +93,4 @@
     };
 
     Suite.init();
-}(this.o2));
+}(this.o2, this));
