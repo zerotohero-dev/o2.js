@@ -1,5 +1,4 @@
 <?php
-
 /*
  * <!--
  *  This program is distributed under
@@ -8,26 +7,59 @@
  * -->
  */
 
-$options = isset($_POST['options']) ? $_POST['options'] : (isset($_GET['options']) ? $_GET['options'] : 0);
-$error = isset($_POST['error']) ? $_POST['error'] : (isset($_GET['error']) ? $_GET['error'] : 0);
-$echo = isset($_POST['echo']) ? $_POST['echo'] : (isset($_GET['echo']) ? $_GET['echo'] : 0);
+/**
+ *
+ */
+class Request {
 
-if ($options) {
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-    header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Headers: *');
+    /**
+     *
+     */
+    public static function get_item($name) {
+        return isset($_POST[$name]) ? $_POST[$name] : (
+                isset($_GET[$name]) ? $_GET[$name] : null
+            );
+    }
 }
 
-if ($error) {
-    header('HTTP/1.1 500 Internal Server Error');
-    exit;
+/**
+ *
+ */
+class PageController {
+
+    /**
+     *
+     */
+    public static function load_page() {
+        $options = Request::get_item('options');
+        $error = Request::get_item('error');
+        $echo = Request::get_item('echo');
+        $wait = Request::get_item('wait');
+
+        if($wait) {
+            sleep(5);
+        }
+
+        if ($options) {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+            header('Access-Control-Max-Age: 1000');
+            header('Access-Control-Allow-Headers: *');
+        }
+
+        if ($error) {
+            header('HTTP/1.1 500 Internal Server Error');
+            return;
+        }
+
+        if ($echo) {
+            echo Request::get_item('data');
+            return;
+        }
+
+        echo '0';
+    }
 }
 
-if ($echo) {
-    echo isset($_GET['data']) ? $_GET['data'] : $_POST['data'];
-    exit;
-}
-
-echo '0';
+PageController::load_page();
 ?>

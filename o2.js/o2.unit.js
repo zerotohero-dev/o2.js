@@ -152,6 +152,10 @@
      * Current unit test's test suite finished running all of its assertions.
      */
     function reportTestCompletion(unitTest) {
+        if (unitTest.remainingCount < 0) {
+            return;
+        }
+
         var isAllSuccess = unitTest.failureCount <= 0;
         var description = unitTest.description;
         var successCount = unitTest.successCount;
@@ -203,12 +207,16 @@
      * of the <code>UnitTest</code> <strong>unitTest</strong>
      */
     function didAssertion(unitTest, isSuccess, message) {
+        if (unitTest.remainingCount <= 0) {
+            return;
+        }
+
         assert(isSuccess, message);
         updateTestStatus(unitTest, isSuccess);
 
         unitTest.remainingCount--;
 
-        if(unitTest.remainingCount <= 0) {
+        if(unitTest.remainingCount === 0) {
             reportTestCompletion(unitTest);
         }
 
