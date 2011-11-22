@@ -68,7 +68,7 @@
                         typeof base[key] === kFunction;
 
                     if (shouldCopy) {
-                        child[key] = clone(me.JsonpState, base[key]);
+                        child[key] = clone(child, base[key]);
                     }
                 }
             }
@@ -117,7 +117,18 @@
         },
 
         /**
-         * o2.ObjectHelper.toJson
+         * @function {static} o2.ObjectHelper.toArray
+         *
+         * <p>An alias to {@link o2.ObjectHelper.convertObjectToArray}.</p>
+         *
+         * @see o2.ObjectHelper.convertObjectToArray
+         */
+        toArray : function(obj, isDeep) {
+            return me.ObjectHelper.convertObjectToArray(obj, isDeep);
+        },
+
+        /**
+         * o2.ObjectHelper.toJsonString
          *
          * <p>Converts the <code>Object</code> to a <strong>JSON</strong>
          * <code>String</code>, if <strong>JSON</strong> is supported.
@@ -129,7 +140,7 @@
          *
          * @return the converted <strong>JSON</strong> <code>String</code>.
          */
-        toJson : function(obj) {
+        toJsonString : function(obj) {
             if (window.JSON) {
                 return JSON.stringify(obj);
             }
@@ -137,6 +148,17 @@
             var kMethodName = 'ObjectHelper.toJson';
 
             throw format(kNoJsonSupport, kMethodName);
+        },
+
+        /**
+         * @function {static} o2.MethodHelper.stringify
+         *
+         * <p>An alias to {@link o2.MethodHelper.toJsonString}.</p>
+         *
+         * @see o2.MethodHelper.toJsonString
+         */
+        stringify : function(obj) {
+            return me.ObjectHelper.toJsonString(obj);
         }
     };
 }(this.o2, this));
