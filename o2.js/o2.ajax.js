@@ -127,9 +127,10 @@
      * Common regular expressions.
      */
     var kUrlSpaceRegExp = /%20/g;
+    var kEmpty = '';
 
     /*
-     * <p>Creates a brand new <code>XmlHttpRequest</code> object.</p>
+     * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
      */
     var createXhr = function() {
         var request = null;
@@ -182,7 +183,7 @@
     /*
      * <p>Good boys clean their mess ;)</p>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
     function finalizeXhr(xhr) {
         if (!xhr) {
@@ -198,7 +199,7 @@
     /*
      * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
      *
-     * @param {XmlHttpRequest} xhr - the current <code>Xhr</code> instance.
+     * @param {XMLHttpRequest} xhr - the current <code>Xhr</code> instance.
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
@@ -206,8 +207,24 @@
         var oncomplete = callbacks.oncomplete || nillCached;
         var onerror = callbacks.onerror || nillCached;
         var onexception = callbacks.onexception || nillCached;
-        var status = xhr.status;
-        var isSuccess = status === kOk || status === kCached;
+
+        var isSuccess = false;
+        var status = 0;
+        var responseText = kEmpty;
+        var responseXml = null;
+        var statusText = kEmpty;
+
+        // IE9 throws error when accessing these properties
+        // when the request is aborted.
+        try {
+            status = xhr.status;
+            responseText = xhr.responseText;
+            responseXml = xhr.responseXML;
+            statusText = xhr.statusText;
+        } catch (ignore) {
+        }
+
+        isSuccess = status === kOk || status === kCached;
 
         callbacks = callbacks || {};
 
@@ -216,12 +233,12 @@
 
         try {
             if (isSuccess) {
-                oncomplete(xhr.responseText, xhr.responseXML, xhr);
+                oncomplete(responseText, responseXml, xhr, status);
 
                 return;
             }
 
-            onerror(xhr.status, xhr.statusText, xhr);
+            onerror(status, statusText, xhr);
         } catch(ex) {
             onexception(ex, xhr);
         } finally {
@@ -230,9 +247,9 @@
     }
 
     /*
-     * <p>Registers the callbacks to the XmlHttpRequest instance.</p>
+     * <p>Registers the callbacks to the XMLHttpRequest instance.</p>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      * @param {Object} callbacks - An object of the form
      * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
      * statusText),
@@ -260,7 +277,7 @@
     /*
      * <p>Adds headers.</p>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
@@ -283,7 +300,7 @@
     /*
      * <p>Adds common request headers.</p>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
     function addCommonRequestHeaders(xhr) {
         addHeaders(xhr, config.header.common);
@@ -292,7 +309,7 @@
     /*
      * <p>Adds request headers specific to <code>POST</code> requests.</p>
      *
-     * @param {XmlHttpRequest} xhr - the original <code>XmlHttpRequest</code>
+     * @param {XMLHttpRequest} xhr - the original <code>XMLHttpRequest</code>
      * object.
      */
     function addPostRequestHeaders(xhr) {
@@ -321,7 +338,7 @@
      * <p>Sends the request.</p>
      *
      * @see {@link Ajax.get} and {@link Ajax.post} for details.
-     * @return the original <code>XmlHttpRequest</code>
+     * @return the original <code>XMLHttpRequest</code>
      */
     function send(url, verb, parameters, callbacks, isSync) {
         if (!url) {
@@ -334,8 +351,8 @@
         var isPost = verb !== kGet;
         var xhr = createXhr();
         var parametrizedQuery = generateParametrizeQueryString(ajaxParameters);
-        var getQuery = isPost ? '' : concat(kAnd, parametrizedQuery);
-        var postQuery = isPost ? parametrizedQuery : '';
+        var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
+        var postQuery = isPost ? parametrizedQuery : kEmpty;
 
         xhr.open(verb, concat(url, kRandom, generateGuid(), getQuery), isAsync);
 
@@ -380,7 +397,7 @@
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
          * Set this
          * <code>true</code> for sending a <strong>snychronous</strong> request.
-         * @return the original <code>XmlHttpRequest</code> object.
+         * @return the original <code>XMLHttpRequest</code> object.
          */
         post : function(url, parameters, callbacks, isSync) {
             return send(url, config.constants.verb.POST, parameters, callbacks,
@@ -404,7 +421,7 @@
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
          * Set this
          * <code>true</code> for sending a snychronous request.
-         * @return the original <code>XmlHttpRequest</code> object.
+         * @return the original <code>XMLHttpRequest</code> object.
          */
         get : function(url, parameters, callbacks, isSync) {
             return send(url, config.constants.verb.GET, parameters, callbacks,
@@ -414,13 +431,13 @@
         /**
          * @function {static} o2.Ajax.createXhr
          *
-         * <p>Creates a native <code>XmlHttpRequest</code> object.
+         * <p>Creates a native <code>XMLHttpRequest</code> object.
          * <p>This is a <strong>low-level</strong> function; it simply returns
          * the browser's native object.
          * You may most probably want to use {@link Ajax.get} or {@link
          * Ajax.post} instead, for more functionality.</p>
          *
-         * @return the created <code>XmlHttpRequest</code> object.
+         * @return the created <code>XMLHttpRequest</code> object.
          */
         createXhr : function() {
             return createXhr();

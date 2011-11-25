@@ -649,7 +649,7 @@
             });
 
             add('o2.Ajax SHOULD return to onerror handler, after aborting a request', {
-                count: 1,
+                count: 2,
                 test: function() {
                     var me = this;
 
@@ -677,25 +677,19 @@
             });
 
             add('o2.Ajax SHOULD be able to send a second request, after aborting the first.', {
-                count: 2,
+                count: 1,
                 test: function() {
                     var me = this;
 
                     var url = 'service/service.php';
                     var params = {wait : true};
 
-                    var request = o2.Ajax.get(url, params, {
-                        onerror: function() {
-                            assert(me, true, 'onerror of first request fired.');
-                        }
-                    });
+                    var request = o2.Ajax.get(url, params);
 
                     setTimeout(function() {
                         request.abort();
 
-                        params = {};
-
-                        request = o2.Ajax.get(url, params, {
+                        request = o2.Ajax.get(url, {}, {
                             oncomplete: function() {
                                 assert(me, true, 'oncomplete of second request fired.');
                                 me.terminate();

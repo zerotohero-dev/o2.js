@@ -2153,6 +2153,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "stringify",
+           fullName : "o2.MethodHelper.stringify",
+           summary : "static function  stringify()",
+           ref : "logical/o2/MethodHelper.html#___stringify",
+           parent : "o2.MethodHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "ObjectHelper",
            fullName : "o2.ObjectHelper",
            summary : "static class ObjectHelper",
@@ -2175,6 +2184,15 @@
            fullName : "o2.ObjectHelper.copyMethods",
            summary : "static function  copyMethods(Object child, Object base)",
            ref : "logical/o2/ObjectHelper.html#___copyMethods",
+           parent : "o2.ObjectHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "toArray",
+           fullName : "o2.ObjectHelper.toArray",
+           summary : "static function  toArray()",
+           ref : "logical/o2/ObjectHelper.html#___toArray",
            parent : "o2.ObjectHelper",
            type : "function",
            elementType : "function"
