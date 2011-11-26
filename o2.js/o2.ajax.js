@@ -193,6 +193,7 @@
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
 
+        // Request is finalized
         xhr.isFinalized = true;
     }
 
@@ -203,16 +204,22 @@
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-        var nillCached = nill;
-        var oncomplete = callbacks.oncomplete || nillCached;
-        var onerror = callbacks.onerror || nillCached;
-        var onexception = callbacks.onexception || nillCached;
+        var oncomplete = callbacks.oncomplete || nill;
+        var onerror = callbacks.onerror || nill;
+        var onexception = callbacks.onexception || nill;
+        var onaborted = callbacks.onaborted || nill;
 
         var isSuccess = false;
         var status = 0;
         var responseText = kEmpty;
         var responseXml = null;
         var statusText = kEmpty;
+
+        if(xhr.isAborted) {
+            onaborted(xhr);
+
+            return;
+        }
 
         // IE9 throws error when accessing these properties
         // when the request is aborted.
@@ -247,7 +254,7 @@
     }
 
     /*
-     * <p>Registers the callbacks to the XMLHttpRequest instance.</p>
+     * <p>Registers the callbacks to the <code>XMLHttpRequest</code> instance.</p>
      *
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      * @param {Object} callbacks - An object of the form
@@ -441,6 +448,20 @@
          */
         createXhr : function() {
             return createXhr();
+        },
+
+        //TODO: add unit test
+        //TODO: add documentation
+        //TODO: update other documentation accordingly.
+        abort : function(xhr) {
+            if(!xhr || xhr.isAborted) {
+                return;
+            }
+
+            try {
+                xhr.abort();
+            } catch (ignore) {
+            }
         }
     };
 }(this.o2, this));
