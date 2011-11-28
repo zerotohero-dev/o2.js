@@ -194,4 +194,19 @@
             return [kUnderscore, match.toLowerCase()].join(kEmpty);
         });
     };
+
+    /**
+     * @function {static} o2.StringHelper.toJson
+     *
+     * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
+     * object.</p>
+     *
+     * @param {String} str - the <code>String</code> to convert.
+     * @return the converted <strong>JSON</strong> <code>Object</code>.
+     * @throws Exception - if <strong>str</strong> is not a well-formed
+     * <strong>JSON</strong> <code>String</code>.
+     */
+    me.toJson = function(str) {
+        return JSON.parse(str);
+    }
 }(this.o2));

@@ -398,7 +398,7 @@
          * <strong>name/value</strong> pair object ({}).
          * @param {Object} callbacks - An object of the form
          * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-         * statusText),
+         * statusText), onaborted : fn(xhr),
          * onexception: fn(exception, originalXhr)}.
          * Any of these callbacks are optional.
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
@@ -422,7 +422,7 @@
          * ({}).
          * @param {Object} callbacks - An object of the form
          * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-         * statusText),
+         * statusText), onaborted: fn(xhr),
          * onexception: fn(exception, originalXhr)}.
          * Any of these callbacks are optional.
          * @param {Boolean} isSync - (optional defaults to <code>false</code>).
@@ -450,15 +450,19 @@
             return createXhr();
         },
 
-        //TODO: add unit test
-        //TODO: add documentation
-        //TODO: update other documentation accordingly.
+        /**
+         * @function {static} o2.Ajax.abort
+         * <p>Explicitly abort the request.</p>
+         * <p>When the request is explicitly abourted, <strong>onaborted</strong>
+         * callback is fired.</p>
+         */
         abort : function(xhr) {
             if(!xhr || xhr.isAborted) {
                 return;
             }
 
             try {
+                xhr.isAborted = true;
                 xhr.abort();
             } catch (ignore) {
             }

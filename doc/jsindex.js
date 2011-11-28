@@ -47,6 +47,15 @@
            elementType : "logical_container"
        } ,         
        {
+           localName : "abort",
+           fullName : "o2.Ajax.abort",
+           summary : "static function  abort()",
+           ref : "logical/o2/Ajax.html#___abort",
+           parent : "o2.Ajax",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "createXhr",
            fullName : "o2.Ajax.createXhr",
            summary : "static function  createXhr()",
@@ -2472,6 +2481,15 @@
            fullName : "o2.StringHelper.toDashedFromCamelCase",
            summary : "static function  toDashedFromCamelCase(String input)",
            ref : "logical/o2/StringHelper.html#___toDashedFromCamelCase",
+           parent : "o2.StringHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "toJson",
+           fullName : "o2.StringHelper.toJson",
+           summary : "static function  toJson(String str)",
+           ref : "logical/o2/StringHelper.html#___toJson",
            parent : "o2.StringHelper",
            type : "function",
            elementType : "function"

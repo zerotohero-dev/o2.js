@@ -704,6 +704,57 @@
                 }
             });
 
+            add('Explicitly aborting and o2.Ajax.get call should trigger onaborted callback.', {
+                count : 1,
+                test : function() {
+                    var me = this;
+
+                    var url = 'service/service.php';
+                    var params = {wait : true};
+
+                    var request = o2.Ajax.get(url, params, {
+                        onaborted: function() {
+                            assert(me, true, 'AJAX aborted.');
+                        }
+                    });
+
+                    setTimeout(function() {
+                        o2.Ajax.abort(request);
+                    }, 500);
+
+                    setTimeout(function() {
+                        assert(me, false, 'Request timed out.');
+                        me.terminate();
+                    }, 2000);
+                }
+            });
+
+            add('Explicitly aborting and o2.Ajax.post call should trigger onaborted callback.', {
+                count : 1,
+                test : function() {
+                    var me = this;
+
+                    var url = 'service/service.php';
+                    var params = {wait : true};
+
+                    var request = o2.Ajax.get(url, params, {
+                        onaborted: function() {
+                            assert(me, true, 'AJAX aborted.');
+                        }
+                    });
+
+                    setTimeout(function() {
+                        o2.Ajax.abort(request);
+                    }, 500);
+
+                    setTimeout(function() {
+                        assert(me, false, 'Request timed out.');
+                        me.terminate();
+                    }, 2000);
+                }
+            });
+
+
             run(window.parent && window.parent.Runner && window.parent.Runner.processCompletedSuite);
         }
     };

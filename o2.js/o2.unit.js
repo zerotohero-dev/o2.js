@@ -71,7 +71,17 @@
         /*
          * Invalid number of arguments.
          */
-        ARGUMENT_COUNT_MISMATCH : '"{0}" expects {1} arguments'
+        ARGUMENT_COUNT_MISMATCH : '"{0}" expects {1} arguments',
+
+        /*
+         * Exception trying to execute the test case.
+         */
+        EXECUTION_EXCEPTION : 'Execution exception!',
+
+        /*
+         * Argument count mismatch.
+         */
+        ARGUMENT_EXCEPTION : 'Argument count mismatch!'
     };
 
     /*
@@ -97,7 +107,7 @@
             '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
         ),
 
-        FINISHED_UNIT_TEST : 'Completed unit test <strong>#{0}</strong>'
+        FINISHED_UNIT_TEST : 'Completed unit test <strong>#{0}</strong>: "<em>{1}</em>"'
     };
 
     /*
@@ -140,6 +150,8 @@
     var kFailedToInitializeDebugger = errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
     var kFatalErrorInUnitTest = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
     var kArgumentCountMismatch = errorMessage.ARGUMENT_COUNT_MISMATCH;
+    var kArgumentException = errorMessage.ARGUMENT_EXCEPTION;
+    var kExecutionException = errorMessage.EXECUTION_EXCEPTION;
 
     /*
      * Common constants.
@@ -165,7 +177,7 @@
 
         assert(isAllSuccess, message);
 
-        log(format(kFinishedUnitTest, ++state.globalCompletedUnitTestCount));
+        log(format(kFinishedUnitTest, ++state.globalCompletedUnitTestCount, description));
     }
 
     /*
@@ -315,6 +327,7 @@
             unitTest.testCase.apply(unitTest, []);
         } catch (executionException) {
             log(executionException);
+            didAssertion(unitTest, false, kExecutionException);
             unitTest.terminate();
             reportFatalError(unitTest);
         }
@@ -325,12 +338,14 @@
      * <strong>argumentsLength</strong> and throws an exception if they do not
      * match.
      */
-    function expectProperArgumentLength(localParameterCount, argumentsLength,
+    function expectProperArgumentLength(unitTest, localParameterCount, argumentsLength,
                 methodName) {
         if (argumentsLength === localParameterCount) {
 
             return;
         }
+
+        didAssertion(unitTest, false, kArgumentException);
 
         throw format(kArgumentCountMismatch, methodName, localParameterCount);
     }
@@ -386,7 +401,7 @@
             var kArgumentsLength = arguments.length;
             var result = !!expression;
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             didAssertion(unitTest, result, message);
@@ -409,7 +424,7 @@
             // JSLint valitation error on purpose.
             var result = (currentValue == expectedValue);
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             didAssertion(unitTest, result, message);
@@ -433,7 +448,7 @@
             // JSLint validation error on purpose:
             var result = (currentValue != expectedValue);
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             didAssertion(unitTest, result, message);
@@ -457,7 +472,7 @@
             var kArgumentsLength = arguments.length;
             var result = (currentValue === expectedValue);
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             didAssertion(unitTest, result, message);
@@ -482,7 +497,7 @@
             var kArgumentsLength = arguments.length;
             var result = (currentValue !== expectedValue);
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             didAssertion(unitTest, result, message);
@@ -507,7 +522,7 @@
             var totalAssertionCount = testMeta.count;
             var testCase = testMeta.test;
 
-            expectProperArgumentLength(kRequiredLocalParameterCount,
+            expectProperArgumentLength({}, kRequiredLocalParameterCount,
                 kArgumentsLength, kMethodName);
 
             state.tests.push(new UnitTest(description, totalAssertionCount,
