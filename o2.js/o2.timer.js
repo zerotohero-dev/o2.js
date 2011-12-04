@@ -16,6 +16,7 @@
      * A collection of timers.
      */
     var timers = {};
+    var me = framework;
 
     /*
      * Common constants.
@@ -38,7 +39,7 @@
      *
      * <p>A class for executing repeated timed actions.</p>
      */
-    framework.Timer = {
+    me.Timer = {
 
         /**
          * @function {static} o2.Timer.set
@@ -63,7 +64,7 @@
             var timerId = concat(kPrefix, id);
 
             if (timers[timerId]) {
-                framework.Timer.stop(timerId);
+                me.Timer.stop(timerId);
 
                 delete timers[timerId];
             }
@@ -87,7 +88,7 @@
             var shouldStart = options.start;
 
             if (!!shouldStart) {
-                framework.Timer.start(id);
+                me.Timer.start(id);
             }
         },
 

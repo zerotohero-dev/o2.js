@@ -12,12 +12,14 @@
 (function(framework){
     'use strict';
 
+    var me = framework;
+
     /**
      * @class {static} o2.EventHandler
      *
      * <p>A cross-browser event handling and event utilities class.</p>
      */
-    framework.EventHandler = {
+    me.EventHandler = {
 
         /**
          * @struct {static} o2.EventHandler.keyCode

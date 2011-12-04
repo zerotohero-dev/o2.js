@@ -337,6 +337,8 @@
      * <strong>id</strong> to hide.
      */
     me.hide = function(obj) {
+        obj = $(obj);
+
         if (!obj || typeof obj !== kObject) {
             return;
         }
@@ -357,6 +359,8 @@
      * <strong>id</strong> of it, to show.
      */
     me.show = function(obj) {
+        obj = $(obj);
+
         if (!obj || typeof obj !== kObject) {
             return;
         }
