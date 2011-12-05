@@ -108,7 +108,7 @@
         }
 
         .close {
-            background: url('/o2.js/examples/vcardapp/close.png');
+            background: url('/o2.js/examples/vcardapp/images/close.png');
             display: block;
             height: 32px;
             position: absolute;
@@ -127,7 +127,7 @@
             -webkit-border-radius: 6px;
             -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
             -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
-            background: #222 url('/o2.js/examples/vcardapp/vcard.png') 5px 0 no-repeat;
+            background: #222 url('/o2.js/examples/vcardapp/images/vcard.png') 5px 0 no-repeat;
             color: #fff;
             cursor: pointer;
             display: inline-block;
