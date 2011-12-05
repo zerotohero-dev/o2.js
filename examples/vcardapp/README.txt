@@ -1,4 +1,4 @@
-This application is a step-by-step demo acompanying 
+This application is a step-by-step demo accompanying 
 
 	http://o2js.com/2011/12/04/how-to-create-a-modular-and-organized-web-application/
 
