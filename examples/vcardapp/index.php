@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="VCardContainer">
-        <p id="VCardActivator"><a href="javascript:void(showVCard())"
+        <p id="VCardActivator"><a href="/"
             class="super button action" id="vcard-volkan">Volkan Özçelik</a></p>
         <p id="VCardContent"></p>
     </div>

@@ -22,7 +22,7 @@ function showVCard() {
         <dd><a href="http://linkedin.com/in/volkanozcelik"\
             >linkedin.com/in/volkanozcelik</a></dd>\
         </dl>\
-        <p class="clear"><a href="javascript:void(closeVCard())" class="close" title="close"\
+        <p class="clear"><a href="/" id="vcard-volkan-close" class="close" title="close"\
             ><span>back to home</span></a></p>';
 
 }
@@ -31,3 +31,15 @@ function closeVCard() {
     document.getElementById('VCardActivator').style.display = 'block';
     document.getElementById('VCardContent').style.display = 'none';
 }
+
+document.getElementById('vcard-volkan').onclick = function() {
+    showVCard();
+
+    document.getElementById('vcard-volkan-close').onclick = function() {
+        closeVCard();
+        return false;
+    }
+    return false;
+}
+
+
