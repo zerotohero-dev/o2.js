@@ -1,1 +1,1 @@
-Pages' initialization logic go here.
+Pages' initialization logic goes here.

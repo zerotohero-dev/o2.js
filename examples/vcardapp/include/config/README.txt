@@ -1,1 +1,1 @@
-Application configuration and application-wide used constants come here.
+Application configuration and application-wide used constants go here.

@@ -1,3 +1,6 @@
-The business tier includes business objects.
-These objects read data from the persistence tier,
-and write data to persistence tier updating the application's state.
+This folder is represents the "Business Tier".
+The "Business Tier" includes "business objects".
+Therefore all "business objects" go into this folder.
+These "business objects" read data from the "Persistence Tier" to retrieve 
+application's state information, and write data to the "Persistence Tier" 
+to update the application's state information.
