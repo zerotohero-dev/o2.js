@@ -34,7 +34,7 @@
 
                     var me = this;
 
-                    var ajax = o2.Ajax.create();
+                    var ajax = o2.Ajax.createXhr();
 
                     var ajaxController = new o2.AjaxController(ajax);
 
@@ -47,12 +47,37 @@
                 }
             });
 
+            add('Updating an o2.AjaxController with timeout data SHOULD trigger its ontimeout callback.', {
+                count : 1,
+                test : function() {
+
+                }
+            });
+
+            add('Updating an o2.AjaxController with timeout data SHOULD unregister itself from the AjaxState.', {
+                count : 1,
+                test : function() {
+
+                }
+            });
+
+            add('Updating an o2.AjaxController with timeout data SHOULD abort the ongoing AJAX request.', {
+                count : 1,
+                test : function() {
+
+                }
+            });
+
+            add('Unregistering an o2.AjaxController SHOULD set its isDeleted flag to true.', {
+                count : 1,
+                test : function() {
+
+                }
+            });
+
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
-
         }
-
     };
 
     Suite.init();
-
 }(o2, this));

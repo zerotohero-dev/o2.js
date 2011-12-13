@@ -49,7 +49,7 @@
          * <strong>observer</strong>s.</p>
          */
         init : function() {
-            var listen = this.protecteds.listen;
+            var listen = o2.AjaxState.protecteds.listen;
             listen(this);
         },
 
@@ -63,14 +63,14 @@
          * @param {Object} observer - the <code>Observer</code> to register.
          */
         addObserver : function(observer) {
-            var hasObserver = this.protecteds.hasObserver;
+            var hasObserver = o2.AjaxState.protecteds.hasObserver;
 
             //!
-            if (hasObserver.apply(this.protecteds, [observer])) {
+            if (hasObserver.apply(o2.AjaxState.protecteds, [observer])) {
                 return;
             }
 
-            var observers = this.protecteds.observers;
+            var observers = o2.AjaxState.protecteds.observers;
 
             observers.push({
                 object : observer,
@@ -91,7 +91,7 @@
          * @param {Object} observer - the <code>Observer</code> to remove.
          */
         deleteObserver : function(observer) {
-            var observers = this.protecteds.observers;
+            var observers = o2.AjaxState.protecteds.observers;
             var i = 0;
             var len = 0;
 
@@ -101,7 +101,7 @@
                 return true;
             }
 
-            for ( i = 0, len = observers.length; i < len; i++) {
+            for (i = 0, len = observers.length; i < len; i++) {
                 if (observer === observers[i].object) {
                     observers.splice(i, 1).isDeleted = true;
 
@@ -122,7 +122,7 @@
          * @return the number of registered <code>Observer</code>s.
          */
         countObservers : function() {
-            return this.protecteds.observers.length;
+            return o2.AjaxState.protecteds.observers.length;
         },
 
         /**
@@ -133,7 +133,7 @@
          * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
          */
         deleteObservers : function() {
-            this.protecteds.observers.length = 0;
+            o2.AjaxState.protecteds.observers.length = 0;
         },
 
         /**
@@ -172,7 +172,7 @@
          * @param {Object} data - the data to pass to the <code>Observer</code>s.
          */
         timeoutAllObservers : function(data) {
-            this.timeoutObservers(this.protecteds.observers, data);
+            o2.AjaxState.timeoutObservers(o2.AjaxState.protecteds.observers, data);
         },
 
         /**
@@ -228,7 +228,7 @@
                 //
                 // will not change this fact.
 
-                var observers = this.observers;
+                var observers = o2.AjaxState.protecteds.observers;
                 var i = 0;
                 var len = 0;
 

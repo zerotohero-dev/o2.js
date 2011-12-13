@@ -7,7 +7,7 @@
  */
 
 /*global o2, Demo*/
-( function(o2, window, UNDEFINED) {
+(function(o2, window, UNDEFINED) {
 
     /*
      * Aliases.
@@ -27,17 +27,13 @@
          *
          */
         init : function() {
-
             add('o2.Template.parse SHOULD parse a simple template.');
             add('o2.Template.parse SHOULD parse a template with variables.');
             add('o2.Template.parse SHOULD iteratively parse a template.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
-
         }
-
     };
 
     Suite.init();
-
 }(o2, this));

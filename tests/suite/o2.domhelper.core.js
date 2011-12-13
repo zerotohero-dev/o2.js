@@ -7,7 +7,7 @@
  */
 
 /*global o2, Demo*/
-( function(o2, window, UNDEFINED) {
+(function(o2, window, UNDEFINED) {
 
     /*
      * Aliases.
@@ -81,11 +81,8 @@
             add('o2.DomHelper.getAttribute SHOULD work equally well with string IDs.');
 
             run(parent && parent.Runner && parent.Runner.processCompletedSuite);
-
         }
-
     };
 
     Suite.init();
-
 }(o2, this));

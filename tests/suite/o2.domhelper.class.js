@@ -7,7 +7,7 @@
  */
 
 /*global o2, Demo*/
-( function(o2, window, UNDEFINED) {
+(function(o2, window, UNDEFINED) {
 
     /*
      * Aliases.
@@ -27,13 +27,11 @@
          *
          */
         init : function() {
-
             add('o2.DomHelper.hasClass SHOULD check if an object has a given class.');
 
             add('o2.DomHelper.addClass SHOULD add a class to an object.');
 
             add('o2.DomHelper.removeClass SHOULD remove a class from an object.');
-
 
             add('dummy test case', {
                 count : 1,

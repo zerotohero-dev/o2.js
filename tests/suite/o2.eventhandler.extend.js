@@ -7,7 +7,7 @@
  */
 
 /*global o2, Demo*/
-( function(o2, window, UNDEFINED) {
+(function(o2, window, UNDEFINED) {
 
     /*
      * Aliases.

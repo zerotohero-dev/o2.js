@@ -54,7 +54,7 @@
     var apt = me.AjaxController.prototype;
 
     /**
-     * @function o2.AjaxController.update
+     * @function {protected} o2.AjaxController.update
      *
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>

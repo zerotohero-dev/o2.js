@@ -112,7 +112,7 @@
        {
            localName : "update",
            fullName : "o2.AjaxController.update",
-           summary : "function update(Observable observable, Object data)",
+           summary : "protected function  update(Observable observable, Object data)",
            ref : "logical/o2/AjaxController.html#___update",
            parent : "o2.AjaxController",
            type : "function",
