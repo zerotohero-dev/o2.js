@@ -91,7 +91,7 @@
             return me.getMouseCoordinates(evt);
         }
 
-        // The current event object neither has pageX, nor clientX defined.
+        // The current event object has neither pageX, nor clientX defined.
         return {
             x : 0,
             y : 0
@@ -133,7 +133,7 @@
             return me.getKeyCode(evt);
         }
 
-        if(e.which) {
+        if (e.which) {
             me.getKeyCode = function(e) {
                 return e.which;
             };

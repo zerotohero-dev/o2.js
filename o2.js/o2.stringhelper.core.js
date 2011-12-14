@@ -64,9 +64,12 @@
     /*
      * Common constants.
      */
-    var kGuidMultiplier = config.constants.GUID_MULTIPLIER;
     var kBlank = ' ';
     var kEmpty = '';
+    var kGlobal = 'g';
+    var kNumeric = '([0-9]+)';
+
+    var kGuidMultiplier = config.constants.GUID_MULTIPLIER;
     var kDefaultRandomLength = config.constants.DEFAULT_RANDOM_LENGTH;
     var kRandomCharFeed = config.constants.RANDOM_CHAR_FEED;
     var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
@@ -148,7 +151,7 @@
          * @return the concataneted <strong>String</strong>.
          */
         concat : function() {
-            return Array.prototype.slice.call(arguments).join('');
+            return Array.prototype.slice.call(arguments).join(kEmpty);
         },
 
         /**
@@ -179,8 +182,8 @@
                 return args[0];
             }
 
-            var pattern = new RegExp([kFormatStart, '([0-9]+)',
-                kFormatEnd].join(''), 'g');
+            var pattern = new RegExp([kFormatStart, kNumeric,
+                kFormatEnd].join(kEmpty), kGlobal);
 
             return args[0].replace(pattern, function(match, index) {
                 var currentMatch = null;
@@ -201,7 +204,7 @@
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
-            return me.StringHelper.concat('', str).replace(regExp, kEmpty);
+            return me.StringHelper.concat(kEmpty, str).replace(regExp, kEmpty);
         },
 
         /**
@@ -221,7 +224,7 @@
         trim : function(str, shouldCompact) {
             shouldCompact = shouldCompact || false;
 
-            str = me.StringHelper.concat('', str);
+            str = me.StringHelper.concat(kEmpty, str);
 
             return shouldCompact ? str.replace(kWhitespaceRegExp,
                 kBlank).replace(kTrimRegExp, kEmpty) :
@@ -258,7 +261,7 @@
          */
         compact : function(str) {
             return me.StringHelper.trim(
-                me.StringHelper.concat('', str), true);
+                me.StringHelper.concat(kEmpty, str), true);
         }
     };
 }(this.o2));

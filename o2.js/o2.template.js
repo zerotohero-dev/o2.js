@@ -7,7 +7,7 @@
  *  Please see the LICENSE file for details.
  * -->
  *
- * <p>A very fast templating engine.</p>
+ * <p>A "very" fast templating engine.</p>
  */
 (function(framework) {
     'use strict';

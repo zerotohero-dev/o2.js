@@ -132,6 +132,7 @@
                         return ar.indexOf(elm);
                     }
 
+                    //TODO: this part is common -- factor it out.
                     if (typeof ar === kObject) {
                         for (key in ar) {
                             if (ar.hasOwnProperty(key)) {

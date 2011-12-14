@@ -1,7 +1,7 @@
 /**
  * @module domhelper.dimension
  * @requires domhelper.core
- * @requires stringhelper
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -41,7 +41,7 @@
      * h}</code>.
      */
     me.getDocumentDimension = function() {
-        if(document.documentElement) {
+        if (document.documentElement) {
             me.getDocumentDimension = function() {
                 var d = document;
 
@@ -68,7 +68,6 @@
                     width : width,
                     height : height
                 };
-
             };
 
             return me.getDocumentDimension();
@@ -145,13 +144,12 @@
                     width : window.innerWidth,
                     height : window.innerHeight
                 };
-
             };
 
             return me.getWindowInnerDimension();
         }
 
-        if(document.documentElement && document.documentElement.clientWidth) {
+        if (document.documentElement && document.documentElement.clientWidth) {
             me.getWindowInnerDimension = function() {
                 var d = document.documentElement;
 
@@ -214,8 +212,8 @@
 
     /**
      * @function {static} o2.DomHelper.getDimension
-     * 
-     * <p>Gets the dimension of the given element in the form 
+     *
+     * <p>Gets the dimension of the given element in the form
      * <code>{width: w, height: h}</code>, where <strong>w</strong> and
      * <strong>h</strong> are in pixels.
      *
@@ -281,7 +279,7 @@
     me.setWidth = function(obj, width) {
         obj = $(obj);
 
-        if( !obj) {
+        if (!obj) {
             return;
         }
 

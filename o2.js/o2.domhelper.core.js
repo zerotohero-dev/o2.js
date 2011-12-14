@@ -22,7 +22,6 @@
      * Common constants.
      */
     var kFunction = 'function';
- //   var kString = 'string';
     var kClass = 'class';
     var kClassName = 'className';
     var kStyle = 'style';
@@ -351,7 +350,7 @@
          */
         create : function(name, attributes) {
             var e = document.createElement(name);
-            var value = '';
+            var value = kEmpty;
             var key = null;
             var isClass = false;
             var isStyle = false;
@@ -578,7 +577,7 @@
             if (attribute === kClass || attribute === kClassName) {
                 value = obj.className;
 
-                if(value !== undefined) {
+                if (value !== undefined) {
                     return value;
                 }
             }

@@ -216,15 +216,17 @@
                 // static scope:*
                 //
                 // That is to say, this method (and all other static methods in
-                // here) will see the scope of this closure ( ( function(...,
-                // window, UNDEFINED) { ... ) when they are extended via
+                // here) will see the scope of this closure
+                //     (function(framework, window) { ... }
                 //
-                // NewClass.hasObserver = AjaxState.hasObserver
+                // Extending them via
                 //
-                // even using
+                //      NewClass.hasObserver = AjaxState.hasObserver
                 //
-                // NewClass.hasObserver = MethodHelper.clone(NewClass,
-                // AjaxState.hasObserver);
+                // or even using
+                //
+                //     NewClass.hasObserver = MethodHelper.clone(NewClass,
+                //     AjaxState.hasObserver);
                 //
                 // will not change this fact.
 

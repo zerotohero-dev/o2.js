@@ -114,6 +114,12 @@
     };
 
     /*
+     * Common constants.
+     */
+    var kEmpty = '';
+    var kContainer = 'div';
+
+    /*
      *
      */
     var state = {
@@ -138,7 +144,7 @@
      */
     me.xssEncode = function(str, shouldPreserveAmpersands) {
         shouldPreserveAmpersands = !!shouldPreserveAmpersands;
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
 
         var cm = config.map;
         var map = shouldPreserveAmpersands ? cm.xssEncodeNoAmp : cm.xssEncode;
@@ -172,7 +178,7 @@
         var mapItem = null;
         var i = 0;
         var len = 0;
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -198,7 +204,7 @@
         var mapItem = null;
         var i = 0;
         var len = 0;
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -218,7 +224,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
         return encodeURIComponent(str);
     };
 
@@ -232,7 +238,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.unescape = function(str) {
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
         return decodeURIComponent(str);
     };
 
@@ -248,13 +254,13 @@
      */
     me.encodeSafeHtml = function(str) {
         var tmp = state.tempDiv;
-        str = ['', str].join('');
+        str = [kEmpty, str].join(kEmpty);
 
         if (!tmp) {
-            state.tempDiv = document.createElement('div');
+            state.tempDiv = document.createElement(kContainer);
         }
 
-        tmp.innerHTML = '';
+        tmp.innerHTML = kEmpty;
         tmp.appendChild(document.createTextNode(str));
 
         return tmp.innerHTML;

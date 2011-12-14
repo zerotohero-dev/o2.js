@@ -1,6 +1,6 @@
 /**
  * @module validator.regexp
- * @requires validator
+ * @requires validator.core
  *
  * <!--
  *  This program is distributed under

@@ -28,18 +28,18 @@
      */
     var concat = framework.StringHelper.concat;
 
-    /*
-    o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
-    o2.Timer.stop(kCheckId);
-    o2.Timer.start(kCheckId);
-     */
-
     /**
      * @class {static} o2.Timer
      *
      * <p>A class for executing repeated timed actions.</p>
      */
     me.Timer = {
+//TODO: add examples into documentation.
+    /*
+    o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+    o2.Timer.stop(kCheckId);
+    o2.Timer.start(kCheckId);
+     */
 
         /**
          * @function {static} o2.Timer.set

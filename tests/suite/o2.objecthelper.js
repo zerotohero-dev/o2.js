@@ -15,8 +15,6 @@
     var run = o2.Unit.run;
     var assertStrictEqual = o2.Unit.assertStrictEqual;
     var assertStrictNotEqual = o2.Unit.assertStrictNotEqual;
-//    var assertEqual = o2.Unit.assertEqual;
-//    var assert = o2.Unit.assert;
 
     /**
      *

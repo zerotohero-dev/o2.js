@@ -69,7 +69,32 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    me.getParent = function(target, nodeName, shouldExcludeSelf) {
+
+    /**
+     * @function {static} o2.DomHelper.parent
+     *
+     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
+     *
+     * @see o2.DomHelper.getParent
+     */
+
+    /**
+     * @function {static} o2.DomHelper.closest
+     *
+     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
+     *
+     * @see o2.DomHelper.getParent
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findParent
+     *
+     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
+     *
+     * @see o2.DomHelper.getParent
+     */
+    me.findParent = me.closest = me.parent = me.getParent = function(target,
+                nodeName, shouldExcludeSelf) {
         var nodes = null;
         var hasParent = false;
         var targetNodeName = kEmpty;
@@ -117,39 +142,6 @@
         }
 
         return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.parent
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-    me.parent = function(elm, nodeName, shouldExcludeSelf) {
-        return me.getParent(elm, nodeName, shouldExcludeSelf);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.closest
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-    me.closest = function(elm, nodeName, shouldExcludeSelf) {
-        return me.getParent(elm, nodeName, shouldExcludeSelf);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findParent
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-    me.findParent = function(elm, nodeName, shouldExcludeSelf) {
-        return me.getParent(elm, nodeName, shouldExcludeSelf);
     };
 
     /**
@@ -226,8 +218,16 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    me.getParentByAttribute = function(obj, attribute, value,
-                shouldExcludeSelf) {
+
+    /**
+     * @function o2.DomHelper.findParentByAttribute
+     *
+     * <p>An alias to {@link o2.DomHelper.getParentByAttribute}.</p>
+     *
+     * @see o2.DomHelper.getParentByAttribute
+     */
+    me.findParentByAttribute = me.getParentByAttribute = function(obj, attribute,
+                value, shouldExcludeSelf) {
         var isExcluded = !!shouldExcludeSelf;
 
         obj = $(obj);
@@ -260,18 +260,6 @@
     };
 
     /**
-     * @function o2.DomHelper.findParentByAttribute
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentByAttribute}.</p>
-     *
-     * @see o2.DomHelper.getParentByAttribute
-     */
-    me.findParentByAttribute = function(obj, attribute, value,
-                shouldExcludeSelf) {
-        return me.getParentByAttribute(obj, attribute, value, shouldExcludeSelf);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getParentWithAttribute
      *
      * <p>Gets the first parent with a given <strong>attribute</strong>.</p>
@@ -285,7 +273,16 @@
      * @return the <strong>DOM</strong> node if found, <code>null</code>
      * otherwise.
      */
-    me.getParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
+
+    /**
+     * @function {static} o2.DomHelper.findParentWithAttribute
+     *
+     * <p>An alias to {@link o2.DomHelper.getParentWithAttribute}.</p>
+     *
+     * @see o2.DomHelper.getParentWithAttribute
+     */
+    me.findParentWithAttribute = me.getParentWithAttribute = function(obj,
+                attribute, shouldExcludeSelf) {
         var isExcluded = !!shouldExcludeSelf;
 
         obj = $(obj);
@@ -314,17 +311,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentWithAttribute
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentWithAttribute}.</p>
-     *
-     * @see o2.DomHelper.getParentWithAttribute
-     */
-    me.findParentWithAttribute = function(obj, attribute, shouldExcludeSelf) {
-        return me.getParentWithAttribute(obj, attribute, shouldExcludeSelf);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getParentById
      * <p>This is an alias to</p>
      * <pre>
@@ -333,7 +319,15 @@
      *
      * @see DomHelper.getParentByAttribute
      */
-    me.getParentById = function(obj, id, shouldExcludeSelf) {
+
+    /**
+     * @function {static} o2.DomHelper.findParentById
+     *
+     * <p>An alias to {@link o2.DomHelper.getParentById}.</p>
+     *
+     * @see o2.Domhelper.getParentById
+     */
+    me.findParentById = me.getParentById = function(obj, id, shouldExcludeSelf) {
         var isExcluded = !!shouldExcludeSelf;
 
         obj = $(obj);
@@ -346,17 +340,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findParentById
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentById}.</p>
-     *
-     * @see o2.Domhelper.getParentById
-     */
-    me.findParentById = function(obj, id, shouldExcludeSelf) {
-        return me.getParentById(obj, id, shouldExcludeSelf);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getParentWithId
      * <p>This is an alias to</p>
      * <pre>
@@ -365,7 +348,15 @@
      *
      * @see o2.DomHelper.getParentWithAttribute
      */
-    me.getParentWithId = function(obj, shouldExcludeSelf) {
+
+    /**
+     * @function {static} o2.DomHelper.findParentWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getParentWithId}.</p>
+     *
+     * @see o2.DomHelper.getParentWithId
+     */
+     me.findParentWithId = me.getParentWithId = function(obj, shouldExcludeSelf) {
         var isExcluded = !!shouldExcludeSelf;
 
         obj = $(obj);
@@ -375,17 +366,6 @@
         }
 
         return me.getParentWithAttribute(obj, kId, isExcluded);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findParentWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentWithId}.</p>
-     *
-     * @see o2.DomHelper.getParentWithId
-     */
-    me.findParentWithId = function(obj, shouldExcludeSelf) {
-        return me.getParentWithId(obj, shouldExcludeSelf);
     };
 
     /**
@@ -475,9 +455,6 @@
      *
      * @see o2.DomHelper.getFirstChild
      */
-    me.first = function(target, nodeName) {
-        return me.getFirstChild(target, nodeName);
-    };
 
     /**
      * @function {static} o2.DomHelper.findFirstChild
@@ -486,7 +463,7 @@
      *
      * @see o2.DomHelper.getFirstChild
      */
-    me.findFirstChild = function(target, nodeName) {
+    me.findFirstChild = me.first = function(target, nodeName) {
         return me.getFirstChild(target, nodeName);
     };
 
@@ -555,6 +532,15 @@
         return me.getFirstChildById(target, id);
     };
 
+
+    /**
+     * @function {static} o2.DomHelper.firstById
+     *
+     * <p>An alias to {@link o2.DomHelper.getFirstChildById}.</p>
+     *
+     * @see o2.DomHelper.getFirstChildById
+     */
+
     /**
      * @function {static} o2.DomHelper.findFirstChildById
      *
@@ -562,7 +548,7 @@
      *
      * @see o2.DomHelper.getFirstChildById
      */
-    me.findFirstChildById = function(target, id) {
+    me.firstById = me.findFirstChildById = function(target, id) {
         return me.getFirstChildById(target, id);
     };
 
@@ -634,13 +620,21 @@
     };
 
     /**
+     * @function {static} o2.DomHelper.firstWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getFirstChildWithId}.</p>
+     *
+     * @see o2.DomHelper.getFirstChildWithId
+     */
+
+    /**
      * @function o2.DomHelper.findFirstChildWithId
      *
      * <p>An alias to {@link o2.DomHelper.getFirstChildWithId}.</p>
      *
      * @see o2.DomHelper.getFirstChildWithId
      */
-    me.findFirstChildWithId = function(target) {
+    me.firstWithId = me.findFirstChildWithId = function(target) {
         return me.getFirstChildWithId(target);
     };
 
@@ -657,7 +651,23 @@
      *
      * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
      */
-    me.getLastChild = function(target, nodeName) {
+
+    /**
+     * @function {static} o2.DomHelper.last
+     *
+     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
+     *
+     * @see o2.DomHelper.getLastChild
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findLastChild
+     *
+     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
+     *
+     * @see o2.DomHelper.getLastChild
+     */
+    me.findLastChild = me.last = me.getLastChild = function(target, nodeName) {
         target = $(target);
 
         if (!target) {
@@ -700,28 +710,6 @@
         }
 
         return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.last
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
-     *
-     * @see o2.DomHelper.getLastChild
-     */
-    me.last = function(target, nodeName) {
-        return me.getLastChild(target, nodeName);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findLastChild
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
-     *
-     * @see o2.DomHelper.getLastChild
-     */
-    me.findLastChild = function(target, nodeName) {
-        return me.getLastChild(target, nodeName);
     };
 
     /**
@@ -768,7 +756,15 @@
      *
      * @see o2.DomHelper.getLastChildById
      */
-    me.findLastChildById = function(target, id) {
+
+    /**
+     * @function {static} o2.DomHelper.lastById
+     *
+     * <p>An alias to {@link o2.DomHelper.getLastChildById}.</p>
+     *
+     * @see o2.DomHelper.getLastChildById
+     */
+    me.lastById = me.findLastChildById = function(target, id) {
         return me.getLastChildById(target, id);
     };
 
@@ -816,7 +812,15 @@
      *
      * @see o2.DomHelper.getLastChildWithId
      */
-    me.findLastChildWithId = function(target) {
+
+    /**
+     * @function {static} o2.DomHelper.lastWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getLastChildWithId}.</p>
+     *
+     * @see o2.DomHelper.getLastChildWithId
+     */
+    me.lastWithId = me.findLastChildWithId = function(target) {
         return me.getLastChildWithId(target);
     };
 
@@ -831,7 +835,23 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    me.getChildren = function(elem, nodeName) {
+
+    /**
+     * @function {static} o2.DomHelper.children
+     *
+     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
+     *
+     * @see o2.DomHelper.getChildren
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findChildren
+     *
+     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
+     *
+     * @see o2.DomHelper.getChildren
+     */
+    me.findChildren = me.children = me.getChildren = function(elem, nodeName) {
         var target = $(elem);
 
         nodeName = nodeName || kEmpty;
@@ -861,28 +881,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.children
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
-     *
-     * @see o2.DomHelper.getChildren
-     */
-    me.children = function(elm) {
-        return me.getChildren(elm);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findChildren
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
-     *
-     * @see o2.DomHelper.getChildren
-     */
-    me.findChildren = function(elm) {
-        return me.getChildren(elm);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getChildrenByClassName
      *
      * <p>Gets immediate descendants, with a given class name, of the
@@ -901,8 +899,11 @@
             return null;
         }
 
-        //NOTE: IE7+ supports child selector ( > ), IE8+ supports
-        // querySelectorAll
+        // NOTE: IE7+ supports child selector ( > ),
+        // IE8+ supports querySelectorAll
+        // So it's safe to use the child selector with querySelectorAll:
+        // It'll work as expected in IE8+ and it'll degrade gracefully
+        // in IE7-
 
         if(el.querySelectorAll) {
             me.getChildrenByClassName = function(el, c) {
@@ -945,8 +946,16 @@
      *
      * @see o2.DomHelper.getChildrenByClassName
      */
-    me.findChildrenByClassName = function(el, c) {
-        return me.getLastChildWithId(el, c);
+
+    /**
+     * @function {static} o2.DomHelper.childrenByClassName
+     *
+     * <p>An alias to {@link o2.DomHelper.getChildrenByClassName}.</p>
+     *
+     * @see o2.DomHelper.getChildrenByClassName
+     */
+    me.childrenByClassName = me.findChildrenByClassName = function(el, c) {
+        return me.getChildrenByClassName(el, c);
     };
 
     /**
@@ -961,7 +970,23 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getPrevious = function(target) {
+
+    /**
+     * @function {static} o2.DomHelper.prev
+     *
+     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
+     *
+     * @see o2.DomHelper.getPrevious
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findPrevious
+     *
+     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
+     *
+     * @see o2.DomHelper.getPrevious
+     */
+    me.findPrevious = me.prev = me.getPrevious = function(target) {
         target = $(target);
 
         if (!target || typeof target !== kObject) {
@@ -986,28 +1011,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.prev
-     *
-     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
-     *
-     * @see o2.DomHelper.getPrevious
-     */
-    me.prev = function(elm) {
-        return me.getPrevious(elm);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findPrevious
-     *
-     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
-     *
-     * @see o2.DomHelper.getPrevious
-     */
-    me.findPrevious = function(elm) {
-        return me.getPrevious(elm);
-    };
-
-    /**
      * @function o2.DomHelper.getPreviousById
      *
      * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
@@ -1019,7 +1022,23 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getPreviousById = function(target, id) {
+
+    /**
+     * @function {static} o2.DomHelper.findPreviousById
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
+     *
+     * @see o2.DomHelper.getPreviousById
+     */
+
+    /**
+     * @function {static} o2.DomHelper.prevById
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
+     *
+     * @see o2.DomHelper.getPreviousById
+     */
+    me.prevById = me.findPreviousById = me.getPreviousById = function(target, id) {
         target = $(target);
 
         if (!target) {
@@ -1045,17 +1064,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findPreviousById
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
-     *
-     * @see o2.DomHelper.getPreviousById
-     */
-    me.findPreviousById = function(target, id) {
-        return me.getPreviousById(target, id);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getPreviousWithId
      *
      * <p>gets the previous <strong>DOM</strong> node that has a defined
@@ -1067,7 +1075,24 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getPreviousWithId = function(target) {
+
+    /**
+     * @function o2.DomHelper.findPreviousWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
+     *
+     * @see o2.DomHelper.getPreviousWithId
+     */
+
+    /**
+     * @function o2.DomHelper.prevWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
+     *
+     * @see o2.DomHelper.getPreviousWithId
+     */
+    me.prevWithId = me.findPreviousWithId = me.getPreviousWithId = function(
+                target) {
         target = $(target);
 
         if (!target) {
@@ -1091,18 +1116,6 @@
         return null;
     };
 
-
-    /**
-     * @function o2.DomHelper.findPreviousWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
-     *
-     * @see o2.DomHelper.getPreviousWithId
-     */
-    me.findPreviousWithId = function(target, id) {
-        return me.getPreviousWithId(target, id);
-    };
-
     /**
      * @function {static} o2.DomHelper.getNext
      *
@@ -1114,7 +1127,23 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getNext = function(target) {
+
+    /**
+     * @function {static} o2.DomHelper.next
+     *
+     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
+     *
+     * @see o2.DomHelper.getNext
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findNext
+     *
+     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
+     *
+     * @see o2.DomHelper.getNext
+     */
+    me.findNext = me.next = me.getNext = function(target) {
         target = $(target);
 
         if (!target) {
@@ -1139,28 +1168,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.next
-     *
-     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
-     *
-     * @see o2.DomHelper.getNext
-     */
-    me.next = function(elm) {
-        return me.getNext(elm);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findNext
-     *
-     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
-     *
-     * @see o2.DomHelper.getNext
-     */
-    me.findNext = function(elm) {
-        return me.getNext(elm);
-    };
-
-    /**
      * @function o2.DomHelper.getNextById
      *
      * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
@@ -1172,7 +1179,15 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getNextById = function(target, id) {
+
+    /**
+     * @function {static} o2.DomHelper.findNextById
+     *
+     * <p>An alias to {@link o2.DomHelper.getNextById}.</p>
+     *
+     * @see o2.DomHelper.getNextById
+     */
+    me.nextById = me.findNextById = me.getNextById = function(target, id) {
         target = $(target);
 
         if (!target) {
@@ -1197,17 +1212,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.findNextById
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextById}.</p>
-     *
-     * @see o2.DomHelper.getNextById
-     */
-    me.findNextById = function(target, id) {
-        return me.getNextById(target, id);
-    };
-
-    /**
      * @function {static} o2.DomHelper.getNextWithId
      *
      * <p>gets the next <strong>DOM</strong> node that has a defined
@@ -1219,7 +1223,23 @@
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
      */
-    me.getNextWithId = function(target) {
+
+    /**
+     * @function {static} o2.DomHelper.findNextWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
+     *
+     * @see o2.DomHelper.getNextWithId
+     */
+
+    /**
+     * @function {static} o2.DomHelper.nextWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
+     *
+     * @see o2.DomHelper.getNextWithId
+     */
+    me.nextWithId = me.findNextWithId = me.getNextWithId = function(target) {
         target = $(target);
 
         if (!target) {
@@ -1241,17 +1261,6 @@
         }
 
         return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findNextWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
-     *
-     * @see o2.DomHelper.getNextWithId
-     */
-    me.findNextWithId = function(target) {
-        return me.getNextWithId(target);
     };
 
     /**
@@ -1310,7 +1319,15 @@
      * @param {Object} el - a <strong>DOM</strong> node reference or its
      * <code>String</code> id.
      */
-    me.prevAll = function(el) {
+
+    /**
+     * @function {static} o2.DomHelper.getAllPrevious
+     *
+     * <p>An alias to {@link o2.DomHelper.prevAll}.</p>
+     *
+     * @see o2.DomHelper.prevAll
+     */
+    me.getAllPrevious = me.prevAll = function(el) {
         var result = [];
         var node = $(el);
 
@@ -1331,17 +1348,6 @@
     };
 
     /**
-     * @function {static} o2.DomHelper.getAllPrevious
-     *
-     * <p>An alias to {@link o2.DomHelper.prevAll}.</p>
-     *
-     * @see o2.DomHelper.prevAll
-     */
-    me.getAllPrevious = function(elm) {
-        return me.prevAll(elm);
-    };
-
-    /**
      * @function {static} o2.DomHelper.nextAll
      *
      * <p>Gets all of the next siblings.</p>
@@ -1349,7 +1355,15 @@
      * @param {Object} el - a <strong>DOM</strong> node reference or its
      * <code>String</code> id.
      */
-    me.nextAll = function(el) {
+
+    /**
+     * @function {static} o2.DomHelper.getAllNext
+     *
+     * <p>An alias to {@link o2.DomHelper.nextAll}.</p>
+     *
+     * @see o2.DomHelper.nextAll
+     */
+    me.getAllNext = me.nextAll = function(el) {
         var result = [];
         var node = $(el);
 
@@ -1367,16 +1381,5 @@
         }
 
         return result;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getAllNext
-     *
-     * <p>An alias to {@link o2.DomHelper.nextAll}.</p>
-     *
-     * @see o2.DomHelper.nextAll
-     */
-    me.getAllNext = function(elm) {
-        return me.nextAll(elm);
     };
 }(this.o2, this));

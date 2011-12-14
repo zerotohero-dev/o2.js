@@ -19,6 +19,16 @@
     var concat = framework.StringHelper.concat;
     var escape = window.escape;
 
+    var kEmpty = '';
+    var kBlank = ' ';
+    var kExpires = '; expires=';
+    var kPath = '; path=';
+    var kDomain = '; domain=';
+    var kSecure = '; secure';
+    var kDelimeter = ';';
+    var kRootPath = '/';
+    var kEquals = '=';
+
     /**
      * @class {static} o2.Cookie
      *
@@ -46,25 +56,29 @@
 
             if (days) {
                 d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-                ex = '; expires=' + d.toGMTString();
+                ex = concat(kExpires , d.toGMTString());
             } else {
-                ex = '';
+                ex = kEmpty;
             }
 
-            var cookiePath = path || '/';
+            var cookiePath = path || kRootPath;
 
             // Do not use encodeURICompoent for paths as it replaces / with %2F
             var cookieString = concat(
-                encodeURIComponent(name), '=', encodeURIComponent(value),
-                ex, '; path=', escape(cookiePath)
+                encodeURIComponent(name),
+                kEquals,
+                encodeURIComponent(value),
+                ex,
+                kPath,
+                escape(cookiePath)
             );
 
             if (domain) {
-                cookieString = concat(cookieString, '; domain=', escape(domain));
+                cookieString = concat(cookieString, kDomain, escape(domain));
             }
 
             if (isSecure) {
-                cookieString = concat(cookieString, '; secure');
+                cookieString = concat(cookieString, kSecure);
             }
 
             document.cookie = cookieString;
@@ -83,15 +97,16 @@
          * if the <strong>cookie</strong> is not found.
          */
         read : function(name) {
-            var eq = [decodeURIComponent(name), '='].join('');
-            var ca = document.cookie.split(';');
+            var eq = concat(decodeURIComponent(name), kEmpty);
+            var ca = document.cookie.split(kDelimeter);
             var i = 0;
+            var kNextCharIndex = 1;
 
             for (i = 0; i < ca.length; i++) {
                 var c = ca[i];
 
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1, c.length);
+                while (c.charAt(0) === kBlank) {
+                    c = c.substring(kNextCharIndex, c.length);
                 }
 
                 if (c.indexOf(eq) === 0) {
@@ -115,11 +130,11 @@
          * secure connection.
          */
         remove : function(name, path, domain) {
-            me.Cookie.save(name, '', -1, path || '/', domain || null);
+            me.Cookie.save(name, kEmpty, -1, path || kRootPath, domain || null);
         }
 
-        // removeAll makes thing too complicated if path, domain and isSecure
-        // come into the equation. Will not implement it.
+        // removeAll makes things too complicated if path, and domain
+        // come into play... Will not implement it.
         // removeAll : function(){ }
     };
 }(this.o2, this, this.document));

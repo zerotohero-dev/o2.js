@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.#1323763766#
+ * @version 0.23.#1323840302#
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -34,8 +34,9 @@ this.o2 = {};
     /*
      * Common string constants.
      */
-    var kString = 'string';
     var kObjectNotDefined = config.constants.errorMessage.OBJECT_NOT_DEFINED;
+    var kString = 'string';
+    var kEmpty = '';
     var kLoad = 'load';
 
     /**
@@ -80,7 +81,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '#1323763766#';
+    me.build = '#1323840302#';
 
     /**
      * @function {static} o2.$
@@ -96,7 +97,7 @@ this.o2 = {};
      */
     me.$ = function(obj) {
         if (obj === undefined) {
-            throw [me.name, kObjectNotDefined].join('');
+            throw [me.name, kObjectNotDefined].join(kEmpty);
         }
 
         if (typeof obj === kString) {
