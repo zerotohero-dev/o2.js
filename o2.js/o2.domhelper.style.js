@@ -24,6 +24,7 @@
     var t = framework.t;
     var myName = framework.name;
     var toCamelCase = framework.StringHelper.toCamelCase;
+    var concat = framework.StringHelper.concat;
     var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
 
     /*
@@ -40,6 +41,12 @@
     var kLink = 'link';
     var kRel = 'rel';
     var kStyle = 'style';
+    var kFloat = 'float';
+    var kCssFloat = 'cssFloat';
+    var kPixels = 'px';
+
+    var kRegPixelNumber = /^-?\d+(?:px)?$/i;
+    var kRegNumber = /^-?\d/;
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -70,7 +77,7 @@
 
         for (key in style) {
             if (style.hasOwnProperty(key)) {
-                if (key === 'float') {
+                if (key === kFloat) {
                     obj.style.cssFloat = style[key];
                 } else {
                     obj.style[toCamelCaseCached(key)] = style[key];
@@ -133,13 +140,13 @@
 
                 var defaultView = document.defaultView;
 
-                if(cssProperty === 'float') {
-                    cssProperty = 'cssFloat';
+                if (cssProperty === kFloat) {
+                    cssProperty = kCssFloat;
                 } else {
                     cssProperty = toCamelCase(cssProperty);
                 }
 
-                if(noForce) {
+                if (noForce) {
                     //return the property if set inline.
                     var val = obj.style[cssProperty];
 
@@ -166,8 +173,8 @@
                 return;
             }
 
-            if(cssProperty === 'float') {
-                cssProperty = 'cssFloat';
+            if (cssProperty === kFloat) {
+                cssProperty = kCssFloat;
             } else {
                 cssProperty = toCamelCase(cssProperty);
             }
@@ -186,8 +193,6 @@
 
             if (obj.currentStyle) {
                 var value = obj.currentStyle[camelizedCss];
-                var kRegPixelNumber = /^-?\d+(?:px)?$/i;
-                var kRegNumber = /^-?\d/;
                 var isImproper = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
 
@@ -220,7 +225,7 @@
 
                     obj.runtimeStyle.left = obj.currentStyle.left;
                     obj.style.left = (value || 0);
-                    value = obj.style.pixelLeft + 'px';
+                    value = concat(obj.style.pixelLeft, kPixels);
 
                     obj.style.left = left;
                     obj.runtimeStyle.left = runtimeLeft;
@@ -254,7 +259,15 @@
      * @return <code>true</code> if the element is visible, <code>false</code>
      * otherwise.
      */
-    me.isVisible = function(obj) {
+
+    /**
+     * @function o2.DomHelper.visible
+     *
+     * <p>An alias to {@link o2.DomHelper.isVisible}.</p>
+     *
+     * @see o2.DomHelper.isVisible
+     */
+    me.visible = me.isVisible = function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -289,17 +302,6 @@
                ((display    ===  null  ) && (visibility !== kHidden)) ||
                ((visibility ===  null  ) && (display    !== kNone  )) ||
                ((display    !== kNone  ) && (visibility !== kHidden));
-    };
-
-    /**
-     * @function o2.DomHelper.visible
-     *
-     * <p>An alias to {@link o2.DomHelper.isVisible}.</p>
-     *
-     * @see o2.DomHelper.isVisible
-     */
-    me.visible = function(obj) {
-        return me.isVisible(obj);
     };
 
     /**

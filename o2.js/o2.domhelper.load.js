@@ -86,7 +86,7 @@
 
         x.parentNode.insertBefore(s, x);
 
-        if(!callback) {
+        if (!callback) {
             return;
         }
 

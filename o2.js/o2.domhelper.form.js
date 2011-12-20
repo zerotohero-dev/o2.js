@@ -1,5 +1,3 @@
-/*global o2 */
-
 /**
  * @module domhelper.form
  * @requires stringhelper

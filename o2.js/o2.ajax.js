@@ -215,14 +215,14 @@
         var responseXml = null;
         var statusText = kEmpty;
 
-        if(xhr.isAborted) {
+        if (xhr.isAborted) {
             onaborted(xhr);
 
             return;
         }
 
-        // IE9 throws error when accessing these properties
-        // when the request is aborted.
+        // IE9 throws an error when accessing these properties
+        // while the request is in an "aborted" state.
         try {
             status = xhr.status;
             responseText = xhr.responseText;
@@ -457,7 +457,7 @@
          * callback is fired.</p>
          */
         abort : function(xhr) {
-            if(!xhr || xhr.isAborted) {
+            if (!xhr || xhr.isAborted) {
                 return;
             }
 

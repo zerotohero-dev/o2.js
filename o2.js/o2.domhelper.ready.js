@@ -36,9 +36,7 @@
             regExp : {
                 REG_DOM_LOADED : /^loade|c/
             }
-
         }
-
     };
 
     /*
@@ -148,7 +146,8 @@
         if (document.addEventListener) {
 
             //Listen to native on dom conten loaded event.
-            document.addEventListener(kDomContentLoaded, onMozDomContentLoaded, false);
+            document.addEventListener(kDomContentLoaded, onMozDomContentLoaded,
+                false);
 
             //Worst-case fallback
             window.addEventListener(kLoad, onMozWindowLoad, false);
