@@ -38,6 +38,20 @@ and make the code less error-prone.
 Here are the main code conventions, standards, and guidelines used
 within **o2.js** source files:
 
+### Maintain Existing Coding Style
+
+This is easier to state, and harder to adhere. 
+Keep your coding habits and behaviors aside.
+All code should look like a single person typed it, no matter how many 
+people contributed.
+
+
+### Provide Tests for the Codebase
+
+Any module developed SHOULD include some form of unit, reference, 
+implementation or functional testing. Use case demos DO NOT QUALIFY 
+as "tests".
+
 ### Code Cleanliness
 
 The code should be kept clean. There should **not** be excessive logs,
@@ -64,6 +78,8 @@ continue from the next line.
 Code blocks are indented with **4 spaces**. Each `<TAB>` corresponds to 4
 spaces, and the actual `<TAB>` character is **NOT USED**. The IDE should be
 set up to print **4 spaces** when pressing the `<TAB>` key.
+
+Never mix spaces and tabs.
 
 Indent...
 
@@ -708,6 +724,8 @@ you'd do in a normal sentence.
 
 ### Variable and Method Naming
 
+You are not a human code compiler/compressor, so don't try to be one.
+
 * Use meaningful variable (and function) names:
 
 		// Incorrect:
@@ -907,6 +925,34 @@ function.
 			} else {
 				doStuff();
 			}
+		}
+
+### Return Early
+
+Early returns promote code readability with negligible performance impact, if any.
+
+		// Instead of this:
+		
+		function returnLate(foo) {
+			var ret;
+
+			if (foo) {
+			    ret = 'foo';
+			} else {
+			    ret = 'bar';
+			}
+			
+			return ret;
+		}
+
+		// Do this:
+
+		function returnEarly(foo) {		
+			if (foo) {
+			    return 'foo';
+			}
+			
+			return 'bar';
 		}
 
 ### Group Related Statements Together Using Parentheses (`( )`)
@@ -1202,9 +1248,9 @@ While writing a method the following should be taken into consideration:
 [5]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
 [6]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
 
-### **DO NOT** Include Type Information While Naming Variables
+### **DO NOT** Rely On Type Information While Naming Variables
 
-**DO NOT** include type information in variables.
+Strive **NOT TO** include type information in variables.
 
 Variables should be understandable by their behavior (*semantics*),
 **NOT** by their type.
@@ -1214,6 +1260,7 @@ Variables should be understandable by their behavior (*semantics*),
 			var eventType = framework.EventType;
 			var kAddBuddyEventType = eventType.ADD_BUDDY;
 
+			var itemArrayList = new ArrayList();
 		// Correct:
 
 			/* eventType is an alias to type "framework.EventType" */
@@ -1222,6 +1269,8 @@ Variables should be understandable by their behavior (*semantics*),
 			/* kAddBuddy is of type "framework.Eventype"
 			   (when we think in non-strict terms) */
 			var kAddBuddy = eventType.ADD_BUDDY;
+			
+			var items = new ArrayList();
 
 
 **Exception**:
@@ -1231,6 +1280,37 @@ instead of renaming those constants, as in the following case:
 
 		var kDomLoaded = 'domloaded';
 		var kDomLoadedRegExp = /domloaded/g;
+		
+		var kUsername = 'user name';
+		var kUsernameFieldId = 'txtUsername';
+
+### Always Respect Type
+
+**JavaScript** is a dynamically typed language - which can be your
+best friend or worst enemy, so: Always respect type.
+
+Always use equality with type ( `===` and `!==` ) when comparing
+variables and statements.
+
+If you know the type of an input variable beforehand explicitly cast
+it before using it. Here's an example:
+
+		var userCount = document.getElementById('uc').value;
+		
+		// 1. defensively parse the value using parseInt
+		// 2. use === for comparison.
+		if (parseInt(userCount, 10) === MAX_ALLOWED_USER_COUNT) {
+			doStuff();
+		}
+
+		// Or...
+		
+		// The unary operator + will convert its rigth-side operand
+		// into a number.
+		if (+userCount === MAX_ALLOWED_USER_COUNT) {
+			doStuff();
+		}
+
 
 ### **DO NOT** Mix HTML and Javascript
 
