@@ -1644,7 +1644,7 @@ is usable at all times.
 
 [16]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
 
-## Performance and Memory Considearations
+## Performance and Memory Considerations
 
 Here are certain performance considerations, and guidelines to keep in mind
 when designing a highly interactive, mostly single-page, client-heavy,
