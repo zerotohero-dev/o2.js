@@ -1344,6 +1344,7 @@ Variables should be understandable by their behavior (*semantics*),
         var kAddBuddyEventType = eventType.ADD_BUDDY;
 
         var itemArrayList = new ArrayList();
+
     // Correct:
 
         /* eventType is an alias to type "framework.EventType" */
@@ -1354,7 +1355,6 @@ Variables should be understandable by their behavior (*semantics*),
         var kAddBuddy = eventType.ADD_BUDDY;
 
         var items = new ArrayList();
-
 
 **Exception**:
 
