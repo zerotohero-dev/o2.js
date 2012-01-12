@@ -40,16 +40,16 @@ within **o2.js** source files:
 
 ### Maintain Existing Coding Style
 
-This is easier to state, and harder to adhere. 
+This is easier to state, and harder to adhere.
 Keep your coding habits and behaviors aside.
-All code should look like a single person typed it, no matter how many 
+All code should look like a single person typed it, no matter how many
 people contributed.
 
 
 ### Provide Tests for the Codebase
 
-Any module developed SHOULD include some form of unit, reference, 
-implementation or functional testing. Use case demos DO NOT QUALIFY 
+Any module developed SHOULD include some form of unit, reference,
+implementation or functional testing. Use case demos DO NOT QUALIFY
 as "tests".
 
 ### Code Cleanliness
@@ -85,147 +85,147 @@ Indent...
 
 * Statements within **blocks**:
 
-		while (node) {
-			if (node.nodeType != kTextNode) {
-				return node;
-			}
+        while (node) {
+            if (node.nodeType != kTextNode) {
+                return node;
+            }
 
-			node = node.nextSibling;
-		}
+            node = node.nextSibling;
+        }
 
 * Statements within a **function** body:
 
-		me.getNextById = function(target, id) {
-			target = $(target);
+        me.getNextById = function(target, id) {
+            target = $(target);
 
-			if (!target) {
-				return null;
-			}
+            if (!target) {
+                return null;
+            }
 
-			var node = target.nextSibling;
+            var node = target.nextSibling;
 
-			if (!node) {
-				return null;
-			}
+            if (!node) {
+                return null;
+            }
 
-			var kTextNode = me.nodeType.TEXT;
+            var kTextNode = me.nodeType.TEXT;
 
-			while (node) {
-				if (node.id && node.id == id) {
-					return node;
-				}
+            while (node) {
+                if (node.id && node.id == id) {
+                    return node;
+                }
 
-				// get the next node.
-				node = node.nextSibling;
-			}
+                // get the next node.
+                node = node.nextSibling;
+            }
 
-			return null;
-		};
+            return null;
+        };
 
 * Statements within a **switch** body:
 
-		switch(className) {
-			case ccc.LOG:
-				try {
-					console.log(text);
-				} catch(ignore1) {
-				}
+        switch(className) {
+            case ccc.LOG:
+                try {
+                    console.log(text);
+                } catch (ignore1) {
+                }
 
-				break;
-			case ccc.INFO:
-				try {
-					console.info(text);
-				} catch(ignore2) {
-				}
+                break;
+            case ccc.INFO:
+                try {
+                    console.info(text);
+                } catch (ignore2) {
+                }
 
-				break;
+                break;
 
-				...
+                ...
 
 * Statements within a **case** body:
 
-		...
+        ...
 
-		case ccc.WARN:
-			try {
-				console.warn(text);
-			} catch(ignore3) {
-			}
+        case ccc.WARN:
+            try {
+                console.warn(text);
+            } catch (ignore3) {
+            }
 
-			break;
-		case ccc.ERROR:
-			try {
-				console.error(text);
-			} catch(ignore4) {
-			}
+            break;
+        case ccc.ERROR:
+            try {
+                console.error(text);
+            } catch (ignore4) {
+            }
 
-			break;
-		default:
-			try {
-				console.log(text);
-			} catch(ignore5) {
-			}
+            break;
+        default:
+            try {
+                console.log(text);
+            } catch (ignore5) {
+            }
 
-			break;
+            break;
 
 * Statements **inside** a *closure*:
 
-	Technically speaking, *any function* is also a *closure*. Therefore statements
-	inside **any function** should be indented one level with respect to that
-	*function*'s body.
+    Technically speaking, *any function* is also a *closure*. Therefore statements
+    inside **any function** should be indented one level with respect to that
+    *function*'s body.
 
-		me.EventHandler.preventDefault = window.event ? function() {
-			window.event.returnValue = false;
+        me.EventHandler.preventDefault = window.event ? function() {
+            window.event.returnValue = false;
 
-			return false;
-		} : function(e) {
-			if (!e) {
-				return;
-			}
+            return false;
+        } : function(e) {
+            if (!e) {
+                return;
+            }
 
-			if (e.preventDefault) {
-				e.preventDefault();
-			}
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
 
-			return false;
-		};
+            return false;
+        };
 
-		me.EventHandler.preventDefault(evt);
+        me.EventHandler.preventDefault(evt);
 
 * Parts of the statement that are folded to the next line because they exceed
 the 80-character line length limit:
 
-		application.RenderController.repaintUserInfo(messageId, userId,
-			options, callback); //<-- 1x indented.
+        application.RenderController.repaintUserInfo(messageId, userId,
+            options, callback); //<-- 1x indented.
 
 Triple indent...
 
 * Method parameters that are folded to the next line because they exceed the
 80-character line length limit.
 
-	This will clearly indicate that those parameters are **not** a part of the
-	function's body.
+    This will clearly indicate that those parameters are **not** a part of the
+    function's body.
 
-		var InstantChatMessageRenderer = {
+        var InstantChatMessageRenderer = {
 
-			/*
-			 *
-			 */
-			render : function(conversation, chatListItem, message,
-						timeStamp, messageId, userId) { //<-- 3x indented.
-				prepareChatListItem(chatListItem, message,
-					(new Date()).getTime());
+            /*
+             *
+             */
+            render : function(conversation, chatListItem, message,
+                        timeStamp, messageId, userId) { //<-- 3x indented.
+                prepareChatListItem(chatListItem, message,
+                    (new Date()).getTime());
 
-				conversation.appendChild(chatListItem);
+                conversation.appendChild(chatListItem);
 
-				application.RenderController.repaintUserInfo(messageId,
-					userId); //<-- 1x indented.
+                application.RenderController.repaintUserInfo(messageId,
+                    userId); //<-- 1x indented.
 
-				scrollToBottom(conversation);
+                scrollToBottom(conversation);
 
-			}
+            }
 
-		};
+        };
 
 
 ### Blank Lines
@@ -236,208 +236,208 @@ Insert **one** blank line...
 
 * **Before** *throw*, *break*, and *return* statements:
 
-		if (!url) {
-			stuff();
+        if (!url) {
+            stuff();
 
-			return null;
-		}
+            return null;
+        }
 
 
-	**Exception**:
+    **Exception**:
 
-	If the *return*, *throw*, *break*... statement is the **only**
-	statement within its block, then do not insert a blank line.
+    If the *return*, *throw*, *break*... statement is the **only**
+    statement within its block, then do not insert a blank line.
 
-		if (!url) {
-			return;
-		}
+        if (!url) {
+            return;
+        }
 
 * **After** function declerations:
 
-		me.EventHandler.stopPropagation = function(e) {
-			if (!e) {
-				return;
-			}
+        me.EventHandler.stopPropagation = function(e) {
+            if (!e) {
+                return;
+            }
 
-			e.stopPropagation();
-		};
+            e.stopPropagation();
+        };
 
-		me.EventHandler.stopPropagation(evt);
+        me.EventHandler.stopPropagation(evt);
 
 * **After** inline functions:
 
-		function isArray(obj) {
-			return is(obj, config.constants.ecmaScriptType.ARRAY);
-		}
+        function isArray(obj) {
+            return is(obj, config.constants.ecmaScriptType.ARRAY);
+        }
 
-		function is(obj, type) {
-			var objectNameStartIndex = 8;
-			var trimLastBraceIndex = -1;
-			var klass = Object.prototype.toString.call(obj).slice(
-				objectNameStartIndex, trimLastBraceIndex);
+        function is(obj, type) {
+            var objectNameStartIndex = 8;
+            var trimLastBraceIndex = -1;
+            var klass = Object.prototype.toString.call(obj).slice(
+                objectNameStartIndex, trimLastBraceIndex);
 
-			return (obj !== undefined) && (obj !== null) && (klass === type);
-		}
+            return (obj !== undefined) && (obj !== null) && (klass === type);
+        }
 
 * **Between** two **if** blocks:
 
-		if (!ar) {
-			return -1;
-		}
+        if (!ar) {
+            return -1;
+        }
 
-		if (isArray(ar)) {
-			for (var i = 0, len = ar.length; i < len; i++) {
-				if (elm == ar[i]) {
-					return i;
-				}
-			}
+        if (isArray(ar)) {
+            for (var i = 0, len = ar.length; i < len; i++) {
+                if (elm == ar[i]) {
+                    return i;
+                }
+            }
 
-			return -1;
-		}
+            return -1;
+        }
 
 * **After** variable declerations:
 
-		var nodeName = 'div';
+        var nodeName = 'div';
 
-		if (config.isUsingConsole && config.outputElement) {
+        if (config.isUsingConsole && config.outputElement) {
 
-			return function(value, className) {
-				println(value, className);
+            return function(value, className) {
+                println(value, className);
 
-				var debugContent = document.createElement(nodeName);
+                var debugContent = document.createElement(nodeName);
 
-				debugContent.className = className;
-				debugContent.innerHTML = value;
-				config.outputElement.appendChild(debugContent);
-			};
+                debugContent.className = className;
+                debugContent.innerHTML = value;
+                config.outputElement.appendChild(debugContent);
+            };
 
-			...
+            ...
 
 * **After** variable assignments:
 
-		var test = null;
+        var test = null;
 
-		if (someCondition()) {
-			test = getTestValue();
+        if (someCondition()) {
+            test = getTestValue();
 
-			doStuff();
-		}
+            doStuff();
+        }
 
 * **Before** a *try/catch/finally* construct:
 
-		function processCallbacks(xhr, callbacks) {
-			doStuff();
+        function processCallbacks(xhr, callbacks) {
+            doStuff();
 
-			try {
-				if (isSuccess) {
-					oncomplete(xhr.responseText, xhr.responseXML, xhr);
+            try {
+                if (isSuccess) {
+                    oncomplete(xhr.responseText, xhr.responseXML, xhr);
 
-					return;
-				}
+                    return;
+                }
 
-				onerror(xhr.status, xhr.statusText, xhr);
-			} catch(ex) {
-				onexception(xhr, ex);
-			} finally {
-				finalizeXhr(xhr);
-			}
-		}
+                onerror(xhr.status, xhr.statusText, xhr);
+            } catch (ex) {
+                onexception(xhr, ex);
+            } finally {
+                finalizeXhr(xhr);
+            }
+        }
 
 
-	**Exception**:
+    **Exception**:
 
-	Do not insert a blank linke if that try/catch/finally is the only
-	thing inside the block:
+    Do not insert a blank linke if that try/catch/finally is the only
+    thing inside the block:
 
-		function processCallbacks(xhr, callbacks) {
-			try {
-				if (isSuccess) {
-					oncomplete(xhr.responseText, xhr.responseXML, xhr);
+        function processCallbacks(xhr, callbacks) {
+            try {
+                if (isSuccess) {
+                    oncomplete(xhr.responseText, xhr.responseXML, xhr);
 
-					return;
-				}
+                    return;
+                }
 
-				onerror(xhr.status, xhr.statusText, xhr);
-			} catch(ex) {
-				onexception(xhr, ex);
-			} finally {
-				finalizeXhr(xhr);
-			}
-		}
+                onerror(xhr.status, xhr.statusText, xhr);
+            } catch (ex) {
+                onexception(xhr, ex);
+            } finally {
+                finalizeXhr(xhr);
+            }
+        }
 
 * **Before** *any* kind of *comment*:
 
-		...
+        ...
 
-		}
+        }
 
-		/*
-		 * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
-		 *
-		 * @param {XmlHttpRequest} xhr - the current <code>Xhr</code> instance.
-		 * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
-		 */
-		function processCallbacks(xhr, callbacks) {
+        /*
+         * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
+         *
+         * @param {XmlHttpRequest} xhr - the current <code>Xhr</code> instance.
+         * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
+         */
+        function processCallbacks(xhr, callbacks) {
 
-		...
+        ...
 
-		//
-		parameters = parameters || {};
-		callbacks = callbacks || {};
-		isSync = !!isSync;
+        //
+        parameters = parameters || {};
+        callbacks = callbacks || {};
+        isSync = !!isSync;
 
-		var isAsync = !isSync;
-		var kRandom = config.constants.prefix.RANDOM;
-		var kGet = config.constants.verb.GET;
-		var isPost = verb != kGet;
+        var isAsync = !isSync;
+        var kRandom = config.constants.prefix.RANDOM;
+        var kGet = config.constants.verb.GET;
+        var isPost = verb != kGet;
 
-		// name1=value1&name2=value2&name3=value3
-		var parametrizedQuery = generateParametrizeQueryString(parameters);
+        // name1=value1&name2=value2&name3=value3
+        var parametrizedQuery = generateParametrizeQueryString(parameters);
 
-		// &name1=value1&name2=value2&name3=value3 (for GET requests)
-		var query = isPost ? '' : ['&', parametrizedQuery].join('');
+        // &name1=value1&name2=value2&name3=value3 (for GET requests)
+        var query = isPost ? '' : ['&', parametrizedQuery].join('');
 
-		// name1=value1&name2=value2&name3=value3 (for POST requests)
-		var postQuery = isPost ? parametrizedQuery : '';
+        // name1=value1&name2=value2&name3=value3 (for POST requests)
+        var postQuery = isPost ? parametrizedQuery : '';
 
-		// A unique string to prevent caching.
-		var guid = generateGuid();
+        // A unique string to prevent caching.
+        var guid = generateGuid();
 
-		// http://example.com + ?rnd= + {guid} + &name1=value1
-		url = concat(url, kRandom, guid, query);
+        // http://example.com + ?rnd= + {guid} + &name1=value1
+        url = concat(url, kRandom, guid, query);
 
-		// Create a cross-browse XmlHttpRequest.
-		var xhr = createXhr();
+        // Create a cross-browse XmlHttpRequest.
+        var xhr = createXhr();
 
-		// Open the connection.
-		xhr.open(verb, url, isAsync);
+        // Open the connection.
+        xhr.open(verb, url, isAsync);
 
-		// Add headers.
-		addCommonRequestHeaders(xhr);
+        // Add headers.
+        addCommonRequestHeaders(xhr);
 
-		if(isPost) {
+        if (isPost) {
 
-			// Add more headers.
-			addPostRequestHeaders(xhr);
-		}
+            // Add more headers.
+            addPostRequestHeaders(xhr);
+        }
 
-		// Register callbacks.
-		registerCallbacks(xhr, callbacks);
+        // Register callbacks.
+        registerCallbacks(xhr, callbacks);
 
-		// Send the request.
-		try {
-			xhr.send(postQuery);
-		} catch(exception) {
-			callbacks.onexception(xhr, exception);
-		}
+        // Send the request.
+        try {
+            xhr.send(postQuery);
+        } catch (exception) {
+            callbacks.onexception(xhr, exception);
+        }
 
-		if(isSync) {
+        if (isSync) {
 
-			// If the request is sync, process response immediately.
-			processCallbacks(xhr, callbacks);
-		}
+            // If the request is sync, process response immediately.
+            processCallbacks(xhr, callbacks);
+        }
 
-		return xhr;
+        return xhr;
 
 **DO NOT** insert blank lines...
 
@@ -445,25 +445,25 @@ Insert **one** blank line...
 **function**, **try**, **catch**, **finally**, **switch**, **if**, **else**,
 **case**, **do**, and **while** blocks:
 
-		// Incorrect:
-		if (condition) {
+        // Incorrect:
+        if (condition) {
 
-			stuff();
-			someOtherStuff();
+            stuff();
+            someOtherStuff();
 
-		} else {
+        } else {
 
-			anotherStuff();
+            anotherStuff();
 
-		}
+        }
 
-		// Correct:
-		if (condition) {
-			stuff();
-			someOtherStuff();
-		} else {
-			anotherStuff();
-		}
+        // Correct:
+        if (condition) {
+            stuff();
+            someOtherStuff();
+        } else {
+            anotherStuff();
+        }
 
 ### Trailing Spaces And File Endings
 
@@ -476,50 +476,50 @@ The brace positions should be as follows:
 
 * **Same line**, in blocks (*C-Style*).
 
-		for (var key in ar) {
-			if (ar.hasOwnProperty(key)) {
-				value = ar[key];
+        for (var key in ar) {
+            if (ar.hasOwnProperty(key)) {
+                value = ar[key];
 
-				if (shouldDeepCopy && ( typeof value == 'object')) {
-					theCopy[key] = me.CollectionHelper.copy(value,
-						shouldDeepCopy);
+                if (shouldDeepCopy && ( typeof value == 'object')) {
+                    theCopy[key] = me.CollectionHelper.copy(value,
+                        shouldDeepCopy);
 
-					continue;
-				}
+                    continue;
+                }
 
-				theCopy[key] = value;
-			}
-		}
+                theCopy[key] = value;
+            }
+        }
 
 * **Same line**, in function declarations (*C-Style*).
 
-		removeElementByValue : function (collection, name, value, isRecursive) {
-			var item = null;
-			var isNested = !!isRecursive;
+        removeElementByValue : function (collection, name, value, isRecursive) {
+            var item = null;
+            var isNested = !!isRecursive;
 
-			var removeElementByValue = o2.CollectionHelper.removeElementByValue;
+            var removeElementByValue = o2.CollectionHelper.removeElementByValue;
 
-			...
+            ...
 
 * **Same line**, in switch statements (*C-Style*).
 
-		switch (className) {
-			case ccc.LOG:
-				try {
-					console.log(text);
-				} catch(ignore1) {
-				}
+        switch (className) {
+            case ccc.LOG:
+                try {
+                    console.log(text);
+                } catch (ignore1) {
+                }
 
-				break;
-			case ccc.INFO:
-				try {
-					console.info(text);
-				} catch(ignore2) {
-				}
+                break;
+            case ccc.INFO:
+                try {
+                    console.info(text);
+                } catch (ignore2) {
+                }
 
-				break;
+                break;
 
-				...
+                ...
 
 ### Spaces
 
@@ -536,21 +536,21 @@ The spacing should be as follows:
 * Key-value (*{'a':'b'}*) operators: **before**: 1, **after**: 1
 * Inside a line comment: **after**: 1
 
-		//this is incorrect
+        //this is incorrect
 
-		// This is correct with a space.
+        // This is correct with a space.
 
 * Negation: **after**: 0
 
-		// Incorrect:
-		if(! stuff && ! otherStuff) {
-			doAction();
-		}
+        // Incorrect:
+        if (! stuff && ! otherStuff) {
+            doAction();
+        }
 
-		// Correct:
-		if (!stuff && !otherStuff) {
-			doAction();
-		}
+        // Correct:
+        if (!stuff && !otherStuff) {
+            doAction();
+        }
 
 ### New Lines
 
@@ -564,85 +564,85 @@ The spacing should be as follows:
 
 Example:
 
-		// Functions
+        // Functions
 
-		function foo() {
+        function foo() {
 
-			...
+            ...
 
-			do {
-			} while(true);
+            do {
+            } while(true);
 
-			try {
-				alert('hello');
-			} catch(e) {
-				...
-			} finally {
-				...
-			}
+            try {
+                alert('hello');
+            } catch (e) {
+                ...
+            } finally {
+                ...
+            }
 
-		}
+        }
 
-		function bar(a) {
-			if(true) {
-				return;
-			}
+        function bar(a) {
+            if (true) {
+                return;
+            }
 
-			// If-Else
+            // If-Else
 
-			if (false) {
-				alert('hello');
-			} else if(a > 0) {
-				alert(a);
-			} else {
-				alert(0);
-			}
+            if (false) {
+                alert('hello');
+            } else if (a > 0) {
+                alert(a);
+            } else {
+                alert(0);
+            }
 
-		}
+        }
 
-		// Switch-Case
+        // Switch-Case
 
-		switch (a) {
-			case 1:
-				alert('1');
+        switch (a) {
+            case 1:
+                alert('1');
 
-				break;
-			case 2:
+                break;
+            case 2:
 
-				break;
-			default:
-				alert('none');
-		}
+                break;
+            default:
+                alert('none');
+        }
 
-		// Closures
+        // Closures
 
-		(function fooInGroup(a, b) {
+        (function fooInGroup(a, b) {
 
-		}(a, b));
+        }(a, b));
 
-		// Associative Objects
+        // Associative Objects
 
-		var associative = {
-		   name1: 'value1',
-		   name2: 'value2',
-		   name3: 10,
+        var associative = {
+           name1: 'value1',
+           name2: 'value2',
+           name3: 10,
 
-		   //float is a keyword and thus it's escaped.
-		   'float': 'left
-		};
+           //float is a keyword and thus it's escaped.
+           'float': 'left
+        };
 
 
 ### **Object** and **Array** Creation
 
 Use literal notation. It takes less space and it's sligthly faster:
 
-		// Incorrect:
-		var obj = new Object();
-		var ar = new Array();
+        // Incorrect:
+        var obj = new Object();
+        var ar = new Array();
 
-		// Correct:
-		var obj = {};
-		var ar = [];
+        // Correct:
+        var obj = {};
+        var ar = [];
 
 ### Strings
 
@@ -653,14 +653,14 @@ string literals will make writing HTML template code in JavaScript easier.
 
 Example:
 
-		// Correct:
-		var kImageTemplate = '<img src="picture.gif" width="4" height="4" />';
+        // Correct:
+        var kImageTemplate = '<img src="picture.gif" width="4" height="4" />';
 
-		// Incorrect:
-		var test = "lorem ipsum dolor sit amet";
+        // Incorrect:
+        var test = "lorem ipsum dolor sit amet";
 
-		// Correct:
-		var test = 'lorem ipsum dolor sit amet';
+        // Correct:
+        var test = 'lorem ipsum dolor sit amet';
 
 ### Comments
 
@@ -669,11 +669,11 @@ structs.
 
 * [jsDoc][1] references to method parameters shall be bold.
 
-		* @throws exception if <strong>fn</strong> callback is not defined.
+        * @throws exception if <strong>fn</strong> callback is not defined.
 
 * [jsDoc][1] JavaScript objects should be enclosed in `<code></code>`.
 
-		* @param {DomNode} node - the DOM object (or its <code>String</code>.
+        * @param {DomNode} node - the DOM object (or its <code>String</code>.
 
 Use **only** line comments ( `//` ) for in-line comments.
 Do not use c-style comments (`/*..*/`) inside functions.
@@ -683,17 +683,17 @@ Put your inline comments on top of the part that the comment is explaining:
 
 This is correct:
 
-		// Cache the global function.
-		var fnDo = doStuff;
+        // Cache the global function.
+        var fnDo = doStuff;
 
 This is not:
 
-		var fnDo = doStuff; // Cache the global function.
+        var fnDo = doStuff; // Cache the global function.
 
 This is even worse:
 
-		var fnDo = doStuff;
-		// Cache the global function.
+        var fnDo = doStuff;
+        // Cache the global function.
 
 You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
@@ -710,15 +710,15 @@ Use **full sentences** in both **documentation** and **inline** comments.
 Start each comment with **capital** letter, and it with a **full stop** as
 you'd do in a normal sentence.
 
-	Incorrect:
+    Incorrect:
 
-		// sync request -- process response
-		processCallbacks(xhr, callbacks);
+        // sync request -- process response
+        processCallbacks(xhr, callbacks);
 
-	Correct:
+    Correct:
 
-		// If the request is sync, then process the response immediately.
-		processCallbacks(xhr, callbacks);
+        // If the request is sync, then process the response immediately.
+        processCallbacks(xhr, callbacks);
 
 [1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
 
@@ -728,20 +728,20 @@ You are not a human code compiler/compressor, so don't try to be one.
 
 * Use meaningful variable (and function) names:
 
-		// Incorrect:
-		var kSixteen = 16;
+        // Incorrect:
+        var kSixteen = 16;
 
-		// Better:
-		var kNumberOfBits = 16;
+        // Better:
+        var kNumberOfBits = 16;
 
 * Use **long and descriptive** variable (*and function*) names.
 
-Trying to determine what a variable contains, or what a method does should be as 
-straightforward as possible. It is an all too common practice to use 
-abbreviations, single letters or seemingly random names for variables, 
-functions and class names. 
+Trying to determine what a variable contains, or what a method does should be as
+straightforward as possible. It is an all too common practice to use
+abbreviations, single letters or seemingly random names for variables,
+functions and class names.
 
-Using abbreviated names doesn't make sense in almost any practical programming 
+Using abbreviated names doesn't make sense in almost any practical programming
 languages (and there are usually minifiers for those where it does).
 This should be avoided at all costs.
 
@@ -759,10 +759,10 @@ This should be avoided at all costs.
 
 ### Store Your Code in Meaningful Folder Structures
 
-The naming conventions should also apply to your folders. Split up your code 
-in **logical groups** and store it in folders that describe **what they contain**. 
+The naming conventions should also apply to your folders. Split up your code
+in **logical groups** and store it in folders that describe **what they contain**.
 
-This will make it much easier to keep your code-tree organized and scale it 
+This will make it much easier to keep your code-tree organized and scale it
 to thousands of files without hindering your ability to get to specific files quickly.
 
 * Group your source files in logical groups
@@ -770,34 +770,34 @@ to thousands of files without hindering your ability to get to specific files qu
 * use your naming convention recursively inside of your sub-folders.
 
 
-		// Incorrect:
-		usrAvail = true;
+        // Incorrect:
+        usrAvail = true;
 
-		// Better:
-		isUserAvailable = true;
+        // Better:
+        isUserAvailable = true;
 
 * Choose readable variable names:
 
-		// WTF?!
-		var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101);
+        // WTF?!
+        var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101);
 
 * **Do not use Hungarian Notation**:
 
-		// Incorrect:
-		var dblIncome = 100.12;
+        // Incorrect:
+        var dblIncome = 100.12;
 
-		// Correct -- no prefix:
-		var income = 100.12;
+        // Correct -- no prefix:
+        var income = 100.12;
 
 
-	**Exception**:
+    **Exception**:
 
-	It's okay to prefix form elements with txt, btn and the like.
+    It's okay to prefix form elements with txt, btn and the like.
 
-		// These are all OK:
-		var txtLogin = document.getElementById('loginInput');
-		var btnAction = document.getElementById('submitForm');
-		var optCountry = document.getElementById('countrySelection');
+        // These are all OK:
+        var txtLogin = document.getElementById('loginInput');
+        var btnAction = document.getElementById('submitForm');
+        var optCountry = document.getElementById('countrySelection');
 
 * Use **verbs** for **function names**.
 
@@ -806,199 +806,199 @@ to thousands of files without hindering your ability to get to specific files qu
 * Use **is**, **has**, **should**... prefixes for methods that return a
 **boolean**.
 
-		// Incorrect:
-			if (statusToState(user.status) == kLoggedIn) { // Status is a "noun".
-				userLogin(); // User is a "noun".
-			}
+        // Incorrect:
+            if (statusToState(user.status) == kLoggedIn) { // Status is a "noun".
+                userLogin(); // User is a "noun".
+            }
 
-			if (loggedIn()) {
-				stuff();// Stuff is a "noun".
-			}
+            if (loggedIn()) {
+                stuff();// Stuff is a "noun".
+            }
 
-			if (goToNextPage()) { // this method returns a boolean.
-				nextPage(); // next is a "noun".
-			}
+            if (goToNextPage()) { // this method returns a boolean.
+                nextPage(); // next is a "noun".
+            }
 
-		// Correct:
-			if (mapUserStatusToState(user.status) == kLoggedIn) {
-				logUserIn();
-			}
+        // Correct:
+            if (mapUserStatusToState(user.status) == kLoggedIn) {
+                logUserIn();
+            }
 
-			if (isLoggedIn) {
-				doStuff();
-			}
+            if (isLoggedIn) {
+                doStuff();
+            }
 
-			if (shouldGoToNextPage()) {
-				goToNextPage();
-			}
+            if (shouldGoToNextPage()) {
+                goToNextPage();
+            }
 
 * Use **singular** names for **namespaces**:
 
-		// "member", not "members"
-		var kFullName = config.constants.member.FULL_NAME
+        // "member", not "members"
+        var kFullName = config.constants.member.FULL_NAME
 
 
-	**Exception**:
+    **Exception**:
 
-	One exception to this rule is the use of **constants** (*as above*),
-	and **enums**, in order to differentiate them from *constant* and *enum*
-	keywords.
+    One exception to this rule is the use of **constants** (*as above*),
+    and **enums**, in order to differentiate them from *constant* and *enum*
+    keywords.
 
 
 * Use **plural** names for **collections**:
 
-		var members = getOnlineMembers(); // "members", not "member".
+        var members = getOnlineMembers(); // "members", not "member".
 
 
 * Use **camelCase** for **method names** and **member names**, use
 **ALL_CAPS** for **constants**.
 
-		function getUserInfo(){
-		}
+        function getUserInfo(){
+        }
 
-		function renderNewLoginForm(){
-		}
+        function renderNewLoginForm(){
+        }
 
-		var config = {
-			constants: {
-				memberRegistrationStatus: {
-					REGISTERED: 3,
-					WAITING_APPROVAL: 1,
-					NOT_INITIALIZED: 0
-				}
-			}
-		};
+        var config = {
+            constants: {
+                memberRegistrationStatus: {
+                    REGISTERED: 3,
+                    WAITING_APPROVAL: 1,
+                    NOT_INITIALIZED: 0
+                }
+            }
+        };
 
 
-	**Exception**:
+    **Exception**:
 
-	Event-handler callbacks is an exception to this naming convention:
+    Event-handler callbacks is an exception to this naming convention:
 
-		var EventCallback = {
-			// Not in camelCase.
-			// Format: domobject_eventname (all lowercase)
-			document_mousedown: function(evt){
+        var EventCallback = {
+            // Not in camelCase.
+            // Format: domobject_eventname (all lowercase)
+            document_mousedown: function(evt){
 
-			}
-		};
+            }
+        };
 
-		o2.addEventListener(document, 'mousedown',
-			EventCallback.document_mousedown);
+        o2.addEventListener(document, 'mousedown',
+            EventCallback.document_mousedown);
 
 * Use **camelCase** for acronyms:
 
-		config.constants.methodName.wcf.INSERT;// Correct
+        config.constants.methodName.wcf.INSERT;// Correct
 
-		config.constants.methodName.WCF.INSERT;// Incorrect
+        config.constants.methodName.WCF.INSERT;// Incorrect
 
-		getDOMNode() // Incorrect
+        getDOMNode() // Incorrect
 
-		getDomNode() // Correct
+        getDomNode() // Correct
 
-		o2.StringHelper.htmlEncode() // Correct
-		o2.StringHelper.HTMLEncode() // Incorrect
+        o2.StringHelper.htmlEncode() // Correct
+        o2.StringHelper.HTMLEncode() // Incorrect
 
 * Use **lowercase** for event handler references:
 
-		// Incorrect:
-		var onComplete = globalCompletionCallback || o2.nill;
+        // Incorrect:
+        var onComplete = globalCompletionCallback || o2.nill;
 
-		// Correct:
-		var oncomplete = globalCompletionCallback || o2.nill;
+        // Correct:
+        var oncomplete = globalCompletionCallback || o2.nill;
 
 * **Be consistent** in naming your methods; do not give different names to
 two methods which are essentially doing the same thing.
 
 **Summary:**
 
-		variables, object, functions       : camelCase ( getStatusRecord() )
-		private variables, private methods : camelCase
-		public variables, public methods   : camelCase
-		enums and global constants         : ALL_CAPS
-		local/global constants             : prefix with k ( kPipeTimeout )
-		Parameters                         : camelCase
-		Objects and Constructors           : PascalCase
-		Packages/Namespaces                : lowercase
-		Methods                            : camelCase
+        variables, object, functions       : camelCase ( getStatusRecord() )
+        private variables, private methods : camelCase
+        public variables, public methods   : camelCase
+        enums and global constants         : ALL_CAPS
+        local/global constants             : prefix with k ( kPipeTimeout )
+        Parameters                         : camelCase
+        Objects and Constructors           : PascalCase
+        Packages/Namespaces                : lowercase
+        Methods                            : camelCase
 
 Some more examples:
 
-		// Local constant:
-		var kActiveProvider = enums.ProviderType.TWITTER;
+        // Local constant:
+        var kActiveProvider = enums.ProviderType.TWITTER;
 
-		// Do not start functions other than constructors with UpperCase.
-		function user(){}
-		var john = new user(); // incorrect
+        // Do not start functions other than constructors with UpperCase.
+        function user(){}
+        var john = new user(); // incorrect
 
-		function User(){}
-		var john = new User(); // correct
+        function User(){}
+        var john = new User(); // correct
 
-		function GetAccountDetails(){} // incorrect
-		function getAccountDetails(){} // correct
+        function GetAccountDetails(){} // incorrect
+        function getAccountDetails(){} // correct
 
 ### Avoid Using The **continue** Statement
 
 Avoid using **continue** statement. It tends to obscure the control flow of the
 function.
 
-		// Incorrect:
-		for (i = 0; i < len, i++) {
-			if (i === maxLength) {
-				doAction();
+        // Incorrect:
+        for (i = 0; i < len, i++) {
+            if (i === maxLength) {
+                doAction();
 
-				continue;
-			}
+                continue;
+            }
 
-			doStuff();
-		}
+            doStuff();
+        }
 
-		// Correct:
-		for (i = 0; i < len, i++) {
-			if (i === maxLength) {
-				doAction();
-			} else {
-				doStuff();
-			}
-		}
+        // Correct:
+        for (i = 0; i < len, i++) {
+            if (i === maxLength) {
+                doAction();
+            } else {
+                doStuff();
+            }
+        }
 
 ### Return Early
 
 Early returns promote code readability with negligible performance impact, if any.
 
-		// Instead of this:
-		
-		function returnLate(foo) {
-			var ret;
+        // Instead of this:
 
-			if (foo) {
-			    ret = 'foo';
-			} else {
-			    ret = 'bar';
-			}
-			
-			return ret;
-		}
+        function returnLate(foo) {
+            var ret;
 
-		// Do this:
+            if (foo) {
+                ret = 'foo';
+            } else {
+                ret = 'bar';
+            }
 
-		function returnEarly(foo) {		
-			if (foo) {
-			    return 'foo';
-			}
-			
-			return 'bar';
-		}
+            return ret;
+        }
+
+        // Do this:
+
+        function returnEarly(foo) {
+            if (foo) {
+                return 'foo';
+            }
+
+            return 'bar';
+        }
 
 ### Group Related Statements Together Using Parentheses (`( )`)
 
 Although `&&` has precedence over `||`, mixing them together without grouping
 may decrease readability.
 
-		// Incorrect:
-		return obj !== undefined && obj !== null && klass === type;
+        // Incorrect:
+        return obj !== undefined && obj !== null && klass === type;
 
-		// Correct:
-		return (obj !== undefined) && (obj !== null) && (klass === type);
+        // Correct:
+        return (obj !== undefined) && (obj !== null) && (klass === type);
 
 ### Always Use Strict Comparison
 
@@ -1008,23 +1008,23 @@ operator (`==`), however, enables *type coercion* when comaring different types.
 Although the rules of coercion are deterministic and strictly defined, the
 issue creates some [confusion][21], at least.
 
-			  [0] == true   // gives true.
-			!![0] == true   // gives true.
-		'Samurai' == false  // gives false.
-		'Samurai' == true   // gives false.
+              [0] == true   // gives true.
+            !![0] == true   // gives true.
+        'Samurai' == false  // gives false.
+        'Samurai' == true   // gives false.
 
 To avoid confusion and logic errors, always use strict equality and unequality
 operators:
 
-		// Incorrect:
-		if (a == b && c != d) {
-			doStuff();
-		}
+        // Incorrect:
+        if (a == b && c != d) {
+            doStuff();
+        }
 
-		// Correct:
-		if (a === b && c !== d) {
-			doStuff();
-		}
+        // Correct:
+        if (a === b && c !== d) {
+            doStuff();
+        }
 
 
 [21]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
@@ -1033,10 +1033,10 @@ operators:
 
 Use **lowercase** for *files*, *folders* and *paths*.
 
-                // Incorrect: 
+                // Incorrect:
                 /wwwRoot/Script/mainController.js
 
-                // Correct: 
+                // Correct:
                 /wwwroot/script/maincontroller.js
 
 ### File Headers
@@ -1044,51 +1044,51 @@ Use **lowercase** for *files*, *folders* and *paths*.
 Each file (*module*) should have a descriptive header.
 The *module* header should also be in [JSDoc Format][1].
 
-		/**
-		 * @module domhelper.dimension
-		 * @requires domhelper.core
-		 *
-		 * <!--
-		 *  This program is distributed under
-		 *  the terms of the MIT license.
-		 *  Please see the LICENSE file for details.
-		 * -->
-		 *
-		 * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
-		 * methods.</p>
-		 */
+        /**
+         * @module domhelper.dimension
+         * @requires domhelper.core
+         *
+         * <!--
+         *  This program is distributed under
+         *  the terms of the MIT license.
+         *  Please see the LICENSE file for details.
+         * -->
+         *
+         * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
+         * methods.</p>
+         */
 
 ### Curly Love
 
 Use curly braces, even when they are not strictly necessary.
 
-		// Which 'if' belongs to which 'else' ?!
-		if (b1) if (b2) foo(); else bar();
+        // Which 'if' belongs to which 'else' ?!
+        if (b1) if (b2) foo(); else bar();
 
-		// This is better:
-		if (b1) {
-			if (b2) {
-				foo();
-			} else {
-				bar();
-			}
-		}
+        // This is better:
+        if (b1) {
+            if (b2) {
+                foo();
+            } else {
+                bar();
+            }
+        }
 
-		// Incorrect:
-		function method() {
-			for(int i = 0; i < 10; i++)
-				if(i != 0)
-					foo();
-		}
+        // Incorrect:
+        function method() {
+            for(int i = 0; i < 10; i++)
+                if (i != 0)
+                    foo();
+        }
 
-		// Correct:
-		function method() {
-			for (int i = 0; i < 10; i++) {
-				if (i != 0) {
-					foo();
-				}
-			}
-		}
+        // Correct:
+        function method() {
+            for (int i = 0; i < 10; i++) {
+                if (i != 0) {
+                    foo();
+                }
+            }
+        }
 
 ### Default Fallbacks
 
@@ -1098,16 +1098,16 @@ That last fallback should at least have a log statement.
 All if-else chains should have an `else` in the end.
 That last else should at least have a log statement.
 
-		if (answer == 'no') {
-			alert('You said no');
-		} else if (answer == 'yes') {
-			alert('You said yes');
-		} else {
+        if (answer == 'no') {
+            alert('You said no');
+        } else if (answer == 'yes') {
+            alert('You said yes');
+        } else {
 
-			// This block should be here, even if we do not
-			// care about any outcome other than 'yes' or 'no
-			assert('I should not be here');
-		}
+            // This block should be here, even if we do not
+            // care about any outcome other than 'yes' or 'no
+            assert('I should not be here');
+        }
 
 
 **Exception**:
@@ -1115,37 +1115,37 @@ That last else should at least have a log statement.
 A single `if` statement may not be regarded as an if-else *"chain"*, so it's
 okay to leave single if's without an else.
 
-		if(controller.isLoadingTemplates()) {
-			return;
-		} /*else {
-			log('controller has more templates');
-		} -- not required -- */
+        if (controller.isLoadingTemplates()) {
+            return;
+        } /*else {
+            log('controller has more templates');
+        } -- not required -- */
 
 ### Boolean Comparisons
 
 **DO NOT** directly compare with **true**, or **false**.
 
-		// Incorrect:
-		while(condition === false)
+        // Incorrect:
+        while(condition === false)
 
-		// Incorrect:
-		while(condition !== true)
+        // Incorrect:
+        while(condition !== true)
 
-		// You got the point:
-		While(((condition === true) === true) === true)
+        // You got the point:
+        While(((condition === true) === true) === true)
 
-		// Correct:
-		while(condition)
+        // Correct:
+        while(condition)
 
 ### Variable Access
 
 * **DO NOT** access the same variable more than once:
 
-		v[i] = ++c;  // OK
-		v[i] = ++i;  // Incorrect. Misleading.
-		i = i + 1;   // OK
-		i = ++i + 1; // Incorrect an unnecessary;
-					 // i += 2 should have been better.
+        v[i] = ++c;  // OK
+        v[i] = ++i;  // Incorrect. Misleading.
+        i = i + 1;   // OK
+        i = ++i + 1; // Incorrect an unnecessary;
+                     // i += 2 should have been better.
 
 * Aim to minimize the scope of variables. Use as little global variables,
 global configuration data, and global functions as possible.
@@ -1155,30 +1155,30 @@ Use **modules** and **namespaces** to achieve that.
 
 Always terminate statements with a semicolon (`;`):
 
-		// Incorrect:
-		var i = 10
+        // Incorrect:
+        var i = 10
 
-		// Correct:
-		var i = 10;
+        // Correct:
+        var i = 10;
 
-		// Incorrect:
-		var test = function() {
-		}
+        // Incorrect:
+        var test = function() {
+        }
 
-		// Correct:
-		var test = function() {
-		};
+        // Correct:
+        var test = function() {
+        };
 
 ### Variable Declerations
 
 Declare every variable on a new line:
 
-		// Incorrect:
-		var a, b;
+        // Incorrect:
+        var a, b;
 
-		// Correct.
-		var a;
-		var b;
+        // Correct.
+        var a;
+        var b;
 
 ## o2.js Javascript Coding Best-practices
 
@@ -1201,79 +1201,79 @@ web application's build & deployment cycle.
 
 The version of **JSLint** used to validate **o2.js** modules can be found at:
 
-		./3rdparty/jslint/jslint.js
+        ./3rdparty/jslint/jslint.js
 
 folder of this bundle.
 
 The **JSLint** validation preferences used are as follows:
 
-		var JSLINT_PREFS = {
-			browser:true,
-			evil:false,
-			laxbreak:true,
-			maxerr: 1000,
-			newcap: true,
-			nomen: true,
-			passfail:false,
-			plusplus: true,
-			rhino: true,
-			undef:true,
-			vars: true,
-			white: true,
-			regexp: true
-		};
+        var JSLINT_PREFS = {
+            browser:true,
+            evil:false,
+            laxbreak:true,
+            maxerr: 1000,
+            newcap: true,
+            nomen: true,
+            passfail:false,
+            plusplus: true,
+            rhino: true,
+            undef:true,
+            vars: true,
+            white: true,
+            regexp: true
+        };
 
 ### Event-Handler Naming Convention
 
 User elementName_eventname format for event handlers.
 
-		function confirmButton_click(evt) {
-		
-		}
-		
-		functions tester_readystatechange(evt) {
-		
-		}
-		
-		
-		o2.EventHandler.addEventListener(
-			tester, 
-			'readystatechange', 
-			tester_readystatechange
-		);
-				
-		o2.EventHandler.addEventListener(
-			confirmButton, 
-			'click', 
-			confirmButton_click
-		);
+        function confirmButton_click(evt) {
 
-Event handlers, when used as a function pointers start 
+        }
+
+        functions tester_readystatechange(evt) {
+
+        }
+
+
+        o2.EventHandler.addEventListener(
+            tester,
+            'readystatechange',
+            tester_readystatechange
+        );
+
+        o2.EventHandler.addEventListener(
+            confirmButton,
+            'click',
+            confirmButton_click
+        );
+
+Event handlers, when used as a function pointers start
 with "on", and they are camelCased.
 
-		var onDocumentMouseDown = callback.document_mousedown;
-		
-		...
-		
-		onDocumentMouseDown.apply(this, [evt]);
+        var onDocumentMouseDown = callback.document_mousedown;
+
+        ...
+
+        onDocumentMouseDown.apply(this, [evt]);
 
 Any custom events are defined all lowercase.
 
-	var Selectable = function(params){
-		... stuff ...
-		
-		// We register the handler on constructor.
-		// Note that the assigned method name (this.onselectionchange) 
-		// and the parameter name (params.onselectionchange)
-		// are both all lowercase.
-		this.onselectionchange = params.onselectionchange;
-	};
-	
-	Selectable.prototype.someAction = function() {
-		...
-		
-		this.onselectionchange.apply(this, [source, eventArgs]);
-	};
+    var Selectable = function(params){
+        ... stuff ...
+
+        // We register the handler on constructor.
+        // Note that the assigned method name (this.onselectionchange)
+        // and the parameter name (params.onselectionchange)
+        // are both all lowercase.
+        this.onselectionchange = params.onselectionchange;
+    };
+
+    Selectable.prototype.someAction = function() {
+        ...
+
+        this.onselectionchange.apply(this, [source, eventArgs]);
+    };
 
 ### Show Love To the [Module Pattern][4]
 
@@ -1286,11 +1286,11 @@ code, without effecting the code that others have been developing.
 
 Each o2.js module has the following basic structure.
 
-		(function(framework, window) {
+        (function(framework, window) {
 
-			... module code goes here ...
+            ... module code goes here ...
 
-		}(this.o2, this));
+        }(this.o2, this));
 
 [4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
@@ -1341,22 +1341,22 @@ Strive **NOT TO** include type information in variables.
 Variables should be understandable by their behavior (*semantics*),
 **NOT** by their type.
 
-		// Incorrect:
+        // Incorrect:
 
-			var eventType = framework.EventType;
-			var kAddBuddyEventType = eventType.ADD_BUDDY;
+            var eventType = framework.EventType;
+            var kAddBuddyEventType = eventType.ADD_BUDDY;
 
-			var itemArrayList = new ArrayList();
-		// Correct:
+            var itemArrayList = new ArrayList();
+        // Correct:
 
-			/* eventType is an alias to type "framework.EventType" */
-			var eventType = framework.EventType;
+            /* eventType is an alias to type "framework.EventType" */
+            var eventType = framework.EventType;
 
-			/* kAddBuddy is of type "framework.Eventype"
-			   (when we think in non-strict terms) */
-			var kAddBuddy = eventType.ADD_BUDDY;
-			
-			var items = new ArrayList();
+            /* kAddBuddy is of type "framework.Eventype"
+               (when we think in non-strict terms) */
+            var kAddBuddy = eventType.ADD_BUDDY;
+
+            var items = new ArrayList();
 
 
 **Exception**:
@@ -1364,11 +1364,11 @@ Variables should be understandable by their behavior (*semantics*),
 If there are two similar constants, we may want to include type information
 instead of renaming those constants, as in the following case:
 
-		var kDomLoaded = 'domloaded';
-		var kDomLoadedRegExp = /domloaded/g;
-		
-		var kUsername = 'user name';
-		var kUsernameFieldId = 'txtUsername';
+        var kDomLoaded = 'domloaded';
+        var kDomLoadedRegExp = /domloaded/g;
+
+        var kUsername = 'user name';
+        var kUsernameFieldId = 'txtUsername';
 
 Also, if adding type information conveys an additional meaning which decreases
 ambiguity, clarifies meaning, and makes the code easier to follow, its okay
@@ -1376,11 +1376,11 @@ to include type information in variable names. So use your own judgement.
 
 Variable names for UI elements are generally examples for this:
 
-		// It's not clear what "cancel" refers to. A method, a boolen flag?
-		var cancel = document.getElementById('btnCancel');
-		
-		// this is better: more explanatory, easier to follow.
-		var cancelButton = document.getElementById('btnCancel');
+        // It's not clear what "cancel" refers to. A method, a boolen flag?
+        var cancel = document.getElementById('btnCancel');
+
+        // this is better: more explanatory, easier to follow.
+        var cancelButton = document.getElementById('btnCancel');
 
 ### Always Respect Type
 
@@ -1393,21 +1393,21 @@ variables and statements.
 If you know the type of an input variable beforehand explicitly cast
 it before using it. Here's an example:
 
-		var userCount = document.getElementById('uc').value;
-		
-		// 1. defensively parse the value using parseInt
-		// 2. use === for comparison.
-		if (parseInt(userCount, 10) === MAX_ALLOWED_USER_COUNT) {
-			doStuff();
-		}
+        var userCount = document.getElementById('uc').value;
 
-		// Or...
-		
-		// The unary operator + will convert its rigth-side operand
-		// into a number.
-		if (+userCount === MAX_ALLOWED_USER_COUNT) {
-			doStuff();
-		}
+        // 1. defensively parse the value using parseInt
+        // 2. use === for comparison.
+        if (parseInt(userCount, 10) === MAX_ALLOWED_USER_COUNT) {
+            doStuff();
+        }
+
+        // Or...
+
+        // The unary operator + will convert its rigth-side operand
+        // into a number.
+        if (+userCount === MAX_ALLOWED_USER_COUNT) {
+            doStuff();
+        }
 
 
 ### **DO NOT** Mix HTML and Javascript
@@ -1495,13 +1495,13 @@ Architect and program your components as such.
 
 Use **symbolic constants** for **numeric literals** and **string literals**.
 
-		// Incorrect:
+        // Incorrect:
 
-		var j = 0;
-		for(var i=0, len=52, i<len; i++){
-			j = i + getRandomInt(53 - i) - 1;
-			swapDeck(i, j);
-		}
+        var j = 0;
+        for(var i=0, len=52, i<len; i++){
+            j = i + getRandomInt(53 - i) - 1;
+            swapDeck(i, j);
+        }
 
 What if we wish to use a deck size of 114 (2 decks).
 You can say that we can find/replace all "52"si with "114"s and
@@ -1515,19 +1515,19 @@ which we will hardly be able to find out.
 
 Here's the correct way of doing the above deck shuffling:
 
-		var kDeckSize = 52;
-		var j = 0;
+        var kDeckSize = 52;
+        var j = 0;
 
-		for (var i=0, len=kDeckSize, i<len; i++){
-			j = i + getRandomInt(kDeckSize + 1 - i) - 1;
-			swapDeck(i, j);
-		}
+        for (var i=0, len=kDeckSize, i<len; i++){
+            j = i + getRandomInt(kDeckSize + 1 - i) - 1;
+            swapDeck(i, j);
+        }
 
 Moreover, if there's a relation between two symbolic constants, this
 relation should be **explicitly indicated**:
 
-	var kMaxItems = 32;
-	var kHighWaterRank = (3 * kMaxItems) / 4; //instead of 24.
+    var kMaxItems = 32;
+    var kHighWaterRank = (3 * kMaxItems) / 4; //instead of 24.
 
 ### Decouple Objects and Minimize Variable Scope
 
@@ -1553,35 +1553,35 @@ This usage might have a slight performance impact, which can be overcome by [mem
 
 Compare this:
 
-		var basePrice = quantity * itemPrice;
+        var basePrice = quantity * itemPrice;
 
-		...
+        ...
 
-		// base price can be overridden anywhere in the code.
+        // base price can be overridden anywhere in the code.
 
-		if (basePrice > 1000) {
-			return basePrice * 0.95;
-		} else {
-			return basePrice * 0.98;
-		}
+        if (basePrice > 1000) {
+            return basePrice * 0.95;
+        } else {
+            return basePrice * 0.98;
+        }
 
 against this:
 
-		// Instead...
+        // Instead...
 
-		function getBasePrice(){
-			return quantity * itemPrice;
-		}
+        function getBasePrice(){
+            return quantity * itemPrice;
+        }
 
-		// There's no risk in overriding the base price.
+        // There's no risk in overriding the base price.
 
-		...
+        ...
 
-		if (getBasePrice() > 1000) {
-			return getBasePrice() * 0.95;
-		} else {
-			return getBasePrice() * 0.98;
-		}
+        if (getBasePrice() > 1000) {
+            return getBasePrice() * 0.95;
+        } else {
+            return getBasePrice() * 0.98;
+        }
 
 ### Program Defensively
 
@@ -1611,7 +1611,7 @@ Throw exceptions only in exceptional cases.
 If you know what's going on ("operation completed", "connection error",
 "end of stream"... etc) use return codes instead of throwing exceptions.
 
-Besides, hiding surprises inside `try { stuff() } catch(ignore){ }` kind
+Besides, hiding surprises inside `try { stuff() } catch (ignore){ }` kind
 of constructs, will result in logic errors that are hard to find.
 
 > `try/catch` != **CYA**
@@ -1697,14 +1697,14 @@ parts of your code.
 
 Instead of this...
 
-		var lSide = collection.subcollection.items.all.left;
-		var rSide = collection.subcollection.items.all.right;
+        var lSide = collection.subcollection.items.all.left;
+        var rSide = collection.subcollection.items.all.right;
 
 Do this:
 
-		var all = collection.subcollection.items.all;
-		var lSide = all.left; /*each dot is a namespace lookup.*/
-		var rSide = all.right;
+        var all = collection.subcollection.items.all;
+        var lSide = all.left; /*each dot is a namespace lookup.*/
+        var rSide = all.right;
 
 Things get worse, if the **collection** variable above is a **DOM Node**
 and the assignments are repeated in a `for` loop (both of which are not
@@ -1712,42 +1712,42 @@ uncommon situtations).
 
 ### Use **Array Joins** Instead Of String Concatenation
 
-		// Instead of this...
-		var result = 'a' + 'b' + 'c' + 'd';
+        // Instead of this...
+        var result = 'a' + 'b' + 'c' + 'd';
 
-		// This is much faster:
-		var result = ['a','b','c','d'].join('');
+        // This is much faster:
+        var result = ['a','b','c','d'].join('');
 
 ### Use **Function Pointers**
 
 Instead of this...
 
-		function iterateOverMe(){
-			for (var i = 0; i < 1000; i++) {
-				lorem.ipsum.dolor.sit(i);
-			}
-		}
+        function iterateOverMe(){
+            for (var i = 0; i < 1000; i++) {
+                lorem.ipsum.dolor.sit(i);
+            }
+        }
 
 This is much faster:
 
-		function iterateOverMe() {
-			var sit = lorem.ipsum.dolor.sit;
+        function iterateOverMe() {
+            var sit = lorem.ipsum.dolor.sit;
 
-			for(var i = 0; i < 1000; i++) {
-				sit(i);
-			}
-		}
+            for(var i = 0; i < 1000; i++) {
+                sit(i);
+            }
+        }
 
 As a sidenote, the first time a **function** is declared is more
 expensive than its consecutive declerations, because the initial
 decleration both involves **namespace lookup** and **creation**;
 while the latter only involves **creation**:
 
-		//namespace lookup & creation;
-		var fnPtr = lorem.ipsum.dolor.sit;
+        //namespace lookup & creation;
+        var fnPtr = lorem.ipsum.dolor.sit;
 
-		//second decleration is faster -- just namespace lookup.
-		var fnPtr2 = lorem.ipsum.dolor.sit;
+        //second decleration is faster -- just namespace lookup.
+        var fnPtr2 = lorem.ipsum.dolor.sit;
 
 The more you reduce namespace lookups, the faster is your code.
 
@@ -1755,107 +1755,107 @@ The more you reduce namespace lookups, the faster is your code.
 
 Instead of this:
 
-		function tableTest() {
-			var tableEl = null;
-			var rowEl = null;
-			var cellEl = null;
-			var numRows = 10;
-			var numCells = 5;
+        function tableTest() {
+            var tableEl = null;
+            var rowEl = null;
+            var cellEl = null;
+            var numRows = 10;
+            var numCells = 5;
 
-			tableEl = document.createElement('TABLE');
-			tableEl = document.body.appendChild(tableEl);
+            tableEl = document.createElement('TABLE');
+            tableEl = document.body.appendChild(tableEl);
 
-			for (i = 0; i < numRows; i++) {
-				rowEl = document.createElement('TR');
+            for (i = 0; i < numRows; i++) {
+                rowEl = document.createElement('TR');
 
-				for (j = 0; j < numCells;j++) {
-					cellEl = document.createElement('TD');
-					cellEl.appendChild(
-					document.createTextNode('[row '+i+' cell '+j+ ']''));
-					rowEl.appendChild(cellEl);
-				}
+                for (j = 0; j < numCells;j++) {
+                    cellEl = document.createElement('TD');
+                    cellEl.appendChild(
+                    document.createTextNode('[row '+i+' cell '+j+ ']''));
+                    rowEl.appendChild(cellEl);
+                }
 
-				tableEl.appendChild(rowEl);
-			}
-		}
+                tableEl.appendChild(rowEl);
+            }
+        }
 
 This is much faster:
 
-		function tableTest() {
-			var tableEl = null;
-			var rowEl = null;
-			var cellEl = null;
-			var numRows = 10;
-			var numCells = 5;
+        function tableTest() {
+            var tableEl = null;
+            var rowEl = null;
+            var cellEl = null;
+            var numRows = 10;
+            var numCells = 5;
 
-			tableEl = document.createElement('TABLE');
+            tableEl = document.createElement('TABLE');
 
-			for (i = 0; i < numRows; i++) {
-				rowEl = document.createElement('TR');
+            for (i = 0; i < numRows; i++) {
+                rowEl = document.createElement('TR');
 
-				for (j = 0; j < numCells; j++) {
-					cellEl = document.createElement('TD');
-					cellEl.appendChild(document.createTextNode(
-					[row +i+' cell '+j+ ']'));
-					rowEl.appendChild(cellEl);
-				}
+                for (j = 0; j < numCells; j++) {
+                    cellEl = document.createElement('TD');
+                    cellEl.appendChild(document.createTextNode(
+                    [row +i+' cell '+j+ ']'));
+                    rowEl.appendChild(cellEl);
+                }
 
-				tableEl.appendChild(rowEl);
-			}
+                tableEl.appendChild(rowEl);
+            }
 
-			tableEl = document.body.appendChild(tableEl);
-		}
+            tableEl = document.body.appendChild(tableEl);
+        }
 
 ### Edit Complex DOM Subtrees Offline
 
 Instead of this...
 
-		function subTrees() {
-			var ul = document.getElementById('myUL');
+        function subTrees() {
+            var ul = document.getElementById('myUL');
 
-			for (var i = 0; i < 200; i++) {
-				ul.appendChild(document.createElement('LI'));
-			}
-		}
+            for (var i = 0; i < 200; i++) {
+                ul.appendChild(document.createElement('LI'));
+            }
+        }
 
 This is much faster:
 
-		function subTrees(){
-			var ul = document.getElementById('myUL');
-			var li = document.createElement('LI');
-			var parentNode = ul.parentNode;
+        function subTrees(){
+            var ul = document.getElementById('myUL');
+            var li = document.createElement('LI');
+            var parentNode = ul.parentNode;
 
-			parentNode.removeChild(ul);
+            parentNode.removeChild(ul);
 
-			for (var i = 0; i < 200; i++) {
-				ul.appendChild(li.cloneNode(true));
-			}
+            for (var i = 0; i < 200; i++) {
+                ul.appendChild(li.cloneNode(true));
+            }
 
-			parentNode.appendChild(ul);
-		}
+            parentNode.appendChild(ul);
+        }
 
 
 ### Cache DOM Collection Length
 
 Instead of this...
 
-		function nodeJam(){
-			nodes = document.getElementsByTagName('P');
+        function nodeJam(){
+            nodes = document.getElementsByTagName('P');
 
-			for (var i = 0; i < nodes.length; i++) {
-				nodes[i].innerHTML += 'test';
-			}
-		}
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].innerHTML += 'test';
+            }
+        }
 
 This is faster:
 
-		function nodeJam(){
-			nodes = document.getElementsByTagName('P');
+        function nodeJam(){
+            nodes = document.getElementsByTagName('P');
 
-			for (var i = 0, len = nodes.length; i < len; i++) {
-				nodes[i].innerHTML += 'test';
-			}
-		}
+            for (var i = 0, len = nodes.length; i < len; i++) {
+                nodes[i].innerHTML += 'test';
+            }
+        }
 
 ### Use Memoization for Computation-Intensive Functions
 
@@ -1871,40 +1871,40 @@ use within loops:
 
 So instead of this...
 
-		function loopMePlease(){
-			for (var i=0; i<1000; i++) {
-				doStuff();
+        function loopMePlease(){
+            for (var i=0; i<1000; i++) {
+                doStuff();
 
-				if (n===12) {
-					someBlock();
-				} else if (n===26) {
-					someOtherBlock();
-				}
-			}
+                if (n===12) {
+                    someBlock();
+                } else if (n===26) {
+                    someOtherBlock();
+                }
+            }
 
-		}
+        }
 
 This is faster:
 
-		function loopMePlease(){
+        function loopMePlease(){
 
-			// Cache the global function.
-			var fnDo = doStuff;
+            // Cache the global function.
+            var fnDo = doStuff;
 
-			for(var i=0; i<1000; i++){
-				fnDo();
+            for(var i=0; i<1000; i++){
+                fnDo();
 
-				// Also, a switch/case is (negligibly) faster than an if-else chain
-				switch(n){
-					case 12:
-						someBlock();
-						break;
-					case 26:
-						someOtherBlock();
-						break;
-				}
-			}
-		}
+                // Also, a switch/case is (negligibly) faster than an if-else chain
+                switch(n){
+                    case 12:
+                        someBlock();
+                        break;
+                    case 26:
+                        someOtherBlock();
+                        break;
+                }
+            }
+        }
 
 Also it's a good practice to **cache DOM object collections**,
 because executing the same selectors over and over again
@@ -1914,17 +1914,17 @@ to reach the same collection is resource intensive.
 
 Instead of this...
 
-		select('div > li > a').show();
-		select('div > li > a').addClass('test');
-		select('div > li > a').click(function(){});
+        select('div > li > a').show();
+        select('div > li > a').addClass('test');
+        select('div > li > a').click(function(){});
 
 This is much faster:
 
-		var collection = select('div > li > a');
+        var collection = select('div > li > a');
 
-		collection.show();
-		collection.addClass('test');
-		collection.click(function(){});
+        collection.show();
+        collection.addClass('test');
+        collection.click(function(){});
 
 ## Code Smells
 
