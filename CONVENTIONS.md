@@ -227,7 +227,6 @@ Triple indent...
 
         };
 
-
 ### Blank Lines
 
 Leave **at most** one blank line.
@@ -564,85 +563,85 @@ The spacing should be as follows:
 
 Example:
 
-        // Functions
+    // Functions
 
-        function foo() {
+    function foo() {
 
+        ...
+
+        do {
+        } while(true);
+
+        try {
+            alert('hello');
+        } catch (e) {
             ...
-
-            do {
-            } while(true);
-
-            try {
-                alert('hello');
-            } catch (e) {
-                ...
-            } finally {
-                ...
-            }
-
+        } finally {
+            ...
         }
 
-        function bar(a) {
-            if (true) {
-                return;
-            }
+    }
 
-            // If-Else
-
-            if (false) {
-                alert('hello');
-            } else if (a > 0) {
-                alert(a);
-            } else {
-                alert(0);
-            }
-
+    function bar(a) {
+        if (true) {
+            return;
         }
 
-        // Switch-Case
+        // If-Else
 
-        switch (a) {
-            case 1:
-                alert('1');
-
-                break;
-            case 2:
-
-                break;
-            default:
-                alert('none');
+        if (false) {
+            alert('hello');
+        } else if (a > 0) {
+            alert(a);
+        } else {
+            alert(0);
         }
 
-        // Closures
+    }
 
-        (function fooInGroup(a, b) {
+    // Switch-Case
 
-        }(a, b));
+    switch (a) {
+        case 1:
+            alert('1');
 
-        // Associative Objects
+            break;
+        case 2:
 
-        var associative = {
-           name1: 'value1',
-           name2: 'value2',
-           name3: 10,
+            break;
+        default:
+            alert('none');
+    }
 
-           //float is a keyword and thus it's escaped.
-           'float': 'left
-        };
+    // Closures
+
+    (function fooInGroup(a, b) {
+
+    }(a, b));
+
+    // Associative Objects
+
+    var associative = {
+       name1: 'value1',
+       name2: 'value2',
+       name3: 10,
+
+       //float is a keyword and thus it's escaped.
+       'float': 'left
+    };
 
 
 ### **Object** and **Array** Creation
 
 Use literal notation. It takes less space and it's sligthly faster:
 
-        // Incorrect:
-        var obj = new Object();
-        var ar = new Array();
+    // Incorrect:
+    var obj = new Object();
+    var ar = new Array();
 
-        // Correct:
-        var obj = {};
-        var ar = [];
+    // Correct:
+    var obj = {};
+    var ar = [];
 
 ### Strings
 
@@ -653,14 +652,14 @@ string literals will make writing HTML template code in JavaScript easier.
 
 Example:
 
-        // Correct:
-        var kImageTemplate = '<img src="picture.gif" width="4" height="4" />';
+    // Correct:
+    var kImageTemplate = '<img src="picture.gif" width="4" height="4" />';
 
-        // Incorrect:
-        var test = "lorem ipsum dolor sit amet";
+    // Incorrect:
+    var test = "lorem ipsum dolor sit amet";
 
-        // Correct:
-        var test = 'lorem ipsum dolor sit amet';
+    // Correct:
+    var test = 'lorem ipsum dolor sit amet';
 
 ### Comments
 
@@ -683,17 +682,17 @@ Put your inline comments on top of the part that the comment is explaining:
 
 This is correct:
 
-        // Cache the global function.
-        var fnDo = doStuff;
+    // Cache the global function.
+    var fnDo = doStuff;
 
 This is not:
 
-        var fnDo = doStuff; // Cache the global function.
+    var fnDo = doStuff; // Cache the global function.
 
 This is even worse:
 
-        var fnDo = doStuff;
-        // Cache the global function.
+    var fnDo = doStuff;
+    // Cache the global function.
 
 You **MUST** comment critical or tricky parts of the code, or important
 changes you've made to the code, or anything that's not easy to grasp
@@ -911,94 +910,94 @@ two methods which are essentially doing the same thing.
 
 **Summary:**
 
-        variables, object, functions       : camelCase ( getStatusRecord() )
-        private variables, private methods : camelCase
-        public variables, public methods   : camelCase
-        enums and global constants         : ALL_CAPS
-        local/global constants             : prefix with k ( kPipeTimeout )
-        Parameters                         : camelCase
-        Objects and Constructors           : PascalCase
-        Packages/Namespaces                : lowercase
-        Methods                            : camelCase
+    variables, object, functions       : camelCase ( getStatusRecord() )
+    private variables, private methods : camelCase
+    public variables, public methods   : camelCase
+    enums and global constants         : ALL_CAPS
+    local/global constants             : prefix with k ( kPipeTimeout )
+    Parameters                         : camelCase
+    Objects and Constructors           : PascalCase
+    Packages/Namespaces                : lowercase
+    Methods                            : camelCase
 
 Some more examples:
 
-        // Local constant:
-        var kActiveProvider = enums.ProviderType.TWITTER;
+    // Local constant:
+    var kActiveProvider = enums.ProviderType.TWITTER;
 
-        // Do not start functions other than constructors with UpperCase.
-        function user(){}
-        var john = new user(); // incorrect
+    // Do not start functions other than constructors with UpperCase.
+    function user(){}
+    var john = new user(); // incorrect
 
-        function User(){}
-        var john = new User(); // correct
+    function User(){}
+    var john = new User(); // correct
 
-        function GetAccountDetails(){} // incorrect
-        function getAccountDetails(){} // correct
+    function GetAccountDetails(){} // incorrect
+    function getAccountDetails(){} // correct
 
 ### Avoid Using The **continue** Statement
 
 Avoid using **continue** statement. It tends to obscure the control flow of the
 function.
 
-        // Incorrect:
-        for (i = 0; i < len, i++) {
-            if (i === maxLength) {
-                doAction();
+    // Incorrect:
+    for (i = 0; i < len, i++) {
+        if (i === maxLength) {
+            doAction();
 
-                continue;
-            }
+            continue;
+        }
 
+        doStuff();
+    }
+
+    // Correct:
+    for (i = 0; i < len, i++) {
+        if (i === maxLength) {
+            doAction();
+        } else {
             doStuff();
         }
-
-        // Correct:
-        for (i = 0; i < len, i++) {
-            if (i === maxLength) {
-                doAction();
-            } else {
-                doStuff();
-            }
-        }
+    }
 
 ### Return Early
 
 Early returns promote code readability with negligible performance impact, if any.
 
-        // Instead of this:
+    // Instead of this:
 
-        function returnLate(foo) {
-            var ret;
+    function returnLate(foo) {
+        var ret;
 
-            if (foo) {
-                ret = 'foo';
-            } else {
-                ret = 'bar';
-            }
-
-            return ret;
+        if (foo) {
+            ret = 'foo';
+        } else {
+            ret = 'bar';
         }
 
-        // Do this:
+        return ret;
+    }
 
-        function returnEarly(foo) {
-            if (foo) {
-                return 'foo';
-            }
+    // Do this:
 
-            return 'bar';
+    function returnEarly(foo) {
+        if (foo) {
+            return 'foo';
         }
+
+        return 'bar';
+    }
 
 ### Group Related Statements Together Using Parentheses (`( )`)
 
 Although `&&` has precedence over `||`, mixing them together without grouping
 may decrease readability.
 
-        // Incorrect:
-        return obj !== undefined && obj !== null && klass === type;
+    // Incorrect:
+    return obj !== undefined && obj !== null && klass === type;
 
-        // Correct:
-        return (obj !== undefined) && (obj !== null) && (klass === type);
+    // Correct:
+    return (obj !== undefined) && (obj !== null) && (klass === type);
 
 ### Always Use Strict Comparison
 
@@ -1008,24 +1007,23 @@ operator (`==`), however, enables *type coercion* when comaring different types.
 Although the rules of coercion are deterministic and strictly defined, the
 issue creates some [confusion][21], at least.
 
-              [0] == true   // gives true.
-            !![0] == true   // gives true.
-        'Samurai' == false  // gives false.
-        'Samurai' == true   // gives false.
+          [0] == true   // gives true.
+        !![0] == true   // gives true.
+    'Samurai' == false  // gives false.
+    'Samurai' == true   // gives false.
 
 To avoid confusion and logic errors, always use strict equality and unequality
 operators:
 
-        // Incorrect:
-        if (a == b && c != d) {
-            doStuff();
-        }
+    // Incorrect:
+    if (a == b && c != d) {
+        doStuff();
+    }
 
-        // Correct:
-        if (a === b && c !== d) {
-            doStuff();
-        }
-
+    // Correct:
+    if (a === b && c !== d) {
+        doStuff();
+    }
 
 [21]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
 
@@ -1033,62 +1031,62 @@ operators:
 
 Use **lowercase** for *files*, *folders* and *paths*.
 
-                // Incorrect:
-                /wwwRoot/Script/mainController.js
+    // Incorrect:
+    /wwwRoot/Script/mainController.js
 
-                // Correct:
-                /wwwroot/script/maincontroller.js
+    // Correct:
+    /wwwroot/script/maincontroller.js
 
 ### File Headers
 
 Each file (*module*) should have a descriptive header.
 The *module* header should also be in [JSDoc Format][1].
 
-        /**
-         * @module domhelper.dimension
-         * @requires domhelper.core
-         *
-         * <!--
-         *  This program is distributed under
-         *  the terms of the MIT license.
-         *  Please see the LICENSE file for details.
-         * -->
-         *
-         * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
-         * methods.</p>
-         */
+    /**
+     * @module domhelper.dimension
+     * @requires domhelper.core
+     *
+     * <!--
+     *  This program is distributed under
+     *  the terms of the MIT license.
+     *  Please see the LICENSE file for details.
+     * -->
+     *
+     * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
+     * methods.</p>
+     */
 
 ### Curly Love
 
 Use curly braces, even when they are not strictly necessary.
 
-        // Which 'if' belongs to which 'else' ?!
-        if (b1) if (b2) foo(); else bar();
+    // Which 'if' belongs to which 'else' ?!
+    if (b1) if (b2) foo(); else bar();
 
-        // This is better:
-        if (b1) {
-            if (b2) {
+    // This is better:
+    if (b1) {
+        if (b2) {
+            foo();
+        } else {
+            bar();
+        }
+    }
+
+    // Incorrect:
+    function method() {
+        for(int i = 0; i < 10; i++)
+            if (i != 0)
                 foo();
-            } else {
-                bar();
+    }
+
+    // Correct:
+    function method() {
+        for (int i = 0; i < 10; i++) {
+            if (i != 0) {
+                foo();
             }
         }
-
-        // Incorrect:
-        function method() {
-            for(int i = 0; i < 10; i++)
-                if (i != 0)
-                    foo();
-        }
-
-        // Correct:
-        function method() {
-            for (int i = 0; i < 10; i++) {
-                if (i != 0) {
-                    foo();
-                }
-            }
-        }
+    }
 
 ### Default Fallbacks
 
@@ -1098,44 +1096,43 @@ That last fallback should at least have a log statement.
 All if-else chains should have an `else` in the end.
 That last else should at least have a log statement.
 
-        if (answer == 'no') {
-            alert('You said no');
-        } else if (answer == 'yes') {
-            alert('You said yes');
-        } else {
+    if (answer == 'no') {
+        alert('You said no');
+    } else if (answer == 'yes') {
+        alert('You said yes');
+    } else {
 
-            // This block should be here, even if we do not
-            // care about any outcome other than 'yes' or 'no
-            assert('I should not be here');
-        }
-
+        // This block should be here, even if we do not
+        // care about any outcome other than 'yes' or 'no
+        assert('I should not be here');
+    }
 
 **Exception**:
 
 A single `if` statement may not be regarded as an if-else *"chain"*, so it's
 okay to leave single if's without an else.
 
-        if (controller.isLoadingTemplates()) {
-            return;
-        } /*else {
-            log('controller has more templates');
-        } -- not required -- */
+    if (controller.isLoadingTemplates()) {
+        return;
+    } /*else {
+        log('controller has more templates');
+    } -- not required -- */
 
 ### Boolean Comparisons
 
 **DO NOT** directly compare with **true**, or **false**.
 
-        // Incorrect:
-        while(condition === false)
+    // Incorrect:
+    while(condition === false)
 
-        // Incorrect:
-        while(condition !== true)
+    // Incorrect:
+    while(condition !== true)
 
-        // You got the point:
-        While(((condition === true) === true) === true)
+    // You got the point:
+    While(((condition === true) === true) === true)
 
-        // Correct:
-        while(condition)
+    // Correct:
+    while(condition)
 
 ### Variable Access
 
@@ -1155,30 +1152,30 @@ Use **modules** and **namespaces** to achieve that.
 
 Always terminate statements with a semicolon (`;`):
 
-        // Incorrect:
-        var i = 10
+    // Incorrect:
+    var i = 10
 
-        // Correct:
-        var i = 10;
+    // Correct:
+    var i = 10;
 
-        // Incorrect:
-        var test = function() {
-        }
+    // Incorrect:
+    var test = function() {
+    }
 
-        // Correct:
-        var test = function() {
-        };
+    // Correct:
+    var test = function() {
+    };
 
 ### Variable Declerations
 
 Declare every variable on a new line:
 
-        // Incorrect:
-        var a, b;
+    // Incorrect:
+    var a, b;
 
-        // Correct.
-        var a;
-        var b;
+    // Correct.
+    var a;
+    var b;
 
 ## o2.js Javascript Coding Best-practices
 
@@ -1201,61 +1198,61 @@ web application's build & deployment cycle.
 
 The version of **JSLint** used to validate **o2.js** modules can be found at:
 
-        ./3rdparty/jslint/jslint.js
+    ./3rdparty/jslint/jslint.js
 
 folder of this bundle.
 
 The **JSLint** validation preferences used are as follows:
 
-        var JSLINT_PREFS = {
-            browser:true,
-            evil:false,
-            laxbreak:true,
-            maxerr: 1000,
-            newcap: true,
-            nomen: true,
-            passfail:false,
-            plusplus: true,
-            rhino: true,
-            undef:true,
-            vars: true,
-            white: true,
-            regexp: true
-        };
+    var JSLINT_PREFS = {
+        browser:true,
+        evil:false,
+        laxbreak:true,
+        maxerr: 1000,
+        newcap: true,
+        nomen: true,
+        passfail:false,
+        plusplus: true,
+        rhino: true,
+        undef:true,
+        vars: true,
+        white: true,
+        regexp: true
+    };
 
 ### Event-Handler Naming Convention
 
 User elementName_eventname format for event handlers.
 
-        function confirmButton_click(evt) {
+    function confirmButton_click(evt) {
 
-        }
+    }
 
-        functions tester_readystatechange(evt) {
+    functions tester_readystatechange(evt) {
 
-        }
+    }
 
 
-        o2.EventHandler.addEventListener(
-            tester,
-            'readystatechange',
-            tester_readystatechange
-        );
+    o2.EventHandler.addEventListener(
+        tester,
+        'readystatechange',
+        tester_readystatechange
+    );
 
-        o2.EventHandler.addEventListener(
-            confirmButton,
-            'click',
-            confirmButton_click
-        );
+    o2.EventHandler.addEventListener(
+        confirmButton,
+        'click',
+        confirmButton_click
+    );
 
 Event handlers, when used as a function pointers start
 with "on", and they are camelCased.
 
-        var onDocumentMouseDown = callback.document_mousedown;
+    var onDocumentMouseDown = callback.document_mousedown;
 
-        ...
+    ...
 
-        onDocumentMouseDown.apply(this, [evt]);
+    onDocumentMouseDown.apply(this, [evt]);
 
 Any custom events are defined all lowercase.
 
@@ -1286,11 +1283,11 @@ code, without effecting the code that others have been developing.
 
 Each o2.js module has the following basic structure.
 
-        (function(framework, window) {
+    (function(framework, window) {
 
-            ... module code goes here ...
+        ... module code goes here ...
 
-        }(this.o2, this));
+    }(this.o2, this));
 
 [4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
@@ -1341,22 +1338,22 @@ Strive **NOT TO** include type information in variables.
 Variables should be understandable by their behavior (*semantics*),
 **NOT** by their type.
 
-        // Incorrect:
+    // Incorrect:
 
-            var eventType = framework.EventType;
-            var kAddBuddyEventType = eventType.ADD_BUDDY;
+        var eventType = framework.EventType;
+        var kAddBuddyEventType = eventType.ADD_BUDDY;
 
-            var itemArrayList = new ArrayList();
-        // Correct:
+        var itemArrayList = new ArrayList();
+    // Correct:
 
-            /* eventType is an alias to type "framework.EventType" */
-            var eventType = framework.EventType;
+        /* eventType is an alias to type "framework.EventType" */
+        var eventType = framework.EventType;
 
-            /* kAddBuddy is of type "framework.Eventype"
-               (when we think in non-strict terms) */
-            var kAddBuddy = eventType.ADD_BUDDY;
+        /* kAddBuddy is of type "framework.Eventype"
+           (when we think in non-strict terms) */
+        var kAddBuddy = eventType.ADD_BUDDY;
 
-            var items = new ArrayList();
+        var items = new ArrayList();
 
 
 **Exception**:
@@ -1364,11 +1361,11 @@ Variables should be understandable by their behavior (*semantics*),
 If there are two similar constants, we may want to include type information
 instead of renaming those constants, as in the following case:
 
-        var kDomLoaded = 'domloaded';
-        var kDomLoadedRegExp = /domloaded/g;
+    var kDomLoaded = 'domloaded';
+    var kDomLoadedRegExp = /domloaded/g;
 
-        var kUsername = 'user name';
-        var kUsernameFieldId = 'txtUsername';
+    var kUsername = 'user name';
+    var kUsernameFieldId = 'txtUsername';
 
 Also, if adding type information conveys an additional meaning which decreases
 ambiguity, clarifies meaning, and makes the code easier to follow, its okay
@@ -1376,11 +1373,11 @@ to include type information in variable names. So use your own judgement.
 
 Variable names for UI elements are generally examples for this:
 
-        // It's not clear what "cancel" refers to. A method, a boolen flag?
-        var cancel = document.getElementById('btnCancel');
+    // It's not clear what "cancel" refers to. A method, a boolen flag?
+    var cancel = document.getElementById('btnCancel');
 
-        // this is better: more explanatory, easier to follow.
-        var cancelButton = document.getElementById('btnCancel');
+    // this is better: more explanatory, easier to follow.
+    var cancelButton = document.getElementById('btnCancel');
 
 ### Always Respect Type
 
@@ -1393,22 +1390,21 @@ variables and statements.
 If you know the type of an input variable beforehand explicitly cast
 it before using it. Here's an example:
 
-        var userCount = document.getElementById('uc').value;
+    var userCount = document.getElementById('uc').value;
 
-        // 1. defensively parse the value using parseInt
-        // 2. use === for comparison.
-        if (parseInt(userCount, 10) === MAX_ALLOWED_USER_COUNT) {
-            doStuff();
-        }
+    // 1. defensively parse the value using parseInt
+    // 2. use === for comparison.
+    if (parseInt(userCount, 10) === MAX_ALLOWED_USER_COUNT) {
+        doStuff();
+    }
 
-        // Or...
+    // Or...
 
-        // The unary operator + will convert its rigth-side operand
-        // into a number.
-        if (+userCount === MAX_ALLOWED_USER_COUNT) {
-            doStuff();
-        }
-
+    // The unary operator + will convert its rigth-side operand
+    // into a number.
+    if (+userCount === MAX_ALLOWED_USER_COUNT) {
+        doStuff();
+    }
 
 ### **DO NOT** Mix HTML and Javascript
 
@@ -1495,13 +1491,13 @@ Architect and program your components as such.
 
 Use **symbolic constants** for **numeric literals** and **string literals**.
 
-        // Incorrect:
+    // Incorrect:
 
-        var j = 0;
-        for(var i=0, len=52, i<len; i++){
-            j = i + getRandomInt(53 - i) - 1;
-            swapDeck(i, j);
-        }
+    var j = 0;
+    for(var i=0, len=52, i<len; i++){
+        j = i + getRandomInt(53 - i) - 1;
+        swapDeck(i, j);
+    }
 
 What if we wish to use a deck size of 114 (2 decks).
 You can say that we can find/replace all "52"si with "114"s and
@@ -1515,13 +1511,13 @@ which we will hardly be able to find out.
 
 Here's the correct way of doing the above deck shuffling:
 
-        var kDeckSize = 52;
-        var j = 0;
+    var kDeckSize = 52;
+    var j = 0;
 
-        for (var i=0, len=kDeckSize, i<len; i++){
-            j = i + getRandomInt(kDeckSize + 1 - i) - 1;
-            swapDeck(i, j);
-        }
+    for (var i=0, len=kDeckSize, i<len; i++){
+        j = i + getRandomInt(kDeckSize + 1 - i) - 1;
+        swapDeck(i, j);
+    }
 
 Moreover, if there's a relation between two symbolic constants, this
 relation should be **explicitly indicated**:
@@ -1553,35 +1549,35 @@ This usage might have a slight performance impact, which can be overcome by [mem
 
 Compare this:
 
-        var basePrice = quantity * itemPrice;
+    var basePrice = quantity * itemPrice;
 
-        ...
+    ...
 
-        // base price can be overridden anywhere in the code.
+    // base price can be overridden anywhere in the code.
 
-        if (basePrice > 1000) {
-            return basePrice * 0.95;
-        } else {
-            return basePrice * 0.98;
-        }
+    if (basePrice > 1000) {
+        return basePrice * 0.95;
+    } else {
+        return basePrice * 0.98;
+    }
 
 against this:
 
-        // Instead...
+    // Instead...
 
-        function getBasePrice(){
-            return quantity * itemPrice;
-        }
+    function getBasePrice(){
+        return quantity * itemPrice;
+    }
 
-        // There's no risk in overriding the base price.
+    // There's no risk in overriding the base price.
 
-        ...
+    ...
 
-        if (getBasePrice() > 1000) {
-            return getBasePrice() * 0.95;
-        } else {
-            return getBasePrice() * 0.98;
-        }
+    if (getBasePrice() > 1000) {
+        return getBasePrice() * 0.95;
+    } else {
+        return getBasePrice() * 0.98;
+    }
 
 ### Program Defensively
 
@@ -1697,14 +1693,14 @@ parts of your code.
 
 Instead of this...
 
-        var lSide = collection.subcollection.items.all.left;
-        var rSide = collection.subcollection.items.all.right;
+    var lSide = collection.subcollection.items.all.left;
+    var rSide = collection.subcollection.items.all.right;
 
 Do this:
 
-        var all = collection.subcollection.items.all;
-        var lSide = all.left; /*each dot is a namespace lookup.*/
-        var rSide = all.right;
+    var all = collection.subcollection.items.all;
+    var lSide = all.left; /*each dot is a namespace lookup.*/
+    var rSide = all.right;
 
 Things get worse, if the **collection** variable above is a **DOM Node**
 and the assignments are repeated in a `for` loop (both of which are not
@@ -1712,42 +1708,42 @@ uncommon situtations).
 
 ### Use **Array Joins** Instead Of String Concatenation
 
-        // Instead of this...
-        var result = 'a' + 'b' + 'c' + 'd';
+    // Instead of this...
+    var result = 'a' + 'b' + 'c' + 'd';
 
-        // This is much faster:
-        var result = ['a','b','c','d'].join('');
+    // This is much faster:
+    var result = ['a','b','c','d'].join('');
 
 ### Use **Function Pointers**
 
 Instead of this...
 
-        function iterateOverMe(){
-            for (var i = 0; i < 1000; i++) {
-                lorem.ipsum.dolor.sit(i);
-            }
+    function iterateOverMe(){
+        for (var i = 0; i < 1000; i++) {
+            lorem.ipsum.dolor.sit(i);
         }
+    }
 
 This is much faster:
 
-        function iterateOverMe() {
-            var sit = lorem.ipsum.dolor.sit;
+    function iterateOverMe() {
+        var sit = lorem.ipsum.dolor.sit;
 
-            for(var i = 0; i < 1000; i++) {
-                sit(i);
-            }
+        for(var i = 0; i < 1000; i++) {
+            sit(i);
         }
+    }
 
 As a sidenote, the first time a **function** is declared is more
 expensive than its consecutive declerations, because the initial
 decleration both involves **namespace lookup** and **creation**;
 while the latter only involves **creation**:
 
-        //namespace lookup & creation;
-        var fnPtr = lorem.ipsum.dolor.sit;
+    //namespace lookup & creation;
+    var fnPtr = lorem.ipsum.dolor.sit;
 
-        //second decleration is faster -- just namespace lookup.
-        var fnPtr2 = lorem.ipsum.dolor.sit;
+    //second decleration is faster -- just namespace lookup.
+    var fnPtr2 = lorem.ipsum.dolor.sit;
 
 The more you reduce namespace lookups, the faster is your code.
 
@@ -1755,107 +1751,106 @@ The more you reduce namespace lookups, the faster is your code.
 
 Instead of this:
 
-        function tableTest() {
-            var tableEl = null;
-            var rowEl = null;
-            var cellEl = null;
-            var numRows = 10;
-            var numCells = 5;
+    function tableTest() {
+        var tableEl = null;
+        var rowEl = null;
+        var cellEl = null;
+        var numRows = 10;
+        var numCells = 5;
 
-            tableEl = document.createElement('TABLE');
-            tableEl = document.body.appendChild(tableEl);
+        tableEl = document.createElement('TABLE');
+        tableEl = document.body.appendChild(tableEl);
 
-            for (i = 0; i < numRows; i++) {
-                rowEl = document.createElement('TR');
+        for (i = 0; i < numRows; i++) {
+            rowEl = document.createElement('TR');
 
-                for (j = 0; j < numCells;j++) {
-                    cellEl = document.createElement('TD');
-                    cellEl.appendChild(
-                    document.createTextNode('[row '+i+' cell '+j+ ']''));
-                    rowEl.appendChild(cellEl);
-                }
-
-                tableEl.appendChild(rowEl);
+            for (j = 0; j < numCells;j++) {
+                cellEl = document.createElement('TD');
+                cellEl.appendChild(
+                document.createTextNode('[row '+i+' cell '+j+ ']''));
+                rowEl.appendChild(cellEl);
             }
+
+            tableEl.appendChild(rowEl);
         }
+    }
 
 This is much faster:
 
-        function tableTest() {
-            var tableEl = null;
-            var rowEl = null;
-            var cellEl = null;
-            var numRows = 10;
-            var numCells = 5;
+    function tableTest() {
+        var tableEl = null;
+        var rowEl = null;
+        var cellEl = null;
+        var numRows = 10;
+        var numCells = 5;
 
-            tableEl = document.createElement('TABLE');
+        tableEl = document.createElement('TABLE');
 
-            for (i = 0; i < numRows; i++) {
-                rowEl = document.createElement('TR');
+        for (i = 0; i < numRows; i++) {
+            rowEl = document.createElement('TR');
 
-                for (j = 0; j < numCells; j++) {
-                    cellEl = document.createElement('TD');
-                    cellEl.appendChild(document.createTextNode(
-                    [row +i+' cell '+j+ ']'));
-                    rowEl.appendChild(cellEl);
-                }
-
-                tableEl.appendChild(rowEl);
+            for (j = 0; j < numCells; j++) {
+                cellEl = document.createElement('TD');
+                cellEl.appendChild(document.createTextNode(
+                [row +i+' cell '+j+ ']'));
+                rowEl.appendChild(cellEl);
             }
 
-            tableEl = document.body.appendChild(tableEl);
+            tableEl.appendChild(rowEl);
         }
+
+        tableEl = document.body.appendChild(tableEl);
+    }
 
 ### Edit Complex DOM Subtrees Offline
 
 Instead of this...
 
-        function subTrees() {
-            var ul = document.getElementById('myUL');
+    function subTrees() {
+        var ul = document.getElementById('myUL');
 
-            for (var i = 0; i < 200; i++) {
-                ul.appendChild(document.createElement('LI'));
-            }
+        for (var i = 0; i < 200; i++) {
+            ul.appendChild(document.createElement('LI'));
         }
+    }
 
 This is much faster:
 
-        function subTrees(){
-            var ul = document.getElementById('myUL');
-            var li = document.createElement('LI');
-            var parentNode = ul.parentNode;
+    function subTrees(){
+        var ul = document.getElementById('myUL');
+        var li = document.createElement('LI');
+        var parentNode = ul.parentNode;
 
-            parentNode.removeChild(ul);
+        parentNode.removeChild(ul);
 
-            for (var i = 0; i < 200; i++) {
-                ul.appendChild(li.cloneNode(true));
-            }
-
-            parentNode.appendChild(ul);
+        for (var i = 0; i < 200; i++) {
+            ul.appendChild(li.cloneNode(true));
         }
 
+        parentNode.appendChild(ul);
+    }
 
 ### Cache DOM Collection Length
 
 Instead of this...
 
-        function nodeJam(){
-            nodes = document.getElementsByTagName('P');
+    function nodeJam(){
+        nodes = document.getElementsByTagName('P');
 
-            for (var i = 0; i < nodes.length; i++) {
-                nodes[i].innerHTML += 'test';
-            }
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].innerHTML += 'test';
         }
+    }
 
 This is faster:
 
-        function nodeJam(){
-            nodes = document.getElementsByTagName('P');
+    function nodeJam(){
+        nodes = document.getElementsByTagName('P');
 
-            for (var i = 0, len = nodes.length; i < len; i++) {
-                nodes[i].innerHTML += 'test';
-            }
+        for (var i = 0, len = nodes.length; i < len; i++) {
+            nodes[i].innerHTML += 'test';
         }
+    }
 
 ### Use Memoization for Computation-Intensive Functions
 
@@ -1871,40 +1866,40 @@ use within loops:
 
 So instead of this...
 
-        function loopMePlease(){
-            for (var i=0; i<1000; i++) {
-                doStuff();
+    function loopMePlease(){
+        for (var i=0; i<1000; i++) {
+            doStuff();
 
-                if (n===12) {
-                    someBlock();
-                } else if (n===26) {
-                    someOtherBlock();
-                }
+            if (n===12) {
+                someBlock();
+            } else if (n===26) {
+                someOtherBlock();
             }
-
         }
+
+    }
 
 This is faster:
 
-        function loopMePlease(){
+    function loopMePlease(){
 
-            // Cache the global function.
-            var fnDo = doStuff;
+        // Cache the global function.
+        var fnDo = doStuff;
 
-            for(var i=0; i<1000; i++){
-                fnDo();
+        for(var i=0; i<1000; i++){
+            fnDo();
 
-                // Also, a switch/case is (negligibly) faster than an if-else chain
-                switch(n){
-                    case 12:
-                        someBlock();
-                        break;
-                    case 26:
-                        someOtherBlock();
-                        break;
-                }
+            // Also, a switch/case is (negligibly) faster than an if-else chain
+            switch(n){
+                case 12:
+                    someBlock();
+                    break;
+                case 26:
+                    someOtherBlock();
+                    break;
             }
         }
+    }
 
 Also it's a good practice to **cache DOM object collections**,
 because executing the same selectors over and over again
@@ -1914,17 +1909,17 @@ to reach the same collection is resource intensive.
 
 Instead of this...
 
-        select('div > li > a').show();
-        select('div > li > a').addClass('test');
-        select('div > li > a').click(function(){});
+    select('div > li > a').show();
+    select('div > li > a').addClass('test');
+    select('div > li > a').click(function(){});
 
 This is much faster:
 
-        var collection = select('div > li > a');
+    var collection = select('div > li > a');
 
-        collection.show();
-        collection.addClass('test');
-        collection.click(function(){});
+    collection.show();
+    collection.addClass('test');
+    collection.click(function(){});
 
 ## Code Smells
 
