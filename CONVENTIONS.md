@@ -736,6 +736,40 @@ You are not a human code compiler/compressor, so don't try to be one.
 
 * Use **long and descriptive** variable (*and function*) names.
 
+Trying to determine what a variable contains, or what a method does should be as 
+straightforward as possible. It is an all too common practice to use 
+abbreviations, single letters or seemingly random names for variables, 
+functions and class names. 
+
+Using abbreviated names doesn't make sense in almost any practical programming 
+languages (and there are usually minifiers for those where it does).
+This should be avoided at all costs.
+
+* Establish a naming convention based on **real names** that mean something.
+* Avoid any abbreviations unless they are part of your target industry's every-day lingo.
+* In method names, try to use a name that describes what the method really does.
+* Variables and classes should be **nouns** or **noun phrases**.
+* Class names are like **collective nouns**.
+* Variable names are like **proper nouns**.
+* Procedure names should be **verbs** or **verb phrases**.
+* Booleans should be **adjectives**.
+* For compound names, retain conventional English syntax.
+* Try to make names **pronounceable**.
+* **Try to be obvious**.
+
+### Store Your Code in Meaningful Folder Structures
+
+The naming conventions should also apply to your folders. Split up your code 
+in **logical groups** and store it in folders that describe **what they contain**. 
+
+This will make it much easier to keep your code-tree organized and scale it 
+to thousands of files without hindering your ability to get to specific files quickly.
+
+* Group your source files in logical groups
+* Keep your folder names consistent throughout the project.
+* use your naming convention recursively inside of your sub-folders.
+
+
 		// Incorrect:
 		usrAvail = true;
 
@@ -1189,6 +1223,58 @@ The **JSLint** validation preferences used are as follows:
 			regexp: true
 		};
 
+### Event-Handler Naming Convention
+
+User elementName_eventname format for event handlers.
+
+		function confirmButton_click(evt) {
+		
+		}
+		
+		functions tester_readystatechange(evt) {
+		
+		}
+		
+		
+		o2.EventHandler.addEventListener(
+			tester, 
+			'readystatechange', 
+			tester_readystatechange
+		);
+				
+		o2.EventHandler.addEventListener(
+			confirmButton, 
+			'click', 
+			confirmButton_click
+		);
+
+Event handlers, when used as a function pointers start 
+with "on", and they are camelCased.
+
+		var onDocumentMouseDown = callback.document_mousedown;
+		
+		...
+		
+		onDocumentMouseDown.apply(this, [evt]);
+
+Any custom events are defined all lowercase.
+
+	var Selectable = function(params){
+		... stuff ...
+		
+		// We register the handler on constructor.
+		// Note that the assigned method name (this.onselectionchange) 
+		// and the parameter name (params.onselectionchange)
+		// are both all lowercase.
+		this.onselectionchange = params.onselectionchange;
+	};
+	
+	Selectable.prototype.someAction = function() {
+		...
+		
+		this.onselectionchange.apply(this, [source, eventArgs]);
+	};
+
 ### Show Love To the [Module Pattern][4]
 
 [Modules][4] are simply self-executing function literals.
@@ -1283,6 +1369,18 @@ instead of renaming those constants, as in the following case:
 		
 		var kUsername = 'user name';
 		var kUsernameFieldId = 'txtUsername';
+
+Also, if adding type information conveys an additional meaning which decreases
+ambiguity, clarifies meaning, and makes the code easier to follow, its okay
+to include type information in variable names. So use your own judgement.
+
+Variable names for UI elements are generally examples for this:
+
+		// It's not clear what "cancel" refers to. A method, a boolen flag?
+		var cancel = document.getElementById('btnCancel');
+		
+		// this is better: more explanatory, easier to follow.
+		var cancelButton = document.getElementById('btnCancel');
 
 ### Always Respect Type
 
