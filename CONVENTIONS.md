@@ -170,9 +170,9 @@ Indent...
 
 * Statements **inside** a *closure*:
 
-    Technically speaking, *any function* is also a *closure*. Therefore statements
-    inside **any function** should be indented one level with respect to that
-    *function*'s body.
+    Technically speaking, *any function* is also a *closure*. Therefore
+    statements inside **any function** should be indented one level with
+    respect to that *function*'s body.
 
         me.EventHandler.preventDefault = window.event ? function() {
             window.event.returnValue = false;
@@ -374,7 +374,8 @@ Insert **one** blank line...
          * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
          *
          * @param {XmlHttpRequest} xhr - the current <code>Xhr</code> instance.
-         * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
+         * @param {Object} callbacks - oncomplete, onerror and onexception
+         * callbacks.
          */
         function processCallbacks(xhr, callbacks) {
 
@@ -492,7 +493,8 @@ The brace positions should be as follows:
 
 * **Same line**, in function declarations (*C-Style*).
 
-        removeElementByValue : function (collection, name, value, isRecursive) {
+        removeElementByValue : function (collection, name, value,
+                    isRecursive) {
             var item = null;
             var isNested = !!isRecursive;
 
@@ -647,8 +649,9 @@ Use literal notation. It takes less space and it's sligthly faster:
 
 Use single quotes ( `'` ) for string literals.
 
-Using double quotes (") for HTML attributes and single quotes (') for JavaScript
-string literals will make writing HTML template code in JavaScript easier.
+Using double quotes (") for HTML attributes and single quotes (') for
+JavaScript string literals will make writing HTML template code in
+JavaScript easier.
 
 Example:
 
@@ -735,45 +738,61 @@ You are not a human code compiler/compressor, so don't try to be one.
 
 * Use **long and descriptive** variable (*and function*) names.
 
-Trying to determine what a variable contains, or what a method does should be as
-straightforward as possible. It is an all too common practice to use
-abbreviations, single letters or seemingly random names for variables,
-functions and class names.
+    Trying to determine what a variable contains, or what a method does should
+    be as straightforward as possible. It is an all too common practice to use
+    abbreviations, single letters or seemingly random names for variables,
+    functions and class names.
 
-Using abbreviated names doesn't make sense in almost any practical programming
-languages (and there are usually minifiers for those where it does).
-This should be avoided at all costs.
-
-* Establish a naming convention based on **real names** that mean something.
-* Avoid any abbreviations unless they are part of your target industry's every-day lingo.
-* In method names, try to use a name that describes what the method really does.
-* Variables and classes should be **nouns** or **noun phrases**.
-* Class names are like **collective nouns**.
-* Variable names are like **proper nouns**.
-* Procedure names should be **verbs** or **verb phrases**.
-* Booleans should be **adjectives**.
-* For compound names, retain conventional English syntax.
-* Try to make names **pronounceable**.
-* **Try to be obvious**.
-
-### Store Your Code in Meaningful Folder Structures
-
-The naming conventions should also apply to your folders. Split up your code
-in **logical groups** and store it in folders that describe **what they contain**.
-
-This will make it much easier to keep your code-tree organized and scale it
-to thousands of files without hindering your ability to get to specific files quickly.
-
-* Group your source files in logical groups
-* Keep your folder names consistent throughout the project.
-* use your naming convention recursively inside of your sub-folders.
-
+    Using abbreviated names doesn't make sense in almost any practical
+    programming languages (and there are usually minifiers for those where
+    it does). This should be **avoided at all costs**.
 
         // Incorrect:
         usrAvail = true;
 
         // Better:
         isUserAvailable = true;
+
+
+* Establish a naming convention based on **real names** that mean something.
+
+* Avoid any abbreviations unless they are part of your target industry's
+every-day lingo.
+
+* In method names, try to use a name that describes what the method
+**really does**.
+
+* Variables and classes should be **nouns** or **noun phrases**.
+
+* Class names are like **collective nouns**.
+
+* Variable names are like **proper nouns**.
+
+* Procedure names should be **verbs** or **verb phrases**.
+
+* Booleans should be **adjectives**.
+
+* For compound names, retain conventional English syntax.
+
+* Try to make names **pronounceable**.
+
+* **Try to be obvious**.
+
+### Store Your Code in Meaningful Folder Structures
+
+The naming conventions should also apply to your folders. Split up your code
+in **logical groups** and store it in folders that describe
+**what they contain**.
+
+This will make it much easier to keep your code-tree organized and scale it
+to thousands of files without hindering your ability to get to specific
+files quickly.
+
+* Group your source files in **logical groups**
+
+* Keep your folder names **consistent** throughout the project.
+
+* Use your naming convention recursively inside of your sub-folders.
 
 * Choose readable variable names:
 
@@ -806,7 +825,9 @@ to thousands of files without hindering your ability to get to specific files qu
 **boolean**.
 
         // Incorrect:
-            if (statusToState(user.status) == kLoggedIn) { // Status is a "noun".
+
+            // Status is a "noun".
+            if (statusToState(user.status) == kLoggedIn) {
                 userLogin(); // User is a "noun".
             }
 
@@ -819,6 +840,7 @@ to thousands of files without hindering your ability to get to specific files qu
             }
 
         // Correct:
+
             if (mapUserStatusToState(user.status) == kLoggedIn) {
                 logUserIn();
             }
@@ -937,8 +959,8 @@ Some more examples:
 
 ### Avoid Using The **continue** Statement
 
-Avoid using **continue** statement. It tends to obscure the control flow of the
-function.
+Avoid using **continue** statement. It tends to obscure the control flow of
+the function.
 
     // Incorrect:
     for (i = 0; i < len, i++) {
@@ -962,7 +984,8 @@ function.
 
 ### Return Early
 
-Early returns promote code readability with negligible performance impact, if any.
+Early returns promote code readability with negligible performance impact,
+if any.
 
     // Instead of this:
 
@@ -1084,8 +1107,8 @@ The *module* header should also be in [JSDoc Format][1].
      *  Please see the LICENSE file for details.
      * -->
      *
-     * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
-     * methods.</p>
+     * <p>Includes dimension (<strong>i.e. width-height related</strong>)
+     * helper methods.</p>
      */
 
 ### Curly Love
@@ -1213,9 +1236,9 @@ Declare every variable on a new line:
 
 ### JsLint Your Code
 
-[JSLint][2] is a **must-have** great tool written in **JavaScript** that allows
-you to validate your **JavaScript** code against a **strict** and **rigorous**
-set of best practises.
+[JSLint][2] is a **must-have** great tool written in **JavaScript** that
+allows you to validate your **JavaScript** code against a **strict** and
+**rigorous** set of best practises.
 
 Written by [Douglas Crockford][2] it is a must have for anyone keep theier
 code-base *ship shape*.
@@ -1307,9 +1330,9 @@ Any custom events are defined all lowercase.
 ### Show Love To the [Module Pattern][4]
 
 [Modules][4] are simply self-executing function literals.
-They create their own *private* **static** context, and encapsulate the business
-logic inside. This will (*in theory*) enable developers safely write their own
-code, without effecting the code that others have been developing.
+They create their own *private* **static** context, and encapsulate the
+business logic inside. This will (*in theory*) enable developers safely write
+their own code, without effecting the code that others have been developing.
 
 **o2.js** files are organized in modules using the [module pattern][4]
 
@@ -1559,8 +1582,8 @@ relation should be **explicitly indicated**:
 
 ### Decouple Objects and Minimize Variable Scope
 
-Objects and methods should have as little information about each other as possible.
-That's the major motivator behind **object-oriented programming*.
+Objects and methods should have as little information about each other
+as possible. That's the major motivator behind **object-oriented programming*.
 
 Minimize variable scopes. Use the [module pattern][11].
 
@@ -1645,8 +1668,9 @@ of constructs, will result in logic errors that are hard to find.
 > `try/catch` != **CYA**
 
 Use `try/catch`s only if there's something out of your control
-(a plugin, a custom user code that's late-bound and delegated, a queue structure
-where all the items should be processed even if some of the items do generate errors)
+(a plugin, a custom user code that's late-bound and delegated, a queue
+structure where all the items should be processed even if some of the
+items do generate errors).
 
 These cases are rare and **exceptional**.
 
@@ -1921,7 +1945,8 @@ This is faster:
         for(var i=0; i<1000; i++){
             fnDo();
 
-            // Also, a switch/case is (negligibly) faster than an if-else chain
+            // Also, a switch/case is (negligibly) faster
+            // than an if-else chain
             switch(n){
                 case 12:
                     someBlock();
@@ -2040,8 +2065,8 @@ more than a few years old.
 Those methods should immediately be **renamed*, in order to relieve the
 frustration that the next poor developer working on the code will have.
 Otherwise she'll be spending hours of valuable development time to figure out
-what the code does, or worse she'll be using the code with incorrect assumptions
-out of hassle.
+what the code does, or worse she'll be using the code with incorrect
+assumptions out of hassle.
 
 If a method has a misleading name, **rename it**.
 
