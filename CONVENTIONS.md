@@ -1015,7 +1015,7 @@ errors.
 So you need not make your code harder to read. Avoid Yoda conditions and
 integrate [JSLint][2] into your build process -- that's enough.
 
-Yoda[23]: http://en.wikipedia.org/wiki/Yoda "Do, or do not -- there's no try."
+[23]: http://en.wikipedia.org/wiki/Yoda "Do, or do not -- there's no try."
 
 Instead of this
 
