@@ -1001,7 +1001,7 @@ may decrease readability.
 
 ### Avoid "Yoda Conditions"
 
-Yoda[23] was a great teacher except for his word sequence.
+[Yoda][23] was a great teacher except for his word sequence.
 
 **Yoda conditions** is basically using `if (constant === variable)` instead of
 `if(variable == constant)`. Because it's like saying
