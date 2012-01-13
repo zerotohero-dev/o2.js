@@ -1001,19 +1001,21 @@ may decrease readability.
 
 ### Avoid 'Yoda Conditions'
 
-Yoda was a great teacher except for his word sequence.
-Yoda conditions is basically using `if (constant === variable)` instead of
+Yoda[23] was a great teacher except for his word sequence.
+
+**Yoda conditions** is basically using `if (constant === variable)` instead of
 `if(variable == constant)`. Because it's like saying
 "Much to learn, you still have."
 
-The main reason of using Yoda conditions, is to avoid mistaken left hand side
-assignments like `if (value = 42)` (instead of `if (value == 42)`). However,
-[JSLint][2] already checks your code against these (and many other) errors.
+The main reason of using **Yoda conditions**, is to avoid mistaken left hand
+side assignments like `if (value = 42)` (instead of `if (value == 42)`).
+However, [JSLint][2] already checks your code against these (and many other)
+errors.
 
 So you need not make your code harder to read. Avoid Yoda conditions and
 integrate [JSLint][2] into your build process -- that's enough.
 
-[23]: http://en.wikipedia.org/wiki/Yoda "Do, or do not -- there's no try."
+Yoda[23]: http://en.wikipedia.org/wiki/Yoda "Do, or do not -- there's no try."
 
 Instead of this
 
