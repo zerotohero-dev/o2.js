@@ -999,13 +999,43 @@ may decrease readability.
     // Correct:
     return (obj !== undefined) && (obj !== null) && (klass === type);
 
+### Avoid 'Yoda Conditions'
+
+Yoda was a great teacher except for his word sequence.
+Yoda conditions is basically using `if (constant === variable)` instead of
+`if(variable == constant)`. Because it's like saying
+"Much to learn, you still have."
+
+The main reason of using Yoda conditions, is to avoid mistaken left hand side
+assignments like `if (value = 42)` (instead of `if (value == 42)`). However,
+[JSLint][2] already checks your code against these (and many other) errors.
+
+So you need not make your code harder to read. Avoid Yoda conditions and
+integrate [JSLint][2] into your build process -- that's enough.
+
+[23]: http://en.wikipedia.org/wiki/Yoda "Do, or do not -- there's no try."
+
+Instead of this
+
+    // if connected is result's status (harder to read and folow)
+    if (CONNECTED === result.status) {
+        ...
+    }
+
+do this
+
+    // if result's status is connected (much easier)
+    if (result.status === CONNECTED) {
+        ...
+    }
+
 ### Always Use Strict Comparison
 
 Strong-typed languages such as Java and C# considers two values to be equal
 if and only if they are equal both by value and by type. JavaScript equality
-operator (`==`), however, enables *type coercion* when comaring different types.
-Although the rules of coercion are deterministic and strictly defined, the
-issue creates some [confusion][21], at least.
+operator (`==`), however, enables *type coercion* when comaring different
+types. Although the rules of coercion are deterministic and strictly defined,
+the issue creates some [confusion][21], at least.
 
           [0] == true   // gives true.
         !![0] == true   // gives true.
