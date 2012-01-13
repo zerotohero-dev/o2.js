@@ -999,7 +999,7 @@ may decrease readability.
     // Correct:
     return (obj !== undefined) && (obj !== null) && (klass === type);
 
-### Avoid 'Yoda Conditions'
+### Avoid "Yoda Conditions"
 
 Yoda[23] was a great teacher except for his word sequence.
 
