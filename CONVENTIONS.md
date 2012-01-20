@@ -2187,3 +2187,25 @@ for situations that are not covered in this document.
 That's the end of this conventions document.
 
 Feel free to contribute.
+
+[ 1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
+[ 2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
+[ 3]: http://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
+[ 4]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
+[ 5]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
+[ 6]: http://en.wikipedia.org/wiki/Unobtrusive_JavaScript "Unobtrusive JavaScript"
+[ 7]: http://www.alistapart.com/articles/behavioralseparation "Behavioral Separation"
+[ 8]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
+[ 9]: http://en.wikipedia.org/wiki/Event-driven_programming "Event-Driven Programming"
+[10]: http://o2js.com/2011/04/24/the-module-pattern/ "The JavaScript Module Pattern"
+[11]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "JavaScript Function Kung-Fu"
+[12]: http://en.wikipedia.org/wiki/Defensive_programming "Defensive Programming"
+[13]: http://en.wikipedia.org/wiki/Design_by_Contract "Design by Contract"
+[14]: http://c2.com/cgi/wiki?GuardClause "Guard Clauses"
+[15]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
+[16]: http://o2js.com/2011/04/24/javascript-objects/ "JavaScript Objects"
+[17]: http://o2js.com/2011/04/26/functions-and-closures-in-javascript/ "Functions and Closures in JavaScript"
+[18]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
+[19]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
+[20]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
+[21]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
