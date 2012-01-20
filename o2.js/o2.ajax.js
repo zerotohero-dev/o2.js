@@ -16,11 +16,11 @@
     /*
      * Aliases.
      */
-    var me = framework;
-    var generateGuid = framework.StringHelper.generateGuid;
-    var concat = framework.StringHelper.concat;
-    var nill = framework.nill;
-    var ActiveXObject = window.ActiveXObject;
+    var me             = framework;
+    var generateGuid   = framework.StringHelper.generateGuid;
+    var concat         = framework.StringHelper.concat;
+    var nill           = framework.nill;
+    var ActiveXObject  = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
 
     /*
@@ -40,7 +40,7 @@
              *
              */
             verb : {
-                GET : 'GET',
+                GET  : 'GET',
                 POST : 'POST'
             },
 
@@ -62,7 +62,7 @@
              *
              */
             status : {
-                OK : 200,
+                OK     : 200,
                 CACHED : 304
             },
 
@@ -108,15 +108,24 @@
      * Common string constants.
      */
     var constants = config.constants;
-    var kNoXhr = constants.error.NO_XHR;
-    var kOk = constants.status.OK;
-    var kCached = constants.status.CACHED;
-    var kComplete = constants.readystate.COMPLETE;
+    
+    var kNoXhr  = constants.error.NO_XHR;
+    
+    var cs      = constants.status;
+    var kOk     = cs.OK;
+    var kCached = cs.CACHED;
+
+    var cr        = constants.readystate;
+    var kComplete = cr.COMPLETE;
+
+    var kRandom   = constants.prefix.RANDOM;
+    
+    var kGet      = constants.verb.GET;
+    
     var kEquals = '=';
-    var kAnd = '&';
-    var kPlus = '+';
-    var kRandom = config.constants.prefix.RANDOM;
-    var kGet = config.constants.verb.GET;
+    var kAnd    = '&';
+    var kPlus   = '+';
+    var kEmpty  = '';
 
     /*
      * Common collections.
@@ -127,7 +136,6 @@
      * Common regular expressions.
      */
     var kUrlSpaceRegExp = /%20/g;
-    var kEmpty = '';
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>

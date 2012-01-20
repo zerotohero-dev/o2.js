@@ -704,8 +704,6 @@ you'd do in a normal sentence.
 		// If the request is sync, then process the response immediately.
 		processCallbacks(xhr, callbacks);
 
-[1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
-
 ### Variable and Method Naming
 
 * Use meaningful variable (and function) names:
@@ -926,7 +924,7 @@ Strong-typed languages such as Java and C# considers two values to be equal
 if and only if they are equal both by value and by type. JavaScript equality
 operator (`==`), however, enables *type coercion* when comaring different types.
 Although the rules of coercion are deterministic and strictly defined, the
-issue creates some [confusion][21], at least.
+issue creates some [confusion][20], at least.
 
 			  [0] == true   // gives true.
 			!![0] == true   // gives true.
@@ -946,17 +944,14 @@ operators:
 			doStuff();
 		}
 
-
-[21]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
-
 ### File, Folder and Path Naming
 
 Use **lowercase** for *files*, *folders* and *paths*.
 
-                // Incorrect: 
+                // Incorrect:
                 /wwwRoot/Script/mainController.js
 
-                // Correct: 
+                // Correct:
                 /wwwroot/script/maincontroller.js
 
 ### File Headers
@@ -1116,9 +1111,6 @@ code-base *ship shape*.
 Automate the usage of **JsLint** by integrating, **JSLint** validation to your
 web application's build & deployment cycle.
 
-[2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
-[3]: hhttp://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
-
 The version of **JSLint** used to validate **o2.js** modules can be found at:
 
 		./3rdparty/jslint/jslint.js
@@ -1143,7 +1135,7 @@ The **JSLint** validation preferences used are as follows:
 			regexp: true
 		};
 
-### Show Love To the [Module Pattern][4]
+### Show Love To the [Module Pattern][9]
 
 [Modules][4] are simply self-executing function literals.
 They create their own *private* **static** context, and encapsulate the business
@@ -1159,8 +1151,6 @@ Each o2.js module has the following basic structure.
 			... module code goes here ...
 
 		}(this.o2, this));
-
-[4]: http://o2js.com/2011/04/24/the-module-pattern/ "The module pattern"
 
 ### Do Not Pollute The Global Namespace
 
@@ -1184,23 +1174,20 @@ Each method **SHOULD** have one, and only one, clearly defined task.
 If a method is doing more than one thing, it should be **divided**
 into **subroutines**.
 
-Program your functions atomically. Aim to reduce [cyclomatic complexity][5].
+Program your functions atomically. Aim to reduce [cyclomatic complexity][4].
 
 While writing a method the following should be taken into consideration:
 
 * The accepted input ranges, and data types,
 * Return values and their meanings,
 * Error conditions, exceptional cases, and how they are handled.
-* Whether the method has any [side effects[6]
+* Whether the method has any [side effects[5]
 
 > A function with no side effects is a function that always returns the same
 > value given the same arguments, and never changes the internal global state
 > (MODEL), or the application's look & feel (VIEW). It takes some arguments,
 > returns a value based on these arguments, and do not monkey around with
 > anything else.
-
-[5]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
-[6]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
 
 ### **DO NOT** Include Type Information While Naming Variables
 
@@ -1248,16 +1235,13 @@ attacks.
 (`<a href="javascript:void()" onclick="foo();return false">...</a>` ... yuck!).
 
 The issue with DOM Level 0 events is that you can only assign one event
-handler to a node, using them.  With [unobtrusive JavaScript][7] and
-[behavioral separation][8] you actually assign event handlers to a higher
+handler to a node, using them.  With [unobtrusive JavaScript][6] and
+[behavioral separation][7] you actually assign event handlers to a higher
 level (DOM Level 2 to be exact). This level allows for multiple event
 handlers to be assigned to one event.
 
-[behavioral separation][8], is actually far more than that, but that's the
+[behavioral separation][7], is actually far more than that, but that's the
 topic of another story.
-
-[7]: http://en.wikipedia.org/wiki/Unobtrusive_JavaScript "Unobtrusive JavaScript"
-[8]: http://www.alistapart.com/articles/behavioralseparation "Behavioral Separation"
 
 One of the big powers of JavaScript is that it comes in a seperate file.
 Much like CSS, this means you can apply one collection of functions to
@@ -1297,21 +1281,17 @@ and respond to, hanging around, adding an event handler to each and every
 single one of those objects will have a **huge** impact on **performance** and
 **memory utilization**.
 
-Use [event delegation][9] instead.
+Use [event delegation][8] instead.
 
-[Event delegation][9] is **faster**, **scalable**, and **easier to maintain**.
-
-[9]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
+[Event delegation][8] is **faster**, **scalable**, and **easier to maintain**.
 
 ### Use Event-driven Programming
 
-Use [event-driven programming][10]. Web apps will **always** be event driven.
+Use [event-driven programming][9]. Web apps will **always** be event driven.
 
 You're either responding to a **user event**, or a **system event**.
 
 Architect and program your components as such.
-
-[10]: http://en.wikipedia.org/wiki/Event-driven_programming "Event-Driven Programming"
 
 ### Avoid **Magic Strings** And **Magic Numbers** Like Plague
 
@@ -1356,22 +1336,18 @@ relation should be **explicitly indicated**:
 Objects and methods should have as little information about each other as possible.
 That's the major motivator behind **object-oriented programming*.
 
-Minimize variable scopes. Use the [module pattern][11].
+Minimize variable scopes. Use the [module pattern][10].
 
 > The larger the scope of the variables, the harder it is to maintain the code.
 
 *Avoid* global variables and global methods at all costs.
-
-[11]: http://o2js.com/2011/04/24/the-module-pattern/ "The JavaScript Module Pattern"
 
 ### Replace **Temporary Variables** with **Query Methods**
 
 Chaining temp variables with query functions, **reduces** the number of
 variables used in the code, and **decreases** the possibility to make an error.
 
-This usage might have a slight performance impact, which can be overcome by [memoization][12].
-
-[12]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "JavaScript Function Kung-Fu"
+This usage might have a slight performance impact, which can be overcome by [memoization][11].
 
 Compare this:
 
@@ -1407,21 +1383,16 @@ against this:
 
 ### Program Defensively
 
-Adhere [defensive programming][13] best-practices.
+Adhere [defensive programming][12] best-practices.
 
-[13]: http://en.wikipedia.org/wiki/Defensive_programming "Defensive Programming"
-
-All functions should work according to a given [contract][14].
-
-[14]: http://en.wikipedia.org/wiki/Design_by_Contract "Design by Contract"
+All functions should work according to a given [contract][13].
 
 Their **in/out parameters**, exepected and unexpected **value ranges**,
 **side-effects**, **error** and **exception** situtaions etc. **SHALL**
 be designed **before** writing the code.
 
-Use [guard-clauses][15] to avoid unexpected conditions.
-
-[15]: http://c2.com/cgi/wiki?GuardClause "Guard Clauses"
+Use [guard-clauses][14] to avoid unexpected conditions.
+Return early, return often.
 
 ### **Exception**s Are For **Exceptional** Cases
 
@@ -1465,10 +1436,8 @@ is not available or when Javascript has been disabled.
 
 JavaScript is for **enhancing** existing functionality.
 
-[Enhance progressively][16], and ensure tha your application
+[Enhance progressively][15], and ensure tha your application
 is usable at all times.
-
-[16]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
 
 ## Performance and Memory Considearations
 
@@ -1494,13 +1463,9 @@ and leak memory.
 
 To avoid memory leaks:
 
-* **Use** the [delete operator][17] to deallocate members,
-* **Avoid** [closures][18] between DOM World and the JS World,
+* **Use** the [delete operator][16] to deallocate members,
+* **Avoid** [closures][17] between DOM World and the JS World,
 * And **minimize** JS / DOM interaction.
-
-[17]: http://o2js.com/2011/04/24/javascript-objects/ "JavaScript Objects"
-[18]: http://o2js.com/2011/04/26/functions-and-closures-in-javascript/ "Functions and Closures in JavaScript"
-[19]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
 
 ### Consider Using **Native** Methods Whenever Possible
 
@@ -1681,10 +1646,8 @@ This is faster:
 
 ### Use Memoization for Computation-Intensive Functions
 
-If your functions are deterministic, you can use [memoization][20],
+If your functions are deterministic, you can use [memoization][19],
 so that you don't need to do the same computations over and over again.
-
-[20]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
 
 ### Cache Frequently Used Global Methods And Objects For Speed
 
@@ -1961,13 +1924,57 @@ To take this one step further, we'll consider code more like a *poem*, than a
 It's your **art**, more than anybody else's.
 
 While using your judgmenet though, keep in mind that this document is mainly
-based on [K&R Style Coding][22]. So you can safely follow [K&R Indent Style][22]
+based on [K&R Style Coding][21]. So you can safely follow [K&R Indent Style][21]
 for situations that are not covered in this document.
 
-[22]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
+## References and Further Reading
+
+* ["jsDoc syntax"][1]
+* ["Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"][2]
+* ["JSLint - the JavaScript Code Quality Tool"][3]
+* ["Cyclomatic Complexity"][4]
+* ["Functional Programming: Pure Functions"][5]
+* ["Unobtrusive JavaScript"][6]
+* ["Behavioral Separation"][7]
+* ["Event Delegation"][8]
+* ["Event-Driven Programming"][9]
+* ["The JavaScript Module Pattern"][10]
+* ["JavaScript Function Kung-Fu"][11]
+* ["Defensive Programming"][12]
+* ["Design by Contract"][13]
+* ["Guard Clauses"][14]
+* ["Progressive Ehnancement"][15]
+* ["JavaScript Objects"][16]
+* ["Functions and Closures in JavaScript"][17]
+* ["JavaScript Memory Leak Patterns"][18]
+* ["Memoization"][19]
+* ["To equal, or not to equal -- that's the problem."][20]
+* ["Indent Styles"][21]
 
 --------------------------------------------
 
 That's the end of this conventions document.
 
 Feel free to contribute.
+
+[ 1]: http://code.google.com/p/jsdoc-toolkit/w/list  "jsDoc syntax"
+[ 2]: http://www.crockford.com/  "Douglas Crockford to JavaScript is Obi-Wan Kenobi to Star Wars"
+[ 3]: http://www.jslint.com/ "JSLint - the JavaScript Code Quality Tool"
+[ 4]: http://en.wikipedia.org/wiki/Cyclomatic_complexity "Cyclomatic Complexity"
+[ 5]: http://en.wikipedia.org/wiki/Functional_programming#Pure_functions "Functional Programming: Pure Functions"
+[ 6]: http://en.wikipedia.org/wiki/Unobtrusive_JavaScript "Unobtrusive JavaScript"
+[ 7]: http://www.alistapart.com/articles/behavioralseparation "Behavioral Separation"
+[ 8]: http://icant.co.uk/sandbox/eventdelegation/ "Event Delegation"
+[ 9]: http://en.wikipedia.org/wiki/Event-driven_programming "Event-Driven Programming"
+[10]: http://o2js.com/2011/04/24/the-module-pattern/ "The JavaScript Module Pattern"
+[11]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "JavaScript Function Kung-Fu"
+[12]: http://en.wikipedia.org/wiki/Defensive_programming "Defensive Programming"
+[13]: http://en.wikipedia.org/wiki/Design_by_Contract "Design by Contract"
+[14]: http://c2.com/cgi/wiki?GuardClause "Guard Clauses"
+[15]: http://en.wikipedia.org/wiki/Progressive_enhancement "Progressive Ehnancement"
+[16]: http://o2js.com/2011/04/24/javascript-objects/ "JavaScript Objects"
+[17]: http://o2js.com/2011/04/26/functions-and-closures-in-javascript/ "Functions and Closures in JavaScript"
+[18]: http://www.codeproject.com/KB/scripting/leakpatterns.aspx "JavaScript Memory Leak Patterns"
+[19]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
+[20]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
+[21]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
