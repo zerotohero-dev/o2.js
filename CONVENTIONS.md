@@ -200,7 +200,7 @@ the 80-character line length limit:
 
 Triple indent...
 
-* Method parameters that are folded to the next line because they exceed the
+* Method parameters that are folded to the next line if they exceed the
 80-character line length limit.
 
     This will clearly indicate that those parameters are **not** a part of the
@@ -222,10 +222,22 @@ Triple indent...
                     userId); //<-- 1x indented.
 
                 scrollToBottom(conversation);
-
             }
-
         };
+
+* Similarly the conditional or expressional sections (i.e. the parts
+that are evaluated) of `if`, `else`, `while`, `for`, `switch` statements are
+triple indendet if they exceed the 80-character line length limit.
+
+        ...
+            if(src.nodeName.toLowerCase() === kTextarea &&
+                        src.getAttribute(kDataInput)) { //<-- 3x indented.
+                self = mentionsInputs[i];
+                delegateClickAction(self);
+
+                return;
+            }
+        ...
 
 ### Blank Lines
 
