@@ -955,7 +955,7 @@ Some more examples:
     function GetAccountDetails(){} // incorrect
     function getAccountDetails(){} // correct
 
-### Avoid Using The `continue` Statement
+### Avoid Using the `continue` Statement
 
 Avoid using **continue** statement. It tends to obscure the control flow of
 the function.
