@@ -957,7 +957,7 @@ Some more examples:
 
 ### Avoid Using the `continue` Statement
 
-Avoid using **continue** statement. It tends to obscure the control flow of
+Avoid using `continue` statement. It tends to obscure the control flow of
 the function.
 
     // Incorrect:
