@@ -1327,7 +1327,7 @@ They create their own *private* **static** context, and encapsulate the
 business logic inside. This will (*in theory*) enable developers safely write
 their own code, without effecting the code that others have been developing.
 
-**o2.js** files are organized in modules using the [module pattern][10]
+**o2.js** files are organized in modules using the [module pattern][10].
 
 Each o2.js module has the following basic structure.
 
