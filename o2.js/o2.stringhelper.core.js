@@ -110,8 +110,9 @@
          * @return a <strong>GUID</strong>.
          */
         generateGuid : function() {
-            return [(new Date()).getTime(), Math.floor(
-                kGuidMultiplier * Math.random())].join(kEmpty);
+            return (
+                (new Date()).getTime()+Math.random() * (1 << 30)
+                ).toString(16).replace('.', '');
         },
 
         /**

@@ -81,7 +81,7 @@ set up to print **4 spaces** when pressing the `<TAB>` key.
 
 Never mix spaces and tabs.
 
-Indent...
+#### Indent...
 
 * Statements within **blocks**:
 
@@ -193,15 +193,15 @@ Indent...
         me.EventHandler.preventDefault(evt);
 
 * Parts of the statement that are folded to the next line because they exceed
-the 80-character line length limit:
+the **80 characters** line length limit:
 
         application.RenderController.repaintUserInfo(messageId, userId,
             options, callback); //<-- 1x indented.
 
-Triple indent...
+#### Triple indent...
 
-* Method parameters that are folded to the next line if they exceed the
-80-character line length limit.
+* Method parameters that are folded to the next line, and triple indented if
+they exceed the **80 characters** line length limit.
 
     This will clearly indicate that those parameters are **not** a part of the
     function's body.
@@ -227,7 +227,8 @@ Triple indent...
 
 * Similarly the conditional or expressional sections (i.e. the parts
 that are evaluated) of `if`, `else`, `while`, `for`, `switch` statements are
-triple indendet if they exceed the 80-character line length limit.
+folded to the next line and triple indendet if they exceed the **80 characters**
+line length limit.
 
         ...
             if(src.nodeName.toLowerCase() === kTextarea &&

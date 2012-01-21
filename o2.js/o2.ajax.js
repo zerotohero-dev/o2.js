@@ -108,9 +108,9 @@
      * Common string constants.
      */
     var constants = config.constants;
-    
+
     var kNoXhr  = constants.error.NO_XHR;
-    
+
     var cs      = constants.status;
     var kOk     = cs.OK;
     var kCached = cs.CACHED;
@@ -119,9 +119,9 @@
     var kComplete = cr.COMPLETE;
 
     var kRandom   = constants.prefix.RANDOM;
-    
+
     var kGet      = constants.verb.GET;
-    
+
     var kEquals = '=';
     var kAnd    = '&';
     var kPlus   = '+';
