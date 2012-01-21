@@ -886,7 +886,7 @@
      *
      * @see o2.DomHelper.getChildren
      */
-    me.findChildren = me.children = me.getChildren = function(elem, nodeName) {
+    me.findChildren = me.children = me.descendants = me.getChildren = function(elem, nodeName) {
         var target = $(elem);
 
         nodeName = nodeName || kEmpty;
