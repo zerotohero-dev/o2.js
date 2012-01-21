@@ -668,6 +668,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "childrenByClassName",
+           fullName : "o2.DomHelper.childrenByClassName",
+           summary : "static function  childrenByClassName()",
+           ref : "logical/o2/DomHelper.html#___childrenByClassName",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "closest",
            fullName : "o2.DomHelper.closest",
            summary : "static function  closest()",
@@ -897,6 +906,24 @@
            fullName : "o2.DomHelper.first",
            summary : "static function  first()",
            ref : "logical/o2/DomHelper.html#___first",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "firstById",
+           fullName : "o2.DomHelper.firstById",
+           summary : "static function  firstById()",
+           ref : "logical/o2/DomHelper.html#___firstById",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "firstWithId",
+           fullName : "o2.DomHelper.firstWithId",
+           summary : "static function  firstWithId()",
+           ref : "logical/o2/DomHelper.html#___firstWithId",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -1298,6 +1325,24 @@
            elementType : "function"
        } ,         
        {
+           localName : "lastById",
+           fullName : "o2.DomHelper.lastById",
+           summary : "static function  lastById()",
+           ref : "logical/o2/DomHelper.html#___lastById",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "lastWithId",
+           fullName : "o2.DomHelper.lastWithId",
+           summary : "static function  lastWithId()",
+           ref : "logical/o2/DomHelper.html#___lastWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "loadCss",
            fullName : "o2.DomHelper.loadCss",
            summary : "static function  loadCss(String src, Function callback)",
@@ -1338,6 +1383,15 @@
            fullName : "o2.DomHelper.nextAll",
            summary : "static function  nextAll(Object el)",
            ref : "logical/o2/DomHelper.html#___nextAll",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "nextWithId",
+           fullName : "o2.DomHelper.nextWithId",
+           summary : "static function  nextWithId()",
+           ref : "logical/o2/DomHelper.html#___nextWithId",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -1518,6 +1572,24 @@
            fullName : "o2.DomHelper.prevAll",
            summary : "static function  prevAll(Object el)",
            ref : "logical/o2/DomHelper.html#___prevAll",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "prevById",
+           fullName : "o2.DomHelper.prevById",
+           summary : "static function  prevById()",
+           ref : "logical/o2/DomHelper.html#___prevById",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "prevWithId",
+           fullName : "o2.DomHelper.prevWithId",
+           summary : "function prevWithId()",
+           ref : "logical/o2/DomHelper.html#___prevWithId",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"

@@ -249,10 +249,6 @@
                     return -1;
                 }
 
-                if(ar.indexOf) {
-                    return ar.indexOf(elm);
-                }
-
                 if (isArray(ar)) {
                     for (i = 0, len = ar.length; i < len; i++) {
                         if (elm === ar[i]) {
@@ -325,10 +321,10 @@
 
                     if (!shouldDeepCopy || (typeof value !== kObject)) {
                         theCopy[key] = value;
+                    } else {
+                        theCopy[key] = me.CollectionHelper.copy(value,
+                            shouldDeepCopy);
                     }
-
-                    theCopy[key] = me.CollectionHelper.copy(value,
-                        shouldDeepCopy);
                 }
             }
 
@@ -518,6 +514,7 @@
 
                     if (value === null || value === undefined) {
                         ar.splice(i, 1);
+
                         i = i - 1;
                         len = ar.length;
                     } else if (isArray(value) && shouldRecurse) {
@@ -573,6 +570,55 @@
                         result.push(evaluated);
                     }
 
+                }
+            }
+
+            return result;
+        },
+
+        //TODO: add documentation.
+        //TODO: switch if(Array.prototype.forEach foreach = fn else forEach =...)
+        forEach : function(collection, delegate, shouldInherit) {
+            shouldInherit = !!shouldInherit;
+
+            if (!collection) {
+                return;
+            }
+
+            if (isArray(collection)) {
+                if (collection.forEach) {
+                    collection.forEach(delegate);
+                } else {
+                    for (i = 0, len = collection.length; i < len; i++) {
+                        delegate(c[i], i, c);
+                    }
+                }
+
+                return;
+            }
+
+            var key = null;
+
+            for (key in collection) {
+                if(shouldInherit || collection.hasOwnProperty(key)) {
+                    delegate(collection[key], key, collection);
+                }
+            }
+        },
+
+        //TODO: add documentation.
+        toArray : function(collection, isRecursive) {
+            isRecursive = !!isRecursive;
+
+            var result = [];
+
+            for (var key in collection) {
+                if (collection.hasOwnProperty(key)) {
+                    if (!isRecursive || typeof collection[key] !== kObject) {
+                        result.push(collection[key]);
+                    } else {
+                        result.push(toArray(collection[key], isRecursive));
+                    }
                 }
             }
 

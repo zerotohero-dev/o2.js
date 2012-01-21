@@ -97,6 +97,36 @@
         me.addStyle(obj, style);
     };
 
+
+
+    getStyle : function(a, c) {
+        var d = false, b = a.style;
+        if(a.currentStyle) {
+            FB.Array.forEach(c.match(/\-([a-z])/g), function(e) {
+                c = c.replace(e, e.substr(1, 1).toUpperCase());
+            });
+
+            d = a.currentStyle[c];
+        } else {
+            FB.Array.forEach(c.match(/[A-Z]/g), function(e) {
+                c = c.replace(e, '-' + e.toLowerCase());
+            });
+
+            if(window.getComputedStyle) {
+                d = document.defaultView.getComputedStyle(a, null).getPropertyValue(c);
+
+            }
+        }
+        if(c == 'opacity') {
+            if(a.filters && a.filters.alpha)
+                return d;
+            return d * 100;
+        }
+        return d;
+    },
+
+
+
     /**
      * @function {static} o2.DomHelper.getStyle
      *
@@ -157,9 +187,16 @@
                     return null;
                 }
 
-                return defaultView.getComputedStyle(obj, kEmpty
+                var d = defaultView.getComputedStyle(obj, kEmpty
                     ).getPropertyValue(toDashedFromCamelCase(cssProperty));
 
+                if (cssProperty == 'background-position-y' || cssProperty == 'background-position-x') {
+                    if(d == 'top' || d == 'left') {
+                        d = '0px';
+                    }
+                }
+
+                return d;
             };
 
             return me.getStyle(obj, cssProperty, noForce);
@@ -372,4 +409,22 @@
         delete obj[[myName, kOldDisplay].join(kEmpty)];
     };
 
+
+    //TODO: add documentation.
+    me.addCssRules = function(cssText) {
+        if(navigator.userAgent.indexOf('MSIE') > -1 && !window.opera) {
+            try {
+                document.createStyleSheet().cssText = cssText;
+            } catch(e) {
+                if(document.styleSheets[0]) {
+                    document.styleSheets[0].cssText += cssText;
+                }
+            }
+        } else {
+            var d = document.createElement('style');
+            d.type = 'text/css';
+            d.textContent = cssText;
+            document.getElementsByTagName('head')[0].appendChild(d);
+        }
+    }
 }(this.o2, this.document));

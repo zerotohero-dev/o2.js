@@ -67,5 +67,24 @@
 
             return args;
         }
+
+        //TODO: add documentation.
+        encode : function(collection) {
+            var delimeter = '&';
+            var equals = '=';
+
+            var key = null;
+            var buffer = [];
+
+            for (key in collection) {
+                buffer.push(encodeURIComponent(key));
+                buffer.push(equals);
+                buffer.push(encodeURIComponent(collection[key]));
+            }
+
+            buffer.sort();
+
+            return buffer.join(delimeter);
+        }
     };
 }(this.o2, this));

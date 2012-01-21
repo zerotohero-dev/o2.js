@@ -367,4 +367,18 @@
         me.setWidth(obj, dimension.width);
         me.setHeight(obj, dimension.height);
     };
+
+
+    //TODO: add documentation.
+    me.getViewportInfo = function() {
+        //TODO: lazy evaluate.
+        var a = (document.documentElement && document.compatMode == 'CSS1Compat') ? document.documentElement : document.body;
+
+        return {
+            scrollTop : a.scrollTop,
+            scrollLeft : a.scrollLeft,
+            width : self.innerWidth ? self.innerWidth : a.clientWidth,
+            height : self.innerHeight ? self.innerHeight : a.clientHeight
+        };
+    };
 }(this.o2, this, this.document));

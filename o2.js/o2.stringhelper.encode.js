@@ -263,6 +263,6 @@
         tmp.innerHTML = kEmpty;
         tmp.appendChild(document.createTextNode(str));
 
-        return tmp.innerHTML;
+        return tmp.innerHTML.replace(/"/g, '&quot;').replace(/'/g, '&#39;');
     };
 }(this.o2, this.document));

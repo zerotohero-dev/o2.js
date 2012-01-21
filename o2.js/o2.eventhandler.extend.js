@@ -144,6 +144,11 @@
         return null;
     };
 
+    //TODO: add documentation.
+    me.isEnterKey = function(evt) {
+        return me.getKeyCode(evt) === me.kyCode.ENTER;
+    };
+
     /**
      * @function {static} o2.EventHandler.isRightClick
      *

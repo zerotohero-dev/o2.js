@@ -427,13 +427,22 @@
                 return;
             }
 
-            if (parent.childNodes.length === 0) {
-                parent.appendChild(child);
+            if (typeof child === 'string') {
+                temp = document.createElement('div');
+                temp.innerHTML = child;
 
-                return;
+                if (parent.childNodes.length === 0) {
+                    return parent.appendChild(temp);
+                }
+
+                return parent.insertBefore(child, parent.childNodes[0]);
             }
 
-            parent.insertBefore(child, parent.childNodes[0]);
+            if (parent.childNodes.length === 0) {
+                return parent.appendChild(child);
+            }
+
+            return parent.insertBefore(child, parent.childNodes[0]);
         },
 
         /**
@@ -449,12 +458,19 @@
         append : function(child, parent) {
             child = $(child);
             parent = $(parent);
+            var temp = null;
 
             if (!child || !parent) {
                 return;
             }
 
-            parent.appendChild(child);
+            if (typeof child === 'string') {
+                temp = document.createElement('div');
+                parent.appendChild(temp).innerHTML = child;
+                return temp;
+            }
+
+            return parent.appendChild(child);
 
         },
 

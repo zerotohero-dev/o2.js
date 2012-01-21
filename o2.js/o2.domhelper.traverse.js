@@ -532,6 +532,41 @@
         return me.getFirstChildById(target, id);
     };
 
+//TODO: add documentation
+    me.getSiblings = function(target, nodeName) {
+        target = $(target);
+
+        if (!target) {
+            return null;
+        }
+
+        nodeName = nodeName || kAll;
+
+        var result = [];
+        var i = 0;
+        var parent = target.parentNode;
+
+        var children = me.getChildren(parent, nodeName);
+        var child = null;
+
+        for (i = 0, len = children.length; i < len; i++) {
+            child = children[i];
+
+            if (child === target) {
+                children.splice(i, 1);
+
+                return children;
+            }
+        }
+
+        return children;
+    };
+
+//TODO: add documentation
+    me.findSiblings = me.siblings = function(elm, nodeName) {
+        return me.getSiblings(elm, nodeName);
+    };
+
 
     /**
      * @function {static} o2.DomHelper.firstById

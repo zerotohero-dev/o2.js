@@ -193,6 +193,35 @@
             });
         },
 
+        //TODO: add documentation.
+        printf : function(str) {
+            var matcher = /(%(\w+):s)|(%s)/g;
+            var index = 1;
+            var result;
+            var outText = '';
+            var lastMatch = 0;
+
+            while ((result = matcher.exec(str))) {
+                outText += str.substring(lastMatch, result.index);
+
+                if (!result[2]) {
+                    outText += arguments[index++];
+                } else if (result[2] in arguments) {
+                    outText += arguments[result[2]];
+                } else {
+                    outText += result[0];
+                }
+
+                lastMatch = result.index + result[0].length;
+            }
+
+            outText += str.substr(lastMatch);
+
+            return outText;
+        },
+
+
+
         /**
          * @function {static} o2.StringHelper.remove
          *
