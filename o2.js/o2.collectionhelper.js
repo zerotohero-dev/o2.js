@@ -82,29 +82,115 @@
          * @return a <strong>reference</strong> to the modified
          * <code>toObj</code>.
          */
+        //TODO: update documentation.
         merge : function(toObj, fromObj, isRecursive) {
             var shouldRecurse = !!isRecursive;
             var value = null;
             var key = null;
             var merge = me.CollectionHelper.merge;
+            var indexOf = o2.CollectionHelper.indexOf;
+            var item = null;
+            var i = 0;
+            var len = 0;
+
+            if (isArray(toObj)) {
+                if(!isArray(fromObj)) {
+                    return toObj;
+                }
+
+                i = 0;
+                len = fromObj.length;
+
+                for (i = 0; i < len; i++) {
+                    value = fromObj[i];
+
+                    if (!shouldRecurse || typeof value !== kObject) {
+                        if(indexOf(toObj, value) === -1) {
+                            toObj.push(value);
+                        }
+                    } else {
+                        if (typeof toObj[i] !== kObject) {
+                            toObj[key] = [];
+                        }
+
+                        merge(toObj[i], value, shouldRecurse);
+                    }
+                }
+
+                return toObj;
+            }
 
             for (key in fromObj) {
                 if (fromObj.hasOwnProperty(key)) {
                     value = fromObj[key];
 
                     if (!shouldRecurse || typeof value !== kObject) {
-                        toObj[key] = fromObj[key];
-                    }
+                        toObj[key] = value;
+                    } else {
+                        if (typeof toObj[key] !== kObject) {
+                            toObj[key] = {};
+                        }
 
-                    if (typeof toObj[key] !== kObject) {
-                        toObj[key] = isArray(value) ? [] : {};
+                        merge(toObj[key], value, shouldRecurse);
                     }
-
-                    merge(toObj[key], fromObj[key], shouldRecurse);
                 }
             }
 
             return toObj;
+        },
+
+        //TODO: add documentation.
+        filter : function(collection, fnFilter) {
+            var key = null;
+
+            var result = [];
+            var item = null;
+            var len = 0;
+            var i = 0;
+
+            if(!collection) {
+                return result;
+            }
+
+            if(isArray(collection)) {
+                for(i = 0, len = collection.length; i < len; i++) {
+                    item = collection[i];
+
+                    if(fnFilter(item)) {
+                        result.push(item);
+                    }
+                }
+
+                return result;
+            }
+
+            for(key in collection) {
+                item = collection[key];
+
+                if (collection.hasOwnProperty(key)) {
+                    if(fnFilter(item)) {
+                        result.push(item);
+                    }
+                }
+            }
+
+            return result;
+        },
+
+
+        //TODO: add documentation.
+        getKeys : function(collection, shouldInherit) {
+            var result = [];
+            var shouldDeepGet = !!shouldDeepGet;
+            var key = null;
+
+            for (key in collection) {
+                if (shouldInherit || collection.hasOwnProperty(key)) {
+                    result.push(key);
+                }
+            }
+
+            return result;
         },
 
         /**
@@ -161,6 +247,10 @@
 
                 if (!ar) {
                     return -1;
+                }
+
+                if(ar.indexOf) {
+                    return ar.indexOf(elm);
                 }
 
                 if (isArray(ar)) {
