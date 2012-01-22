@@ -1,5 +1,5 @@
 /**
- * @module domhelper.scroll
+ * @module   domhelper.scroll
  * @requires domhelper.core
  *
  * <!--

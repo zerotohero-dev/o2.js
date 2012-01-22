@@ -1,11 +1,13 @@
 /**
- * @module validator.regexp
+ * @module   validator.regexp
  * @requires validator.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 00:23:18.847512
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -43,9 +45,10 @@
     /*
      * Common regular expressions.
      */
-    var kEmailRegExp = config.constants.regExp.EMAIL;
-    var kUrlRegExp = config.constants.regExp.URL;
-    var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
+    var ccr               = config.constants.regExp;
+    var kEmailRegExp      = ccr.EMAIL;
+    var kUrlRegExp        = ccr.URL;
+    var kWhitespaceRegExp = ccr.WHITESPACE;
 
     /**
      * @function {static} o2.Validator.isEmail

@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 01:52:17.583142
  * -->
  *
  * <p>A validation helper.</p>
@@ -15,50 +17,35 @@
     /*
      * Aliases.
      */
-    var me = framework;
+    var me       = framework;
+    var toString = Object.prototype.toString;
 
     /*
-     * Module configuration.
+     * Calendar Months.
      */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             * A struct containing all valid
-             * EcmaScript types.
-             */
-            ecmaScriptType : {
-                ARRAY : 'Array',
-                BOOLEAN : 'Boolean',
-                NUMBER : 'Number',
-                DATE : 'Date',
-                FUNCTION : 'Function',
-                OBJECT : 'Object',
-                STRING : 'String',
-                ARGUMENTS : 'Arguments',
-                REGEXP : 'RegExp'
-            }
-        }
-    };
-
-    /*
-     * Common constants.
-     */
-    var kYmdArgumentLength = 3;
     var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var kArray = config.constants.ecmaScriptType.ARRAY;
-    var kBoolean = config.constants.ecmaScriptType.BOOLEAN;
-    var kDate = config.constants.ecmaScriptType.DATE;
-    var kFunction = config.constants.ecmaScriptType.FUNCTION;
-    var kNumber = config.constants.ecmaScriptType.NUMBER;
-    var kObject = config.constants.ecmaScriptType.OBJECT;
-    var kRegExp = config.constants.ecmaScriptType.REGEXP;
-    var kString = config.constants.ecmaScriptType.STRING;
-    var kArguments = config.constants.ecmaScriptType.ARGUMENTS;
+
+    /*
+     * Common Constants.
+     */
+    var kDecimalBase          = 10;
+    var kTrimLastBraceIndex   = -1;
+    var kYmdArgLen            = 3;
+    var kFebruaryIndex        = 1;
+    var kObjectNameStartIndex = 8;
+
+    /*
+     * EcmaScript Types.
+     */
+    var kArray     = 'Array';
+    var kBoolean   = 'Boolean';
+    var kDate      = 'Date';
+    var kFunction  = 'Function';
+    var kNumber    = 'Number';
+    var kObject    = 'Object';
+    var kRegExp    = 'RegExp';
+    var kString    = 'String';
+    var kArguments = 'Arguments';
 
     /**
      * @function {private} o2.Validator.is
@@ -74,12 +61,17 @@
      * the <strong>type</strong> parameter, <code>false</code> otherwise.
      */
     function is(obj, type) {
-        var objectNameStartIndex = 8;
-        var trimLastBraceIndex = -1;
-        var klass = Object.prototype.toString.call(obj).slice(
-            objectNameStartIndex, trimLastBraceIndex);
+        var klass = toString.call(obj).slice(
+            kObjectNameStartIndex, kTrimLastBraceIndex);
 
         return obj !== undefined && obj !== null && klass === type;
+    }
+
+    /*
+     * Cheks whether the year is a leap year.
+     */
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
     }
 
     /**
@@ -132,26 +124,29 @@
          * <code>false</code> otherwise.
          */
         isDate : function(objYear, objMonth, objDay) {
-            if (arguments.length === kYmdArgumentLength) {
-                var maxDay = 0;
-                var year = objYear;
-                var month = objMonth;
-                var day = objDay;
+            var maxDay = 0;
+            var year   = objYear;
+            var month  = objMonth;
+            var day    = objDay;
 
+            if (arguments.length === kYmdArgLen) {
                 if (!year || !month || !day) {
                     return false;
                 }
 
-                months[1] = ((parseInt(year, 10) % 4 === 0 &&
-                    parseInt(year, 10) % 100 !== 0) ||
-                    parseInt(year, 10) % 400 === 0) ? 29 : 28;
-                maxDay = months[parseInt(month, 10) - 1];
+                month = parseInt(month, kDecimalBase);
+                year  = parseInt(year, kDecimalBase);
+                day   = parseInt(day, kDecimalBase);
 
-                if (parseInt(day, 10) > maxDay) {
+                if (month < 0 || month > months.length) {
                     return false;
                 }
 
-                return true;
+                months[kFebruaryIndex] = isLeapYear(year) ? 29 : 28;
+
+                maxDay = months[month - 1];
+
+                return (day <= maxDay);
             }
 
             return is(objYear, kDate);
