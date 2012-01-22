@@ -7,6 +7,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 09:18:48.730003
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -16,41 +18,17 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
-    var log = framework.Debugger.log;
-    var assert = framework.Debugger.assert;
-    var initDebugger = framework.Debugger.init;
-    var format = framework.StringHelper.format;
-    var concat = framework.StringHelper.concat;
+    var me             = framework;
+    var log            = framework.Debugger.log;
+    var assert         = framework.Debugger.assert;
+    var initDebugger   = framework.Debugger.init;
+    var format         = framework.StringHelper.format;
+    var concat         = framework.StringHelper.concat;
     var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
-    var nill = framework.nill;
-    var setTimeout = window.setTimeout;
-
-    /*
-     * Module configuration.
-     */
-    var config = {
-
-        /*
-         * The interval in milliseconds, the semaphore will be check using
-         * isLocked().
-         */
-        TEST_CHECK_INTERVAL : 100,
-
-        /*
-         * The output layer to publish test results.
-         */
-        TEST_OUTPUT_CONTAINER : 'Output',
-
-        /*
-         * if <code>true</code>, the results will be written to
-         * <code>window.console</code> (if supported).
-         */
-        TEST_SHOULD_USE_CONSOLE : true
-
-    };
+    var nill           = framework.nill;
+    var setTimeout     = window.setTimeout;
 
     /*
      * Common error messages.
@@ -140,25 +118,39 @@
     /*
      * Used templates.
      */
-     var kUpdateTestCompletion = template.UPDATE_TEST_COMPLETION;
-     var kFinishedUnitTest = template.FINISHED_UNIT_TEST;
+     var kUpdateTestCompletion   = template.UPDATE_TEST_COMPLETION;
+     var kFinishedUnitTest       = template.FINISHED_UNIT_TEST;
      var kReportGlobalCompletion = template.REPORT_GLOBAL_COMPLETION;
 
      /*
       * Common eror messages.
       */
     var kFailedToInitializeDebugger = errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
-    var kFatalErrorInUnitTest = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
-    var kArgumentCountMismatch = errorMessage.ARGUMENT_COUNT_MISMATCH;
-    var kArgumentException = errorMessage.ARGUMENT_EXCEPTION;
-    var kExecutionException = errorMessage.EXECUTION_EXCEPTION;
+    var kFatalErrorInUnitTest       = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
+    var kArgumentCountMismatch      = errorMessage.ARGUMENT_COUNT_MISMATCH;
+    var kArgumentException          = errorMessage.ARGUMENT_EXCEPTION;
+    var kExecutionException         = errorMessage.EXECUTION_EXCEPTION;
 
     /*
-     * Common constants.
+     * Common Constants
      */
-    var kOutputContainer = config.TEST_OUTPUT_CONTAINER;
-    var kShouldUseConsole = config.TEST_SHOULD_USE_CONSOLE;
-    var kCheckInterval = config.TEST_CHECK_INTERVAL;
+
+    /*
+     * The DOM element to print the output.
+     */
+    var kOutputContainer  = 'Output';
+
+    /*
+     * If true, the output will be sent to the console (if available), as well.
+     */
+    var kShouldUseConsole = true;
+
+    /*
+     * Chunk check interval (in milliseconds).
+     * Chunking allows us to run large number of unit tests (of a test suite),
+     * without causing a "script timed out" error.
+     */
+    var kCheckInterval    = 100;
 
     /*
      * Current unit test's test suite finished running all of its assertions.
@@ -470,6 +462,7 @@
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertStrictEqual';
             var kArgumentsLength = arguments.length;
+
             var result = (currentValue === expectedValue);
 
             expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
@@ -495,6 +488,7 @@
             var kRequiredLocalParameterCount = 4;
             var kMethodName = 'assertStrictNotEqual';
             var kArgumentsLength = arguments.length;
+
             var result = (currentValue !== expectedValue);
 
             expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
@@ -511,14 +505,15 @@
          *
          * @param {String} description - the description of the test.
          * @param {Object} testMeta - test meta data in the form {count:
-         * [number], test: [callback]}, where <strong>count</strong> is the total
-         * number of assertions in the test suite, and <strong>test</strong> is
-         * the actual test suite <code>Function</code>.
+         * [number], test: [callback]}, where <strong>count</strong> is the
+         * total number of assertions in the test suite, and
+         * <strong>test</strong> is the actual test suite <code>Function</code>.
          */
         add : function(description, testMeta) {
             var kRequiredLocalParameterCount = 2;
             var kMethodName = 'add';
             var kArgumentsLength = arguments.length;
+
             var totalAssertionCount = testMeta.count;
             var testCase = testMeta.test;
 
@@ -591,6 +586,7 @@
 
                 if (hasMoreItems(activeUnitTest)) {
                     execute(activeUnitTest);
+
                     setTimeout(waitForUnitTest, kCheckInterval);
 
                     return;
