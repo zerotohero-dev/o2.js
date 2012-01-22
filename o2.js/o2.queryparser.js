@@ -20,8 +20,8 @@
     /*
      * Common strings.
      */
-    var kAdd = '&';
-    var kQuery = '?';
+    var kAdd    = '&';
+    var kQuery  = '?';
     var kEquals = '=';
 
     /**

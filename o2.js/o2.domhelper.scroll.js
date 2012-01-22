@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 08:55:33.251754
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -16,57 +18,43 @@
     /*
      * Aliases.
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
+    var me       = framework.DomHelper;
+    var $        = framework.$;
+    var db       = document.body;
+    var de       = document.documentElement;
+    var scrollTo = window.scrollTo;
 
     /**
      * @function {static} o2.DomHelper.scrollWindowToBottom
      *
      * <p>Scrolls window to bottom.</p>
      */
-    me.scrollWindowToBottom = function() {
-        if (document.documentElement) {
-            me.scrollWindowToBottom = function() {
-                document.body.scrollTop = document.body.scrollHeight;
-                document.documentElement.scrollTop =
-                    document.documentElement.scrollHeight;
-            };
-
-            me.scrollWindowToBottom();
-
-            return;
-        }
-
+    if (de) {
         me.scrollWindowToBottom = function() {
-            document.body.scrollTop = document.body.scrollHeight;
+            db.scrollTop = db.scrollHeight;
+            de.scrollTop = de.scrollHeight;
         };
-
-        me.scrollWindowToBottom();
-    };
+    } else {
+        me.scrollWindowToBottom = function() {
+            db.scrollTop = db.scrollHeight;
+        };
+    }
 
     /**
      * @function {static} o2.DomHelper.scrollWindowToTop
      *
      * <p>Scrolls window to top.</p>
      */
-    me.scrollWindowToTop = function() {
-        if(document.documentElement) {
-            me.scrollWindowToTop = function() {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            };
-
-            me.scrollWindowToTop();
-
-            return;
-        }
-
+    if (de) {
         me.scrollWindowToTop = function() {
-            document.body.scrollTop = 0;
+            db.scrollTop = 0;
+            de.scrollTop = 0;
         };
-
-        me.scrollWindowToTop();
-    };
+    } else {
+        me.scrollWindowToTop = function() {
+            db.scrollTop = 0;
+        };
+    }
 
     /**
      * @function {static} o2.DomHelper.scrollObjectToTop
@@ -121,7 +109,7 @@
 
         var offset = me.getOffset(obj);
 
-        window.scrollTo(offset.left, offset.top);
+        scrollTo(offset.left, offset.top);
     };
 
     /**
@@ -132,28 +120,11 @@
      * @return the the <strong>window</strong>'s scroll offset in the form
      * <code>{left: l, top: t}</code>.
      */
-    me.getWindowScrollOffset = function() {
-        if (document.documentElement) {
-            if (document.body && document.body.scrollLeft !== undefined) {
-                me.getWindowScrollOffset = function() {
-                    var left = Math.max(document.body.scrollLeft,
-                        document.documentElement.scrollLeft);
-                    var top = Math.max(document.body.scrollTop,
-                        document.documentElement.scrollTop);
-
-                    return {
-                        left : left,
-                        top : top
-                    };
-
-                };
-
-                return me.getWindowScrollOffset();
-            }
-
+    if (db && db.scrollLeft !== undefined) {
+        if(de) {
             me.getWindowScrollOffset = function() {
-                var left = document.documentElement.scrollLeft;
-                var top = document.documentElement.scrollTop;
+                var left = Math.max(db.scrollLeft, de.scrollLeft);
+                var top  = Math.max(db.scrollTop, de.scrollTop);
 
                 return {
                     left : left,
@@ -161,24 +132,37 @@
                 };
 
             };
+        } else {
+            me.getWindowScrollOffset = function() {
+                var left = db.scrollLeft;
+                var top  = db.scrollTop;
 
-            return me.getWindowScrollOffset();
+                return {
+                    left : left,
+                    top : top
+                };
+            };
         }
-
-        // IE quirksmode
+    } else if(de) {
         me.getWindowScrollOffset = function() {
-            var left = document.body.scrollLeft;
-            var top = document.body.scrollTop;
+            var left = de.scrollLeft;
+            var top  = de.scrollTop;
 
             return {
                 left : left,
                 top : top
             };
         };
+    } else {
+        me.getWindowScrollOffset = function() {
+            return {
+                left : 0,
+                top : 0
+            };
+        };
+    }
 
-        return me.getWindowScrollOffset();
-    };
-
+    //TODO: add documentation.
     me.getObjectScrollOfset = function(obj) {
         obj = $(obj);
 
