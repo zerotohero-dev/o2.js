@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 20:07:21.679595
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.

@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 10:18:03.713856
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -18,41 +20,22 @@
     var me = framework;
 
     /*
-     * Module configuration.
-     */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             *
-             */
-            command : {
-                EACH : 'each'
-            },
-
-            /*
-             *
-             */
-            regExp : {
-                TEMPLATE : /\{\{(.*?)\}\}/g,
-                SEPARATOR : /\s+/
-            }
-        }
-    };
-
-    /*
-     * Common constants.
+     * Common Constants
      */
     var kObject = 'object';
     var kString = 'string';
-    var kEmpty = '';
-    var constants = config.constants;
-    var kSeparatorRegExp = constants.regExp.SEPARATOR;
-    var kEach = constants.command.EACH;
+    var kEmpty  = '';
+
+    /*
+     * Common Regular Expressions
+     */
+    var kSeparatorRegExp = /\s+/;
+    var kTemplateRegExp  = /\{\{(.*?)\}\}/g;
+
+    /*
+     * Common Commands
+     */
+    var kEach = 'each';
 
     /*
      *
@@ -85,7 +68,7 @@
         var collection = collectionKey ? data[collectionKey] : data;
 
         if (typeof collection !== kObject) {
-            return subTpl.join('');
+            return subTpl.join(kEmpty);
         }
 
         var buffer = [];
@@ -97,20 +80,18 @@
             buffer.push(parse(collection[i], subTpl));
         }
 
-        return buffer.join('');
+        return buffer.join(kEmpty);
     }
 
     /*
      *
      */
     function parse(line, data) {
-        var regTemplate = config.constants.regExp.TEMPLATE;
-
         if (typeof line !== kString) {
             return parseDirective(line, data);
         }
 
-        return line.replace(regTemplate, function(str, p1/*, offset, total*/) {
+        return line.replace(kTemplateRegExp, function(str, p1/*, offset, total*/) {
             return data[p1] !== undefined ? data[p1] : str;
         });
     }

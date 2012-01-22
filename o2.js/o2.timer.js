@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 09:57:33.812685
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -13,33 +15,50 @@
     'use strict';
 
     /*
-     * A collection of timers.
+     * Aliases
      */
-    var timers = {};
-    var me = framework;
+    var me            = framework;
+    var concat        = framework.StringHelper.concat;
+    var clearTimeout  = window.clearTimeout;
+    var setTimeout    = window.setTimeout;
+    var clearInterval = window.clearInterval;
+    var setInterval   = window.setInterval;
 
     /*
-     * Common constants.
+     * Common Constants
      */
     var kPrefix = 't';
 
     /*
-     * Method aliases.
+     * A collection of timers.
      */
-    var concat = framework.StringHelper.concat;
+    var timers = {};
 
     /**
      * @class {static} o2.Timer
      *
      * <p>A class for executing repeated timed actions.</p>
+     *
+     * <p>Usage Example:</p>
+     *
+     * <pre>
+     * // A unique id for the timer.
+     * var kCheckId = 'my_timer';
+     *
+     * // Auto start timer with id kCheckId to repeat doStuff approximately
+     * // every 500 milliseconds, please note that this is an approximation.
+     * // for further details see John Resig's excellent article on this:
+     * // http://ejohn.org/blog/how-javascript-timers-work/
+     * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+     *
+     * // Stops the timer (i.e. doStuff will not be executed further).
+     * o2.Timer.stop(kCheckId);
+     *
+     * // Restarts the timer (i.e. doStuff will be periodically executed again).
+     * o2.Timer.start(kCheckId);
+     * </pre>
      */
     me.Timer = {
-//TODO: add examples into documentation.
-    /*
-    o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
-    o2.Timer.stop(kCheckId);
-    o2.Timer.start(kCheckId);
-     */
 
         /**
          * @function {static} o2.Timer.set
@@ -59,8 +78,6 @@
          * is called.
          */
         set : function(id, delegate, timeout, options) {
-            window.clearTimeout(id);
-
             var timerId = concat(kPrefix, id);
 
             if (timers[timerId]) {
@@ -76,6 +93,7 @@
             }
 
             options.repeat = !!options.repeat;
+            options.start = !!options.start;
 
             timers[timerId] = {};
             timers[timerId].delegate = delegate;
@@ -85,9 +103,7 @@
 
             timers[concat(kPrefix, id)] = {};
 
-            var shouldStart = options.start;
-
-            if (!!shouldStart) {
+            if (options.start) {
                 me.Timer.start(id);
             }
         },
@@ -99,27 +115,29 @@
          *
          * @param {String} id - the id of the timer to start.
          */
-        start: function(id) {
+        start : function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
 
-            if (meta) {
-                if (meta.shouldRepeat) {
-                    window.clearInterval(meta.id);
+            if (!meta) {
+                return;
+            }
 
-                    meta.id = window.setInterval(function(){
-                        meta.delegate();
-                    }, meta.timeout);
+            if (meta.shouldRepeat) {
+                clearInterval(meta.id);
 
-                    return;
-                }
-
-                window.clearTimeout(meta.id);
-
-                meta.id = window.setTimeout(function(){
+                meta.id = setInterval(function(){
                     meta.delegate();
                 }, meta.timeout);
+
+                return;
             }
+
+            clearTimeout(meta.id);
+
+            meta.id = setTimeout(function(){
+                meta.delegate();
+            }, meta.timeout);
         },
 
         /**
@@ -129,19 +147,21 @@
          *
          * @param {String} id - the id of the timer to stop.
          */
-        stop: function(id) {
+        stop : function(id) {
             var timerId = concat(kPrefix, id);
             var meta = timers[timerId];
 
-            if (meta) {
-                if (meta.shouldRepeat) {
-                    window.clearInterval(meta.id);
-
-                    return;
-                }
-
-                window.clearTimeout(meta.id);
+            if (!meta) {
+                return
             }
+
+            if (meta.shouldRepeat) {
+                clearInterval(meta.id);
+
+                return;
+            }
+
+            clearTimeout(meta.id);
         }
     };
 }(this.o2, this));

@@ -89,6 +89,43 @@
     };
 
     /*
+     * Common Constants
+     */
+
+    /*
+     * The DOM element to print the output.
+     */
+    var kOutputContainer  = 'Output';
+
+    /*
+     * If true, the output will be sent to the console (if available), as well.
+     */
+    var kShouldUseConsole = true;
+
+    /*
+     * Chunk check interval (in milliseconds).
+     * Chunking allows us to run large number of unit tests (of a test suite),
+     * without causing a "script timed out" error.
+     */
+    var kCheckInterval    = 100;
+
+    /*
+     * Used templates.
+     */
+     var kUpdateTestCompletion   = template.UPDATE_TEST_COMPLETION;
+     var kFinishedUnitTest       = template.FINISHED_UNIT_TEST;
+     var kReportGlobalCompletion = template.REPORT_GLOBAL_COMPLETION;
+
+     /*
+      * Common eror messages.
+      */
+    var kFailedToInitializeDebugger = errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
+    var kFatalErrorInUnitTest       = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
+    var kArgumentCountMismatch      = errorMessage.ARGUMENT_COUNT_MISMATCH;
+    var kArgumentException          = errorMessage.ARGUMENT_EXCEPTION;
+    var kExecutionException         = errorMessage.EXECUTION_EXCEPTION;
+
+    /*
      * Static state.
      */
     var state = {
@@ -116,43 +153,6 @@
     };
 
     /*
-     * Used templates.
-     */
-     var kUpdateTestCompletion   = template.UPDATE_TEST_COMPLETION;
-     var kFinishedUnitTest       = template.FINISHED_UNIT_TEST;
-     var kReportGlobalCompletion = template.REPORT_GLOBAL_COMPLETION;
-
-     /*
-      * Common eror messages.
-      */
-    var kFailedToInitializeDebugger = errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
-    var kFatalErrorInUnitTest       = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
-    var kArgumentCountMismatch      = errorMessage.ARGUMENT_COUNT_MISMATCH;
-    var kArgumentException          = errorMessage.ARGUMENT_EXCEPTION;
-    var kExecutionException         = errorMessage.EXECUTION_EXCEPTION;
-
-    /*
-     * Common Constants
-     */
-
-    /*
-     * The DOM element to print the output.
-     */
-    var kOutputContainer  = 'Output';
-
-    /*
-     * If true, the output will be sent to the console (if available), as well.
-     */
-    var kShouldUseConsole = true;
-
-    /*
-     * Chunk check interval (in milliseconds).
-     * Chunking allows us to run large number of unit tests (of a test suite),
-     * without causing a "script timed out" error.
-     */
-    var kCheckInterval    = 100;
-
-    /*
      * Current unit test's test suite finished running all of its assertions.
      */
     function reportTestCompletion(unitTest) {
@@ -169,7 +169,8 @@
 
         assert(isAllSuccess, message);
 
-        log(format(kFinishedUnitTest, ++state.globalCompletedUnitTestCount, description));
+        log(format(kFinishedUnitTest, ++state.globalCompletedUnitTestCount,
+            description));
     }
 
     /*
@@ -330,8 +331,8 @@
      * <strong>argumentsLength</strong> and throws an exception if they do not
      * match.
      */
-    function expectProperArgumentLength(unitTest, localParameterCount, argumentsLength,
-                methodName) {
+    function expectProperArgumentLength(unitTest, localParameterCount,
+                argumentsLength, methodName) {
         if (argumentsLength === localParameterCount) {
 
             return;

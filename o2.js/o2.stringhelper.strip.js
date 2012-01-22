@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 17:17:11.761691
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
@@ -20,40 +22,16 @@
     var me = framework.StringHelper;
 
     /*
-     * Module configuration.
+     * Common Regular Expressions
      */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             *
-             */
-            regExp : {
-                NON_ALPHA : /[^A-Za-z ]+/g,
-                NON_ALPHANUMERIC : /[^A-Za-z0-9 ]+/g,
-                NON_NUMERIC : /[^0-9-.]/g,
-                NUMERIC : /[0-9]/g,
-                TAG : /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig
-            }
-        }
-    };
+    var kNonAlphaRegExp        = /[^A-Za-z ]+/g;
+    var kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g;
+    var kNonNumericRegExp      = /[^0-9-.]/g;
+    var kNumericRegExp         = /[0-9]/g;
+    var kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
 
     /*
-     * Common regular expressions.
-     */
-    var ccr = config.constants.regExp;
-    var kNonAlphaRegExp = ccr.NON_ALPHA;
-    var kNonAlphaNumericRegExp = ccr.NON_ALPHANUMERIC;
-    var kNonNumericRegExp = ccr.NON_NUMERIC;
-    var kNumericRegExp = ccr.NUMERIC;
-    var kTagRegExp = ccr.TAG;
-
-    /*
-     * Common strings.
+     * Common Strings
      */
     var kEmpty = '';
 

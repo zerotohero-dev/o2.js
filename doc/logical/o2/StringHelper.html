@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327216788#
+	                 version 0.23.#1327257580#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -221,6 +221,31 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Replaces new lines [\n] with HTML [br /] tags.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___printf"><span class="elementName">printf</span></a>
+                (<span class="type">String</span>
+ str)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
+ function.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var test1 = 'lorem %s %s sit amet';
+ var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+
+ //This will return 'lorem ipsum dolor sit amet''
+ o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+
+ //This will return 'lorem ipsum dolor sit dolor amet ipsum'
+ o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -424,7 +449,7 @@
                 <a href="logical/o2/StringHelper.html#___xssEncode"><span class="elementName">xssEncode</span></a>
                 (<span class="type">String</span>
  str, <span class="type">Boolean</span>
- shouldPreserveAmpersands)
+ isAmpersandsPreserved)
             </div>          
                 <div class="summaryItemDesc">
         <p>Encodes special charaters to their corresponding <strong>HTML</strong>
@@ -829,6 +854,57 @@
 	        <div class="paddedDetails">
 	            	             the formatted <code>String</code>.
      	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___printf">
+            <span class="objType">function</span>
+            <span class="objName">printf</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    printf(<span class="type">String</span>
+ str)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
+ function.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var test1 = 'lorem %s %s sit amet';
+ var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+
+ //This will return 'lorem ipsum dolor sit amet''
+ o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+
+ //This will return 'lorem ipsum dolor sit dolor amet ipsum'
+ o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            str        </code>
+         - the <code>String</code> to format.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the formatted <code>String</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -1415,8 +1491,7 @@
                                                 <div class="param paddedDetails">
         <code>
             maxLen        </code>
-         - Optional (defaults to
- <a href="logical/o2/StringHelper/config/constants.html#___TRUNCATION_LENGTH">o2.StringHelper.config.constants.TRUNCATION_LENGTH</a>,
+         - Optional (defaults TRUNCATION_LENGTH},
  maximum <code>String</code> length that's allowed without truncation.            </div>   
                                         </div>
                 </div>
@@ -1477,7 +1552,7 @@
                     <span class="type"></span>
                     xssEncode(<span class="type">String</span>
  str, <span class="type">Boolean</span>
- shouldPreserveAmpersands)
+ isAmpersandsPreserved)
                 </code> 
             </div>          
                 <div class="comment">
@@ -1499,7 +1574,7 @@
          - the <strong>String</strong> to process            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            shouldPreserveAmpersands        </code>
+            isAmpersandsPreserved        </code>
          - (Optional. Defaults to
  <code>false</code>). If <code>true</code> & characters will not be
  encoded, otherwise they will be.            </div>   

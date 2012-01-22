@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 17:10:53.684581
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -15,70 +17,34 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me = framework.StringHelper;
 
-    /**
-     * @struct {private} o2.StringHelper.config
-     *
-     * <p>Module configuration.</p>
+    /*
+     * Common Regular Expressions
      */
-    var config = {
+    var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
+    var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
+    var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
+    var kCamelCaseRegExp          = /(\-[a-z])/g;
+    var kAllCapsRegExp            = /([A-Z])/g;
 
-        /**
-         *
-         */
-        constants : {
+    /*
+     * Common Text
+     */
+    var kNewLine    = '\n';
+    var kBr         = '<br />';
+    var kUnderscore = '_';
+    var kDash       = '-';
+    var kEmpty      = '';
+    var kEllipsis   = '&hellip;';
 
-            /**
-             * @property {private const Integer}
-             * o2.StringHelper.config.constants.TRUNCATION_LENGTH
-             *
-             * <p>Maximum length, after which the string is truncated with an
-             * ellipsis
-             * (...)</p>
-             */
-            TRUNCATION_LENGTH : 100,
-
-            /*
-             *
-             */
-            regExp : {
-                BR_2_NL : /<br\s*\/?>/g,
-                NL_2_BR : /\r\n|\n|\r/g,
-                REMOVE_TAGS : /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig,
-                CAMEL_CASE : /(\-[a-z])/g,
-                ALL_CAPS : /([A-Z])/g
-            },
-
-            /*
-             *
-             */
-            text : {
-                ELLIPSIS : '&hellip;',
-                DASH : '-',
-                UNDERSCORE : '_',
-                NEW_LINE : '\n',
-                BR : '<br />',
-                EMPTY : ''
-            }
-        }
-    };
-
-    var constants = config.constants;
-    var kLineBreakToNewLineRegExp = constants.regExp.BR_2_NL;
-    var kNewLineToLineBreakRegExp = constants.regExp.NL_2_BR;
-    var kRegRemoveTags = constants.regExp.REMOVE_TAGS;
-    var kRegCamelCase = constants.regExp.CAMEL_CASE;
-    var kRegAllCaps = constants.regExp.ALL_CAPS;
-    var kNewLine = constants.text.NEW_LINE;
-    var kBr = constants.text.BR;
-    var kUnderscore = constants.text.UNDERSCORE;
-    var kDash = constants.text.DASH;
-    var kEmpty = constants.text.EMPTY;
-    var kEllipsis = constants.text.ELLIPSIS;
-    var kTruncationLength = constants.TRUNCATION_LENGTH;
+    /*
+     * <p>Maximum length, after which the string is truncated with an
+     * ellipsis (...)</p>
+     */
+    var kTruncationLength = 100;
 
     /**
      * @function {static} o2.StringHelper.br2nl
@@ -117,7 +83,7 @@
      * @return the cleaned output.
      */
     me.removeTags = function(str) {
-        return str.replace(kRegRemoveTags, kEmpty);
+        return str.replace(kRemoveTagsRegExp, kEmpty);
     };
 
     /**
@@ -127,8 +93,7 @@
      * is greater than <code>maxLength</code>.</p>
      *
      * @param {String} str - the <code>String</code> to process.
-     * @param {Integer} maxLen - Optional (defaults to
-     * {@link o2.StringHelper.config.constants.TRUNCATION_LENGTH},
+     * @param {Integer} maxLen - Optional (defaults TRUNCATION_LENGTH},
      * maximum <code>String</code> length that's allowed without truncation.
      *
      * @return the processed <code>String</code>.
@@ -158,7 +123,7 @@
      * @return the formatted String.
      */
     me.toCamelCase = function(input) {
-        return input.replace(kRegCamelCase, function(match) {
+        return input.replace(kCamelCaseRegExp, function(match) {
             return match.toUpperCase().replace(kDash, kEmpty);
         });
     };
@@ -174,7 +139,7 @@
      * @return the formatted <code>String</code>.
      */
     me.toDashedFromCamelCase = function(input) {
-        return input.replace(kRegAllCaps, function(match) {
+        return input.replace(kAllCapsRegExp, function(match) {
             return [kDash, match.toLowerCase()].join(kEmpty);
         });
     };
@@ -190,7 +155,7 @@
      * @return the formatted <code>String</code>.
      */
     me.toUnderscoreFromCamelCase = function(input) {
-        return input.replace(kRegAllCaps, function(match) {
+        return input.replace(kAllCapsRegExp, function(match) {
             return [kUnderscore, match.toLowerCase()].join(kEmpty);
         });
     };
@@ -208,5 +173,5 @@
      */
     me.toJson = function(str) {
         return JSON.parse(str);
-    }
+    };
 }(this.o2));

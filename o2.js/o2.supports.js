@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 17:00:12.715241
  * -->
  *
  * <p>An object support checker.</p>
@@ -14,12 +16,19 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me     = framework;
     var myName = framework.name;
+
+    var isDomSupported = document.getElementById && document.createElement &&
+        document.getElementsByTagName;
+
+    /*
+     * Common Constants
+     */
     var kTestCookiePrefix = 'tst';
-    var kEmpty = '';
+    var kEmpty            = '';
 
     /**
      * @class {static} o2.Supports
@@ -39,24 +48,24 @@
          * <code>false</code> otherwise.
          */
         cookie : function() {
-            var kTestCookie = [myName, kTestCookiePrefix].join(kEmpty);
+            var testCookieName = [myName, kTestCookiePrefix].join(kEmpty);
             var cookie = me.Cookie;
             var value = null;
 
-            cookie.save(kTestCookie, kTestCookie, 1);
+            cookie.save(testCookieName, testCookieName, 1);
 
             try {
-                value = cookie.read(kTestCookie);
+                value = cookie.read(testCookieName);
             } catch(ignore) {
             }
 
-            if (!value) {
-                return false;
+            if (value) {
+                cookie.remove(testCookieName);
+
+                return true;
             }
 
-            cookie.remove(kTestCookie);
-
-            return true;
+            return false;
         },
 
         /**
@@ -68,8 +77,7 @@
          * <code>false</code> otherwise.
          */
         dom : function() {
-            return document.getElementById && document.createElement &&
-                document.getElementsByTagName;
+            return isDomSupported;
         },
 
         /**

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 08:55:33.251754
+ *  lastModified: 2012-01-22 20:32:21.123335
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -20,38 +20,63 @@
      */
     var me       = framework.DomHelper;
     var $        = framework.$;
-    var db       = document.body;
     var de       = document.documentElement;
     var scrollTo = window.scrollTo;
 
-    /**
-     * @function {static} o2.DomHelper.scrollWindowToBottom
-     *
-     * <p>Scrolls window to bottom.</p>
-     */
     if (de) {
+
+        /**
+         * @function {static} o2.DomHelper.scrollWindowToBottom
+         *
+         * <p>Scrolls window to bottom.</p>
+         */
         me.scrollWindowToBottom = function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
             db.scrollTop = db.scrollHeight;
             de.scrollTop = de.scrollHeight;
         };
     } else {
         me.scrollWindowToBottom = function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
             db.scrollTop = db.scrollHeight;
         };
     }
 
-    /**
-     * @function {static} o2.DomHelper.scrollWindowToTop
-     *
-     * <p>Scrolls window to top.</p>
-     */
     if (de) {
+
+        /**
+         * @function {static} o2.DomHelper.scrollWindowToTop
+         *
+         * <p>Scrolls window to top.</p>
+         */
         me.scrollWindowToTop = function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
             db.scrollTop = 0;
             de.scrollTop = 0;
         };
     } else {
         me.scrollWindowToTop = function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
             db.scrollTop = 0;
         };
     }
@@ -112,41 +137,31 @@
         scrollTo(offset.left, offset.top);
     };
 
-    /**
-     * @function {static} o2.DomHelper.getWindowScrollOffset
-     *
-     * <p>Gets the <strong>window</strong>'s scroll offset.</p>
-     *
-     * @return the the <strong>window</strong>'s scroll offset in the form
-     * <code>{left: l, top: t}</code>.
-     */
-    if (db && db.scrollLeft !== undefined) {
-        if(de) {
-            me.getWindowScrollOffset = function() {
-                var left = Math.max(db.scrollLeft, de.scrollLeft);
-                var top   Math.max(db.scrollTop, de.scrollTop);
+    if(de) {
 
-                return {
-                    left : left,
-                    top : top
-                };
-
-            };
-        } else {
-            me.getWindowScrollOffset = function() {
-                var left = db.scrollLeft;
-                var top = db.scrollTop;
-
-                return {
-                    left : left,
-                    top : top
-                };
-            };
-        }
-    } else if(de) {
+        /**
+         * @function {static} o2.DomHelper.getWindowScrollOffset
+         *
+         * <p>Gets the <strong>window</strong>'s scroll offset.</p>
+         *
+         * @return the the <strong>window</strong>'s scroll offset in the form
+         * <code>{left: l, top: t}</code>.
+         */
         me.getWindowScrollOffset = function() {
-            var left = de.scrollLeft;
-            var top = de.scrollTop;
+            var db = document.body;
+
+            var left = 0;
+            var top = 0;
+
+            // document.body may not be immediately available if
+            // the script is placed in HEAD. check for it.
+            if (db) {
+                left = Math.max(db.scrollLeft, de.scrollLeft);
+                top = Math.max(db.scrollTop, de.scrollTop);
+            } else {
+                left = de.scrollLeft;
+                top = de.scrollTop;
+            }
 
             return {
                 left : left,
@@ -155,14 +170,33 @@
         };
     } else {
         me.getWindowScrollOffset = function() {
+            var db = document.body;
+
+            var left = 0;
+            var top = 0;
+
+            // document.body may not be immediately available if
+            // the script is placed in HEAD. check for it.
+            if (db) {
+                left = db.scrollLeft;
+                top = db.scrollTop;
+            }
+
             return {
-                left : 0,
-                top : 0
+                left : left,
+                top : top
             };
         };
     }
 
-    //TODO: add documentation.
+    /**
+     * @function {static} o2.DomHelper.getObjectScrollOfset
+     *
+     * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
+     *
+     * @return the the <strong>DOM</strong> object's scroll offset in the form
+     * <code>{left: l, top: t}</code>.
+     */
     me.getObjectScrollOfset = function(obj) {
         obj = $(obj);
 

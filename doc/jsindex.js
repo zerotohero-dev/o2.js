@@ -1100,6 +1100,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "getObjectScrollOfset",
+           fullName : "o2.DomHelper.getObjectScrollOfset",
+           summary : "static function  getObjectScrollOfset()",
+           ref : "logical/o2/DomHelper.html#___getObjectScrollOfset",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getOffset",
            fullName : "o2.DomHelper.getOffset",
            summary : "static function  getOffset(Object elm)",
@@ -2360,33 +2369,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "config",
-           fullName : "o2.StringHelper.config",
-           summary : "private struct config",
-           ref : "logical/o2/StringHelper/config.html",
-           parent : "o2.StringHelper",
-           type : "struct",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "constants",
-           fullName : "o2.StringHelper.config.constants",
-           summary : "namespace constants",
-           ref : "logical/o2/StringHelper/config/constants.html",
-           parent : "o2.StringHelper.config",
-           type : "namespace",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "TRUNCATION_LENGTH",
-           fullName : "o2.StringHelper.config.constants.TRUNCATION_LENGTH",
-           summary : "private property const Integer TRUNCATION_LENGTH",
-           ref : "logical/o2/StringHelper/config/constants.html#___TRUNCATION_LENGTH",
-           parent : "o2.StringHelper.config.constants",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
            localName : "decode",
            fullName : "o2.StringHelper.decode",
            summary : "static function  decode(String str)",
@@ -2454,6 +2436,15 @@
            fullName : "o2.StringHelper.nl2br",
            summary : "static function  nl2br(String str)",
            ref : "logical/o2/StringHelper.html#___nl2br",
+           parent : "o2.StringHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "printf",
+           fullName : "o2.StringHelper.printf",
+           summary : "static function  printf(String str)",
+           ref : "logical/o2/StringHelper.html#___printf",
            parent : "o2.StringHelper",
            type : "function",
            elementType : "function"
@@ -2605,7 +2596,7 @@
        {
            localName : "xssEncode",
            fullName : "o2.StringHelper.xssEncode",
-           summary : "static function  xssEncode(String str, Boolean shouldPreserveAmpersands)",
+           summary : "static function  xssEncode(String str, Boolean isAmpersandsPreserved)",
            ref : "logical/o2/StringHelper.html#___xssEncode",
            parent : "o2.StringHelper",
            type : "function",

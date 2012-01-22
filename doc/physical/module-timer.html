@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327216788#
+	                 version 0.23.#1327257580#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -75,6 +75,8 @@
   This program is distributed under
   the terms of the MIT license.
   Please see the LICENSE file for details.
+
+  lastModified: 2012-01-22 09:57:33.812685
  -->
 
  <p>A static class for timeout related operations.</p>
@@ -97,7 +99,26 @@
         </span>
     </div>
     <div class="summaryItemDesc">
-        <p>A class for executing repeated timed actions.</p>    </div>
+        <p>A class for executing repeated timed actions.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ // A unique id for the timer.
+ var kCheckId = 'my_timer';
+
+ // Auto start timer with id kCheckId to repeat doStuff approximately
+ // every 500 milliseconds, please note that this is an approximation.
+ // for further details see John Resig's excellent article on this:
+ // http://ejohn.org/blog/how-javascript-timers-work/
+ o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+
+ // Stops the timer (i.e. doStuff will not be executed further).
+ o2.Timer.stop(kCheckId);
+
+ // Restarts the timer (i.e. doStuff will be periodically executed again).
+ o2.Timer.start(kCheckId);
+ </pre>    </div>
                             </div>
                 </div>
         <p/>

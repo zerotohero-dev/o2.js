@@ -1,5 +1,5 @@
 /**
- * @module domhelper.traverse
+ * @module   domhelper.traverse
  * @requires domhelper.core
  * @requires domhelper.class
  * @requires stringhelper.core
@@ -8,6 +8,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 20:36:02.694293
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -16,23 +18,23 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.DomHelper;
-    var getAttribute = me.getAttribute;
-    var generateGuid = framework.StringHelper.generateGuid;
-    var $ = framework.$;
-    var myName = framework.name;
+    var me                    = framework.DomHelper;
+    var $                     = framework.$;
+    var myName                = framework.name;
+    var getAttribute          = me.getAttribute;
+    var generateGuid          = framework.StringHelper.generateGuid;
     var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
 
     /*
-     * Common constants.
+     * Common Constants
      */
     var kTextNode = me.nodeType.TEXT;
-    var kAll = '*';
-    var kObject = 'object';
-    var kEmpty = '';
-    var kId = 'id';
+    var kAll      = '*';
+    var kObject   = 'object';
+    var kEmpty    = '';
+    var kId       = 'id';
 
     /*
      *
@@ -583,7 +585,7 @@
      *
      * @see o2.DomHelper.getFirstChildById
      */
-    me.firstById = me.findFirstChildById = function(target, id) {
+    me.findFirstChildById = me.firstById =  function(target, id) {
         return me.getFirstChildById(target, id);
     };
 
@@ -669,7 +671,7 @@
      *
      * @see o2.DomHelper.getFirstChildWithId
      */
-    me.firstWithId = me.findFirstChildWithId = function(target) {
+    me.findFirstChildWithId = me.firstWithId = function(target) {
         return me.getFirstChildWithId(target);
     };
 
@@ -1222,7 +1224,7 @@
      *
      * @see o2.DomHelper.getNextById
      */
-    me.nextById = me.findNextById = me.getNextById = function(target, id) {
+    me.findNextById = me.nextById = me.getNextById = function(target, id) {
         target = $(target);
 
         if (!target) {

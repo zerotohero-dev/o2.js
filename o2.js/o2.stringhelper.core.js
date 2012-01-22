@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-22 20:02:26.853461
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -13,9 +15,12 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me     = framework;
+    var slice  = Array.prototype.slice;
+    var floor  = Math.floor;
+    var random = Math.random;
 
     /*
      * Module Configuration
@@ -25,57 +30,38 @@
         /*
          *
          */
-        constants : {
-
-            /*
-             * @property {private const Integer}
-             * o2.StringHelper.config.constants.DEFAULT_RANDOM_LENGTH - default
-             * length for
-             * generating a random <strong>String</strong>s.
-             */
-            DEFAULT_RANDOM_LENGTH : 8,
-
-            /*
-             *
-             */
-            RANDOM_CHAR_FEED :
-                '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
-
-            /*
-             *
-             */
-            GUID_MULTIPLIER : 10000,
-
-            /*
-             *
-             */
-            regExp : {
-                TRIM : /^\s+|\s+$/g,
-                WHITESPACE : /\s+/g
-            }
-        },
-
-        formatDelimeter : {
-            start: '{',
-            end : '}'
-        }
+        formatDelimeter : {start : '{', end   : '}' }
     };
 
-    /*
-     * Common constants.
-     */
-    var kBlank = ' ';
-    var kEmpty = '';
-    var kGlobal = 'g';
-    var kNumeric = '([0-9]+)';
-
-    var kGuidMultiplier = config.constants.GUID_MULTIPLIER;
-    var kDefaultRandomLength = config.constants.DEFAULT_RANDOM_LENGTH;
-    var kRandomCharFeed = config.constants.RANDOM_CHAR_FEED;
-    var kWhitespaceRegExp = config.constants.regExp.WHITESPACE;
-    var kTrimRegExp = config.constants.regExp.TRIM;
-
     var cfd = config.formatDelimeter;
+
+    /*
+     * Common Constants
+     */
+    var kBlank               = ' ';
+    var kEmpty               = '';
+    var kGlobal              = 'g';
+    var kNumeric             = '([0-9]+)';
+    var kRandomCharFeed      = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+
+    /*
+     * Default length for generating a random <strong>String</strong>s.
+     */
+    var kDefaultRandomLength = 8;
+
+   /*
+    * Common Regular Expressions
+    */
+    var kWhitespaceRegExp = /\s+/g;
+    var kTrimRegExp       = /^\s+|\s+$/g;
+    var kPrintfRegExp     = /(%(\w+):s)|(%s)/g;
+
+    /*
+     * Printf Replacement Indexes.
+     */
+    var kReplaceParameterStartIndex = 1;
+    var kParametrizedMatchIndex     = 2;
+    var kAllIndex                   = 0;
 
     /**
      * @class {static} o2.StringHelper
@@ -101,6 +87,7 @@
             cfd.end = delims.end;
         },
 
+
         /**
          * @function {static} o2.StringHelper.generateGuid
          *
@@ -112,7 +99,7 @@
         generateGuid : function() {
             return (
                 (new Date()).getTime()+Math.random() * (1 << 30)
-                ).toString(16).replace('.', '');
+            ).toString(16).replace('.', '');
         },
 
         /**
@@ -127,19 +114,23 @@
          * @return the generated <code>String</code>.
          */
         generateRandom : function(length) {
-            var chars = kRandomCharFeed;
             var len = length || kDefaultRandomLength;
+
+            var chars = kRandomCharFeed;
             var charsLength = chars.length;
+
             var randomNumber = 0;
-            var buffer = [];
             var i = 0;
 
+            var buffer = [];
+
             for (i = 0; i < len; i++) {
-                randomNumber = Math.floor(Math.random() * charsLength);
+                randomNumber = floor(random() * charsLength);
+
                 buffer.push(chars.substring(randomNumber, randomNumber + 1));
             }
 
-            return buffer.join('');
+            return buffer.join(kEmpty);
         },
 
         /**
@@ -152,7 +143,7 @@
          * @return the concataneted <strong>String</strong>.
          */
         concat : function() {
-            return Array.prototype.slice.call(arguments).join(kEmpty);
+            return slice.call(arguments).join(kEmpty);
         },
 
         /**
@@ -172,8 +163,8 @@
         format : function() {
             var args = arguments;
 
-            var kFormatStart = cfd.start;
-            var kFormatEnd = cfd.end;
+            var formatStart = cfd.start;
+            var formatEnd = cfd.end;
 
             if (args.length === 0) {
                 return null;
@@ -183,44 +174,72 @@
                 return args[0];
             }
 
-            var pattern = new RegExp([kFormatStart, kNumeric,
-                kFormatEnd].join(kEmpty), kGlobal);
+            var pattern = new RegExp([formatStart, kNumeric,
+                formatEnd].join(kEmpty), kGlobal);
 
             return args[0].replace(pattern, function(match, index) {
-                var currentMatch = null;
-                currentMatch = match;
+                var dummy = null;
+                dummy = match;
+
                 return args[(+index) + 1];
             });
         },
 
-        //TODO: add documentation.
+        /**
+         * @function {static} o2.StringHelper.printf
+         *
+         * <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
+         * function.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * var test1 = 'lorem %s %s sit amet';
+         * var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+         *
+         * //This will return 'lorem ipsum dolor sit amet''
+         * o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+         *
+         * //This will return 'lorem ipsum dolor sit dolor amet ipsum'
+         * o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+         * </pre>
+         *
+         * @param {String} str - the <code>String</code> to format.
+         *
+         * @return the formatted <code>String</code>.
+         */
         printf : function(str) {
-            var matcher = /(%(\w+):s)|(%s)/g;
-            var index = 1;
-            var result;
-            var outText = '';
             var lastMatch = 0;
+            var buffer = [];
 
-            while ((result = matcher.exec(str))) {
-                outText += str.substring(lastMatch, result.index);
+            var index = kReplaceParameterStartIndex;
 
-                if (!result[2]) {
-                    outText += arguments[index++];
-                } else if (result[2] in arguments) {
-                    outText += arguments[result[2]];
+            var result = kPrintfRegExp.exec(str);
+
+            while (result) {
+                buffer.push(str.substring(lastMatch, result.index));
+
+                if (!result[kParametrizedMatchIndex]) {
+                    buffer.push(arguments[index++]);
+                } else if (
+                    arguments.hasOwnProperty(
+                        result[kParametrizedMatchIndex]
+                    )
+                ) {
+                    buffer.push(arguments[result[kParametrizedMatchIndex]]);
                 } else {
-                    outText += result[0];
+                    buffer.push(result[kAllIndex]);
                 }
 
-                lastMatch = result.index + result[0].length;
+                lastMatch = result.index + result[kAllIndex].length;
+
+                result = kPrintfRegExp.exec(str);
             }
 
-            outText += str.substr(lastMatch);
+            buffer.push(str.substr(lastMatch));
 
-            return outText;
+            return buffer.join(kEmpty);
         },
-
-
 
         /**
          * @function {static} o2.StringHelper.remove
@@ -234,7 +253,7 @@
          * @return the processed <strong>String</strong>.
          */
         remove : function(str, regExp) {
-            return me.StringHelper.concat(kEmpty, str).replace(regExp, kEmpty);
+            return [kEmpty, str].join(kEmpty).replace(regExp, kEmpty);
         },
 
         /**
@@ -254,7 +273,7 @@
         trim : function(str, shouldCompact) {
             shouldCompact = shouldCompact || false;
 
-            str = me.StringHelper.concat(kEmpty, str);
+            str = [kEmpty, str].join(kEmpty);
 
             return shouldCompact ? str.replace(kWhitespaceRegExp,
                 kBlank).replace(kTrimRegExp, kEmpty) :
@@ -274,7 +293,7 @@
          * @see o2.StringHelper.trim
          */
         strip : function(str) {
-            return me.StringHelper.trim(str, false);
+            return me.StringHelper.trim([kEmpty, str].join(kEmpty), false);
         },
 
         /**
@@ -290,8 +309,7 @@
          * @see StringHelper.trim
          */
         compact : function(str) {
-            return me.StringHelper.trim(
-                me.StringHelper.concat(kEmpty, str), true);
+            return me.StringHelper.trim([kEmpty, str].join(kEmpty), true);
         }
     };
 }(this.o2));
