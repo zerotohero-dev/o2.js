@@ -124,7 +124,7 @@
         if(de) {
             me.getWindowScrollOffset = function() {
                 var left = Math.max(db.scrollLeft, de.scrollLeft);
-                var top  = Math.max(db.scrollTop, de.scrollTop);
+                var top   Math.max(db.scrollTop, de.scrollTop);
 
                 return {
                     left : left,
@@ -135,7 +135,7 @@
         } else {
             me.getWindowScrollOffset = function() {
                 var left = db.scrollLeft;
-                var top  = db.scrollTop;
+                var top = db.scrollTop;
 
                 return {
                     left : left,
@@ -146,7 +146,7 @@
     } else if(de) {
         me.getWindowScrollOffset = function() {
             var left = de.scrollLeft;
-            var top  = de.scrollTop;
+            var top = de.scrollTop;
 
             return {
                 left : left,

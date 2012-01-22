@@ -13,16 +13,23 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me       = framework;
+    var location = window.location;
 
     /*
-     * Common strings.
+     * Common Strings
      */
-    var kAdd    = '&';
+    var kAnd    = '&';
     var kQuery  = '?';
     var kEquals = '=';
+
+    /*
+     * Common Indexes
+     */
+    var kNameIndex  = 0;
+    var kValueIndex = 1;
 
     /**
      * @class {static} o2.QueryParser
@@ -45,7 +52,7 @@
          */
         parse : function(url) {
             var args = {};
-            var href = url || window.location.href;
+            var href = url || location.href;
             var index = href.indexOf(kQuery);
 
             if (index === -1) {
@@ -53,10 +60,8 @@
             }
 
             var query = href.substring(index + 1);
-            var nameValuePairs = query.split(kAdd);
+            var nameValuePairs = query.split(kAnd);
             var nameValuePair = null;
-            var kNameIndex = 0;
-            var kValueIndex = 1;
             var i = 0;
 
             for (i = 0; i < nameValuePairs.length; i++) {
@@ -70,8 +75,8 @@
 
         //TODO: add documentation.
         encode : function(collection) {
-            var delimeter = '&';
-            var equals = '=';
+            var delimeter = kAnd;
+            var equals = kEquals;
 
             var key = null;
             var buffer = [];

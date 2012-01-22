@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 00:23:18.847512
+ *  lastModified: 2012-01-22 09:05:23.998048
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -17,38 +17,16 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me = framework.Validator;
 
     /*
-     * Module configuration.
+     * Common Regular Expressions
      */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             *
-             */
-            regExp : {
-                EMAIL : /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
-                URL : /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
-                WHITESPACE : /^\s*$/
-            }
-        }
-    };
-
-    /*
-     * Common regular expressions.
-     */
-    var ccr               = config.constants.regExp;
-    var kEmailRegExp      = ccr.EMAIL;
-    var kUrlRegExp        = ccr.URL;
-    var kWhitespaceRegExp = ccr.WHITESPACE;
+    var kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
+    var kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
+    var kWhitespaceRegExp = /^\s*$/;
 
     /**
      * @function {static} o2.Validator.isEmail
@@ -62,10 +40,10 @@
      * for that.</p>
      * <p>This method matches <strong>e-mail</strong> addresses, while giving
      * some false-positives.</p>
-     * <p>The correct action to validate an <strong>e-mail</strong> address is to
-     * validate by trying
-     * (i.e. try sending an account activation <strong>e-mail</strong> to a newly
-     * registered user, for example.).</p>
+     * <p>The correct action to validate an <strong>e-mail</strong> address is
+     * to validate by trying
+     * (i.e. try sending an account activation <strong>e-mail</strong> to a
+     * newly registered user, for example.).</p>
      *
      * @param {String} mail - the <strong>e-mail</strong> address to test.
      *

@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 01:52:17.583142
+ *  lastModified: 2012-01-22 09:06:41.422058
  * -->
  *
  * <p>A validation helper.</p>
@@ -15,18 +15,18 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me       = framework;
     var toString = Object.prototype.toString;
 
     /*
-     * Calendar Months.
+     * Calendar Months
      */
     var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     /*
-     * Common Constants.
+     * Common Constants
      */
     var kDecimalBase          = 10;
     var kTrimLastBraceIndex   = -1;
@@ -35,7 +35,7 @@
     var kObjectNameStartIndex = 8;
 
     /*
-     * EcmaScript Types.
+     * EcmaScript Types
      */
     var kArray     = 'Array';
     var kBoolean   = 'Boolean';
@@ -125,9 +125,9 @@
          */
         isDate : function(objYear, objMonth, objDay) {
             var maxDay = 0;
-            var year   = objYear;
-            var month  = objMonth;
-            var day    = objDay;
+            var year = objYear;
+            var month = objMonth;
+            var day = objDay;
 
             if (arguments.length === kYmdArgLen) {
                 if (!year || !month || !day) {
@@ -135,8 +135,8 @@
                 }
 
                 month = parseInt(month, kDecimalBase);
-                year  = parseInt(year, kDecimalBase);
-                day   = parseInt(day, kDecimalBase);
+                year = parseInt(year, kDecimalBase);
+                day = parseInt(day, kDecimalBase);
 
                 if (month < 0 || month > months.length) {
                     return false;
