@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327257580#
+	                 version 0.23.#1327301362#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -528,12 +528,12 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getFirstChild"><span class="elementName">getFirstChild</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  nodeName)
             </div>          
                 <div class="summaryItemDesc">
-        <p>gets the first child that is not a text-node, and has the given node
- name.</p>    </div>  
+        <p>gets the first child that is not a text-node, and has the given
+ node name.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -541,7 +541,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getFirstChildById"><span class="elementName">getFirstChildById</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  id)
             </div>          
                 <div class="summaryItemDesc">
@@ -553,7 +553,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getFirstChildWithId"><span class="elementName">getFirstChildWithId</span></a>
                 (<span class="type">DomNode</span>
- target)
+ targetElm)
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the first child with an <strong>id</strong> attribute.</p>    </div>  
@@ -575,7 +575,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getLastChild"><span class="elementName">getLastChild</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  nodeName)
             </div>          
                 <div class="summaryItemDesc">
@@ -588,7 +588,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getLastChildById"><span class="elementName">getLastChildById</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  id)
             </div>          
                 <div class="summaryItemDesc">
@@ -600,7 +600,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getLastChildWithId"><span class="elementName">getLastChildWithId</span></a>
                 (<span class="type">DomNode</span>
- target)
+ targetElm)
             </div>          
                 <div class="summaryItemDesc">
         <p>gets the last child with an <strong>id</strong> attribute.</p>    </div>  
@@ -716,7 +716,7 @@
         <div class="summaryItemDesc">
         <p>This is an alias to</p>
  <pre>
- o2.DomHelper.getParentByAttribute(obj, 'id', id, shouldExcludeSelf)
+ o2.DomHelper.getParentByAttribute(obj, 'id', id, isSelfExcluded)
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -727,7 +727,7 @@
                 (<span class="type">DomNode</span>
  obj, <span class="type">String</span>
  attribute, <span class="type">Boolean</span>
- shouldExcludeSelf)
+ isSelfExcluded)
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the first parent with a given <strong>attribute</strong>.</p>    </div>  
@@ -906,7 +906,7 @@
                 (<span class="type">Object</span>
  child, <span class="type">Object</span>
  parent, <span class="type">Boolean</span>
- shouldExcludeSelf)
+ isSelfExcluded)
             </div>          
                 <div class="summaryItemDesc">
         <p>Checks whether the given item is a descendant of
@@ -2521,13 +2521,13 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getFirstChild(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  nodeName)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>gets the first child that is not a text-node, and has the given node
- name.</p>
+        <p>gets the first child that is not a text-node, and has the given
+ node name.</p>
 
      </div>
         	<div class="parameters">
@@ -2537,9 +2537,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the current node, or the <strong>id</strong> of
- it.            </div>   
+            targetElm        </code>
+         - the current node, or the
+ <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             nodeName        </code>
@@ -2551,8 +2551,9 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
-     	            	        </div>
+	            	             the <code>DOM</code> node if found, <code>null</code>
+ otherwise.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2566,7 +2567,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getFirstChildById(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  id)
                 </code> 
             </div>          
@@ -2581,9 +2582,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the target to test, or the <strong>id</strong>
- of it.            </div>   
+            targetElm        </code>
+         - the target to test,
+ or the <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             id        </code>
@@ -2594,8 +2595,9 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
-     	            	        </div>
+	            	             the <code>DOM</code> node if found,
+ <code>null</code> otherwise.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2609,7 +2611,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getFirstChildWithId(<span class="type">DomNode</span>
- target)
+ targetElm)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2623,18 +2625,18 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the target, or the <strong>id</strong> of the
- target to test.            </div>   
+            targetElm        </code>
+         - the target, or the <strong>id</strong>
+ of the target to test.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the first child with <strong>id</strong> if any, <code>null</code>
- otherwise.
-     	            	        </div>
+	            	             the first child with <strong>id</strong> if any,
+ <code>null</code> otherwise.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2686,7 +2688,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getLastChild(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  nodeName)
                 </code> 
             </div>          
@@ -2702,9 +2704,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the current node, or the <strong>id</strong> of
- it.            </div>   
+            targetElm        </code>
+         - the current node, or the
+ <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             nodeName        </code>
@@ -2731,7 +2733,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getLastChildById(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ targetElm, <span class="type">String</span>
  id)
                 </code> 
             </div>          
@@ -2746,9 +2748,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the target to test, or the <strong>id</strong>
- of it.            </div>   
+            targetElm        </code>
+         - the target to test, or the
+ <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             id        </code>
@@ -2774,7 +2776,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getLastChildWithId(<span class="type">DomNode</span>
- target)
+ targetElm)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2788,17 +2790,17 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the target to test, or the <strong>id</strong>
- of the target.            </div>   
+            targetElm        </code>
+         - the target to test, or the
+ <strong>id</strong> of the target.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the first child with <strong>id</strong> if any, <code>null</code>
- otherwise.
+	            	             the first child with <strong>id</strong> if any,
+ <code>null</code> otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -3156,7 +3158,7 @@
         <div class="comment">
         <p>This is an alias to</p>
  <pre>
- o2.DomHelper.getParentByAttribute(obj, 'id', id, shouldExcludeSelf)
+ o2.DomHelper.getParentByAttribute(obj, 'id', id, isSelfExcluded)
  </pre>
 
      </div>
@@ -3178,7 +3180,7 @@
                     getParentWithAttribute(<span class="type">DomNode</span>
  obj, <span class="type">String</span>
  attribute, <span class="type">Boolean</span>
- shouldExcludeSelf)
+ isSelfExcluded)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3201,7 +3203,7 @@
          - the name of the attribute.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            shouldExcludeSelf        </code>
+            isSelfExcluded        </code>
          - (optional: defaults to false).
  If <code>true</code>, the current node (obj) is disregarded while seeking.            </div>   
                                         </div>
@@ -3728,7 +3730,7 @@
                     isChild(<span class="type">Object</span>
  child, <span class="type">Object</span>
  parent, <span class="type">Boolean</span>
- shouldExcludeSelf)
+ isSelfExcluded)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3753,7 +3755,7 @@
  <strong>DOM</strong> ID.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            shouldExcludeSelf        </code>
+            isSelfExcluded        </code>
          - (optional;
  defaults to <code>false</code>) if <code>true</code> the method does
  <strong>NOT</strong> return <code>true</code>, if child and parent are

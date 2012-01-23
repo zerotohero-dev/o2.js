@@ -764,7 +764,6 @@ You are not a human code compiler/compressor, so don't try to be one.
         // Better:
         isUserAvailable = true;
 
-
 * Establish a naming convention based on **real names** that mean something.
 
 * Avoid any abbreviations unless they are part of your target industry's
@@ -789,21 +788,18 @@ every-day lingo.
 
 * **Try to be obvious**.
 
-### Store Your Code in Meaningful Folder Structures
+* **DO NOT** override parameters.
 
-The naming conventions should also apply to your folders. Split up your code
-in **logical groups** and store it in folders that describe
-**what they contain**.
+        // Incorrect:
+        function doStuff(target) {
+            target = $(target); //<-- target parameter has now changed.
+        }
 
-This will make it much easier to keep your code-tree organized and scale it
-to thousands of files without hindering your ability to get to specific
-files quickly.
-
-* Group your source files in **logical groups**
-
-* Keep your folder names **consistent** throughout the project.
-
-* Use your naming convention recursively inside of your sub-folders.
+        // Correct:
+        function doStuff(targetElm) {
+            var target = $(targetElm); // <-- safer: Original targetElm
+                                       //            has not changed.
+        }
 
 * Choose readable variable names:
 
@@ -880,7 +876,6 @@ files quickly.
 * Use **plural** names for **collections**:
 
         var members = getOnlineMembers(); // "members", not "member".
-
 
 * Use **camelCase** for **method names** and **member names**, use
 **ALL_CAPS** for **constants**.
@@ -1266,19 +1261,20 @@ folder of this bundle.
 The **JSLint** validation preferences used are as follows:
 
     var JSLINT_PREFS = {
-        browser:true,
-        evil:false,
-        laxbreak:true,
-        maxerr: 1000,
-        newcap: true,
-        nomen: true,
-        passfail:false,
+        browser : true,
+        evil    : false,
+        laxbreak: true,
+        maxerr  : 1000,
+        newcap  : true,
+        nomen   : true,
+        passfail: false,
         plusplus: true,
-        rhino: true,
-        undef:true,
-        vars: true,
-        white: true,
-        regexp: true
+        rhino   : true,
+        undef   : true,
+        vars    : true,
+        white   : true,
+        regexp  : true,
+        bitwise : true
     };
 
 ### Event-Handler Naming Convention
@@ -1332,6 +1328,22 @@ Any custom events are defined all lowercase.
 
         this.onselectionchange.apply(this, [source, eventArgs]);
     };
+
+### Store Your Code in Meaningful Folder Structures
+
+The naming conventions should also apply to your folders. Split up your code
+in **logical groups** and store it in folders that describe
+**what they contain**.
+
+This will make it much easier to keep your code-tree organized and scale it
+to thousands of files without hindering your ability to get to specific
+files quickly.
+
+* Group your source files in **logical groups**
+
+* Keep your folder names **consistent** throughout the project.
+
+* Use your naming convention recursively inside of your sub-folders.
 
 ### Show Love To the [Module Pattern][10]
 

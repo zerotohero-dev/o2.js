@@ -1012,7 +1012,7 @@
        {
            localName : "getFirstChild",
            fullName : "o2.DomHelper.getFirstChild",
-           summary : "static function  getFirstChild(DomNode target, String nodeName)",
+           summary : "static function  getFirstChild(DomNode targetElm, String nodeName)",
            ref : "logical/o2/DomHelper.html#___getFirstChild",
            parent : "o2.DomHelper",
            type : "function",
@@ -1021,7 +1021,7 @@
        {
            localName : "getFirstChildById",
            fullName : "o2.DomHelper.getFirstChildById",
-           summary : "static function  getFirstChildById(DomNode target, String id)",
+           summary : "static function  getFirstChildById(DomNode targetElm, String id)",
            ref : "logical/o2/DomHelper.html#___getFirstChildById",
            parent : "o2.DomHelper",
            type : "function",
@@ -1030,7 +1030,7 @@
        {
            localName : "getFirstChildWithId",
            fullName : "o2.DomHelper.getFirstChildWithId",
-           summary : "static function  getFirstChildWithId(DomNode target)",
+           summary : "static function  getFirstChildWithId(DomNode targetElm)",
            ref : "logical/o2/DomHelper.html#___getFirstChildWithId",
            parent : "o2.DomHelper",
            type : "function",
@@ -1048,7 +1048,7 @@
        {
            localName : "getLastChild",
            fullName : "o2.DomHelper.getLastChild",
-           summary : "static function  getLastChild(DomNode target, String nodeName)",
+           summary : "static function  getLastChild(DomNode targetElm, String nodeName)",
            ref : "logical/o2/DomHelper.html#___getLastChild",
            parent : "o2.DomHelper",
            type : "function",
@@ -1057,7 +1057,7 @@
        {
            localName : "getLastChildById",
            fullName : "o2.DomHelper.getLastChildById",
-           summary : "static function  getLastChildById(DomNode target, String id)",
+           summary : "static function  getLastChildById(DomNode targetElm, String id)",
            ref : "logical/o2/DomHelper.html#___getLastChildById",
            parent : "o2.DomHelper",
            type : "function",
@@ -1066,7 +1066,7 @@
        {
            localName : "getLastChildWithId",
            fullName : "o2.DomHelper.getLastChildWithId",
-           summary : "static function  getLastChildWithId(DomNode target)",
+           summary : "static function  getLastChildWithId(DomNode targetElm)",
            ref : "logical/o2/DomHelper.html#___getLastChildWithId",
            parent : "o2.DomHelper",
            type : "function",
@@ -1165,7 +1165,7 @@
        {
            localName : "getParentWithAttribute",
            fullName : "o2.DomHelper.getParentWithAttribute",
-           summary : "static function  getParentWithAttribute(DomNode obj, String attribute, Boolean shouldExcludeSelf)",
+           summary : "static function  getParentWithAttribute(DomNode obj, String attribute, Boolean isSelfExcluded)",
            ref : "logical/o2/DomHelper.html#___getParentWithAttribute",
            parent : "o2.DomHelper",
            type : "function",
@@ -1300,7 +1300,7 @@
        {
            localName : "isChild",
            fullName : "o2.DomHelper.isChild",
-           summary : "function isChild(Object child, Object parent, Boolean shouldExcludeSelf)",
+           summary : "function isChild(Object child, Object parent, Boolean isSelfExcluded)",
            ref : "logical/o2/DomHelper.html#___isChild",
            parent : "o2.DomHelper",
            type : "function",
