@@ -902,6 +902,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "findSiblings",
+           fullName : "o2.DomHelper.findSiblings",
+           summary : "static function  findSiblings()",
+           ref : "logical/o2/DomHelper.html#___findSiblings",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "first",
            fullName : "o2.DomHelper.first",
            summary : "static function  first()",
@@ -958,7 +967,7 @@
        {
            localName : "getChildrenByClassName",
            fullName : "o2.DomHelper.getChildrenByClassName",
-           summary : "static function  getChildrenByClassName(DomNode el, String c)",
+           summary : "static function  getChildrenByClassName(DomNode elm, String c)",
            ref : "logical/o2/DomHelper.html#___getChildrenByClassName",
            parent : "o2.DomHelper",
            type : "function",
@@ -1003,7 +1012,7 @@
        {
            localName : "getElementsByClassName",
            fullName : "o2.DomHelper.getElementsByClassName",
-           summary : "static function  getElementsByClassName(DomNode el, String c)",
+           summary : "static function  getElementsByClassName(DomNode elm, String c)",
            ref : "logical/o2/DomHelper.html#___getElementsByClassName",
            parent : "o2.DomHelper",
            type : "function",
@@ -1075,7 +1084,7 @@
        {
            localName : "getNext",
            fullName : "o2.DomHelper.getNext",
-           summary : "static function  getNext(DomNode target)",
+           summary : "static function  getNext(DomNode elmTarget)",
            ref : "logical/o2/DomHelper.html#___getNext",
            parent : "o2.DomHelper",
            type : "function",
@@ -1084,7 +1093,7 @@
        {
            localName : "getNextById",
            fullName : "o2.DomHelper.getNextById",
-           summary : "function getNextById(DomNode target, String id)",
+           summary : "function getNextById(DomNode elmTarget, String id)",
            ref : "logical/o2/DomHelper.html#___getNextById",
            parent : "o2.DomHelper",
            type : "function",
@@ -1093,7 +1102,7 @@
        {
            localName : "getNextWithId",
            fullName : "o2.DomHelper.getNextWithId",
-           summary : "static function  getNextWithId(DomNode target)",
+           summary : "static function  getNextWithId(DomNode elmTarget)",
            ref : "logical/o2/DomHelper.html#___getNextWithId",
            parent : "o2.DomHelper",
            type : "function",
@@ -1192,7 +1201,7 @@
        {
            localName : "getPreviousById",
            fullName : "o2.DomHelper.getPreviousById",
-           summary : "function getPreviousById(DomNode target, String id)",
+           summary : "function getPreviousById(DomNode elmTarget, String id)",
            ref : "logical/o2/DomHelper.html#___getPreviousById",
            parent : "o2.DomHelper",
            type : "function",
@@ -1201,8 +1210,17 @@
        {
            localName : "getPreviousWithId",
            fullName : "o2.DomHelper.getPreviousWithId",
-           summary : "static function  getPreviousWithId(DomNode target)",
+           summary : "static function  getPreviousWithId(DomNode elmTarget)",
            ref : "logical/o2/DomHelper.html#___getPreviousWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblings",
+           fullName : "o2.DomHelper.getSiblings",
+           summary : "static function  getSiblings(DomNode targetElm)",
+           ref : "logical/o2/DomHelper.html#___getSiblings",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -1752,6 +1770,15 @@
            fullName : "o2.DomHelper.show",
            summary : "static function  show(Object obj)",
            ref : "logical/o2/DomHelper.html#___show",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "siblings",
+           fullName : "o2.DomHelper.siblings",
+           summary : "static function  siblings()",
+           ref : "logical/o2/DomHelper.html#___siblings",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -2463,15 +2490,6 @@
            fullName : "o2.StringHelper.removeTags",
            summary : "static function  removeTags(String str)",
            ref : "logical/o2/StringHelper.html#___removeTags",
-           parent : "o2.StringHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "setFormatDelimeter",
-           fullName : "o2.StringHelper.setFormatDelimeter",
-           summary : "static function  setFormatDelimeter(Object delims)",
-           ref : "logical/o2/StringHelper.html#___setFormatDelimeter",
            parent : "o2.StringHelper",
            type : "function",
            elementType : "function"

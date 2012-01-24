@@ -226,7 +226,7 @@
     me.getDimension = function(obj) {
         obj = $(obj);
 
-        if (!obj || obj.offsetWidth !== undefined) {
+        if (!obj || obj.offsetWidth === undefined) {
             return {
                 width : 0,
                 height : 0

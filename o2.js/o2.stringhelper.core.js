@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 20:02:26.853461
+ *  lastModified: 2012-01-24 08:41:03.402184
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -23,19 +23,6 @@
     var random = Math.random;
 
     /*
-     * Module Configuration
-     */
-    var config = {
-
-        /*
-         *
-         */
-        formatDelimeter : {start : '{', end   : '}' }
-    };
-
-    var cfd = config.formatDelimeter;
-
-    /*
      * Common Constants
      */
     var kBlank               = ' ';
@@ -43,6 +30,8 @@
     var kGlobal              = 'g';
     var kNumeric             = '([0-9]+)';
     var kRandomCharFeed      = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+    var kFormatStart         = '{';
+    var kFormatEnd           = '}';
 
     /*
      * Default length for generating a random <strong>String</strong>s.
@@ -69,24 +58,6 @@
      * <p>A <strong>String</strong> helper <strong>class</strong>.</p>
      */
     me.StringHelper = {
-
-        /**
-         * @function {static} o2.StringHelper.setFormatDelimeter
-         *
-         * <p>The default format delimeter is <code>{start: '{', end: '}'}</code>.
-         * These delimeters are used to create <code>RegExp</code>s for
-         * {@link o2.StringHelper.format}. You can override this default values,
-         * if necessary. Once set, the new values will be used for the rest
-         * of the application.</p>
-         *
-         * @param {Object} delims - An object in the form
-         * <code>{start: startDelim, end: endDelim}</code>.
-         */
-        setFormatDelimeter : function(delims) {
-            cfd.start = delims.start;
-            cfd.end = delims.end;
-        },
-
 
         /**
          * @function {static} o2.StringHelper.generateGuid
@@ -163,9 +134,6 @@
         format : function() {
             var args = arguments;
 
-            var formatStart = cfd.start;
-            var formatEnd = cfd.end;
-
             if (args.length === 0) {
                 return null;
             }
@@ -174,8 +142,8 @@
                 return args[0];
             }
 
-            var pattern = new RegExp([formatStart, kNumeric,
-                formatEnd].join(kEmpty), kGlobal);
+            var pattern = new RegExp([kFormatStart, kNumeric,
+                kFormatEnd].join(kEmpty), kGlobal);
 
             return args[0].replace(pattern, function(match, index) {
                 var dummy = null;

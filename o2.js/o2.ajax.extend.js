@@ -5,6 +5,10 @@
 
    //TODO: add documentation.
     me.getSingle = function(url, parameters, callbacks) {
+//TODO: algo change
+// token = generateGuid
+// request.guid = token
+// if (cache[request.guid]) etc.
         var token = prepareToken(url, parameters);
 
         var request = getCache[token];

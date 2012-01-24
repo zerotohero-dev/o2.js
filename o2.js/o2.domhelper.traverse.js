@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 20:36:02.694293
+ *  lastModified: 2012-01-24 09:08:45.043620
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -25,6 +25,7 @@
     var myName                = framework.name;
     var getAttribute          = me.getAttribute;
     var generateGuid          = framework.StringHelper.generateGuid;
+    var format                = framework.StringHelper.format;
     var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
 
     /*
@@ -36,6 +37,17 @@
     var kEmpty    = '';
     var kId       = 'id';
     var kComma    = ',';
+
+    /*
+     * Query Selector Templates
+     */
+    var kClassSelector                = '.{0}';
+    var kImmediateClassSelector       = '#{0} > .{1}';
+    var kImmediateIdAttributeSelector = '#{0} > [id]';
+    var kImmediateIdSelector          = '#{0} > #{1}';
+    var kImmediateNodeSelector        = '#{0} > {1}';
+
+    var isNativeQuerySupported = !!document.querySelector;
 
     /*
      *
@@ -167,7 +179,7 @@
      * <strong>parent</strong>, <code>false</code> otherwise.
      */
     me.isChild = function(child, parent, isSelfExcluded) {
-        shouldExcludeSelf = !!isSelfExcluded;
+        var shouldExcludeSelf = !!isSelfExcluded;
 
         child = $(child);
         parent = $(parent);
@@ -239,7 +251,7 @@
             return null;
         }
 
-        if (isExcluded) {
+        if (shouldExcludeSelf) {
             obj = obj.parentNode;
         }
 
@@ -371,7 +383,7 @@
         return me.getParentWithAttribute(obj, kId, shouldExcludeSelf);
     };
 
-    if (document.querySelector) {
+    if (isNativeQuerySupported) {
 
         /**
          * @function {static} o2.DomHelper.getFirstChild
@@ -401,8 +413,9 @@
             nodeName = nodeName || kAll;
             nodeName = nodeName.toLowerCase();
 
-            return target.querySelector(['#', target.id, ' > ',
-                nodeName].join(kEmpty));
+            return target.querySelector(
+                format(kImmediateNodeSelector, target.id, nodeName)
+            );
         };
     } else {
         me.getFirstChild = function(targetElm, nodeName) {
@@ -458,7 +471,7 @@
      */
     me.findFirstChild = me.first = me.getFirstChild;
 
-    if (document.querySelector) {
+    if (isNativeQuerySupported) {
         /**
          * @function {static} o2.DomHelper.getFirstChildById
          *
@@ -471,7 +484,7 @@
          * <code>null</code> otherwise.
          */
         me.getFirstChildById = function(targetElm, id) {
-            target = $(targetElm);
+            var target = $(targetElm);
 
             if (!target) {
                 return null;
@@ -481,13 +494,13 @@
                 target.id = [myName, generateGuid()].join(kEmpty);
             }
 
-            //TODO: constant, format
-            return target.querySelector(['#', target.id, ' > #', id
-                ].join(kEmpty));
+            return target.querySelector(
+                format(kImmediateIdSelector, target.id, id)
+            );
         };
     } else {
         me.getFirstChildById = function(targetElm, id) {
-            target = $(targetElm);
+            var target = $(targetElm);
 
             if (!target) {
                 return null;
@@ -530,7 +543,17 @@
      */
     me.findFirstChildById = me.firstById =  me.getFirstChildById;
 
-//TODO: add documentation
+    /**
+     * @function {static} o2.DomHelper.getSiblings
+     *
+     * <p>Gets the same-level siblings.</p>
+     *
+     * @param {DomNode} targetElm - the target, or the <strong>id</strong>
+     * of the target to test.
+     *
+     * @return the same-level siblings if any, an empty <code>Array</code>
+     * otherwise.
+     */
     me.getSiblings = function(targetElm, parentNodeName) {
         var target = $(targetElm);
 
@@ -560,11 +583,24 @@
         return children;
     };
 
-//TODO: add documentation
+    /**
+     * @function {static} o2.DomHelper.siblings
+     *
+     * <p>An alias to {@link o2.DomHelper.getSiblings}.</p>
+     *
+     * @see o2.DomHelper.getSiblings
+     */
+
+    /**
+     * @function {static} o2.DomHelper.findSiblings
+     *
+     * <p>An alias to {@link o2.DomHelper.getSiblings}.</p>
+     *
+     * @see o2.DomHelper.getSiblings
+     */
     me.findSiblings = me.siblings = me.getSiblings;
 
-
-    if (document.querySelector) {
+    if (isNativeQuerySupported) {
         /**
          * @function {static} o2.DomHelper.getFirstChildWithId
          *
@@ -587,9 +623,9 @@
                 target.id = [myName, generateGuid()].join(kEmpty);
             }
 
-            //TODO: constant, format
-            return target.querySelector(['#', target.id, ' > [id]'
-                ].join(kEmpty));
+            return target.querySelector(
+                format(kImmediateIdAttributeSelector, target.id)
+            );
         };
     } else {
         me.getFirstChildWithId = function(targetElm) {
@@ -667,7 +703,7 @@
      */
     me.findLastChild = me.last = me.getLastChild = function(targetElm,
                 nodeName) {
-        target = $(targetElm);
+        var target = $(targetElm);
 
         if (!target) {
             return null;
@@ -739,7 +775,7 @@
      */
     me.findLastChildById = me.lastById = me.getLastChildById = function(
                 targetElm, id) {
-        target = $(targetElm);
+        var target = $(targetElm);
 
         if (!target) {
             return null;
@@ -793,7 +829,7 @@
      */
     me.findLastChildWithId = me.lastWithId = me.getLastChildWithId = function(
                 targetElm) {
-        target = $(targetElm);
+        var target = $(targetElm);
 
         if (!target) {
             return null;
@@ -823,7 +859,7 @@
      *
      * <p>Gets the immediate children of the element.</p>
      *
-     * @param {Object} elem - the <strong>DOM</strong> node, or the
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of that node.
      *
      * @return an <code>Array</code> of nodes, if found; and empty
@@ -845,9 +881,9 @@
      *
      * @see o2.DomHelper.getChildren
      */
-
-    me.findChildren = me.children = me.descendants = me.getChildren = function(elem, nodeName) {
-        var target = $(elem);
+    me.findChildren = me.children = me.descendants = me.getChildren = function(
+                elm, nodeName) {
+        var target = $(elm);
 
         nodeName = nodeName || kEmpty;
 
@@ -862,65 +898,57 @@
 
             if (node.nodeType !== kTextNode) {
                 if (nodeName) {
-                    if (node.nodeName.toLowerCase() === nodeName.toLowerCase()) {
+                    if (node.nodeName.toLowerCase() === nodeName.toLowerCase()
+                    ) {
                         result.push(node);
                     }
                 } else {
                     result.push(node);
                 }
-
             }
         }
 
         return result;
     };
 
-    /**
-     * @function {static} o2.DomHelper.getChildrenByClassName
-     *
-     * <p>Gets immediate descendants, with a given class name, of the
-     * element.</p>
-     *
-     * @param {DomNode} el - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it.
-     * @param {String} c - the className to test.
-     *
-     * @return the immediate descendants with the given class name.
-     */
-    me.getChildrenByClassName = function(el, c) {
-        el = $(el);
+    if (isNativeQuerySupported) {
 
-        if (!el) {
-            return null;
-        }
+        /**
+         * @function {static} o2.DomHelper.getChildrenByClassName
+         *
+         * <p>Gets immediate descendants, with a given class name, of the
+         * element.</p>
+         *
+         * @param {DomNode} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it.
+         * @param {String} c - the className to test.
+         *
+         * @return the immediate descendants with the given class name.
+         */
+        me.getChildrenByClassName = function(elm, c) {
+            var el = $(elm);
 
-        // NOTE: IE7+ supports child selector ( > ),
-        // IE8+ supports querySelectorAll
-        // So it's safe to use the child selector with querySelectorAll:
-        // It'll work as expected in IE8+ and it'll degrade gracefully
-        // in IE7-
+            // NOTE: IE7+ supports child selector ( > ),
+            // IE8+ supports querySelectorAll
+            // So it's safe to use the child selector with querySelectorAll:
+            // It'll work as expected in IE8+ and it'll degrade gracefully
+            // in IE7-
 
-        if(el.querySelectorAll) {
-            me.getChildrenByClassName = function(el, c) {
-                el = $(el);
+            if (!el) {
+                return null;
+            }
 
-                if (!el) {
-                    return null;
-                }
+            if (!el.id) {
+                el.id = [myName, generateGuid()].join(kEmpty);
+            }
 
-                if (!el.id) {
-                    el.id = [myName, generateGuid()].join(kEmpty);
-                }
-
-                return el.querySelectorAll(['#', el.id, ' > .', c
-                    ].join(kEmpty));
-            };
-
-            return me.getChildrenByClassName(el, c);
-        }
-
-        me.getChildrenByClassName = function(el, c) {
-            el = $(el);
+            return el.querySelectorAll(
+                format(kImmediateClassSelector, el.id, c)
+            );
+        };
+    } else {
+        me.getChildrenByClassName = function(elm, c) {
+            var el = $(elm);
 
             if (!el) {
                 return null;
@@ -930,17 +958,7 @@
 
             return filterChildren(children, createClassNameRegExp(c));
         };
-
-        return me.getChildrenByClassName(el, c);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.findChildrenByClassName
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildrenByClassName}.</p>
-     *
-     * @see o2.DomHelper.getChildrenByClassName
-     */
+    }
 
     /**
      * @function {static} o2.DomHelper.childrenByClassName
@@ -949,9 +967,15 @@
      *
      * @see o2.DomHelper.getChildrenByClassName
      */
-    me.childrenByClassName = me.findChildrenByClassName = function(el, c) {
-        return me.getChildrenByClassName(el, c);
-    };
+
+    /**
+     * @function {static} o2.DomHelper.findChildrenByClassName
+     *
+     * <p>An alias to {@link o2.DomHelper.getChildrenByClassName}.</p>
+     *
+     * @see o2.DomHelper.getChildrenByClassName
+     */
+    me.findChildrenByClassName = me.childrenByClassName = me.getChildrenByClassName;
 
     /**
      * @function {static} o2.DomHelper.getPrevious
@@ -1010,20 +1034,12 @@
      *
      * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
      *
-     * @param {DomNode} target - the original node, or the <strong>id</strong> of
-     * it.
+     * @param {DomNode} elmTarget - the original node, or the
+     * <strong>id</strong> of it.
      * @param {String} id - the id to check.
      *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findPreviousById
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
-     *
-     * @see o2.DomHelper.getPreviousById
      */
 
     /**
@@ -1033,8 +1049,17 @@
      *
      * @see o2.DomHelper.getPreviousById
      */
-    me.prevById = me.findPreviousById = me.getPreviousById = function(target, id) {
-        target = $(target);
+
+    /**
+     * @function {static} o2.DomHelper.findPreviousById
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
+     *
+     * @see o2.DomHelper.getPreviousById
+     */
+    me.findPreviousById = me.prevById = me.getPreviousById = function(
+                elmTarget, id) {
+        var target = $(elmTarget);
 
         if (!target) {
             return null;
@@ -1048,7 +1073,6 @@
 
         while(node) {
             if (node.id && node.id === id) {
-
                 return node;
             }
 
@@ -1064,19 +1088,11 @@
      * <p>gets the previous <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the node to start, or the <strong>id</strong> of
-     * it.
+     * @param {DomNode} elmTarget - the node to start, or the
+     * <strong>id</strong> of it.
      *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
-     */
-
-    /**
-     * @function o2.DomHelper.findPreviousWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
-     *
-     * @see o2.DomHelper.getPreviousWithId
      */
 
     /**
@@ -1086,9 +1102,17 @@
      *
      * @see o2.DomHelper.getPreviousWithId
      */
-    me.prevWithId = me.findPreviousWithId = me.getPreviousWithId = function(
-                target) {
-        target = $(target);
+
+    /**
+     * @function o2.DomHelper.findPreviousWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
+     *
+     * @see o2.DomHelper.getPreviousWithId
+     */
+    me.findPreviousWithId = me.prevWithId = me.getPreviousWithId = function(
+                elmTarget) {
+        var target = $(elmTarget);
 
         if (!target) {
             return null;
@@ -1117,7 +1141,7 @@
      * <p>Gets the next <strong>DOM</strong> node sibling that's not a text
      * node.</p>
      *
-     * @param {DomNode} target - the node to start.
+     * @param {DomNode} elmTarget - the node to start.
      *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
@@ -1138,8 +1162,8 @@
      *
      * @see o2.DomHelper.getNext
      */
-    me.findNext = me.next = me.getNext = function(target) {
-        target = $(target);
+    me.findNext = me.next = me.getNext = function(elmTarget) {
+        var target = $(elmTarget);
 
         if (!target) {
             return null;
@@ -1167,8 +1191,8 @@
      *
      * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
      *
-     * @param {DomNode} target - the original node, or the <strong>id</strong> of
-     * it.
+     * @param {DomNode} elmTarget - the original node, or the
+     * <strong>id</strong> of it.
      * @param {String} id - the id to check.
      *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
@@ -1182,8 +1206,8 @@
      *
      * @see o2.DomHelper.getNextById
      */
-    me.findNextById = me.nextById = me.getNextById = function(target, id) {
-        target = $(target);
+    me.findNextById = me.nextById = me.getNextById = function(elmTarget, id) {
+        var target = $(elmTarget);
 
         if (!target) {
             return null;
@@ -1212,19 +1236,11 @@
      * <p>gets the next <strong>DOM</strong> node that has a defined
      * <strong>id</strong> attribute.</p>
      *
-     * @param {DomNode} target - the node to start, or the <strong>id</strong> of
-     * it.
+     * @param {DomNode} elmTarget - the node to start, or the
+     * <strong>id</strong> of it.
      *
      * @return the found <strong>DOM</strong> node if any, <code>null</code>
      * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findNextWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
-     *
-     * @see o2.DomHelper.getNextWithId
      */
 
     /**
@@ -1234,8 +1250,16 @@
      *
      * @see o2.DomHelper.getNextWithId
      */
-    me.nextWithId = me.findNextWithId = me.getNextWithId = function(target) {
-        target = $(target);
+
+    /**
+     * @function {static} o2.DomHelper.findNextWithId
+     *
+     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
+     *
+     * @see o2.DomHelper.getNextWithId
+     */
+    me.findNextWithId = me.nextWithId = me.getNextWithId = function(elmTarget) {
+        var target = $(elmTarget);
 
         if (!target) {
             return null;
@@ -1258,41 +1282,32 @@
         return null;
     };
 
-    /**
-     * @function {static} o2.DomHelper.getElementsByClassName
-     *
-     * <p>Gets all children, with a given class name, of the element.</p>
-     *
-     * @param {DomNode} el - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it.
-     * @param {String} c - the <strong>className</strong> to test.
-     *
-     * @return all of the <strong>element</strong>s with the given <strong>class
-     * name</strong>.
-     */
-    me.getElementsByClassName = function(el, c) {
-        el = $(el);
+    if (isNativeQuerySupported) {
 
-        if (!el) {
-            return null;
-        }
+        /**
+         * @function {static} o2.DomHelper.getElementsByClassName
+         *
+         * <p>Gets all children, with a given class name, of the element.</p>
+         *
+         * @param {DomNode} elm - either the <strong>element</strong>, or the
+         * <strong>id</strong> of it.
+         * @param {String} c - the <strong>className</strong> to test.
+         *
+         * @return all of the <strong>element</strong>s with the given
+         * <strong>class name</strong>.
+         */
+        me.getElementsByClassName = function(elm, c) {
+            var el = $(elm);
 
-        if (el.querySelectorAll) {
-            me.getElementsByClassName = function(el, c) {
-                el = $(el);
+            if (!el) {
+                return null;
+            }
 
-                if (!el) {
-                    return null;
-                }
-
-                return el.querySelectorAll(['.', c].join(kEmpty));
-            };
-
-            return me.getElementsByClassName(el, c);
-        }
-
-        me.getElementsByClassName = function(el, c) {
-            el = $(el);
+            return el.querySelectorAll(format(kClassSelector, c));
+        };
+    } else {
+        me.getElementsByClassName = function(elm, c) {
+            var el = $(elm);
 
             if (!el) {
                 return null;
@@ -1302,9 +1317,7 @@
 
             return filterChildren(children, createClassNameRegExp(c));
         };
-
-        return me.getElementsByClassName(el, c);
-    };
+    }
 
     /**
      * @function {static} o2.DomHelper.prevAll

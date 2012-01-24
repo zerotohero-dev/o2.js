@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327301362#
+	                 version 0.23.#1327389101#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -401,6 +401,15 @@
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___findSiblings"><span class="elementName">findSiblings</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___first"><span class="elementName">first</span></a>()
             </div>
         <div class="summaryItemDesc">
@@ -460,7 +469,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getChildrenByClassName"><span class="elementName">getChildrenByClassName</span></a>
                 (<span class="type">DomNode</span>
- el, <span class="type">String</span>
+ elm, <span class="type">String</span>
  c)
             </div>          
                 <div class="summaryItemDesc">
@@ -516,7 +525,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getElementsByClassName"><span class="elementName">getElementsByClassName</span></a>
                 (<span class="type">DomNode</span>
- el, <span class="type">String</span>
+ elm, <span class="type">String</span>
  c)
             </div>          
                 <div class="summaryItemDesc">
@@ -611,7 +620,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getNext"><span class="elementName">getNext</span></a>
                 (<span class="type">DomNode</span>
- target)
+ elmTarget)
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the next <strong>DOM</strong> node sibling that's not a text
@@ -623,7 +632,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getNextById"><span class="elementName">getNextById</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ elmTarget, <span class="type">String</span>
  id)
             </div>          
                 <div class="summaryItemDesc">
@@ -635,7 +644,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getNextWithId"><span class="elementName">getNextWithId</span></a>
                 (<span class="type">DomNode</span>
- target)
+ elmTarget)
             </div>          
                 <div class="summaryItemDesc">
         <p>gets the next <strong>DOM</strong> node that has a defined
@@ -762,7 +771,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getPreviousById"><span class="elementName">getPreviousById</span></a>
                 (<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ elmTarget, <span class="type">String</span>
  id)
             </div>          
                 <div class="summaryItemDesc">
@@ -774,11 +783,22 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getPreviousWithId"><span class="elementName">getPreviousWithId</span></a>
                 (<span class="type">DomNode</span>
- target)
+ elmTarget)
             </div>          
                 <div class="summaryItemDesc">
         <p>gets the previous <strong>DOM</strong> node that has a defined
  <strong>id</strong> attribute.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getSiblings"><span class="elementName">getSiblings</span></a>
+                (<span class="type">DomNode</span>
+ targetElm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the same-level siblings.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1309,6 +1329,15 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Shows the given object.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___siblings"><span class="elementName">siblings</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -2152,6 +2181,28 @@
                     </div>      
                                 <hr/>       
                                                                                     <h3>
+        <a name="___findSiblings">
+            <span class="objType">function</span>
+            <span class="objName">findSiblings</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    findSiblings()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___first">
             <span class="objType">function</span>
             <span class="objName">first</span>            
@@ -2316,7 +2367,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getChildrenByClassName(<span class="type">DomNode</span>
- el, <span class="type">String</span>
+ elm, <span class="type">String</span>
  c)
                 </code> 
             </div>          
@@ -2332,7 +2383,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            el        </code>
+            elm        </code>
          - either the <strong>element</strong>, or the
  <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
@@ -2346,7 +2397,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the immediate descendants with the given class name.
-     	            	        </div>
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2477,7 +2528,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getElementsByClassName(<span class="type">DomNode</span>
- el, <span class="type">String</span>
+ elm, <span class="type">String</span>
  c)
                 </code> 
             </div>          
@@ -2492,7 +2543,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            el        </code>
+            elm        </code>
          - either the <strong>element</strong>, or the
  <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
@@ -2505,9 +2556,9 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             all of the <strong>element</strong>s with the given <strong>class
- name</strong>.
-     	            	        </div>
+	            	             all of the <strong>element</strong>s with the given
+ <strong>class name</strong>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2815,7 +2866,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getNext(<span class="type">DomNode</span>
- target)
+ elmTarget)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2830,7 +2881,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
+            elmTarget        </code>
          - the node to start.            </div>   
                                         </div>
                 </div>
@@ -2854,7 +2905,7 @@
                     <span class="modifiers"></span>
                     <span class="type"></span>
                     getNextById(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ elmTarget, <span class="type">String</span>
  id)
                 </code> 
             </div>          
@@ -2869,9 +2920,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the original node, or the <strong>id</strong> of
- it.            </div>   
+            elmTarget        </code>
+         - the original node, or the
+ <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             id        </code>
@@ -2898,7 +2949,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getNextWithId(<span class="type">DomNode</span>
- target)
+ elmTarget)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2913,9 +2964,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the node to start, or the <strong>id</strong> of
- it.            </div>   
+            elmTarget        </code>
+         - the node to start, or the
+ <strong>id</strong> of it.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3293,7 +3344,7 @@
                     <span class="modifiers"></span>
                     <span class="type"></span>
                     getPreviousById(<span class="type">DomNode</span>
- target, <span class="type">String</span>
+ elmTarget, <span class="type">String</span>
  id)
                 </code> 
             </div>          
@@ -3308,9 +3359,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the original node, or the <strong>id</strong> of
- it.            </div>   
+            elmTarget        </code>
+         - the original node, or the
+ <strong>id</strong> of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             id        </code>
@@ -3337,7 +3388,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getPreviousWithId(<span class="type">DomNode</span>
- target)
+ elmTarget)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3352,9 +3403,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            target        </code>
-         - the node to start, or the <strong>id</strong> of
- it.            </div>   
+            elmTarget        </code>
+         - the node to start, or the
+ <strong>id</strong> of it.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3362,6 +3413,45 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the found <strong>DOM</strong> node if any, <code>null</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getSiblings">
+            <span class="objType">function</span>
+            <span class="objName">getSiblings</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getSiblings(<span class="type">DomNode</span>
+ targetElm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the same-level siblings.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            targetElm        </code>
+         - the target, or the <strong>id</strong>
+ of the target to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the same-level siblings if any, an empty <code>Array</code>
  otherwise.
      	            	        </div>
         </div>      
@@ -4866,6 +4956,28 @@
                 </div>
                     </div>
                                                     <hr/>       
+                                                                                    <h3>
+        <a name="___siblings">
+            <span class="objType">function</span>
+            <span class="objName">siblings</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    siblings()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___trimField">
             <span class="objType">function</span>
