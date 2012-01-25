@@ -74,10 +74,28 @@
            elementType : "function"
        } ,         
        {
+           localName : "getSingle",
+           fullName : "o2.Ajax.getSingle",
+           summary : "static function  getSingle(String url, Object parameters, Object callbacks)",
+           ref : "logical/o2/Ajax.html#___getSingle",
+           parent : "o2.Ajax",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "post",
            fullName : "o2.Ajax.post",
            summary : "static function  post(String url, Object parameters, Object callbacks, Boolean isSync)",
            ref : "logical/o2/Ajax.html#___post",
+           parent : "o2.Ajax",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "postSingle",
+           fullName : "o2.Ajax.postSingle",
+           summary : "static function  postSingle(String url, Object parameters, Object callbacks)",
+           ref : "logical/o2/Ajax.html#___postSingle",
            parent : "o2.Ajax",
            type : "function",
            elementType : "function"

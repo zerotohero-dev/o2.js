@@ -1,27 +1,113 @@
+/**
+ * @module   ajax.extend
+ * @requires ajax
+ *
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-25 08:34:42.334812
+ * -->
+ *
+ * <p>An AJAX controller that implements the <strong>Observer
+ * Pattern</strong>.</p>
+ */
 (function(framework){
-    //TODO: add documentation.
+    'use strict';
 
     var me = framework.Ajax;
 
-   //TODO: add documentation.
+    var getCache  = {};
+    var postCache = {};
+
+    var kDelimeter = ',';
+
+    /*
+     *
+     */
+    function prepareToken(url, parameters) {
+        var ar = [];
+        var key = null;
+
+        ar.push(url);
+
+        for (key in parameters) {
+            if (parameters.hasOwnProperty(key)) {
+                ar.push(key);
+                ar.push(parameters[key]);
+            }
+        }
+
+        return ar.join(kDelimeter);
+    }
+
+   /**
+    * @function {static} o2.Ajax.getSingle
+    *
+    * <p>Sends a single <strong>AJAX</strong> <strong>GET</strong> request,
+    * and discards further requests until a response comes from the first
+    * request.</p>
+    *
+    * <p>Two requests that have identical <strong>URL</strong>s and parameter
+    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * unique <strong>GET</strong> requests will be fired without waiting for the
+    * other.</p>
+    *
+    * @param {String} url - the URL to send the request.
+    * @param {Object} parameters - parameters collection as a name/value
+    * pair object ({}).
+    * @param {Object} callbacks - An object of the form
+    * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+    * statusText), onaborted: fn(xhr),
+    * onexception: fn(exception, originalXhr)}.
+    * Any of these callbacks are optional.
+    *
+    * @return the active <code>XMLHttpRequest</code> object.
+    *
+    * @see o2.Ajax.get
+    */
     me.getSingle = function(url, parameters, callbacks) {
-//TODO: algo change
-// token = generateGuid
-// request.guid = token
-// if (cache[request.guid]) etc.
         var token = prepareToken(url, parameters);
 
         var request = getCache[token];
 
         if (request && !request.isComplete) {
-            return;
+            return getCache[token];
         }
 
         delete getCache[token];
+
         getCache[token] = me.get(url, parameters, callbacks);
+
+        return getCache[token];
     };
 
-    //TODO: add documentation.
+   /**
+    * @function {static} o2.Ajax.postSingle
+    *
+    * <p>Sends a single <strong>AJAX</strong> <strong>POST</strong> request,
+    * and discards further requests until a response comes from the first
+    * request.</p>
+    *
+    * <p>Two requests that have identical <strong>URL</strong>s and parameter
+    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * unique <strong>POST</strong> requests will be fired without waiting for the
+    * other.</p>
+    *
+    * @param {String} url - the URL to send the request.
+    * @param {Object} parameters - parameters collection as a name/value
+    * pair object ({}).
+    * @param {Object} callbacks - An object of the form
+    * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+    * statusText), onaborted: fn(xhr),
+    * onexception: fn(exception, originalXhr)}.
+    * Any of these callbacks are optional.
+    *
+    * @return the active <code>XMLHttpRequest</code> object.
+    *
+    * @see o2.Ajax.post
+    */
     me.postSingle = function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters);
 
@@ -32,6 +118,7 @@
         }
 
         delete postCache[token];
+
         postCache[token] = me.post(url, parameters, callbacks);
     };
 }(this.o2));

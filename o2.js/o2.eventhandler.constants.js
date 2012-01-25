@@ -11,7 +11,7 @@
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework){
+(function(framework) {
     'use strict';
 
     var me = framework;

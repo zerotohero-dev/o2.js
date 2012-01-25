@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327389101#
+	                 version 0.23.#1327476662#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -131,6 +131,26 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/Ajax.html#___getSingle"><span class="elementName">getSingle</span></a>
+                (<span class="type">String</span>
+ url, <span class="type">Object</span>
+ parameters, <span class="type">Object</span>
+ callbacks)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Sends a single <strong>AJAX</strong> <strong>GET</strong> request,
+ and discards further requests until a response comes from the first
+ request.</p>
+
+ <p>Two requests that have identical <strong>URL</strong>s and parameter
+ name-value pairs, are considered uniqe. This method, ensures that no two
+ unique <strong>GET</strong> requests will be fired without waiting for the
+ other.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/Ajax.html#___post"><span class="elementName">post</span></a>
                 (<span class="type">String</span>
  url, <span class="type">Object</span>
@@ -140,6 +160,26 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Sends an <strong>AJAX POST</strong> request.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Ajax.html#___postSingle"><span class="elementName">postSingle</span></a>
+                (<span class="type">String</span>
+ url, <span class="type">Object</span>
+ parameters, <span class="type">Object</span>
+ callbacks)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Sends a single <strong>AJAX</strong> <strong>POST</strong> request,
+ and discards further requests until a response comes from the first
+ request.</p>
+
+ <p>Two requests that have identical <strong>URL</strong>s and parameter
+ name-value pairs, are considered uniqe. This method, ensures that no two
+ unique <strong>POST</strong> requests will be fired without waiting for the
+ other.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -255,6 +295,70 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___getSingle">
+            <span class="objType">function</span>
+            <span class="objName">getSingle</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getSingle(<span class="type">String</span>
+ url, <span class="type">Object</span>
+ parameters, <span class="type">Object</span>
+ callbacks)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Sends a single <strong>AJAX</strong> <strong>GET</strong> request,
+ and discards further requests until a response comes from the first
+ request.</p>
+
+ <p>Two requests that have identical <strong>URL</strong>s and parameter
+ name-value pairs, are considered uniqe. This method, ensures that no two
+ unique <strong>GET</strong> requests will be fired without waiting for the
+ other.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            url        </code>
+         - the URL to send the request.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parameters        </code>
+         - parameters collection as a name/value
+ pair object ({}).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            callbacks        </code>
+         - An object of the form
+ {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+ statusText), onaborted: fn(xhr),
+ onexception: fn(exception, originalXhr)}.
+ Any of these callbacks are optional.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the active <code>XMLHttpRequest</code> object.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Ajax.html#___get">o2.Ajax.get</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___post">
             <span class="objType">function</span>
             <span class="objName">post</span>            
@@ -313,6 +417,70 @@
          	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___postSingle">
+            <span class="objType">function</span>
+            <span class="objName">postSingle</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    postSingle(<span class="type">String</span>
+ url, <span class="type">Object</span>
+ parameters, <span class="type">Object</span>
+ callbacks)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Sends a single <strong>AJAX</strong> <strong>POST</strong> request,
+ and discards further requests until a response comes from the first
+ request.</p>
+
+ <p>Two requests that have identical <strong>URL</strong>s and parameter
+ name-value pairs, are considered uniqe. This method, ensures that no two
+ unique <strong>POST</strong> requests will be fired without waiting for the
+ other.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            url        </code>
+         - the URL to send the request.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parameters        </code>
+         - parameters collection as a name/value
+ pair object ({}).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            callbacks        </code>
+         - An object of the form
+ {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+ statusText), onaborted: fn(xhr),
+ onexception: fn(exception, originalXhr)}.
+ Any of these callbacks are optional.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the active <code>XMLHttpRequest</code> object.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Ajax.html#___post">o2.Ajax.post</a></div>
+                    </div>      
+                                <hr/>       
                                     </div>
     	    	                                    						        </div>
         		          </div>			                    
@@ -350,10 +518,7 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                <div>
-                                <a href="physical/file-o2/ajax/extend.js.html">o2.ajax.extend.js</a>
-                            </div>                              
-                                                                                                                                                                                                                                                                                                                            <div>
+                                                                                                                                                                                                                                                                                                                                                    <div>
                                 <a href="physical/file-o2/converter.js.html">o2.converter.js</a>
                             </div>                              
                                                                                                                                                                 <div>
@@ -383,6 +548,9 @@
                     <li>
                                                     <div>
                                 <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>

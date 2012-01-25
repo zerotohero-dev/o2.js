@@ -1,10 +1,13 @@
 /**
- * @module domhelper.load
+ * @module   domhelper.load
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-25 09:29:22.238661
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -14,23 +17,39 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.DomHelper;
-    var nill = framework.nill;
-    var Image = window.Image;
-    var setTimeout = window.setTimeout;
+    var me           = framework.DomHelper;
+    var myName       = framework.name;
+    var nill         = framework.nill;
+    var format       = framework.StringHelper.format;
+    var concat       = framework.StringHelper.concat;
+    var generateGuid = framework.StringHelper.generateGuid;
+    var Image        = window.Image;
+    var setTimeout   = window.setTimeout;
 
     /*
-     * Common strings.
+     * Common Strings
      */
-    var kLink = 'link';
-    var kHead = 'head';
-    var kRel = 'rel';
-    var kSheet = 'stylesheet';
-    var kScript = 'script';
-    var kSheetType = 'text/css';
+    var kLink       = 'link';
+    var kHead       = 'head';
+    var kRel        = 'rel';
+    var kSheet      = 'stylesheet';
+    var kScript     = 'script';
+    var kSheetType  = 'text/css';
     var kScriptType = 'text/javascript';
+
+    /*
+     * Common Constants
+     */
+    var kMaxCssCheckAttempt = 500;
+    var kCssCheckInterval   = 100;
+    var kCssId              = concat(myName, '-css-{0}');
+
+    /*
+     * Common Regular Expressions
+     */
+    var kCompleteRegExp = /loaded|complete/;
 
     /**
      * @function {static} o2.DomHelper.loadImage
@@ -91,7 +110,7 @@
         }
 
         s.onreadystatechange = function() {
-            if((/loaded|complete/).test(s.readyState)) {
+            if(kCompleteRegExp.test(s.readyState)) {
                 callback();
             }
         };
@@ -118,35 +137,40 @@
         var s = document.createElement(kLink);
         var x = document.getElementsByTagName(kHead)[0];
 
+        var id = format(kCssId, generateGuid());
+        var counter = 0;
+
         s.setAttribute(kRel, kSheet);
+
+        s.id = id;
         s.type = kSheetType;
         s.href = src;
 
         x.appendChild(s);
 
-        if(!callback) {
-            return;
-        }
+        setTimeout(function check() {
+            var sheets = document.styleSheets;
 
-        s.onreadystatechange = function(){
-            if(/loaded|complete/.test(s.readyState)) {
-                callback();
-            }
-        };
+            var i = 0;
+            var len = 0;
+            var sheet = null;
 
-        s.onload = callback;
+            for (i = 0, len = sheets.length; i < len; i++) {
+                sheet = sheets[i];
+                sheet = sheet.ownerNode || sheet.owningElement;
 
-        (function check(){
-            try {
-                var temp = null;
-                temp = s.sheet.cssRule;
-            } catch(e){
-                setTimeout(check, 20);
-                return;
+                if (sheet && sheet.id === id) {
+                    callback();
+                    break;
+                }
             }
 
-            callback();
-        }());
+            counter++;
+
+            if(counter <= kMaxCssCheckAttempt) {
+                setTimeout(check, kCssCheckInterval);
+            }
+        }, kCssCheckInterval);
     };
 
     /**
