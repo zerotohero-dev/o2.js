@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327476662#
+	                 version 0.23.#1327477895#
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -92,18 +92,6 @@
             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers"></span>
-                <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___convertObjectToArray"><span class="elementName">convertObjectToArray</span></a>
-                (<span class="type">Object</span>
- obj, <span class="type">Boolean</span>
- isDeep)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2/ObjectHelper.html#___copyMethods"><span class="elementName">copyMethods</span></a>
@@ -116,13 +104,16 @@
  <strong>child</strong></p>.    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___toArray"><span class="elementName">toArray</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/ObjectHelper.html#___convertObjectToArray">o2.ObjectHelper.convertObjectToArray</a>.</p>    </div>  
+                <a href="logical/o2/ObjectHelper.html#___toArray"><span class="elementName">toArray</span></a>
+                (<span class="type">Object</span>
+ obj, <span class="type">Boolean</span>
+ isDeep)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -131,53 +122,6 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
-        <a name="___convertObjectToArray">
-            <span class="objType">function</span>
-            <span class="objName">convertObjectToArray</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers"></span>
-                    <span class="type"></span>
-                    convertObjectToArray(<span class="type">Object</span>
- obj, <span class="type">Boolean</span>
- isDeep)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the <code>Object</code> to convert to an
- <code>Array</code>.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isDeep        </code>
-         - (optional, defaults to <code>false</code>),
- if <code>true</code>, a deep conversion is issued, converting all the
- nested <code>Object</code> to <code>Array</code>s as well; otherwise a
- <strong>shallow</strong> conversion is done, where only the top-level
- elements are scanned.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the converted <code>Array</code>.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
         <a name="___copyMethods">
             <span class="objType">function</span>
             <span class="objName">copyMethods</span>            
@@ -222,22 +166,47 @@
             <span class="objName">toArray</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
-                    <span class="modifiers">static</span>
+                    <span class="modifiers"></span>
                     <span class="type"></span>
-                    toArray()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/ObjectHelper.html#___convertObjectToArray">o2.ObjectHelper.convertObjectToArray</a>.</p>
+                    toArray(<span class="type">Object</span>
+ obj, <span class="type">Boolean</span>
+ isDeep)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/ObjectHelper.html#___convertObjectToArray">o2.ObjectHelper.convertObjectToArray</a></div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to convert to an
+ <code>Array</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            isDeep        </code>
+         - (optional, defaults to <code>false</code>),
+ if <code>true</code>, a deep conversion is issued, converting all the
+ nested <code>Object</code> to <code>Array</code>s as well; otherwise
+ a <strong>shallow</strong> conversion is done, where only the
+ top-level elements are scanned.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the converted <code>Array</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                     </div>
     	    	                                    						        </div>
         		          </div>			                    

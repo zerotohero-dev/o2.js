@@ -2306,15 +2306,6 @@
            elementType : "logical_container"
        } ,         
        {
-           localName : "convertObjectToArray",
-           fullName : "o2.ObjectHelper.convertObjectToArray",
-           summary : "function convertObjectToArray(Object obj, Boolean isDeep)",
-           ref : "logical/o2/ObjectHelper.html#___convertObjectToArray",
-           parent : "o2.ObjectHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "copyMethods",
            fullName : "o2.ObjectHelper.copyMethods",
            summary : "static function  copyMethods(Object child, Object base)",
@@ -2326,7 +2317,7 @@
        {
            localName : "toArray",
            fullName : "o2.ObjectHelper.toArray",
-           summary : "static function  toArray()",
+           summary : "function toArray(Object obj, Boolean isDeep)",
            ref : "logical/o2/ObjectHelper.html#___toArray",
            parent : "o2.ObjectHelper",
            type : "function",
