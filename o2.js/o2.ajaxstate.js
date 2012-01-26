@@ -5,6 +5,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-26 08:30:47.431820
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -13,15 +15,14 @@
 (function(framework, window) {
     'use strict';
 
-    var setTimeout = window.setTimeout;
-    var clearTimeout = window.clearTimeout;
-
     //*
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me           = framework;
+    var setTimeout   = window.setTimeout;
+    var clearTimeout = window.clearTimeout;
 
     /*
      * Common string constants.
@@ -49,8 +50,10 @@
          * <strong>observer</strong>s.</p>
          */
         init : function() {
-            var listen = o2.AjaxState.protecteds.listen;
-            listen(this);
+            // We use implicit this, instead of explicity using
+            // o2.AjaxState.protecteds.listen, because o2.JsonpState inherits
+            // o2.AjaxState, and in o2.JsonpState this refers to o2.JsonpState.
+            this.protecteds.listen(this);
         },
 
         /**
@@ -63,14 +66,15 @@
          * @param {Object} observer - the <code>Observer</code> to register.
          */
         addObserver : function(observer) {
-            var hasObserver = o2.AjaxState.protecteds.hasObserver;
+            var protecteds = this.protecteds;
+            var hasObserver = protecteds.hasObserver;
 
             //!
-            if (hasObserver.apply(o2.AjaxState.protecteds, [observer])) {
+            if (hasObserver.apply(protecteds, [observer])) {
                 return;
             }
 
-            var observers = o2.AjaxState.protecteds.observers;
+            var observers = protecteds.observers;
 
             observers.push({
                 object : observer,
@@ -91,7 +95,7 @@
          * @param {Object} observer - the <code>Observer</code> to remove.
          */
         deleteObserver : function(observer) {
-            var observers = o2.AjaxState.protecteds.observers;
+            var observers = this.protecteds.observers;
             var i = 0;
             var len = 0;
 
@@ -122,7 +126,7 @@
          * @return the number of registered <code>Observer</code>s.
          */
         countObservers : function() {
-            return o2.AjaxState.protecteds.observers.length;
+            return this.protecteds.observers.length;
         },
 
         /**
@@ -133,7 +137,7 @@
          * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
          */
         deleteObservers : function() {
-            o2.AjaxState.protecteds.observers.length = 0;
+            this.protecteds.observers.length = 0;
         },
 
         /**
@@ -158,8 +162,6 @@
                     isTimedOut : true,
                     data : data
                 });
-
-                observer.unregister(this);
             }
         },
 
@@ -172,7 +174,7 @@
          * @param {Object} data - the data to pass to the <code>Observer</code>s.
          */
         timeoutAllObservers : function(data) {
-            o2.AjaxState.timeoutObservers(o2.AjaxState.protecteds.observers, data);
+            this.timeoutObservers(this.protecteds.observers, data);
         },
 
         /**
@@ -229,8 +231,13 @@
                 //     AjaxState.hasObserver);
                 //
                 // will not change this fact.
+                //
+                // So we use a protecteds.observers member and override it in
+                // o2.JsonpState, instead of using a private protecteds
+                // instance, which will incorrectly be share among o2.JsonpState
+                // and o2.AjaxState
 
-                var observers = o2.AjaxState.protecteds.observers;
+                var observers = this.protecteds.observers;
                 var i = 0;
                 var len = 0;
 
@@ -252,22 +259,26 @@
              * method in the <code>Observer</code> pattern.
              */
             listen : function(stateObject) {
-                var now = (new Date()).getTime();
                 var observer = null;
                 var meta = null;
                 var timeout = null;
                 var registrationTime = null;
                 var shouldNotifyObserver = false;
                 var unregisterQueue = [];
-                var i = 0;
+
                 var observers = stateObject.protecteds.observers;
                 var config = stateObject.protecteds.config;
                 var state = stateObject.protecteds.state;
                 var listen = stateObject.protecteds.listen;
+
+                var now = (new Date()).getTime();
+
+                var i = 0;
                 var len = observers.length;
 
                 if (!len) {
                     clearTimeout(state.listenTimeoutId);
+
                     state.listenTimeoutId = setTimeout(function() {
                         listen(stateObject);
                     }, config.LISTEN_TIMEOUT);
@@ -275,7 +286,7 @@
                     return;
                 }
 
-                for (i = 0, len = observers.length; i < len; i++) {
+                for (i = 0; i < len; i++) {
                     observer = observers[i];
                     meta = observer.meta;
                     timeout = meta.timeout;
@@ -298,6 +309,7 @@
                 stateObject.timeoutObservers(unregisterQueue);
 
                 clearTimeout(state.listenTimeoutId);
+
                 state.listenTimeoutId = setTimeout(function() {
                     stateObject.protecteds.listen(stateObject);
                 }, config.LISTEN_TIMEOUT);

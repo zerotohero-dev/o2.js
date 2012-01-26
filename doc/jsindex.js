@@ -308,10 +308,55 @@
            elementType : "function"
        } ,         
        {
+           localName : "each",
+           fullName : "o2.CollectionHelper.each",
+           summary : "static function  each()",
+           ref : "logical/o2/CollectionHelper.html#___each",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "filter",
+           fullName : "o2.CollectionHelper.filter",
+           summary : "static function  filter(Object collection, Function fnFilter)",
+           ref : "logical/o2/CollectionHelper.html#___filter",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "first",
+           fullName : "o2.CollectionHelper.first",
+           summary : "static function  first()",
+           ref : "logical/o2/CollectionHelper.html#___first",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "forEach",
+           fullName : "o2.CollectionHelper.forEach",
+           summary : "static function  forEach(Object collection, Function delegate)",
+           ref : "logical/o2/CollectionHelper.html#___forEach",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getFirst",
            fullName : "o2.CollectionHelper.getFirst",
-           summary : "function getFirst(Object ar)",
+           summary : "static function  getFirst(Object ar)",
            ref : "logical/o2/CollectionHelper.html#___getFirst",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getKeys",
+           fullName : "o2.CollectionHelper.getKeys",
+           summary : "static function  getKeys(Object collection)",
+           ref : "logical/o2/CollectionHelper.html#___getKeys",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -319,7 +364,7 @@
        {
            localName : "getLast",
            fullName : "o2.CollectionHelper.getLast",
-           summary : "function getLast(Object ar)",
+           summary : "static function  getLast(Object ar)",
            ref : "logical/o2/CollectionHelper.html#___getLast",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -330,6 +375,24 @@
            fullName : "o2.CollectionHelper.indexOf",
            summary : "static function  indexOf(Object ar, Object elm)",
            ref : "logical/o2/CollectionHelper.html#___indexOf",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "keys",
+           fullName : "o2.CollectionHelper.keys",
+           summary : "static function  keys()",
+           ref : "logical/o2/CollectionHelper.html#___keys",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "last",
+           fullName : "o2.CollectionHelper.last",
+           summary : "static function  last()",
+           ref : "logical/o2/CollectionHelper.html#___last",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -357,6 +420,15 @@
            fullName : "o2.CollectionHelper.removeElementByValue",
            summary : "static function  removeElementByValue(Object collection, String name, Object value, Boolean isRecursive)",
            ref : "logical/o2/CollectionHelper.html#___removeElementByValue",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "toArray",
+           fullName : "o2.CollectionHelper.toArray",
+           summary : "static function  toArray(Object collection, Boolean shouldRecurse)",
+           ref : "logical/o2/CollectionHelper.html#___toArray",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"

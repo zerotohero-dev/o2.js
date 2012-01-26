@@ -1,5 +1,5 @@
 /**
- * @module ajax.core
+ * @module   ajax.core
  * @requires stringhelper.core
  *
  * <!--
@@ -12,6 +12,11 @@
  */
 (function(framework, window) {
     'use strict';
+
+//TODO: generate dependency tree by parsing these statements.
+//TODO: implement these:
+//    framework.provide('ajax.core');
+//    framework.require('stringhelper.core');
 
     /*
      * Aliases.

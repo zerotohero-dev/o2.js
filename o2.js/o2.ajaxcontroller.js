@@ -1,11 +1,13 @@
 /**
- * @module ajaxcontroller
+ * @module   ajaxcontroller
  * @requires ajaxstate
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-26 08:01:42.653046
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -15,10 +17,10 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
-    var nill = framework.nill;
+    var me          = framework;
+    var nill        = framework.nill;
     var addObserver = framework.AjaxState.addObserver;
 
     /**

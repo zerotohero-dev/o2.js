@@ -4,6 +4,8 @@
 #      All the other dependencies are listed and updated in this file.        #
 ###############################################################################
 
+//TODO: this file has not been updated for a while, it may not be %100 accurate.
+
 o2.ajax.js
 	o2.stringhelper.core.js
 o2.ajaxcontroller.js

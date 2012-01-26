@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.#1327477895#
+ * @version 0.23.#1327564099#
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -81,7 +81,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '#1327477895#';
+    me.build = '#1327564099#';
 
     /**
      * @function {static} o2.$

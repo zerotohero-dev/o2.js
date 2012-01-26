@@ -1,11 +1,13 @@
 /**
- * @module jsonpstate
+ * @module   jsonpstate
  * @requires ajaxstate
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-26 08:27:37.092224
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
@@ -16,17 +18,20 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me    = framework;
     var clone = framework.MethodHelper.bind;
 
     /*
-     * Base Class.
+     * Base Class
      */
-    var base = framework.AjaxState;
+    var base          = framework.AjaxState;
     var baseProtected = base.protecteds;
-    var key = '';
+
+    /*
+     * Common Constants
+     */
     var kFunction = 'function';
 
     /**
@@ -62,20 +67,21 @@
         }
     };
 
-    for (key in base) {
-        if (base.hasOwnProperty(key)) {
-            if (typeof base[key] === kFunction) {
-                me.JsonpState[key] = clone(me.JsonpState, base[key]);
+    function copy(root, base) {
+        var key = null;
+
+        for (key in base) {
+            if (base.hasOwnProperty(key)) {
+                if (typeof base[key] === kFunction) {
+                    root[key] = clone(root, base[key]);
+                }
             }
         }
     }
 
-    for (key in baseProtected) {
-        if (baseProtected.hasOwnProperty(key)) {
-            if (typeof baseProtected[key] === kFunction) {
-                me.JsonpState.protecteds[key] = clone(me.JsonpState.protecteds,
-                    baseProtected[key]);
-            }
-        }
-    }
+    var myState      = me.JsonpState;
+    var myProtecteds = myState.protecteds;
+
+    copy(myState     , base);
+    copy(myProtecteds, baseProtected);
 }(this.o2));
