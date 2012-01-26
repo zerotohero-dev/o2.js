@@ -1,4 +1,8 @@
-//TODO: add documentation.
+/**
+ * @module o2.FormHelper
+ * 
+ * <p>A <strong>HTML</strong> form helper module.</p>
+ */
 (function(framework){
 
 

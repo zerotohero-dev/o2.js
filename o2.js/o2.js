@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.#1327564099#
+ * @version 0.23.#1327564891#
  * @author Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -13,7 +13,9 @@
 this.o2 = {};
 
 /**
- *
+ * @module core
+ * 
+ * <p>The core module.</p>
  */
 (function(framework, window, document) {
     'use strict';
@@ -81,7 +83,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '#1327564099#';
+    me.build = '#1327564891#';
 
     /**
      * @function {static} o2.$
@@ -129,7 +131,6 @@ this.o2 = {};
 
         return p.getElementsByTagName(tagName);
     };
-
 
     /**
      * @function {static} o2.n

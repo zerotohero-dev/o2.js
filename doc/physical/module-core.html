@@ -13,7 +13,7 @@
 			    loc = loc.split('/');
 			    loc.pop();
 			    loc = loc.join('/');
-			    loc += '/' + '../../';
+			    loc += '/' + '../';
 			
 			    document.write("<base href='" + loc + "'></base>");
 			})();
@@ -58,7 +58,7 @@
 			                    <hr/>
 						        <div>
 						        						        		<H2>
-        <span class="objType">Class</span> o2.Validator
+        <span class="objType">Module</span> core
     </H2>
     
 
@@ -66,17 +66,16 @@
     <!-- description -->
     <div>
        <code>
-            <span class="modifiers">static</span>
-            <span class="objType">class</span> 
-            <b>o2.Validator</b>
+            <span class="modifiers"></span>
+            <span class="objType">module</span> 
+            <b>core</b>
        </code>
     </div>
-                <div class="comment"><p>A simple class for validating various kinds of
- <strong>object</strong>s.</p>
+                <div class="comment"><p>The core module.</p>
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/validator/module-core.html">validator.core</a>
+        <a href="physical/file-o2.js.html">o2.js</a>
         <hr/> 
     <p />
     
@@ -84,7 +83,59 @@
                                 
                     
     
-                    
+                <div class="summaryTable property">
+            <div class="summaryTableHeader">
+                <span class="objType">Property</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___build"><span class="elementName">build</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Project build number.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___longName"><span class="elementName">longName</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Full name of the project.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___name"><span class="elementName">name</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Short name of the framework, to be used in
+ prefixes, class names etc.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___url"><span class="elementName">url</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>URL of the project.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">String</span>
+        <a href="logical/o2.html#___version"><span class="elementName">version</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Project version.</p>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
             
                 <div class="summaryTable function">
             <div class="summaryTableHeader">
@@ -92,191 +143,176 @@
             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers">private</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___is"><span class="elementName">is</span></a>
-                (<span class="type">Object</span>
- obj, <span class="type">String</span>
- type)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Returns the type information of the given object.</p>
- <p>The type can be any of the following:</p>
- <p><code>Array, Boolean, Date, Error, Function, JSON,
- Math, Number, Object, RegExp, String, Arguments</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isArguments"><span class="elementName">isArguments</span></a>
+                <a href="logical/o2.html#___$"><span class="elementName">$</span></a>
                 (<span class="type">Object</span>
  obj)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>arguments</code> object.</p>    </div>  
+        <p>An alias for <code>document.getElementById</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isArray"><span class="elementName">isArray</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2.html#___load"><span class="elementName">load</span></a>
+                (<span class="type">Function</span>
+ callback)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>Array</code>.</p>    </div>  
+        <p>An alias for <code>EventHandler.addEventListener(window, 'load',
+ callback)</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isBoolean"><span class="elementName">isBoolean</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Boolean</code>.    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isDate"><span class="elementName">isDate</span></a>
-                (<span class="type">Arguments</span>
- varargin)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Date</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isEmail"><span class="elementName">isEmail</span></a>
+                <a href="logical/o2.html#___n"><span class="elementName">n</span></a>
                 (<span class="type">String</span>
- mail)
+ tagName, <span class="type">DOMNode</span>
+ parent)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Did you know that <code>Abc\@def@example.com</code>, and
- <code>customer/department=shipping@example.com</code> are all valid
- e-mails?</p>
- <p>There is no good (and realistic) regular expression to match an e-mail
- address.<p>
- <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
- for that.</p>
- <p>This method matches <strong>e-mail</strong> addresses, while giving
- some false-positives.</p>
- <p>The correct action to validate an <strong>e-mail</strong> address is
- to validate by trying
- (i.e. try sending an account activation <strong>e-mail</strong> to a
- newly registered user, for example.).</p>    </div>  
+        <p>A <code>getElementsByName</code> wrapper.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___nill"><span class="elementName">nill</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An empty function.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isFunction"><span class="elementName">isFunction</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2.html#___ready"><span class="elementName">ready</span></a>
+                (<span class="type">Function</span>
+ callback)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Function</code>.</p>    </div>  
+        <p>An alias for <code>DomHelper.ready</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isNumber"><span class="elementName">isNumber</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Number</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isObject"><span class="elementName">isObject</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>Object</code>({}).</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isRegExp"><span class="elementName">isRegExp</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>RegExp</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isString"><span class="elementName">isString</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>String</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isUrl"><span class="elementName">isUrl</span></a>
+                <a href="logical/o2.html#___t"><span class="elementName">t</span></a>
                 (<span class="type">String</span>
- url)
+ tagName, <span class="type">DOMNode</span>
+ parent)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given argument is a valid <strong>URL</strong>
- address.</p>    </div>  
+        <p>A <code>getElementsByTagName</code> wrapper.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isWhitespace"><span class="elementName">isWhitespace</span></a>
+                <a href="logical/o2.html#___tt"><span class="elementName">tt</span></a>
                 (<span class="type">String</span>
- text)
+ tagName, <span class="type">DOMNode</span>
+ parent)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given argument consists of only whitespace
- characters.</p>    </div>  
+        <p>Acts similar to {link t} -- with one exception: The method
+ returns the first matched node, instead of returning a node
+ collection.</p>    </div>  
                             </div>
                 </div>
         <p/>
                 
                     <!-- ============== Details coming here =================== -->
-    	    	    	    	            <div class="details function">
+    	    	            <div class="details property">
+            <h2 class="sectionHeader">Property Details</h2>
+                                                            
+            <h3>
+        <a name="___build">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">build</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Project build number.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___longName">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">longName</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Full name of the project.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___name">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">name</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Short name of the framework, to be used in
+ prefixes, class names etc.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___url">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">url</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>URL of the project.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
+        <a name="___version">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">String</span>
+            <span class="objName">version</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Project version.</p>
+
+     </div>    
+                                        <hr />  
+                                    </div>
+    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
-        <a name="___is">
+        <a name="___$">
             <span class="objType">function</span>
-            <span class="objName">is</span>            
+            <span class="objName">$</span>            
         </a> 
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">private</span>
+                    <span class="modifiers">static</span>
                     <span class="type"></span>
-                    is(<span class="type">Object</span>
- obj, <span class="type">String</span>
- type)
+                    $(<span class="type">Object</span>
+ obj)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Returns the type information of the given object.</p>
- <p>The type can be any of the following:</p>
- <p><code>Array, Boolean, Date, Error, Function, JSON,
- Math, Number, Object, RegExp, String, Arguments</code>.</p>
+        <p>An alias for <code>document.getElementById</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -287,76 +323,133 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the object to check type against.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            type        </code>
-         - the type to compare.            </div>   
+         - the id to check.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the <strong>object</strong>'s type matches
- the <strong>type</strong> parameter, <code>false</code> otherwise.
+	            	             document.getElementById(obj) if obj is a <code>String</code>;
+ obj itself otherwise.
+
+ 	            	        </div>
+        </div>      
+            	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">exception - if obj is <code>undefined</code>.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
+        <a name="___load">
+            <span class="objType">function</span>
+            <span class="objName">load</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    load(<span class="type">Function</span>
+ callback)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>An alias for <code>EventHandler.addEventListener(window, 'load',
+ callback)</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            callback        </code>
+         - The callback to execute when window is
+ loaded.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___n">
+            <span class="objType">function</span>
+            <span class="objName">n</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    n(<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>A <code>getElementsByName</code> wrapper.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            tagName        </code>
+         - the name of the form item to search.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            parent        </code>
+         - (optional defaults to <code>document</code>)
+ the parent container, or the id of the parent container, to search.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a collection of matching elements.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isArguments">
+        <a name="___nill">
             <span class="objType">function</span>
-            <span class="objName">isArguments</span>            
+            <span class="objName">nill</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isArguments(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is an <code>arguments</code> object.</p>
+                    nill()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An empty function.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>arguments</code> object,
- <code>false</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
+                                                    <hr/>       
                                                                                     <h3>
-        <a name="___isArray">
+        <a name="___ready">
             <span class="objType">function</span>
-            <span class="objName">isArray</span>            
+            <span class="objName">ready</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isArray(<span class="type">Object</span>
- obj)
+                    ready(<span class="type">Function</span>
+ callback)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is an <code>Array</code>.</p>
+        <p>An alias for <code>DomHelper.ready</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -366,36 +459,30 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            callback        </code>
+         - The callback to execute when DOM is
+ ready.            </div>   
                                         </div>
                 </div>
                     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>Array</code>,
- <code>false</code>
- otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
+                                                    <hr/>       
                                                                                     <h3>
-        <a name="___isBoolean">
+        <a name="___t">
             <span class="objType">function</span>
-            <span class="objName">isBoolean</span>            
+            <span class="objName">t</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isBoolean(<span class="type">Object</span>
- obj)
+                    t(<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>Boolean</code>.
+        <p>A <code>getElementsByTagName</code> wrapper.</p>
 
      </div>
         	<div class="parameters">
@@ -405,128 +492,42 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Boolean</code>,
- <code>false</code>
- otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isDate">
-            <span class="objType">function</span>
-            <span class="objName">isDate</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isDate(<span class="type">Arguments</span>
- varargin)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is a <code>Date</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
+            tagName        </code>
+         - the name of the tag to search.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            varargin        </code>
-         - if a single argument is given it checks
- whether it identifies a <code>Date</code> object. Otherwise the
- function takes
- three parameters (year, month, date) and cheks whether they denote a
- valid Date.            </div>   
+            parent        </code>
+         - (optional defaults to <code>document</code>)
+ the parent container, or the id of the parent container, to search.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Date</code>,
- <code>false</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isEmail">
-            <span class="objType">function</span>
-            <span class="objName">isEmail</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isEmail(<span class="type">String</span>
- mail)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Did you know that <code>Abc\@def@example.com</code>, and
- <code>customer/department=shipping@example.com</code> are all valid
- e-mails?</p>
- <p>There is no good (and realistic) regular expression to match an e-mail
- address.<p>
- <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
- for that.</p>
- <p>This method matches <strong>e-mail</strong> addresses, while giving
- some false-positives.</p>
- <p>The correct action to validate an <strong>e-mail</strong> address is
- to validate by trying
- (i.e. try sending an account activation <strong>e-mail</strong> to a
- newly registered user, for example.).</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            mail        </code>
-         - the <strong>e-mail</strong> address to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if the <strong>e-mail</strong> address is a
- potentially valid e-mail, <code>false</code> otherwise.
+	            	             a collection of matching elements.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isFunction">
+        <a name="___tt">
             <span class="objType">function</span>
-            <span class="objName">isFunction</span>            
+            <span class="objName">tt</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isFunction(<span class="type">Object</span>
- obj)
+                    tt(<span class="type">String</span>
+ tagName, <span class="type">DOMNode</span>
+ parent)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>Function</code>.</p>
+        <p>Acts similar to {link t} -- with one exception: The method
+ returns the first matched node, instead of returning a node
+ collection.</p>
 
      </div>
         	<div class="parameters">
@@ -536,247 +537,21 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Function</code>,
- <code>false</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isNumber">
-            <span class="objType">function</span>
-            <span class="objName">isNumber</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isNumber(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is a <code>Number</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
+            tagName        </code>
+         - the name of the tag to search.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            parent        </code>
+         - (optional defaults to <code>document</code>)
+ the parent container, or the id of the parent container, to search.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Number</code>,
- <code>false</code>
+	            	             the first matched element if found; <code>null</code>
  otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isObject">
-            <span class="objType">function</span>
-            <span class="objName">isObject</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isObject(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is an <code>Object</code>({}).</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>Object</code> ({}),
- <code>false</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isRegExp">
-            <span class="objType">function</span>
-            <span class="objName">isRegExp</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isRegExp(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is a <code>RegExp</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>RegExp</code>,
- <code>false</code>
- otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isString">
-            <span class="objType">function</span>
-            <span class="objName">isString</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isString(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is a <code>String</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             true if obj is a String, false otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isUrl">
-            <span class="objType">function</span>
-            <span class="objName">isUrl</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isUrl(<span class="type">String</span>
- url)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the given argument is a valid <strong>URL</strong>
- address.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            url        </code>
-         - the address to check.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if the address is a valid <strong>URL</strong>,
- <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isWhitespace">
-            <span class="objType">function</span>
-            <span class="objName">isWhitespace</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isWhitespace(<span class="type">String</span>
- text)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the given argument consists of only whitespace
- characters.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            text        </code>
-         - the text to check.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if the argument consists of only whitespace
- characters, <code>false</code> otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -787,7 +562,7 @@
         	       </div>
              </div>
              <div class="navigation" id="navigation">
-    <ul class="navContent">
+    <ul class="navContent closed">
         <li>
             <div class="navTree">
                 <h2 onclick="jgdoc.NavPanel.clicked(event)">
@@ -822,7 +597,7 @@
             </div>
         </li>       
     </ul>
-    <ul class="navContent closed">
+    <ul class="navContent">
         <li>
             <div class="moduleTree">
                 <h2 onclick="jgdoc.NavPanel.clicked(event)">
@@ -973,7 +748,7 @@
 	</body>
     <script type="text/javascript">
         jgdoc.Searcher.start();
-        jgdoc.NavTree.initialize("o2.Validator");
+        jgdoc.NavTree.initialize("module-core");
     </script>			
 	<script type="text/javascript" src="jsindex.js">
     </script>

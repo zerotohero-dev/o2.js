@@ -1,3 +1,8 @@
+/**
+ * @module effect
+ * 
+ * <p>not implemented.</p>
+ */
 ( function() {
 
     // Strict mode on.

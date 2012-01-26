@@ -1,3 +1,8 @@
+/**
+ * @module datehelper
+ * 
+ * <p>A <code>Date</code> helper module.</p>
+ */
 (function(framework){
     var timeFormats = [
         [60         , kSeconds     , 1                ],
