@@ -1,5 +1,6 @@
 /**
- * @module timer
+ * @module   timer
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -11,6 +12,7 @@
  *
  * <p>A static class for timeout related operations.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

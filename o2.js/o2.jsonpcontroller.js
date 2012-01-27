@@ -1,5 +1,5 @@
 /**
- * @module jsonpcontroller
+ * @module   jsonpcontroller
  * @requires ajaxcontroller
  *
  * <!--
@@ -11,6 +11,7 @@
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

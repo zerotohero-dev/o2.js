@@ -12,6 +12,7 @@
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

@@ -9,6 +9,7 @@
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

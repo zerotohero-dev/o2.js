@@ -1,5 +1,5 @@
 /**
- * @module domhelper.class
+ * @module   domhelper.class
  * @requires stringhelper.core
  * @requires domhelper.core
  *
@@ -11,17 +11,19 @@
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
+
 (function(framework) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var $ = framework.$;
-    var me = framework.DomHelper;
+    var $      = framework.$;
+    var concat = framework.StringHelper.concat;
+    var me     = framework.DomHelper;
 
     /*
-     * Common constants.
+     * Common Constants
      */
     var kBlank = ' ';
     var kEmpty = '';
@@ -37,7 +39,7 @@
      * @returns a <code>RegExp</code> that matches the given class name.
      */
     me.createClassNameRegExp = function(c) {
-        return new RegExp(['(\\s|^)', c, '(\\s|$)'].join(''));
+        return new RegExp(concat('(\\s|^)', c, '(\\s|$)'));
     };
 
     /**
@@ -82,7 +84,7 @@
             return;
         }
 
-        el.className += [kBlank, c].join(kEmpty);
+        el.className += concat(kBlank, c);
     };
 
     /**

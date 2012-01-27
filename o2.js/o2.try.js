@@ -14,6 +14,7 @@
  * <p>Even if an error occurs when calling a <code>function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
+
 (function(framework) {
     'use strict';
 

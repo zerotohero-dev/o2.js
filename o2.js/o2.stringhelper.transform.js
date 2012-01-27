@@ -1,5 +1,5 @@
 /**
- * @module stringhelper.transform
+ * @module   stringhelper.transform
  * @requires stringhelper.core
  *
  * <!--
@@ -13,6 +13,7 @@
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
+
 (function(framework) {
     'use strict';
 

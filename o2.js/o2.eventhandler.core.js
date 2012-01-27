@@ -1,5 +1,5 @@
 /**
- * @module eventhandler.core
+ * @module   eventhandler.core
  * @requires stringhelper.core
  * @requires eventhandler.constants
  *
@@ -11,38 +11,31 @@
  *
  * <p>A cross-browser event management object.</p>
  */
+
 (function(framework, window) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.EventHandler;
-    var $ = framework.$;
+    var me     = framework.EventHandler;
+    var $      = framework.$;
     var format = framework.StringHelper.format;
-    var nill = framework.nill;
+    var concat = framework.StringHelper.concat;
+    var nill   = framework.nill;
 
     /*
-     * Module configuration.
-     */
-    var config = {
-        constants : {
-            text : {
-                err : {
-                    CALLBACK_NOT_DEFINED : '{0}: Callback is not defined!'
-                }
-            }
-        }
-    };
-
-    /*
-     * Common constants.
+     * Common Constants
      */
     var kRemoveEventListener = 'removeEventListener';
-    var kAddEventListener = 'addEventListener';
-    var kOn = 'on';
-    var kEmpty = '';
-    var kCallbackTemplate = config.constants.text.err.CALLBACK_NOT_DEFINED;
+    var kAddEventListener    = 'addEventListener';
+    var kOn                  = 'on';
+    var kEmpty               = '';
+    var kCallbackTemplate    = '{0}: Callback is not defined!';
+
+
+
+//TODO: if document.addEventListener
 
     /**
      * @function {static} o2.EventHandler.addEventListener
@@ -107,7 +100,7 @@
                     throw kCallbackNotDefined;
                 }
 
-                var onEvent = [kOn, evt].join(kEmpty);
+                var onEvent = concat(kOn, evt);
                 obj.attachEvent(onEvent, fn);
             };
 
@@ -127,7 +120,7 @@
                 throw kCallbackNotDefined;
             }
 
-            var onEvent = [kOn, evt].join(kEmpty);
+            var onEvent = concat(kOn, evt);
 
             obj[onEvent] = fn;
         };
@@ -220,7 +213,7 @@
                     throw kCallbackNotDefined;
                 }
 
-                var onEvent = [kOn, evt].join(kEmpty);
+                var onEvent = concat(kOn, evt);
                 obj.detachEvent(onEvent, fn);
             };
 
@@ -241,7 +234,7 @@
                 throw kCallbackNotDefined;
             }
 
-            var onEvent = [kOn, evt].join(kEmpty);
+            var onEvent = concat(kOn, evt);
 
             obj[onEvent] = nill;
         };

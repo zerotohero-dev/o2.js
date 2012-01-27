@@ -11,6 +11,7 @@
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
+
 (function(framework) {
     'use strict';
 

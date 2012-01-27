@@ -1,5 +1,5 @@
 /**
- * @module unit
+ * @module   unit
  * @requires stringhelper.core
  * @requires debugger
  *
@@ -14,6 +14,7 @@
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

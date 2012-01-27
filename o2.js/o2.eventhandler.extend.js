@@ -1,5 +1,5 @@
 /**
- * @module eventhandler.extend
+ * @module   eventhandler.extend
  * @requires eventhandler.core
  *
  * <!--
@@ -10,6 +10,7 @@
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
  */
+
 (function(framework, document) {
     'use strict';
 

@@ -1,6 +1,6 @@
 /**
- * @module jsonp
- * @requires o2.stringhelper.core
+ * @module   jsonp
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -10,16 +10,17 @@
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
+
 (function(framework, window, document) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me     = framework;
     var myName = framework.name;
     var concat = framework.StringHelper.concat;
-    var nill = framework.nill;
+    var nill   = framework.nill;
 
     /*
      * Module configuration.

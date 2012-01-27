@@ -9,15 +9,16 @@
  *
  * <p>A debugging helper.</p>
  */
+
 (function(framework, window, document) {
    'use strict';
 
     /*
      * Aliases.
      */
-    var me = framework;
-    var $ = framework.$;
-    var nill = framework.nill;
+    var me      = framework;
+    var $       = framework.$;
+    var nill    = framework.nill;
     var console = window.console;
 
     /**

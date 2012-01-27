@@ -11,6 +11,7 @@
  *
  * <p>A "very" fast templating engine.</p>
  */
+
 (function(framework) {
     'use strict';
 

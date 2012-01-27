@@ -1,5 +1,6 @@
 /**
- * @module cookie.core
+ * @module   cookie.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -9,25 +10,29 @@
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
+
 (function(framework, window, document) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
+    var me     = framework;
     var concat = framework.StringHelper.concat;
     var escape = window.escape;
 
-    var kEmpty = '';
-    var kBlank = ' ';
-    var kExpires = '; expires=';
-    var kPath = '; path=';
-    var kDomain = '; domain=';
-    var kSecure = '; secure';
+    /*
+     * Common Strings
+     */
+    var kEmpty     = '';
+    var kBlank     = ' ';
+    var kExpires   = '; expires=';
+    var kPath      = '; path=';
+    var kDomain    = '; domain=';
+    var kSecure    = '; secure';
     var kDelimeter = ';';
-    var kRootPath = '/';
-    var kEquals = '=';
+    var kRootPath  = '/';
+    var kEquals    = '=';
 
     /**
      * @class {static} o2.Cookie

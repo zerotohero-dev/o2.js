@@ -9,28 +9,29 @@
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
+
 (function(framework, document) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me = framework;
-    var $ = framework.$;
+    var $  = framework.$;
 
     /*
-     * Common constants.
+     * Common Constants
      */
-    var kFunction = 'function';
-    var kClass = 'class';
+    var kFunction  = 'function';
+    var kClass     = 'class';
     var kClassName = 'className';
-    var kStyle = 'style';
-    var kCss = 'css';
-    var kCssText = 'cssText';
-    var kEmpty = '';
+    var kStyle     = 'style';
+    var kCss       = 'css';
+    var kCssText   = 'cssText';
+    var kEmpty     = '';
 
     /*
-     * Common regular expressions.
+     * Common Regular Expression
      */
     var kWhiteSpaceRegExp = /^\s*$/;
 

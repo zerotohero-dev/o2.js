@@ -1,6 +1,6 @@
 /**
  * @module domhelper.form
- * @requires stringhelper
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -10,16 +10,17 @@
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
+
 (function(framework) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
+    var me      = framework.DomHelper;
+    var $       = framework.$;
     var compact = framework.StringHelper.compact;
-    var trim = framework.StringHelper.trim;
+    var trim    = framework.StringHelper.trim;
 
     /**
      * @function {static} o2.DomHelper.trimField

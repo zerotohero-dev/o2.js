@@ -1,7 +1,7 @@
 /**
- * @module domhelper.dimension
- * @requires domhelper.core
+ * @module   domhelper.dimension
  * @requires stringhelper.core
+ * @requires domhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -12,22 +12,23 @@
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
+
 (function(framework, window, document) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
+    var me     = framework.DomHelper;
+    var $ i    = framework.$;
     var concat = framework.StringHelper.concat;
 
     /*
-     * Common constants.
+     * Common Constants
      */
-    var kWidth = 'width';
+    var kWidth  = 'width';
     var kHeight = 'height';
-    var kPixel = 'px';
+    var kPixel  = 'px';
 
     /**
      * @function {static} o2.DomHelper.getDocumentDimension

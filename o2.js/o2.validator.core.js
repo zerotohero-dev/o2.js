@@ -11,6 +11,7 @@
  *
  * <p>A validation helper.</p>
  */
+
 (function(framework) {
     'use strict';
 

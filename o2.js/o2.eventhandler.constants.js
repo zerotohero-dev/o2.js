@@ -11,17 +11,16 @@
  *
  * <p>A cross-browser event management object.</p>
  */
+
 (function(framework) {
     'use strict';
-
-    var me = framework;
 
     /**
      * @class {static} o2.EventHandler
      *
      * <p>A cross-browser event handling and event utilities class.</p>
      */
-    me.EventHandler = {
+    framework.EventHandler = {
 
         /**
          * @struct {static} o2.EventHandler.keyCode

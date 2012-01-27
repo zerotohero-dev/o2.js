@@ -1,5 +1,5 @@
 /**
- * @module stringhelper.strip
+ * @module   stringhelper.strip
  * @requires stringhelper.core
  *
  * <!--
@@ -13,6 +13,7 @@
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
+
 (function(framework) {
     'use strict';
 

@@ -1,7 +1,7 @@
 /**
  * @module   objecthelper
- * @requires methodhelper.core
  * @requires stringhelper.core
+ * @requires methodhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -13,6 +13,7 @@
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
+
 (function(framework, window) {
     'use strict';
 

@@ -10,13 +10,16 @@
  * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
+
 (function(framework) {
     'use strict';
 
     /*
      * Aliases.
      */
-    var me = framework;
+    var me     = framework;
+    var concat = Array.prototype.concat;
+    var slice  = Array.prototype.slice;
 
     /**
      * @class {static} o2.MethodHelper
@@ -28,10 +31,12 @@
         /**
          * @function {static} o2.MethodHelper.memoize
          *
-         * <p><strong>Memoizes</strong> the given <code>function</code>'s outcome
-         * and presents it from cache, instead of recalculating.</p>
+         * <p><strong>Memoizes</strong> the given <code>function</code>'s
+         * outcome and presents it from cache, instead of recalculating.</p>
          * <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+         *
          * <p>Usage Example:</p>
+         *
          * <pre>
          * function multiply(a,b){return a*b; }
          * var memoized = o2.MethodHelper.memoize(multiply);
@@ -49,7 +54,7 @@
          */
         memoize : function() {
             var pad = {};
-            var args = Array.prototype.slice.call(arguments);
+            var args = slice.call(arguments);
             var self = args.shift();
             var obj = args.length > 0 ? args[0] : null;
 
@@ -92,14 +97,14 @@
          * @return the modified <code>function</code>.
          */
         curry : function() {
-            var args = Array.prototype.slice.call(arguments);
+            var args = slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
 
             return function() {
                 return fn.apply(context,
                     args.concat(
-                        Array.prototype.slice.call(arguments)
+                        slice.call(arguments)
                     )
                 );
             };
@@ -121,13 +126,13 @@
          * @param {Object} base - the context of the newly created
          * <code>function</code>.
          * @param {Function} fn - the <code>function</code> to modify.
-         * @param {Arguments} varargin - variable number of input arguments to be
-         * passed as initial set of arguments.
+         * @param {Arguments} varargin - variable number of input arguments to
+         * be passed as initial set of arguments.
          *
          * @return the modified <code>function</code>.
          */
         partial : function() {
-            var args = Array.prototype.slice.call(arguments);
+            var args = slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
 
@@ -151,9 +156,11 @@
          * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
          * the "<code>this</code>" reference.</p>
          *
-         * <p><strong>bind</strong> can often be used to bind a different context
-         * to a <strong>curried</strong> function.
+         * <p><strong>bind</strong> can often be used to bind a different
+         * context to a <strong>curried</strong> function.
+         *
          * <p>Usage Example:</p>
+         *
          * <pre>
          * function test(a,b,c){ return this.number + (a*b+c); };
          * var context = {number:10};
@@ -172,8 +179,6 @@
          * @return the modified <code>function</code>.
          */
         bind : function() {
-            var concat = Array.prototype.concat;
-            var slice = Array.prototype.slice;
             var args = slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
@@ -184,8 +189,7 @@
 
             return function() {
                 return fn.apply(
-                    context,
-                    concat.call(args, slice.call(arguments))
+                    context, concat.call(args, slice.call(arguments))
                 );
             };
         }

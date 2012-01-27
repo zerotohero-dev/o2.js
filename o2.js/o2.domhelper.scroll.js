@@ -12,6 +12,7 @@
  *
  * <p>A window/div scroll helper.</p>
  */
+
 (function(framework, window, document) {
     'use strict';
 

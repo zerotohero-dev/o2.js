@@ -1,5 +1,6 @@
 /**
- * @module domhelper.style
+ * @module   domhelper.style
+ * @requires stringhelper.core
  * @requires domhelper.core
  * @requires stringhelper.transform
  *
@@ -13,40 +14,44 @@
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
+
 (function(framework, document) {
    'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
-    var t = framework.t;
-    var myName = framework.name;
-    var toCamelCase = framework.StringHelper.toCamelCase;
-    var concat = framework.StringHelper.concat;
+    var me                    = framework.DomHelper;
+    var $                     = framework.$;
+    var t                     = framework.t;
+    var myName                = framework.name;
+    var toCamelCase           = framework.StringHelper.toCamelCase;
+    var concat                = framework.StringHelper.concat;
     var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
 
     /*
-     * Common strings.
+     * Common Constants
      */
-    var kObject = 'object';
+    var kObject     = 'object';
     var kOldDisplay = '_oldDisplay';
-    var kNone = 'none';
-    var kHidden = 'hidden';
-    var kEmpty = '';
-    var kDisplay = 'display';
+    var kNone       = 'none';
+    var kHidden     = 'hidden';
+    var kEmpty      = '';
+    var kDisplay    = 'display';
     var kVisibility = 'visibility';
-    var kTitle = 'title';
-    var kLink = 'link';
-    var kRel = 'rel';
-    var kStyle = 'style';
-    var kFloat = 'float';
-    var kCssFloat = 'cssFloat';
-    var kPixels = 'px';
+    var kTitle      = 'title';
+    var kLink       = 'link';
+    var kRel        = 'rel';
+    var kStyle      = 'style';
+    var kFloat      = 'float';
+    var kCssFloat   = 'cssFloat';
+    var kPixels     = 'px';
 
+    /*
+     * Common Regular Expressions
+     */
     var kRegPixelNumber = /^-?\d+(?:px)?$/i;
-    var kRegNumber = /^-?\d/;
+    var kRegNumber      = /^-?\d/;
 
     /**
      * @function {static} o2.DomHelper.addStyle

@@ -1,5 +1,6 @@
 /**
  * @module   jsonpstate
+ * @requires methodhelper.core
  * @requires ajaxstate
  *
  * <!--
@@ -14,6 +15,7 @@
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
+
 (function(framework) {
     'use strict';
 

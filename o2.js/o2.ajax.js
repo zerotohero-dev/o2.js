@@ -10,13 +10,9 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
+
 (function(framework, window) {
     'use strict';
-
-//TODO: generate dependency tree by parsing these statements.
-//TODO: implement these:
-//    framework.provide('ajax.core');
-//    framework.require('stringhelper.core');
 
     /*
      * Aliases.

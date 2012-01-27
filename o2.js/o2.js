@@ -1,8 +1,8 @@
 /**
  * <b>o2.js</b>
- * @project o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version 0.23.#1327564891#
- * @author Volkan Özçelik
+ * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ * @version     0.23.#1327655584#
+ * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
@@ -14,7 +14,7 @@ this.o2 = {};
 
 /**
  * @module core
- * 
+ *
  * <p>The core module.</p>
  */
 (function(framework, window, document) {
@@ -25,21 +25,17 @@ this.o2 = {};
      */
     var me = framework;
 
-    var config = {
-        constants : {
-            errorMessage : {
-                OBJECT_NOT_DEFINED : ' : Object is not defined.'
-            }
-        }
-    };
-
     /*
-     * Common string constants.
+     * Common Constants
      */
-    var kObjectNotDefined = config.constants.errorMessage.OBJECT_NOT_DEFINED;
-    var kString = 'string';
-    var kEmpty = '';
-    var kLoad = 'load';
+    var kObjectNotDefined      = ' : Object is not defined.';
+    var kModuleRequired        = ' : Please provide required module: ';
+    var kModuleAlreadyProvided = ' : Do not include module more than once: ';
+    var kString                = 'string';
+    var kEmpty                 = '';
+    var kLoad                  = 'load';
+
+    var providesModules = {};
 
     /**
      * @function {static} o2.nill
@@ -83,7 +79,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    me.build = '#1327564891#';
+    me.build = '#1327655584#';
 
     /**
      * @function {static} o2.$

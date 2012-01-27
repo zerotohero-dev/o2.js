@@ -1,8 +1,8 @@
 /**
  * @module   domhelper.traverse
+ * @requires stringhelper.core
  * @requires domhelper.core
  * @requires domhelper.class
- * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
@@ -14,6 +14,7 @@
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
+
 (function(framework) {
     'use strict';
 
@@ -472,6 +473,7 @@
     me.findFirstChild = me.first = me.getFirstChild;
 
     if (isNativeQuerySupported) {
+
         /**
          * @function {static} o2.DomHelper.getFirstChildById
          *
@@ -601,6 +603,7 @@
     me.findSiblings = me.siblings = me.getSiblings;
 
     if (isNativeQuerySupported) {
+
         /**
          * @function {static} o2.DomHelper.getFirstChildWithId
          *

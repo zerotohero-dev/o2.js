@@ -1,6 +1,6 @@
 /**
  * @module   ajax.extend
- * @requires ajax
+ * @requires ajax.core
  *
  * <!--
  *  This program is distributed under
@@ -13,6 +13,7 @@
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
+
 (function(framework){
     'use strict';
 

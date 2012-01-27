@@ -11,6 +11,7 @@
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
+
 (function(framework) {
     'use strict';
 

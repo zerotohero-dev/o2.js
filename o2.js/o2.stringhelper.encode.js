@@ -12,6 +12,7 @@
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
+
 (function(framework, document) {
     'use strict';
 

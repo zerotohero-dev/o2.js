@@ -1,5 +1,5 @@
 /**
- * @module methodhelper.extend
+ * @module   methodhelper.extend
  * @requires methodhelper
  * @requires stringhelper.core
  *
@@ -12,14 +12,15 @@
  * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
  * <strong>partial functions</strong> an <strong>currying</strong>.</p>
  */
+
 (function(framework, window) {
     'use strict';
 
     /*
      * Aliases.
      */
-    var me = framework.MethodHelper;
-    var format = framework.StringHelper.format;
+    var me         = framework.MethodHelper;
+    var format     = framework.StringHelper.format;
     var setTimeout = window.setTimeout;
 
     /*

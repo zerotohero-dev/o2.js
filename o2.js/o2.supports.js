@@ -1,6 +1,5 @@
 /**
  * @module supports
- * @requires "all modules that the support will be checked"
  *
  * <!--
  *  This program is distributed under
@@ -12,6 +11,7 @@
  *
  * <p>An object support checker.</p>
  */
+
 (function(framework, document) {
     'use strict';
 
