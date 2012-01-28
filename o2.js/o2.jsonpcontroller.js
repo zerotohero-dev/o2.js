@@ -1,11 +1,14 @@
 /**
  * @module   jsonpcontroller
  * @requires ajaxcontroller
+ * @requires jsonpstate
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastUpdate: 2012-01-28 15:05:36.905566
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -16,13 +19,14 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me = framework;
     var nill = framework.nill;
+    var state = framework.JsonpState;
+    var ajaxController = framework.AjaxController;
 
     /*
-     * State.
+     * State
      */
     var purgeQueue = [];
 
@@ -47,19 +51,19 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    me.JsonpController = function(jsonp, args) {
+    var me = framework.JsonpController = function(jsonp, args) {
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
-        me.JsonpState.addObserver(this);
+        state.addObserver(this);
     };
 
     /*
      *
      */
-    me.JsonpController.prototype = {
+    me.prototype = {
 
         /**
          * @function o2.JsonpController.unregister
@@ -68,7 +72,7 @@
          *
          * @see AjaxController.unregister
          */
-        unregister : me.AjaxController.prototype.unregister,
+        unregister : ajaxController.prototype.unregister,
 
         /**
          * @function o2.JsonpController.update
@@ -83,24 +87,25 @@
          * @see o2.AjaxController.update
          */
         update : function(observable, data) {
-            if (data.isTimedOut) {
-
-                // Unregister self from the observable.
-                this.unregister(observable);
-
-                // Abort the request.
-                window[this.jsonp] = nill;
-
-                // Purge former requests to prevent memory leak.
-                purgeQueue.push(this.jsonp);
-
-                while (purgeQueue.length > 1) {
-                    delete window[purgeQueue.shift()];
-                }
-
-                // Execute callback.
-                this.ontimeout();
+            if (!data.isTimedOut) {
+                return;
             }
+
+            // Unregister self from the observable.
+            this.unregister(observable);
+
+            // Abort the request.
+            window[this.jsonp] = nill;
+
+            // Purge former requests to prevent memory leak.
+            purgeQueue.push(this.jsonp);
+
+            while (purgeQueue.length > 1) {
+                delete window[purgeQueue.shift()];
+            }
+
+            // Execute callback.
+            this.ontimeout();
         }
     };
 }(this.o2, this));

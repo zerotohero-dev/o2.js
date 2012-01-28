@@ -13,7 +13,6 @@
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-
 (function(framework){
     'use strict';
 

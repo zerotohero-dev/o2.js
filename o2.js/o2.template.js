@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 10:18:03.713856
+ *  lastModified: 2012-01-28 13:00:46.388790
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -14,11 +14,6 @@
 
 (function(framework) {
     'use strict';
-
-    /*
-     * Aliases.
-     */
-    var me = framework;
 
     /*
      * Common Constants
@@ -37,6 +32,14 @@
      * Common Commands
      */
     var kEach = 'each';
+
+
+    /**
+     * @class {static} o2.Template
+     *
+     * <p>A really <strong>fast</strong> template engine.</p>
+     */
+    var me = framework.Template = {};
 
     /*
      *
@@ -73,7 +76,7 @@
         }
 
         var buffer = [];
-        var parse = me.Template.parse;
+        var parse = me.parse;
         var i = 0;
         var clen = 0;
 
@@ -92,40 +95,33 @@
             return parseDirective(line, data);
         }
 
-        return line.replace(kTemplateRegExp, function(str, p1/*, offset, total*/) {
+        return line.replace(kTemplateRegExp, function(str, p1
+                    /*, offset, total*/) {
             return data[p1] !== undefined ? data[p1] : str;
         });
     }
 
     /**
-     * @class {static} o2.Template
+     * @function {static} o2.Template.parse
      *
-     * <p>A really <strong>fast</strong> template engine.</p>
+     * <p>Parses the given template.</p>
+     *
+     * @param {Object} data - the source data as a <strong>JSON</strong> object.
+     * @param {String} tpl - the template to parse against.
+     *
+     * @return {String} the parsed template.
      */
-    me.Template = {
+    me.parse = function(data, tpl) {
+        var buffer = [];
+        var i = 0;
+        var len = 0;
 
-        /**
-         * @function {static} o2.Template.parse
-         *
-         * <p>Parses the given template.</p>
-         *
-         * @param {Object} data - the source data as a <strong>JSON</strong>
-         * object.
-         * @param {String} tpl - the template to parse against.
-         * @return {String} the parsed template.
-         */
-        parse : function(data, tpl) {
-            var buffer = [];
-            var i = 0;
-            var len = 0;
+        data = data || {};
 
-            data = data || {};
-
-            for (i = 0, len = tpl.length; i < len; i++) {
-                buffer.push(parse(tpl[i], data));
-            }
-
-            return buffer.join(kEmpty);
+        for (i = 0, len = tpl.length; i < len; i++) {
+            buffer.push(parse(tpl[i], data));
         }
+
+        return buffer.join(kEmpty);
     };
 }(this.o2));

@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 20:07:21.679595
+ *  lastModified: 2012-01-28 13:26:53.512242
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
@@ -14,11 +14,6 @@
 
 (function(framework) {
     'use strict';
-
-    /*
-     * Aliases.
-     */
-    var me = framework;
 
     /*
      *
@@ -53,37 +48,44 @@
      *
      * <p>Custom delegates for <code>Array.sort</code> method.</p>
      */
-    me.SortDelegate = {
+    var me = framework.SortDelegate = {};
 
-        /**
-         * @function o2.SortDelegate.sort
-         *
-         * <p>A generic sort function.</p>
-         * <p>If the collecion consists of <strong>String</strong>s and
-         * <strong>Number</strong>s,
-         * <strong>String</strong>s will be stored alphabeticaly at the bottom,
-         * and
-         * <strong>Number</strong>s will be sorted numerically before them.</p>
-         */
-        sort : function(a, b, isDesc) {
-            var isDescending = !!isDesc;
+    /**
+     * @function {static} o2.SortDelegate.sort
+     *
+     * <p>A generic sort function.</p>
+     * <p>If the collecion consists of <strong>String</strong>s and
+     * <strong>Number</strong>s,
+     * <strong>String</strong>s will be stored alphabeticaly at the bottom,
+     * and
+     * <strong>Number</strong>s will be sorted numerically before them.</p>
+     */
 
-            if (isNaN(a) && isNaN(b)) {
-                return getSortOrder(a, b, isDescending);
-            }
+    /**
+     * @function {static} o2.SortDelegate.sortAsc
+     *
+     * <p>An alias to {@link o2.SortDelegate.sort}.</p>
+     *
+     * @see o2.SortDelegate.sort
+     */
+    me.sortAsc = me.sort = function(a, b, isDesc) {
+        var isDescending = !!isDesc;
 
-            return getNanSortOrder(a, b, isDescending);
-        },
-
-        /**
-         * @function o2.SortDelegate.sortDesc
-         *
-         * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
-         * is that the items are sorted in a <strong>descending</strong>
-         * order.</p>
-         */
-        sortDesc : function(a, b) {
-            return me.SortDelegate.sort(a, b, true);
+        if (isNaN(a) && isNaN(b)) {
+            return getSortOrder(a, b, isDescending);
         }
+
+        return getNanSortOrder(a, b, isDescending);
+    };
+
+    /**
+     * @function {static} o2.SortDelegate.sortDesc
+     *
+     * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
+     * is that the items are sorted in a <strong>descending</strong>
+     * order.</p>
+     */
+    me.sortDesc = function(a, b) {
+        return me.sort(a, b, true);
     };
 }(this.o2, this));

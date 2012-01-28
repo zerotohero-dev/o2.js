@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-24 08:41:03.402184
+ *  lastModified: 2012-01-28 13:21:31.682274
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -18,21 +18,21 @@
     /*
      * Aliases
      */
-    var slice  = Array.prototype.slice;
-    var floor  = Math.floor;
+    var slice = Array.prototype.slice;
+    var floor = Math.floor;
     var random = Math.random;
 
     /*
      * Common Constants
      */
-    var kBlank               = ' ';
-    var kEmpty               = '';
-    var kDecimalPoint        = '.';
-    var kGlobal              = 'g';
-    var kNumeric             = '([0-9]+)';
-    var kRandomCharFeed      = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-    var kFormatStart         = '{';
-    var kFormatEnd           = '}';
+    var kEmpty = '';
+    var kBlank = ' ';
+    var kDecimalPoint = '.';
+    var kGlobal = 'g';
+    var kNumeric = '([0-9]+)';
+    var kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+    var kFormatStart = '{';
+    var kFormatEnd = '}';
 
     /*
      * Default length for generating a random <strong>String</strong>s.
@@ -43,15 +43,15 @@
     * Common Regular Expressions
     */
     var kWhitespaceRegExp = /\s+/g;
-    var kTrimRegExp       = /^\s+|\s+$/g;
-    var kPrintfRegExp     = /(%(\w+):s)|(%s)/g;
+    var kTrimRegExp = /^\s+|\s+$/g;
+    var kPrintfRegExp = /(%(\w+):s)|(%s)/g;
 
     /*
-     * Printf Replacement Indexes.
+     * Printf Replacement Indexes
      */
     var kReplaceParameterStartIndex = 1;
-    var kParametrizedMatchIndex     = 2;
-    var kAllIndex                   = 0;
+    var kParametrizedMatchIndex = 2;
+    var kAllIndex = 0;
 
     /*
      * Guid
@@ -64,9 +64,7 @@
      *
      * <p>A <strong>String</strong> helper <strong>class</strong>.</p>
      */
-    framework.StringHelper = {};
-
-    var me = framework.StringHelper;
+    var me = framework.StringHelper = {};
 
     /**
      * @function {static} o2.StringHelper.generateGuid
@@ -76,7 +74,7 @@
      *
      * @return a <strong>GUID</strong>.
      */
-    me.generateGuid : function() {
+    me.generateGuid = function() {
         return (
             (new Date()).getTime()+Math.random() * (1 << kGuidShift)
         ).toString(kGuidDigits).replace(kDecimalPoint, kEmpty);
@@ -230,7 +228,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.remove = function(str, regExp) {
-        return [kEmpty, str].join(kEmpty).replace(regExp, kEmpty);
+        return me.concat(kEmpty, str).replace(regExp, kEmpty);
     };
 
     /**
@@ -250,10 +248,11 @@
     me.trim = function(str, shouldCompact) {
         shouldCompact = shouldCompact || false;
 
-        str = [kEmpty, str].join(kEmpty);
+        str = me.concat(kEmpty, str);
 
-        return shouldCompact ? str.replace(kWhitespaceRegExp,
-            kBlank).replace(kTrimRegExp, kEmpty) :
+        return shouldCompact ?
+            str.replace(kWhitespaceRegExp,kBlank).replace(kTrimRegExp, kEmpty)
+            :
             str.replace(kTrimRegExp, kEmpty);
     };
 
@@ -270,7 +269,7 @@
      * @see o2.StringHelper.trim
      */
     me.strip = function(str) {
-        return me.trim([kEmpty, str].join(kEmpty), false);
+        return me.trim(me.concat(kEmpty, str), false);
     };
 
     /**
@@ -286,6 +285,6 @@
      * @see StringHelper.trim
      */
     me.compact = function(str) {
-        return me.trim([kEmpty, str].join(kEmpty), true);
+        return me.trim(me.concat(kEmpty, str), true);
     };
 }(this.o2));

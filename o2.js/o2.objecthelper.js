@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastUpdate: 2012-01-25 09:51:12.984074
+ *  lastUpdate: 2012-01-28 13:44:52.073146
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -28,8 +28,8 @@
     /*
      * Common Constants
      */
-    var kFunction      = 'function';
-    var kObject        = 'object';
+    var kFunction = 'function';
+    var kObject = 'object';
     var kNoJsonSupport = concat(myName, ': {0}: No JSON support. quitting');
 
     /**
@@ -38,9 +38,7 @@
      * <p>A helper class for <strong>JavaScript</strong> <code>object</code>
      * inheritance.</p>
      */
-    framework.ObjectHelper = {};
-
-    var me = framework.ObjectHelper;
+    var me = framework.ObjectHelper = {};
 
     /**
      * @function {static} o2.ObjectHelper.copyMethods

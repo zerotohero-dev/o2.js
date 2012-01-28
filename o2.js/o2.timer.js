@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 09:57:33.812685
+ *  lastModified: 2012-01-28 11:37:30.795710
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -19,12 +19,11 @@
     /*
      * Aliases
      */
-    var me            = framework;
-    var concat        = framework.StringHelper.concat;
-    var clearTimeout  = window.clearTimeout;
-    var setTimeout    = window.setTimeout;
+    var concat = framework.StringHelper.concat;
+    var clearTimeout = window.clearTimeout;
+    var setTimeout = window.setTimeout;
     var clearInterval = window.clearInterval;
-    var setInterval   = window.setInterval;
+    var setInterval = window.setInterval;
 
     /*
      * Common Constants
@@ -60,110 +59,109 @@
      * o2.Timer.start(kCheckId);
      * </pre>
      */
-    me.Timer = {
+    var me = framework.Timer = {};
 
-        /**
-         * @function {static} o2.Timer.set
-         *
-         * <p>Sets and optionally starts a new timer.</p>
-         *
-         * @param {String} id - a unique identifier for the timer.
-         * @param {Function} delegate - action to be done when the timer ticks.
-         * @param {Integer} timeout - interval of the timer in milliseconds.
-         * @param {Object} option - optional configuration in the form
-         * <code>{start: true, repeat: true}</code>, if <strong>start</strong>
-         * is <code>true</code> timer will start after being set; otherwise
-         * it should be explicitly started using the
-         * {@link o2.Timer.start} method. If <strong>repeat</strong> is
-         * <code>false</code> the delegate will be executed only once, othwerwise
-         * it will be executed at each interval until {@link o2.Timer.stop}
-         * is called.
-         */
-        set : function(id, delegate, timeout, options) {
-            var timerId = concat(kPrefix, id);
+    /**
+     * @function {static} o2.Timer.set
+     *
+     * <p>Sets and optionally starts a new timer.</p>
+     *
+     * @param {String} id - a unique identifier for the timer.
+     * @param {Function} delegate - action to be done when the timer ticks.
+     * @param {Integer} timeout - interval of the timer in milliseconds.
+     * @param {Object} option - optional configuration in the form
+     * <code>{start: true, repeat: true}</code>, if <strong>start</strong>
+     * is <code>true</code> timer will start after being set; otherwise
+     * it should be explicitly started using the
+     * {@link o2.Timer.start} method. If <strong>repeat</strong> is
+     * <code>false</code> the delegate will be executed only once, othwerwise
+     * it will be executed at each interval until {@link o2.Timer.stop}
+     * is called.
+     */
+    me.set = function(id, delegate, timeout, options) {
+        var timerId = concat(kPrefix, id);
 
-            if (timers[timerId]) {
-                me.Timer.stop(timerId);
+        if (timers[timerId]) {
+            me.Timer.stop(timerId);
 
-                delete timers[timerId];
-            }
+            delete timers[timerId];
+        }
 
-            options = options || {};
+        options = options || {};
 
-            if (options.start === undefined) {
-                options.start = true;
-            }
+        if (options.start === undefined) {
+            options.start = true;
+        }
 
-            options.repeat = !!options.repeat;
-            options.start = !!options.start;
+        options.repeat = !!options.repeat;
+        options.start = !!options.start;
 
-            timers[timerId] = {};
-            timers[timerId].delegate = delegate;
-            timers[timerId].timeout = timeout;
-            timers[timerId].id = null;
-            timers[timerId].shouldRepeat =  options.repeat;
+        timers[timerId] = {};
+        timers[timerId].delegate = delegate;
+        timers[timerId].timeout = timeout;
+        timers[timerId].id = null;
+        timers[timerId].shouldRepeat =  options.repeat;
 
-            timers[concat(kPrefix, id)] = {};
+        timers[concat(kPrefix, id)] = {};
 
-            if (options.start) {
-                me.Timer.start(id);
-            }
-        },
+        if (options.start) {
+            me.Timer.start(id);
+        }
+    };
 
-        /**
-         * @function {static} o2.Timer.start
-         *
-         * <p>Starts/restarts the timer with the given id.
-         *
-         * @param {String} id - the id of the timer to start.
-         */
-        start : function(id) {
-            var timerId = concat(kPrefix, id);
-            var meta = timers[timerId];
+    /**
+     * @function {static} o2.Timer.start
+     *
+     * <p>Starts/restarts the timer with the given id.
+     *
+     * @param {String} id - the id of the timer to start.
+     */
+    me.start = function(id) {
+        var timerId = concat(kPrefix, id);
+        var meta = timers[timerId];
 
-            if (!meta) {
-                return;
-            }
+        if (!meta) {
+            return;
+        }
 
-            if (meta.shouldRepeat) {
-                clearInterval(meta.id);
+        if (meta.shouldRepeat) {
+            clearInterval(meta.id);
 
-                meta.id = setInterval(function(){
-                    meta.delegate();
-                }, meta.timeout);
-
-                return;
-            }
-
-            clearTimeout(meta.id);
-
-            meta.id = setTimeout(function(){
+            meta.id = setInterval(function(){
                 meta.delegate();
             }, meta.timeout);
-        },
 
-        /**
-         * @function {static} o2.Timer.stop
-         *
-         * <p>Stops the timer with the given id.</p>
-         *
-         * @param {String} id - the id of the timer to stop.
-         */
-        stop : function(id) {
-            var timerId = concat(kPrefix, id);
-            var meta = timers[timerId];
-
-            if (!meta) {
-                return
-            }
-
-            if (meta.shouldRepeat) {
-                clearInterval(meta.id);
-
-                return;
-            }
-
-            clearTimeout(meta.id);
+            return;
         }
+
+        clearTimeout(meta.id);
+
+        meta.id = setTimeout(function(){
+            meta.delegate();
+        }, meta.timeout);
+    };
+
+    /**
+     * @function {static} o2.Timer.stop
+     *
+     * <p>Stops the timer with the given id.</p>
+     *
+     * @param {String} id - the id of the timer to stop.
+     */
+    me.stop = function(id) {
+        var timerId = concat(kPrefix, id);
+        var meta = timers[timerId];
+
+        if (!meta) {
+            return;
+        }
+
+        if (meta.shouldRepeat) {
+            clearInterval(meta.id);
+
+            return;
+        }
+
+        clearTimeout(meta.id);
     };
 }(this.o2, this));

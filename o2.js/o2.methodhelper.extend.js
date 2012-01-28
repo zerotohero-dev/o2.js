@@ -1,46 +1,39 @@
 /**
  * @module   methodhelper.extend
- * @requires methodhelper
+ * @requires methodhelper.core
  * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-28 14:41:54.648856
  * -->
  *
- * <p>A <code>Function</code> helper for stuff like <strong>memoization</strong>,
- * <strong>partial functions</strong> an <strong>currying</strong>.</p>
+ * <p>A <code>Function</code> helper for stuff like
+ * <strong>memoization</strong>, <strong>partial functions</strong>
+ * an <strong>currying</strong>.</p>
  */
-
 (function(framework, window) {
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me         = framework.MethodHelper;
-    var format     = framework.StringHelper.format;
+    var me = framework.MethodHelper;
+    var format = framework.StringHelper.format;
+    var slice = Array.prototype.slice;
+    var splice = Array.prototype.splice;
     var setTimeout = window.setTimeout;
 
     /*
-     * Module configuration.
+     * Common Error Messages
      */
-    var config = {
-        constants : {
-            error : {
-                ARGUMENT_COUNT_MISMATCH : 'Expected {0} arguments but found {1}'
-            }
-        }
-    };
+    var kArgumentCountMismatch = 'Expected {0} arguments but found {1}';
 
     /*
-     * Common error messages.
-     */
-    var kArgumentCountMismatch = config.constants.error.ARGUMENT_COUNT_MISMATCH;
-
-    /*
-     * Common strings.
+     * Common Constants
      */
     var kFunction = 'function';
 
@@ -132,7 +125,7 @@
      */
     me.flip = function(fn, index1, index2) {
         return function() {
-            var args = Array.prototype.slice.call(arguments);
+            var args = slice.call(arguments);
             var temporary = args[index1];
             args[index1] = args[index2];
             args[index2] = temporary;
@@ -172,7 +165,7 @@
      * @param {Object} initial - the initial seed.
      */
     me.fold = function(collection, fn, initial) {
-        var args = Array.prototype.splice.call(collection, 0);
+        var args = splice.call(collection, 0);
         var result = initial;
         var i = 0;
         var len = 0;

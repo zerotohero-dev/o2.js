@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 17:10:53.684581
+ *  lastModified: 2012-01-28 09:22:59.806447
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -27,19 +27,19 @@
      */
     var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
     var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
-    var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
-    var kCamelCaseRegExp          = /(\-[a-z])/g;
-    var kAllCapsRegExp            = /([A-Z])/g;
+    var kRemoveTagsRegExp = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
+    var kCamelCaseRegExp = /(\-[a-z])/g;
+    var kAllCapsRegExp = /([A-Z])/g;
 
     /*
      * Common Text
      */
-    var kNewLine    = '\n';
-    var kBr         = '<br />';
+    var kNewLine = '\n';
+    var kBr = '<br />';
     var kUnderscore = '_';
-    var kDash       = '-';
-    var kEmpty      = '';
-    var kEllipsis   = '&hellip;';
+    var kDash = '-';
+    var kEmpty  = '';
+    var kEllipsis = '&hellip;';
 
     /*
      * <p>Maximum length, after which the string is truncated with an

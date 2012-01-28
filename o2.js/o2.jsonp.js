@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastUpdate: 2012-01-28 15:16:57.981847
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -17,39 +19,17 @@
     /*
      * Aliases
      */
-    var me     = framework;
     var myName = framework.name;
     var concat = framework.StringHelper.concat;
-    var nill   = framework.nill;
+    var nill = framework.nill;
 
     /*
-     * Module configuration.
+     * State
      */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-            prefix : {
-                JSON : concat(myName, '_json_')
-            },
-            key : {
-                CALLBACK : 'callback'
-            }
-        }
-
-    };
+    var counter = 0;
 
     /*
-     * Module state.
-     */
-    var state = {
-        counter : 0
-    };
-
-    /*
-     * Common string constants.
+     * Common Constants
      */
     var kScript = 'script';
     var kLoaded = 'loaded';
@@ -57,9 +37,8 @@
     var kQuery = '?';
     var kEquals = '=';
     var kAnd = '&';
-    var constants = config.constants;
-    var kJson = constants.prefix.JSON;
-    var kCallback = constants.key.CALLBACK;
+    var kJson = concat(myName, '_json_');
+    var kCallback = 'callback';
 
     /*
      *
@@ -110,35 +89,34 @@
      *
      * <p>An object to make <strong>JSONP</strong> calls.</p>
      */
-    me.Jsonp = {
+    var me = framework.Jsonp = {};
 
-        /**
-         * @function {static} o2.Jsonp.get
-         *
-         * <p>Creates a <strong>JSONP</strong> request.</p>
-         *
-         * @param {String} url - the <strong>URL</strong> of the
-         * <strong>JSONP</strong> service.
-         * @param {Object} params - parameters in the form of {name1:value1,...}
-         * @param {Function} callback - callback to execute after
-         * <strong>JSONP</strong> arrives.
-         */
-        get : function(url, params, callback) {
-            var query = createQuery(params);
-            var jsonp = concat(kJson, (++state.counter));
+    /**
+     * @function {static} o2.Jsonp.get
+     *
+     * <p>Creates a <strong>JSONP</strong> request.</p>
+     *
+     * @param {String} url - the <strong>URL</strong> of the
+     * <strong>JSONP</strong> service.
+     * @param {Object} params - parameters in the form of {name1:value1,...}
+     * @param {Function} callback - callback to execute after
+     * <strong>JSONP</strong> arrives.
+     */
+    me.get = function(url, params, callback) {
+        var query = createQuery(params);
+        var jsonp = concat(kJson, (++counter));
 
-            params = params || {};
+        params = params || {};
 
-            window[jsonp] = function(data) {
-                callback(data, params);
-                window[jsonp] = null;
+        window[jsonp] = function(data) {
+            callback(data, params);
+            window[jsonp] = null;
 
-                delete window[jsonp];
-            };
+            delete window[jsonp];
+        };
 
-            load(concat(url, kQuery, query, kCallback, kEquals, jsonp));
+        load(concat(url, kQuery, query, kCallback, kEquals, jsonp));
 
-            return jsonp;
-        }
+        return jsonp;
     };
 }(this.o2, this, this.document));

@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 09:18:48.730003
+ *  lastModified: 2012-01-28 09:12:26.911672
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -21,73 +21,14 @@
     /*
      * Aliases
      */
-    var me             = framework;
-    var log            = framework.Debugger.log;
-    var assert         = framework.Debugger.assert;
-    var initDebugger   = framework.Debugger.init;
-    var format         = framework.StringHelper.format;
-    var concat         = framework.StringHelper.concat;
+    var log  = framework.Debugger.log;
+    var assert = framework.Debugger.assert;
+    var initDebugger = framework.Debugger.init;
+    var format = framework.StringHelper.format;
+    var concat = framework.StringHelper.concat;
     var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
-    var nill           = framework.nill;
-    var setTimeout     = window.setTimeout;
-
-    /*
-     * Common error messages.
-     */
-    var errorMessage = {
-
-        /*
-         * Problem initializing debugger.
-         */
-        FAILED_TO_INITIALIZE_DEBUGGER :
-            'Failed to initialize Debugger. No "UnitTest"s will be run!',
-
-        /*
-         * An error occured in a test suite.
-         */
-        FATAL_ERROR_IN_UNIT_TEST : 'FATAL ERROR in UnitTest setup: "{0}"',
-
-        /*
-         * Invalid number of arguments.
-         */
-        ARGUMENT_COUNT_MISMATCH : '"{0}" expects {1} arguments',
-
-        /*
-         * Exception trying to execute the test case.
-         */
-        EXECUTION_EXCEPTION : 'Execution exception!',
-
-        /*
-         * Argument count mismatch.
-         */
-        ARGUMENT_EXCEPTION : 'Argument count mismatch!'
-    };
-
-    /*
-     * Commonly-used templates.
-     */
-    var template = {
-
-        /*
-         * Unit test suite completed.
-         */
-        UPDATE_TEST_COMPLETION : concat(
-            '<p><b>Completed</b>: "{0}":</p>',
-            '<p style="text-align:right">(<b>success: {1}</b> , ',
-            '<b>failure: {2}</b>)</p>'
-        ),
-
-        /*
-         * All of the unit test suites have been completed.
-         */
-        REPORT_GLOBAL_COMPLETION : concat(
-            '<p>All unit tests have been completed:</p>',
-            '<p style="text-align:right">(<b>total success: {0}</b>, ',
-            '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
-        ),
-
-        FINISHED_UNIT_TEST : 'Completed unit test <strong>#{0}</strong>: "<em>{1}</em>"'
-    };
+    var nill = framework.nill;
+    var setTimeout = window.setTimeout;
 
     /*
      * Common Constants
@@ -96,7 +37,7 @@
     /*
      * The DOM element to print the output.
      */
-    var kOutputContainer  = 'Output';
+    var kOutputContainer = 'Output';
 
     /*
      * If true, the output will be sent to the console (if available), as well.
@@ -108,50 +49,88 @@
      * Chunking allows us to run large number of unit tests (of a test suite),
      * without causing a "script timed out" error.
      */
-    var kCheckInterval    = 100;
+    var kCheckInterval = 100;
 
     /*
-     * Used templates.
+     * Commonly Used Templates
      */
-     var kUpdateTestCompletion   = template.UPDATE_TEST_COMPLETION;
-     var kFinishedUnitTest       = template.FINISHED_UNIT_TEST;
-     var kReportGlobalCompletion = template.REPORT_GLOBAL_COMPLETION;
-
-     /*
-      * Common eror messages.
-      */
-    var kFailedToInitializeDebugger = errorMessage.FAILED_TO_INITIALIZE_DEBUGGER;
-    var kFatalErrorInUnitTest       = errorMessage.FATAL_ERROR_IN_UNIT_TEST;
-    var kArgumentCountMismatch      = errorMessage.ARGUMENT_COUNT_MISMATCH;
-    var kArgumentException          = errorMessage.ARGUMENT_EXCEPTION;
-    var kExecutionException         = errorMessage.EXECUTION_EXCEPTION;
 
     /*
-     * Static state.
+     * Unit test suite completed.
      */
-    var state = {
+    var kUpdateTestCompletion = concat(
+        '<p><b>Completed</b>: "{0}":</p>',
+        '<p style="text-align:right">(<b>success: {1}</b> , ',
+        '<b>failure: {2}</b>)</p>'
+    );
 
-        /*
-         * The test queue. This will be empty when there are no more tests to
-         * run.
-         */
-        tests : [],
+    /*
+     * Unit test has been completed.
+     */
+    var kFinishedUnitTest = concat(
+        'Completed unit test <strong>#{0}</strong>:',
+        ' "<em>{1}</em>"'
+    );
 
-        /*
-         * The total number of successful assertions.
-         */
-        globalSuccessCount : 0,
+    /*
+     * All of the unit test suites have been completed.
+     */
+    var kReportGlobalCompletion = concat(
+        '<p>All unit tests have been completed:</p>',
+        '<p style="text-align:right">(<b>total success: {0}</b>, ',
+        '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
+    );
 
-        /*
-         * The total number of failed assertions.
-         */
-        globalFailureCount : 0,
+    /*
+     * Debugger problem.
+     */
+    var kFailedToInitializeDebugger = concat('Failed to initialize Debugger. ',
+        'No "UnitTest"s will be run!');
 
-        /*
-         * Total number of completed unit tests.
-         */
-        globalCompletedUnitTestCount : 0
-    };
+    /*
+     *
+     */
+    var kFatalErrorInUnitTest = 'FATAL ERROR in UnitTest setup: "{0}"';
+
+    /*
+     *
+     */
+    var kArgumentCountMismatch = '"{0}" expects {1} arguments';
+
+    /*
+     *
+     */
+    var kArgumentException = 'Argument count mismatch!';
+
+    /*
+     *
+     */
+    var kExecutionException = 'Execution exception!';
+
+    /*
+     * Static State
+     */
+
+    /*
+     * The test queue. This will be empty when there are no more tests to
+     * run.
+     */
+    var tests = [];
+
+    /*
+     * The total number of successful assertions.
+     */
+    var globalSuccessCount = 0;
+
+    /*
+     * The total number of failed assertions.
+     */
+    var globalFailureCount = 0;
+
+    /*
+     * Total number of completed unit tests.
+     */
+    var globalCompletedUnitTestCount = 0;
 
     /*
      * Current unit test's test suite finished running all of its assertions.
@@ -170,7 +149,7 @@
 
         assert(isAllSuccess, message);
 
-        log(format(kFinishedUnitTest, ++state.globalCompletedUnitTestCount,
+        log(format(kFinishedUnitTest, ++globalCompletedUnitTestCount,
             description));
     }
 
@@ -179,13 +158,9 @@
      * There is nothing more to run.
      */
     function reportGlobalCompletion() {
-        var successCount = state.globalSuccessCount;
-        var failureCount = state.globalFailureCount;
-        var testCount = state.globalCompletedUnitTestCount;
-
-        assert(state.globalFailureCount <= 0,
-            format(kReportGlobalCompletion, successCount,
-                failureCount, testCount)
+        assert(globalFailureCount <= 0,
+            format(kReportGlobalCompletion, globalSuccessCount,
+                globalFailureCount, globalCompletedUnitTestCount)
         );
 
         scrollToBottom();
@@ -193,18 +168,17 @@
 
     /*
      * Update success and failure counts of the <code>UnitTest</code>
-     * <strong>unitTest</strong> and the
-     * global <strong>state</strong> object.
+     * <strong>unitTest</strong> and the global state.
      */
     function updateTestStatus(unitTest, isSuccess) {
         if(isSuccess) {
-            state.globalSuccessCount++;
+            globalSuccessCount++;
             unitTest.successCount++;
 
             return;
         }
 
-        state.globalFailureCount++;
+        globalFailureCount++;
         unitTest.failureCount++;
     }
 
@@ -350,254 +324,255 @@
      * <p>A "unit test" <strong>runner</strong>.</p>
      * <p>Runs <code>UnitTest</code>s.</p>
      */
-    me.Unit = {
+    framework.Unit = {};
 
-        /**
-         * @property {readonlu Boolean} o2.Unit.isRunning - a flag to incicate
-         * whether the current test unit is running.
-         */
-        isRunning : false,
+    var me = framework.Unit;
 
-        /**
-         * @function {static} o2.Unit.getGlobalSuccessCount
-         *
-         * <p>Gets the total number of successful assertions so far.</p>
-         *
-         * @return the total number of successful assertions.
-         */
-        getGlobalSuccessCount : function() {
-            return state.globalSuccessCount;
-        },
+    /**
+     * @property {readonlu Boolean} o2.Unit.isRunning - a flag to incicate
+     * whether the current test unit is running.
+     */
+    me.isRunning = false;
 
-        /**
-         * @function {static} o2.Unit.getGlobalFailureCount
-         *
-         * <p>Gets the total number of failed assertions so far.</p>
-         *
-         * @return the total number of failed assertions.
-         */
-        getGlobalFailureCount : function() {
-            return state.globalFailureCount;
-        },
+    /**
+     * @function {static} o2.Unit.getGlobalSuccessCount
+     *
+     * <p>Gets the total number of successful assertions so far.</p>
+     *
+     * @return the total number of successful assertions.
+     */
+    me.getGlobalSuccessCount = function() {
+        return globalSuccessCount;
+    };
 
-        /**
-         * @function {static} o2.Unit.assert
-         * <p>Asserts whether the given <strong>expression</strong> evaluates to
-         * <code>true</code> or not.</p>
-         *
-         * @param {o2.UnitTest} unitTest - the current active unit test.
-         * @param {Expression} expression - the expression to evaluate.
-         * @param {String} message - the associated message.
-         */
-        assert : function(unitTest, expression, message) {
-            var kRequiredLocalParameterCount = 3;
-            var kMethodName = 'assert';
-            var kArgumentsLength = arguments.length;
-            var result = !!expression;
+    /**
+     * @function {static} o2.Unit.getGlobalFailureCount
+     *
+     * <p>Gets the total number of failed assertions so far.</p>
+     *
+     * @return the total number of failed assertions.
+     */
+    me.getGlobalFailureCount = function() {
+        return globalFailureCount;
+    };
 
-            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+    /**
+     * @function {static} o2.Unit.assert
+     * <p>Asserts whether the given <strong>expression</strong> evaluates to
+     * <code>true</code> or not.</p>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Expression} expression - the expression to evaluate.
+     * @param {String} message - the associated message.
+     */
+    me.assert = function(unitTest, expression, message) {
+        var kRequiredLocalParameterCount = 3;
+        var kMethodName = 'assert';
+        var kArgumentsLength = arguments.length;
+        var result = !!expression;
 
-            didAssertion(unitTest, result, message);
-        },
+        expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.assertEqual
-         * <p>Asserts whether two values are equal.</p>
-         *
-         * @param {o2.UnitTest} unitTest - the current active unit test.
-         * @param {Object} currentValue - the current value to assert.
-         * @param {Object} expectedValue - the expected value to check against.
-         * @param {String} message - the associated message.
-         */
-        assertEqual : function(unitTest, currentValue, expectedValue, message) {
-            var kRequiredLocalParameterCount = 4;
-            var kMethodName = 'assertEqual';
-            var kArgumentsLength = arguments.length;
+        didAssertion(unitTest, result, message);
+    };
 
-            // JSLint valitation error on purpose.
-            var result = (currentValue == expectedValue);
+    /**
+     * @function {static} o2.Unit.assertEqual
+     * <p>Asserts whether two values are equal.</p>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+    me.assertEqual = function(unitTest, currentValue, expectedValue, message) {
+        var kRequiredLocalParameterCount = 4;
+        var kMethodName = 'assertEqual';
+        var kArgumentsLength = arguments.length;
 
-            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+        // JSLint valitation error on purpose.
+        var result = (currentValue == expectedValue);
 
-            didAssertion(unitTest, result, message);
-        },
+        expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.assertNotEqual
-         * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
-         *
-         * @param {o2.UnitTest} unitTest - the current active unit test.
-         * @param {Object} currentValue - the current value to assert.
-         * @param {Object} expectedValue - the expected value to check against.
-         * @param {String} message - the associated message.
-         */
-        assertNotEqual : function(unitTest, currentValue, expectedValue,
-                    message) {
-            var kRequiredLocalParameterCount = 4;
-            var kMethodName = 'assertNotEqual';
-            var kArgumentsLength = arguments.length;
+        didAssertion(unitTest, result, message);
+    };
 
-            // JSLint validation error on purpose:
-            var result = (currentValue != expectedValue);
+    /**
+     * @function {static} o2.Unit.assertNotEqual
+     * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+    me.assertNotEqual = function(unitTest, currentValue, expectedValue,
+                message) {
+        var kRequiredLocalParameterCount = 4;
+        var kMethodName = 'assertNotEqual';
+        var kArgumentsLength = arguments.length;
 
-            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+        // JSLint validation error on purpose:
+        var result = (currentValue != expectedValue);
 
-            didAssertion(unitTest, result, message);
-        },
+        expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.assertStrictEqual
-         *
-         * <p>Asserts whether two values are strictly equal (by value and
-         * type).</p>
-         *
-         * @param {o2.UnitTest} unitTest - the current active unit test.
-         * @param {Object} currentValue - the current value to assert.
-         * @param {Object} expectedValue - the expected value to check against.
-         * @param {String} message - the associated message.
-         */
-        assertStrictEqual : function(unitTest, currentValue, expectedValue,
-                    message) {
-            var kRequiredLocalParameterCount = 4;
-            var kMethodName = 'assertStrictEqual';
-            var kArgumentsLength = arguments.length;
+        didAssertion(unitTest, result, message);
+    };
 
-            var result = (currentValue === expectedValue);
+    /**
+     * @function {static} o2.Unit.assertStrictEqual
+     *
+     * <p>Asserts whether two values are strictly equal (by value and
+     * type).</p>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+    me.assertStrictEqual = function(unitTest, currentValue, expectedValue,
+                message) {
+        var kRequiredLocalParameterCount = 4;
+        var kMethodName = 'assertStrictEqual';
+        var kArgumentsLength = arguments.length;
 
-            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+        var result = (currentValue === expectedValue);
 
-            didAssertion(unitTest, result, message);
-        },
+        expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.assertStrictNotEqual
-         *
-         * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
-         * (by value and
-         * type).</p>
-         *
-         * @param {o2.UnitTest} unitTest - the current active unit test.
-         * @param {Object} currentValue - the current value to assert.
-         * @param {Object} expectedValue - the expected value to check against.
-         * @param {String} message - the associated message.
-         */
-        assertStrictNotEqual : function(unitTest, currentValue, expectedValue,
-                    message) {
-            var kRequiredLocalParameterCount = 4;
-            var kMethodName = 'assertStrictNotEqual';
-            var kArgumentsLength = arguments.length;
+        didAssertion(unitTest, result, message);
+    };
 
-            var result = (currentValue !== expectedValue);
+    /**
+     * @function {static} o2.Unit.assertStrictNotEqual
+     *
+     * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
+     * (by value and
+     * type).</p>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+    me.assertStrictNotEqual = function(unitTest, currentValue, expectedValue,
+                message) {
+        var kRequiredLocalParameterCount = 4;
+        var kMethodName = 'assertStrictNotEqual';
+        var kArgumentsLength = arguments.length;
 
-            expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+        var result = (currentValue !== expectedValue);
 
-            didAssertion(unitTest, result, message);
-        },
+        expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.add
-         *
-         * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
-         * adds it to the test queue.</p>
-         *
-         * @param {String} description - the description of the test.
-         * @param {Object} testMeta - test meta data in the form {count:
-         * [number], test: [callback]}, where <strong>count</strong> is the
-         * total number of assertions in the test suite, and
-         * <strong>test</strong> is the actual test suite <code>Function</code>.
-         */
-        add : function(description, testMeta) {
-            var kRequiredLocalParameterCount = 2;
-            var kMethodName = 'add';
-            var kArgumentsLength = arguments.length;
+        didAssertion(unitTest, result, message);
+    };
 
-            var totalAssertionCount = testMeta.count;
-            var testCase = testMeta.test;
+    /**
+     * @function {static} o2.Unit.add
+     *
+     * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
+     * adds it to the test queue.</p>
+     *
+     * @param {String} description - the description of the test.
+     * @param {Object} testMeta - test meta data in the form {count:
+     * [number], test: [callback]}, where <strong>count</strong> is the
+     * total number of assertions in the test suite, and
+     * <strong>test</strong> is the actual test suite <code>Function</code>.
+     */
+    me.add = function(description, testMeta) {
+        var kRequiredLocalParameterCount = 2;
+        var kMethodName = 'add';
+        var kArgumentsLength = arguments.length;
 
-            expectProperArgumentLength({}, kRequiredLocalParameterCount,
-                kArgumentsLength, kMethodName);
+        var totalAssertionCount = testMeta.count;
+        var testCase = testMeta.test;
 
-            state.tests.push(new UnitTest(description, totalAssertionCount,
-                testCase));
-        },
+        expectProperArgumentLength({}, kRequiredLocalParameterCount,
+            kArgumentsLength, kMethodName);
 
-        /**
-         * @function {static} o2.Unit.log
-         *
-         * <p>Logs the <strong>message</strong>.</p>
-         * <p>An alias to {@link Debugger.log}.</p>
-         *
-         * @see o2.Debugger.log
-         */
-        log : function(message) {
-            log(message);
-        },
+        tests.push(new UnitTest(description, totalAssertionCount,
+            testCase));
+    };
 
-        /**
-         * @function {static} o2.Unit.run
-         *
-         * <p>Asynchronously runs all of the registered
-         * <code>UnitTest</code>s, one after another.</p>
-         *
-         * @param {Function} globalCompletionCallback - (Optional) this callback
-         * will be run with <code>o2.Unit</code> as a parameter passed to it.
-         */
-        run : function(globalCompletionCallback) {
-            if (framework.Unit.isRunning) {
+    /**
+     * @function {static} o2.Unit.log
+     *
+     * <p>Logs the <strong>message</strong>.</p>
+     * <p>An alias to {@link Debugger.log}.</p>
+     *
+     * @see o2.Debugger.log
+     */
+    me.log = function(message) {
+        log(message);
+    };
+
+    /**
+     * @function {static} o2.Unit.run
+     *
+     * <p>Asynchronously runs all of the registered
+     * <code>UnitTest</code>s, one after another.</p>
+     *
+     * @param {Function} globalCompletionCallback - (Optional) this callback
+     * will be run with <code>o2.Unit</code> as a parameter passed to it.
+     */
+    me.run = function(globalCompletionCallback) {
+        if (me.isRunning) {
+            return;
+        }
+
+        me.isRunning = true;
+
+        var oncomplete = globalCompletionCallback || nill;
+
+        initializeDebugger();
+
+        var activeUnitTest = null;
+
+        setTimeout(function waitForUnitTest() {
+            if (isLocked(activeUnitTest)) {
+                setTimeout(waitForUnitTest, kCheckInterval);
+
                 return;
             }
 
-            framework.Unit.isRunning = true;
+            // Grab the currently active UnitTest.
+            activeUnitTest = tests.shift();
 
-            var oncomplete = globalCompletionCallback || nill;
+            var isSuiteComplete = !activeUnitTest ||
+                !activeUnitTest instanceof UnitTest;
 
-            initializeDebugger();
+            if (isSuiteComplete) {
+                reportGlobalCompletion();
 
-            var activeUnitTest = null;
-
-            setTimeout(function waitForUnitTest() {
-                if (isLocked(activeUnitTest)) {
-                    setTimeout(waitForUnitTest, kCheckInterval);
-
-                    return;
-                }
-
-                // Grab the currently active UnitTest.
-                activeUnitTest = state.tests.shift();
-
-                var isSuiteComplete = !activeUnitTest ||
-                    !activeUnitTest instanceof UnitTest;
-
-                if (isSuiteComplete) {
-                    reportGlobalCompletion();
-
-                    framework.Unit.isRunning = false;
-
-                    // We are done with this unit test, so release the lock.
-                    activeUnitTest = null;
-
-                    oncomplete(framework.Unit);
-
-                    return;
-                }
-
-                if (hasMoreItems(activeUnitTest)) {
-                    execute(activeUnitTest);
-
-                    setTimeout(waitForUnitTest, kCheckInterval);
-
-                    return;
-                }
+                me.isRunning = false;
 
                 // We are done with this unit test, so release the lock.
                 activeUnitTest = null;
 
-            }, kCheckInterval);
-        }
+                oncomplete(me);
+
+                return;
+            }
+
+            if (hasMoreItems(activeUnitTest)) {
+                execute(activeUnitTest);
+
+                setTimeout(waitForUnitTest, kCheckInterval);
+
+                return;
+            }
+
+            // We are done with this unit test, so release the lock.
+            activeUnitTest = null;
+
+        }, kCheckInterval);
     };
 }(this.o2, this));

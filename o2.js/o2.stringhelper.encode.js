@@ -7,109 +7,100 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 17:57:15.630658
+ *  lastModified: 2012-01-28 10:22:16.318713
  * -->
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
-
 (function(framework, document) {
     'use strict';
 
     /*
      *
      */
-    var Map = {
-
-        /*
-         *
-         */
-        xssEncodeNoAmp : [
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /\'/g, replace : '&#34;'}
-        ],
-
-        /*
-         *
-         */
-        xssEncode : [
-            {regExp : /&/g,  replace : '&amp;'},
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /\'/g, replace : '&#34;'}
-        ],
-
-        /*
-         *
-         */
-        encode : [
-            {regExp : /&/g,  replace : '&amp;' },
-            {regExp : /</g,  replace : '&#60;' },
-            {regExp : />/g,  replace : '&#62;' },
-            {regExp : /"/g,  replace : '&#34;' },
-            {regExp : /\'/g, replace : '&#34;' },
-            {regExp : / /g,  replace : '&nbsp;'}
-        ],
-
-        /*
-         *
-         */
-        decode : [
-            {regExp : /&#60;|&lt;/g,           replace : '<'},
-            {regExp : /&#62;|&gt;/g,           replace : '>'},
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-            {regExp : /&#38;|&amp;/g,          replace : '&'}
-        ],
-
-        /*
-         *
-         */
-        safeHtml : [
-            {regExp : /"/g, replace : '&quot;'},
-            {regExp : /'/g, replace : '&#39;' }
-        ],
-
-        /*
-         *
-         */
-        process : function(str, map) {
-            var i = 0;
-            var len = 0;
-            var mapItem = null;
-            var result = str;
-
-            for (i = 0, len = map.length; i < len; i++) {
-                mapItem = map[i];
-                result = result.replace(mapItem.regExp, mapItem.replace);
-            }
-
-            return result;
-        }
-    };
+    var xssEncodeNoAmpMap = [
+        {regExp : /</g,  replace : '&#60;'},
+        {regExp : />/g,  replace : '&#62;'},
+        {regExp : /"/g,  replace : '&#34;'},
+        {regExp : /\'/g, replace : '&#34;'}
+    ];
 
     /*
-     * Aliases.
+     *
      */
-    var me      = framework.StringHelper;
-    var process = Map.process;
+    var xssEncodeMap = [
+        {regExp : /&/g,  replace : '&amp;'},
+        {regExp : /</g,  replace : '&#60;'},
+        {regExp : />/g,  replace : '&#62;'},
+        {regExp : /"/g,  replace : '&#34;'},
+        {regExp : /\'/g, replace : '&#34;'}
+    ];
+
+    /*
+     *
+     */
+    var encodeMap = [
+        {regExp : /&/g,  replace : '&amp;' },
+        {regExp : /</g,  replace : '&#60;' },
+        {regExp : />/g,  replace : '&#62;' },
+        {regExp : /"/g,  replace : '&#34;' },
+        {regExp : /\'/g, replace : '&#34;' },
+        {regExp : / /g,  replace : '&nbsp;'}
+    ];
+
+    /*
+     *
+     */
+    var decodeMap = [
+        {regExp : /&#60;|&lt;/g,           replace : '<'},
+        {regExp : /&#62;|&gt;/g,           replace : '>'},
+        {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
+        {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
+        {regExp : /&#32;|&nbsp;/g,         replace : ' '},
+        {regExp : /&#38;|&amp;/g,          replace : '&'}
+    ];
+
+    /*
+     *
+     */
+    var safeHtmlMap = [
+        {regExp : /"/g, replace : '&quot;'},
+        {regExp : /'/g, replace : '&#39;' }
+    ];
+
+    /*
+     *
+     */
+    function processMap(str, map) {
+        var i = 0;
+        var len = 0;
+        var mapItem = null;
+        var result = str;
+
+        for (i = 0, len = map.length; i < len; i++) {
+            mapItem = map[i];
+            result = result.replace(mapItem.regExp, mapItem.replace);
+        }
+
+        return result;
+    }
+
+    /*
+     * Aliases
+     */
+    var me = framework.StringHelper;
+    var concat = me.concat;
 
     /*
      * Common Text
      */
-    var kEmpty     = '';
+    var kEmpty = '';
     var kContainer = 'div';
 
     /*
      *
      */
-    var state = {
-        tempDiv : null
-    };
+    var tempDiv = null;
 
     /**
      * @function {static} o2.StringHelper.xssEncode
@@ -128,9 +119,8 @@
      * @return the processed <strong>String</strong>.
      */
     me.xssEncode = function(str, isAmpersandsPreserved) {
-        return process(
-            [kEmpty, str].join(kEmpty),
-            !!isAmpersandsPreserved ? Map.xssEncodeNoAmp : Map.xssEncode
+        return processMap(concat(kEmpty, str),
+            !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
         );
     };
 
@@ -148,7 +138,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.encode = function(str) {
-        return process([kEmpty, str].join(kEmpty), Map.encode);
+        return processMap(concat(kEmpty, str), encodeMap);
     };
 
     /**
@@ -163,7 +153,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.decode = function(str) {
-        return process([kEmpty, str].join(kEmpty), Map.decode);
+        return processMap(concat(kEmpty, str), decodeMap);
     };
 
     /**
@@ -176,7 +166,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.escape = function(str) {
-        return encodeURIComponent([kEmpty, str].join(kEmpty));
+        return encodeURIComponent(concat(kEmpty, str));
     };
 
     /**
@@ -189,7 +179,7 @@
      * @return the processed <strong>String</strong>.
      */
     me.unescape = function(str) {
-        return decodeURIComponent([kEmpty, str].join(kEmpty));
+        return decodeURIComponent(concat(kEmpty, str));
     };
 
     /**
@@ -203,15 +193,13 @@
      * @return the processed <strong>String</strong>.
      */
     me.encodeSafeHtml = function(str) {
-        var tmp = state.tempDiv;
-
-        if (!tmp) {
-            state.tempDiv = document.createElement(kContainer);
+        if (!tempDiv) {
+            tempDiv = document.createElement(kContainer);
         }
 
-        tmp.innerHTML = kEmpty;
-        tmp.appendChild(document.createTextNode([kEmpty, str].join(kEmpty)));
+        tempDiv.innerHTML = kEmpty;
+        tempDiv.appendChild(document.createTextNode(concat(kEmpty, str)));
 
-        return process(tmp.innerHTML, Map.safeHtml);
+        return processMap(tempDiv.innerHTML, safeHtmlMap);
     };
 }(this.o2, this.document));

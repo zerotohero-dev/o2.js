@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 09:05:23.998048
+ *  lastModified: 2012-01-28 08:26:22.624588
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -25,8 +25,8 @@
     /*
      * Common Regular Expressions
      */
-    var kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
-    var kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
+    var kEmailRegExp = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
+    var kUrlRegExp = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
     var kWhitespaceRegExp = /^\s*$/;
 
     /**

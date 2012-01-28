@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-22 17:17:11.761691
+ *  lastModified: 2012-01-28 09:24:12.509266
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
@@ -18,18 +18,18 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me = framework.StringHelper;
 
     /*
      * Common Regular Expressions
      */
-    var kNonAlphaRegExp        = /[^A-Za-z ]+/g;
+    var kNonAlphaRegExp = /[^A-Za-z ]+/g;
     var kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g;
-    var kNonNumericRegExp      = /[^0-9-.]/g;
-    var kNumericRegExp         = /[0-9]/g;
-    var kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
+    var kNonNumericRegExp = /[^0-9-.]/g;
+    var kNumericRegExp = /[0-9]/g;
+    var kTagRegExp = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
 
     /*
      * Common Strings

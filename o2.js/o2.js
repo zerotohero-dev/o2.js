@@ -1,9 +1,17 @@
 /**
  * <b>o2.js</b>
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.#1327655584#
+ * @version     0.23.0001327763758
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ *
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-25 08:34:42.334812
+ * -->
  */
 
 /**
@@ -21,28 +29,19 @@ this.o2 = {};
     'use strict';
 
     /*
-     * Aliases.
-     */
-    var me = framework;
-
-    /*
      * Common Constants
      */
-    var kObjectNotDefined      = ' : Object is not defined.';
-    var kModuleRequired        = ' : Please provide required module: ';
-    var kModuleAlreadyProvided = ' : Do not include module more than once: ';
-    var kString                = 'string';
-    var kEmpty                 = '';
-    var kLoad                  = 'load';
-
-    var providesModules = {};
+    var kObjectNotDefined = ' : Object is not defined.';
+    var kEmpty = '';
+    var kString = 'string';
+    var kLoad = 'load';
 
     /**
      * @function {static} o2.nill
      *
      * <p>An empty function.</p>
      */
-    me.nill = function() {
+    framework.nill = function() {
     };
 
     /**
@@ -51,35 +50,35 @@ this.o2 = {};
      * <p>Short name of the framework, to be used in
      * prefixes, class names etc.</p>
      */
-    me.name = 'o2js';
+    framework.name = 'o2js';
 
     /**
      * @property {String} o2.url
      *
      * <p>URL of the project.</p>
      */
-    me.url = 'http://o2js.com';
+    framework.url = 'http://o2js.com';
 
     /**
      * @property {String} o2.longName
      *
      * <p>Full name of the project.</p>
      */
-    me.longName = 'o2.js JavaScript Framework';
+    framework.longName = 'o2.js JavaScript Framework';
 
     /**
      * @property {String} o2.version
      *
      * <p>Project version.</p>
      */
-    me.version = '0.23';
+    framework.version = '0.23';
 
     /**
      * @property {String} o2.build
      *
      * <p>Project build number.</p>
      */
-    me.build = '#1327655584#';
+    framework.build = '.0001327763758';
 
     /**
      * @function {static} o2.$
@@ -93,9 +92,9 @@ this.o2 = {};
      *
      * @throws exception - if obj is <code>undefined</code>.
      */
-    me.$ = function(obj) {
+    framework.$ = function(obj) {
         if (obj === undefined) {
-            throw [me.name, kObjectNotDefined].join(kEmpty);
+            throw [framework.name, kObjectNotDefined].join(kEmpty);
         }
 
         if (typeof obj === kString) {
@@ -106,85 +105,6 @@ this.o2 = {};
     };
 
     /**
-     * @function {static} o2.t
-     *
-     * <p>A <code>getElementsByTagName</code> wrapper.</p>
-     *
-     * @param {String} tagName - the name of the tag to search.
-     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the parent container, or the id of the parent container, to search.
-     *
-     * @return a collection of matching elements.
-     */
-    me.t = function(tagName, parent) {
-        if (!parent) {
-            parent = document;
-        }
-
-        parent = framework.$(parent);
-
-        var p = parent || document;
-
-        return p.getElementsByTagName(tagName);
-    };
-
-    /**
-     * @function {static} o2.n
-     *
-     * <p>A <code>getElementsByName</code> wrapper.</p>
-     *
-     * @param {String} tagName - the name of the form item to search.
-     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the parent container, or the id of the parent container, to search.
-     *
-     * @return a collection of matching elements.
-     */
-    me.n = function(name, parent) {
-        var collection = document.getElementsByName(name);
-        var i = 0;
-        var len = 0;
-        var isParent = me.DomHelper.isParent;
-        var result = [];
-        var item = null;
-
-        if (!parent) {
-            return collection;
-        }
-
-        for (i = 0, len = collection.length; i < len; i++) {
-            item = collection[i];
-
-            if (isParent(parent, item)) {
-                result.push(item);
-            }
-        }
-
-        return result;
-    };
-
-    /**
-     * @function {static} o2.tt
-     *
-     * <p>Acts similar to {link t} -- with one exception: The method
-     * returns the first matched node, instead of returning a node
-     * collection.</p>
-     *
-     * @param {String} tagName - the name of the tag to search.
-     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the parent container, or the id of the parent container, to search.
-     *
-     * @return the first matched element if found; <code>null</code>
-     * otherwise.
-     */
-    me.tt = function(tagName, parent) {
-        parent = framework.$(parent);
-
-        var result = framework.t(tagName, parent);
-
-        return result ? result[0] : null;
-    };
-
-    /**
      * @function {static} o2.ready
      *
      * <p>An alias for <code>DomHelper.ready</code>.</p>
@@ -192,7 +112,7 @@ this.o2 = {};
      * @param {Function} callback - The callback to execute when DOM is
      * ready.
      */
-    me.ready = function(callback) {
+    framework.ready = function(callback) {
         framework.DomHelper.ready(callback);
     };
 
@@ -205,7 +125,7 @@ this.o2 = {};
      * @param {Function} callback - The callback to execute when window is
      * loaded.
      */
-    me.load = function(callback) {
+    framework.load = function(callback) {
         framework.EventHandler.addEventListener(window, kLoad, callback);
     };
 }(this.o2, this, this.document));
