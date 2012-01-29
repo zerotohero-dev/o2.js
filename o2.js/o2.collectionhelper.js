@@ -31,8 +31,8 @@
      * Common Constants
      */
     var kObjectNameStartIndex = 8;
-    var kTrimLastBraceIndex   = -1;
-    var kObject               = 'object';
+    var kTrimLastBraceIndex = -1;
+    var kObject = 'object';
 
     /*
      * EcmaScript Types
@@ -63,15 +63,11 @@
      *
      * @param {Object} toObj - the <code>Object</code> to copy values to.
      * @param {Object} fromObj - the <code>Object</code> to copy values from.
-     * @param {Boolean} isRecursive - (Optional, defaults to
-     * <code>false</code>) <code>true</code> if the merge is nested into
-     * child objects as well.
      *
      * @return a <strong>reference</strong> to the modified
      * <code>toObj</code>.
      */
-    me.merge = function(toObj, fromObj, isRecursive) {
-        var shouldRecurse = !!isRecursive;
+    me.merge = function(toObj, fromObj) {
         var value = null;
         var key = null;
         var merge = me.merge;
@@ -90,16 +86,8 @@
             for (i = 0; i < len; i++) {
                 value = fromObj[i];
 
-                if (!shouldRecurse || typeof value !== kObject) {
-                    if(indexOf(toObj, value) === -1) {
-                        toObj.push(value);
-                    }
-                } else {
-                    if (typeof toObj[i] !== kObject) {
-                        toObj[key] = [];
-                    }
-
-                    merge(toObj[i], value, shouldRecurse);
+                if(indexOf(toObj, value) === -1) {
+                    toObj.push(value);
                 }
             }
 
@@ -108,17 +96,7 @@
 
         for (key in fromObj) {
             if (fromObj.hasOwnProperty(key)) {
-                value = fromObj[key];
-
-                if (!shouldRecurse || typeof value !== kObject) {
-                    toObj[key] = value;
-                } else {
-                    if (typeof toObj[key] !== kObject) {
-                        toObj[key] = {};
-                    }
-
-                    merge(toObj[key], value, shouldRecurse);
-                }
+                toObj[key] = fromObj[key];
             }
         }
 
@@ -301,29 +279,17 @@
      * leaving the original intact.</p>
      *
      * @param {Object} ar - the object to clone.
-     * @param {Boolean} isDeepCopy - (Optional; defaults to
-     * <code>false</code>) - if <code>true</code> and the object contains
-     * other <code>Object</code>s, these <code>Object</code>s will be cloned
-     * as well; non-primitive values will not be copied otherwise.
      *
      * @return the copied <code>Object</code>.
      */
-    me.copy = function(ar, isDeepCopy) {
-        var shouldDeepCopy = !!isDeepCopy;
+    me.copy = function(ar) {
         var theCopy = isArray(ar) ? [] : {};
         var value = null;
         var key = null;
 
         for (key in ar) {
             if (ar.hasOwnProperty(key)) {
-                value = ar[key];
-
-                if (!shouldDeepCopy || (typeof value !== kObject)) {
-                    theCopy[key] = value;
-                } else {
-                    theCopy[key] = me.CollectionHelper.copy(value,
-                        shouldDeepCopy);
-                }
+                theCopy[key] = ar[key];
             }
         }
 
@@ -503,21 +469,15 @@
      * This function alters the actual <code>Object</code>.</p>
      *
      * @param {Object} ar - the <code>Object</code> to clean.
-     * @param {Boolean} isDeepClean - (Optional; defaults to
-     * <code>false</code>) - if <code>true</code> and the object contains
-     * other <code>Object</code>s,
-     * these <code>Object</code>s will be cleaned as well; non-primitive
-     * values will not be cleaned otherwise.
      *
      * @return a reference to the <code>Object</code> itself.
      */
-    me.compact = function(ar, isDeepClean) {
+    me.compact = function(ar) {
         var compact = me.compact;
         var value = null;
         var i = 0;
         var len = 0;
         var key = null;
-        var shouldRecurse = !!isDeepClean;
 
         if (!ar) {
             return null;
@@ -532,8 +492,6 @@
 
                     i = i - 1;
                     len = ar.length;
-                } else if (isArray(value) && shouldRecurse) {
-                    compact(value, shouldRecurse);
                 }
             }
 
@@ -546,10 +504,6 @@
 
                 if (value === null || value === undefined) {
                     delete ar[key];
-                }
-
-                if (typeof value === kObject && shouldRecurse) {
-                    compact(value);
                 }
             }
         }
@@ -664,15 +618,10 @@
      * <p>Converts the <strong>collection</strong> into an <code>Array</code>.
      *
      * @param {Object} collection - the <strong>collection</strong> to convert.
-     * @param {Boolean} shouldRecurse - (Optional, defaults to
-     * <code>false</code>), if <code>true</code> nested items that are
-     * <code>Object</code>s will also be processed.
      *
      * @return the converted <code>Array</code>.
      */
-    me.toArray = function(collection, shouldRecurse) {
-        var isRecursive = !!shouldRecurse;
-
+    me.toArray = function(collection) {
         var key = null;
         var result = [];
 
@@ -680,11 +629,7 @@
 
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
-                if (!isRecursive || typeof collection[key] !== kObject) {
-                    result.push(collection[key]);
-                } else {
-                    result.push(toArray(collection[key], isRecursive));
-                }
+                result.push(toArray(collection[key], isRecursive));
             }
         }
 

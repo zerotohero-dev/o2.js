@@ -1,7 +1,7 @@
 /**
  * <b>o2.js</b>
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.0001327838681
+ * @version     0.23.0001327866898
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  *
@@ -78,7 +78,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    framework.build = '.0001327838681';
+    framework.build = '.0001327866898';
 
     /**
      * @function {static} o2.$

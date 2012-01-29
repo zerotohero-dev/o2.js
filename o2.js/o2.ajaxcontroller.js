@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-26 08:01:42.653046
+ *  lastModified: 2012-01-29 15:11:58.278612
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -20,8 +20,7 @@
     /*
      * Aliases
      */
-    var me          = framework;
-    var nill        = framework.nill;
+    var nill = framework.nill;
     var addObserver = framework.AjaxState.addObserver;
 
     /**
@@ -45,7 +44,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    me.AjaxController = function(xhr, args) {
+    framework.AjaxController = function(xhr, args) {
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -54,7 +53,8 @@
         addObserver(this);
     };
 
-    var apt = me.AjaxController.prototype;
+    var me = framework.AjaxController;
+    var apt = me.prototype;
 
     /**
      * @function {protected} o2.AjaxController.update
