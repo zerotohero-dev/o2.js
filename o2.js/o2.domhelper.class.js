@@ -7,6 +7,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 22:48:48.525266
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -18,15 +20,16 @@
     /*
      * Aliases
      */
-    var $      = framework.$;
+    var $ = framework.$;
     var concat = framework.StringHelper.concat;
-    var me     = framework.DomHelper;
+    var me = framework.DomHelper;
 
     /*
      * Common Constants
      */
     var kBlank = ' ';
-    var kEmpty = '';
+    var kBeginOrBlank = '(\\s|^)';
+    var kEndOrBlank = '(\\s|$)';
 
     /**
      * @function {static} o2.DomHelper.createClassNameRegExp
@@ -39,7 +42,7 @@
      * @returns a <code>RegExp</code> that matches the given class name.
      */
     me.createClassNameRegExp = function(c) {
-        return new RegExp(concat('(\\s|^)', c, '(\\s|$)'));
+        return new RegExp(concat(kBeginOrBlank, c, kEndOrBlank));
     };
 
     /**

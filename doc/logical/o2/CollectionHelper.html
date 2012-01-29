@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327655584#
+	                 version 0.23.0001327872069
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -106,8 +106,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___compact"><span class="elementName">compact</span></a>
                 (<span class="type">Object</span>
- ar, <span class="type">Boolean</span>
- isDeepClean)
+ ar)
             </div>          
                 <div class="summaryItemDesc">
         <p>Remove <code>null</code>, and <code>undefined</code> members from
@@ -133,8 +132,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___copy"><span class="elementName">copy</span></a>
                 (<span class="type">Object</span>
- ar, <span class="type">Boolean</span>
- isDeepCopy)
+ ar)
             </div>          
                 <div class="summaryItemDesc">
         <p>Creates a clone of the given <code>Object</code>, and returns it;
@@ -271,8 +269,7 @@
                 <a href="logical/o2/CollectionHelper.html#___merge"><span class="elementName">merge</span></a>
                 (<span class="type">Object</span>
  toObj, <span class="type">Object</span>
- fromObj, <span class="type">Boolean</span>
- isRecursive)
+ fromObj)
             </div>          
                 <div class="summaryItemDesc">
         <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>    </div>  
@@ -298,8 +295,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___toArray"><span class="elementName">toArray</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Boolean</span>
- shouldRecurse)
+ collection)
             </div>          
                 <div class="summaryItemDesc">
         <p>Converts the <strong>collection</strong> into an <code>Array</code>.    </div>  
@@ -358,8 +354,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     compact(<span class="type">Object</span>
- ar, <span class="type">Boolean</span>
- isDeepClean)
+ ar)
                 </code> 
             </div>          
                 <div class="comment">
@@ -377,14 +372,6 @@
         <code>
             ar        </code>
          - the <code>Object</code> to clean.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isDeepClean        </code>
-         - (Optional; defaults to
- <code>false</code>) - if <code>true</code> and the object contains
- other <code>Object</code>s,
- these <code>Object</code>s will be cleaned as well; non-primitive
- values will not be cleaned otherwise.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -450,8 +437,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     copy(<span class="type">Object</span>
- ar, <span class="type">Boolean</span>
- isDeepCopy)
+ ar)
                 </code> 
             </div>          
                 <div class="comment">
@@ -468,13 +454,6 @@
         <code>
             ar        </code>
          - the object to clone.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isDeepCopy        </code>
-         - (Optional; defaults to
- <code>false</code>) - if <code>true</code> and the object contains
- other <code>Object</code>s, these <code>Object</code>s will be cloned
- as well; non-primitive values will not be copied otherwise.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -871,8 +850,7 @@
                     <span class="type"></span>
                     merge(<span class="type">Object</span>
  toObj, <span class="type">Object</span>
- fromObj, <span class="type">Boolean</span>
- isRecursive)
+ fromObj)
                 </code> 
             </div>          
                 <div class="comment">
@@ -892,12 +870,6 @@
         <code>
             fromObj        </code>
          - the <code>Object</code> to copy values from.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isRecursive        </code>
-         - (Optional, defaults to
- <code>false</code>) <code>true</code> if the merge is nested into
- child objects as well.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -970,8 +942,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     toArray(<span class="type">Object</span>
- collection, <span class="type">Boolean</span>
- shouldRecurse)
+ collection)
                 </code> 
             </div>          
                 <div class="comment">
@@ -987,12 +958,6 @@
         <code>
             collection        </code>
          - the <strong>collection</strong> to convert.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            shouldRecurse        </code>
-         - (Optional, defaults to
- <code>false</code>), if <code>true</code> nested items that are
- <code>Object</code>s will also be processed.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1126,6 +1091,9 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
+                                <a href="physical/module-formHelper.html">formHelper</a>
+                            </div>                              
+                                                    <div>
                                 <a href="physical/module-jsonp.html">jsonp</a>
                             </div>                              
                                                     <div>
@@ -1139,9 +1107,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/o2/module-FormHelper.html">o2.FormHelper</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-objecthelper.html">objecthelper</a>

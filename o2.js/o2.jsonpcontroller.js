@@ -51,7 +51,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    var me = framework.JsonpController = function(jsonp, args) {
+    framework.JsonpController = function(jsonp, args) {
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -59,6 +59,8 @@
         // Register self.
         state.addObserver(this);
     };
+
+    var me = framework.JsonpController;
 
     /*
      *

@@ -7,45 +7,44 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-25 09:29:22.238661
+ *  lastModified: 2012-01-29 22:02:20.685722
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-
 (function(framework, window, document) {
     'use strict';
 
     /*
      * Aliases
      */
-    var me           = framework.DomHelper;
-    var myName       = framework.name;
-    var nill         = framework.nill;
-    var format       = framework.StringHelper.format;
-    var concat       = framework.StringHelper.concat;
+    var me = framework.DomHelper;
+    var myName = framework.name;
+    var nill = framework.nill;
+    var format = framework.StringHelper.format;
+    var concat = framework.StringHelper.concat;
     var generateGuid = framework.StringHelper.generateGuid;
-    var Image        = window.Image;
-    var setTimeout   = window.setTimeout;
+    var Image = window.Image;
+    var setTimeout = window.setTimeout;
 
     /*
      * Common Strings
      */
-    var kLink       = 'link';
-    var kHead       = 'head';
-    var kRel        = 'rel';
-    var kSheet      = 'stylesheet';
-    var kScript     = 'script';
-    var kSheetType  = 'text/css';
+    var kLink = 'link';
+    var kHead = 'head';
+    var kRel = 'rel';
+    var kSheet = 'stylesheet';
+    var kScript = 'script';
+    var kSheetType = 'text/css';
     var kScriptType = 'text/javascript';
 
     /*
      * Common Constants
      */
     var kMaxCssCheckAttempt = 500;
-    var kCssCheckInterval   = 100;
-    var kCssId              = concat(myName, '-css-{0}');
+    var kCssCheckInterval = 100;
+    var kCssId = concat(myName, '-css-{0}');
 
     /*
      * Common Regular Expressions

@@ -22,7 +22,7 @@
         [58060800000, kCenturies   , 2903040000       ]
     ];
 
-    framework.DateHelper = {
+    var me = framework.DateHelper = {};
 
         //TODO: add documentation.
         getPrettyDate : function(time, currentTime) {

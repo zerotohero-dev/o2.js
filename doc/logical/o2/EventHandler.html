@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327655584#
+	                 version 0.23.0001327872069
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -165,12 +165,67 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/EventHandler.html#___isArrowKey"><span class="elementName">isArrowKey</span></a>
+                (<span class="type">Event</span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is an arrow key.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/EventHandler.html#___isBackspaceKey"><span class="elementName">isBackspaceKey</span></a>
+                (<span class="type">Event</span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the backspace (DEL) key.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/EventHandler.html#___isEnterKey"><span class="elementName">isEnterKey</span></a>
+                (<span class="type">Event</span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the enter (return) key.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/EventHandler.html#___isEscapeKey"><span class="elementName">isEscapeKey</span></a>
+                (<span class="type">Event</span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the escape (ESC) key.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/EventHandler.html#___isRightClick"><span class="elementName">isRightClick</span></a>
                 (<span class="type">Event</span>
  evt)
             </div>          
                 <div class="summaryItemDesc">
         <p>Checks whether or not the curent action is a right click action.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/EventHandler.html#___isTabKey"><span class="elementName">isTabKey</span></a>
+                (<span class="type">Event</span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the tab key.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -367,7 +422,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the actual <code>DOM Event</code> object.
-     	            	        </div>
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -405,8 +460,9 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the <code>keyCode</code> associated with the event as an
- <code>Integer</code>
+	            	             the <strong>unicode</strong> key code associated
+ with the event as an <code>Integer</code>, if found; <code>0</code>
+ otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -444,7 +500,8 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the coordinates in the form of <code>{x: mouseX, y: mouseY}</code>
+	            	             the coordinates in the form of
+ <code>{x: mouseX, y: mouseY}</code>
  where <code>x</code> is the distance from the top of the screen, and
  <code>y</code> is the distance from the left of the screen.
      	            	        </div>
@@ -485,6 +542,162 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the actual <strong>DOM</strong> target of the event object.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isArrowKey">
+            <span class="objType">function</span>
+            <span class="objName">isArrowKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isArrowKey(<span class="type">Event</span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is an arrow key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is an arrow key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isBackspaceKey">
+            <span class="objType">function</span>
+            <span class="objName">isBackspaceKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isBackspaceKey(<span class="type">Event</span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the backspace key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isEnterKey">
+            <span class="objType">function</span>
+            <span class="objName">isEnterKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isEnterKey(<span class="type">Event</span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the enter (return) key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the enter key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isEscapeKey">
+            <span class="objType">function</span>
+            <span class="objName">isEscapeKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isEscapeKey(<span class="type">Event</span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the escape (ESC) key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the escape key,
+ <code>false</code> otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -523,6 +736,45 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             <code>true</code> if the event is a right click event,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isTabKey">
+            <span class="objType">function</span>
+            <span class="objName">isTabKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isTabKey(<span class="type">Event</span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the tab key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the tab key,
  <code>false</code> otherwise.
      	            	        </div>
         </div>      
@@ -782,6 +1034,9 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
+                                <a href="physical/module-formHelper.html">formHelper</a>
+                            </div>                              
+                                                    <div>
                                 <a href="physical/module-jsonp.html">jsonp</a>
                             </div>                              
                                                     <div>
@@ -795,9 +1050,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/o2/module-FormHelper.html">o2.FormHelper</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-objecthelper.html">objecthelper</a>

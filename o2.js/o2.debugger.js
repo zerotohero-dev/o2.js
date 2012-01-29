@@ -16,9 +16,8 @@
     /*
      * Aliases.
      */
-    var me      = framework;
-    var $       = framework.$;
-    var nill    = framework.nill;
+    var $ = framework.$;
+    var nill = framework.nill;
     var console = window.console;
 
     /**

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 10:36:02.905988
+ *  lastModified: 2012-01-29 22:53:17.125341
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
@@ -22,7 +22,7 @@
     var me = framework.EventHandler;
 
     /**
-     * @function {static} isEnterKey
+     * @function {static} o2.EventHandler.isEnterKey
      *
      * <p>Checks whether the pressed key is the enter (return) key.</p>
      *
@@ -37,7 +37,7 @@
     };
 
     /**
-     * @function {static} isTabKey
+     * @function {static} o2.EventHandler.isTabKey
      *
      * <p>Checks whether the pressed key is the tab key.</p>
      *
@@ -52,7 +52,7 @@
     };
 
     /**
-     * @function {static} isArrowKey
+     * @function {static} o2.EventHandler.isArrowKey
      *
      * <p>Checks whether the pressed key is an arrow key.</p>
      *
@@ -72,7 +72,7 @@
     };
 
     /**
-     * @function {static} isEnterKey
+     * @function {static} o2.EventHandler.isBackspaceKey
      *
      * <p>Checks whether the pressed key is the backspace (DEL) key.</p>
      *
@@ -87,7 +87,7 @@
     };
 
     /**
-     * @function {static} isEscapeKey
+     * @function {static} o2.EventHandler.isEscapeKey
      *
      * <p>Checks whether the pressed key is the escape (ESC) key.</p>
      *

@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 22:03:26.292927
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -17,10 +19,10 @@
     /*
      * Aliases
      */
-    var me      = framework.DomHelper;
-    var $       = framework.$;
+    var me = framework.DomHelper;
+    var $ = framework.$;
     var compact = framework.StringHelper.compact;
-    var trim    = framework.StringHelper.trim;
+    var trim = framework.StringHelper.trim;
 
     /**
      * @function {static} o2.DomHelper.trimField

@@ -1,9 +1,5 @@
 /**
  * <b>o2.js</b>
- * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.0001327866898
- * @author      Volkan Özçelik
- * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  *
  * <!--
  *  This program is distributed under
@@ -12,6 +8,11 @@
  *
  *  lastModified: 2012-01-25 08:34:42.334812
  * -->
+ *
+ * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ * @version     0.23.0001327872069
+ * @author      Volkan Özçelik
+ * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
 /**
@@ -78,7 +79,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    framework.build = '.0001327866898';
+    framework.build = '.0001327872069';
 
     /**
      * @function {static} o2.$

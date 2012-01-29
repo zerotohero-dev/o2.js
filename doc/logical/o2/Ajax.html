@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327655584#
+	                 version 0.23.0001327872069
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -91,12 +91,14 @@
                 <span class="objType">Function</span> Summary
             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Ajax.html#___abort"><span class="elementName">abort</span></a>()
-            </div>
-        <div class="summaryItemDesc">
+                <a href="logical/o2/Ajax.html#___abort"><span class="elementName">abort</span></a>
+                (<span class="type">XMLHttpRequest</span>
+ xhr)
+            </div>          
+                <div class="summaryItemDesc">
         <p>Explicitly abort the request.</p>
  <p>When the request is explicitly abourted, <strong>onaborted</strong>
  callback is fired.</p>    </div>  
@@ -193,19 +195,33 @@
             <span class="objName">abort</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    abort()
-                </code>
-            </div>    
-        <div class="comment">
+                    abort(<span class="type">XMLHttpRequest</span>
+ xhr)
+                </code> 
+            </div>          
+                <div class="comment">
         <p>Explicitly abort the request.</p>
  <p>When the request is explicitly abourted, <strong>onaborted</strong>
  callback is fired.</p>
 
      </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            xhr        </code>
+         - the original
+ <strong>XMLHttpRequest</strong> being sent.            </div>   
+                                        </div>
+                </div>
+                    </div>
                                                     <hr/>       
                                                                                     <h3>
         <a name="___createXhr">
@@ -231,7 +247,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the created <code>XMLHttpRequest</code> object.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -291,7 +307,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the original <code>XMLHttpRequest</code> object.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -414,7 +430,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the original <code>XMLHttpRequest</code> object.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -604,6 +620,9 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
+                                <a href="physical/module-formHelper.html">formHelper</a>
+                            </div>                              
+                                                    <div>
                                 <a href="physical/module-jsonp.html">jsonp</a>
                             </div>                              
                                                     <div>
@@ -617,9 +636,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/o2/module-FormHelper.html">o2.FormHelper</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-objecthelper.html">objecthelper</a>

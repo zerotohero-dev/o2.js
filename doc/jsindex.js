@@ -49,7 +49,7 @@
        {
            localName : "abort",
            fullName : "o2.Ajax.abort",
-           summary : "static function  abort()",
+           summary : "static function  abort(XMLHttpRequest xhr)",
            ref : "logical/o2/Ajax.html#___abort",
            parent : "o2.Ajax",
            type : "function",
@@ -283,7 +283,7 @@
        {
            localName : "compact",
            fullName : "o2.CollectionHelper.compact",
-           summary : "static function  compact(Object ar, Boolean isDeepClean)",
+           summary : "static function  compact(Object ar)",
            ref : "logical/o2/CollectionHelper.html#___compact",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -301,7 +301,7 @@
        {
            localName : "copy",
            fullName : "o2.CollectionHelper.copy",
-           summary : "static function  copy(Object ar, Boolean isDeepCopy)",
+           summary : "static function  copy(Object ar)",
            ref : "logical/o2/CollectionHelper.html#___copy",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -409,7 +409,7 @@
        {
            localName : "merge",
            fullName : "o2.CollectionHelper.merge",
-           summary : "static function  merge(Object toObj, Object fromObj, Boolean isRecursive)",
+           summary : "static function  merge(Object toObj, Object fromObj)",
            ref : "logical/o2/CollectionHelper.html#___merge",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -427,7 +427,7 @@
        {
            localName : "toArray",
            fullName : "o2.CollectionHelper.toArray",
-           summary : "static function  toArray(Object collection, Boolean shouldRecurse)",
+           summary : "static function  toArray(Object collection)",
            ref : "logical/o2/CollectionHelper.html#___toArray",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -731,6 +731,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "addCssRules",
+           fullName : "o2.DomHelper.addCssRules",
+           summary : "static function  addCssRules()",
+           ref : "logical/o2/DomHelper.html#___addCssRules",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "addStyle",
            fullName : "o2.DomHelper.addStyle",
            summary : "static function  addStyle(Object obj, Object style)",
@@ -742,7 +751,7 @@
        {
            localName : "append",
            fullName : "o2.DomHelper.append",
-           summary : "static function  append(Object child, Object parent)",
+           summary : "static function  append(Object elmChild, Object elmParent)",
            ref : "logical/o2/DomHelper.html#___append",
            parent : "o2.DomHelper",
            type : "function",
@@ -1048,7 +1057,7 @@
        {
            localName : "getAttribute",
            fullName : "o2.DomHelper.getAttribute",
-           summary : "static function  getAttribute(Object obj, String attribute)",
+           summary : "static function  getAttribute(Object elm, String attribute)",
            ref : "logical/o2/DomHelper.html#___getAttribute",
            parent : "o2.DomHelper",
            type : "function",
@@ -1210,7 +1219,7 @@
        {
            localName : "getOffset",
            fullName : "o2.DomHelper.getOffset",
-           summary : "static function  getOffset(Object elm)",
+           summary : "static function  getOffset(Object e)",
            ref : "logical/o2/DomHelper.html#___getOffset",
            parent : "o2.DomHelper",
            type : "function",
@@ -1325,6 +1334,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "getViewportInfo",
+           fullName : "o2.DomHelper.getViewportInfo",
+           summary : "static function  getViewportInfo()",
+           ref : "logical/o2/DomHelper.html#___getViewportInfo",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getWidth",
            fullName : "o2.DomHelper.getWidth",
            summary : "static function  getWidth(Object obj)",
@@ -1390,7 +1408,7 @@
        {
            localName : "insertAfter",
            fullName : "o2.DomHelper.insertAfter",
-           summary : "static function  insertAfter(Object newNode, Object refNode)",
+           summary : "static function  insertAfter(Object elmNewNode, Object elmRefNode)",
            ref : "logical/o2/DomHelper.html#___insertAfter",
            parent : "o2.DomHelper",
            type : "function",
@@ -1399,7 +1417,7 @@
        {
            localName : "insertBefore",
            fullName : "o2.DomHelper.insertBefore",
-           summary : "static function  insertBefore(Object newNode, Object refNode)",
+           summary : "static function  insertBefore(Object elmNewNode, Object elmRefNode)",
            ref : "logical/o2/DomHelper.html#___insertBefore",
            parent : "o2.DomHelper",
            type : "function",
@@ -1669,7 +1687,7 @@
        {
            localName : "prepend",
            fullName : "o2.DomHelper.prepend",
-           summary : "static function  prepend(Object child, Object parent)",
+           summary : "static function  prepend(Object elmChild, Object elmParent)",
            ref : "logical/o2/DomHelper.html#___prepend",
            parent : "o2.DomHelper",
            type : "function",
@@ -1723,7 +1741,7 @@
        {
            localName : "remove",
            fullName : "o2.DomHelper.remove",
-           summary : "static function  remove(Object elm)",
+           summary : "static function  remove(Object e)",
            ref : "logical/o2/DomHelper.html#___remove",
            parent : "o2.DomHelper",
            type : "function",
@@ -1732,7 +1750,7 @@
        {
            localName : "removeChildren",
            fullName : "o2.DomHelper.removeChildren",
-           summary : "static function  removeChildren(Object elm)",
+           summary : "static function  removeChildren(Object e)",
            ref : "logical/o2/DomHelper.html#___removeChildren",
            parent : "o2.DomHelper",
            type : "function",
@@ -1750,7 +1768,7 @@
        {
            localName : "removeEmptyTextNodes",
            fullName : "o2.DomHelper.removeEmptyTextNodes",
-           summary : "static function  removeEmptyTextNodes(Object elm, Boolean isRecursive)",
+           summary : "static function  removeEmptyTextNodes(Object e)",
            ref : "logical/o2/DomHelper.html#___removeEmptyTextNodes",
            parent : "o2.DomHelper",
            type : "function",
@@ -1813,7 +1831,7 @@
        {
            localName : "setAttribute",
            fullName : "o2.DomHelper.setAttribute",
-           summary : "static function  setAttribute(Object obj, String attribute, String value)",
+           summary : "static function  setAttribute(Object elm, String attribute, String value)",
            ref : "logical/o2/DomHelper.html#___setAttribute",
            parent : "o2.DomHelper",
            type : "function",
@@ -1955,10 +1973,55 @@
            elementType : "function"
        } ,         
        {
+           localName : "isArrowKey",
+           fullName : "o2.EventHandler.isArrowKey",
+           summary : "static function  isArrowKey(Event evt)",
+           ref : "logical/o2/EventHandler.html#___isArrowKey",
+           parent : "o2.EventHandler",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isBackspaceKey",
+           fullName : "o2.EventHandler.isBackspaceKey",
+           summary : "static function  isBackspaceKey(Event evt)",
+           ref : "logical/o2/EventHandler.html#___isBackspaceKey",
+           parent : "o2.EventHandler",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isEnterKey",
+           fullName : "o2.EventHandler.isEnterKey",
+           summary : "static function  isEnterKey(Event evt)",
+           ref : "logical/o2/EventHandler.html#___isEnterKey",
+           parent : "o2.EventHandler",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isEscapeKey",
+           fullName : "o2.EventHandler.isEscapeKey",
+           summary : "static function  isEscapeKey(Event evt)",
+           ref : "logical/o2/EventHandler.html#___isEscapeKey",
+           parent : "o2.EventHandler",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "isRightClick",
            fullName : "o2.EventHandler.isRightClick",
            summary : "static function  isRightClick(Event evt)",
            ref : "logical/o2/EventHandler.html#___isRightClick",
+           parent : "o2.EventHandler",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isTabKey",
+           fullName : "o2.EventHandler.isTabKey",
+           summary : "static function  isTabKey(Event evt)",
+           ref : "logical/o2/EventHandler.html#___isTabKey",
            parent : "o2.EventHandler",
            type : "function",
            elementType : "function"
@@ -2198,6 +2261,24 @@
            elementType : "function"
        } ,         
        {
+           localName : "FormHelper",
+           fullName : "o2.FormHelper",
+           summary : "namespace FormHelper",
+           ref : "logical/o2/FormHelper.html",
+           parent : "o2",
+           type : "namespace",
+           elementType : "logical_container"
+       } ,         
+       {
+           localName : "preventMultipleSubmit",
+           fullName : "o2.FormHelper.preventMultipleSubmit",
+           summary : "static function  preventMultipleSubmit(Object form)",
+           ref : "logical/o2/FormHelper.html#___preventMultipleSubmit",
+           parent : "o2.FormHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "Jsonp",
            fullName : "o2.Jsonp",
            summary : "static class Jsonp",
@@ -2405,6 +2486,15 @@
            elementType : "logical_container"
        } ,         
        {
+           localName : "encode",
+           fullName : "o2.QueryParser.encode",
+           summary : "static function  encode()",
+           ref : "logical/o2/QueryParser.html#___encode",
+           parent : "o2.QueryParser",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "parse",
            fullName : "o2.QueryParser.parse",
            summary : "static function  parse(String url)",
@@ -2425,8 +2515,17 @@
        {
            localName : "sort",
            fullName : "o2.SortDelegate.sort",
-           summary : "function sort()",
+           summary : "static function  sort()",
            ref : "logical/o2/SortDelegate.html#___sort",
+           parent : "o2.SortDelegate",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "sortAsc",
+           fullName : "o2.SortDelegate.sortAsc",
+           summary : "static function  sortAsc()",
+           ref : "logical/o2/SortDelegate.html#___sortAsc",
            parent : "o2.SortDelegate",
            type : "function",
            elementType : "function"
@@ -2434,7 +2533,7 @@
        {
            localName : "sortDesc",
            fullName : "o2.SortDelegate.sortDesc",
-           summary : "function sortDesc()",
+           summary : "static function  sortDesc()",
            ref : "logical/o2/SortDelegate.html#___sortDesc",
            parent : "o2.SortDelegate",
            type : "function",
@@ -3129,6 +3228,15 @@
            fullName : "o2.nill",
            summary : "static function  nill()",
            ref : "logical/o2.html#___nill",
+           parent : "o2",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "nn",
+           fullName : "o2.nn",
+           summary : "static function  nn(String name, DOMNode parent)",
+           ref : "logical/o2.html#___nn",
            parent : "o2",
            type : "function",
            elementType : "function"

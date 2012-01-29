@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-26 09:40:00.405325
+ *  lastModified: 2012-01-29 22:00:03.013716
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -70,7 +70,6 @@
     me.merge = function(toObj, fromObj) {
         var value = null;
         var key = null;
-        var merge = me.merge;
         var indexOf = me.indexOf;
         var i = 0;
         var len = 0;
@@ -284,7 +283,6 @@
      */
     me.copy = function(ar) {
         var theCopy = isArray(ar) ? [] : {};
-        var value = null;
         var key = null;
 
         for (key in ar) {
@@ -473,7 +471,6 @@
      * @return a reference to the <code>Object</code> itself.
      */
     me.compact = function(ar) {
-        var compact = me.compact;
         var value = null;
         var i = 0;
         var len = 0;
@@ -625,11 +622,9 @@
         var key = null;
         var result = [];
 
-        var toArray = me.toArray;
-
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
-                result.push(toArray(collection[key], isRecursive));
+                result.push(collection[key]);
             }
         }
 

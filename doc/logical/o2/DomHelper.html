@@ -32,7 +32,7 @@
 	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.#1327655584#
+	                 version 0.23.0001327872069
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -114,6 +114,24 @@
         <p>Add a class to the given node.</p>    </div>  
                             </div>
                     <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___addCssRules"><span class="elementName">addCssRules</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
+ to the document.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ o2.DomHelper.addCssRules(
+      'div.warning { background-color:#c00; color:#fff };'
+ );
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -138,8 +156,8 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___append"><span class="elementName">append</span></a>
                 (<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent)
+ elmChild, <span class="type">Object</span>
+ elmParent)
             </div>          
                 <div class="summaryItemDesc">
         <p>Appends the element to the bottom of its parent.</p>    </div>  
@@ -457,7 +475,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getAttribute"><span class="elementName">getAttribute</span></a>
                 (<span class="type">Object</span>
- obj, <span class="type">String</span>
+ elm, <span class="type">String</span>
  attribute)
             </div>          
                 <div class="summaryItemDesc">
@@ -496,10 +514,10 @@
                 <a href="logical/o2/DomHelper.html#___getDocumentDimension"><span class="elementName">getDocumentDimension</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>Gets the dimension of the document in the form <code>{width: w, height:
- h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
- the document's height returns the height of the visible area as the height
- portion.    </div>  
+        <p>Gets the dimension of the document in the form <code>{width: w,
+ height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
+ greater than the document's height returns the height of the visible area
+ as the height portion.    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -665,7 +683,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getOffset"><span class="elementName">getOffset</span></a>
                 (<span class="type">Object</span>
- elm)
+ e)
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the left and top offset of a given element.</p>    </div>  
@@ -811,7 +829,8 @@
  noForce)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Gets the <strong>style</strong> of a given property of the element.</p>
+        <p>Gets the <strong>style</strong> of a given property of
+ the element.</p>
  <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
  tries to calculate the style using <code>window.getComputedStyle</code>;
  gets <code>obj.style</code> if everything else fails.
@@ -821,6 +840,16 @@
  styles to modify the view;
  assign <strong>className</strong>'s instead of <strong>style</strong>
  values.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getViewportInfo"><span class="elementName">getViewportInfo</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Gets the viewport information in the form
+ <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -900,8 +929,8 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___insertAfter"><span class="elementName">insertAfter</span></a>
                 (<span class="type">Object</span>
- newNode, <span class="type">Object</span>
- refNode)
+ elmNewNode, <span class="type">Object</span>
+ elmRefNode)
             </div>          
                 <div class="summaryItemDesc">
         <p>Adds the node after the reference node.</p>    </div>  
@@ -912,8 +941,8 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___insertBefore"><span class="elementName">insertBefore</span></a>
                 (<span class="type">Object</span>
- newNode, <span class="type">Object</span>
- refNode)
+ elmNewNode, <span class="type">Object</span>
+ elmRefNode)
             </div>          
                 <div class="summaryItemDesc">
         <p>Adds the node before the reference node.</p>    </div>  
@@ -1100,8 +1129,8 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___prepend"><span class="elementName">prepend</span></a>
                 (<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent)
+ elmChild, <span class="type">Object</span>
+ elmParent)
             </div>          
                 <div class="summaryItemDesc">
         <p>Prepends the element to the top of its parent.</p>    </div>  
@@ -1161,7 +1190,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___remove"><span class="elementName">remove</span></a>
                 (<span class="type">Object</span>
- elm)
+ e)
             </div>          
                 <div class="summaryItemDesc">
         <p>Removes the element from the <strong>DOM</strong> flow.</p>    </div>  
@@ -1172,7 +1201,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___removeChildren"><span class="elementName">removeChildren</span></a>
                 (<span class="type">Object</span>
- elm)
+ e)
             </div>          
                 <div class="summaryItemDesc">
         <p>Removes all the children of the element.</p>    </div>  
@@ -1195,11 +1224,12 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___removeEmptyTextNodes"><span class="elementName">removeEmptyTextNodes</span></a>
                 (<span class="type">Object</span>
- elm, <span class="type">Boolean</span>
- isRecursive)
+ e)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes empty text nodes from the element.</p>    </div>  
+        <p>Removes empty text nodes from the element.</p>
+ <p>Note that this removal is not recursive; only the first-level empty
+ child nodes of the element will be removed.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -1267,7 +1297,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___setAttribute"><span class="elementName">setAttribute</span></a>
                 (<span class="type">Object</span>
- obj, <span class="type">String</span>
+ elm, <span class="type">String</span>
  attribute, <span class="type">String</span>
  value)
             </div>          
@@ -1436,6 +1466,33 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
+        <a name="___addCssRules">
+            <span class="objType">function</span>
+            <span class="objName">addCssRules</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    addCssRules()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
+ to the document.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ o2.DomHelper.addCssRules(
+      'div.warning { background-color:#c00; color:#fff };'
+ );
+ </pre>
+
+     </div>
+                                                    <hr/>       
+                                                                                    <h3>
         <a name="___addStyle">
             <span class="objType">function</span>
             <span class="objName">addStyle</span>            
@@ -1491,8 +1548,8 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     append(<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent)
+ elmChild, <span class="type">Object</span>
+ elmParent)
                 </code> 
             </div>          
                 <div class="comment">
@@ -1506,12 +1563,12 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            child        </code>
+            elmChild        </code>
          - the child node, or the <strong>id</strong> of
  the node to append.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            parent        </code>
+            elmParent        </code>
          - the parent container, or the
  <strong>id</strong> of the container.            </div>   
                                         </div>
@@ -1667,7 +1724,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the created element.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2323,7 +2380,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getAttribute(<span class="type">Object</span>
- obj, <span class="type">String</span>
+ elm, <span class="type">String</span>
  attribute)
                 </code> 
             </div>          
@@ -2338,7 +2395,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
+            elm        </code>
          - the node, or the <strong>id</strong> of the
  node, to get the attribute of.            </div>   
                                                 <div class="param paddedDetails">
@@ -2353,7 +2410,7 @@
 	        <div class="paddedDetails">
 	            	             the value of the attribute if found; <code>null</code>
  otherwise.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2455,18 +2512,18 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>Gets the dimension of the document in the form <code>{width: w, height:
- h}</code>. If the visible (i.e. <code>clientHeight</code>) is greater than
- the document's height returns the height of the visible area as the height
- portion.
+        <p>Gets the dimension of the document in the form <code>{width: w,
+ height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
+ greater than the document's height returns the height of the visible area
+ as the height portion.
 
      </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the dimension of the document in the form <code>{width: w, height:
- h}</code>.
-     	            	        </div>
+	            	             the dimension of the document in the form <code>{width: w,
+ height: h}</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -3014,7 +3071,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getOffset(<span class="type">Object</span>
- elm)
+ e)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3028,7 +3085,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            elm        </code>
+            e        </code>
          - the element, or the id of the element, to get
  the offsets of.            </div>   
                                         </div>
@@ -3039,7 +3096,7 @@
 	        <div class="paddedDetails">
 	            	             the offset from the top-left corner of the viewport, in the
  form <code>{left: l, top: t}</code>.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -3473,7 +3530,8 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Gets the <strong>style</strong> of a given property of the element.</p>
+        <p>Gets the <strong>style</strong> of a given property of
+ the element.</p>
  <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
  tries to calculate the style using <code>window.getComputedStyle</code>;
  gets <code>obj.style</code> if everything else fails.
@@ -3505,8 +3563,8 @@
         <code>
             noForce        </code>
          - (optional; defaults to <code>false</code>) if
- <code>true</code> inherited values from the CSS files will also be parsed,
- otherwise, only inline styles will be parsed.            </div>   
+ <code>true</code> inherited values from the CSS files will also be
+ parsed, otherwise, only inline styles will be parsed.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3514,6 +3572,31 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the calculated <strong>style</strong> value.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getViewportInfo">
+            <span class="objType">function</span>
+            <span class="objName">getViewportInfo</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getViewportInfo()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Gets the viewport information in the form
+ <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the viewport information.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -3578,7 +3661,7 @@
 	        <div class="paddedDetails">
 	            	             the dimension of the visible area of the browser in the form
  <code>{width: w, height: h}</code>.
-     	            	        </div>
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -3742,8 +3825,8 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     insertAfter(<span class="type">Object</span>
- newNode, <span class="type">Object</span>
- refNode)
+ elmNewNode, <span class="type">Object</span>
+ elmRefNode)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3757,12 +3840,12 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            newNode        </code>
+            elmNewNode        </code>
          - the DOM node, or the <strong>id</strong> of
  the node, to insert after.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            refNode        </code>
+            elmRefNode        </code>
          - the reference node, or the
  <strong>id</strong> of the node.            </div>   
                                         </div>
@@ -3780,8 +3863,8 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     insertBefore(<span class="type">Object</span>
- newNode, <span class="type">Object</span>
- refNode)
+ elmNewNode, <span class="type">Object</span>
+ elmRefNode)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3795,12 +3878,12 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            newNode        </code>
+            elmNewNode        </code>
          - the node, or the <strong>id</strong> of the
  node, to insert before.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            refNode        </code>
+            elmRefNode        </code>
          - the reference, or the <strong>id</strong> of
  the node.            </div>   
                                         </div>
@@ -4292,8 +4375,8 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     prepend(<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent)
+ elmChild, <span class="type">Object</span>
+ elmParent)
                 </code> 
             </div>          
                 <div class="comment">
@@ -4307,12 +4390,12 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            child        </code>
+            elmChild        </code>
          - the child node, or the id of the node to
  prepend.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            parent        </code>
+            elmParent        </code>
          - the parent container, or the id of the
  container.            </div>   
                                         </div>
@@ -4460,7 +4543,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     remove(<span class="type">Object</span>
- elm)
+ e)
                 </code> 
             </div>          
                 <div class="comment">
@@ -4474,7 +4557,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            elm        </code>
+            e        </code>
          - either the <strong>element</strong>, or the
  <strong>id</strong> of it, to remove.            </div>   
                                         </div>
@@ -4484,7 +4567,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the removed node.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -4498,7 +4581,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     removeChildren(<span class="type">Object</span>
- elm)
+ e)
                 </code> 
             </div>          
                 <div class="comment">
@@ -4512,7 +4595,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            elm        </code>
+            e        </code>
          - either the <strong>element</strong>, or the
  <strong>id</strong> of it to process.            </div>   
                                         </div>
@@ -4567,12 +4650,13 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     removeEmptyTextNodes(<span class="type">Object</span>
- elm, <span class="type">Boolean</span>
- isRecursive)
+ e)
                 </code> 
             </div>          
                 <div class="comment">
         <p>Removes empty text nodes from the element.</p>
+ <p>Note that this removal is not recursive; only the first-level empty
+ child nodes of the element will be removed.</p>
 
      </div>
         	<div class="parameters">
@@ -4582,15 +4666,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            elm        </code>
+            e        </code>
          - either the <strong>element</strong>, or the
  <strong>id</strong> of it to process.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isRecursive        </code>
-         - (Optional, default to
- <code>true</code>) if <code>true</code> do the same
- process for the child nodes of <code>elm</code> as well.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -4760,7 +4838,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     setAttribute(<span class="type">Object</span>
- obj, <span class="type">String</span>
+ elm, <span class="type">String</span>
  attribute, <span class="type">String</span>
  value)
                 </code> 
@@ -4776,7 +4854,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
+            elm        </code>
          - the object or the <code>String</code> id of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
@@ -5166,6 +5244,9 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
+                                <a href="physical/module-formHelper.html">formHelper</a>
+                            </div>                              
+                                                    <div>
                                 <a href="physical/module-jsonp.html">jsonp</a>
                             </div>                              
                                                     <div>
@@ -5179,9 +5260,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/o2/module-FormHelper.html">o2.FormHelper</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-objecthelper.html">objecthelper</a>
