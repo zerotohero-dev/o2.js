@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 09:11:05.140604
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -15,126 +17,70 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
-    var me             = framework;
-    var generateGuid   = framework.StringHelper.generateGuid;
-    var concat         = framework.StringHelper.concat;
-    var nill           = framework.nill;
-    var ActiveXObject  = window.ActiveXObject;
+    var generateGuid = framework.StringHelper.generateGuid;
+    var concat = framework.StringHelper.concat;
+    var nill = framework.nill;
+    var ActiveXObject = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
 
     /*
-     * Module configuration.
+     * Headers
      */
-    var config = {
-        constants : {
-
-            /*
-             *
-             */
-            prefix : {
-                RANDOM : '?rnd='
-            },
-
-            /*
-             *
-             */
-            verb : {
-                GET  : 'GET',
-                POST : 'POST'
-            },
-
-            /*
-             *
-             */
-            error : {
-                NO_XHR : 'Failed to create an XHR instance'
-            },
-
-            /*
-             *
-             */
-            readystate : {
-                COMPLETE : 4
-            },
-
-            /*
-             *
-             */
-            status : {
-                OK     : 200,
-                CACHED : 304
-            },
-
-            /*
-             *
-             */
-            GUID_MULTIPLIER : 10000
-        },
-
-        /*
-         *
-         */
-        header : {
-
-            /*
-             *
-             */
-            common : [{
-                'Accept' :
-                'text/javascript, text/html, application/xml, text/xml, */*'
-            }],
-
-            /*
-             *
-             */
-            post : [{
-                'Content-Type' : 'application/x-www-form-urlencoded'
-            }]
-
-        },
-
-        progId : [
-            'Msxml2.XMLHTTP',
-            'Microsoft.XMLHTTP',
-            'Msxml2.XMLHTTP.7.0',
-            'Msxml2.XMLHTTP.6.0',
-            'Msxml2.XMLHTTP.5.0',
-            'Msxml2.XMLHTTP.3.0'
-       ]
-    };
+    var commonHeaders = [{
+        'Accept' :
+        'text/javascript, text/html, application/xml, text/xml, */*'
+    }];
+    var postHeaders = [{
+        'Content-Type' : 'application/x-www-form-urlencoded'
+    }];
 
     /*
-     * Common string constants.
+     * Microsoft-Specific ProgIds
      */
-    var constants = config.constants;
+    var progIds = [
+        'Msxml2.XMLHTTP',
+        'Microsoft.XMLHTTP',
+        'Msxml2.XMLHTTP.7.0',
+        'Msxml2.XMLHTTP.6.0',
+        'Msxml2.XMLHTTP.5.0',
+        'Msxml2.XMLHTTP.3.0'
+    ];
 
-    var kNoXhr  = constants.error.NO_XHR;
+    /*
+     * Common Constants
+     */
 
-    var cs      = constants.status;
-    var kOk     = cs.OK;
-    var kCached = cs.CACHED;
+    /*
+     * Error Message
+     */
+    var kNoXhr = 'Failed to create an XHR instance';
 
-    var cr        = constants.readystate;
-    var kComplete = cr.COMPLETE;
+    /*
+     * Status
+     */
+    var kComplete = 4;
+    var kOk = 200;
+    var kCached = 304;
 
-    var kRandom   = constants.prefix.RANDOM;
+    /*
+     * Verb
+     */
+    var kGet = 'GET';
+    var kPost = 'POST';
 
-    var kGet      = constants.verb.GET;
-
+    /*
+     * Text, Prefix, Suffix
+     */
+    var kRandom = '?rnd=';
     var kEquals = '=';
-    var kAnd    = '&';
-    var kPlus   = '+';
-    var kEmpty  = '';
+    var kAnd = '&';
+    var kPlus = '+';
+    var kEmpty = '';
 
     /*
-     * Common collections.
-     */
-    var progIds = config.progId;
-
-    /*
-     * Common regular expressions.
+     * Common Regular Expressions
      */
     var kUrlSpaceRegExp = /%20/g;
 
@@ -319,7 +265,7 @@
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
     function addCommonRequestHeaders(xhr) {
-        addHeaders(xhr, config.header.common);
+        addHeaders(xhr, commonHeaders);
     }
 
     /*
@@ -329,7 +275,7 @@
      * object.
      */
     function addPostRequestHeaders(xhr) {
-        addHeaders(xhr, config.header.post);
+        addHeaders(xhr, postHeaders);
     }
 
     /*
@@ -395,86 +341,88 @@
      * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
      * <strong>GET</strong> and <strong>POST</strong> requests.</p>
      */
-    me.Ajax = {
+    var me = framework.Ajax = {};
 
-        /**
-         * @function {static} o2.Ajax.post
-         *
-         * <p>Sends an <strong>AJAX POST</strong> request.</p>
-         *
-         * @param {String} url - the <strong>URL</strong> to send the request.
-         * @param {Object} parameters - parameters collection as a
-         * <strong>name/value</strong> pair object ({}).
-         * @param {Object} callbacks - An object of the form
-         * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-         * statusText), onaborted : fn(xhr),
-         * onexception: fn(exception, originalXhr)}.
-         * Any of these callbacks are optional.
-         * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-         * Set this
-         * <code>true</code> for sending a <strong>snychronous</strong> request.
-         * @return the original <code>XMLHttpRequest</code> object.
-         */
-        post : function(url, parameters, callbacks, isSync) {
-            return send(url, config.constants.verb.POST, parameters, callbacks,
-                isSync);
-        },
+    /**
+     * @function {static} o2.Ajax.post
+     *
+     * <p>Sends an <strong>AJAX POST</strong> request.</p>
+     *
+     * @param {String} url - the <strong>URL</strong> to send the request.
+     * @param {Object} parameters - parameters collection as a
+     * <strong>name/value</strong> pair object ({}).
+     * @param {Object} callbacks - An object of the form
+     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+     * statusText), onaborted : fn(xhr),
+     * onexception: fn(exception, originalXhr)}.
+     * Any of these callbacks are optional.
+     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
+     * Set this
+     * <code>true</code> for sending a <strong>snychronous</strong> request.
+     *
+     * @return the original <code>XMLHttpRequest</code> object.
+     */
+    me.post = function(url, parameters, callbacks, isSync) {
+        return send(url, kPost, parameters, callbacks, isSync);
+    };
 
-        /**
-         * @function {static} o2.Ajax.get
-         *
-         * <p>Sends and <strong>AJAX GET</strong> request.</p>
-         *
-         * @param {String} url - the URL to send the request.
-         * @param {Object} parameters - parameters collection as a name/value
-         * pair object
-         * ({}).
-         * @param {Object} callbacks - An object of the form
-         * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-         * statusText), onaborted: fn(xhr),
-         * onexception: fn(exception, originalXhr)}.
-         * Any of these callbacks are optional.
-         * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-         * Set this
-         * <code>true</code> for sending a snychronous request.
-         * @return the original <code>XMLHttpRequest</code> object.
-         */
-        get : function(url, parameters, callbacks, isSync) {
-            return send(url, config.constants.verb.GET, parameters, callbacks,
-                isSync);
-        },
+    /**
+     * @function {static} o2.Ajax.get
+     *
+     * <p>Sends and <strong>AJAX GET</strong> request.</p>
+     *
+     * @param {String} url - the URL to send the request.
+     * @param {Object} parameters - parameters collection as a name/value
+     * pair object
+     * ({}).
+     * @param {Object} callbacks - An object of the form
+     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+     * statusText), onaborted: fn(xhr),
+     * onexception: fn(exception, originalXhr)}.
+     * Any of these callbacks are optional.
+     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
+     * Set this
+     * <code>true</code> for sending a snychronous request.
+     *
+     * @return the original <code>XMLHttpRequest</code> object.
+     */
+    me.get = function(url, parameters, callbacks, isSync) {
+        return send(url, kGet, parameters, callbacks, isSync);
+    };
 
-        /**
-         * @function {static} o2.Ajax.createXhr
-         *
-         * <p>Creates a native <code>XMLHttpRequest</code> object.
-         * <p>This is a <strong>low-level</strong> function; it simply returns
-         * the browser's native object.
-         * You may most probably want to use {@link Ajax.get} or {@link
-         * Ajax.post} instead, for more functionality.</p>
-         *
-         * @return the created <code>XMLHttpRequest</code> object.
-         */
-        createXhr : function() {
-            return createXhr();
-        },
+    /**
+     * @function {static} o2.Ajax.createXhr
+     *
+     * <p>Creates a native <code>XMLHttpRequest</code> object.
+     * <p>This is a <strong>low-level</strong> function; it simply returns
+     * the browser's native object.
+     * You may most probably want to use {@link Ajax.get} or {@link
+     * Ajax.post} instead, for more functionality.</p>
+     *
+     * @return the created <code>XMLHttpRequest</code> object.
+     */
+    me.createXhr = function() {
+        return createXhr();
+    };
 
-        /**
-         * @function {static} o2.Ajax.abort
-         * <p>Explicitly abort the request.</p>
-         * <p>When the request is explicitly abourted, <strong>onaborted</strong>
-         * callback is fired.</p>
-         */
-        abort : function(xhr) {
-            if (!xhr || xhr.isAborted) {
-                return;
-            }
+    /**
+     * @function {static} o2.Ajax.abort
+     * <p>Explicitly abort the request.</p>
+     * <p>When the request is explicitly abourted, <strong>onaborted</strong>
+     * callback is fired.</p>
+     *
+     * @param {XMLHttpRequest} xhr - the original
+     * <strong>XMLHttpRequest</strong> being sent.
+     */
+    me.abort = function(xhr) {
+        if (!xhr || xhr.isAborted) {
+            return;
+        }
 
-            try {
-                xhr.isAborted = true;
-                xhr.abort();
-            } catch (ignore) {
-            }
+        try {
+            xhr.isAborted = true;
+            xhr.abort();
+        } catch (ignore) {
         }
     };
 }(this.o2, this));

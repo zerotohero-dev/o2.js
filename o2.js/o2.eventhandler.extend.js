@@ -6,12 +6,14 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 10:36:02.905988
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
  */
 
-(function(framework, document) {
+(function(framework) {
     'use strict';
 
     /*
@@ -20,134 +22,83 @@
     var me = framework.EventHandler;
 
     /**
-     * @function {static} o2.EventHandler.getMouseCoordinates
+     * @function {static} isEnterKey
      *
-     * <p>Gets the current mouse coordinates.</p>
+     * <p>Checks whether the pressed key is the enter (return) key.</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
      *
-     * @return the coordinates in the form of <code>{x: mouseX, y: mouseY}</code>
-     * where <code>x</code> is the distance from the top of the screen, and
-     * <code>y</code> is the distance from the left of the screen.
+     * @return the <code>true</code> if the pressed key is the enter key,
+     * <code>false</code> otherwise.
      */
-    me.getMouseCoordinates = function(evt) {
-        var e = me.getEventObject(evt);
-
-        if (!e) {
-            return {
-                x : 0,
-                y : 0
-            };
-        }
-
-        var posx = 0;
-        var posy = 0;
-
-        if (e.pageX) {
-            me.getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {
-                        x : 0,
-                        y : 0
-                    };
-                }
-
-                posx = e.pageX || 0;
-                posy = e.pageY || 0;
-
-                return {
-                    x : posx,
-                    y : posy
-                };
-            };
-
-            return me.getMouseCoordinates(evt);
-        }
-
-        if(e.clientX) {
-            me.getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {
-                        x : 0,
-                        y : 0
-                    };
-                }
-
-                var clientX = e.clientX || 0;
-                var clientY = e.clientY || 0;
-                var wd = document;
-
-                posx = clientX + wd.body.scrollLeft +
-                    wd.documentElement.scrollLeft;
-                posy = clientY + wd.body.scrollTop +
-                    wd.documentElement.scrollTop;
-
-                return {
-                    x : posx,
-                    y : posy
-                };
-            };
-
-            return me.getMouseCoordinates(evt);
-        }
-
-        // The current event object has neither pageX, nor clientX defined.
-        return {
-            x : 0,
-            y : 0
-        };
+    me.isEnterKey = function(evt) {
+        return me.getKeyCode(evt) === me.keyCode.ENTER;
     };
 
     /**
-     * @function {static} o2.EventHandler.getKeyCode
+     * @function {static} isTabKey
      *
-     * <p>Gets the key code of the key-related event (keydown, keyup, keypress
-     * etc.).</p>
+     * <p>Checks whether the pressed key is the tab key.</p>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
      *
-     * @return the <code>keyCode</code> associated with the event as an
-     * <code>Integer</code>
+     * @return the <code>true</code> if the pressed key is the tab key,
+     * <code>false</code> otherwise.
      */
-    me.getKeyCode = function(evt) {
-        var e = me.getEventObject(evt);
-
-        if (!e) {
-            return null;
-        }
-
-        if (e.charCode) {
-            me.getKeyCode = function(e) {
-                return e.charCode;
-            };
-
-            return me.getKeyCode(evt);
-        }
-
-        if (e.keyCode) {
-            me.getKeyCode = function(e) {
-                return e.keyCode;
-            };
-
-            return me.getKeyCode(evt);
-        }
-
-        if (e.which) {
-            me.getKeyCode = function(e) {
-                return e.which;
-            };
-
-            return me.getKeyCode(evt);
-        }
-
-        return null;
+    me.isTabKey = function(evt) {
+        return me.getKeyCode(evt) === me.keyCode.TAB;
     };
 
-    //TODO: add documentation.
-    me.isEnterKey = function(evt) {
-        return me.getKeyCode(evt) === me.kyCode.ENTER;
+    /**
+     * @function {static} isArrowKey
+     *
+     * <p>Checks whether the pressed key is an arrow key.</p>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is an arrow key,
+     * <code>false</code> otherwise.
+     */
+    me.isArrowKey = function(evt) {
+        var code = me.getKeyCode(evt);
+        var keyCode = me.keyCode;
+        var kLeft = keyCode.LEFT;
+        var kBottom = keyCode.BOTTOM;
+
+        return code >= kLeft && code <= kBottom;
+    };
+
+    /**
+     * @function {static} isEnterKey
+     *
+     * <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the backspace key,
+     * <code>false</code> otherwise.
+     */
+    me.isBackspaceKey = function(evt) {
+        return me.getKeyCode(evt) === me.keyCode.BACKSPACE;
+    };
+
+    /**
+     * @function {static} isEscapeKey
+     *
+     * <p>Checks whether the pressed key is the escape (ESC) key.</p>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the escape key,
+     * <code>false</code> otherwise.
+     */
+    me.isEscapeKey = function(evt) {
+        return me.getKeyCode(evt) === me.keyCode.ESCAPE;
     };
 
     /**
@@ -204,5 +155,4 @@
 
         return false;
     };
-
-}(this.o2, this.document));
+}(this.o2));

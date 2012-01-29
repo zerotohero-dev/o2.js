@@ -7,20 +7,29 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-25 08:34:42.334812
+ *  lastModified: 2012-01-29 08:56:50.544275
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework){
+(function(framework) {
     'use strict';
 
+    /*
+     * Aliases
+     */
     var me = framework.Ajax;
 
-    var getCache  = {};
+    /*
+     * Caches
+     */
+    var getCache = {};
     var postCache = {};
 
+    /*
+     * Common Constants
+     */
     var kDelimeter = ',';
 
     /*

@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-24 09:08:45.043620
+ *  lastModified: 2012-01-29 10:42:19.025414
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -21,32 +21,32 @@
     /*
      * Aliases
      */
-    var me                    = framework.DomHelper;
-    var $                     = framework.$;
-    var myName                = framework.name;
-    var getAttribute          = me.getAttribute;
-    var generateGuid          = framework.StringHelper.generateGuid;
-    var format                = framework.StringHelper.format;
+    var $ = framework.$;
+    var me = framework.DomHelper;
+    var myName = framework.name;
+    var getAttribute = me.getAttribute;
+    var generateGuid = framework.StringHelper.generateGuid;
+    var format = framework.StringHelper.format;
     var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
 
     /*
      * Common Constants
      */
     var kTextNode = me.nodeType.TEXT;
-    var kAll      = '*';
-    var kObject   = 'object';
-    var kEmpty    = '';
-    var kId       = 'id';
-    var kComma    = ',';
+    var kAll = '*';
+    var kObject = 'object';
+    var kEmpty = '';
+    var kId = 'id';
+    var kComma = ',';
 
     /*
      * Query Selector Templates
      */
-    var kClassSelector                = '.{0}';
-    var kImmediateClassSelector       = '#{0} > .{1}';
+    var kClassSelector = '.{0}';
+    var kImmediateClassSelector = '#{0} > .{1}';
     var kImmediateIdAttributeSelector = '#{0} > [id]';
-    var kImmediateIdSelector          = '#{0} > #{1}';
-    var kImmediateNodeSelector        = '#{0} > {1}';
+    var kImmediateIdSelector = '#{0} > #{1}';
+    var kImmediateNodeSelector = '#{0} > {1}';
 
     var isNativeQuerySupported = !!document.querySelector;
 

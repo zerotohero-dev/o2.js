@@ -8,6 +8,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 10:58:26.903946
  * -->
  *
  * <p>A utility package to
@@ -15,43 +17,51 @@
  * styles.</p>
  */
 
-(function(framework, document) {
+(function(framework, window, document) {
    'use strict';
 
     /*
      * Aliases
      */
-    var me                    = framework.DomHelper;
-    var $                     = framework.$;
-    var t                     = framework.t;
-    var myName                = framework.name;
-    var toCamelCase           = framework.StringHelper.toCamelCase;
-    var concat                = framework.StringHelper.concat;
+    var me = framework.DomHelper;
+    var $ = framework.$;
+    var t = framework.t;
+    var myName = framework.name;
+    var toCamelCase = framework.StringHelper.toCamelCase;
+    var concat = framework.StringHelper.concat;
     var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
 
     /*
      * Common Constants
      */
-    var kObject     = 'object';
+    var kObject = 'object';
     var kOldDisplay = '_oldDisplay';
-    var kNone       = 'none';
-    var kHidden     = 'hidden';
-    var kEmpty      = '';
-    var kDisplay    = 'display';
+    var kNone = 'none';
+    var kHidden = 'hidden';
+    var kEmpty = '';
+    var kDisplay = 'display';
     var kVisibility = 'visibility';
-    var kTitle      = 'title';
-    var kLink       = 'link';
-    var kRel        = 'rel';
-    var kStyle      = 'style';
-    var kFloat      = 'float';
-    var kCssFloat   = 'cssFloat';
-    var kPixels     = 'px';
+    var kTitle = 'title';
+    var kLink = 'link';
+    var kRel = 'rel';
+    var kStyle = 'style';
+    var kTextCss = 'text/css';
+    var kHead = 'head';
+    var kFloat = 'float';
+    var kCssFloat = 'cssFloat';
+    var kPixels = 'px';
+    var kBackgroundPositionY = 'background-position-y';
+    var kBackgroundPositionX = 'background-position-x';
+    var kTop = 'top';
+    var kLeft = 'left';
+    var kZeroPx = '0px';
+    var kM$ = 'MSIE';
 
     /*
      * Common Regular Expressions
      */
     var kRegPixelNumber = /^-?\d+(?:px)?$/i;
-    var kRegNumber      = /^-?\d/;
+    var kRegNumber = /^-?\d/;
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -80,12 +90,15 @@
         var toCamelCaseCached = toCamelCase;
         var key = null;
 
+        var objStyle = obj.style;
+
+
         for (key in style) {
             if (style.hasOwnProperty(key)) {
                 if (key === kFloat) {
-                    obj.style.cssFloat = style[key];
+                    objStyle.cssFloat = style[key];
                 } else {
-                    obj.style[toCamelCaseCached(key)] = style[key];
+                    objStyle[toCamelCaseCached(key)] = style[key];
                 }
             }
         }
@@ -102,111 +115,74 @@
         me.addStyle(obj, style);
     };
 
+    if (document.defaultView && document.defaultView.getComputedStyle) {
 
+        /**
+         * @function {static} o2.DomHelper.getStyle
+         *
+         * <p>Gets the <strong>style</strong> of a given property of
+         * the element.</p>
+         * <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
+         * tries to calculate the style using <code>window.getComputedStyle</code>;
+         * gets <code>obj.style</code> if everything else fails.
+         *
+         * <p>Note that adding and removing style attributes to a
+         * <strong>DOM</strong> not is considered "bad practice". Do not use inline
+         * styles to modify the view;
+         * assign <strong>className</strong>'s instead of <strong>style</strong>
+         * values.</p>
+         *
+         * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+         * check.
+         * @param {String} cssProperty - the css property either
+         * <strong>dash-separated</strong>
+         * or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')
+         * @param {Boolean} noForce - (optional; defaults to <code>false</code>) if
+         * <code>true</code> inherited values from the CSS files will also be
+         * parsed, otherwise, only inline styles will be parsed.
+         *
+         * @return the calculated <strong>style</strong> value.
+         */
+        me.getStyle = function(obj, cssProperty, noForce) {
+            obj = $(obj);
+            noForce = !!noForce;
 
-    getStyle : function(a, c) {
-        var d = false, b = a.style;
-        if(a.currentStyle) {
-            FB.Array.forEach(c.match(/\-([a-z])/g), function(e) {
-                c = c.replace(e, e.substr(1, 1).toUpperCase());
-            });
-
-            d = a.currentStyle[c];
-        } else {
-            FB.Array.forEach(c.match(/[A-Z]/g), function(e) {
-                c = c.replace(e, '-' + e.toLowerCase());
-            });
-
-            if(window.getComputedStyle) {
-                d = document.defaultView.getComputedStyle(a, null).getPropertyValue(c);
-
+            if (!obj) {
+                return null;
             }
-        }
-        if(c == 'opacity') {
-            if(a.filters && a.filters.alpha)
-                return d;
-            return d * 100;
-        }
-        return d;
-    },
 
+            var defaultView = document.defaultView;
 
+            if (cssProperty === kFloat) {
+                cssProperty = kCssFloat;
+            } else {
+                cssProperty = toCamelCase(cssProperty);
+            }
 
-    /**
-     * @function {static} o2.DomHelper.getStyle
-     *
-     * <p>Gets the <strong>style</strong> of a given property of the element.</p>
-     * <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
-     * tries to calculate the style using <code>window.getComputedStyle</code>;
-     * gets <code>obj.style</code> if everything else fails.
-     *
-     * <p>Note that adding and removing style attributes to a
-     * <strong>DOM</strong> not is considered "bad practice". Do not use inline
-     * styles to modify the view;
-     * assign <strong>className</strong>'s instead of <strong>style</strong>
-     * values.</p>
-     *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-     * check.
-     * @param {String} cssProperty - the css property either
-     * <strong>dash-separated</strong>
-     * or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')
-     * @param {Boolean} noForce - (optional; defaults to <code>false</code>) if
-     * <code>true</code> inherited values from the CSS files will also be parsed,
-     * otherwise, only inline styles will be parsed.
-     *
-     * @return the calculated <strong>style</strong> value.
-     */
-    me.getStyle = function(obj, cssProperty, noForce) {
-        obj = $(obj);
+            if (noForce) {
+                //return the property if set inline.
+                var val = obj.style[cssProperty];
 
-        if (!obj) {
-            return null;
-        }
-
-        if (document.defaultView && document.defaultView.getComputedStyle) {
-            me.getStyle = function(obj, cssProperty, noForce) {
-                obj = $(obj);
-                noForce = !!noForce;
-
-                if (!obj) {
-                    return null;
+                if (val) {
+                    return val;
                 }
 
-                var defaultView = document.defaultView;
+                return null;
+            }
 
-                if (cssProperty === kFloat) {
-                    cssProperty = kCssFloat;
-                } else {
-                    cssProperty = toCamelCase(cssProperty);
+            var d = defaultView.getComputedStyle(obj, kEmpty
+                ).getPropertyValue(toDashedFromCamelCase(cssProperty));
+
+            if (cssProperty === kBackgroundPositionY ||
+                        cssProperty === kBackgroundPositionX) {
+                if(d === kTop || d === kLeft) {
+                    d = kZeroPx;
                 }
+            }
 
-                if (noForce) {
-                    //return the property if set inline.
-                    var val = obj.style[cssProperty];
-
-                    if (val) {
-                        return val;
-                    }
-
-                    return null;
-                }
-
-                var d = defaultView.getComputedStyle(obj, kEmpty
-                    ).getPropertyValue(toDashedFromCamelCase(cssProperty));
-
-                if (cssProperty == 'background-position-y' || cssProperty == 'background-position-x') {
-                    if(d == 'top' || d == 'left') {
-                        d = '0px';
-                    }
-                }
-
-                return d;
-            };
-
-            return me.getStyle(obj, cssProperty, noForce);
-        }
-
+            return d;
+        };
+    } else {
         me.getStyle = function(obj, cssProperty, noForce) {
             obj = $(obj);
             noForce = !!noForce;
@@ -280,9 +256,7 @@
 
             return null;
         };
-
-        return me.getStyle(obj, cssProperty, noForce);
-    };
+    }
 
     /**
      * @function {static} o2.DomHelper.isVisible
@@ -414,22 +388,39 @@
         delete obj[[myName, kOldDisplay].join(kEmpty)];
     };
 
+    if(window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera) {
 
-    //TODO: add documentation.
-    me.addCssRules = function(cssText) {
-        if(navigator.userAgent.indexOf('MSIE') > -1 && !window.opera) {
+        /**
+         * @function {static} o2.DomHelper.addCssRules
+         *
+         * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
+         * to the document.</p>
+         *
+         * <p>Usage Example:</p>
+         *
+         * <pre>
+         * o2.DomHelper.addCssRules(
+         *      'div.warning { background-color:#c00; color:#fff };'
+         * );
+         * </pre>
+         */
+        me.addCssRules = function(cssText) {
             try {
                 document.createStyleSheet().cssText = cssText;
             } catch(e) {
-                if(document.styleSheets[0]) {
-                    document.styleSheets[0].cssText += cssText;
+                var firstSheet = document.styleSheets[0];
+
+                if(firstSheet) {
+                    firstSheet.cssText = concat(firstSheet.cssText, cssText);
                 }
             }
-        } else {
-            var d = document.createElement('style');
-            d.type = 'text/css';
+        };
+    } else {
+        me.addCssRules = function(cssText) {
+            var d = document.createElement(kStyle);
+            d.type = kTextCss;
             d.textContent = cssText;
-            document.getElementsByTagName('head')[0].appendChild(d);
-        }
+            document.getElementsByTagName(kHead)[0].appendChild(d);
+        };
     }
-}(this.o2, this.document));
+}(this.o2, this, this.document));

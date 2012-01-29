@@ -7,108 +7,134 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 10:34:27.968122
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
 
-(function(framework, window) {
+(function(framework, window, document) {
     'use strict';
 
     /*
      * Aliases
      */
-    var me     = framework.EventHandler;
-    var $      = framework.$;
+    var me = framework.EventHandler;
+    var myName = me.name;
+    var $ = framework.$;
     var format = framework.StringHelper.format;
     var concat = framework.StringHelper.concat;
-    var nill   = framework.nill;
+    var nill = framework.nill;
 
     /*
      * Common Constants
      */
-    var kRemoveEventListener = 'removeEventListener';
-    var kAddEventListener    = 'addEventListener';
-    var kOn                  = 'on';
-    var kEmpty               = '';
-    var kCallbackTemplate    = '{0}: Callback is not defined!';
+    var kOn = 'on';
+    var kCallbackNotDefined = format('{0}: Callback is not defined!', myName);
 
-
-
-//TODO: if document.addEventListener
-
-    /**
-     * @function {static} o2.EventHandler.addEventListener
-     *
-     * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
-     *
-     * @param {DomNode} node - the <strong>DOM</strong> object (or its
-     * <code>String</code> id) the evet shall be attached.
-     * @param {String} evt - the name of the event (like "click",
-     * "mousemove"...)
-     * @param {Function} fn - a reference to the on[event] callback action.
-     *
-     * @throws exception - if <strong>fn</strong> callback is not defined.
+    /*
+     * Feature Tests
      */
-    me.addEventListener = function(node, evt, fn) {
-        var kCallbackNotDefined = format(kCallbackTemplate, kAddEventListener);
+    var isAddEventListener = !!document.addEventListener;
+    var isAttachEvent = !!document.attachEvent;
+    var windowEventHandle = window.event;
 
-        var obj = $(node);
+    if (isAddEventListener) {
 
-        if (!obj) {
-            return;
-        }
+        /**
+         * @function {static} o2.EventHandler.addEventListener
+         *
+         * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
+         *
+         * @param {DomNode} node - the <strong>DOM</strong> object (or its
+         * <code>String</code> id) the evet shall be attached.
+         * @param {String} evt - the name of the event (like "click",
+         * "mousemove"...)
+         * @param {Function} fn - a reference to the on[event] callback action.
+         *
+         * @throws exception - if <strong>fn</strong> callback is not defined.
+         */
+        me.addEventListener = function(node, evt, fn) {
+            var obj = $(node);
 
-        if (obj.addEventListener) {
-            me.addEventListener = function(node, evt, fn) {
-                var obj = $(node);
+            if (!obj) {
+                return;
+            }
 
-                if (!obj) {
-                    return;
-                }
+            if (!fn) {
+                throw kCallbackNotDefined;
+            }
 
-                if (!fn) {
-                    throw kCallbackNotDefined;
-                }
+            // 'false' is for not to use event capturing.
+            // Event capturing is not very useful, since its
+            // implementation vastly deviates among vendors'
+            // implementations.
+            //
+            // See:
+            // http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
 
-                // 'false' is for not to use event capturing.
-                // Event capturing is not very useful, since its
-                // implementation vastly deviates among vendors'
-                // implementations.
-                //
-                // See:
-                // http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
+            obj.addEventListener(evt, fn, false);
+        };
 
-                obj.addEventListener(evt, fn, false);
-            };
+        /**
+         * @function {static} o2.EventHandler.removeEventListener
+         *
+         * <p>Removes an already-added new event listener from the DOM Node.</p>
+         *
+         * @param {DomNode} node - the DOM object (or its <code>String</code>
+         * reference) the evet shall be removed.
+         * @param {String} evt - the name of the event (like "click",
+         * "mousemove"...)
+         * @param {Function} fn - a reference to the on[event] callback action.
+         *
+         * @throws exception - if <strong>fn</strong> callback is not defined.
+         */
+        me.removeEventListener = function(node, evt, fn) {
+            var obj = $(node);
 
-            me.addEventListener(obj, evt, fn);
+            if (!obj) {
+                return;
+            }
 
-            return;
-        }
+            if (!fn) {
+                throw kCallbackNotDefined;
+            }
 
-        if (obj.attachEvent) {
-            me.addEventListener = function(node, evt, fn) {
+            obj.removeEventListener(evt, fn, false);
+        };
+    } else if (isAttachEvent) {
+        me.addEventListener = function(node, evt, fn) {
 
-                var obj = $(node);
+            var obj = $(node);
 
-                if (!obj) {
-                    return;
-                }
+            if (!obj) {
+                return;
+            }
 
-                if (!fn) {
-                    throw kCallbackNotDefined;
-                }
+            if (!fn) {
+                throw kCallbackNotDefined;
+            }
 
-                var onEvent = concat(kOn, evt);
-                obj.attachEvent(onEvent, fn);
-            };
+            var onEvent = concat(kOn, evt);
+            obj.attachEvent(onEvent, fn);
+        };
 
-            me.addEventListener(obj, evt, fn);
+        me.removeEventListener = function(node, evt, fn) {
+            var obj = $(node);
 
-            return;
-        }
+            if (!obj) {
+                return;
+            }
 
+            if (!fn) {
+                throw kCallbackNotDefined;
+            }
+
+            var onEvent = concat(kOn, evt);
+            obj.detachEvent(onEvent, fn);
+        };
+    } else {
         me.addEventListener = function(node, evt, fn) {
             var obj = $(node);
 
@@ -125,8 +151,22 @@
             obj[onEvent] = fn;
         };
 
-        me.addEventListener(obj, evt, fn);
-    };
+        me.removeEventListener = function(node, evt, fn) {
+            var obj = $(node);
+
+            if (!obj) {
+                return;
+            }
+
+            if (!fn) {
+                throw kCallbackNotDefined;
+            }
+
+            var onEvent = concat(kOn, evt);
+
+            obj[onEvent] = nill;
+        };
+    }
 
     /**
      * @function {static} o2.EventHandler.addEventListeners
@@ -160,147 +200,85 @@
         }
     };
 
-    /**
-     * @function {static} o2.EventHandler.removeEventListener
-     *
-     * <p>Removes an already-added new event listener from the DOM Node.</p>
-     *
-     * @param {DomNode} node - the DOM object (or its <code>String</code>
-     * reference) the evet shall be removed.
-     * @param {String} evt - the name of the event (like "click",
-     * "mousemove"...)
-     * @param {Function} fn - a reference to the on[event] callback action.
-     *
-     * @throws exception - if <strong>fn</strong> callback is not defined.
-     */
-    me.removeEventListener = function(node, evt, fn) {
-        var kCallbackNotDefined = format(kCallbackTemplate, kRemoveEventListener);
-        var obj = $(node);
+    if (windowEventHandle) {
+        me.getEventObject = function() {
+           return windowEventHandle;
+        };
+    } else {
 
-        if (!obj) {
-            return;
-        }
+        /**
+         * @function {static} o2.EventHandler.getEventObject
+         *
+         * <p>Gets the actual event object.</p>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link EventHandler.addEventListener}
+         *
+         * @return the actual <code>DOM Event</code> object.
+         */
+        me.getEventObject = function(evt) {
+           return evt;
+        };
+    }
 
-        if (obj.removeEventListener) {
-            me.removeEventListener = function(node, evt, fn) {
-                var obj = $(node);
+    if (windowEventHandle) {
+        me.getTarget = function() {
+            return windowEventHandle.srcElement;
+        };
+    } else {
 
-                if (!obj) {
-                    return;
-                }
+        /**
+         * @function {static} o2.EventHandler.getTarget
+         *
+         * <p>Gets the originating source of the event.</p>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link EventHandler.addEventListener}
+         *
+         * @return the actual <strong>DOM</strong> target of the event object.
+         */
+        me.getTarget = function(evt) {
+            return evt ? evt.target : null;
+        };
+    }
 
-                if (!fn) {
-                    throw kCallbackNotDefined;
-                }
+    if (windowEventHandle) {
+        me.preventDefault = function() {
+            windowEventHandle.returnValue = false;
 
-                obj.removeEventListener(evt, fn, false);
-            };
+            return false;
+        };
+    } else {
 
-            me.removeEventListener(obj, evt, fn);
-
-            return;
-        }
-
-        if (obj.detachEvent) {
-            me.removeEventListener = function(node, evt, fn) {
-                var obj = $(node);
-
-                if (!obj) {
-                    return;
-                }
-
-                if (!fn) {
-                    throw kCallbackNotDefined;
-                }
-
-                var onEvent = concat(kOn, evt);
-                obj.detachEvent(onEvent, fn);
-            };
-
-
-            me.removeEventListener(obj, evt, fn);
-
-            return;
-        }
-
-        me.removeEventListener = function(node, evt, fn) {
-            var obj = $(node);
-
-            if (!obj) {
-                return;
+        /**
+         * @function {static} o2.EventHandler.preventDefault
+         *
+         * <p>Prevents the default action. When this method is called inside an
+         * even
+         * handling
+         * callback, the default action associated with that event is not
+         * triggered.
+         * Like, if it is an <code>onclick</code> event on a link, then the
+         * browser does
+         * not go to the <code>href</code> of that link.</p>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link EventHandler.addEventListener}
+         */
+        me.preventDefault = function(evt) {
+            if (!evt) {
+                return false;
             }
 
-            if (!fn) {
-                throw kCallbackNotDefined;
+            if (evt.preventDefault) {
+                evt.preventDefault();
             }
 
-            var onEvent = concat(kOn, evt);
-
-            obj[onEvent] = nill;
+            return false;
         };
+    }
 
-        me.removeEventListener(obj, evt, fn);
-    };
 
-    /**
-     * @function {static} o2.EventHandler.getEventObject
-     *
-     * <p>Gets the actual event object.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link EventHandler.addEventListener}
-     *
-     * @return the actual <code>DOM Event</code> object.
-     */
-    me.getEventObject = function(evt) {
-        me.getEventObject = window.event ? function() {
-            return window.event;
-        } : function(e) {
-            return e;
-        };
-
-        return me.getEventObject(evt);
-    };
-
-    /**
-     * @function {static} o2.EventHandler.getTarget
-     *
-     * <p>Gets the originating source of the event.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link EventHandler.addEventListener}
-     *
-     * @return the actual <strong>DOM</strong> target of the event object.
-     */
-    me.getTarget = function(evt) {
-        if (window.event) {
-            me.getTarget = function() {
-                return window.event.srcElement;
-            };
-        } else {
-            me.getTarget = function(e) {
-                return e ? e.target : null;
-            };
-        }
-
-        return me.getTarget(evt);
-    };
-
-    /**
-     * @function {static} o2.EventHandler.preventDefault
-     *
-     * <p>Prevents the default action. When this method is called inside an
-     * even
-     * handling
-     * callback, the default action associated with that event is not
-     * triggered.
-     * Like, if it is an <code>onclick</code> event on a link, then the
-     * browser does
-     * not go to the <code>href</code> of that link.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link EventHandler.addEventListener}
-     */
     me.preventDefault = function(evt) {
         me.preventDefault = window.event ? function() {
             window.event.returnValue = false;
@@ -322,41 +300,148 @@
         me.preventDefault(evt);
     };
 
-    /**
-     * @function {static} o2.EventHandler.stopPropagation
-     *
-     * <p>Stops the propagation of the event upwards in the DOM
-     * hierarchy.</p>
-     *
-     * <p>Note that "change" event does not bubble.</p>
-     *
-     * <p>Also, events: change, submit, reset, focus, blur do not bubble
-     * in Internet Explorer.</p>
-     *
-     * <p>According to specification, "focus" and "blur" should not bubble,
-     * while "change", "submit", "reset" should.</p>
-     *
-     * <p>This behavior implemented properly in all web browsers but IE.</p>
-     *
-     * <p>See {@link
-     * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
-     * for details.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link EventHandler.addEventListener}
-     */
-    me.stopPropagation = function(evt) {
-        me.stopPropagation = window.event ? function() {
-            window.event.cancelBubble = true;
-        } : function(e) {
-            if (!e) {
+    if (windowEventHandle) {
+        me.stopPropagation = function() {
+            windowEventHandle.cancelBubble = true;
+        };
+    } else {
+
+        /**
+         * @function {static} o2.EventHandler.stopPropagation
+         *
+         * <p>Stops the propagation of the event upwards in the DOM
+         * hierarchy.</p>
+         *
+         * <p>Note that "change" event does not bubble.</p>
+         *
+         * <p>Also, events: change, submit, reset, focus, blur do not bubble
+         * in Internet Explorer.</p>
+         *
+         * <p>According to specification, "focus" and "blur" should not bubble,
+         * while "change", "submit", "reset" should.</p>
+         *
+         * <p>This behavior implemented properly in all web browsers but IE.</p>
+         *
+         * <p>See {@link
+         * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
+         * for details.</p>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link EventHandler.addEventListener}
+         */
+        me.stopPropagation = function(evt) {
+            if (!evt) {
                 return;
             }
 
-            e.stopPropagation();
+            evt.stopPropagation();
         };
+    }
 
-        // This stops event bubbling.
-        me.stopPropagation(evt);
+    /**
+     * @function {static} o2.EventHandler.getMouseCoordinates
+     *
+     * <p>Gets the current mouse coordinates.</p>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
+     * @return the coordinates in the form of
+     * <code>{x: mouseX, y: mouseY}</code>
+     * where <code>x</code> is the distance from the top of the screen, and
+     * <code>y</code> is the distance from the left of the screen.
+     */
+    me.getMouseCoordinates = function(evt) {
+        var e = me.getEventObject(evt);
+
+        if (!e) {
+            return {
+                x : 0,
+                y : 0
+            };
+        }
+
+        var posx = 0;
+        var posy = 0;
+
+        if (e.pageX) {
+            me.getMouseCoordinates = function(e) {
+                if (!e) {
+                    return {
+                        x : 0,
+                        y : 0
+                    };
+                }
+
+                posx = e.pageX || 0;
+                posy = e.pageY || 0;
+
+                return {
+                    x : posx,
+                    y : posy
+                };
+            };
+
+            return me.getMouseCoordinates(evt);
+        }
+
+        if(e.clientX) {
+            me.getMouseCoordinates = function(e) {
+                if (!e) {
+                    return {
+                        x : 0,
+                        y : 0
+                    };
+                }
+
+                var clientX = e.clientX || 0;
+                var clientY = e.clientY || 0;
+                var wd = document;
+
+                posx = clientX + wd.body.scrollLeft +
+                    wd.documentElement.scrollLeft;
+                posy = clientY + wd.body.scrollTop +
+                    wd.documentElement.scrollTop;
+
+                return {
+                    x : posx,
+                    y : posy
+                };
+            };
+
+            return me.getMouseCoordinates(evt);
+        }
+
+        // The current event object has neither pageX, nor clientX defined.
+        return {
+            x : 0,
+            y : 0
+        };
     };
-}(this.o2, this));
+
+    /**
+     * @function {static} o2.EventHandler.getKeyCode
+     *
+     * <p>Gets the key code of the key-related event (keydown, keyup, keypress
+     * etc.).</p>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.EventHandler.addEventListener}
+     *
+     * @return the <strong>unicode</strong> key code associated
+     * with the event as an <code>Integer</code>, if found; <code>0</code>
+     * otherwise.
+     */
+    me.getKeyCode = function(evt) {
+        var e = me.getEventObject(evt);
+
+        if (!e) {
+            return 0;
+        }
+
+        // For a cross-event (i.e. keydown, keyup, keypress)
+        // result we normalize the code.
+        // ref: http://www.quirksmode.org/js/keys.html
+        return e.charCode || e.keyCode || 0;
+    };
+}(this.o2, this, document));

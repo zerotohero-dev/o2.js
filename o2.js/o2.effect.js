@@ -1,9 +1,9 @@
 /**
  * @module effect
- * 
+ *
  * <p>not implemented.</p>
  */
-( function() {
+(function() {
 
     // Strict mode on.
     'use strict';

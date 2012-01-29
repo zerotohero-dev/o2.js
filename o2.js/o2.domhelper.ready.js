@@ -6,6 +6,8 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-01-29 11:07:40.074233
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -15,38 +17,14 @@
     'use strict';
 
     /*
-     * Aliases.
+     * Aliases
      */
     var me = framework.DomHelper;
     var nill = framework.nill;
     var setTimeout = window.setTimeout;
 
     /*
-     * Module configuration.
-     */
-    var config = {
-
-        /*
-         *
-         */
-        constants : {
-
-            /*
-             *
-             */
-            regExp : {
-                REG_DOM_LOADED : /^loade|c/
-            }
-        }
-    };
-
-    /*
-     * Common regular expressions.
-     */
-    var kDomLoadedRegExp = config.constants.regExp.REG_DOM_LOADED;
-
-    /*
-     * Common constants.
+     * Common Constants
      */
     var kCheckIntervalMs = 50;
     var kPropertyToCheck = 'left';
@@ -56,6 +34,11 @@
     var kOnLoad = 'onload';
 
     /*
+     * Common Regular Expressions
+     */
+    var kDomLoadedRegExp = /^loade|c/;
+
+    /*
      *
      */
     function isDomContentReady() {
@@ -63,26 +46,21 @@
     }
 
     /*
-     * State.
+     * State
      */
-    var state = {
-        isApplicationReady : isDomContentReady(),
-        readyQueue : []
-    };
+    var isApplicationReady = isDomContentReady();
+    var readyQueue = [];
 
-    /*
-     * Common collections.
-     */
-    var queue = state.readyQueue;
+
 
     /*
      *
      */
     function flushReadyQueue() {
-        state.isApplicationReady = true;
+        isApplicationReady = true;
 
-        while (queue.length > 0) {
-            queue.pop()();
+        while (readyQueue.length > 0) {
+            readyQueue.pop()();
         }
     }
 
@@ -141,10 +119,13 @@
         onIEDomContentLoaded = nill;
     };
 
-    var bindReadyListeners = function() {
+
+    var bindReadyListeners = nill;
+
+    if (document.addEventListener) {
 
         // Mozilla, Opera, webkit
-        if (document.addEventListener) {
+        bindReadyListeners = function() {
 
             //Listen to native on dom conten loaded event.
             document.addEventListener(kDomContentLoaded, onMozDomContentLoaded,
@@ -155,12 +136,11 @@
 
             //Do not process further calls.
             bindReadyListeners = nill;
-
-            return;
-        }
+        };
+    } else if (document.attachEvent) {
 
         // MSIE
-        if (document.attachEvent) {
+        bindReadyListeners = function() {
 
             // Listen to ready state change.
             document.attachEvent(kOnReadyStateChange, onIEDomContentLoaded);
@@ -178,10 +158,8 @@
 
             // Do not process further calls.
             bindReadyListeners = nill;
-
-            return;
-        }
-    };
+        };
+    }
 
     /**
      * @function {static} o2.DomHelper.ready
@@ -194,7 +172,7 @@
     me.ready = function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
-        if (state.isApplicationReady) {
+        if (isApplicationReady) {
             delegate();
 
             return;
@@ -204,6 +182,6 @@
         bindReadyListeners();
 
         // this queue will be processed "only once" after DOM is ready.
-        state.readyQueue.push(delegate);
+        readyQueue.push(delegate);
     };
-}(this.o2, this, this.document, this.setTimeout));
+}(this.o2, this, this.document));
