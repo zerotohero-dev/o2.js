@@ -645,6 +645,33 @@ Example:
        'float': 'left
     };
 
+### Always Use `var`
+
+Variables in JavaScript either have **global scope** or **function scope**,
+and using  the `var` keyword is vital to keeping them straight.
+
+When declaring a variable for use either as a global variable or as a
+function-level variable, always prefix the declaration with the `var` keyword.
+
+### Feature-Detect Rather Than Browser-Detect
+
+**DO NOT** write your code to detect browser versions and to take different
+action  based on the user agent being used. This, most of the time, is a very
+bad  practice. Any code which even looks at the global `navigator` object is
+suspect.
+
+The better approach is to use **feature detection**. That is, before using any
+advanced feature that an older browser may not support, check to see if function
+the or property exists first, then use it.
+
+### `eval` is **evil**
+
+The `eval()` function in javascript is a way to run arbitrary code at run-time.
+In almost all cases, eval should never be used. If it exists in your code,
+there is almost always a more correct way to accomplish what you are doing.
+
+Note that using `Function` constructor is also a form of `eval` and should be
+avoided.
 
 ### **Object** and **Array** Creation
 
@@ -1372,7 +1399,31 @@ Using globals cause naming conflicts between JavaScript source files
 and cause code  to break unexpectedly. For this reason, it is a good
 practice to encapsulate functionality within *namespaces*.
 
-Use namespaces and break code into modules.
+### **Avoid** sync AJAX calls
+
+When making AJAX requests, you may choose either async or sync mode. Async mode
+runs the request in the background while other browser activities can continue
+to process. Sync mode will wait for the request to return before continuing.
+
+**Requests made with sync mode should be avoided**. These requests will cause
+the browser to lock up for the user until the request returns. In cases where
+the server is busy and the response takes a while, the user's browser will not
+allow anything else to be done. In cases where a response is never properly
+received, the browser may continue to block until the request is timed out.
+
+If you think that your situation requires sync mode, it is most likely time to
+re-think your design. Very few (if any) situations actually require AJAX
+requests in sync mode.
+
+### Use **JSON**
+
+**JSON** (JavaScript Object Notation) is compact and efficient data
+format, and is language-neutral.
+
+When storing data structures as plain text or sending/retrieving data structures
+via AJAX, use **JSON** (instead of XML or other formats) whenever possible.
+
+### Use namespaces and break code into modules.
 
 > Modules, *modules*, **modules**.
 > **NOT**
@@ -1398,6 +1449,21 @@ While writing a method the following should be taken into consideration:
 > (MODEL), or the application's look & feel (VIEW). It takes some arguments,
 > returns a value based on these arguments, and do not monkey around with
 > anything else.
+
+### Strive for harmony and symmetry in your code.
+
+This is hard to demonstrate as it's more of a conceptual thing.
+
+Let us try to explain it with a few bullet points:
+
+* It should be easy to identify a method name, which folder a module resides in.
+* It should take no more than a few seconds to identify where to write a
+piece of code.
+* If a module registers an object, that very same module should unregister it.
+
+This intuition can only be gained in time, with patience and tireless practice.
+
+> Use the force, and find harmony you will.
 
 ### **DO NOT** Rely On Type Information While Naming Variables
 
