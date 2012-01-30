@@ -278,7 +278,7 @@
     var p = UnitTest.prototype;
 
     /**
-     * @function {static} o2.UnitTest.terminate
+     * @function o2.UnitTest.terminate
      *
      * <p>Terminates the unit test by setting remaining assertion count to
      * zero.</p>

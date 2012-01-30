@@ -161,7 +161,7 @@
     };
 
     /**
-     * @function o2.DomHelper.isChild
+     * @function {static} o2.DomHelper.isChild
      *
      * <p>Checks whether the given item is a descendant of
      * the parent node.</p>
@@ -236,7 +236,7 @@
      */
 
     /**
-     * @function o2.DomHelper.findParentByAttribute
+     * @function {static} o2.DomHelper.findParentByAttribute
      *
      * <p>An alias to {@link o2.DomHelper.getParentByAttribute}.</p>
      *
@@ -667,7 +667,7 @@
      */
 
     /**
-     * @function o2.DomHelper.findFirstChildWithId
+     * @function {static} o2.DomHelper.findFirstChildWithId
      *
      * <p>An alias to {@link o2.DomHelper.getFirstChildWithId}.</p>
      *
@@ -1033,7 +1033,7 @@
     };
 
     /**
-     * @function o2.DomHelper.getPreviousById
+     * @function {static} o2.DomHelper.getPreviousById
      *
      * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
      *
@@ -1099,7 +1099,7 @@
      */
 
     /**
-     * @function o2.DomHelper.prevWithId
+     * @function {static} o2.DomHelper.prevWithId
      *
      * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
      *
@@ -1107,7 +1107,7 @@
      */
 
     /**
-     * @function o2.DomHelper.findPreviousWithId
+     * @function {static} o2.DomHelper.findPreviousWithId
      *
      * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
      *
@@ -1190,7 +1190,7 @@
     };
 
     /**
-     * @function o2.DomHelper.getNextById
+     * @function {static} o2.DomHelper.getNextById
      *
      * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
      *

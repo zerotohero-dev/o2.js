@@ -22,24 +22,10 @@
     var nill = framework.nill;
     var console = window.console;
 
-    /**
-     * @property {private readonly DOMNode} o2.Debugger.config.outputElement
-     *
-     * <p>A readonly property indicating the node to output the {@link
-     * Debugger} outcomes.</p>
-     * <p>This value will be set after {@link Debugger.init} method is
-     * called.</p>
+    /*
+     * configuration
      */
     var outputElement = null;
-
-    /**
-     * @property {private readonly Boolean} o2.Debugger.config.isUsingConsole
-     *
-     * <p>A reaodonly property.</p>
-     * <p>If <code>true</code> browser's builting debug console is
-     * utilized.</p>
-     * <p>This value will be set after Debugger.init method is called.</p>
-     */
     var isUsingConsole = true;
 
     /*

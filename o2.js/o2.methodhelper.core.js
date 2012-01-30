@@ -153,7 +153,7 @@
     };
 
     /**
-     * @function o2.MethodHelper.bind
+     * @function {static} o2.MethodHelper.bind
      *
      * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
      * the "<code>this</code>" reference.</p>

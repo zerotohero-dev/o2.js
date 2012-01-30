@@ -277,7 +277,7 @@
      */
 
     /**
-     * @function o2.DomHelper.visible
+     * @function {static} o2.DomHelper.visible
      *
      * <p>An alias to {@link o2.DomHelper.isVisible}.</p>
      *

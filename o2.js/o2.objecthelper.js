@@ -64,7 +64,7 @@
     };
 
     /**
-     * @function o2.ObjectHelper.toArray
+     * @function {static} o2.ObjectHelper.toArray
      *
      * <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>
      *
@@ -72,6 +72,8 @@
      * <code>Array</code>.
      *
      * @return the converted <code>Array</code>.
+     *
+     * @see o2.CollectionHelper.toArray
      */
     me.toArray = function(obj) {
         return toArray(obj);
