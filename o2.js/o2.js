@@ -1,16 +1,15 @@
 /**
  * <b>o2.js</b>
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-01-25 08:34:42.334812
- * -->
+ *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
+ *  This program is distributed under the terms of the MIT license.<br />
+ *  Please see the <strong><a href="../LICENSE">LICENSE</a></strong> file for details.<br />
+ *  <br />
+ *  <strong>lastModified</strong>: 2012-01-30 09:38:24.287680
+ *  <p>
  *
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.0001327872069
+ * @version     0.23.0001327915423
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -79,7 +78,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    framework.build = '.0001327872069';
+    framework.build = '.0001327915423';
 
     /**
      * @function {static} o2.$

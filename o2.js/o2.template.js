@@ -33,7 +33,6 @@
      */
     var kEach = 'each';
 
-
     /**
      * @class {static} o2.Template
      *

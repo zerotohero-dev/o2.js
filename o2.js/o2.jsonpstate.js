@@ -1,7 +1,7 @@
 /**
  * @module   jsonpstate
- * @requires methodhelper.core
  * @requires ajaxstate
+ * @requires methodhelper.core
  *
  * <!--
  *  This program is distributed under

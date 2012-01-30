@@ -470,6 +470,24 @@
            elementType : "function"
        } ,         
        {
+           localName : "DateHelper",
+           fullName : "o2.DateHelper",
+           summary : "static class DateHelper",
+           ref : "logical/o2/DateHelper.html",
+           parent : "o2",
+           type : "class",
+           elementType : "logical_container"
+       } ,         
+       {
+           localName : "getPrettyDate",
+           fullName : "o2.DateHelper.getPrettyDate",
+           summary : "static function  getPrettyDate(Integer time, Integer currentTime)",
+           ref : "logical/o2/DateHelper.html#___getPrettyDate",
+           parent : "o2.DateHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "Debugger",
            fullName : "o2.Debugger",
            summary : "static class Debugger",
@@ -490,146 +508,11 @@
        {
            localName : "config",
            fullName : "o2.Debugger.config",
-           summary : "private struct config",
+           summary : "namespace config",
            ref : "logical/o2/Debugger/config.html",
            parent : "o2.Debugger",
-           type : "struct",
+           type : "namespace",
            elementType : "logical_container"
-       } ,         
-       {
-           localName : "constants",
-           fullName : "o2.Debugger.config.constants",
-           summary : "private struct constants",
-           ref : "logical/o2/Debugger/config/constants.html",
-           parent : "o2.Debugger.config",
-           type : "struct",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "className",
-           fullName : "o2.Debugger.config.constants.className",
-           summary : "private struct className",
-           ref : "logical/o2/Debugger/config/constants/className.html",
-           parent : "o2.Debugger.config.constants",
-           type : "struct",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "ERROR",
-           fullName : "o2.Debugger.config.constants.className.ERROR",
-           summary : "private property const String ERROR",
-           ref : "logical/o2/Debugger/config/constants/className.html#___ERROR",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "FAIL",
-           fullName : "o2.Debugger.config.constants.className.FAIL",
-           summary : "private property const String FAIL",
-           ref : "logical/o2/Debugger/config/constants/className.html#___FAIL",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "INFO",
-           fullName : "o2.Debugger.config.constants.className.INFO",
-           summary : "private property const String INFO",
-           ref : "logical/o2/Debugger/config/constants/className.html#___INFO",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "LOG",
-           fullName : "o2.Debugger.config.constants.className.LOG",
-           summary : "private property const String LOG",
-           ref : "logical/o2/Debugger/config/constants/className.html#___LOG",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "PASS",
-           fullName : "o2.Debugger.config.constants.className.PASS",
-           summary : "private property const String PASS",
-           ref : "logical/o2/Debugger/config/constants/className.html#___PASS",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "WARN",
-           fullName : "o2.Debugger.config.constants.className.WARN",
-           summary : "private property const String WARN",
-           ref : "logical/o2/Debugger/config/constants/className.html#___WARN",
-           parent : "o2.Debugger.config.constants.className",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "text",
-           fullName : "o2.Debugger.config.constants.text",
-           summary : "private struct text",
-           ref : "logical/o2/Debugger/config/constants/text.html",
-           parent : "o2.Debugger.config.constants",
-           type : "struct",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "ERROR",
-           fullName : "o2.Debugger.config.constants.text.ERROR",
-           summary : "private property const String ERROR",
-           ref : "logical/o2/Debugger/config/constants/text.html#___ERROR",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "ER_CANNOT_INITIALIZE",
-           fullName : "o2.Debugger.config.constants.text.ER_CANNOT_INITIALIZE",
-           summary : "private property const String ER_CANNOT_INITIALIZE",
-           ref : "logical/o2/Debugger/config/constants/text.html#___ER_CANNOT_INITIALIZE",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "FAIL",
-           fullName : "o2.Debugger.config.constants.text.FAIL",
-           summary : "private property const String FAIL",
-           ref : "logical/o2/Debugger/config/constants/text.html#___FAIL",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "INFO",
-           fullName : "o2.Debugger.config.constants.text.INFO",
-           summary : "private property const String INFO",
-           ref : "logical/o2/Debugger/config/constants/text.html#___INFO",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "PASS",
-           fullName : "o2.Debugger.config.constants.text.PASS",
-           summary : "private property const String PASS",
-           ref : "logical/o2/Debugger/config/constants/text.html#___PASS",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "WARN",
-           fullName : "o2.Debugger.config.constants.text.WARN",
-           summary : "private property const String WARN",
-           ref : "logical/o2/Debugger/config/constants/text.html#___WARN",
-           parent : "o2.Debugger.config.constants.text",
-           type : "property",
-           elementType : "variable"
        } ,         
        {
            localName : "isUsingConsole",
@@ -2470,7 +2353,7 @@
        {
            localName : "toArray",
            fullName : "o2.ObjectHelper.toArray",
-           summary : "function toArray(Object obj, Boolean isDeep)",
+           summary : "function toArray(Object obj)",
            ref : "logical/o2/ObjectHelper.html#___toArray",
            parent : "o2.ObjectHelper",
            type : "function",

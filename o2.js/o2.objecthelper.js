@@ -1,5 +1,6 @@
 /**
  * @module   objecthelper
+ * @requires collectionhelper
  * @requires stringhelper.core
  * @requires methodhelper.core
  *
@@ -8,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastUpdate: 2012-01-28 13:44:52.073146
+ *  lastUpdate: 2012-01-30 09:43:33.963511
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -24,12 +25,12 @@
     var format = framework.StringHelper.format;
     var concat = framework.StringHelper.concat;
     var clone  = framework.MethodHelper.bind;
+    var toArray = framework.CollectionHelper.toArray;
 
     /*
      * Common Constants
      */
     var kFunction = 'function';
-    var kObject = 'object';
     var kNoJsonSupport = concat(myName, ': {0}: No JSON support. quitting');
 
     /**
@@ -69,39 +70,11 @@
      *
      * @param {Object} obj - the <code>Object</code> to convert to an
      * <code>Array</code>.
-     * @param {Boolean} isDeep - (optional, defaults to <code>false</code>),
-     * if <code>true</code>, a deep conversion is issued, converting all the
-     * nested <code>Object</code> to <code>Array</code>s as well; otherwise
-     * a <strong>shallow</strong> conversion is done, where only the
-     * top-level elements are scanned.
      *
      * @return the converted <code>Array</code>.
      */
-    me.toArray = function(obj, isDeep) {
-        isDeep = !!isDeep;
-
-        if (!obj) {
-            return [];
-        }
-
-        var result = [];
-        var item = null;
-        var key = null;
-        var convert = me.ObjectHelper.convertObjectToArray;
-
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                item = obj[key];
-
-                if (isDeep && typeof item === kObject) {
-                    result.push(convert(item, isDeep));
-                } else {
-                    result.push(item);
-                }
-            }
-        }
-
-        return result;
+    me.toArray = function(obj) {
+        return toArray(obj);
     };
 
     /**
