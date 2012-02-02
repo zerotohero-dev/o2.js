@@ -36,7 +36,7 @@
 			    <div class="startup" id="startup">
 			         <div class="banner" id="banner">
                          <h1 class="projectName">
-                             <xsl:element name="a">
+                             <xsl:element name="a">z
                                  <xsl:attribute name="href">.</xsl:attribute>
                                  <xsl:attribute name="class">banner</xsl:attribute>
                                  <xsl:value-of select="$projectName"/>

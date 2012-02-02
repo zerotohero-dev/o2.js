@@ -2216,6 +2216,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "bindAseventlistenerventListener",
+           fullName : "o2.MethodHelper.bindAseventlistenerventListener",
+           summary : "static function  bindAseventlistenerventListener()",
+           ref : "logical/o2/MethodHelper.html#___bindAseventlistenerventListener",
+           parent : "o2.MethodHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "compose",
            fullName : "o2.MethodHelper.compose",
            summary : "static function  compose(Function invoker, Function fn)",

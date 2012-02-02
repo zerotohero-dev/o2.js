@@ -10,11 +10,14 @@ if (typeof jgdoc == 'undefined')
     jgdoc._dataHandlers = [];
 
     jgdoc.setData = function(data)
-    {
-        for (var i = 0; i < jgdoc._dataHandlers.length; i++)
-        {
-        	jgdoc._dataHandlers[i](data);
-        }
+    {	
+		try {
+			for (var i = 0; i < jgdoc._dataHandlers.length; i++)
+			{
+				jgdoc._dataHandlers[i](data);
+			}			
+		} catch(ignore) {
+		}
     }
 }
 
@@ -317,6 +320,8 @@ jgdoc.Searcher =
 	    var instance = jgdoc.Searcher.initialize();
 	    instance.setData([]);
 	    instance._timer = window.setInterval(instance.onTimer, 100);
+	    
+	    //
     }
 }
 
@@ -324,3 +329,7 @@ jgdoc._dataHandlers.push(function(data)
 {
     jgdoc.Searcher.setData(data);
 });
+
+window.onload = function() {
+	jgdoc.NavTree.onOpenAll();
+}

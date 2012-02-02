@@ -1,8 +1,15 @@
 /*--------- sample theme --------------*/
 
 body {
-	font-family: sans-serif;
-	font-size: 0.9em;
+	font: 14px/24px Arial,Helvetica,sans-serif;
+    background-color: #dadada;
+    color: #434343;
+    padding: 0;
+    margin: 0;
+}
+
+hr {
+	visibility: hidden;
 }
 
 code {
@@ -35,7 +42,8 @@ hr {
 }
 
 .summaryTableHeader {
-	background-color: #66CCCC;
+	background-color: #035D77;
+	color: #fff;
 	font-size: 1.3em;
 }
 
@@ -58,7 +66,8 @@ hr {
 }
 
 .sectionHeader {
-	background-color: #66CCCC;
+	background-color: #035D77;
+	color: #fff;
 	border: medium none;
 	font-size: 1.3em;
 }
@@ -118,5 +127,10 @@ a.jgdSelectedItem.searchItem
 {
 	color: white;
 	text-decoration: none;
+}
+
+.banner {
+	background: #444;
+	color: #fff;
 }
 

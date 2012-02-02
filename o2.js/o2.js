@@ -3,13 +3,13 @@
  *
  *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
  *  This program is distributed under the terms of the MIT license.<br />
- *  Please see the <strong><a href="../LICENSE">LICENSE</a></strong> file for details.<br />
+ *  Please see the <strong><a href="https://github.com/v0lkan/o2.js/blob/master/LICENSE">LICENSE</a></strong> file for details.<br />
  *  <br />
  *  <strong>lastModified</strong>: 2012-01-30 09:38:24.287680
  *  <p>
  *
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.0001327917334
+ * @version     0.23.0001328167142
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -78,7 +78,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    framework.build = '.0001327917334';
+    framework.build = '.0001328167142';
 
     /**
      * @function {static} o2.$

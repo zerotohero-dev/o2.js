@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="./index.html">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001327917334
+	                 version 0.23.0001328167142
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -115,6 +115,51 @@
  bound(20,2,10);//gives 60
  var bound2 = o2.MethodHelper.bind(context, test, 20);
  bound2(2, 10);//gives 60
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___bindAseventlistenerventListener"><span class="elementName">bindAseventlistenerventListener</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
+
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
+
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
+
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -345,6 +390,71 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___bindAseventlistenerventListener">
+            <span class="objType">function</span>
+            <span class="objName">bindAseventlistenerventListener</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    bindAseventlistenerventListener()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
+
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
+
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
+
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the bound <code>Function</code>.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___compose">
             <span class="objType">function</span>
@@ -829,7 +939,10 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/domhelper/modify.js.html">o2.domhelper.modify.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
                 </ul>
             </div>
         </li>       

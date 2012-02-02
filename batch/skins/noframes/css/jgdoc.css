@@ -306,13 +306,68 @@ a.searchItem:visited, a.searchItem:link
 
 .navTree .currentNode
 {
-	background-color: aqua;
+	background-color: #035D77;
+	color: #fff;
 }
 
 .comment
+{	
+	padding: 0em 1em 0em 1em;
+	margin: 1em;
+	background: #dfdfdf !important;
+	border: 1px solid #B0B0B0;
+}
+
+.openAll, .closeAll {
+	display: none !important;
+}
+
+.navContent a {
+	display: block;
+	padding-left: 0.5em;
+}
+
+.moduleTree h2, .navTree h2 {
+	display: none;
+}
+
+.banner h1 {
+	border-bottom: 1px solid #13ABBF;
+}
+
+code {
+	border-bottom: 1px dashed solid !important;
+	font-size: 1em !important;
+}
+
+pre {
+    background: none repeat scroll 0 0 #FFFFAA;
+    border: 1px solid #999999;
+    padding: 1em;
+}
+
+.banner h1 a {
+	padding-bottom: 0;
+	padding-left: 145px;
+	font-weight: normal;
+	font-size: 0.8em;
+	background: #333;
+}
+
+.details 
 {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+	padding: 1em;
+	margin: 1em;
+	background: #fff;
+    border: 1px solid #B0B0B0;
+}
+
+.docScroll 
+{
+	padding: 1em;
+	margin: 1em;
+	background: #fff;
+    border: 1px solid #B0B0B0;
 }
 
 body
@@ -323,7 +378,10 @@ body
 
 .banner
 {
+	color: #fff;
 }
+
+
 .banner h1
 {
 	margin: 0px;
@@ -338,19 +396,18 @@ body
 	display: block;
 	padding-bottom:10px;
 	height: 100%;
-	color: black;
+	color: #fff;
 	text-decoration: none;
 }
 
 .banner .bar
 {
-	background-color: #567a58;
+	background-color: #035D77;
 	color: white;
 	text-align: right;
-	font-size: 1.5em;
-	font-weight: bolder;
-	padding-right: 0.5em;
-	font-style: oblique;
+	font-size: 1em;
+	font-weight: normal;
+	padding: 0.5em;
 }
 
 .projectName
@@ -373,19 +430,26 @@ body
 
 .navigation
 {
-	border: 2px outset;
+	border: 0;
+	border-right: 1px #035D77 solid;
 	float: left;
 	width: 20em;
-	background-color: white;
+	background-color: #FAFAFA;
 	line-height: 1.3em;
 	/*padding-left: 0.5em;*/
 	overflow-x: auto;
-	margin-top: 0.5em;
+	margin-top: 0;
+	position: relative;
+}
+
+.search 
+{
+	padding-left: 1em;
 }
 
 .block
 {
-	margin-left: 22em;
+	margin-left: 20em;
 	float: none;
 	height: 100%;
 }
@@ -393,6 +457,10 @@ body
 .search
 {
 	padding-top: 0.5em;
+}
+
+.navContent2 {
+	border-bottom: 1px solid;
 }
 
 .search .searchLabel
@@ -415,13 +483,13 @@ body
 	margin: 0px;
 	padding: 8px;
 	border-bottom: thin outset;
-	background-color: #D8D8D0;
+	background-color: #035d77;
 	cursor: pointer;
 }
 
 .navigation h2 a
 {
-	color: black;
+	color: #fff;
 }
 
 .navigation h2 a:hover
@@ -471,4 +539,8 @@ a.srcUrlLink
   color:#66f;
   font-size: 11px;
 	float: right;
+}
+
+.fileTree {
+	display: none;
 }

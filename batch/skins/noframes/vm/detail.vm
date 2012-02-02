@@ -33,7 +33,7 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="./index.html">$projectName</a>   
+	               <a href="http://o2js.com/">$projectName</a>   
                 </h1>
                 <div class="bar">
 	                 version $version
