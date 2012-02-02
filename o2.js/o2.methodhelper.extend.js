@@ -227,7 +227,7 @@
         var context = args.shift();
         var fn = args.shift();
 
-        return function (e) {
+        return function(e) {
             args.unshift(e);
             return fn.apply(context, args);
         };
