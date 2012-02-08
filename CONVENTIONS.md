@@ -1737,9 +1737,6 @@ items do generate errors).
 
 These cases are rare and **exceptional**.
 
-And when you do use `try/catch` blocks, remember to log the
-errors in `catch` and cleanup state and resources in `finally`.
-
 Functions shall not throw exceptions; they
 should return meaningful error-codes instead.
 
@@ -1803,6 +1800,9 @@ Here is a code from **o2.ajax.js** that does not log an exception on purpose:
 Ignoring exceptions will save that moment but will create a chaos for
 maintainability later.
 
+> When you do use `try/catch` blocks, remember to log the
+> errors in `catch` and clean up state and resources in `finally`.
+
 #### **DO NOT** Use `try/catch` Within Loops
 
 This is a corollary to the above topic. Exception handling inside a loop is not
@@ -1846,7 +1846,8 @@ Summary:
 * *DO NOT* use nested `try/catch`es: Use one try-catch
 at the topmost level.
 * **AVOID** using `try/catch`es unless it's absolutely necessary.
-* Always clean up / deallocate your resources in the `finally` block.
+* Always clean up / deallocate your resources / reset your state
+in the `finally` block.
 
 ### Use The Force Wisely
 
