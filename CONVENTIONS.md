@@ -2152,6 +2152,12 @@ not to use comments:
         // set the value of cache
         cache = value;
 
+    Another example of stating the obvious:
+
+        while(doStuff()) {
+            ; // do nothing
+        }
+
 * Comments are **NOT** for helping reader learn the language:
 
         // Iterate through collection
@@ -2161,12 +2167,6 @@ not to use comments:
                 // Store the value into the cache
                 cache[key] = collection[key];
             }
-        }
-
-    Another example of stating the obvious:
-
-        while(doStuff()) {
-            ; // do nothing
         }
 
 The language is the common denominator between the reader and the author.
