@@ -1838,8 +1838,9 @@ do this:
 
 ### Clearly Document Exceptional Cases
 
-Produce enough [documentation][1] for your exceptions. Giving a number/code for
-each different exception message is a good practice for ease of maintainance.
+Produce enough [documentation][1] for your exceptions. Giving a **number/code**
+for each different exception message is a good practice for
+**ease of maintainance**.
 
 ### Good Boys Clean Their Mess
 
