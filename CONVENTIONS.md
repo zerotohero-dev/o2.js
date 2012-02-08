@@ -1772,7 +1772,7 @@ That is to say, **do not** use something similar to this:
     try {
         doStuff();
     } catch(ignore) {
-        // do nothing, just ignore.
+        // Do nothing, just ignore.
     }
 
 Instead do this:
@@ -2151,22 +2151,23 @@ not to use comments:
 
 * Comments are **NOT** for stating the obvious:
 
-        // set the value of cache
+        // Set the value of cache.
         cache = value;
 
     Another example of stating the obvious:
 
         while(doStuff()) {
-            ; // do nothing
+            // Do nothing.
+            ;
         }
 
 * Comments are **NOT** for helping reader learn the language:
 
-        // Iterate through collection
+        // Iterate through collection:
         for(var key in collection) {
-            // If the collection really has a property `key`
+            // If the collection really has a property `key`...
             if(collection.hasOwnProperty(key)) {
-                // Store the value into the cache
+                // Store the value into the cache.
                 cache[key] = collection[key];
             }
         }
