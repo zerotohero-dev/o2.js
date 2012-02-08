@@ -1846,7 +1846,7 @@ Summary:
 * *DO NOT* use nested `try/catch`es: Use one try-catch
 at the topmost level.
 * **AVOID** using `try/catch`es unless it's absolutely necessary.
-* Always clean up / deallocate your resources / reset your state
+* Always **clean up** & **deallocate** your resources & **reset** your state
 in the `finally` block.
 
 ### Use The Force Wisely
