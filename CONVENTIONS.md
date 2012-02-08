@@ -2410,6 +2410,8 @@ While using your judgmenet though, keep in mind that this document is mainly
 based on [K&R Style Coding][21]. So you can safely follow [K&R Indent Style][21]
 for situations that are not covered in this document.
 
+--------------------------------------------------------------------------------
+
 ## References and Further Reading
 
 * ["jsDoc syntax"][1]
