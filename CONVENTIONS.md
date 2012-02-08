@@ -2169,9 +2169,9 @@ not to use comments:
             }
         }
 
-The language is the common denominator between the reader and the author.
-There are many references the reader can refer to to learn the language --
-let them do that. Assume that the reader knows the language and let the code
+**JavaScript** is the common denominator between the reader and the author.
+There are many references the reader can refer to to learn JavaScript --
+let them do that. Assume that the reader knows JavaScript and let the code
 clearly describe **HOW**.
 
 Use of comments is often a form of religion; people are very opinionated about
