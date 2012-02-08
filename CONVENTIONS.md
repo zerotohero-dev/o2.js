@@ -1,6 +1,8 @@
 # o2.js **JavaScript** Conventions & Best Practices
 ## An **all-in-one** Guide to Writing Efficient **JavaScript** *;)*
 
+--------------------------------------------------------------------------------
+
 ## Introduction
 
 This document includes **JavaScript** naming conventions, best practices
@@ -18,6 +20,8 @@ This document is, in particular, the basis for **o2.js** coding standards.
 In general, however, it *can* be used as a *guideline* for *any* large-scale
 client-heavy **JavaScript** project.
 
+--------------------------------------------------------------------------------
+
 ## Why Do We Need Conventions?
 
 **Coding Conventions** is a must-have for any large-scale long-lived
@@ -33,6 +37,8 @@ differ.
 In this essence, **coding conventions** constitute a shared language
 between the developer team. They increase the readability of the code,
 and make the code less error-prone.
+
+--------------------------------------------------------------------------------
 
 ## o2.js **JavaScript** Coding Standards
 
@@ -1266,6 +1272,8 @@ Declare every variable on a new line:
     var a;
     var b;
 
+--------------------------------------------------------------------------------
+
 ## o2.js **JavaScript** Coding Best-practices
 
 ### JsLint Your Code
@@ -1865,6 +1873,8 @@ is not available or when **JavaScript** has been disabled.
 [Enhance progressively][15], and ensure tha your application
 is usable at all times.
 
+--------------------------------------------------------------------------------
+
 ## Performance and Memory Considerations
 
 Here are certain performance considerations, and guidelines to keep in mind
@@ -2137,6 +2147,8 @@ This is much faster:
     collection.addClass('test');
     collection.click(function(){});
 
+--------------------------------------------------------------------------------
+
 ## Code Smells
 
 Constantly follow these indicators, as they often show the quality
@@ -2382,6 +2394,8 @@ responsibility) and you are %100 sure that it works.
 Keep in mind that the checked in code should be "ready for release"
 **at any time**.
 
+--------------------------------------------------------------------------------
+
 ## Conflicting Situations
 
 Even the strictest set of rules and coventions may be vague under certain
@@ -2422,7 +2436,7 @@ for situations that are not covered in this document.
 * ["Clean Code, A Handbook of Agile Software Craftsmanship"][22]
 * ["Robert C. Martin"][23]
 
---------------------------------------------
+--------------------------------------------------------------------------------
 
 That's the end of this conventions document.
 
