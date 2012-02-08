@@ -1751,6 +1751,98 @@ Summary:
 at the topmost level.
 * **AVOID** using `try/catch`es unless it's absolutely necessary.
 
+### **DO NOT** Manage Business Logic With Exceptions
+
+This is a corollary to the above topic:
+
+Don't manage business logic with exceptions. Use conditional statements instead.
+Each `try/catch` block comes with it's own scope of execution. And increasing
+the depth of execution scope will make your application slower. If a control
+can be done with if-else statement clearly (e.g. null control,
+divide by zero control), don't use exceptions because it reduces performance and
+readability.
+
+### **DO NOT** Ignore Exceptions
+
+Don't absorb exceptions with no logging and operation.
+That is to say, **do not** use something similar to this:
+
+    try {
+        doStuff();
+    } catch(ignore) {
+        // do nothing, just ignore.
+    }
+
+Instead do this:
+
+    try {
+        doStuff();
+    } catch(ignore) {
+        log(ignore);
+    }
+
+There are *very* rare exceptions to this.
+Here is a code from **o2.ajax.js** that does not log an exception on purpose:
+
+In the below code sample, the flow exits after the first successful
+initialization of the *request* object.
+
+    while (progIds.length > 0) {
+        progId = progIds.shift();
+
+        try {
+            request = new ActiveXObject(progId);
+
+            break;
+        } catch(ignore) {
+        }
+    }
+
+    if (!request) {
+        throw kNoXhr;
+    }
+
+And, 99% of the time, your code is not *that* exceptional.
+**Log your exceptions whenever you can**.
+
+Ignoring exceptions will save that moment but will create a chaos for
+maintainability later.
+
+### **DO NOT** Use `try/catch` Within Loops
+
+This is a corollary to the above topic. Exception handling inside a loop is not
+recommended for most cases. Surround the loop with a `try` block instead.
+
+So instead of this:
+
+    while(condition) {
+        try {
+            stuff();
+        } catch(e) {
+            log(e);
+        }
+    }
+
+do this:
+
+    try {
+        while(condition) {
+            stuff();
+        }
+    } catch(e) {
+        log(e);
+    }
+
+### Clearly Document Exceptional Cases
+
+Produce enough [1][documentation] for your exceptions. Giving a number/code for
+each different exception message is a good practice for ease of maintainance.
+
+### Good Boys Clean Their Mess
+
+When you use exceptions always clean up resources and perform this in `finally`
+blocks.
+
 ### Use The Force Wisely
 
 Your application shall function degrade gracefully, when Javascript
@@ -2043,13 +2135,55 @@ Constantly follow these indicators, as they often show the quality
 There's a slight difference between comments that are explaining
 what's being done and comments that are overly confusing.
 
-Comments should answer the question **"why?"**, not the question **"what?"**.
+Comments should answer the question **"why?"**, not the question **"what?"** or
+**how?**.
 
 If the number of "caveat" comments inside a code block is increasing,
 it may show that the code block is becoming more complicated.
 
 If possible, the code should be refactored, so that those "caveat"
 comments are not necessary anymore.
+
+Instead of explaining when to use comments, it would be better to show when
+not to use comments:
+
+* Comments are **NOT** for stating the obvious:
+
+        // set the value of cache
+        cache = value;
+
+* Comments are **NOT** for helping reader learn the language:
+
+        // Iterate through collection
+        for(var key in collection) {
+            // If the collection really has a property `key`
+            if(collection.hasOwnProperty(key)) {
+                // Store the value into the cache
+                cache[key] = collection[key];
+            }
+        }
+
+    Another example of stating the obvious:
+
+        while(doStuff()) {
+            ; // do nothing
+        }
+
+The language is the common denominator between the reader and the author.
+There are many references the reader can refer to to learn the language --
+let them do that. Assume that the reader knows the language and let the code
+clearly describe **HOW**.
+
+Use of comments is often a form of religion; people are very opinionated about
+them in one way or another. [Robert Martin][23] expresses his opionion in
+[Clean Code][22] by saying:
+
+    The proper use of comments is to compensate for our failure to express
+    yourself in code. Note that I used the word failure. I meant it.
+    **Comments are always failures**.
+
+Martin had previous described comments as **apologies** for
+**making the code unmaintainable**.
 
 ### Excessively Long Method Names
 
@@ -2272,6 +2406,8 @@ for situations that are not covered in this document.
 * ["Memoization"][19]
 * ["To equal, or not to equal -- that's the problem."][20]
 * ["Indent Styles"][21]
+* ["Clean Code, A Handbook of Agile Software Craftsmanship"][22]
+* ["Robert C. Martin"][23]
 
 --------------------------------------------
 
@@ -2300,3 +2436,5 @@ Feel free to contribute.
 [19]: http://o2js.com/2011/05/03/javascript-function-kung-fu/ "Memoization"
 [20]: http://o2js.com/2011/04/27/to-equal-or-not-to-equal-thats-the-problem/ "To equal, or not to equal -- that's the problem."
 [21]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
+[22]: http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882 "Clean Code, A Handbook of Agile Software Craftsmanship"
+[23]: http://www.objectmentor.com/omTeam/martin_r.html "Robert C. Martin"
