@@ -1755,7 +1755,9 @@ at the topmost level.
 
 This is a corollary to the above topic:
 
-Don't manage business logic with exceptions. Use conditional statements instead.
+Don't manage business logic with exceptions. Use **conditional statements**
+instead.
+
 Each `try/catch` block comes with it's own scope of execution. And increasing
 the depth of execution scope will make your application slower. If a control
 can be done with if-else statement clearly (e.g. null control,
