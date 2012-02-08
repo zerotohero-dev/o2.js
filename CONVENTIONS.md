@@ -2182,7 +2182,7 @@ them in one way or another. [Robert Martin][23] expresses his opionion in
 > yourself in code. Note that I used the word failure. I meant it.
 > **Comments are always failures**.
 
-Martin had previous described comments as **apologies** for
+Robert Martin had previous described comments as **apologies** for
 **making the code unmaintainable**.
 
 ### Excessively Long Method Names
