@@ -1786,8 +1786,8 @@ Instead do this:
 There are *very* rare exceptions to this.
 Here is a code from **o2.ajax.js** that does not log an exception on purpose:
 
-In the below code sample, the flow exits after the first successful
-initialization of the *request* object.
+    // In the below code sample, the flow exits after
+    // the first successful initialization of the `request` object:
 
     while (progIds.length > 0) {
         progId = progIds.shift();
@@ -1804,7 +1804,8 @@ initialization of the *request* object.
         throw kNoXhr;
     }
 
-And, 99% of the time, your code is not *that* exceptional.
+99% of the time, your code is not *that* exceptional.
+
 **Log your exceptions whenever you can**.
 
 Ignoring exceptions will save that moment but will create a chaos for
