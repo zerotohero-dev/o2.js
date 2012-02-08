@@ -1743,14 +1743,6 @@ errors in `catch` and cleanup state and resources in `finally`.
 Functions shall not throw exceptions; they
 should return meaningful error-codes instead.
 
-Summary:
-
-* `try { } catch { }` is an expensive construct in JavaScript.
-* *DO NOT* use `try/catch`s within loops.
-* *DO NOT* use nested `try/catch`es: Use one try-catch
-at the topmost level.
-* **AVOID** using `try/catch`es unless it's absolutely necessary.
-
 #### **DO NOT** Manage Business Logic With Exceptions
 
 This is a corollary to the above topic:
@@ -1846,6 +1838,15 @@ for each different exception message is a good practice for
 
 When you use exceptions always clean up resources and perform this in `finally`
 blocks.
+
+Summary:
+
+* `try { } catch { }` is an expensive construct in JavaScript.
+* *DO NOT* use `try/catch`s within loops.
+* *DO NOT* use nested `try/catch`es: Use one try-catch
+at the topmost level.
+* **AVOID** using `try/catch`es unless it's absolutely necessary.
+* Always clean up / deallocate your resources in the `finally` block.
 
 ### Use The Force Wisely
 
