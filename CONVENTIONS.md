@@ -1,5 +1,5 @@
 # o2.js **JavaScript** Conventions & Best Practices
-## An **all-in-one** Guide to Writing Efficient **JavaScript** *;)*
+## An **All-in-One** Guide to Writing Efficient **JavaScript** *;)*
 
 --------------------------------------------------------------------------------
 
