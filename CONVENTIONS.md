@@ -1,4 +1,6 @@
-# o2.js Javascript Conventions & Best Practices
+# o2.js **JavaScript** Conventions & Best Practices
+
+> An all-in-one guide to writing efficient **JavaScript** ;)
 
 ## Introduction
 
@@ -33,7 +35,7 @@ In this essence, **coding conventions** constitute a shared language
 between the developer team. They increase the readability of the code,
 and make the code less error-prone.
 
-## o2.js Javascript Coding Standards
+## o2.js **JavaScript** Coding Standards
 
 Here are the main code conventions, standards, and guidelines used
 within **o2.js** source files:
@@ -647,7 +649,7 @@ Example:
 
 ### Always Use `var`
 
-Variables in JavaScript either have **global scope** or **function scope**,
+Variables in **JavaScript** either have **global scope** or **function scope**,
 and using  the `var` keyword is vital to keeping them straight.
 
 When declaring a variable for use either as a global variable or as a
@@ -666,7 +668,9 @@ the or property exists first, then use it.
 
 ### `eval` is **evil**
 
-The `eval()` function in javascript is a way to run arbitrary code at run-time.
+The `eval()` function in **JavaScript** is a way to run arbitrary code at
+run-time.
+
 In almost all cases, eval should never be used. If it exists in your code,
 there is almost always a more correct way to accomplish what you are doing.
 
@@ -690,8 +694,8 @@ Use literal notation. It takes less space and it's sligthly faster:
 Use single quotes ( `'` ) for string literals.
 
 Using double quotes (") for HTML attributes and single quotes (') for
-JavaScript string literals will make writing HTML template code in
-JavaScript easier.
+**JavaScript** string literals will make writing HTML template code in
+**JavaScript** easier.
 
 Example:
 
@@ -713,7 +717,7 @@ structs.
 
         * @throws exception if <strong>fn</strong> callback is not defined.
 
-* [jsDoc][1] JavaScript objects should be enclosed in `<code></code>`.
+* [jsDoc][1] **JavaScript** objects should be enclosed in `<code></code>`.
 
         * @param {DomNode} node - the DOM object (or its <code>String</code>.
 
@@ -1090,7 +1094,7 @@ do this
 ### Always Use Strict Comparison
 
 Strong-typed languages such as Java and C# considers two values to be equal
-if and only if they are equal both by value and by type. JavaScript equality
+if and only if they are equal both by value and by type. **JavaScript** equality
 operator (`==`), however, enables *type coercion* when comparing different types.
 Although the rules of coercion are deterministic and strictly defined, the
 issue creates some [confusion][20], at least.
@@ -1263,7 +1267,7 @@ Declare every variable on a new line:
     var a;
     var b;
 
-## o2.js Javascript Coding Best-practices
+## o2.js **JavaScript** Coding Best-practices
 
 ### JsLint Your Code
 
@@ -1395,7 +1399,7 @@ Each o2.js module has the following basic structure.
 
 Global variables and functions are rarely, if ever, required.
 
-Using globals cause naming conflicts between JavaScript source files
+Using globals cause naming conflicts between **JavaScript** source files
 and cause code  to break unexpectedly. For this reason, it is a good
 practice to encapsulate functionality within *namespaces*.
 
@@ -1417,7 +1421,7 @@ requests in sync mode.
 
 ### Use **JSON**
 
-**JSON** (JavaScript Object Notation) is compact and efficient data
+**JSON** (**JavaScript** Object Notation) is compact and efficient data
 format, and is language-neutral.
 
 When storing data structures as plain text or sending/retrieving data structures
@@ -1540,17 +1544,17 @@ it before using it. Here's an example:
         doStuff();
     }
 
-### **DO NOT** Mix HTML and Javascript
+### **DO NOT** Mix **HTML** and **JavaScript**
 
-Use a templating engine. Don't mix HTML markup within JavaScript code.
+Use a templating engine. Don't mix **HTML** markup within **JavaScript** code.
 
-### **DO NOT** Use Inlne Javascript Events
+### **DO NOT** Use Inlne **JavaScript** Events
 
-Using inline JavaScript events and server-side templating (e.g. *Smarty*),
+Using inline **JavaScript** events and server-side templating (e.g. *Smarty*),
 is a dangerous mix that may leave your code prone to **"script injection"**
 attacks.
 
-**Event overriding** is yet another reason to avoid using inline JavaScript
+**Event overriding** is yet another reason to avoid using inline **JavaScript**
 (i.e. *onclick=""*s). The way inline event handlers work is called
 **"DOM Level 0 Events"**
 (`<a href="javascript:void()" onclick="foo();return false">...</a>` ... yuck!).
@@ -1564,13 +1568,13 @@ handlers to be assigned to one event.
 [behavioral separation][7], is actually far more than that, but that's the
 topic of another story.
 
-One of the big powers of JavaScript is that it comes in a seperate file.
+One of the big powers of **JavaScript** is that it comes in a seperate file.
 Much like CSS, this means you can apply one collection of functions to
 every page of the site, and if you need to change the functionality,
 you can do that in one document rather than going through and replacing
 each **onclick** event on every single template.
 
-> Don't be a lazy `b****`, and **decouple** your JavaScript!
+> Don't be a lazy `b****`, and **decouple** your **JavaScript**!
 
  **Coupling is bad**, and we know it.
 
@@ -1578,20 +1582,23 @@ each **onclick** event on every single template.
 * We **decouple** our services from each other
 
 We try to keep coupling to a minimum in every piece of code we write...
-except our JavaScript.
+except our **JavaScript**.
 
-Coupling of our JavaScript tto markup prevents you from changing your
-markup without addressing your JavaScript as well.
+Coupling of our **JavaScript** tto markup prevents you from changing your
+markup without addressing your **JavaScript** as well.
 
 In short;
 
-* Separate CSS from HTML (no `<style></style>` tags, no `style=""` attributes).
-* Separate JavaScript from HTML (no `<script>...</script>`s, no `onclick=""`s,
+* Separate **CSS** from **HTML** (no `<style></style>` tags, no `style=""`
+attributes).
+* Separate **JavaScript** from **HTML** (no `<script>...</script>`s, no
+`onclick=""`s,
 * no `onkeydown=""`s, or God forbid, no `href:"javascript:"`s ...)
-* Separate HTML from JavaScript (no **HTML tagsoup** within JavaScript; use
- **templates** instead)
-* Separate PHP (or the server-side language of your choice) from JavaScript
-(PHP should not spit out thousands of lines of of server-generated JavaScript)
+* Separate **HTML** from **JavaScript** (no **HTML tagsoup** within
+**JavaScript**; use **templates** instead)
+* Separate **PHP** (or the server-side language of your choice) from
+**JavaScript** (**PHP** should not spit out thousands of lines of
+server-generated **JavaScript**)
 
 ### Use Event-delegation
 
@@ -1841,7 +1848,7 @@ blocks.
 
 Summary:
 
-* `try { } catch { }` is an expensive construct in JavaScript.
+* `try { } catch { }` is an expensive construct in **JavaScript**.
 * *DO NOT* use `try/catch`s within loops.
 * *DO NOT* use nested `try/catch`es: Use one try-catch
 at the topmost level.
@@ -1851,10 +1858,10 @@ in the `finally` block.
 
 ### Use The Force Wisely
 
-Your application shall function degrade gracefully, when Javascript
-is not available or when Javascript has been disabled.
+Your application shall function degrade gracefully, when **JavaScript**
+is not available or when **JavaScript** has been disabled.
 
-JavaScript is for **enhancing** existing functionality.
+**JavaScript** is for **enhancing** existing functionality.
 
 [Enhance progressively][15], and ensure tha your application
 is usable at all times.
@@ -1896,7 +1903,7 @@ collection size). There's no faster selector than
 are definitely faster than Prototype.js's `bind` method.
 
 The fact that you have a framework at hand, does not mean you
-should excessively use it. Know (and learn) adequate JavaScript,
+should excessively use it. Know (and learn) adequate **JavaScript**,
 to use native methods in performance-and-memory-critical
 parts of your code.
 
@@ -2177,8 +2184,8 @@ not to use comments:
         }
 
 **JavaScript** is the common denominator between the reader and the author.
-There are many references the reader can refer to to learn JavaScript --
-let them do that. Assume that the reader knows JavaScript and let the code
+There are many references the reader can refer to to learn **JavaScript** --
+let them do that. Assume that the reader knows **JavaScript** and let the code
 clearly describe **HOW**.
 
 Use of comments is often a form of religion; people are very opinionated about
