@@ -1751,7 +1751,7 @@ Summary:
 at the topmost level.
 * **AVOID** using `try/catch`es unless it's absolutely necessary.
 
-### **DO NOT** Manage Business Logic With Exceptions
+#### **DO NOT** Manage Business Logic With Exceptions
 
 This is a corollary to the above topic:
 
@@ -1764,7 +1764,7 @@ can be done with if-else statement clearly (e.g. null control,
 divide by zero control), don't use exceptions because it reduces performance and
 readability.
 
-### **DO NOT** Ignore Exceptions
+#### **DO NOT** Ignore Exceptions
 
 Don't absorb exceptions with no logging and operation.
 That is to say, **do not** use something similar to this:
@@ -1811,7 +1811,7 @@ Here is a code from **o2.ajax.js** that does not log an exception on purpose:
 Ignoring exceptions will save that moment but will create a chaos for
 maintainability later.
 
-### **DO NOT** Use `try/catch` Within Loops
+#### **DO NOT** Use `try/catch` Within Loops
 
 This is a corollary to the above topic. Exception handling inside a loop is not
 recommended for most cases. Surround the loop with a `try` block instead.
@@ -1836,13 +1836,13 @@ do this:
         log(e);
     }
 
-### Clearly Document Exceptional Cases
+#### Clearly Document Exceptional Cases
 
 Produce enough [documentation][1] for your exceptions. Giving a **number/code**
 for each different exception message is a good practice for
 **ease of maintainance**.
 
-### Good Boys Clean Their Mess
+#### Good Boys Clean Their Mess
 
 When you use exceptions always clean up resources and perform this in `finally`
 blocks.
