@@ -5,8 +5,11 @@
 
 ## Introduction
 
-This document includes **JavaScript** naming conventions, best practices
-and recommendations to be used within **o2.js** source code, and examples.
+This document includes **JavaScript** usage and naming conventions, best
+practices, and recommendations.
+
+These conventions and recommendations are constantly being used within **o2.js**
+source code, and examples.
 
 If there's a particular **JavaScript** usage that's not mentioned in this
 document,
