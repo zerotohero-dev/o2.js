@@ -12,8 +12,8 @@ These conventions and recommendations are constantly being used within **o2.js**
 source code, and examples.
 
 If there's a particular **JavaScript** usage that's not mentioned in this
-document, either in **o2.js** source, orwithin any of the examples or supporting
-documentation:
+document (*either in **o2.js** source, or within any of the examples or within
+the supporting documentation*):
 
 * Either it should be proposed as an exceptional case and added to this
 document.
