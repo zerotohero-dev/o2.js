@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-02 09:16:27.405524
+ *  lastModified: 2012-02-09 08:54:31.999794
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
@@ -18,11 +18,14 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.MethodHelper;
-    var format = framework.StringHelper.format;
+    var me = use(framework.MethodHelper);
+    var format = use(framework.StringHelper.format);
+
     var slice = Array.prototype.slice;
     var splice = Array.prototype.splice;
     var setTimeout = window.setTimeout;

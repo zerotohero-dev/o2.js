@@ -6,12 +6,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-30 11:20:30.667904
+ *  lastModified: 2012-02-09 09:37:38.193330
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
  */
-(function(framework){
+(function(framework) {
     'use strict';
 
     /*
@@ -47,21 +47,21 @@
      * Time Formats
      */
     var timeFormats = [
-        [60         , kSeconds     , 1                ],
-        [120        , kOneMinuteAgo, kOneMinuteFromNow],
-        [3600       , kMinutes     , 60               ],
-        [7200       , kOneHourAgo  , kOneHourFromNow  ],
-        [86400      , kHours       , 3600             ],
-        [172800     , kYesterday   , kTomorrow        ],
-        [604800     , kDays        , 86400            ],
-        [1209600    , kLastWeek    , kNextWeek        ],
-        [2419200    , kWeeks       , 604800           ],
-        [4838400    , kLastMonth   , kNextMonth       ],
-        [29030400   , kMonths      , 2419200          ],
-        [58060800   , kLastYear    , kNextYear        ],
-        [2903040000 , kYears       , 29030400         ],
-        [5806080000 , kLastCentury , kNextCentury     ],
-        [58060800000, kCenturies   , 2903040000       ]
+        [60, kSeconds, 1],
+        [120, kOneMinuteAgo, kOneMinuteFromNow],
+        [3600, kMinutes, 60],
+        [7200, kOneHourAgo, kOneHourFromNow],
+        [86400, kHours, 3600],
+        [172800, kYesterday, kTomorrow],
+        [604800, kDays, 86400],
+        [1209600, kLastWeek, kNextWeek],
+        [2419200, kWeeks, 604800],
+        [4838400, kLastMonth, kNextMonth],
+        [29030400, kMonths, 2419200],
+        [58060800, kLastYear, kNextYear],
+        [2903040000, kYears, 29030400],
+        [5806080000, kLastCentury, kNextCentury],
+        [58060800000, kCenturies, 2903040000]
     ];
 
     /*

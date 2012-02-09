@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 09:12:26.911672
+ *  lastModified: 2012-02-09 08:45:44.459525
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -18,16 +18,19 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var log  = framework.Debugger.log;
-    var assert = framework.Debugger.assert;
-    var initDebugger = framework.Debugger.init;
-    var format = framework.StringHelper.format;
-    var concat = framework.StringHelper.concat;
-    var scrollToBottom = framework.DomHelper.scrollWindowToBottom;
-    var nill = framework.nill;
+    var log  = use(framework.Debugger.log);
+    var assert = use(framework.Debugger.assert);
+    var initDebugger = use(framework.Debugger.init);
+    var format = use(framework.StringHelper.format);
+    var concat = use(framework.StringHelper.concat);
+    var scrollToBottom = use(framework.DomHelper.scrollWindowToBottom);
+    var nill = use(framework.nill);
+
     var setTimeout = window.setTimeout;
 
     /*

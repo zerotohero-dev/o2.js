@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:46:09.120390
+ *  lastModified: 2012-02-09 09:43:26.698595
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -16,10 +16,13 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var concat = framework.StringHelper.concat;
+    var concat = use(framework.StringHelper.concat);
+
     var escape = window.escape;
 
     /*

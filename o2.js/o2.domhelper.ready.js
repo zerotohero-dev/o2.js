@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 11:07:40.074233
+ *  lastModified: 2012-02-09 09:16:14.723917
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -16,12 +16,14 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var nill = framework.nill;
-    var setTimeout = window.setTimeout;
+    var me = use(framework.DomHelper);
+    var nill = use(framework.nill);
+    var setTimeout = use(window.setTimeout);
 
     /*
      * Common Constants
@@ -50,8 +52,6 @@
      */
     var isApplicationReady = isDomContentReady();
     var readyQueue = [];
-
-
 
     /*
      *

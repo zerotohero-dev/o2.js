@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastUpdate: 2012-01-28 15:16:57.981847
+ *  lastUpdate: 2012-02-09 09:00:06.046804
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -16,12 +16,14 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var myName = framework.name;
-    var concat = framework.StringHelper.concat;
-    var nill = framework.nill;
+    var myName = use(framework.name);
+    var concat = use(framework.StringHelper.concat);
+    var nill = use(framework.nill);
 
     /*
      * State

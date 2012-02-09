@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 13:18:21.712914
+ *  lastModified: 2012-02-09 08:47:36.155587
  * -->
  *
  * <p>An object support checker.</p>
@@ -15,10 +15,12 @@
 (function(framework, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var myName = framework.name;
+    var myName = use(framework.name);
 
     var isDomSupported = document.getElementById && document.createElement &&
         document.getElementsByTagName;

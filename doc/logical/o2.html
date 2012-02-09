@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328254928
+	                 version 0.23.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -476,6 +476,19 @@
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
+                <span class="modifiers">public static</span>
+                <span class="type"></span>
+                <a href="logical/o2.html#___require"><span class="elementName">require</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks existence of an object and returns the object if it exists.</p>
+ <p>This method is used for the internal consistency and dependency checks
+ of <strong>o2.js</strong> modules.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2.html#___t"><span class="elementName">t</span></a>
@@ -791,6 +804,49 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
+        <a name="___require">
+            <span class="objType">function</span>
+            <span class="objName">require</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">public static</span>
+                    <span class="type"></span>
+                    require(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks existence of an object and returns the object if it exists.</p>
+ <p>This method is used for the internal consistency and dependency checks
+ of <strong>o2.js</strong> modules.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to check.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>Object</code> itself, if exists.
+ 	            	        </div>
+        </div>      
+            	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">exception - if <strong>obj</strong> is falsy.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
         <a name="___t">
             <span class="objType">function</span>
             <span class="objName">t</span>            
@@ -916,10 +972,7 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
-                                <a href="physical/file-o2/domhelper/modify.js.html">o2.domhelper.modify.js</a>
-                            </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
                 </ul>
             </div>
         </li>       
@@ -976,6 +1029,9 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-load.html">domhelper.load</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-modify.html">domhelper.modify</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-ready.html">domhelper.ready</a>

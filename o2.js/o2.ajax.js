@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 09:11:05.140604
+ *  lastModified: 2012-02-09 09:46:13.850280
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -16,12 +16,15 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var generateGuid = framework.StringHelper.generateGuid;
-    var concat = framework.StringHelper.concat;
-    var nill = framework.nill;
+    var generateGuid = use(framework.StringHelper.generateGuid);
+    var concat = use(framework.StringHelper.concat);
+    var nill = use(framework.nill);
+
     var ActiveXObject = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
 

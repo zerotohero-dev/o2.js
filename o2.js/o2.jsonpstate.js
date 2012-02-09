@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 14:49:56.821093
+ *  lastModified: 2012-02-09 08:57:59.897716
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
@@ -19,16 +19,18 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var clone = framework.MethodHelper.bind;
+    var clone = use(framework.MethodHelper.bind);
 
     /*
      * Base Class
      */
-    var base = framework.AjaxState;
-    var baseProtected = base.protecteds;
+    var base = use(framework.AjaxState);
+    var baseProtecteds = use(base.protecteds);
 
     /*
      * Common Constants
@@ -65,9 +67,8 @@
         }
     }
 
-    var myState = me.JsonpState;
-    var myProtecteds = myState.protecteds;
+    var myProtecteds = use(me.protecteds);
 
-    copy(myState, base);
-    copy(myProtecteds, baseProtected);
+    copy(me, base);
+    copy(myProtecteds, baseProtecteds);
 }(this.o2));

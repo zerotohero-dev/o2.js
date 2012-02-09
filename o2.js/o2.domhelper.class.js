@@ -1,28 +1,29 @@
 /**
  * @module   domhelper.class
- * @requires stringhelper.core
  * @requires domhelper.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:48:48.525266
+ *  lastModified: 2012-02-09 09:29:00.684095
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-
 (function(framework) {
     'use strict';
+
+    var use = framework.require;
 
     /*
      * Aliases
      */
-    var $ = framework.$;
-    var concat = framework.StringHelper.concat;
-    var me = framework.DomHelper;
+    var me = use(framework.DomHelper);
+    var $ = use(framework.$);
+    var concat = use(framework.StringHelper.concat);
 
     /*
      * Common Constants

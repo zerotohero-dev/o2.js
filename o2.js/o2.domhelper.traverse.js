@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 10:42:19.025414
+ *  lastModified: 2012-02-09 09:12:19.879912
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -18,16 +18,18 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var $ = framework.$;
-    var me = framework.DomHelper;
-    var myName = framework.name;
-    var getAttribute = me.getAttribute;
-    var generateGuid = framework.StringHelper.generateGuid;
-    var format = framework.StringHelper.format;
-    var createClassNameRegExp = framework.DomHelper.createClassNameRegExp;
+    var me = use(framework.DomHelper);
+    var myName = use(framework.name);
+    var $ = use(framework.$);
+    var getAttribute = use(me.getAttribute);
+    var generateGuid = use(framework.StringHelper.generateGuid);
+    var format = use(framework.StringHelper.format);
+    var createClassNameRegExp = use(framework.DomHelper.createClassNameRegExp);
 
     /*
      * Common Constants

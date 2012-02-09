@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 11:37:30.795710
+ *  lastModified: 2012-02-09 08:46:44.499395
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -16,10 +16,13 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var concat = framework.StringHelper.concat;
+    var concat = use(framework.StringHelper.concat);
+
     var clearTimeout = window.clearTimeout;
     var setTimeout = window.setTimeout;
     var clearInterval = window.clearInterval;

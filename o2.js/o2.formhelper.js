@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 17:33:20.092691
+ *  lastModified: 2012-02-09 09:06:07.224261
  * -->
  *
  * <p>A <strong>HTML</strong> form helper module.</p>
@@ -14,11 +14,13 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
     var me = framework.FormHelper = {};
-    var $ = framework.$;
+    var $ = use(framework.$);
 
     /**
      * @function {static} o2.FormHelper.preventMultipleSubmit

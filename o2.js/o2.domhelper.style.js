@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 10:58:26.903946
+ *  lastModified: 2012-02-09 09:13:37.142847
  * -->
  *
  * <p>A utility package to
@@ -20,16 +20,18 @@
 (function(framework, window, document) {
    'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
-    var t = framework.t;
-    var myName = framework.name;
-    var toCamelCase = framework.StringHelper.toCamelCase;
-    var concat = framework.StringHelper.concat;
-    var toDashedFromCamelCase = framework.StringHelper.toDashedFromCamelCase;
+    var me = use(framework.DomHelper);
+    var $ = use(framework.$);
+    var t = use(framework.t);
+    var myName = use(framework.name);
+    var toCamelCase = use(framework.StringHelper.toCamelCase);
+    var concat = use(framework.StringHelper.concat);
+    var toDashedFromCamelCase = use(framework.StringHelper.toDashedFromCamelCase);
 
     /*
      * Common Constants

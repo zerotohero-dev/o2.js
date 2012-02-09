@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 09:22:59.806447
+ *  lastModified: 2012-02-09 08:48:52.624170
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -17,10 +17,12 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.StringHelper;
+    var me = use(framework.StringHelper);
 
     /*
      * Common Regular Expressions

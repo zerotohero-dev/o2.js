@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 11:00:29.259849
+ *  lastModified: 2012-02-09 09:15:16.590252
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -16,11 +16,14 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
+    var me = use(framework.DomHelper);
+    var $ = use(framework.$);
+
     var de = document.documentElement;
     var scrollTo = window.scrollTo;
 

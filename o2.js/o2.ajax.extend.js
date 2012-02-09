@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 08:56:50.544275
+ *  lastModified: 2012-02-09 09:46:47.145838
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -16,10 +16,12 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.Ajax;
+    var me = use(framework.Ajax);
 
     /*
      * Caches

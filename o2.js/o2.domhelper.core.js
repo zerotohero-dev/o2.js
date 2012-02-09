@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:42:56.698802
+ *  lastModified: 2012-02-09 09:26:10.638998
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
@@ -14,10 +14,12 @@
 (function(framework, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var $ = framework.$;
+    var $ = use(framework.$);
 
     /*
      * Common Constants

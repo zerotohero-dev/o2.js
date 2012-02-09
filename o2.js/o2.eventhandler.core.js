@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 10:34:27.968122
+ *  lastModified: 2012-02-09 09:09:56.236052
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -17,15 +17,17 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.EventHandler;
-    var myName = me.name;
-    var $ = framework.$;
-    var format = framework.StringHelper.format;
-    var concat = framework.StringHelper.concat;
-    var nill = framework.nill;
+    var me = use(framework.EventHandler);
+    var myName = use(me.name);
+    var $ = use(framework.$);
+    var format = use(framework.StringHelper.format);
+    var concat = use(framework.StringHelper.concat);
+    var nill = use(framework.nill);
 
     /*
      * Common Constants

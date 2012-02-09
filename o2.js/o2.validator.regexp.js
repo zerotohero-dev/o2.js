@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 08:26:22.624588
+ *  lastModified: 2012-02-09 08:45:14.094662
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -17,10 +17,12 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.Validator;
+    var me = use(framework.Validator);
 
     /*
      * Common Regular Expressions

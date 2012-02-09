@@ -1,29 +1,31 @@
 /**
  * @module   domhelper.dimension
- * @requires stringhelper.core
  * @requires domhelper.core
+ * @requires stringhelper.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:22:34.119638
+ *  lastModified: 2012-02-09 09:30:02.728672
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
-
 (function(framework, window, document) {
     'use strict';
+
+    var use = framework.require;
 
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
-    var concat = framework.StringHelper.concat;
+    var me = use(framework.DomHelper);
+    var $ = use(framework.$);
+    var concat = use(framework.StringHelper.concat);
+
     var self = window.self;
 
     /*

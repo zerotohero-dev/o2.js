@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastUpdate: 2012-01-28 15:05:36.905566
+ *  lastUpdate: 2012-02-09 08:59:14.980125
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -18,12 +18,14 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var nill = framework.nill;
-    var state = framework.JsonpState;
-    var ajaxController = framework.AjaxController;
+    var nill = use(framework.nill);
+    var state = use(framework.JsonpState);
+    var ajaxController = use(framework.AjaxController);
 
     /*
      * State

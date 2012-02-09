@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:53:17.125341
+ *  lastModified: 2012-02-09 09:07:23.867758
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
@@ -16,10 +16,12 @@
 (function(framework) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases.
      */
-    var me = framework.EventHandler;
+    var me = use(framework.EventHandler);
 
     /**
      * @function {static} o2.EventHandler.isEnterKey

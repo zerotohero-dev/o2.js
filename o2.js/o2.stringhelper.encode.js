@@ -7,13 +7,15 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 10:22:16.318713
+ *  lastModified: 2012-02-09 08:51:22.827412
  * -->
  *
  * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
  */
 (function(framework, document) {
     'use strict';
+
+    var use = framework.require;
 
     /*
      *
@@ -88,8 +90,8 @@
     /*
      * Aliases
      */
-    var me = framework.StringHelper;
-    var concat = me.concat;
+    var me = use(framework.StringHelper);
+    var concat = use(me.concat);
 
     /*
      * Common Text

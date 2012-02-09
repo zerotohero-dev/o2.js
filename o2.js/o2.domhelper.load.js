@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.load
+ * @requires domhelper.core
  * @requires stringhelper.core
  *
  * <!--
@@ -7,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:02:20.685722
+ *  lastModified: 2012-02-09 09:33:18.004711
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -16,15 +17,18 @@
 (function(framework, window, document) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var myName = framework.name;
-    var nill = framework.nill;
-    var format = framework.StringHelper.format;
-    var concat = framework.StringHelper.concat;
-    var generateGuid = framework.StringHelper.generateGuid;
+    var me = use(framework.DomHelper);
+    var myName = use(framework.name);
+    var nill = use(framework.nill);
+    var format = use(framework.StringHelper.format);
+    var concat = use(framework.StringHelper.concat);
+    var generateGuid = use(framework.StringHelper.generateGuid);
+
     var Image = window.Image;
     var setTimeout = window.setTimeout;
 

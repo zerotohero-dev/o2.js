@@ -1,5 +1,6 @@
 /**
- * @module domhelper.form
+ * @module   domhelper.form
+ * @requires domhelper.core
  * @requires stringhelper.core
  *
  * <!--
@@ -7,22 +8,23 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:03:26.292927
+ *  lastModified: 2012-02-09 09:32:00.832571
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-
 (function(framework) {
     'use strict';
+
+    var use = framework.require;
 
     /*
      * Aliases
      */
-    var me = framework.DomHelper;
-    var $ = framework.$;
-    var compact = framework.StringHelper.compact;
-    var trim = framework.StringHelper.trim;
+    var me = use(framework.DomHelper);
+    var $ = use(framework.$);
+    var compact = use(framework.StringHelper.compact);
+    var trim = use(framework.StringHelper.trim);
 
     /**
      * @function {static} o2.DomHelper.trimField

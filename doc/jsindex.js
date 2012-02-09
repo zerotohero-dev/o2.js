@@ -1766,6 +1766,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "wrap",
+           fullName : "o2.DomHelper.wrap",
+           summary : "public static function  wrap(Object elmTarget, Object elmWrapper)",
+           ref : "logical/o2/DomHelper.html#___wrap",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "EventHandler",
            fullName : "o2.EventHandler",
            summary : "static class EventHandler",
@@ -3111,6 +3120,15 @@
            fullName : "o2.ready",
            summary : "static function  ready(Function callback)",
            ref : "logical/o2.html#___ready",
+           parent : "o2",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "require",
+           fullName : "o2.require",
+           summary : "public static function  require(Object obj)",
+           ref : "logical/o2.html#___require",
            parent : "o2",
            type : "function",
            elementType : "function"

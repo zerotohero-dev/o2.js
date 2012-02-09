@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastUpdate: 2012-01-30 09:43:33.963511
+ *  lastUpdate: 2012-02-09 08:52:25.125079
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -18,14 +18,16 @@
 (function(framework, window) {
     'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases
      */
-    var myName = framework.name;
-    var format = framework.StringHelper.format;
-    var concat = framework.StringHelper.concat;
-    var clone  = framework.MethodHelper.bind;
-    var toArray = framework.CollectionHelper.toArray;
+    var myName = use(framework.name);
+    var format = use(framework.StringHelper.format);
+    var concat = use(framework.StringHelper.concat);
+    var clone  = use(framework.MethodHelper.bind);
+    var toArray = use(framework.CollectionHelper.toArray);
 
     /*
      * Common Constants

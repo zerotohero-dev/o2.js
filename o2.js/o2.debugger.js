@@ -6,7 +6,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-30 10:55:59.240809
+ *  lastModified: 2012-02-09 09:27:49.181328
  * -->
  *
  * <p>A debugging helper.</p>
@@ -15,11 +15,14 @@
 (function(framework, window, document) {
    'use strict';
 
+    var use = framework.require;
+
     /*
      * Aliases.
      */
-    var $ = framework.$;
-    var nill = framework.nill;
+    var $ = use(framework.$);
+    var nill = use(framework.nill);
+
     var console = window.console;
 
     /*

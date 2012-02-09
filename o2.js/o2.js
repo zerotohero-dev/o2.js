@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.23.0001328254928
+ * @version     0.23.0001328773671
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -32,6 +32,7 @@ this.o2 = {};
      * Common Constants
      */
     var kObjectNotDefined = ' : Object is not defined.';
+    var kRequirementNotSatisfied = ' : Requirement not satisfied.';
     var kEmpty = '';
     var kString = 'string';
     var kLoad = 'load';
@@ -78,7 +79,7 @@ this.o2 = {};
      *
      * <p>Project build number.</p>
      */
-    framework.build = '.0001328254928';
+    framework.build = '.0001328773671';
 
     /**
      * @function {static} o2.$
@@ -102,6 +103,25 @@ this.o2 = {};
         }
 
         return obj || null;
+    };
+
+    /**
+     * @function {public static} o2.require
+     *
+     * <p>Checks existence of an object and returns the object if it exists.</p>
+     * <p>This method is used for the internal consistency and dependency checks
+     * of <strong>o2.js</strong> modules.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to check.
+     * @return the <code>Object</code> itself, if exists.
+     * @throws exception - if <strong>obj</strong> is falsy.
+     */
+    framework.require = function(obj) {
+        if (!obj) {
+            throw [framework.name, kRequirementNotSatisfied].join(kEmpty);
+        }
+
+        return obj;
     };
 
     /**
