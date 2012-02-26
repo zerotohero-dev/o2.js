@@ -1,6 +1,7 @@
 /**
  * @module   domhelper.dimension
- * @requires domhelper.core
+ * @requires core
+ * @requires domhelper.style
  * @requires stringhelper.core
  *
  * <!--
@@ -8,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:30:02.728672
+ *  lastModified: 2012-02-26 07:32:52.799141
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -17,190 +18,55 @@
 (function(framework, window, document) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var create    = _.create;
+    var def       = _.define;
+    var require   = _.require;
+
+    /*
+     * DomHelper (dimension)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
-    var $ = use(framework.$);
-    var concat = use(framework.StringHelper.concat);
+
+    var $ = require('$');
+
+    var concat = require('StringHelper', 'concat');
+
+    var setStyle = require('DomHelper', 'setStyle');
 
     var self = window.self;
 
     /*
      * Common Constants
      */
-    var kWidth  = 'width';
-    var kHeight = 'height';
-    var kPixel  = 'px';
-    var kLegacyCss = 'CSS1Compat';
+    var kHeight    = 'height';
+    var kModernCss = 'CSS1Compat';
+    var kPixel     = 'px';
+    var kWidth     = 'width';
 
-    if (document.documentElement) {
-
-        /**
-         * @function {static} o2.DomHelper.getDocumentDimension
-         *
-         * <p>Gets the dimension of the document in the form <code>{width: w,
-         * height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
-         * greater than the document's height returns the height of the visible area
-         * as the height portion.
-         *
-         * @return the dimension of the document in the form <code>{width: w,
-         * height: h}</code>.
-         */
-        me.getDocumentDimension = function() {
-            var d = document;
-
-            // d.body can be null when refreshing.
-            if (!d || !d.body) {
-                return {
-                    width : 0,
-                    height : 0
-                };
-            }
-
-            var height = Math.max(
-                d.body.scrollHeight, d.documentElement.scrollHeight,
-                d.body.offsetHeight, d.documentElement.offsetHeight,
-                d.body.clientHeight, d.documentElement.clientHeight
-            );
-            var width = Math.max(
-                d.body.scrollWidth, d.documentElement.scrollWidth,
-                d.body.offsetWidth, d.documentElement.offsetWidth,
-                d.body.clientWidth, d.documentElement.clientWidth
-            );
-
-            return {
-                width : width,
-                height : height
-            };
-        };
-    } else {
-        me.getDocumentDimension = function() {
-            var d = document;
-
-            if (!d || !d.body) {
-                return {
-                    width : 0,
-                    height : 0
-                };
-            }
-
-            var height = Math.max(
-                d.body.scrollHeight, d.body.offsetHeight, d.body.clientHeight
-            );
-            var width = Math.max(
-                d.body.scrollWidth, d.body.offsetWidth, d.body.clientWidth
-            );
-
-            return {
-                width : width,
-                height : height
-            };
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.getDocumentWidth
+    /*
      *
-     * <p>Gets the total width of the document in pixels.</p>
-     *
-     * @return the document's width.
      */
-    me.getDocumentWidth = function() {
-        return me.getDocumentDimension().width;
-    };
+    var getDocumentElement = function() {
 
-    /**
-     * @function {static} o2.DomHelper.getDocumentHeight
-     *
-     * <p>Gets the total height of the document in pixels.</p>
-     *
-     * @return the document's height.
-     */
-    me.getDocumentHeight = function() {
-        return me.getDocumentDimension().height;
-    };
+        // document.body can be null when refreshing.
+        if (!document || !document.body) {
+            return null;
+        }
 
-    if (window.innerWidth !== undefined) {
-        /**
-         * @function {static} o2.DomHelper.getWindowInnerDimension
-         *
-         * <p>Gets the dimension of the visible area of the browser in the form
-         * <code>{width: w, height: h}</code>.
-         *
-         * @return the dimension of the visible area of the browser in the form
-         * <code>{width: w, height: h}</code>.
-         */
-        me.getWindowInnerDimension = function() {
-            if (!window) {
-                return {
-                    width : 0,
-                    height : 0
-                };
-            }
+        var result = (document.documentElement &&
+            document.compatMode === kModernCss
+        ) ? document.documentElement : document.body;
 
-            return {
-                width : window.innerWidth,
-                height : window.innerHeight
-            };
+        getDocumentElement = function() {
+            return result;
         };
-    } else if (document.documentElement &&
-                document.documentElement.clientWidth) {
-       me.getWindowInnerDimension = function() {
-            var d = document.documentElement;
 
-            if (!d) {
-                return {
-                    width : 0,
-                    height : 0
-                };
-            }
-
-            return {
-                width : d.clientWidth,
-                height : d.clientHeight
-            };
-        };
-    } else {
-        me.getWindowInnerDimension = function() {
-            var d = document.body;
-
-            if (!d) {
-                return {
-                    width : 0,
-                    height : 0
-                };
-            }
-
-            return {
-                width : d.clientWidth,
-                height : d.clientHeight
-            };
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.getWindowInnerWidth
-     *
-     * <p>Gets the inner width of the visible area.</p>
-     *
-     * @return the inner width of the window in pixels.
-     */
-    me.getWindowInnerWidth = function() {
-        return me.getWindowInnerDimension().width;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getWindowInnerHeight
-     *
-     * <p>Gets the inner height of the visible area.</p>
-     *
-     * @return the inner height of the window in pixels.
-     */
-    me.getWindowInnerHeight = function() {
-        return me.getWindowInnerDimension().height;
+        return result;
     };
 
     /**
@@ -216,7 +82,7 @@
      * @return the dimension of the <strong>DOMNode</strong> in the form
      * <code>{width: w, height: h}</code>.
      */
-    me.getDimension = function(obj) {
+    def(me, 'getDimension', function(obj) {
         obj = $(obj);
 
         if (!obj || obj.offsetWidth === undefined) {
@@ -230,21 +96,71 @@
             width : obj.offsetWidth,
             height : obj.offsetHeight
         };
-    };
+    });
+
+    /*
+     *
+     */
+    var getDimension = require('DomHelper', 'getDimension');
 
     /**
-     * @function {static} o2.DomHelper.getWidth
+     * @function {static} o2.DomHelper.getDocumentDimension
      *
-     * <p>Gets the <strong>width</strong> of the given element, in pixels.</p>
+     * <p>Gets the dimension of the document in the form <code>{width: w,
+     * height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
+     * greater than the document's height returns the height of the visible
+     * area as the height portion.
      *
-     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
-     * of, or the <code>String</code> <strong>id</strong> of it.
-     *
-     * @return the width of the element, in pixels.
+     * @return the dimension of the document in the form <code>{width: w,
+     * height: h}</code>.
      */
-    me.getWidth = function(obj) {
-        return me.getDimension(obj).width;
-    };
+    def(me, 'getDocumentDimension', function() {
+        var doc = getDocumentElement();
+
+        if(!doc) {
+            return {width : 0, height : 0};
+        }
+
+        return {
+            width : Math.max(
+                doc.scrollHeight,
+                doc.offsetHeight,
+                doc.clientHeight
+            ),
+            height : Math.max(
+                doc.scrollWidth,
+                doc.offsetWidth,
+                doc.clientWidth
+            )
+        };
+    });
+
+    /*
+     *
+     */
+    var getDocumentDimension = require('DomHelper', 'getDocumentDimension');
+
+    /**
+     * @function {static} o2.DomHelper.getDocumentHeight
+     *
+     * <p>Gets the total height of the document in pixels.</p>
+     *
+     * @return the document's height.
+     */
+    def(me, 'getDocumentHeight', function() {
+        return getDocumentDimension().height;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.getDocumentWidth
+     *
+     * <p>Gets the total width of the document in pixels.</p>
+     *
+     * @return the document's width.
+     */
+    def(me, 'getDocumentWidth', function() {
+        return getDocumentDimension().width;
+    });
 
     /**
      * @function {static} o2.DomHelper.getHeight
@@ -256,9 +172,110 @@
      *
      * @return the height of the element, in pixels.
      */
-    me.getHeight = function(obj) {
-        return me.getDimension(obj).height;
-    };
+    def(me, 'getHeight', function(obj) {
+        return getDimension(obj).height;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.getViewportInfo
+     *
+     * <p>Gets the viewport information in the form
+     * <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
+     *
+     * @return the viewport information.
+     */
+    def(me, 'getViewportInfo', function() {
+        var d  = getDocumentElement();
+
+        if (!d) {
+            return {
+                scrollTop : 0,
+                scrollLeft : 0,
+                width : 0,
+                height : 0
+            };
+        }
+
+        return {
+            scrollTop : d.scrollTop,
+            scrollLeft : d.scrollLeft,
+            width : self.innerWidth || d.clientWidth,
+            height : self.innerHeight || d.clientHeight
+        };
+    });
+
+    /**
+     * @function {static} o2.DomHelper.getWidth
+     *
+     * <p>Gets the <strong>width</strong> of the given element, in pixels.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the width of the element, in pixels.
+     */
+    def(me, 'getWidth', function(obj) {
+        return getDimension(obj).width;
+    });
+
+    if (window.innerWidth !== undefined) {
+        /**
+         * @function {static} o2.DomHelper.getWindowInnerDimension
+         *
+         * <p>Gets the dimension of the visible area of the browser in the form
+         * <code>{width: w, height: h}</code>.
+         *
+         * @return the dimension of the visible area of the browser in the form
+         * <code>{width: w, height: h}</code>.
+         */
+        def(me, 'getWindowInnerDimension', function() {
+            return {
+                width : window.innerWidth || 0,
+                height : window.innerHeight || 0
+            };
+        });
+    } else {
+        def(me, 'getWindowInnerDimension', function() {
+            var doc = getDocumentElement();
+
+            if (!doc) {
+                return {width : 0, height : 0};
+            }
+
+            return {
+                width : doc.clientWidth || 0,
+                height : doc.clientHeight || 0
+            };
+        });
+    }
+
+    /*
+     *
+     */
+    var getWindowInnerDimension = require('DomHelper',
+        'getWindowInnerDimension');
+
+    /**
+     * @function {static} o2.DomHelper.getWindowInnerHeight
+     *
+     * <p>Gets the inner height of the visible area.</p>
+     *
+     * @return the inner height of the window in pixels.
+     */
+    def(me, 'getWindowInnerHeight', function() {
+        return getWindowInnerDimension().height;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.getWindowInnerWidth
+     *
+     * <p>Gets the inner width of the visible area.</p>
+     *
+     * @return the inner width of the window in pixels.
+     */
+    def(me, 'getWindowInnerWidth', function() {
+        return getWindowInnerDimension().width;
+    });
 
     /**
      * @function {static} o2.DomHelper.setWidth
@@ -269,7 +286,7 @@
      * of, or the <code>String</code> <strong>id</strong> of it.
      * @param {Integer} width - the new width in pixels.
      */
-    me.setWidth = function(obj, width) {
+    def(me, 'setWidth', function(obj, width) {
         obj = $(obj);
 
         if (!obj) {
@@ -286,7 +303,7 @@
         // collection.
 
         if (obj.offsetWidth !== undefined) {
-            me.setStyle(obj, kWidth, concat(width, kPixel));
+            setStyle(obj, kWidth, concat(width, kPixel));
             difference = obj.offsetWidth - width;
         }
 
@@ -300,8 +317,13 @@
             return;
         }
 
-        me.setStyle(obj, kWidth, concat(width, kPixel));
-    };
+        setStyle(obj, kWidth, concat(width, kPixel));
+    });
+
+    /*
+     *
+     */
+     var setWidth = require('DomHelper', 'setWidth');
 
     /**
      * @function {static} o2.DomHelper.setHeight
@@ -312,7 +334,7 @@
      * of, or the <code>String</code> <strong>id</strong> of it.
      * @param {Integer} height - the new height in pixels.
      */
-    me.setHeight = function(obj, height) {
+    def(me, 'setHeight', function(obj, height) {
         obj = $(obj);
 
         if (!obj) {
@@ -323,7 +345,7 @@
         var cssHeight = 0;
 
         if (obj.offsetWidth !== undefined) {
-            me.setStyle(obj, kHeight, concat(height, kPixel));
+            setStyle(obj, kHeight, concat(height, kPixel));
             difference = obj.offsetHeight - height;
         }
 
@@ -337,8 +359,13 @@
             return;
         }
 
-        me.setStyle(obj, kHeight, concat(height, kPixel));
-    };
+        setStyle(obj, kHeight, concat(height, kPixel));
+    });
+
+    /*
+     *
+     */
+    var setHeight = require('DomHelper', 'setHeight');
 
     /**
      * @function {static} o2.DomHelper.setDimension
@@ -350,48 +377,14 @@
      * @param {Object} dimension - the new dimension in the form
      * <code>{width: w, height: h}</code>.
      */
-    me.setDimension = function(obj, dimension) {
+    def(me, 'setDimension', function(obj, dimension) {
         obj = $(obj);
 
         if (!obj) {
             return;
         }
 
-        me.setWidth(obj, dimension.width);
-        me.setHeight(obj, dimension.height);
-    };
-
-    /*
-     *
-     */
-    var getDocumentElement = function() {
-        var result = (document.documentElement &&
-            document.compatMode === kLegacyCss
-        ) ? document.documentElement : document.body;
-
-        getDocumentElement = function() {
-            return result;
-        };
-
-        return result;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getViewportInfo
-     *
-     * <p>Gets the viewport information in the form
-     * <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
-     *
-     * @return the viewport information.
-     */
-    me.getViewportInfo = function() {
-        var d  = getDocumentElement();
-
-        return {
-            scrollTop : d.scrollTop,
-            scrollLeft : d.scrollLeft,
-            width : self.innerWidth || d.clientWidth,
-            height : self.innerHeight || d.clientHeight
-        };
-    };
+        setWidth(obj, dimension.width);
+        setHeight(obj, dimension.height);
+    });
 }(this.o2, this, this.document));

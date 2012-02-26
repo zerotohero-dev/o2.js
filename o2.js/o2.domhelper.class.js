@@ -1,6 +1,6 @@
 /**
  * @module   domhelper.class
- * @requires domhelper.core
+ * @requires core
  * @requires stringhelper.core
  *
  * <!--
@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:29:00.684095
+ *  lastModified: 2012-02-17 09:04:50.933695
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -16,12 +16,48 @@
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;
+*/
+
+function define() {
+
+}
+
+function use() {
+
+}
+
+function require() {
+
+}
+
+function hasClass() {
+
+}
+
+function addClass() {
+
+}
+
+function removeClass() {
+
+}
+
+    var kObjectName = 'DomHelper';
+
+    var me = define(framework, kObjectName);
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
     var $ = use(framework.$);
     var concat = use(framework.StringHelper.concat);
 
@@ -31,6 +67,7 @@
     var kBlank = ' ';
     var kBeginOrBlank = '(\\s|^)';
     var kEndOrBlank = '(\\s|$)';
+    var kUndefined = 'undefined';
 
     /**
      * @function {static} o2.DomHelper.createClassNameRegExp
@@ -46,6 +83,8 @@
         return new RegExp(concat(kBeginOrBlank, c, kEndOrBlank));
     };
 
+    var createClassNameRegExp = require('DomHelper', 'createClassNameRegExp');
+
     /**
      * @function {static} o2.DomHelper.hasClass
      *
@@ -55,6 +94,7 @@
      * @param {DomNode} el - either the <strong>element</strong>, or the
      * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to test.
+     *
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
@@ -65,7 +105,7 @@
             return false;
         }
 
-        return me.createClassNameRegExp(c).test(el.className);
+        return createClassNameRegExp(c).test(el.className);
     };
 
     /**
@@ -84,7 +124,7 @@
             return;
         }
 
-        if (me.hasClass(el, c)) {
+        if (hasClass(el, c)) {
             return;
         }
 
@@ -107,11 +147,48 @@
             return;
         }
 
-        if (!me.hasClass(el, c)) {
+        if (!hasClass(el, c)) {
             return;
         }
 
-        el.className = el.className.replace(me.createClassNameRegExp(c),
-            kBlank);
+        el.className = el.className.replace(createClassNameRegExp(c), kBlank);
+    };
+
+    /**
+     * @function {static} o2.DomHelper.toggleClass
+     *
+     * <p>Toggles the <strong>CSS<strong> <code>className</code> of a given
+     * element.</p>
+     *
+     * @param {Object} el - the <strong>DOM</strong> element to toggle or its
+     * <code>String</code> id.
+     * @param {String} c - the class name to toggle.
+     * @param {Boolean} state - (Optional, defaults to <code>undefined</code>),
+     * if <code>true</code> add class <strong>c</strong> to
+     * <strong>el</strong>, if <code>true</code> removes class
+     * <strong>c</strong> from <strong>el</strong>. If the parameter is not
+     * given, the class is toggled (i.e. added if the class does not exist,
+     * and removed if the class exists).
+     */
+    me.toggleClass = function(el, c, state) {
+        if (typeof state !== kUndefined) {
+            if (state) {
+                addClass(el, c);
+
+                return;
+            }
+
+            removeClass(el, c);
+
+            return;
+        }
+
+        if (hasClass(el, c)) {
+            removeClass(el, c);
+
+            return;
+        }
+
+        addClass(el, c);
     };
 }(this.o2, this));

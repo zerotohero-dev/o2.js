@@ -1,47 +1,50 @@
 /**
  * @module   stringhelper.transform
- * @requires stringhelper.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 08:48:52.624170
+ *  lastModified: 2012-02-26 14:19:20.210434
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
 
     /*
-     * Aliases
+     * StringHelper (transform)
      */
-    var me = use(framework.StringHelper);
+    var me = create('StringHelper');
 
     /*
      * Common Regular Expressions
      */
+    var kAllCapsRegExp            = /([A-Z])/g;
+    var kCamelCaseRegExp          = /(\-[a-z])/g;
     var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
     var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
-    var kRemoveTagsRegExp = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
-    var kCamelCaseRegExp = /(\-[a-z])/g;
-    var kAllCapsRegExp = /([A-Z])/g;
+    var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
 
     /*
      * Common Text
      */
-    var kNewLine = '\n';
-    var kBr = '<br />';
-    var kUnderscore = '_';
-    var kDash = '-';
-    var kEmpty  = '';
-    var kEllipsis = '&hellip;';
+    var kBr               = '<br />';
+    var kDash             = '-';
+    var kEllipsis         = '&hellip;';
+    var kEmpty            = '';
+    var kJsonNotSupported = 'JSON support cannot be found!';
+    var kNewLine          = '\n';
+    var kUnderscore       = '_';
 
     /*
      * <p>Maximum length, after which the string is truncated with an
@@ -58,9 +61,9 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.br2nl = function(str) {
+    def(me, 'br2nl', function(str) {
         return str.replace(kLineBreakToNewLineRegExp, kNewLine);
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.nl2br
@@ -71,9 +74,9 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.nl2br = function(str) {
+    def(me, 'nl2br', function(str) {
         return str.replace(kNewLineToLineBreakRegExp, kBr);
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.removeTags
@@ -85,33 +88,9 @@
      *
      * @return the cleaned output.
      */
-    me.removeTags = function(str) {
+    def(me, 'removeTags', function(str) {
         return str.replace(kRemoveTagsRegExp, kEmpty);
-    };
-
-    /**
-     * @function {static} o2.StringHelper.truncate
-     *
-     * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
-     * is greater than <code>maxLength</code>.</p>
-     *
-     * @param {String} str - the <code>String</code> to process.
-     * @param {Integer} maxLen - Optional (defaults TRUNCATION_LENGTH},
-     * maximum <code>String</code> length that's allowed without truncation.
-     *
-     * @return the processed <code>String</code>.
-     */
-    me.truncate = function(str, maxLen) {
-        var ellipsis = kEllipsis;
-        var eLen = ellipsis.length;
-        var maxLength = maxLen || kTruncationLength;
-
-        if (str.length > maxLength) {
-            return [str.substr(0, maxLength - eLen), ellipsis].join(kEmpty);
-        }
-
-        return str;
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.toCamelCase
@@ -125,11 +104,11 @@
      *
      * @return the formatted String.
      */
-    me.toCamelCase = function(input) {
+    def(me, 'toCamelCase', function(input) {
         return input.replace(kCamelCaseRegExp, function(match) {
             return match.toUpperCase().replace(kDash, kEmpty);
         });
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.toDashedFromCamelCase
@@ -141,11 +120,32 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.toDashedFromCamelCase = function(input) {
+    def(me, 'toDashedFromCamelCase', function(input) {
         return input.replace(kAllCapsRegExp, function(match) {
             return [kDash, match.toLowerCase()].join(kEmpty);
         });
-    };
+    });
+
+    /**
+     * @function {static} o2.StringHelper.toJson
+     *
+     * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
+     * object.</p>
+     *
+     * @param {String} str - the <code>String</code> to convert.
+     *
+     * @return the converted <strong>JSON</strong> <code>Object</code>.
+     *
+     * @throws Exception - if <strong>str</strong> is not a well-formed
+     * <strong>JSON</strong> <code>String</code>.
+     */
+    def(me, 'toJson', function(str) {
+        if (!JSON) {
+            throw kJsonNotSupported;
+        }
+
+        return JSON.parse(str);
+    });
 
     /**
      * @function {static} o2.StringHelper.toUnderscoreFromCamelCase
@@ -157,24 +157,33 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.toUnderscoreFromCamelCase = function(input) {
+    def(me, 'toUnderscoreFromCamelCase', function(input) {
         return input.replace(kAllCapsRegExp, function(match) {
             return [kUnderscore, match.toLowerCase()].join(kEmpty);
         });
-    };
+    });
 
     /**
-     * @function {static} o2.StringHelper.toJson
+     * @function {static} o2.StringHelper.truncate
      *
-     * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
-     * object.</p>
+     * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
+     * is greater than <strong>maxLen</strong>.</p>
      *
-     * @param {String} str - the <code>String</code> to convert.
-     * @return the converted <strong>JSON</strong> <code>Object</code>.
-     * @throws Exception - if <strong>str</strong> is not a well-formed
-     * <strong>JSON</strong> <code>String</code>.
+     * @param {String} str - the <code>String</code> to process.
+     * @param {Integer} maxLen - Optional (defaults TRUNCATION_LENGTH},
+     * maximum <code>String</code> length that's allowed without truncation.
+     *
+     * @return the processed <code>String</code>.
      */
-    me.toJson = function(str) {
-        return JSON.parse(str);
-    };
+    def(me, 'truncate', function(str, maxLen) {
+        var ellipsis = kEllipsis;
+        var eLen = ellipsis.length;
+        var maxLength = maxLen || kTruncationLength;
+
+        if (str.length > maxLength) {
+            return [str.substr(0, maxLength - eLen), ellipsis].join(kEmpty);
+        }
+
+        return str;
+    });
 }(this.o2));

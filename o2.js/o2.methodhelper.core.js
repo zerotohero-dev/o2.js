@@ -1,39 +1,141 @@
 /**
- * @module methodhelper.core
+ * @module   methodhelper.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 14:33:17.731632
+ *  lastModified: 2012-02-26 16:47:51.457366
  * -->
  *
- * <p>A <code>function</code> helper for stuff like <strong>memoization</strong>,
- * <strong>partial functions</strong> an <strong>currying</strong>.</p>
+ * <p>A <code>Function</code> helper for stuff like
+ * <strong>memoization</strong>, <strong>partial functions</strong> and
+ * <strong>currying</strong>.</p>
  */
-
 (function(framework) {
     'use strict';
 
-    /*
-     * Aliases.
-     */
-    var concat = Array.prototype.concat;
-    var slice  = Array.prototype.slice;
-    var bind = Function.prototype.bind;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
 
     /**
      * @class {static} o2.MethodHelper
      *
      * <p>A method helper class.</p>
      */
-    var me = framework.MethodHelper = {};
+    var me = create('MethodHelper');
+
+    /*
+     * Aliases
+     */
+
+    var ap     = Array.prototype;
+    var concat = attr(ap, 'concat');
+    var slice  = attr(ap, 'slice');
+
+    var bind = Function.prototype.bind;
+
+    if (bind) {
+
+        /**
+         * @function {static} o2.MethodHelper.bind
+         *
+         * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+         * the "<code>this</code>" reference.</p>
+         *
+         * <p><strong>bind</strong> can often be used to bind a different
+         * context to a <strong>curried</strong> function.
+         *
+         * <p>Usage Example:</p>
+         *
+         * <pre>
+         * function test(a,b,c){ return this.number + (a*b+c); };
+         * var context = {number:10};
+         * var bound = o2.MethodHelper.bind(context, test);
+         * bound(20,2,10);//gives 60
+         * var bound2 = o2.MethodHelper.bind(context, test, 20);
+         * bound2(2, 10);//gives 60
+         * </pre>
+         *
+         * @param {Object} base - the context of the newly created
+         * <code>Function</code>.
+         * @param {Function} fn - the <code>Function</code> to modify.
+         * @param {Arguments} varargin - variable number of input arguments to be
+         * passed as initial set of arguments.
+         *
+         * @return the modified <code>Function</code>.
+         */
+        def(me, 'bind', function() {
+            var args = slice.call(arguments);
+            var context = args.shift();
+            var fn = args.shift();
+
+            return fn.bind(context, args);
+        });
+    } else {
+        def(me, 'bind', function() {
+            var args = slice.call(arguments);
+            var context = args.shift();
+            var fn = args.shift();
+
+            return function() {
+                return fn.apply(
+                    context, concat.call(args, slice.call(arguments))
+                );
+            };
+        });
+    }
+
+    /**
+     * @function {static} o2.MethodHelper.curry
+     *
+     * <p>Curries the <code>Function</code>.</p>
+     * <p>See http://www.dustindiaz.com/javascript-curry/ for a
+     * discussion.</p>
+     * <p>Usage Example:</p>
+     * <pre>
+     * function test(a,b,c) { return a+b+c; }
+     * var curried = o2.MethodHelper.curry(this, test, 1, 2);
+     * var result = curried(3);//returns 6;
+     * </pre>
+     *
+     * @return the modified <code>Function</code>.
+     */
+    def(me, 'curry', function() {
+        var args = slice.call(arguments);
+        var context = args.shift();
+        var fn = args.shift();
+
+        return function() {
+            return fn.apply(context,
+                args.concat(
+                    slice.call(arguments)
+                )
+            );
+        };
+    });
+
+    /**
+     * @function {static} o2.MethodHelper.identity
+     *
+     * <p>Just an identity function, that return what it's given without
+     * changing it.</p>
+     *
+     * @param {Object} value - input.
+     * @return the <strong>value</strong> itself.
+     */
+    def(me, 'identity', function(value) {
+        return value;
+    });
 
     /**
      * @function {static} o2.MethodHelper.memoize
      *
-     * <p><strong>Memoizes</strong> the given <code>function</code>'s
+     * <p><strong>Memoizes</strong> the given <code>Function</code>'s
      * outcome and presents it from cache, instead of recalculating.</p>
      * <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
      *
@@ -47,14 +149,14 @@
      * result = memoized(2,3);//retrieve from cache.
      * </pre>
      *
-     * @param {Function} fn - the <code>function</code> to memoize.
+     * @param {Function} fn - the <code>Function</code> to memoize.
      * @param {Object} context - what should "this" refer to.
      * @param {...} ... - variable number of input arguments to pass
      * arguments to fn.
      *
-     * @return a reference to the memoized <code>function</code>.
+     * @return a reference to the memoized <code>Function</code>.
      */
-    me.memoize = function() {
+    def(me, 'memoize', function() {
         var pad = {};
         var args = slice.call(arguments);
         var self = args.shift();
@@ -81,41 +183,12 @@
         };
 
         return memoizedFn;
-    };
-
-    /**
-     * @function {static} o2.MethodHelper.curry
-     *
-     * <p>Curries the <code>function</code>.</p>
-     * <p>See http://www.dustindiaz.com/javascript-curry/ for a
-     * discussion.</p>
-     * <p>Usage Example:</p>
-     * <pre>
-     * function test(a,b,c) { return a+b+c; }
-     * var curried = o2.MethodHelper.curry(this, test, 1, 2);
-     * var result = curried(3);//returns 6;
-     * </pre>
-     *
-     * @return the modified <code>function</code>.
-     */
-    me.curry = function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
-
-        return function() {
-            return fn.apply(context,
-                args.concat(
-                    slice.call(arguments)
-                )
-            );
-        };
-    };
+    });
 
     /**
      * @function {static} o2.MethodHelper.partial
      *
-     * <p>Defines a partial <code>function</code>.</p>
+     * <p>Defines a partial <code>Function</code>.</p>
      * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
      * detailed discussion.</p>
      * <p>Usage Example:</p>
@@ -126,14 +199,14 @@
      * </pre>
      *
      * @param {Object} base - the context of the newly created
-     * <code>function</code>.
-     * @param {Function} fn - the <code>function</code> to modify.
+     * <code>Function</code>.
+     * @param {Function} fn - the <code>Function</code> to modify.
      * @param {Arguments} varargin - variable number of input arguments to
      * be passed as initial set of arguments.
      *
-     * @return the modified <code>function</code>.
+     * @return the modified <code>Function</code>.
      */
-    me.partial = function() {
+    def(me, 'partial', function() {
         var args = slice.call(arguments);
         var context = args.shift();
         var fn = args.shift();
@@ -150,49 +223,5 @@
 
             return fn.apply(context, args);
         };
-    };
-
-    /**
-     * @function {static} o2.MethodHelper.bind
-     *
-     * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
-     * the "<code>this</code>" reference.</p>
-     *
-     * <p><strong>bind</strong> can often be used to bind a different
-     * context to a <strong>curried</strong> function.
-     *
-     * <p>Usage Example:</p>
-     *
-     * <pre>
-     * function test(a,b,c){ return this.number + (a*b+c); };
-     * var context = {number:10};
-     * var bound = o2.MethodHelper.bind(context, test);
-     * bound(20,2,10);//gives 60
-     * var bound2 = o2.MethodHelper.bind(context, test, 20);
-     * bound2(2, 10);//gives 60
-     * </pre>
-     *
-     * @param {Object} base - the context of the newly created
-     * <code>function</code>.
-     * @param {Function} fn - the <code>function</code> to modify.
-     * @param {Arguments} varargin - variable number of input arguments to be
-     * passed as initial set of arguments.
-     *
-     * @return the modified <code>function</code>.
-     */
-    me.bind = function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
-
-        if(bind) {
-            return fn.bind(context, args);
-        }
-
-        return function() {
-            return fn.apply(
-                context, concat.call(args, slice.call(arguments))
-            );
-        };
-    };
+    });
 }(this.o2));

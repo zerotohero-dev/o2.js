@@ -1,18 +1,38 @@
 /**
- * @module extend
+ * @module   extend
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 16:30:59.817053
+ *  lastModified: 2012-02-17 00:06:37.854306
  * -->
  *
  * Extension functions.
  */
 (function(framework, document) {
     'use strict';
+
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+    function use() {}
+
+    var getElementsByName = document.getElementsByName;
+
+    /*
+     * Aliases
+     */
+    var $ = use(framework.$);
 
     /**
      * @function {static} o2.t
@@ -26,13 +46,11 @@
      * @return a collection of matching elements.
      */
     framework.t = function(tagName, parent) {
-        if (!parent) {
-            parent = document;
+        var p = $(parent || document);
+
+        if (!p) {
+            return null;
         }
-
-        parent = framework.$(parent);
-
-        var p = parent || document;
 
         return p.getElementsByTagName(tagName);
     };
@@ -49,7 +67,7 @@
      * @return a collection of matching elements.
      */
     framework.n = function(name, parent) {
-        var collection = document.getElementsByName(name);
+        var collection = getElementsByName(name);
         var i = 0;
         var len = 0;
         var isParent = framework.DomHelper.isParent;

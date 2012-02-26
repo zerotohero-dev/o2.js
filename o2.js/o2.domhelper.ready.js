@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.ready
+ * @requires core
  * @requires domhelper.core
  *
  * <!--
@@ -7,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:16:14.723917
+ *  lastModified: 2012-02-17 08:01:28.493040
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -16,7 +17,17 @@
 (function(framework, window, document) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+    function use() {}
 
     /*
      * Aliases
@@ -60,8 +71,18 @@
         isApplicationReady = true;
 
         while (readyQueue.length > 0) {
-            readyQueue.pop()();
+
+            // An error in the ready queue should
+            // not prevent the remaining actions from firing
+            try {
+                readyQueue.pop()();
+            } catch(ignore) {
+            }
         }
+
+        // undocumented!
+        // A flag to set that the framework is ready and responsive.
+        me.isReady = true;
     }
 
     /*
@@ -82,6 +103,9 @@
         checkScrollLeft = nill;
     };
 
+    /*
+     *
+     */
     var onMozDomContentLoaded = function() {
         document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded,
             false);
@@ -91,6 +115,9 @@
         onMozDomContentLoaded = nill;
     };
 
+    /*
+     *
+     */
     var onMozWindowLoad = function() {
         document.removeEventListener(kLoad, onMozWindowLoad, false);
 
@@ -99,6 +126,9 @@
         onMozWindowLoad = nill;
     };
 
+    /*
+     *
+     */
     var onIEDomContentLoaded = function() {
         if (!isDomContentReady()) {
             return;
@@ -111,6 +141,9 @@
         onIEDomContentLoaded = nill;
     };
 
+    /*
+     *
+     */
     var onIEWindowLoaded = function() {
         window.detachEvent(kOnLoad, onIEWindowLoaded);
 
@@ -119,7 +152,9 @@
         onIEDomContentLoaded = nill;
     };
 
-
+    /*
+     *
+     */
     var bindReadyListeners = nill;
 
     if (document.addEventListener) {
@@ -155,6 +190,20 @@
             if (!isIframe) {
                 checkScrollLeft();
             }
+
+            // Do not process further calls.
+            bindReadyListeners = nill;
+        };
+    } else {
+
+        // Fallback for really archaic browsers.
+        bindReadyListeners = function() {
+            var cached = window.onload || nill;
+
+            window.onload = function(e) {
+                flushReadyQueue();
+                cached(e);
+            };
 
             // Do not process further calls.
             bindReadyListeners = nill;

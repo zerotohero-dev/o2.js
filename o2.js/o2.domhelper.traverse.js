@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.traverse
+ * @requires core
  * @requires stringhelper.core
  * @requires domhelper.core
  * @requires domhelper.class
@@ -9,1390 +10,1694 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:12:19.879912
+ *  lastModified: 2012-02-10 12:56:25.766149
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var create    = _.create;
+
+    function fn() {}
 
     /*
-     * Aliases
+     * DomHelper (traverse)
      */
-    var me = use(framework.DomHelper);
-    var myName = use(framework.name);
-    var $ = use(framework.$);
-    var getAttribute = use(me.getAttribute);
-    var generateGuid = use(framework.StringHelper.generateGuid);
-    var format = use(framework.StringHelper.format);
-    var createClassNameRegExp = use(framework.DomHelper.createClassNameRegExp);
-
-    /*
-     * Common Constants
-     */
-    var kTextNode = me.nodeType.TEXT;
-    var kAll = '*';
-    var kObject = 'object';
-    var kEmpty = '';
-    var kId = 'id';
-    var kComma = ',';
-
-    /*
-     * Query Selector Templates
-     */
-    var kClassSelector = '.{0}';
-    var kImmediateClassSelector = '#{0} > .{1}';
-    var kImmediateIdAttributeSelector = '#{0} > [id]';
-    var kImmediateIdSelector = '#{0} > #{1}';
-    var kImmediateNodeSelector = '#{0} > {1}';
-
-    var isNativeQuerySupported = !!document.querySelector;
-
-    /*
-     *
-     */
-    function filterChildren(children, regClassName) {
-        var child = null;
-        var result = [];
-        var i = 0;
-        var len = 0;
-
-        for (i = 0, len = children.length; i < len; i++) {
-            child = children[i];
-
-            if (regClassName.test(child.className)) {
-                result.push(children[i]);
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * @function {static} o2.DomHelper.getParent
-     *
-     * <p>gets the first parent element with the given node name.</p>
-     *
-     * @param {DomNode} target - the current <strong>DOM</strong> node, it its
-     * <strong>String</strong> id.
-     * @param {String} nodeName - the node name to search.
-     * @param {Boolean} shouldExcludeSelf - (optional: defaults to false).
-     * If <code>true</code>, the current node (target) is disregarded while
-     * seeking.
-     *
-     * @return the <strong>DOM</strong> node if found, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.parent
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-
-    /**
-     * @function {static} o2.DomHelper.closest
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findParent
-     *
-     * <p>An alias to {@link o2.DomHelper.getParent}.</p>
-     *
-     * @see o2.DomHelper.getParent
-     */
-    me.findParent = me.closest = me.parent = me.getParent = function(targetElm,
-                nodeName, shouldExcludeSelf) {
-        var nodes = null;
-        var hasParent = false;
-        var targetNodeName = kEmpty;
-        var currentNodeName = kEmpty;
-        var i = 0;
-        var len = 0;
-
-        var target = $(targetElm);
-
-        if (!target) {
-            return null;
-        }
-
-        var isExcluded = !!shouldExcludeSelf;
-
-        if (isExcluded) {
-            target = target.parentNode;
-        }
-
-        if (!target) {
-            return null;
-        }
-
-        while (target) {
-            nodes = nodeName.split(kComma);
-            targetNodeName = target.nodeName.toLowerCase();
-
-            for (i = 0, len = nodes.length; i < len; i++) {
-                currentNodeName = nodes[i].toLowerCase();
-
-                if (currentNodeName) {
-                    if (targetNodeName === currentNodeName) {
-                        hasParent = true;
-
-                        break;
-                    }
-                }
-            }
-
-            if (hasParent) {
-                return target;
-            }
-
-            target = target.parentNode;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.isChild
-     *
-     * <p>Checks whether the given item is a descendant of
-     * the parent node.</p>
-     *
-     * @param {Object} child - the child node to test, or its
-     * <strong>DOM</strong> ID.
-     * @param {Object} parent - the parent node to test, or its
-     * <strong>DOM</strong> ID.
-     * @param {Boolean} isSelfExcluded - (optional;
-     * defaults to <code>false</code>) if <code>true</code> the method does
-     * <strong>NOT</strong> return <code>true</code>, if child and parent are
-     * the same; if <code>false</code> the method will return <code>true</code>,
-     * if child and parent are the same.
-     *
-     * @return <code>true</code> if <strong>child</strong> is a child of
-     * <strong>parent</strong>, <code>false</code> otherwise.
-     */
-    me.isChild = function(child, parent, isSelfExcluded) {
-        var shouldExcludeSelf = !!isSelfExcluded;
-
-        child = $(child);
-        parent = $(parent);
-
-        if (!child || !parent) {
-            return false;
-        }
-
-        if (!shouldExcludeSelf && child === parent) {
-            return true;
-        }
-
-        var node = child.parentNode;
-
-        while (node) {
-            if (node === parent) {
-                return true;
-            }
-
-            node = node.parentNode;
-        }
-
-        return false;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.isParent
-     *
-     * <p>An alias to
-     * <code>o2.DomHelper.isChild(child, parent, shouldExcludeSelf)</code>.</p>
-     *
-     * @see o2.DomHelper.isChild
-     */
-    me.isParent = function(parent, child, isSelfExcluded) {
-        return me.isChild(child, parent, isSelfExcluded);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getParentByAttribute
-     *
-     * <p>gets the first parent with an <strong>attribute</strong> equal to the
-     * given <strong>value</strong>.</p>
-     *
-     * @param {DomNode} obj - the current <strong>DOM</strong> node, or its
-     * <strong>String</strong> id.
-     * @param {String} attribute - the name of the attribute.
-     * @param {String} value - the value of the attribute.
-     * @param {Boolean} shouldExcludeSelf - (optional: defaults to false).
-     * If <code>true</code>, the current node (obj) is disregarded while seeking.
-     *
-     * @return the <strong>DOM</strong> node if found, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findParentByAttribute
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentByAttribute}.</p>
-     *
-     * @see o2.DomHelper.getParentByAttribute
-     */
-    me.findParentByAttribute = me.getParentByAttribute = function(obj,
-            attribute, value, isSelfExcluded) {
-        var shouldExcludeSelf = !!isSelfExcluded;
-
-        obj = $(obj);
-
-        if (!obj) {
-            return null;
-        }
-
-        if (shouldExcludeSelf) {
-            obj = obj.parentNode;
-        }
-
-        if (!obj) {
-            return null;
-        }
-
-        if (getAttribute(obj, attribute) === value) {
-            return obj;
-        }
-
-        while (obj) {
-            if (getAttribute(obj, attribute) === value) {
-                return obj;
-            }
-
-            obj = obj.parentNode;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getParentWithAttribute
-     *
-     * <p>Gets the first parent with a given <strong>attribute</strong>.</p>
-     *
-     * @param {DomNode} obj - the current <strong>DOM</strong> node, or its
-     * <strong>id</strong>.
-     * @param {String} attribute - the name of the attribute.
-     * @param {Boolean} isSelfExcluded - (optional: defaults to false).
-     * If <code>true</code>, the current node (obj) is disregarded while seeking.
-     *
-     * @return the <strong>DOM</strong> node if found, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findParentWithAttribute
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentWithAttribute}.</p>
-     *
-     * @see o2.DomHelper.getParentWithAttribute
-     */
-    me.findParentWithAttribute = me.getParentWithAttribute = function(obj,
-                attribute, isSelfExcluded) {
-        var shouldExcludeSelf = !!isSelfExcluded;
-
-        obj = $(obj);
-
-        if (!obj) {
-            return null;
-        }
-
-        if (shouldExcludeSelf) {
-            obj = obj.parentNode;
-        }
-
-        if(!obj) {
-            return null;
-        }
-
-        while (obj) {
-            if (getAttribute(obj, attribute) !== null) {
-                return obj;
-            }
-
-            obj = obj.parentNode;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getParentById
-     * <p>This is an alias to</p>
-     * <pre>
-     * o2.DomHelper.getParentByAttribute(obj, 'id', id, isSelfExcluded)
-     * </pre>
-     *
-     * @see DomHelper.getParentByAttribute
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findParentById
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentById}.</p>
-     *
-     * @see o2.Domhelper.getParentById
-     */
-    me.findParentById = me.getParentById = function(obj, id, isSelfExcluded) {
-        var shouldExcludeSelf = !!isSelfExcluded;
-
-        obj = $(obj);
-
-        if (!obj) {
-            return null;
-        }
-
-        return me.getParentByAttribute(obj, kId, id, shouldExcludeSelf);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getParentWithId
-     * <p>This is an alias to</p>
-     * <pre>
-     * o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
-     * </pre>
-     *
-     * @see o2.DomHelper.getParentWithAttribute
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findParentWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getParentWithId}.</p>
-     *
-     * @see o2.DomHelper.getParentWithId
-     */
-     me.findParentWithId = me.getParentWithId = function(obj, isSelfExcluded) {
-        var shouldExcludeSelf = !!isSelfExcluded;
-
-        obj = $(obj);
-
-        if (!obj) {
-            return null;
-        }
-
-        return me.getParentWithAttribute(obj, kId, shouldExcludeSelf);
-    };
-
-    if (isNativeQuerySupported) {
-
-        /**
-         * @function {static} o2.DomHelper.getFirstChild
-         *
-         * <p>gets the first child that is not a text-node, and has the given
-         * node name.</p>
-         *
-         * @param {DomNode} targetElm - the current node, or the
-         * <strong>id</strong> of it.
-         * @param {String} nodeName - the node name to seek. (This parameters is
-         * optional. It defaults to '*', which will match any node name.)
-         *
-         * @return the <code>DOM</code> node if found, <code>null</code>
-         * otherwise.
-         */
-        me.getFirstChild = function(targetElm, nodeName) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            if (!target.id) {
-                target.id = [myName, generateGuid()].join(kEmpty);
-            }
-
-            nodeName = nodeName || kAll;
-            nodeName = nodeName.toLowerCase();
-
-            return target.querySelector(
-                format(kImmediateNodeSelector, target.id, nodeName)
-            );
-        };
-    } else {
-        me.getFirstChild = function(targetElm, nodeName) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            nodeName = nodeName || kAll;
-            nodeName = nodeName.toLowerCase();
-
-            var children = target.childNodes;
-
-            if (!children || children.length === 0) {
-                return null;
-            }
-
-            var node = children[0];
-
-            while (node) {
-                if (node.nodeType !== kTextNode) {
-                    if (nodeName === kAll) {
-                        return node;
-                    }
-
-                    if (node.nodeName.toLowerCase() === nodeName) {
-                        return node;
-                    }
-                }
-
-                node = node.nextSibling;
-            }
-
-            return null;
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.first
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChild}.</p>
-     *
-     * @see o2.DomHelper.getFirstChild
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findFirstChild
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChild}.</p>
-     *
-     * @see o2.DomHelper.getFirstChild
-     */
-    me.findFirstChild = me.first = me.getFirstChild;
-
-    if (isNativeQuerySupported) {
-
-        /**
-         * @function {static} o2.DomHelper.getFirstChildById
-         *
-         * <p>gets the first child that has the given id.</p>
-         *
-         * @param {DomNode} targetElm - the target to test,
-         * or the <strong>id</strong> of it.
-         * @param {String} id - the id of the child.
-         * @return the <code>DOM</code> node if found,
-         * <code>null</code> otherwise.
-         */
-        me.getFirstChildById = function(targetElm, id) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            if (!target.id) {
-                target.id = [myName, generateGuid()].join(kEmpty);
-            }
-
-            return target.querySelector(
-                format(kImmediateIdSelector, target.id, id)
-            );
-        };
-    } else {
-        me.getFirstChildById = function(targetElm, id) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            var children = target.childNodes;
-
-            if (!children || children.length === 0) {
-                return null;
-            }
-
-            var node = children[0];
-
-            while (node) {
-                if (node.id && node.id === id) {
-                    return node;
-                }
-
-                node = node.nextSibling;
-            }
-
-            return null;
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.firstById
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChildById}.</p>
-     *
-     * @see o2.DomHelper.getFirstChildById
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findFirstChildById
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChildById}.</p>
-     *
-     * @see o2.DomHelper.getFirstChildById
-     */
-    me.findFirstChildById = me.firstById =  me.getFirstChildById;
-
-    /**
-     * @function {static} o2.DomHelper.getSiblings
-     *
-     * <p>Gets the same-level siblings.</p>
-     *
-     * @param {DomNode} targetElm - the target, or the <strong>id</strong>
-     * of the target to test.
-     *
-     * @return the same-level siblings if any, an empty <code>Array</code>
-     * otherwise.
-     */
-    me.getSiblings = function(targetElm, parentNodeName) {
-        var target = $(targetElm);
-
-        if (!target) {
-            return null;
-        }
-
-        var nodeName = parentNodeName || kAll;
-
-        var i = 0;
-        var len = 0;
-        var parent = target.parentNode;
-
-        var children = me.getChildren(parent, nodeName);
-        var child = null;
-
-        for (i = 0, len = children.length; i < len; i++) {
-            child = children[i];
-
-            if (child === target) {
-                children.splice(i, 1);
-
-                return children;
-            }
-        }
-
-        return children;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.siblings
-     *
-     * <p>An alias to {@link o2.DomHelper.getSiblings}.</p>
-     *
-     * @see o2.DomHelper.getSiblings
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findSiblings
-     *
-     * <p>An alias to {@link o2.DomHelper.getSiblings}.</p>
-     *
-     * @see o2.DomHelper.getSiblings
-     */
-    me.findSiblings = me.siblings = me.getSiblings;
-
-    if (isNativeQuerySupported) {
-
-        /**
-         * @function {static} o2.DomHelper.getFirstChildWithId
-         *
-         * <p>Gets the first child with an <strong>id</strong> attribute.</p>
-         *
-         * @param {DomNode} targetElm - the target, or the <strong>id</strong>
-         * of the target to test.
-         *
-         * @return the first child with <strong>id</strong> if any,
-         * <code>null</code> otherwise.
-         */
-        me.getFirstChildWithId = function(targetElm) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            if (!target.id) {
-                target.id = [myName, generateGuid()].join(kEmpty);
-            }
-
-            return target.querySelector(
-                format(kImmediateIdAttributeSelector, target.id)
-            );
-        };
-    } else {
-        me.getFirstChildWithId = function(targetElm) {
-            var target = $(targetElm);
-
-            if (!target) {
-                return null;
-            }
-
-            var children = target.childNodes;
-
-            if (!children || children.length === 0) {
-                return null;
-            }
-
-            var node = children[0];
-
-            while (node) {
-                if (node.id) {
-                    return node;
-                }
-
-                node = node.nextSibling;
-            }
-
-            return null;
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.firstWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChildWithId}.</p>
-     *
-     * @see o2.DomHelper.getFirstChildWithId
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findFirstChildWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getFirstChildWithId}.</p>
-     *
-     * @see o2.DomHelper.getFirstChildWithId
-     */
-    me.findFirstChildWithId = me.firstWithId = me.getFirstChildWithId;
-
-    /**
-     * @function {static} o2.DomHelper.getLastChild
-     *
-     * <p>gets the last child, which is not a text-node, with a given node
-     * name.</p>
-     *
-     * @param {DomNode} targetElm - the current node, or the
-     * <strong>id</strong> of it.
-     * @param {String} nodeName - the node name to seek. (This parameters is
-     * optional. It defaults to '*', which will match any node name.)
-     *
-     * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.last
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
-     *
-     * @see o2.DomHelper.getLastChild
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findLastChild
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChild}.</p>
-     *
-     * @see o2.DomHelper.getLastChild
-     */
-    me.findLastChild = me.last = me.getLastChild = function(targetElm,
-                nodeName) {
-        var target = $(targetElm);
-
-        if (!target) {
-            return null;
-        }
-
-        // Although this function may be speeded up using  obj.querySelector and
-        // :last-child, the :last-child pseudoclass still cannot be reliably
-        // used across browsers.
-        // In particular, Internet Explorer (6 and 7 and 8), and Safari
-        // definitely don't support it, Although Internet Explorer 7 and
-        // Safari 3 do support :first-child, curiously.
-        // Your best bet is to explicitly add a last-child (or similar) class to
-        // that item, and apply li.last-child instead.
-
-        var children = target.childNodes;
-
-        nodeName = nodeName || kAll;
-        nodeName = nodeName.toLowerCase();
-
-        if (!children || children.length === 0) {
-            return null;
-        }
-
-        var node = children[children.length - 1];
-
-        while (node) {
-            if (node.nodeType !== kTextNode) {
-                if (nodeName === kAll) {
-                    return node;
-                }
-
-                if (node.nodeName.toLowerCase() === nodeName) {
-                    return node;
-                }
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getLastChildById
-     *
-     * <p>gets the last child that has the given id.</p>
-     *
-     * @param {DomNode} targetElm - the target to test, or the
-     * <strong>id</strong> of it.
-     * @param {String} id - the id of the child.
-     *
-     * @return the <code>DOM</code> node if found, <code>null</code> otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.lastById
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChildById}.</p>
-     *
-     * @see o2.DomHelper.getLastChildById
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findLastChildById
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChildById}.</p>
-     *
-     * @see o2.DomHelper.getLastChildById
-     */
-    me.findLastChildById = me.lastById = me.getLastChildById = function(
-                targetElm, id) {
-        var target = $(targetElm);
-
-        if (!target) {
-            return null;
-        }
-
-        var children = target.childNodes;
-
-        if (!children || children.length === 0) {
-            return null;
-        }
-
-        var node = children[children.length - 1];
-
-        while (node) {
-            if (node.id && node.id === id) {
-                return node;
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getLastChildWithId
-     *
-     * <p>gets the last child with an <strong>id</strong> attribute.</p>
-     *
-     * @param {DomNode} targetElm - the target to test, or the
-     * <strong>id</strong> of the target.
-     *
-     * @return the first child with <strong>id</strong> if any,
-     * <code>null</code> otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.lastWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChildWithId}.</p>
-     *
-     * @see o2.DomHelper.getLastChildWithId
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findLastChildWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getLastChildWithId}.</p>
-     *
-     * @see o2.DomHelper.getLastChildWithId
-     */
-    me.findLastChildWithId = me.lastWithId = me.getLastChildWithId = function(
-                targetElm) {
-        var target = $(targetElm);
-
-        if (!target) {
-            return null;
-        }
-
-        var children = target.childNodes;
-
-        if (!children || children.length === 0) {
-            return null;
-        }
-
-        var node = children[children.length - 1];
-
-        while (node) {
-            if (node.id) {
-                return node;
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * function {static} o2.DomHelper.getChildren
-     *
-     * <p>Gets the immediate children of the element.</p>
-     *
-     * @param {Object} elm - the <strong>DOM</strong> node, or the
-     * <strong>id</strong> of that node.
-     *
-     * @return an <code>Array</code> of nodes, if found; and empty
-     * <code>Array</code> if nothing is found.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.children
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
-     *
-     * @see o2.DomHelper.getChildren
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findChildren
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildren}.</p>
-     *
-     * @see o2.DomHelper.getChildren
-     */
-    me.findChildren = me.children = me.descendants = me.getChildren = function(
-                elm, nodeName) {
-        var target = $(elm);
-
-        nodeName = nodeName || kEmpty;
-
-        var nodes = target.childNodes;
-        var result = [];
-        var i = 0;
-        var len = 0;
-        var node = null;
-
-        for (i = 0, len = nodes.length; i < len; i++) {
-            node = nodes[i];
-
-            if (node.nodeType !== kTextNode) {
-                if (nodeName) {
-                    if (node.nodeName.toLowerCase() === nodeName.toLowerCase()
-                    ) {
-                        result.push(node);
-                    }
-                } else {
-                    result.push(node);
-                }
-            }
-        }
-
-        return result;
-    };
-
-    if (isNativeQuerySupported) {
-
-        /**
-         * @function {static} o2.DomHelper.getChildrenByClassName
-         *
-         * <p>Gets immediate descendants, with a given class name, of the
-         * element.</p>
-         *
-         * @param {DomNode} elm - either the <strong>element</strong>, or the
-         * <strong>id</strong> of it.
-         * @param {String} c - the className to test.
-         *
-         * @return the immediate descendants with the given class name.
-         */
-        me.getChildrenByClassName = function(elm, c) {
-            var el = $(elm);
-
-            // NOTE: IE7+ supports child selector ( > ),
-            // IE8+ supports querySelectorAll
-            // So it's safe to use the child selector with querySelectorAll:
-            // It'll work as expected in IE8+ and it'll degrade gracefully
-            // in IE7-
-
-            if (!el) {
-                return null;
-            }
-
-            if (!el.id) {
-                el.id = [myName, generateGuid()].join(kEmpty);
-            }
-
-            return el.querySelectorAll(
-                format(kImmediateClassSelector, el.id, c)
-            );
-        };
-    } else {
-        me.getChildrenByClassName = function(elm, c) {
-            var el = $(elm);
-
-            if (!el) {
-                return null;
-            }
-
-            var children = el.childNodes;
-
-            return filterChildren(children, createClassNameRegExp(c));
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.childrenByClassName
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildrenByClassName}.</p>
-     *
-     * @see o2.DomHelper.getChildrenByClassName
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findChildrenByClassName
-     *
-     * <p>An alias to {@link o2.DomHelper.getChildrenByClassName}.</p>
-     *
-     * @see o2.DomHelper.getChildrenByClassName
-     */
-    me.findChildrenByClassName = me.childrenByClassName = me.getChildrenByClassName;
-
-    /**
-     * @function {static} o2.DomHelper.getPrevious
-     *
-     * <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
-     * node.</p>
-     *
-     * @param {DomNode} target - the node to start, or the <strong>id</strong>
-     * of it.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.prev
-     *
-     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
-     *
-     * @see o2.DomHelper.getPrevious
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findPrevious
-     *
-     * <p>An alias to {@link o2.DomHelper.getPrevious}.</p>
-     *
-     * @see o2.DomHelper.getPrevious
-     */
-    me.findPrevious = me.prev = me.getPrevious = function(target) {
-        target = $(target);
-
-        if (!target || typeof target !== kObject) {
-            return null;
-        }
-
-        var node = target.previousSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while (node) {
-            if (node.nodeType !== kTextNode) {
-                return node;
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getPreviousById
-     *
-     * <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
-     *
-     * @param {DomNode} elmTarget - the original node, or the
-     * <strong>id</strong> of it.
-     * @param {String} id - the id to check.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.prevById
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
-     *
-     * @see o2.DomHelper.getPreviousById
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findPreviousById
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousById}.</p>
-     *
-     * @see o2.DomHelper.getPreviousById
-     */
-    me.findPreviousById = me.prevById = me.getPreviousById = function(
-                elmTarget, id) {
-        var target = $(elmTarget);
-
-        if (!target) {
-            return null;
-        }
-
-        var node = target.previousSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while(node) {
-            if (node.id && node.id === id) {
-                return node;
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getPreviousWithId
-     *
-     * <p>gets the previous <strong>DOM</strong> node that has a defined
-     * <strong>id</strong> attribute.</p>
-     *
-     * @param {DomNode} elmTarget - the node to start, or the
-     * <strong>id</strong> of it.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.prevWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
-     *
-     * @see o2.DomHelper.getPreviousWithId
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findPreviousWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getPreviousWithId}.</p>
-     *
-     * @see o2.DomHelper.getPreviousWithId
-     */
-    me.findPreviousWithId = me.prevWithId = me.getPreviousWithId = function(
-                elmTarget) {
-        var target = $(elmTarget);
-
-        if (!target) {
-            return null;
-        }
-
-        var node = target.previousSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while (node) {
-            if (node.id) {
-                return node;
-            }
-
-            node = node.previousSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getNext
-     *
-     * <p>Gets the next <strong>DOM</strong> node sibling that's not a text
-     * node.</p>
-     *
-     * @param {DomNode} elmTarget - the node to start.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.next
-     *
-     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
-     *
-     * @see o2.DomHelper.getNext
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findNext
-     *
-     * <p>An alias to {@link o2.DomHelper.getNext}.</p>
-     *
-     * @see o2.DomHelper.getNext
-     */
-    me.findNext = me.next = me.getNext = function(elmTarget) {
-        var target = $(elmTarget);
-
-        if (!target) {
-            return null;
-        }
-
-        var node = target.nextSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while (node) {
-            if (node.nodeType !== kTextNode) {
-                return node;
-            }
-
-            node = node.nextSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getNextById
-     *
-     * <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
-     *
-     * @param {DomNode} elmTarget - the original node, or the
-     * <strong>id</strong> of it.
-     * @param {String} id - the id to check.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findNextById
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextById}.</p>
-     *
-     * @see o2.DomHelper.getNextById
-     */
-    me.findNextById = me.nextById = me.getNextById = function(elmTarget, id) {
-        var target = $(elmTarget);
-
-        if (!target) {
-            return null;
-        }
-
-        var node = target.nextSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while (node) {
-            if (node.id && node.id === id) {
-                return node;
-            }
-
-            node = node.nextSibling;
-        }
-
-        return null;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.getNextWithId
-     *
-     * <p>gets the next <strong>DOM</strong> node that has a defined
-     * <strong>id</strong> attribute.</p>
-     *
-     * @param {DomNode} elmTarget - the node to start, or the
-     * <strong>id</strong> of it.
-     *
-     * @return the found <strong>DOM</strong> node if any, <code>null</code>
-     * otherwise.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.nextWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
-     *
-     * @see o2.DomHelper.getNextWithId
-     */
-
-    /**
-     * @function {static} o2.DomHelper.findNextWithId
-     *
-     * <p>An alias to {@link o2.DomHelper.getNextWithId}.</p>
-     *
-     * @see o2.DomHelper.getNextWithId
-     */
-    me.findNextWithId = me.nextWithId = me.getNextWithId = function(elmTarget) {
-        var target = $(elmTarget);
-
-        if (!target) {
-            return null;
-        }
-
-        var node = target.nextSibling;
-
-        if (!node) {
-            return null;
-        }
-
-        while (node) {
-            if (node.id) {
-                return node;
-            }
-
-            node = node.nextSibling;
-        }
-
-        return null;
-    };
-
-    if (isNativeQuerySupported) {
-
-        /**
-         * @function {static} o2.DomHelper.getElementsByClassName
-         *
-         * <p>Gets all children, with a given class name, of the element.</p>
-         *
-         * @param {DomNode} elm - either the <strong>element</strong>, or the
-         * <strong>id</strong> of it.
-         * @param {String} c - the <strong>className</strong> to test.
-         *
-         * @return all of the <strong>element</strong>s with the given
-         * <strong>class name</strong>.
-         */
-        me.getElementsByClassName = function(elm, c) {
-            var el = $(elm);
-
-            if (!el) {
-                return null;
-            }
-
-            return el.querySelectorAll(format(kClassSelector, c));
-        };
-    } else {
-        me.getElementsByClassName = function(elm, c) {
-            var el = $(elm);
-
-            if (!el) {
-                return null;
-            }
-
-            var children = el.getElementsByTagName(kAll);
-
-            return filterChildren(children, createClassNameRegExp(c));
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.prevAll
-     *
-     * <p>Gets all of the previous siblings.</p>
-     *
-     * @param {Object} el - a <strong>DOM</strong> node reference or its
-     * <code>String</code> id.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.getAllPrevious
-     *
-     * <p>An alias to {@link o2.DomHelper.prevAll}.</p>
-     *
-     * @see o2.DomHelper.prevAll
-     */
-    me.getAllPrevious = me.prevAll = function(el) {
-        var result = [];
-        var node = $(el);
-
-        if (!node) {
-            return [];
-        }
-
-        node = node.previousSibling;
-
-        while (node) {
-            if (node.nodeType !== kTextNode) {
-                result.push(node);
-                node = node.previousSibling;
-            }
-        }
-
-        return result;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.nextAll
-     *
-     * <p>Gets all of the next siblings.</p>
-     *
-     * @param {Object} el - a <strong>DOM</strong> node reference or its
-     * <code>String</code> id.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.getAllNext
-     *
-     * <p>An alias to {@link o2.DomHelper.nextAll}.</p>
-     *
-     * @see o2.DomHelper.nextAll
-     */
-    me.getAllNext = me.nextAll = function(el) {
-        var result = [];
-        var node = $(el);
-
-        if (!node) {
-            return [];
-        }
-
-        node = node.nextSibling;
-
-        while (node) {
-            if (node.nodeType !== kTextNode) {
-                result.push(node);
-                node = node.nextSibling;
-            }
-        }
-
-        return result;
-    };
-}(this.o2, this));
+    var me = create('DomHelper');
+
+/**
+ *
+ */
+fn(me, 'getChildren', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenByAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenByIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getChildrenWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElements', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElementsByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElementsByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElementsWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElementsWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getElementsWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirst', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChild', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstChildWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getFirstWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLast', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChild', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastChildWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getLastWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNext', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAll', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllByAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllByIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextAllWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNextWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNth', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChild', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChildByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChildByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChildWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChildWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthChildWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNext', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNextByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNextByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNextWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNextWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthNextWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParent', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParentByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParentByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParentWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParentWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthParentWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrev', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrevByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrevByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrevWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrevWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthPrevWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getNthWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParent', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelf', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentOrSelfWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParents', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelf', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfByAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsAndSelfWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsByAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentsWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getParentWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrev', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAll', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevAllWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getPrevWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblings', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsByAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsByClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithAttributeUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithClassUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'getSiblingsWithIdUntil', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChild', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isChildWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNext', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isNextWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParent', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelf', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentOrSelfWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isParentWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrev', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isPrevWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSibling', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingByAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingByClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingById', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingWithAttribute', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingWithClass', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+/**
+ *
+ */
+fn(me, 'isSiblingWithId', function() {
+    //TODO: implement me!
+    throw 'NOT implemented!';
+});
+
+}(this.o2));

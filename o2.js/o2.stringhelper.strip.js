@@ -1,37 +1,39 @@
 /**
  * @module   stringhelper.strip
- * @requires stringhelper.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 08:49:46.707701
+ *  lastModified: 2012-02-26 14:13:12.682152
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
 
     /*
-     * Aliases
+     * StringHelper (strip)
      */
-    var me = use(framework.StringHelper);
+    var me = create('StringHelper');
 
     /*
      * Common Regular Expressions
      */
-    var kNonAlphaRegExp = /[^A-Za-z ]+/g;
     var kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g;
-    var kNonNumericRegExp = /[^0-9-.]/g;
-    var kNumericRegExp = /[0-9]/g;
-    var kTagRegExp = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
+    var kNonAlphaRegExp        = /[^A-Za-z ]+/g;
+    var kNonNumericRegExp      = /[^0-9-.]/g;
+    var kNumericRegExp         = /[0-9]/g;
+    var kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
 
     /*
      * Common Strings
@@ -48,9 +50,9 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.stripNonAlpha = function(str) {
+    def(me, 'stripNonAlpha', function(str) {
         return str.replace(kNonAlphaRegExp, kEmpty);
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.stripNonAlphanumeric
@@ -61,35 +63,9 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.stripNonAlphanumeric = function(str) {
+    def(me, 'stripNonAlphanumeric', function(str) {
         return str.replace(kNonAlphaNumericRegExp, kEmpty);
-    };
-
-    /**
-     * @function {static} o2.StringHelper.stripNonNumeric
-     *
-     * <p>Removes non-numeric characters from the <code>String</code>.</p>
-     *
-     * @param {String} str - the <code>String</code> to format.
-     -
-     * @return the formatted <code>String</code>.
-     */
-    me.stripNonNumeric = function(str) {
-        return str.replace(kNonNumericRegExp, kEmpty);
-    };
-
-    /**
-     * @function {static} o2.StringHelper.stripNumeric
-     *
-     * <p>Removes numeric characters from the <code>String</code>.</p>
-     *
-     * @param {String} str - the <code>String</code> to format.
-     *
-     * @return the formatted <code>String</code>.
-     */
-    me.stripNumeric = function(str) {
-        return str.replace(kNumericRegExp, kEmpty);
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.stripTags
@@ -100,7 +76,33 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.stripTags = function(str) {
+    def(me, 'stripTags', function(str) {
         return str.replace(kTagRegExp, kEmpty);
-    };
+    });
+
+    /**
+     * @function {static} o2.StringHelper.stripNonNumeric
+     *
+     * <p>Removes non-numeric characters from the <code>String</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     -
+     * @return the formatted <code>String</code>.
+     */
+    def(me, 'stripNonNumeric', function(str) {
+        return str.replace(kNonNumericRegExp, kEmpty);
+    });
+
+    /**
+     * @function {static} o2.StringHelper.stripNumeric
+     *
+     * <p>Removes numeric characters from the <code>String</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+    def(me, 'stripNumeric', function(str) {
+        return str.replace(kNumericRegExp, kEmpty);
+    });
 }(this.o2));

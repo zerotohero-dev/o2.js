@@ -1,5 +1,6 @@
 /**
  * @module   eventhandler.extend
+ * @requires core
  * @requires eventhandler.core
  *
  * <!--
@@ -7,21 +8,34 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:07:23.867758
+ *  lastModified: 2012-02-14 07:59:00.239619
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
  */
-
-(function(framework) {
+(function(framework, window) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+    function use() {}
 
     /*
      * Aliases.
      */
     var me = use(framework.EventHandler);
+
+    var kBackspace = use(me.keyCode.BACKSPACE);
+
+    var kNumber = 'number';
 
     /**
      * @function {static} o2.EventHandler.isEnterKey
@@ -103,58 +117,97 @@
         return me.getKeyCode(evt) === me.keyCode.ESCAPE;
     };
 
-    /**
-     * @function {static} o2.EventHandler.isRightClick
-     *
-     * <p>Checks whether or not the curent action is a right click action.</p>
-     *
-     * @param {Event} evt - the actual <code>DOM Event</code> object used
-     * internally in {@link o2.EventHandler.addEventListener}.
-     *
-     * @return <code>true</code> if the event is a right click event,
-     * <code>false</code> otherwise.
-     */
-    me.isRightClick = function(evt) {
-        var e = me.getEventObject(evt);
+    // According to W3C
+    //     Left Button: 0
+    //     Middle Button: 1
+    //     Right Button: 2 (!)
+    //
+    // According to M$
+    //     Left Button: 1
+    //     Middle Button: 4
+    //     Right Button: 2 (!)
+    //     Left and Right: 3
+    //     Left and Middle: 5
+    //     Right and Middle: 6
+    //     All three: 7
+    //
+    // ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
+    var kRightButton = 2;
 
-        //
-        // According to W3C
-        //     Left Button: 0
-        //     Middle Button: 1
-        //     Right Button: 2 (!)
-        //
-        // According to M$
-        //     Lef Button: 1
-        //     Middle Button: 4
-        //     Right Button: 2 (!)
-        //     Left and Right: 3
-        //     Left and Middle: 5
-        //     Right and Middle: 6
-        //     All three: 7
-        //
-        // http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
-        //
+    if (window.event) {
+        /**
+         * @function {static} o2.EventHandler.isRightClick
+         *
+         * <p>Checks whether or not the curent action is a right click action.</p>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link o2.EventHandler.addEventListener}.
+         *
+         * @return <code>true</code> if the event is a right click event,
+         * <code>false</code> otherwise.
+         */
+        me.isRightClick = function(evt) {
+            var e = me.getEventObject(evt);
 
-        if (!e) {
-            return false;
-        }
+            if (!e) {
+                return false;
+            }
 
-        if (e.which) {
-            me.isRightClick = function(e) {
-                return e.which === 3;
-            };
+            return e.which === kRightButton;
+        };
+    } else {
+        me.isRightClick = function(evt) {
+            var e = me.getEventObject(evt);
 
-            return me.isRightClick(evt);
-        }
+            if (!e) {
+                return false;
+            }
 
-        if (e.button) {
-            me.isRightClick = function(e) {
-                return e.button === 2;
-            };
+            return e.button === kRightButton;
+        };
+    }
 
-            return me.isRightClick(evt);
-        }
+    if (window.event) {
+        /**
+         * @function {static} o2.EventHandler.isCharacterKeypressEvent
+         *
+         * <p>Checks whether the character in a <code>onkeypress</code> event
+         * actually produces a printable char.</p>
+         *
+         * <p>The thing you have to remember is that you can't reliably tell
+         * <strong>anything at all</strong> about any character that may be typed
+         * in a <code>onkeydown</code> or <code>onkeyup</code> event: The printable
+         * key is determined only in the <code>onkeypress</code> handler.</p>
+         *
+         * @return <code>true</code> if the pressed key is a printable character;
+         * <code>false</code> otherwise.
+         */
+        me.isCharacterKeypressEvent = function(evt) {
+            var e = me.getEventObject(evt);
 
-        return false;
-    };
-}(this.o2));
+            if (!e) {
+                return false;
+            }
+
+            // M$IE only fires keypress events for printable keys:
+            return true;
+        };
+    } else {
+        me.isCharacterKeypressEvent = function(evt) {
+            var e = me.getEventObject(evt);
+
+            if (!e) {
+                return false;
+            }
+
+            // In other browsers evt.which is > 0 if and only if
+            // the key pressed is a printable key.
+            if (typeof e.which !== kNumber || e.which <= 0) {
+                return false;
+            }
+
+            // The only exception for this is the backspace key.
+            return e.which !== kBackspace;
+        };
+    }
+}(this.o2, this));

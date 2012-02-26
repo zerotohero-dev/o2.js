@@ -724,7 +724,7 @@ structs.
 
 * [jsDoc][1] references to method parameters shall be bold.
 
-        * @throws exception if <strong>fn</strong> callback is not defined.
+        * @throws Exception if <strong>fn</strong> callback is not defined.
 
 * [jsDoc][1] **JavaScript** objects should be enclosed in `<code></code>`.
 
@@ -803,6 +803,53 @@ You are not a human code compiler/compressor, so don't try to be one.
 
         // Better:
         isUserAvailable = true;
+
+* Assign aliases for complex conditionals. Consider
+[replacing temp with query][24] in your variable assignments.
+
+    For instance:
+
+        if (
+            person.getGender() === kMale && person.getAge() >= kValidAge &&
+            person.getNationality() !== kDefaultNationality ||
+            person.getGender() === kFemale && person.getAge < kValidAge &&
+            person.getNationality() === kDefaultNationality
+        ) {
+            doStuff();
+        }
+
+    Can be better expressed as:
+
+        var isMaleAlienWithValidAge = person.getGender() === kMale &&
+            person.getAge() >= kValidAge &&
+            person.getNationality() !== kDefaultNationality;
+
+        var isFemaleCitizenWithInvalidAge = person.getGender() === kFemale &&
+            person.getAge < kValidAge &&
+            person.getNationality() === kDefaultNationality;
+
+        if (isMaleAlienWithValidAge || isFemaleCitizenWithInvalidAge) {
+            doStuff();
+        }
+
+    Or even better:
+
+        function isEligibleToEnterTheParty(person) {
+            var isMaleAlienWithValidAge = person.getGender() === kMale &&
+                person.getAge() >= kValidAge &&
+                person.getNationality() !== kDefaultNationality;
+
+            var isFemaleCitizenWithInvalidAge = person.getGender() ===
+                kFemale &&
+                person.getAge < kValidAge &&
+                person.getNationality() === kDefaultNationality;
+
+            return isMaleAlienWithValidAge || isFemaleCitizenWithInvalidAge;
+        }
+
+        if (isEligibleToEnterTheParty(person)) {
+            doStuff();
+        }
 
 * Establish a naming convention based on **real names** that mean something.
 
@@ -1457,7 +1504,7 @@ While writing a method the following should be taken into consideration:
 * The accepted input ranges, and data types,
 * Return values and their meanings,
 * Error conditions, exceptional cases, and how they are handled.
-* Whether the method has any [side effects[5]
+* Whether the method has any [side effects][5]
 
 > A function with no side effects is a function that always returns the same
 > value given the same arguments, and never changes the internal global state
@@ -1566,7 +1613,7 @@ is a dangerous mix that may leave your code prone to **"script injection"**
 attacks.
 
 **Event overriding** is yet another reason to avoid using inline **JavaScript**
-(i.e. *onclick=""*s). The way inline event handlers work is called
+(i.e. `onclick=""`s). The way inline event handlers work is called
 **"DOM Level 0 Events"**
 (`<a href="javascript:void()" onclick="foo();return false">...</a>` ... yuck!).
 
@@ -2441,7 +2488,7 @@ for situations that are not covered in this document.
 * ["Indent Styles"][21]
 * ["Clean Code, A Handbook of Agile Software Craftsmanship"][22]
 * ["Robert C. Martin"][23]
-
+* ["Replace Temp With Query"][24]
 --------------------------------------------------------------------------------
 
 That's the end of this conventions document.
@@ -2471,3 +2518,4 @@ Feel free to contribute.
 [21]: http://en.wikipedia.org/wiki/Indent_style "Indent Styles"
 [22]: http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882 "Clean Code, A Handbook of Agile Software Craftsmanship"
 [23]: http://www.objectmentor.com/omTeam/martin_r.html "Robert C. Martin"
+[24]: http://martinfowler.com/refactoring/catalog/replaceTempWithQuery.html "Replace Temp With Query"

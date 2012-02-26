@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.style
+ * @requires core
  * @requires stringhelper.core
  * @requires domhelper.core
  * @requires stringhelper.transform
@@ -20,7 +21,19 @@
 (function(framework, window, document) {
    'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+    function use() {}
+
+    function require() {}
 
     /*
      * Aliases
@@ -36,7 +49,7 @@
     /*
      * Common Constants
      */
-    var kObject = 'object';
+   // var kObject = 'object';
     var kOldDisplay = '_oldDisplay';
     var kNone = 'none';
     var kHidden = 'hidden';
@@ -82,7 +95,23 @@
      * @param {Object} style - styles in the form <code>{style1:value1,
      * style2:value2}</code>.
      */
-    me.addStyle = function(obj, style) {
+
+    /**
+     * @function {static} o2.DomHelper.setStyle
+     *
+     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     *
+     * @see o2.DomHelper.addStyle
+     */
+
+    /**
+     * @function {static} o2.DomHelper.css
+     *
+     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     *
+     * @see o2.DomHelper.addStyle
+     */
+    me.css = me.setStyle = me.addStyle = function(obj, style) {
         obj = $(obj);
 
         if (!obj) {
@@ -104,17 +133,6 @@
                 }
             }
         }
-    };
-
-    /**
-     * @function {static} o2.DomHelper.setStyle
-     *
-     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
-     *
-     * @see o2.DomHelper.addStyle
-     */
-    me.setStyle = function(obj, style) {
-        me.addStyle(obj, style);
     };
 
     if (document.defaultView && document.defaultView.getComputedStyle) {
@@ -356,10 +374,10 @@
      * @param {Object} obj - the <strong>DOM</strong> node, or the
      * <strong>id</strong> to hide.
      */
-    me.hide = function(obj) {
-        obj = $(obj);
+    me.hide = function(elm) {
+        var obj = $(elm);
 
-        if (!obj || typeof obj !== kObject) {
+        if (!obj) {
             return;
         }
 
@@ -375,19 +393,52 @@
      *
      * <p>Shows the given object.</p>
      *
-     * @param {Object} obj - the <strong>DOM</strong> node, or the
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of it, to show.
      */
-    me.show = function(obj) {
-        obj = $(obj);
+    me.show = function(elm) {
+        var obj = $(elm);
 
-        if (!obj || typeof obj !== kObject) {
+        if (!obj) {
             return;
         }
 
         obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
 
         delete obj[[myName, kOldDisplay].join(kEmpty)];
+    };
+
+//TODO: add documentation.
+    me.toggleVisibility = function(elm, state) {
+        var obj = $(elm);
+
+        var show      = require('DomHelper', 'show');
+        var hide      = require('DomHelper', 'hide');
+        var isVisible = require('DomHelper', 'isVisible');
+
+        if (!obj) {
+            return;
+        }
+
+        if (state !== undefined) {
+            if (state) {
+                show(elm);
+
+                return;
+            }
+
+            hide(elm);
+
+            return;
+        }
+
+        if (isVisible(elm)) {
+            hide(elm);
+
+            return;
+        }
+
+        show(elm);
     };
 
     if(window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera) {

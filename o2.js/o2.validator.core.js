@@ -1,24 +1,38 @@
 /**
- * @module validator.core
+ * @module   validator.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 10:31:00.944088
+ *  lastModified: 2012-02-26 16:28:47.788271
  * -->
  *
  * <p>A validation helper.</p>
  */
-
 (function(framework) {
     'use strict';
+
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var obj       = attr(_, 'getObject');
+
+    /**
+     * @class {static} o2.Validator
+     *
+     * <p>A simple class for validating various kinds of
+     * <strong>object</strong>s.</p>
+     */
+    var me = create('Validator');
 
     /*
      * Aliases
      */
-    var toString = Object.prototype.toString;
+    var toString = attr(Object.prototype, 'toString');
 
     /*
      * Calendar Months
@@ -28,26 +42,33 @@
     /*
      * Common Constants
      */
-    var kDecimalBase = 10;
-    var kTrimLastBraceIndex = -1;
-    var kYmdArgLen = 3;
-    var kFebruaryIndex = 1;
+    var kDecimalBase          = 10;
+    var kFebruaryIndex        = 1;
+    var kLeapFebruaryDays     = 29;
+    var kNormalFebruaryDays   = 28;
     var kObjectNameStartIndex = 8;
-    var kNormalFebruaryDays = 28;
-    var kLeapFebruaryDays = 29;
+    var kTrimLastBraceIndex   = -1;
+    var kYmdArgLen            = 3;
 
     /*
      * EcmaScript Types
      */
-    var kArray = 'Array';
-    var kBoolean = 'Boolean';
-    var kDate = 'Date';
-    var kFunction = 'Function';
-    var kNumber = 'Number';
-    var kObject = 'Object';
-    var kRegExp = 'RegExp';
-    var kString = 'String';
     var kArguments = 'Arguments';
+    var kArray     = 'Array';
+    var kBoolean   = 'Boolean';
+    var kDate      = 'Date';
+    var kFunction  = 'Function';
+    var kNumber    = 'Number';
+    var kObject    = 'Object';
+    var kRegExp    = 'RegExp';
+    var kString    = 'String';
+
+    /*
+     * Cheks whether the year is a leap year.
+     */
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
 
     /**
      * @function {private} o2.Validator.is
@@ -63,27 +84,28 @@
      * @return <code>true</code> if the <strong>object</strong>'s type matches
      * the <strong>type</strong> parameter, <code>false</code> otherwise.
      */
-    function is(obj, type) {
+    def(me, 'is', function(obj, type) {
         var klass = toString.call(obj).slice(
             kObjectNameStartIndex, kTrimLastBraceIndex);
 
         return obj !== undefined && obj !== null && klass === type;
-    }
+    });
 
-    /*
-     * Cheks whether the year is a leap year.
-     */
-    function isLeapYear(year) {
-        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-    }
+    var is = obj(me).is;
 
     /**
-     * @class {static} o2.Validator
+     * @function {static} o2.Validator.isArguments
      *
-     * <p>A simple class for validating various kinds of
-     * <strong>object</strong>s.</p>
+     * <p>Checks whether the object is an <code>arguments</code> object.</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is an <code>arguments</code> object,
+     * <code>false</code> otherwise.
      */
-    var me = framework.Validator = {};
+    def(me, 'isArguments', function(obj) {
+        return is(obj, kArguments);
+    });
 
     /**
      * @function {static} o2.Validator.isArray
@@ -95,9 +117,10 @@
      * @return <code>true</code> if obj is an <code>Array</code>,
      * <code>false</code> otherwise.
      */
-    me.isArray = function(obj) {
+    def(me, 'isArray', function(obj) {
         return is(obj, kArray);
-    };
+    });
+
 
     /**
      * @function {static} o2.Validator.isBoolean
@@ -109,9 +132,9 @@
      * @return <code>true</code> if obj is a <code>Boolean</code>,
      * <code>false</code> otherwise.
      */
-    me.isBoolean = function(obj) {
-        return is(obj, kBoolean);
-    };
+    def(me, 'isBoolean', function(obj) {
+        return obj === true || obj === false || is(obj, kBoolean);
+    });
 
     /**
      * @function {static} o2.Validator.isDate
@@ -126,7 +149,7 @@
      * @return <code>true</code> if obj is a <code>Date</code>,
      * <code>false</code> otherwise.
      */
-    me.isDate = function(objYear, objMonth, objDay) {
+    def(me, 'isDate', function(objYear, objMonth, objDay) {
         var maxDay = 0;
         var year = objYear;
         var month = objMonth;
@@ -155,7 +178,7 @@
         }
 
         return is(objYear, kDate);
-    };
+    });
 
     /**
      * @function {static} o2.Validator.isFunction
@@ -167,9 +190,40 @@
      * @return <code>true</code> if obj is a <code>Function</code>,
      * <code>false</code> otherwise.
      */
-    me.isFunction = function(obj) {
+    def(me, 'isFunction', function(obj) {
         return is(obj, kFunction);
-    };
+    });
+
+    /**
+     * @function {static} o2.Validator.isNan
+     *
+     * <p>Checks whether the given parameter is <code>NaN</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is <code>NaN</code>,
+     * <code>false</code> otherwise.
+     */
+    def(me, 'isNaN', function(obj) {
+
+        // NaN is the only value for which === is not reflexive.
+        // JSLint whines about this, but it's normal.
+        return obj !== obj;
+    });
+
+    /**
+     * @function {static} o2.Validator.isNull
+     *
+     * <p>Checks whether the given parameter is <code>null</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is <code>null</code>,
+     * <code>false</code> otherwise.
+     */
+    def(me, 'isNull', function(obj) {
+        return obj === null;
+    });
 
     /**
      * @function {static} o2.Validator.isNumber
@@ -181,9 +235,23 @@
      * @return <code>true</code> if obj is a <code>Number</code>,
      * <code>false</code> otherwise.
      */
-    me.isNumber = function(obj) {
+    def(me, 'isNumber', function(obj) {
         return is(obj, kNumber);
-    };
+    });
+
+    /**
+     * @function {static} o2.Validator.isNumeric
+     *
+     * <p>Checks whether the given parameter is a numeric entity.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is a numeric entity,
+     * <code>false</code> otherwise.
+     */
+    def(me, 'isNumeric', function(obj) {
+        return !isNaN(parseFloat(obj)) && isFinite(obj);
+    });
 
     /**
      * @function {static} o2.Validator.isObject
@@ -195,9 +263,9 @@
      * @return <code>true</code> if obj is an <code>Object</code> ({}),
      * <code>false</code> otherwise.
      */
-    me.isObject = function(obj) {
+    def(me, 'isObject', function(obj) {
         return is(obj, kObject);
-    };
+    });
 
     /**
      * @function {static} o2.Validator.isRegExp
@@ -209,9 +277,9 @@
      * @return <code>true</code> if obj is a <code>RegExp</code>,
      * <code>false</code> otherwise.
      */
-    me.isRegExp = function(obj) {
+    def(me, 'isRegExp', function(obj) {
         return is(obj, kRegExp);
-    };
+    });
 
     /**
      * @function {static} o2.Validator.isString
@@ -222,21 +290,36 @@
      *
      * @return true if obj is a String, false otherwise.
      */
-    me.isString = function(obj) {
+    def(me, 'isString', function(obj) {
         return is(obj, kString);
-    };
+    });
 
     /**
-     * @function {static} o2.Validator.isArguments
+     * @function {static} o2.Validator.isUndefined
      *
-     * <p>Checks whether the object is an <code>arguments</code> object.</p>
+     * <p>Checks whether the given parameter is <code>undefined</code>.</p>
      *
-     * @param {Object} obj - the object to test.
+     * @param {Object} obj - the <code>Object</code> to test.
      *
-     * @return <code>true</code> if obj is an <code>arguments</code> object,
+     * @return <code>true</code> if the item is <code>undefined</code>,
      * <code>false</code> otherwise.
      */
-    me.isArguments = function(obj) {
-        return is(obj, kArguments);
-    };
+    def(me, 'isUndefined', function(obj) {
+        return obj === void 0;
+    });
+
+    /**
+     * @function {static} o2.Validator.isWindow
+     *
+     * <p>Checks whether the given parameter is a <code>window</code>
+     * object.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is a <code>window</code>,
+     * <code>false</code> otherwise.
+     */
+    def(me, 'isWindow', function(obj) {
+        return obj && typeof obj === kObject && !!obj.setInterval;
+    });
 }(this.o2));

@@ -1,13 +1,14 @@
 /**
  * @module   ajax.extend
  * @requires ajax.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:46:47.145838
+ *  lastModified: 2012-02-26 19:52:22.098493
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -16,17 +17,28 @@
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
+
+    /*
+     * Ajax (extend)
+     */
+    var me = create('Ajax');
 
     /*
      * Aliases
      */
-    var me = use(framework.Ajax);
+    var kAjax = 'Ajax';
+    var get  = require(kAjax, 'get');
+    var post = require(kAjax, 'post');
 
     /*
      * Caches
      */
-    var getCache = {};
+    var getCache  = {};
     var postCache = {};
 
     /*
@@ -78,7 +90,7 @@
     *
     * @see o2.Ajax.get
     */
-    me.getSingle = function(url, parameters, callbacks) {
+    def(me, 'getSingle', function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = getCache[token];
@@ -89,10 +101,10 @@
 
         delete getCache[token];
 
-        getCache[token] = me.get(url, parameters, callbacks);
+        getCache[token] = get(url, parameters, callbacks);
 
         return getCache[token];
-    };
+    });
 
    /**
     * @function {static} o2.Ajax.postSingle
@@ -119,7 +131,7 @@
     *
     * @see o2.Ajax.post
     */
-    me.postSingle = function(url, parameters, callbacks) {
+    def(me, 'postSingle', function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = postCache[token];
@@ -130,6 +142,6 @@
 
         delete postCache[token];
 
-        postCache[token] = me.post(url, parameters, callbacks);
-    };
+        postCache[token] = post(url, parameters, callbacks);
+    });
 }(this.o2));

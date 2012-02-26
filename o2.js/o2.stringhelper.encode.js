@@ -1,5 +1,6 @@
 /**
  * @module   stringhelper.encode
+ * @requires core
  * @requires stringhelper.core
  *
  * <!--
@@ -7,58 +8,73 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 08:51:22.827412
+ *  lastModified: 2012-02-26 14:16:34.732102
  * -->
  *
- * <p>Responsible for encoding and decoding <strong>String</strong>s.</p>
+ * <p>Responsible for encoding and decoding <code>String</code>s.</p>
  */
 (function(framework, document) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var alias     = attr(_, 'alias');
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+
+    /*
+     * StringHelper (encode)
+     */
+    var me = create('StringHelper');
+
+    /*
+     * Aliases
+     */
+    var createElement  = attr(document, 'createElement');
+    var createTextNode = attr(document, 'createTextNode');
 
     /*
      *
      */
     var xssEncodeNoAmpMap = [
+        {regExp : /"/g,  replace : '&#34;'},
         {regExp : /</g,  replace : '&#60;'},
         {regExp : />/g,  replace : '&#62;'},
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /\'/g, replace : '&#34;'}
+        {regExp : /\'/g, replace : '&#39;'}
     ];
 
     /*
      *
      */
     var xssEncodeMap = [
+        {regExp : /"/g,  replace : '&#34;'},
         {regExp : /&/g,  replace : '&amp;'},
         {regExp : /</g,  replace : '&#60;'},
         {regExp : />/g,  replace : '&#62;'},
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /\'/g, replace : '&#34;'}
+        {regExp : /\'/g, replace : '&#39;'}
     ];
 
     /*
      *
      */
     var encodeMap = [
+        {regExp : / /g,  replace : '&nbsp;'},
+        {regExp : /"/g,  replace : '&#34;' },
         {regExp : /&/g,  replace : '&amp;' },
         {regExp : /</g,  replace : '&#60;' },
         {regExp : />/g,  replace : '&#62;' },
-        {regExp : /"/g,  replace : '&#34;' },
-        {regExp : /\'/g, replace : '&#34;' },
-        {regExp : / /g,  replace : '&nbsp;'}
+        {regExp : /\'/g, replace : '&#39;' }
     ];
 
     /*
      *
      */
     var decodeMap = [
-        {regExp : /&#60;|&lt;/g,           replace : '<'},
-        {regExp : /&#62;|&gt;/g,           replace : '>'},
+        {regExp : /&#32;|&nbsp;/g,         replace : ' '},
         {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
         {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-        {regExp : /&#32;|&nbsp;/g,         replace : ' '},
+        {regExp : /&#60;|&lt;/g,           replace : '<'},
+        {regExp : /&#62;|&gt;/g,           replace : '>'},
         {regExp : /&#38;|&amp;/g,          replace : '&'}
     ];
 
@@ -69,6 +85,17 @@
         {regExp : /"/g, replace : '&quot;'},
         {regExp : /'/g, replace : '&#39;' }
     ];
+
+    /*
+     * Common Text
+     */
+    var kEmpty     = '';
+    var kContainer = 'div';
+
+    /*
+     *
+     */
+    var tempDiv = null;
 
     /*
      *
@@ -87,44 +114,20 @@
         return result;
     }
 
-    /*
-     * Aliases
-     */
-    var me = use(framework.StringHelper);
-    var concat = use(me.concat);
-
-    /*
-     * Common Text
-     */
-    var kEmpty = '';
-    var kContainer = 'div';
-
-    /*
-     *
-     */
-    var tempDiv = null;
-
     /**
-     * @function {static} o2.StringHelper.xssEncode
+     * @function {static} o2.StringHelper.decode
      *
-     * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
-     * entities. Works similar to {link StringHelper.encode}, with an
-     * exception that it does not encode whitespace characters.</p>
-     * <p>This method is specially designed to prevent cross-site script
-     * injection attacks.</p>
+     * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
+     * <p>If possible try using standard decoding methods like
+     * <code>decodeURIComponent</code>, instead of using this method.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process
-     * @param {Boolean} isAmpersandsPreserved - (Optional. Defaults to
-     * <code>false</code>). If <code>true</code> & characters will not be
-     * encoded, otherwise they will be.
+     * @param {String} str - the <code>String</code> to process.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.xssEncode = function(str, isAmpersandsPreserved) {
-        return processMap(concat(kEmpty, str),
-            !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
-        );
-    };
+    def(me, 'decode', function(str) {
+        return processMap([kEmpty, str].join(kEmpty), decodeMap);
+    });
 
     /**
      * @function {static} o2.StringHelper.encode
@@ -135,73 +138,102 @@
      * <code>encodeURIComponent</code>,
      * instead of using this method.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
+     * @param {String} str - the <code>String</code> to process.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.encode = function(str) {
-        return processMap(concat(kEmpty, str), encodeMap);
-    };
+    def(me, 'encode', function(str) {
+        return processMap([kEmpty, str].join(kEmpty), encodeMap);
+    });
 
     /**
-     * @function {static} o2.StringHelper.decode
+     * @function {static} o2.StringHelper.htmlEncode
      *
-     * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
-     * <p>If possible try using standard decoding methods like
-     * <code>decodeURIComponent</code>, instead of using this method.</p>
+     * <p>An <strong>alias</strong> to {@link o2.StringHelper.encode}.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
-     *
-     * @return the processed <strong>String</strong>.
+     * @see o2.StringHelper.encode
      */
-    me.decode = function(str) {
-        return processMap(concat(kEmpty, str), decodeMap);
-    };
+    alias(me, 'htmlEncode', 'encode');
+
+    /**
+     * @function {static} o2.StringHelper.encodeSafeHtml
+     *
+     * <p>Works similar to {@link o2.StringHelper.encode}.</p>
+     * <p>Encodes the <code>String</code> by converting it into a text node
+     * and returning the node's value.</p>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     *
+     * @see o2.StringHelper.encode
+     */
+    def(me, 'encodeSafeHtml', function(str) {
+        if (!tempDiv) {
+            tempDiv = createElement(kContainer);
+        }
+
+        tempDiv.innerHTML = kEmpty;
+        tempDiv.appendChild(createTextNode([kEmpty, str].join(kEmpty)));
+
+        return processMap(tempDiv.innerHTML, safeHtmlMap);
+    });
+
+    /**
+     * @function {static} o2.StringHelper.safeHtmlEncode
+     *
+     * <p>An <strong>alias</strong> to
+     * {@link o2.StringHelper.encodeSafeHtml}.</p>
+     *
+     * @see o2.StringHelper.encodeSafeHtml
+     */
+    alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
 
     /**
      * @function {static} o2.StringHelper.escape
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
+     * @param {String} str - the <code>String</code> to process.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.escape = function(str) {
-        return encodeURIComponent(concat(kEmpty, str));
-    };
+    def(me, 'escape', function(str) {
+        return encodeURIComponent([kEmpty, str].join(kEmpty));
+    });
 
     /**
      * @function {static} o2.StringHelper.unescape
      *
      * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
+     * @param {String} str - the <code>String</code> to process.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.unescape = function(str) {
-        return decodeURIComponent(concat(kEmpty, str));
-    };
+    def(me, 'unescape', function(str) {
+        return decodeURIComponent([kEmpty, str].join(kEmpty));
+    });
 
     /**
-     * @function {static} o2.StringHelper.encodeSafeHtml
+     * @function {static} o2.StringHelper.xssEncode
      *
-     * <p>Encodes the <strong>String</strong> by converting it into a text node
-     * and returning the node's value.</p>
+     * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+     * entities. Works similar to {link StringHelper.encode}, with an
+     * exception that it does not encode whitespace characters.</p>
+     * <p>This method is specially designed to prevent cross-site script
+     * injection attacks.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
+     * @param {String} str - the <code>String</code> to process
+     * @param {Boolean} isAmpersandsPreserved - (Optional. Defaults to
+     * <code>false</code>). If <code>true</code> & characters will not be
+     * encoded, otherwise they will be.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.encodeSafeHtml = function(str) {
-        if (!tempDiv) {
-            tempDiv = document.createElement(kContainer);
-        }
-
-        tempDiv.innerHTML = kEmpty;
-        tempDiv.appendChild(document.createTextNode(concat(kEmpty, str)));
-
-        return processMap(tempDiv.innerHTML, safeHtmlMap);
-    };
+    def(me, 'xssEncode', function(str, isAmpersandsPreserved) {
+        return processMap([kEmpty, str].join(kEmpty),
+            !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
+        );
+    });
 }(this.o2, this.document));

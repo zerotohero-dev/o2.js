@@ -1,128 +1,112 @@
 /**
- * @module stringhelper.core
+ * @module   stringhelper.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-28 13:21:31.682274
+ *  lastModified: 2012-02-26 14:11:08.970604
  * -->
  *
  * <p>A <code>String</code> helper.</p>
  */
-
 (function(framework) {
     'use strict';
+
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = _.create;
+    var def       = _.define;
+    var require   = _.require;
+
+    /**
+     * @class {static} o2.StringHelper
+     *
+     * <p>A <code>String</code> helper <strong>class</strong>.</p>
+     */
+    var me     = create('StringHelper');
 
     /*
      * Aliases
      */
-    var slice = Array.prototype.slice;
-    var floor = Math.floor;
-    var random = Math.random;
+    var math   = Math;
+    var floor  = attr(math, 'floor');
+    var random = attr(math, 'random');
+    var slice  = attr(Array.prototype, 'slice');
+    var trim   = String.prototype.trim;
 
     /*
      * Common Constants
      */
-    var kEmpty = '';
-    var kBlank = ' ';
-    var kDecimalPoint = '.';
-    var kGlobal = 'g';
-    var kNumeric = '([0-9]+)';
+    var kBlank          = ' ';
+    var kDecimalPoint   = '.';
+    var kEmpty          = '';
+    var kFormatEnd      = '}';
+    var kFormatStart    = '{';
+    var kGlobal         = 'g';
+    var kNumeric        = '([0-9]+)';
     var kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
-    var kFormatStart = '{';
-    var kFormatEnd = '}';
 
     /*
-     * Default length for generating a random <strong>String</strong>s.
+     * Default length for generating a random <code>String</code>s.
      */
     var kDefaultRandomLength = 8;
 
    /*
     * Common Regular Expressions
     */
+    var kPrintfRegExp     = /(%(\w+):s)|(%s)/g;
+    var kTrimRegExp       = /^\s+|\s+$/g;
     var kWhitespaceRegExp = /\s+/g;
-    var kTrimRegExp = /^\s+|\s+$/g;
-    var kPrintfRegExp = /(%(\w+):s)|(%s)/g;
 
     /*
      * Printf Replacement Indexes
      */
+    var kAllIndex                   = 0;
+    var kParametrizedMatchIndex     = 2;
     var kReplaceParameterStartIndex = 1;
-    var kParametrizedMatchIndex = 2;
-    var kAllIndex = 0;
 
     /*
      * Guid
      */
-    var kGuidDigits = 16;
-    var kGuidShift  = 30;
-
-    /**
-     * @class {static} o2.StringHelper
-     *
-     * <p>A <strong>String</strong> helper <strong>class</strong>.</p>
-     */
-    var me = framework.StringHelper = {};
-
-    /**
-     * @function {static} o2.StringHelper.generateGuid
-     *
-     * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
-     * for that browsing session.</p>
-     *
-     * @return a <strong>GUID</strong>.
-     */
-    me.generateGuid = function() {
-        return (
-            (new Date()).getTime()+Math.random() * (1 << kGuidShift)
-        ).toString(kGuidDigits).replace(kDecimalPoint, kEmpty);
-    };
-
-    /**
-     * @function {static} o2.StringHelper.generateRandom
-     *
-     * <p>Generates a random <strong>String</strong>.</p>
-     *
-     * @param {Integer} length - (optional - default: {@link
-     * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
-     * length of the <code>String</code> to be generated.
-     *
-     * @return the generated <code>String</code>.
-     */
-    me.generateRandom = function(length) {
-        var len = length || kDefaultRandomLength;
-
-        var chars = kRandomCharFeed;
-        var charsLength = chars.length;
-
-        var randomNumber = 0;
-        var i = 0;
-
-        var buffer = [];
-
-        for (i = 0; i < len; i++) {
-            randomNumber = floor(random() * charsLength);
-
-            buffer.push(chars.substring(randomNumber, randomNumber + 1));
-        }
-
-        return buffer.join(kEmpty);
-    };
+    var kGuidRadix = 36;
+    var kGuidShift = 30;
 
     /**
      * @function {static} o2.StringHelper.concat
      *
-     * <p>Concatanes all its arguments into a single <strong>String</strong>.
-     * This is faster than adding those <strong>String</strong>s with
+     * <p>Concatanes all its arguments into a single <code>String</code>.
+     * This is faster than adding those <code>String</code>s with
      * <code>+</code>.</p>
      *
-     * @return the concataneted <strong>String</strong>.
+     * @return the concataneted <code>String</code>.
      */
-    me.concat = function() {
+    def(me, 'concat', function() {
         return slice.call(arguments).join(kEmpty);
-    };
+    });
+
+    /*
+     *
+     */
+    var concat = require('StringHelper', 'concat');
+
+    /**
+     * @function {static} o2.StringHelper.compact
+     *
+     * <p>Works identical to <code>StringHelper.trim(str,
+     * true)</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     *
+     * @see StringHelper.trim
+     */
+    def(me, 'compact', function(str) {
+        return trim(concat(kEmpty, str), true);
+    });
 
     /**
      * @function {static} o2.StringHelper.format
@@ -136,9 +120,9 @@
      * //will return "Hello Ninja. What's going on in California"
      * </pre>
      *
-     * @return the formated <strong>String</strong>.
+     * @return the formated <code>String</code>.
      */
-    me.format = function() {
+    def(me, 'format', function() {
         var args = arguments;
 
         if (args.length === 0) {
@@ -158,7 +142,52 @@
 
             return args[(+index) + 1];
         });
-    };
+    });
+
+    /**
+     * @function {static} o2.StringHelper.generateGuid
+     *
+     * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
+     * for that browsing session.</p>
+     *
+     * @return a <strong>GUID</strong>.
+     */
+    def(me, 'generateGuid', function() {
+        return (
+            (new Date()).getTime()+Math.random() * (1 << kGuidShift)
+        ).toString(kGuidRadix).replace(kDecimalPoint, kEmpty);
+    });
+
+    /**
+     * @function {static} o2.StringHelper.generateRandom
+     *
+     * <p>Generates a random <code>String</code>.</p>
+     *
+     * @param {Integer} length - (optional - default: {@link
+     * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
+     * length of the <code>String</code> to be generated.
+     *
+     * @return the generated <code>String</code>.
+     */
+    def(me, 'generateRandom', function(length) {
+        var len = length || kDefaultRandomLength;
+
+        var chars = kRandomCharFeed;
+        var charsLength = chars.length;
+
+        var randomNumber = 0;
+        var i = 0;
+
+        var buffer = [];
+
+        for (i = 0; i < len; i++) {
+            randomNumber = floor(random() * charsLength);
+
+            buffer.push(chars.substring(randomNumber, randomNumber + 1));
+        }
+
+        return buffer.join(kEmpty);
+    });
 
     /**
      * @function {static} o2.StringHelper.printf
@@ -183,7 +212,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    me.printf = function(str) {
+    def(me, 'printf', function(str) {
         var lastMatch = 0;
         var buffer = [];
 
@@ -197,9 +226,7 @@
             if (!result[kParametrizedMatchIndex]) {
                 buffer.push(arguments[index++]);
             } else if (
-                arguments.hasOwnProperty(
-                    result[kParametrizedMatchIndex]
-                )
+                arguments.hasOwnProperty(result[kParametrizedMatchIndex])
             ) {
                 buffer.push(arguments[result[kParametrizedMatchIndex]]);
             } else {
@@ -214,77 +241,60 @@
         buffer.push(str.substr(lastMatch));
 
         return buffer.join(kEmpty);
-    };
+    });
 
     /**
      * @function {static} o2.StringHelper.remove
      *
      * <p>Simply removes the phrases that match the <code>RegExp</code> from
-     * the <strong>String</strong>.</p>
+     * the <code>String</code>.</p>
      *
-     * @param {String} str - the <strong>String</strong> to process.
+     * @param {String} str - the <code>String</code> to process.
      * @param {RegExp} regExp - the <code>RegExp</code> to process agains.
      *
-     * @return the processed <strong>String</strong>.
+     * @return the processed <code>String</code>.
      */
-    me.remove = function(str, regExp) {
-        return me.concat(kEmpty, str).replace(regExp, kEmpty);
-    };
+    def(me, 'remove', function(str, regExp) {
+        return concat(kEmpty, str).replace(regExp, kEmpty);
+    });
 
-    /**
-     * @function {static} o2.StringHelper.trim
-     *
-     * <p>Trims white space from beginning and end of the
-     * <strong>String</strong>.</p>
-     *
-     * @param {String} str - the <strong>String</strong> to process.
-     * @param {Boolean} shouldCompact - Optional (default:
-     * <code>false</code>)
-     *     if <code>true</code>, multiple whitespace is compacted into single
-     * whitespace.
-     *
-     * @return the processed <strong>String</strong>.
-     */
-    me.trim = function(str, shouldCompact) {
-        shouldCompact = shouldCompact || false;
+    if (trim) {
 
-        str = me.concat(kEmpty, str);
+        /**
+         * @function {static} o2.StringHelper.trim
+         *
+         * <p>Trims white space from beginning and end of the
+         * <code>String</code>.</p>
+         *
+         * @param {String} str - the <code>String</code> to process.
+         * @param {Boolean} shouldCompact - Optional (default:
+         * <code>false</code>)
+         *     if <code>true</code>, multiple whitespace is compacted into single
+         * whitespace.
+         *
+         * @return the processed <code>String</code>.
+         */
+        def(me, 'trim', function(str, shouldCompact) {
+            var willCompact = shouldCompact || false;
 
-        return shouldCompact ?
-            str.replace(kWhitespaceRegExp,kBlank).replace(kTrimRegExp, kEmpty)
-            :
-            str.replace(kTrimRegExp, kEmpty);
-    };
+            var s = concat(kEmpty, str);
 
-    /**
-     * @function {static} o2.StringHelper.strip
-     *
-     * <p>Simply returns
-     * <code>o2.StringHelper.trim(str, false)</code>.
-     *
-     * @param {String} str - the <strong>String</strong> to strip.
-     *
-     * @return the stripped <strong>String</strong>.
-     *
-     * @see o2.StringHelper.trim
-     */
-    me.strip = function(str) {
-        return me.trim(me.concat(kEmpty, str), false);
-    };
+            return willCompact ?
+                s.replace(kWhitespaceRegExp, kBlank).trim()
+                :
+                s.trim();
+        });
+    } else {
+        def(me, 'trim', function(str, shouldCompact) {
+            var willCompact = shouldCompact || false;
 
-    /**
-     * @function {static} o2.StringHelper.compact
-     *
-     * <p>Works identical to <code>StringHelper.trim(str,
-     * true)</code>.</p>
-     *
-     * @param {String} str - the <strong>String</strong> to process.
-     *
-     * @return the processed <strong>String</strong>.
-     *
-     * @see StringHelper.trim
-     */
-    me.compact = function(str) {
-        return me.trim(me.concat(kEmpty, str), true);
-    };
+            var s = concat(kEmpty, str);
+
+            return willCompact ?
+                s.replace(kWhitespaceRegExp, kBlank).replace(
+                    kTrimRegExp, kEmpty)
+                :
+                s.replace(kTrimRegExp, kEmpty);
+        });
+    }
 }(this.o2));

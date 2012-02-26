@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.load
+ * @requires core
  * @requires domhelper.core
  * @requires stringhelper.core
  *
@@ -8,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:33:18.004711
+ *  lastModified: 2012-02-17 08:18:18.083618
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -17,7 +18,17 @@
 (function(framework, window, document) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+function use() {}
 
     /*
      * Aliases
@@ -134,15 +145,20 @@
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>css</strong> file.
-     * @param {Function} callback - the callback to execute when the load
+     * @param {Function} successCallback - the callback to execute when the load
      * operation completes.
+     * @param {Function} failureCallback - the callback to execute when the load
+     * operation times out or fails.
      */
-    me.loadCss = function(src, callback) {
+    me.loadCss = function(src, successCallback, failureCallback) {
         var s = document.createElement(kLink);
         var x = document.getElementsByTagName(kHead)[0];
 
         var id = format(kCssId, generateGuid());
         var counter = 0;
+
+        var onsuccess = successCallback || nill;
+        var onfailure = failureCallback || nill;
 
         s.setAttribute(kRel, kSheet);
 
@@ -164,7 +180,7 @@
                 sheet = sheet.ownerNode || sheet.owningElement;
 
                 if (sheet && sheet.id === id) {
-                    callback();
+                    onsuccess();
                     break;
                 }
             }
@@ -173,24 +189,9 @@
 
             if(counter <= kMaxCssCheckAttempt) {
                 setTimeout(check, kCssCheckInterval);
+            } else {
+                onfailure();
             }
         }, kCssCheckInterval);
-    };
-
-    /**
-     * @function {static} o2.DomHelper.loadImage
-     *
-     * <p>Asynchronously loads (precaches) an <strong>image</strong> file
-     * with a given <strong>src</strong>.</p>
-     *
-     * @param {String} src - the source <strong>URL</strong> of the
-     * <strong>image</strong> file.
-     * @param {Function} callback - the callback to execute when the load
-     * operation completes.
-     */
-    me.loadImage = function(src, callback) {
-        var img = new Image();
-        img.onload = callback;
-        img.src = src;
     };
 }(this.o2, this, this.document));

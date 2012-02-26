@@ -1,31 +1,49 @@
 /**
  * @module   ajax.core
+ * @requires core
  * @requires stringhelper.core
+ * @requires eventhandler.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:46:13.850280
+ *  lastModified: 2012-02-26 19:54:26.436817
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-
 (function(framework, window) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
+
+    /**
+     * @class {static} o2.Ajax
+     *
+     * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
+     * <strong>GET</strong> and <strong>POST</strong> requests.</p>
+     */
+    var me = create('Ajax');
 
     /*
      * Aliases
      */
-    var generateGuid = use(framework.StringHelper.generateGuid);
-    var concat = use(framework.StringHelper.concat);
-    var nill = use(framework.nill);
 
-    var ActiveXObject = window.ActiveXObject;
+    var nill = require('nill');
+
+    var kStringHelper = 'StringHelper';
+    var generateGuid  = require(kStringHelper, 'generateGuid');
+    var concat        = require(kStringHelper, 'concat');
+
+    var listen = require('Eventhandler', 'addEventListener');
+
+    var ActiveXObject  = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
 
     /*
@@ -52,8 +70,9 @@
     ];
 
     /*
-     * Common Constants
+     * Event
      */
+    var kUnload = 'unload';
 
     /*
      * Error Message
@@ -63,29 +82,45 @@
     /*
      * Status
      */
+    var kCached  = 304;
     var kComplete = 4;
-    var kOk = 200;
-    var kCached = 304;
+    var kOk      = 200;
 
     /*
      * Verb
      */
-    var kGet = 'GET';
+    var kGet  = 'GET';
     var kPost = 'POST';
 
     /*
      * Text, Prefix, Suffix
      */
-    var kRandom = '?rnd=';
+    var kAnd    = '&';
+    var kEmpty  = '';
     var kEquals = '=';
-    var kAnd = '&';
-    var kPlus = '+';
-    var kEmpty = '';
+    var kKey    = 'r';
+    var kPlus   = '+';
+    var kRandom = '?rnd=';
 
     /*
      * Common Regular Expressions
      */
     var kUrlSpaceRegExp = /%20/g;
+
+    /*
+     * Active requests are cached here.
+     */
+    var requestCache = {};
+
+    /*
+     * To uniquely mark xhr requests.
+     */
+    var counter = 0;
+
+    /*
+     * The total number of opened, but not completed (i.e. active) requests.
+     */
+    var activeRequestCount = 0;
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
@@ -153,6 +188,17 @@
 
         // Request is finalized
         xhr.isFinalized = true;
+
+        delete requestCache[xhr.index];
+
+        activeRequestCount--;
+
+        // " <= 0 "  is just for devensive coding.
+        // " === 0 " would suffice as well.
+        if (activeRequestCount <= 0) {
+            counter = 0;
+            activeRequestCount = 0;
+        }
     }
 
     /*
@@ -319,6 +365,14 @@
         var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
         var postQuery = isPost ? parametrizedQuery : kEmpty;
 
+        var index = counter++;
+
+        // Add request to cache.
+        requestCache[kKey+index] = xhr;
+        xhr.index = (kKey+index);
+
+        activeRequestCount++;
+
         xhr.open(verb, concat(url, kRandom, generateGuid(), getQuery), isAsync);
 
         addCommonRequestHeaders(xhr);
@@ -339,12 +393,63 @@
     }
 
     /**
-     * @class {static} o2.Ajax
+     * @function {static} o2.Ajax.abort
      *
-     * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
-     * <strong>GET</strong> and <strong>POST</strong> requests.</p>
+     * <p>Explicitly abort the request.</p>
+     * <p>When the request is explicitly abourted, <strong>onaborted</strong>
+     * callback is fired.</p>
+     *
+     * @param {XMLHttpRequest} xhr - the original
+     * <strong>XMLHttpRequest</strong> being sent.
      */
-    var me = framework.Ajax = {};
+    def(me, 'abort', function(xhr) {
+        if (!xhr || xhr.isAborted) {
+            return;
+        }
+
+        try {
+            xhr.isAborted = true;
+            xhr.abort();
+        } catch (ignore) {
+        }
+    });
+
+    /**
+     * @function {static} o2.Ajax.createXhr
+     *
+     * <p>Creates a native <code>XMLHttpRequest</code> object.
+     * <p>This is a <strong>low-level</strong> function; it simply returns
+     * the browser's native object.
+     * You may most probably want to use {@link Ajax.get} or {@link
+     * Ajax.post} instead, for more functionality.</p>
+     *
+     * @return the created <code>XMLHttpRequest</code> object.
+     */
+    def(me, 'createXhr', function() {
+        return createXhr();
+    });
+
+    /**
+     * @function {static} o2.Ajax.get
+     *
+     * <p>Sends and <strong>AJAX GET</strong> request.</p>
+     *
+     * @param {String} url - the URL to send the request.
+     * @param {Object} parameters - parameters collection as a name/value
+     * pair object ({}).
+     * @param {Object} callbacks - An object of the form
+     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
+     * statusText), onaborted: fn(xhr),
+     * onexception: fn(exception, originalXhr)}.
+     * Any of these callbacks are optional.
+     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
+     * Set this <code>true</code> for sending a snychronous request.
+     *
+     * @return the original <code>XMLHttpRequest</code> object.
+     */
+    def(me, 'get', function(url, parameters, callbacks, isSync) {
+        return send(url, kGet, parameters, callbacks, isSync);
+    });
 
     /**
      * @function {static} o2.Ajax.post
@@ -360,72 +465,33 @@
      * onexception: fn(exception, originalXhr)}.
      * Any of these callbacks are optional.
      * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-     * Set this
-     * <code>true</code> for sending a <strong>snychronous</strong> request.
+     * Set this <code>true</code> for sending a <strong>snychronous</strong>
+     * request.
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    me.post = function(url, parameters, callbacks, isSync) {
+    def(me, 'post', function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
-    };
+    });
 
-    /**
-     * @function {static} o2.Ajax.get
-     *
-     * <p>Sends and <strong>AJAX GET</strong> request.</p>
-     *
-     * @param {String} url - the URL to send the request.
-     * @param {Object} parameters - parameters collection as a name/value
-     * pair object
-     * ({}).
-     * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-     * statusText), onaborted: fn(xhr),
-     * onexception: fn(exception, originalXhr)}.
-     * Any of these callbacks are optional.
-     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-     * Set this
-     * <code>true</code> for sending a snychronous request.
-     *
-     * @return the original <code>XMLHttpRequest</code> object.
-     */
-    me.get = function(url, parameters, callbacks, isSync) {
-        return send(url, kGet, parameters, callbacks, isSync);
-    };
-
-    /**
-     * @function {static} o2.Ajax.createXhr
-     *
-     * <p>Creates a native <code>XMLHttpRequest</code> object.
-     * <p>This is a <strong>low-level</strong> function; it simply returns
-     * the browser's native object.
-     * You may most probably want to use {@link Ajax.get} or {@link
-     * Ajax.post} instead, for more functionality.</p>
-     *
-     * @return the created <code>XMLHttpRequest</code> object.
-     */
-    me.createXhr = function() {
-        return createXhr();
-    };
-
-    /**
-     * @function {static} o2.Ajax.abort
-     * <p>Explicitly abort the request.</p>
-     * <p>When the request is explicitly abourted, <strong>onaborted</strong>
-     * callback is fired.</p>
-     *
-     * @param {XMLHttpRequest} xhr - the original
-     * <strong>XMLHttpRequest</strong> being sent.
-     */
-    me.abort = function(xhr) {
-        if (!xhr || xhr.isAborted) {
-            return;
-        }
+    // There is a bug in IE (seen in 7, heard about in others) where AJAX
+    // requests that are open when the window is closed still reserve
+    // connections. This means that if you open and close two windows using
+    // long-polling, the next time you open a page on that domain it will
+    // hang forever. The below event listener fixes that.
+    listen(window, kUnload, function() {
+        var key = null;
+        var request = null;
 
         try {
-            xhr.isAborted = true;
-            xhr.abort();
-        } catch (ignore) {
+            for(key in requestCache) {
+                if(requestCache.hasOwnProperty(key)) {
+                    request = requestCache[key];
+                    request.abort();
+                    delete requestCache[key];
+                }
+            }
+        } catch(ignore) {
         }
-    };
+    });
 }(this.o2, this));

@@ -1,34 +1,36 @@
 /**
  * @module   validator.regexp
- * @requires validator.core
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 08:45:14.094662
+ *  lastModified: 2012-02-26 16:59:19.276082
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+    var _         = framework.protecteds;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
 
     /*
-     * Aliases
+     * Validator (regexp)
      */
-    var me = use(framework.Validator);
+    var me = create('Validator');
 
     /*
      * Common Regular Expressions
      */
-    var kEmailRegExp = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
-    var kUrlRegExp = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
+    var kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
+    var kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
     var kWhitespaceRegExp = /^\s*$/;
 
     /**
@@ -53,9 +55,9 @@
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
      * potentially valid e-mail, <code>false</code> otherwise.
      */
-    me.isEmail = function(mail) {
+    def(me, 'isEmail', function(mail) {
         return kEmailRegExp.test(mail);
-    };
+    });
 
     /**
      * @function {static} o2.Validator.isUrl
@@ -68,9 +70,9 @@
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
      * <code>false</code> otherwise.
      */
-    me.isUrl = function(url) {
+    def(me, 'isUrl', function(url) {
         return kUrlRegExp.test(url);
-    };
+    });
 
     /**
      * @function {static} o2.Validator.isWhitespace
@@ -83,7 +85,7 @@
      * @return <code>true</code> if the argument consists of only whitespace
      * characters, <code>false</code> otherwise.
      */
-    me.isWhitespace = function(text) {
+    def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
-    };
+    });
 }(this.o2));

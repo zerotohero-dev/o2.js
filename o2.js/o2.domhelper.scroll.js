@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.scroll
+ * @requires core
  * @requires domhelper.core
  *
  * <!--
@@ -7,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:15:16.590252
+ *  lastModified: 2012-02-17 07:43:56.380392
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -16,7 +17,18 @@
 (function(framework, window, document) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;
+*/
+
+function use() {}
 
     /*
      * Aliases
@@ -127,9 +139,26 @@
      * <p>Scrolls the window to the object's offset position..</p>
      *
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-     * scroll.
+     * scroll, or an <code>Object</code> in the form
+     * <code>{left : leftPx, top : topPx}</code>.
      */
-    me.scrollWindowToObject = function(obj) {
+
+    /**
+     * @function {static} o2.DomHelper.scrollToObject
+     *
+     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * @see o2.DomHelper.scrollWindowToObject
+     */
+
+    /**
+     * @function {static} o2.DomHelper.scrollTo
+     *
+     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * @see o2.DomHelper.scrollWindowToObject
+     */
+    me.scrollTo = me.scrollToObject = me.scrollWindowToObject = function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -198,15 +227,27 @@
      *
      * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
      *
+     * @param {Object} obj - the <strong>DOM</strong> node to check, or its
+     * <code>String</code> id.
+     *
      * @return the the <strong>DOM</strong> object's scroll offset in the form
      * <code>{left: l, top: t}</code>.
      */
-    me.getObjectScrollOfset = function(obj) {
-        obj = $(obj);
+
+    /**
+     * @function {static} o2.DomHelper.getStrollOffset
+     *
+     * <p>An alias to {@link o2.DomHelper.getObjectStrollOffset}.</p>
+     *
+     * @see {o2.DomHelper.getObjectScrollOffset}
+     */
+    me.scrollOffset = me.getScrollOffset = me.getObjectScrollOfset = function(
+                obj) {
+        var item = $(obj);
 
         return {
-            left : obj.scrollLeft,
-            top : obj.scrollTop
+            left : item.scrollLeft,
+            top : item.scrollTop
         };
     };
 }(this.o2, this, this.document));

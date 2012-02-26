@@ -1,5 +1,6 @@
 /**
  * @module   domhelper.form
+ * @requires core
  * @requires domhelper.core
  * @requires stringhelper.core
  *
@@ -16,12 +17,22 @@
 (function(framework) {
     'use strict';
 
-    var use = framework.require;
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
+
+    var me = framework.accept(framework.classes.DOM_HELPER);
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
+    var use = framework.require;
     var $ = use(framework.$);
     var compact = use(framework.StringHelper.compact);
     var trim = use(framework.StringHelper.trim);

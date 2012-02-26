@@ -1,19 +1,29 @@
 /**
- * @module eventhandler.constants
+ * @module   eventhandler.constants
+ * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 10:38:47.307356
+ *  lastModified: 2012-02-16 08:47:02.151064
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-
 (function(framework) {
     'use strict';
+
+/*    var _         = framework.protecteds;
+    var alias     = _.alias;
+    var attr      = _.getAttr;
+    var construct = _.construct;
+    var create    = _.create;
+    var def       = _.define;
+    var obj       = _.getObject;
+    var proto     = _.proto;
+    var require   = _.require;*/
 
     /**
      * @class {static} o2.EventHandler
@@ -32,6 +42,12 @@
          * o2.EventHandler.keyCode.ENTER - enter key.
          */
         ENTER : 13,
+
+        /**
+         * @property {static const Integer}
+         * o2.EventHandler.keyCode.RETURN - enter key.
+         */
+        RETURN : 13,
 
         /**
          * @property {static const Integer}
