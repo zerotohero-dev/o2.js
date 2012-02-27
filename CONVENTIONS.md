@@ -2489,6 +2489,7 @@ for situations that are not covered in this document.
 * ["Clean Code, A Handbook of Agile Software Craftsmanship"][22]
 * ["Robert C. Martin"][23]
 * ["Replace Temp With Query"][24]
+
 --------------------------------------------------------------------------------
 
 That's the end of this conventions document.
