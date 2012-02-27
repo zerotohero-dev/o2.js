@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 16:43:36.553425
+ *  lastModified: 2012-02-27 13:24:04.087421
  * -->
  *
  * <p>Event-handling-related helper methods.</p>

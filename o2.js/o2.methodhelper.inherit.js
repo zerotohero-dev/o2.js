@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 13:15:32.685646
+ *  lastModified: 2012-02-27 13:32:23.626459
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>

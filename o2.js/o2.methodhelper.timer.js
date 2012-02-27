@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 16:34:32.775030
+ *  lastModified: 2012-02-27 13:53:21.963926
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying

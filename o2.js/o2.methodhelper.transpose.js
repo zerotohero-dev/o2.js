@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 13:20:45.026316
+ *  lastModified: 2012-02-27 13:54:49.446848
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose

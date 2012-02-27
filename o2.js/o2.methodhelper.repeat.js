@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 16:37:52.211226
+ *  lastModified: 2012-02-27 13:39:45.681775
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
