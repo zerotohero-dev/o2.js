@@ -844,10 +844,6 @@ this.o2 = this.o2 || {
             return elem;
         });
 
-        init(fp, 'setAttr', function(/*root, name*/) {
-
-        });
-
         /**
          * @function {protected static} o2.protecteds.create
          *

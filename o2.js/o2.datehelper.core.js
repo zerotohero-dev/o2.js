@@ -32,7 +32,7 @@
     /*
      * Aliases
      */
-    var $ = use(framework.$);
+    var $      = use(framework.$);
     var format = use(framework.StringHelper.format);
 
     /*

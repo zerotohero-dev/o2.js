@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:16:34.732102
+ *  lastModified: 2012-02-28 01:46:40.708929
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>

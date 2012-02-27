@@ -10,7 +10,7 @@
  *  <p>
  *
  * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     0.24.0001328773671
+ * @version     2012-02-28 01:52:54.871065
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -58,9 +58,6 @@
      */
     def(me, 'nill', function() {});
 
-
-//debugger;
-
     /**
      * @property {readonly String} o2.name
      *
@@ -72,7 +69,7 @@
     /*
      *
      */
-    var myName = attr(myself, 'name');
+    var myName = require('name');
 
     /**
      * @property {readonly String} o2.url
@@ -89,7 +86,7 @@
     def(
         me,
         'longName',
-        'o2.js - a Coherent Solution to Your JavaScript Dilemma'
+        'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)'
     );
 
     /**
@@ -97,7 +94,7 @@
      *
      * <p>Project version.</p>
      */
-    def(me, 'version', '0.24');
+    def(me, 'version', '0.24.a');
 
     /**
      * @property {readonly String} o2.build

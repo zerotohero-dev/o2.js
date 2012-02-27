@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:13:12.682152
+ *  lastModified: 2012-02-28 01:47:56.871461
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping

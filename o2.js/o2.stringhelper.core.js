@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:11:08.970604
+ *  lastModified: 2012-02-28 01:45:04.070027
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -15,22 +15,18 @@
 (function(framework) {
     'use strict';
 
-//debugger;
-
     var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var create    = _.create;
-    var def       = _.define;
-    var require   = _.require;
-
-
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /**
      * @class {static} o2.StringHelper
      *
      * <p>A <code>String</code> helper <strong>class</strong>.</p>
      */
-    var me     = create('StringHelper');
+    var me = create('StringHelper');
 
     /*
      * Aliases
@@ -142,7 +138,7 @@
      */
     def(me, 'generateGuid', function() {
         return (
-            (new Date()).getTime()+Math.random() * (1 << kGuidShift)
+            (new Date()).getTime() + Math.random() * (1 << kGuidShift)
         ).toString(kGuidRadix).replace(kDecimalPoint, kEmpty);
     });
 
@@ -268,8 +264,7 @@
             var s = concat(kEmpty, str);
 
             return willCompact ?
-                s.replace(kWhitespaceRegExp, kBlank).trim()
-                :
+                s.replace(kWhitespaceRegExp, kBlank).trim() :
                 s.trim();
         });
     } else {
@@ -280,8 +275,7 @@
 
             return willCompact ?
                 s.replace(kWhitespaceRegExp, kBlank).replace(
-                    kTrimRegExp, kEmpty)
-                :
+                    kTrimRegExp, kEmpty) :
                 s.replace(kTrimRegExp, kEmpty);
         });
     }

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:19:20.210434
+ *  lastModified: 2012-02-28 01:38:49.999133
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -176,12 +176,11 @@
      * @return the processed <code>String</code>.
      */
     def(me, 'truncate', function(str, maxLen) {
-        var ellipsis = kEllipsis;
-        var eLen = ellipsis.length;
+        var eLen = kEllipsis.length;
         var maxLength = maxLen || kTruncationLength;
 
         if (str.length > maxLength) {
-            return [str.substr(0, maxLength - eLen), ellipsis].join(kEmpty);
+            return [str.substr(0, maxLength - eLen), kEllipsis].join(kEmpty);
         }
 
         return str;
