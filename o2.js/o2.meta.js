@@ -79,36 +79,33 @@ this.o2 = this.o2 || {
      * Therefore, changing the list after the scripts are loaded will have
      * no effect at all.</p>
      *
-     * <p>This enables us rename any <strong>o2.js</strong> class or method
-     * by simply changing a single attribute value in this definition. This is
-     * is yet another way to enable two versions of <strong>o2.js</strong>
-     * coexist. See also {@link o2.noConflict} for a simpler way of using
-     * two different <strong>o2.js</strong> versions side-by-side.</p>
+     * <p>This structure is especially useful while running automated unit
+     * tests and checking the consistency of the overall framework.</p>
      */
      init(fp, 'classes', {
-        Core : {
+        o2 : {
             NAME : 'o2',
             methods : {
-                $          : {NAME : '$',           MODULE : 'core'},
-                build      : {NAME : 'build',       MODULE : 'core'},
-                load       : {NAME : 'load',        MODULE : 'core'},
-                longName   : {NAME : 'longName',    MODULE : 'core'},
-                name       : {NAME : 'name',        MODULE : 'core'},
-                nill       : {NAME : 'nill',        MODULE : 'core'},
-                noConflict : {NAME : 'noConflict',  MODULE : 'core'},
-                now        : {NAME : 'now',         MODULE : 'core'},
-                ready      : {NAME : 'ready',       MODULE : 'core'},
-                url        : {NAME : 'url',         MODULE : 'core'},
-                version    : {NAME : 'version',     MODULE : 'core'}
+                $          : {MODULE : 'core'},
+                build      : {MODULE : 'core'},
+                load       : {MODULE : 'core'},
+                longName   : {MODULE : 'core'},
+                name       : {MODULE : 'core'},
+                nill       : {MODULE : 'core'},
+                noConflict : {MODULE : 'core'},
+                now        : {MODULE : 'core'},
+                ready      : {MODULE : 'core'},
+                url        : {MODULE : 'core'},
+                version    : {MODULE : 'core'}
             }
         },
         Ajax : {
             NAME : 'Ajax',
             methods : {
-                 abort     : {NAME : 'abort',     MODULE : 'ajax.core'},
-                 createXhr : {NAME : 'createXhr', MODULE : 'ajax.core'},
-                 get       : {NAME : 'get',       MODULE : 'ajax.core'},
-                 post      : {NAME : 'post',      MODULE : 'ajax.core'},
+                 abort     : {MODULE : 'ajax.core'},
+                 createXhr : {MODULE : 'ajax.core'},
+                 get       : {MODULE : 'ajax.core'},
+                 post      : {MODULE : 'ajax.core'},
 
                  getSingle  : {NAME : 'getSingle',  MODULE : 'ajax.extend'},
                  postSingle : {NAME : 'postSingle', MODULE : 'ajax.extend'}
@@ -628,25 +625,25 @@ this.o2 = this.o2 || {
         Validator : {
             NAME : 'Validator',
             methods : {
-                is          : {NAME : 'is',          MODULE : 'validator.core'},
-                isArguments : {NAME : 'isArguments', MODULE : 'validator.core'},
-                isArray     : {NAME : 'isArray',     MODULE : 'validator.core'},
-                isBoolean   : {NAME : 'isBoolean',   MODULE : 'validator.core'},
-                isDate      : {NAME : 'isDate',      MODULE : 'validator.core'},
-                isFunction  : {NAME : 'isFunction',  MODULE : 'validator.core'},
-                isNaN       : {NAME : 'isNaN',       MODULE : 'validator.core'},
-                isNull      : {NAME : 'isNull',      MODULE : 'validator.core'},
-                isNumber    : {NAME : 'isNumber',    MODULE : 'validator.core'},
-                isNumeric   : {NAME : 'isNumeric',   MODULE : 'validator.core'},
-                isObject    : {NAME : 'isObject',    MODULE : 'validator.core'},
-                isRegExp    : {NAME : 'isRegExp',    MODULE : 'validator.core'},
-                isString    : {NAME : 'isString',    MODULE : 'validator.core'},
-                isUndefined : {NAME : 'isUndefined', MODULE : 'validator.core'},
-                isWindow    : {NAME : 'isWindow',    MODULE : 'validator.core'},
+                is          : {MODULE : 'validator.core'},
+                isArguments : {MODULE : 'validator.core'},
+                isArray     : {MODULE : 'validator.core'},
+                isBoolean   : {MODULE : 'validator.core'},
+                isDate      : {MODULE : 'validator.core'},
+                isFunction  : {MODULE : 'validator.core'},
+                isNaN       : {MODULE : 'validator.core'},
+                isNull      : {MODULE : 'validator.core'},
+                isNumber    : {MODULE : 'validator.core'},
+                isNumeric   : {MODULE : 'validator.core'},
+                isObject    : {MODULE : 'validator.core'},
+                isRegExp    : {MODULE : 'validator.core'},
+                isString    : {MODULE : 'validator.core'},
+                isUndefined : {MODULE : 'validator.core'},
+                isWindow    : {MODULE : 'validator.core'},
 
-                isEmail      : {NAME : 'isEmail',      MODULE : 'validator.regexp'},
-                isUrl        : {NAME : 'isUrl',        MODULE : 'validator.regexp'},
-                isWhitespace : {NAME : 'isWhitespace', MODULE : 'validator.regexp'}
+                isEmail      : {MODULE : 'validator.regexp'},
+                isUrl        : {MODULE : 'validator.regexp'},
+                isWhitespace : {MODULE : 'validator.regexp'}
             }
         }
     });
@@ -671,33 +668,9 @@ this.o2 = this.o2 || {
     var isProduction = framework.isProduction;
 
     if (isProduction) {
-        init(fp, 'require', function(objName, methodName) {
-            return (arguments.length === 1) ? framework[objName] :
-                framework[objName][methodName];
-        });
+        // TODO: rewrite
 
-        init(fp, 'getAttr', function(root, name) {
-            return root[name];
-        });
-
-        init(fp, 'create', function(name) {
-            var meta = framework.classes[name];
-
-            return [meta, namespace(framework, meta.NAME)];
-        });
-
-//TODO: I can add methods and namespaces, this needs a rename.
-        init(fp, 'addMethod', function(mixed, name, fn) {
-            mixed[1][mixed[0].methods[name].NAME] = fn;
-        });
-
-        init(fp, 'getObject', function(mixed) {
-            return mixed[1];
-        });
-
-        init(fp, 'alias', function(mixed, aliasName, existingName) {
-            fp.addMethod(mixed, aliasName, fp.getObject(mixed)[existingName]);
-        });
+        init();
     } else {
         init(fp, 'require', function(objName, methodName) {
             //var mixed = null;
@@ -722,17 +695,37 @@ this.o2 = this.o2 || {
                 throw 'fwRequire: methodName should be  a String.';
             }
 
+            var meta = null;
+
             if (objName === '') {
-                //TODO: first try to get classes.methodname.NAME
-                //then try to get framework[methodName]
-                var result = framework[methodName];
+                var classes = fp.classes;
+                var result = null;
+                var key = null;
+
+                if (classes.hasOwnProperty(methodName)) {
+                    result = framework[methodName];
+
+                    if (!result) {
+                        throw 'Class ' + key + ' has not been defined yet.';
+                    }
+
+                    return result;
+                }
+
+                meta = fp.classes.o2;
+
+                if (!meta[methodName]) {
+                    throw 'Method or attribute ' + methodName + ' not found in framework meta definition';
+                }
+
+                result = framework[methodName];
 
                 if (!result) {
                     throw 'fwRequire: method or attribute "'+ methodName + ' does not exist in framework.';
                 }
             }
 
-            var meta = framework.classes[objName];
+            meta = framework.classes[objName];
 
             if (!meta) {
                 throw 'fwRequire: Class "'+ objName + '" is not defined in meta definition.';
@@ -745,13 +738,13 @@ this.o2 = this.o2 || {
                     ' does not have a method '+methodName+ ' defined in meta definition.';
             }
 
-            var obj = framework[meta.NAME];
+            var obj = framework[objName];
 
             if (!obj) {
                 throw 'fwRequire: Class "'+ objName + '" does not currently exist.';
             }
 
-            var theMethod = obj[method.NAME];
+            var theMethod = obj[methodName];
 
             if (!theMethod) {
                 throw 'fwRequire: method '+methodName+' of object '+objName+
@@ -804,21 +797,27 @@ this.o2 = this.o2 || {
          * have a member of name `<strong>name</strong>`.
          */
         init(fp, 'create', function(name) {
-            var r = framework.require;
-            var meta = r(framework.classes[name]);
+            var meta = framework.classes[name];
 
-            return [meta, namespace(framework, r(meta.NAME))];
+            if (!meta) {
+                throw 'Meta definition not found for class ' + name;
+            }
+
+            return [meta, namespace(framework, name)];
         });
 
         init(fp, 'construct', function(name, delegate) {
-            var r = framework.require;
-            var meta = r(framework.classes[name]);
+            var meta = framework.classes[name];
 
-            if (framework[meta.NAME]) {
+            if (!meta) {
+                throw 'Meta definition not found for class ' + name;
+            }
+
+            if (framework[name]) {
                 throw 'Constructor "' + name + '" is already defined';
             }
 
-            framework[meta.NAME] = delegate;
+            framework[name] = delegate;
 
             return [meta, delegate];
         });
@@ -826,8 +825,6 @@ this.o2 = this.o2 || {
         init(fp, 'proto', function(mixed, methodName, fn) {
             var meta = mixed[0];
             var me= mixed[1];
-
-            var r = framework.require;
 
             if (!me) {
                 throw 'Object not found in mixed collection';
@@ -837,23 +834,26 @@ this.o2 = this.o2 || {
                 throw [kDelegateNotdefined, methodName].join(kEmpty);
             }
 
-            var name = r(r(meta.methods)[methodName]).NAME;
-
-            if (me.prototype[name]) {
-                throw [kMethodAlreadyDefined, name].join(kEmpty);
+            if (!meta.methods) {
+                throw 'Meta definition of ' + meta.NAME + 'does not have any defined methods';
             }
 
-            me.prototype[name] = fn;
+            if (!meta.methods[methodName]) {
+                throw 'Method or attribute ' + methodName + ' not found in meta definition of ' + meta.NAME;
+            }
+
+            if (me.prototype[methodName]) {
+                throw [kMethodAlreadyDefined, methodName].join(kEmpty);
+            }
+
+            me.prototype[methodName] = fn;
         });
 
         init(fp, 'getRoot', function() {
-            var r = require;
-            return [r(r(fp, 'classes'), 'Core'), framework];
+            return [fp.classes.o2, framework];
         });
 
         init(fp, 'define', function(mixed, name, fn) {
-            var r = require;
-
             var meta = mixed[0];
             var me= mixed[1];
 
@@ -865,13 +865,21 @@ this.o2 = this.o2 || {
                 throw [kDelegateNotdefined, name].join(kEmpty);
             }
 
-            var methodName = r(r(meta.methods)[name]).NAME;
-
-            if (me[methodName]) {
-                throw [kMethodAlreadyDefined, name].join(kEmpty);
+            if (!meta) {
+                throw 'no meta definition';
             }
 
-            me[methodName] = fn;
+            if (!meta.methods) {
+                throw 'no methods for ' + meta.NAME;
+            }
+
+            if (meta.methods[name]) {
+                if (me[name]) {
+                    throw [kMethodAlreadyDefined, name].join(kEmpty);
+                }
+
+                me[name] = fn;
+            }
         });
 
         /*

@@ -31,6 +31,8 @@
 
     var state = require('AjaxState');
 
+    var deleteObserver = require('AjaxState', 'deleteObserver');
+
     /**
      * @class o2.AjaxController
      * @implements Observer
@@ -77,7 +79,6 @@
         }
 
         // Unregister self from the observable.
-        // exec(me, 'unregister', this, [params])
         this.unregister();
 
         // Abort the request.
@@ -98,9 +99,7 @@
             return;
         }
 
-        //attr(state, 'deleteObserver')(this);
-        //call('AjaxState', 'deleteObserver', [this])
-        state.deleteObserver(this);
+        deleteObserver.apply(state, [this]);
     });
 }(this.o2, this));
 
