@@ -236,7 +236,7 @@
          *
          * @return the actual <strong>DOM</strong> target of the event object.
          */
-        def(me, 'getTarget' = function() {
+        def(me, 'getTarget', function() {
             return windowEventHandle.srcElement;
         });
     } else {

@@ -27,7 +27,7 @@
     var require   = _.require;*/
 
     function define() {}
-    function use() {}
+    function use(stuff) { return stuff;}
 
     var kObjectName = 'Jsonp';
 

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 15:49:50.684007
+ *  lastModified: 2012-02-27 19:49:25.158365
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -69,6 +69,10 @@
         var directiveKey = kEmpty;
         var collectionKey = kEmpty;
 
+        var buffer = [];
+        var i = 0;
+        var clen = 0;
+
         if (directive.length > 1) {
             collectionKey = directive[1];
         }
@@ -84,10 +88,6 @@
         if (typeof collection !== kObject) {
             return subTpl.join(kEmpty);
         }
-
-        var buffer = [];
-        var i = 0;
-        var clen = 0;
 
         for (i = 0, clen = collection.length; i < clen; i++) {
             buffer.push(doParse(collection[i], subTpl));

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 15:38:25.677089
+ *  lastModified: 2012-02-27 19:49:51.464135
  * -->
  *
  * <p>An object support checker.</p>

@@ -15,11 +15,15 @@
 (function(framework) {
     'use strict';
 
+//debugger;
+
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = _.create;
     var def       = _.define;
     var require   = _.require;
+
+
 
     /**
      * @class {static} o2.StringHelper
@@ -91,22 +95,6 @@
      *
      */
     var concat = require('StringHelper', 'concat');
-
-    /**
-     * @function {static} o2.StringHelper.compact
-     *
-     * <p>Works identical to <code>StringHelper.trim(str,
-     * true)</code>.</p>
-     *
-     * @param {String} str - the <code>String</code> to process.
-     *
-     * @return the processed <code>String</code>.
-     *
-     * @see StringHelper.trim
-     */
-    def(me, 'compact', function(str) {
-        return trim(concat(kEmpty, str), true);
-    });
 
     /**
      * @function {static} o2.StringHelper.format
@@ -297,4 +285,23 @@
                 s.replace(kTrimRegExp, kEmpty);
         });
     }
+
+    var strim = require('StringHelper', 'trim');
+
+    /**
+     * @function {static} o2.StringHelper.compact
+     *
+     * <p>Works identical to <code>StringHelper.trim(str,
+     * true)</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     *
+     * @see StringHelper.trim
+     */
+    def(me, 'compact', function(str) {
+        return strim(concat(kEmpty, str), true);
+    });
+
 }(this.o2));

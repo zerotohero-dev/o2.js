@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 16:02:05.242671
+ *  lastModified: 2012-02-27 19:48:07.827072
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -18,9 +18,9 @@
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var create    = _.create;
-    var def       = _.define;
-    var require   = _.require;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /**
      * @class {static} o2.Timer

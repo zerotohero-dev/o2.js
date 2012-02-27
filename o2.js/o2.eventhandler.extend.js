@@ -26,7 +26,7 @@
     var proto     = _.proto;
     var require   = _.require;*/
 
-    function use() {}
+    function use(stuff) {return stuff;}
 
     /*
      * Aliases.

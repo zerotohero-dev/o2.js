@@ -37,6 +37,16 @@ this.o2 = this.o2 || {
     /*
      *
      */
+    function dbg() {
+
+        // eval is "evil".
+        // and this is one in a millon legitimate uses of that evil ;)
+        eval('debugger');
+    }
+
+    /*
+     *
+     */
     function init(root, key, value) {
         if (!root || typeof root !== kObject) {
             return null;
@@ -59,7 +69,7 @@ this.o2 = this.o2 || {
             return null;
         }
 
-        return init(root[key], {});
+        return init(root, key, {});
     }
 
     var fp = init(framework, 'protecteds', {});
@@ -124,7 +134,6 @@ this.o2 = this.o2 || {
 
      init(fp, 'classes', {
         o2 : {
-            NAME : 'o2',
             items : {
                 $          : {MODULE : kCore},
                 build      : {MODULE : kCore},
@@ -140,7 +149,6 @@ this.o2 = this.o2 || {
             }
         },
         Ajax : {
-            NAME : 'Ajax',
             items : {
                  abort     : {MODULE : kAjaxCore},
                  createXhr : {MODULE : kAjaxCore},
@@ -152,14 +160,12 @@ this.o2 = this.o2 || {
             }
         },
         AjaxController : {
-            NAME : 'AjaxController',
             items : {
                 unregister : {MODULE : kAjaxControllerCore},
                 update     : {MODULE : kAjaxControllerCore}
             }
         },
         AjaxState : {
-            NAME : 'AjaxState',
             items : {
                 protecteds          : {MODULE : kAjaxStateCore},
 
@@ -229,7 +235,6 @@ this.o2 = this.o2 || {
             zip            : {MODULE : kCollectionHelperCore}
         },
         Cookie : {
-            NAME : 'Cookie',
             items : {
                 read   : {MODULE : kCookieCore},
                 remove : {MODULE : kCookieCore},
@@ -237,7 +242,6 @@ this.o2 = this.o2 || {
             }
         },
         Debugger : {
-            NAME : 'Debugger',
             items : {
                 assert  : {MODULE : kDebuggerCore},
                 error   : {MODULE : kDebuggerCore},
@@ -249,9 +253,8 @@ this.o2 = this.o2 || {
             }
         },
         DomHelper : {
-            NAME : 'DomHelper',
             items : {
-                nodeType : {NAME : 'nodeType', MODULE : kDomHelperConstants},
+                nodeType : {MODULE : kDomHelperConstants},
 
                 append                  : {MODULE : kDomHelperCore},
                 create                  : {MODULE : kDomHelperCore},
@@ -528,30 +531,29 @@ this.o2 = this.o2 || {
             }
         },
         EventHandler : {
-            addEventListener    : {MODULE : kEventHandlerCore},
-            addEventListeners   : {MODULE : kEventHandlerCore},
-            getEventObject      : {MODULE : kEventHandlerCore},
-            getKeyCode          : {MODULE : kEventHandlerCore},
-            getMouseCoordinates : {MODULE : kEventHandlerCore},
-            getTarget           : {MODULE : kEventHandlerCore},
-            preventDefault      : {MODULE : kEventHandlerCore},
-            removeEventListener : {MODULE : kEventHandlerCore},
-            stopPropagation     : {MODULE : kEventHandlerCore}
+            items : {
+                addEventListener    : {MODULE : kEventHandlerCore},
+                addEventListeners   : {MODULE : kEventHandlerCore},
+                getEventObject      : {MODULE : kEventHandlerCore},
+                getKeyCode          : {MODULE : kEventHandlerCore},
+                getMouseCoordinates : {MODULE : kEventHandlerCore},
+                getTarget           : {MODULE : kEventHandlerCore},
+                preventDefault      : {MODULE : kEventHandlerCore},
+                removeEventListener : {MODULE : kEventHandlerCore},
+                stopPropagation     : {MODULE : kEventHandlerCore}
+            }
         },
         FormHelper : {
-            NAME : 'FormHelper',
             items : {
                 preventMultipleSubmit : {MODULE : kFormHelperCore}
             }
         },
         JsonpState : {
-            NAME    : 'JsonpState',
             items : {
                 protecteds : {MODULE : kJsonpStateCore}
             }
         },
         MethodHelper : {
-            NAME : 'MethodHelper',
             items : {
                 bind     : {MODULE : kMethodHelperCore},
                 curry    : {MODULE : kMethodHelperCore},
@@ -579,7 +581,6 @@ this.o2 = this.o2 || {
             }
         },
         ObjectHelper : {
-            NAME : 'ObjectHelper',
             items : {
                 copy          : {MODULE : kObjectHelperCore},
                 copyMethods   : {MODULE : kObjectHelperCore},
@@ -591,14 +592,12 @@ this.o2 = this.o2 || {
             }
         },
         QueryParser : {
-            NAME : 'QueryParser',
             items : {
                 encode : {MODULE : kQueryParserCore},
                 parse  : {MODULE : kQueryParserCore}
             }
         },
         SortDelegate : {
-            NAME : 'SortDelegate',
             items : {
                 sort     : {MODULE : kSortDelegateCore},
                 sortAsc  : {MODULE : kSortDelegateCore},
@@ -606,7 +605,6 @@ this.o2 = this.o2 || {
             }
         },
         StringHelper : {
-            NAME : 'StringHelper',
             items : {
                 compact        : {MODULE : kStringHelperCore},
                 concat         : {MODULE : kStringHelperCore},
@@ -643,7 +641,6 @@ this.o2 = this.o2 || {
             }
         },
         Supports : {
-            NAME : 'Supports',
             items : {
                 ajax   : {MODULE : kSupportsCore},
                 cookie : {MODULE : kSupportsCore},
@@ -651,13 +648,11 @@ this.o2 = this.o2 || {
             }
         },
         Template : {
-            NAME : 'Template',
             items : {
                 parse : {MODULE : kTemplateCore}
             }
         },
         Timer : {
-            NAME : 'Timer',
             items : {
                 set   : {MODULE : kTimerCore},
                 start : {MODULE : kTimerCore},
@@ -665,14 +660,12 @@ this.o2 = this.o2 || {
             }
         },
         Try : {
-            NAME : 'Try',
             items : {
                 all   : {MODULE : kTryCore},
                 these : {MODULE : kTryCore}
             }
         },
         Unit : {
-            NAME : 'Unit',
             items : {
                 add                   : {MODULE : kUnitCore},
                 assert                : {MODULE : kUnitCore},
@@ -688,7 +681,6 @@ this.o2 = this.o2 || {
             }
         },
         Validator : {
-            NAME : 'Validator',
             items : {
                 is          : {MODULE : kValidatorCore},
                 isArguments : {MODULE : kValidatorCore},
@@ -744,8 +736,8 @@ this.o2 = this.o2 || {
 //            var methodName = null;
 
             if (arguments.length === 1) {
-                objName = '';
                 methodName = objName;
+                objName = '';
             }
 //            } else {
                 //objName = name;
@@ -753,10 +745,12 @@ this.o2 = this.o2 || {
 //            }
 
             if (typeof objName !== 'string') {
+                dbg();
                 throw 'fwRequire: objName should be  a String.';
             }
 
             if (typeof methodName !== 'string') {
+                dbg();
                 throw 'fwRequire: methodName should be  a String.';
             }
 
@@ -765,40 +759,48 @@ this.o2 = this.o2 || {
             if (objName === '') {
                 var classes = fp.classes;
                 var result = null;
-                var key = null;
+                //var key = null;
 
                 if (classes.hasOwnProperty(methodName)) {
                     result = framework[methodName];
 
                     if (!result) {
-                        throw 'Class ' + key + ' has not been defined yet.';
+                        dbg();
+                        throw 'Class ' + methodName + ' not defined yet.';
                     }
+
 
                     return result;
                 }
 
-                meta = fp.classes.o2;
+                meta = fp.classes.o2.items;
 
                 if (!meta[methodName]) {
+                    dbg();
                     throw 'Method or attribute ' + methodName + ' not found in framework meta definition';
                 }
 
                 result = framework[methodName];
 
                 if (!result) {
+                    dbg();
                     throw 'fwRequire: method or attribute "'+ methodName + ' does not exist in framework.';
                 }
+
+                return result;
             }
 
-            meta = framework.classes[objName];
+            var cls = fp.classes[objName];
 
-            if (!meta) {
+            if (!cls) {
+                dbg();
                 throw 'fwRequire: Class "'+ objName + '" is not defined in meta definition.';
             }
 
-            var method = meta.items[methodName];
+            var method = cls.items[methodName];
 
             if (!method) {
+                dbg();
                 throw 'fwRequire: Class '+objName+
                     ' does not have a method '+methodName+ ' defined in meta definition.';
             }
@@ -806,12 +808,14 @@ this.o2 = this.o2 || {
             var obj = framework[objName];
 
             if (!obj) {
+                dbg();
                 throw 'fwRequire: Class "'+ objName + '" does not currently exist.';
             }
 
             var theMethod = obj[methodName];
 
             if (!theMethod) {
+                dbg();
                 throw 'fwRequire: method '+methodName+' of object '+objName+
                     ' does not exist at this time.';
             }
@@ -821,16 +825,19 @@ this.o2 = this.o2 || {
 
         init(fp, 'getAttr', function(root, name) {
             if (!root) {
+                dbg();
                 throw 'getAttr: root not found';
             }
 
             if (!name) {
+                dbg();
                 throw 'getAttr: name not provided';
             }
 
             var elem = root[name];
 
             if (!elem) {
+                dbg();
                 throw 'getAttr: root does not have an attribute '+ name;
             }
 
@@ -860,52 +867,55 @@ this.o2 = this.o2 || {
          * have a member of name `<strong>name</strong>`.
          */
         init(fp, 'create', function(name) {
-            var meta = framework.classes[name];
+            var cls = fp.classes[name];
 
-            if (!meta) {
+            if (!cls) {
+                dbg();
                 throw 'Meta definition not found for class ' + name;
             }
 
-            return [meta, namespace(framework, name)];
+            return [cls.items, namespace(framework, name)];
         });
 
         init(fp, 'construct', function(name, delegate) {
-            var meta = framework.classes[name];
+            var cls = fp.classes[name];
 
-            if (!meta) {
+            if (!cls) {
+                dbg();
                 throw 'Meta definition not found for class ' + name;
             }
 
             if (framework[name]) {
+                dbg();
                 throw 'Constructor "' + name + '" is already defined';
             }
 
             framework[name] = delegate;
 
-            return [meta, delegate];
+            return [cls.items, delegate];
         });
 
         init(fp, 'proto', function(mixed, methodName, fn) {
             var meta = mixed[0];
-            var me= mixed[1];
+            var me = mixed[1];
 
             if (!me) {
+                dbg();
                 throw 'Object not found in mixed collection';
             }
 
             if (!fn) {
+                dbg();
                 throw [kDelegateNotdefined, methodName].join(kEmpty);
             }
 
-            if (!meta.items) {
-                throw 'Meta definition of ' + meta.NAME + 'does not have any defined methods';
-            }
-
-            if (!meta.items[methodName]) {
-                throw 'Method or attribute ' + methodName + ' not found in meta definition of ' + meta.NAME;
+            if (!meta[methodName]) {
+                dbg();
+                throw 'Method or attribute ' + methodName + ' not found in meta definition.';
             }
 
             if (me.prototype[methodName]) {
+                dbg();
                 throw [kMethodAlreadyDefined, methodName].join(kEmpty);
             }
 
@@ -913,7 +923,7 @@ this.o2 = this.o2 || {
         });
 
         init(fp, 'getRoot', function() {
-            return [fp.classes.o2, framework];
+            return [fp.classes.o2.items, framework];
         });
 
         init(fp, 'define', function(mixed, name, fn) {
@@ -921,22 +931,21 @@ this.o2 = this.o2 || {
             var me= mixed[1];
 
             if (!me) {
+                dbg();
                 throw 'Object not found in mixed collection';
             }
 
             if (!fn) {
+                dbg();
                 throw [kDelegateNotdefined, name].join(kEmpty);
             }
 
             if (!meta) {
+                dbg();
                 throw 'no meta definition';
             }
 
-            if (!meta.items) {
-                throw 'no methods for ' + meta.NAME;
-            }
-
-            if (meta.items[name]) {
+            if (meta[name]) {
                 if (me[name]) {
                     throw [kMethodAlreadyDefined, name].join(kEmpty);
                 }
@@ -954,7 +963,7 @@ this.o2 = this.o2 || {
 
     //TODO: add documentation to this all and up
         init(fp, 'alias', function(mixed, aliasName, existingName) {
-            fp.addMethod(mixed, aliasName, fp.getObject(mixed)[existingName]);
+            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
         });
     }
 }(this.o2));
@@ -994,7 +1003,7 @@ this.o2 = this.o2 || {
     //  */
     // init(fp, 'require', function(obj) {
     //     if (!obj) {
-    //         //debugger;
+    //         //dbg();
 
     //         throw [
     //             framework.name,

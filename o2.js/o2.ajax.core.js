@@ -23,6 +23,10 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+
+//alert('mamamamimimimomomo');
+//debugger;
+
     /**
      * @class {static} o2.Ajax
      *
@@ -41,10 +45,13 @@
     var generateGuid  = require(kStringHelper, 'generateGuid');
     var concat        = require(kStringHelper, 'concat');
 
-    var listen = require('Eventhandler', 'addEventListener');
+    var listen = require('EventHandler', 'addEventListener');
 
     var ActiveXObject  = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
+
+
+//alert('fffffffffffffff');
 
     /*
      * Headers
@@ -69,6 +76,8 @@
         'Msxml2.XMLHTTP.3.0'
     ];
 
+//alert('ggggggggggggggg');
+
     /*
      * Event
      */
@@ -78,6 +87,8 @@
      * Error Message
      */
     var kNoXhr = 'Failed to create an XHR instance';
+
+//alert('geronimo...');
 
     /*
      * Status
@@ -392,6 +403,9 @@
         return xhr;
     }
 
+//alert('selam panpa');
+//debugger;
+
     /**
      * @function {static} o2.Ajax.abort
      *
@@ -413,6 +427,7 @@
         } catch (ignore) {
         }
     });
+
 
     /**
      * @function {static} o2.Ajax.createXhr
