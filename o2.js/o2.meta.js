@@ -94,7 +94,7 @@ this.o2 = this.o2 || {
      */
 
      /*
-      * These constants save some space during minification.
+      * These constants save some space during minification:
       */
      var kAjaxControllerCore    = 'ajaxcontroller.core';
      var kAjaxCore              = 'ajax.core';
@@ -104,6 +104,7 @@ this.o2 = this.o2 || {
      var kCookieCore            = 'cookie.core';
      var kCore                  = 'core';
      var kDebuggerCore          = 'debugger.core';
+     var kDateHelperCore        = 'datehelper.core';
      var kDomHelperConstants    = 'domhelper.constants';
      var kDomHelperCore         = 'domhelper.core';
      var kDomHelperDimension    = 'domhelper.dimension';
@@ -252,6 +253,13 @@ this.o2 = this.o2 || {
                 warn    : {MODULE : kDebuggerCore}
             }
         },
+        DateHelper : {
+            items : {
+                getPrettyDate : {MODULE : kDateHelperCore},
+                getTime       : {MODULE : kDateHelperCore},
+                now           : {MODULE : kDateHelperCore}
+            }
+        }
         DomHelper : {
             items : {
                 nodeType : {MODULE : kDomHelperConstants},

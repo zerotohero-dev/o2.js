@@ -1,5 +1,5 @@
 /**
- * @module   datehelper
+ * @module   datehelper.core
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-16 19:51:06.236222
+ *  lastModified: 2012-02-28 07:24:21.642457
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -15,54 +15,62 @@
 (function(framework) {
     'use strict';
 
-/*    var _         = framework.protecteds;
+    var _         = framework.protecteds;
     var alias     = _.alias;
     var attr      = _.getAttr;
-    var construct = _.construct;
     var create    = _.create;
     var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var require   = _.require;
 
-    function use() {
-
-    }
-
+    /**
+     * @class {static} o2.DateHelper
+     *
+     * <p>A date/time utilities class.</p>
+     */
+    var me = create('DateHelper');
     /*
      * Aliases
      */
-    var $      = use(framework.$);
-    var format = use(framework.StringHelper.format);
+
+    var $      = require('$');
+    var now    = require('now');
+
+    var format = require('StringHelper', 'format');
+
+    var math = Math;
+    var floor = attr(math, 'floor');
+    var abs   = attr(math, 'abs');
 
     /*
      * i18n
      */
-    var kSeconds = 'seconds';
-    var kOneMinuteAgo = 'a minute ago';
-    var kMinutes = 'minutes';
+
+    var kAgo              = 'ago';
+    var kCenturies        = 'centuries';
+    var kDays             = 'days';
+    var kFromNow          = 'from now';
+    var kHours            = 'hours';
+    var kJustNow          = 'just now';
+    var kLastCentury      = 'last century';
+    var kLastMonth        = 'last month';
+    var kLastWeek         = 'last week';
+    var kLastYear         = 'last year';
+    var kMinutes          = 'minutes';
+    var kMonths           = 'months';
+    var kNextCentury      = 'next century';
+    var kNextMonth        = 'next month';
+    var kNextWeek         = 'next week';
+    var kNextYear         = 'next year';
+    var kOneHourAgo       = 'an hour ago';
+    var kOneHourFromNow   = 'an hour from now';
+    var kOneMinuteAgo     = 'a minute ago';
     var kOneMinuteFromNow = 'a minute from now';
-    var kOneHourAgo = 'an hour ago';
-    var kOneHourFromNow = 'an hour from now';
-    var kHours = 'hours';
-    var kYesterday = 'yesterday';
-    var kTomorrow = 'tomorrow';
-    var kDays = 'days';
-    var kLastWeek = 'last week';
-    var kNextWeek = 'next week';
-    var kWeeks = 'weeks';
-    var kLastMonth = 'last month';
-    var kNextMonth = 'next month';
-    var kMonths = 'months';
-    var kLastYear = 'last year';
-    var kNextYear = 'next year';
-    var kYears = 'years';
-    var kLastCentury = 'last century';
-    var kNextCentury = 'next century';
-    var kCenturies = 'centuries';
-    var kAgo = 'ago';
-    var kFromNow = 'from now';
-    var kJustNow = 'just now';
+    var kSeconds          = 'seconds';
+    var kTomorrow         = 'tomorrow';
+    var kWeeks            = 'weeks';
+    var kYears            = 'years';
+    var kYesterday        = 'yesterday';
+
     var kTokenizedText = '{0} {1} {2}';
 
     /*
@@ -92,13 +100,6 @@
     var kString = 'string';
 
     /**
-     * @class {static} o2.DateHelper
-     *
-     * <p>A date/time utilities class.</p>
-     */
-    var me = framework.DateHelper = {};
-
-    /**
      * @function {static} o2.DateHelper.getPrettyDate
      *
      * <p>Prints a human-readable time string, by looking at the difference
@@ -108,14 +109,14 @@
      * @param {Integer} currTime - (Optional, default to NOW) the base time
      * in milliseconds.
      */
-    me.getPrettyDate = function(time, currTime) {
+    def(me, 'getPrettyDate', function(time, currTime) {
         var currentTime = currTime || $.now();
         var seconds = (new Date(currentTime) - new Date(time)) / 1000;
         var token = kAgo;
         var  listChoice = 1;
 
         if (seconds < 0) {
-            seconds = Math.abs(seconds);
+            seconds = abs(seconds);
             token = kFromNow;
             listChoice = 2;
         }
@@ -134,7 +135,7 @@
                 }
 
                 return format(kTokenizedText,
-                    Math.floor(seconds / currentFormat[2]),
+                    floor(seconds / currentFormat[2]),
                     currentFormat[1],
                     token
                 );
@@ -144,24 +145,18 @@
         }
 
         return time;
-    };
-
+    });
 
     /**
-     * @function {static} o2.DateHelper.getCurrentTime
+     * @function {static} o2.DateHelper.getTime
      *
      * <p>An alias to {@link o2.now}.</p>
      *
      * @see o2.now
      */
-
-    /**
-     * @function {static} o2.DateHelper.currentTime
-     *
-     * <p>An alias to {@link o2.now}.</p>
-     *
-     * @see o2.now
-     */
+    def(me, 'getTime', function() {
+        return now();
+    });
 
     /**
      * @function {static} o2.DateHelper.now
@@ -170,7 +165,5 @@
      *
      * @see o2.now
      */
-    me.now = me.currentTime = me.getCurrentTime = function() {
-        return framework.now();
-    };
+    alias(me, 'now', 'getTime');
 }(this.o2));

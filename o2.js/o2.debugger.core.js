@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 18:21:13.196346
+ *  lastModified: 2012-02-28 07:32:24.110009
  * -->
  *
  * <p>A debugging helper.</p>
@@ -42,10 +42,19 @@
     /*
      * Aliases
      */
-    var $    = require(framework.$);
-    var nill = require(framework.nill);
 
-    var console = window.console;
+    var $    = require('$');
+    var nill = require('nill');
+
+    var createElement = attr(document, 'createElement');
+
+    var console = window.console || {};
+    var error   = console.error  || nill;
+    var info    = console.info   || nill;
+    var log     = console.log    || nill;
+    var warn    = console.warn   || nill;
+
+
 
     /*
      * Configuration
@@ -91,38 +100,23 @@
     function println(text, className) {
         switch (className) {
             case kLog:
-                try {
-                    console.log(text);
-                } catch(ignore1) {
-                }
+                log(text);
 
                 break;
             case kInfo:
-                try {
-                    console.info(text);
-                } catch(ignore2) {
-                }
+                info(text);
 
                 break;
             case kWarn:
-                try {
-                    console.warn(text);
-                } catch(ignore3) {
-                }
+                warn(text);
 
                 break;
             case kError:
-                try {
-                    console.error(text);
-                } catch(ignore4) {
-                }
+                error(text);
 
                 break;
             default:
-                try {
-                    console.log(text);
-                } catch(ignore5) {
-                }
+                log(text);
 
                 break;
         }
@@ -147,8 +141,7 @@
 
             if (isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = document.createElement(
-                        kDefaultContainer);
+                    var debugContent = createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -162,8 +155,7 @@
                 };
             } else if (!isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = document.createElement(
-                        kDefaultContainer);
+                    var debugContent = createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -270,7 +262,7 @@
         // the console.
         // If I can use neither of them, then it's a fatal situation.
         var isConfigOk = ((outputNode && outputNode.nodeName) ||
-            isUsingConsole);
+                    isUsingConsole);
 
         if (!isConfigOk) {
             throw kCannotInitialize;
