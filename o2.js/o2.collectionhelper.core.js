@@ -41,6 +41,10 @@
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 
+
+//////////////////////////
+    var slice = Array.prototype.slice;
+
     var isArray  = require('Validator', 'isArray');
 
     /*
@@ -109,15 +113,6 @@
 
         return theCopy;
     });
-
-  // Invokes interceptor with the obj, and then returns obj.
-  // The primary purpose of this method is to "tap into" a method chain, in
-  // order to perform operations on intermediate results within the chain.
-//  _.tap = touch = function(obj, interceptor) {
- //   interceptor(obj);
-  //  return obj;
-  //};
-
 
     /**
      * @function {static} o2.CollectionHelper.clone
@@ -532,9 +527,6 @@
 
         return store;
     });
-
-//////////////////////////
-    var slice = Array.prototype.slice;
 
     /**
      * @function {static} o2.CollectionHelper.diff
