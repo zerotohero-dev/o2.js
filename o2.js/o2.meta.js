@@ -17,7 +17,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 21:44:34.259972
+ *  lastModified: 2012-02-29 08:18:08.993166
  * -->
  *
  * <p>Meta information.</p>
@@ -39,8 +39,17 @@ this.o2 = this.o2 || {
      */
     function dbg() {
 
-        // eval is "evil".
-        // and this is one in a millon legitimate uses of that evil ;)
+        // We need to stop execution and observe what went wrong if an invalid
+        // assignment happens while construcing the framework. The only way we
+        // can achieve this is using the "debugger;" statement. And if we do not
+        // encapsulate the "debugger;" statement with "eval", YUICompressor
+        // whines about it and does not compress the code.
+        //
+        // Also JSLint, rightfully, warns about the below eval usage, but
+        // there's no other way around.
+        //
+        // All in all, "eval is 'evil'; and the below ("eval('debugger');")
+        // decleration is a rare and legitimate usage of that evil ;)
         eval('debugger');
     }
 
@@ -121,6 +130,7 @@ this.o2 = this.o2 || {
      var kExtend                = 'extend';
      var kFormHelperCore        = 'formhelper.core';
      var kJsonpCore             = 'jsonp.core';
+     var kJsonpControllerCore   = 'jsonpcontroller.core';
      var kJsonpStateCore        = 'jsonpstate.core';
      var kMethodHelperCore      = 'methodhelper.core';
      var kMethodHelperEvent     = 'methodhelper.event';
@@ -275,7 +285,7 @@ this.o2 = this.o2 || {
                 getTime       : {MODULE : kDateHelperCore},
                 now           : {MODULE : kDateHelperCore}
             }
-        }
+        },
         DomHelper : {
             items : {
                 nodeType : {MODULE : kDomHelperConstants},
@@ -616,10 +626,21 @@ this.o2 = this.o2 || {
             items : {
                 get : {MODULE : kJsonpCore}
             }
-        }
-        JsonpState : {
+        },
+        JsonpController : {
+            base  : 'AjaxController',
             items : {
-                protecteds : {MODULE : kJsonpStateCore}
+                protecteds : {MODULE : kJsonpControllerCore}
+            }
+        },
+        JsonpState : {
+            base  : 'AjaxState',
+            items : {
+                protecteds : {MODULE : kJsonpStateCore},
+
+                // overrides:
+                update     : {MODULE : kJsonpStateCore},
+                unregister : {MODULE : kJsonpStateCore}
             }
         },
         MethodHelper : {
@@ -982,6 +1003,34 @@ this.o2 = this.o2 || {
             if (me.prototype[methodName]) {
                 dbg();
                 throw [kMethodAlreadyDefined, methodName].join(kEmpty);
+            }
+
+            me.prototype[methodName] = fn;
+        });
+
+
+        init(fp, 'override', function(mixed, methodName, fn) {
+            var meta = mixed[0];
+            var me = mixed[1];
+
+            if (!me) {
+                dbg();
+                throw 'Object not found in mixed collection';
+            }
+
+            if (!fn) {
+                dbg();
+                throw [kDelegateNotdefined, methodName].join(kEmpty);
+            }
+
+            if (!meta[methodName]) {
+                dbg();
+                throw 'Method or attribute ' + methodName + ' not found in meta definition.';
+            }
+
+            if (!me.prototype[methodName]) {
+                dbg();
+                throw 'No method' + methodName + ' to override';
             }
 
             me.prototype[methodName] = fn;

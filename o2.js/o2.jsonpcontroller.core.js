@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-16 13:19:12.065723
+ *  lastModified: 2012-02-29 08:41:39.580152
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -19,15 +19,11 @@
 (function(framework, window) {
     'use strict';
 
-//    var _         = framework.protecteds;
-/*    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var construct = attr(_, 'construct');
+    var override  = attr(_, 'override');
+    var require   = attr(_, 'require');
 
     /*
      * Aliases
@@ -74,16 +70,12 @@
      */
     var purgeQueue = [];
 
-    var base = attr(framework, 'AjaxController');
-    var self = attr(framework, 'JsonpController');
+    var base = require('AjaxController');
+    var self = require('JsonpController');
 
-    // A quick way of inheriting methods.
+    // A quick way of inheriting methods without constructing base
+    // (i.e. without the `self.prototype = new base();` assignment).
     copyMethods(self.prototype, base.prototype);
-
-    /*
-     *
-     */
-    var sp = self.prototype;
 
     /**
      * @function {override} o2.JsonpController.update
@@ -97,13 +89,13 @@
      *
      * @see o2.AjaxController.update
      */
-    sp.update = function(data) {
+    override(me, 'update', function(data) {
         if (!data.isTimedOut) {
             return;
         }
 
         // Unregister self from the observable.
-        this.unregister(observable);
+        this.unregister(state);
 
         // Abort the request.
         window[this.jsonp] = nill;
@@ -117,7 +109,7 @@
 
         // Execute callback.
         this.ontimeout();
-    };
+    });
 
     /**
      * @function {override} o2.JsonpController.unregister
@@ -127,12 +119,11 @@
      * <p>Unregisters this object from its associated observable.
      * (<em>i.e. <strong>JsonpState</strong></em>)</p>
      */
-    sp.unregister = function() {
+    override(me, 'unregister', function() {
         if (this.isDeleted) {
             return;
         }
 
         state.deleteObserver(this);
-    };
-
+    });
 }(this.o2, this));

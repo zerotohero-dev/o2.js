@@ -23,7 +23,6 @@
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
     var require   = attr(_, 'require');
 
     /**
@@ -33,24 +32,31 @@
      * <p>Implements all public methods of {@link AjaxState} for
      * <strong>JSONP</strong> requests.</p>
      */
-    var me     = create('JsonpState');
-    var myself = obj(me);
+    var me = create('JsonpState');
 
     /*
      * Aliases
      */
 
-    var copyFn   = require('ObjectHelper', 'copyMethods');
-    var copyAttr = require('ObjectHelper', 'copy');
+    var kObjectHelper = 'ObjectHelper';
+    var copyFn        = require(kObjectHelper, 'copyMethods');
+    var copyAttr      = require(kObjectHelper, 'copy');
+
     /*
-     * Base Class
+     * Inheritance
      */
-    var base           = require('AjaxState');
-    var baseProtecteds = require('AjaxState', 'protecteds');
 
-    def(me, 'protecteds', {});
+    var kBaseName   = 'AjaxState';
+    var kMyName     = 'JsonpState';
+    var kProtecteds = 'protecteds';
 
-    var myProtecteds = require('JsonpState', 'protecteds');
+    def(me, kProtecteds, {});
+
+    var base   = require(kBaseName);
+    var myself = require(kMyName);
+
+    var baseProtecteds = require(kBaseName, kProtecteds);
+    var myProtecteds   = require(kMyName, kProtecteds);
 
     copyFn(myself, base);
     copyAttr(myProtecteds, baseProtecteds);
