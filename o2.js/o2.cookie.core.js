@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 17:29:12.323204
+ *  lastModified: 2012-02-28 19:08:38.133157
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -146,7 +146,7 @@
      * @param {Boolean} isSecure - (optional) will the cookie be used for a
      * secure connection.
      */
-    def(me, 'remove' = function(name, path, domain) {
+    def(me, 'remove', function(name, path, domain) {
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     });
 

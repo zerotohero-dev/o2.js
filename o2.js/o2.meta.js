@@ -108,9 +108,19 @@ this.o2 = this.o2 || {
      var kDomHelperConstants    = 'domhelper.constants';
      var kDomHelperCore         = 'domhelper.core';
      var kDomHelperDimension    = 'domhelper.dimension';
+     var kDomHelperForm         = 'domhelper.form';
+     var kDomHelperLoad         = 'domhelper.load';
+     var kDomHelperModify       = 'domhelper.modify';
+     var kDomHelperReady        = 'domhelper.ready';
+     var kDomHelperScroll       = 'domhelper.scroll';
+     var kDomHelperStyle        = 'domhelper.style';
      var kDomHelperTraverse     = 'domhelper.traverse';
+     var kEventHandlerConstants = 'eventhandler.constants';
      var kEventHandlerCore      = 'eventhandler.core';
+     var kEventHandlerExtend    = 'eventhandler.extend';
+     var kExtend                = 'extend';
      var kFormHelperCore        = 'formhelper.core';
+     var kJsonpCore             = 'jsonp.core';
      var kJsonpStateCore        = 'jsonpstate.core';
      var kMethodHelperCore      = 'methodhelper.core';
      var kMethodHelperEvent     = 'methodhelper.event';
@@ -146,7 +156,13 @@ this.o2 = this.o2 || {
                 now        : {MODULE : kCore},
                 ready      : {MODULE : kCore},
                 url        : {MODULE : kCore},
-                version    : {MODULE : kCore}
+                version    : {MODULE : kCore},
+
+                n  : {MODULE : kExtend},
+                nn : {MODULE : kExtend},
+                t  : {MODULE : kExtend},
+                tt : {MODULE : kExtend}
+
             }
         },
         Ajax : {
@@ -298,9 +314,39 @@ this.o2 = this.o2 || {
                 setDimension            : {MODULE : kDomHelperDimension},
                 setHeight               : {MODULE : kDomHelperDimension},
                 setWidth                : {MODULE : kDomHelperDimension},
-                windowInnerDimension    : {MODULE : kDomHelperDimension},
-                windowInnerHeight       : {MODULE : kDomHelperDimension},
-                windowInnerWidth        : {MODULE : kDomHelperDimension},
+
+                compactField : {MODULE : kDomHelperForm},
+                trimField    : {MODULE : kDomHelperForm},
+
+                loadCss    : {MODULE : kDomHelperLoad},
+                loadImage  : {MODULE : kDomHelperLoad},
+                loadScript : {MODULE : kDomHelperLoad},
+
+                replace : {MODULE : kDomHelperModify},
+                unwrap  : {MODULE : kDomHelperModify},
+                wrap    : {MODULE : kDomHelperModify},
+
+                ready : {MODULE : kDomHelperReady},
+
+                getObjectScrollOfset  : {MODULE : kDomHelperScroll},
+                getScrollOffset       : {MODULE : kDomHelperScroll},
+                getWindowScrollOffset : {MODULE : kDomHelperScroll},
+                scrollObjectToBottom  : {MODULE : kDomHelperScroll},
+                scrollObjectToTop     : {MODULE : kDomHelperScroll},
+                scrollTo              : {MODULE : kDomHelperScroll},
+                scrollToObject        : {MODULE : kDomHelperScroll},
+                scrollWindowToBottom  : {MODULE : kDomHelperScroll},
+                scrollWindowToObject  : {MODULE : kDomHelperScroll},
+                scrollWindowToTop     : {MODULE : kDomHelperScroll},
+
+                activateAlternateStylesheet : {MODULE : kDomHelperStyle},
+                addCssRules                 : {MODULE : kDomHelperStyle},
+                addStyle                    : {MODULE : kDomHelperStyle},
+                getStyle                    : {MODULE : kDomHelperStyle},
+                hide                        : {MODULE : kDomHelperStyle},
+                isVisible                   : {MODULE : kDomHelperStyle},
+                show                        : {MODULE : kDomHelperStyle},
+                toggleVisibility            : {MODULE : kDomHelperStyle},
 
                 getChildren                   : {MODULE : kDomHelperTraverse},
                 getChildrenByAttribute        : {MODULE : kDomHelperTraverse},
@@ -540,6 +586,8 @@ this.o2 = this.o2 || {
         },
         EventHandler : {
             items : {
+                keyCode : {MODULE : kEventHandlerConstants},
+
                 addEventListener    : {MODULE : kEventHandlerCore},
                 addEventListeners   : {MODULE : kEventHandlerCore},
                 getEventObject      : {MODULE : kEventHandlerCore},
@@ -548,7 +596,15 @@ this.o2 = this.o2 || {
                 getTarget           : {MODULE : kEventHandlerCore},
                 preventDefault      : {MODULE : kEventHandlerCore},
                 removeEventListener : {MODULE : kEventHandlerCore},
-                stopPropagation     : {MODULE : kEventHandlerCore}
+                stopPropagation     : {MODULE : kEventHandlerCore},
+
+                isArrowKey               : {MODULE : kEventHandlerExtend},
+                isBackspaceKey           : {MODULE : kEventHandlerExtend},
+                isCharacterKeypressEvent : {MODULE : kEventHandlerExtend},
+                isEnterKey               : {MODULE : kEventHandlerExtend},
+                isEscapeKey              : {MODULE : kEventHandlerExtend},
+                isRightClick             : {MODULE : kEventHandlerExtend},
+                isTabKey                 : {MODULE : kEventHandlerExtend}
             }
         },
         FormHelper : {
@@ -556,6 +612,11 @@ this.o2 = this.o2 || {
                 preventMultipleSubmit : {MODULE : kFormHelperCore}
             }
         },
+        Jsonp : {
+            items : {
+                get : {MODULE : kJsonpCore}
+            }
+        }
         JsonpState : {
             items : {
                 protecteds : {MODULE : kJsonpStateCore}

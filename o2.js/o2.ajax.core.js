@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 19:54:26.436817
+ *  lastModified: 2012-02-28 18:51:58.286003
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -22,10 +22,6 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
-
-
-//alert('mamamamimimimomomo');
-//debugger;
 
     /**
      * @class {static} o2.Ajax
@@ -50,9 +46,6 @@
     var ActiveXObject  = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;
 
-
-//alert('fffffffffffffff');
-
     /*
      * Headers
      */
@@ -76,8 +69,6 @@
         'Msxml2.XMLHTTP.3.0'
     ];
 
-//alert('ggggggggggggggg');
-
     /*
      * Event
      */
@@ -88,14 +79,12 @@
      */
     var kNoXhr = 'Failed to create an XHR instance';
 
-//alert('geronimo...');
-
     /*
      * Status
      */
-    var kCached  = 304;
+    var kCached   = 304;
     var kComplete = 4;
-    var kOk      = 200;
+    var kOk       = 200;
 
     /*
      * Verb
@@ -403,9 +392,6 @@
         return xhr;
     }
 
-//alert('selam panpa');
-//debugger;
-
     /**
      * @function {static} o2.Ajax.abort
      *
@@ -427,7 +413,6 @@
         } catch (ignore) {
         }
     });
-
 
     /**
      * @function {static} o2.Ajax.createXhr

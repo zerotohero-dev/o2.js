@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 17:48:57.605808
+ *  lastModified: 2012-02-28 12:06:04.851535
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>

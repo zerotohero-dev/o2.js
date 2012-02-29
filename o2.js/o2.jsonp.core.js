@@ -1,5 +1,5 @@
 /**
- * @module   jsonp
+ * @module   jsonp.core
  * @requires core
  * @requires stringhelper.core
  *
@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 08:57:50.420299
+ *  lastModified: 2012-02-28 21:26:59.448996
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -16,34 +16,29 @@
 (function(framework, window, document) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
-
-    function define() {}
-    function use(stuff) { return stuff;}
-
-    var kObjectName = 'Jsonp';
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /**
      * @class {static} o2.Jsonp
      *
      * <p>An object to make <strong>JSONP</strong> calls.</p>
      */
-    var me = define(framework, kObjectName);
+    var me = create('Jsonp');
 
     /*
      * Aliases
      */
-    var myName = use(framework.name);
-    var concat = use(framework.StringHelper.concat);
-    var nill = use(framework.nill);
+    var myName = require('name');
+    var nill   = require('nill');
+
+    var concat = require('StringHelper', 'concat');
+
+    var createElement        = attr(document, 'createElement');
+    var getElementsByTagName = attr(document, 'getElementsByTagName');
 
     /*
      * State
@@ -53,22 +48,22 @@
     /*
      * Common Constants
      */
-    var kScript = 'script';
-    var kLoaded = 'loaded';
-    var kHead = 'head';
-    var kQuery = '?';
-    var kEquals = '=';
-    var kAnd = '&';
-    var kJson = concat(myName, '_json_');
+    var kAnd      = '&';
     var kCallback = 'callback';
+    var kEquals   = '=';
+    var kHead     = 'head';
+    var kJson     = concat(myName, '_json_');
+    var kLoaded   = 'loaded';
+    var kQuery    = '?';
+    var kScript   = 'script';
 
     /*
      *
      */
     function load(url) {
-        var script = document.createElement(kScript);
+        var script = createElement(kScript);
+        var head = getElementsByTagName(kHead)[0];
         var done = false;
-        var head = document.getElementsByTagName(kHead)[0];
 
         script.async = true;
         script.src = url;
@@ -117,7 +112,7 @@
      * @param {Function} callback - callback to execute after
      * <strong>JSONP</strong> arrives.
      */
-    me.get = function(url, params, callback) {
+    def(me, 'get', function(url, params, callback) {
         var query = createQuery(params);
         var jsonp = concat(kJson, (++counter));
 
@@ -133,5 +128,5 @@
         load(concat(url, kQuery, query, kCallback, kEquals, jsonp));
 
         return jsonp;
-    };
+    });
 }(this.o2, this, this.document));

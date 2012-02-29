@@ -1,5 +1,5 @@
 /**
- * @module   formhelper
+ * @module   formhelper.core
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 18:01:14.768561
+ *  lastModified: 2012-02-28 21:21:03.136605
  * -->
  *
  * <p>A <strong>HTML</strong> form helper module.</p>

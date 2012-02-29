@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 19:40:18.378252
+ *  lastModified: 2012-02-28 19:11:35.077547
  * -->
  *
  * <p>A validation helper.</p>

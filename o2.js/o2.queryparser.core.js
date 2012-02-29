@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:00:45.869140
+ *  lastModified: 2012-02-28 18:30:13.509642
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>

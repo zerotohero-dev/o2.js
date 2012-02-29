@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-21 13:33:48.512222
+ *  lastModified: 2012-02-28 18:35:25.711423
  * -->
  *
  * <p>Constant definitions for {@link o2.DomHelper}.</p>
@@ -15,21 +15,11 @@
 (function(framework) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;
-*/
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
 
-framework = null;
-function create() {
-
-}
 
     /**
      * @class {static} o2.DomHelper
@@ -43,7 +33,7 @@ function create() {
      *
      * <code>DOM</code> node types.
      */
-    me.nodeType = {
+    def(me, 'nodeType', {
 
         /**
          * @property {static const Integer}
@@ -117,5 +107,5 @@ function create() {
          * o2.DomHelper.nodeType.NOTATION - notation.
          */
         NOTATION : 12
-    };
+    });
 }(this.o2));

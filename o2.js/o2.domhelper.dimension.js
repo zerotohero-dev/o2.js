@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 07:32:52.799141
+ *  lastModified: 2012-02-28 12:11:37.290683
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -19,9 +19,10 @@
     'use strict';
 
     var _         = framework.protecteds;
-    var create    = _.create;
-    var def       = _.define;
-    var require   = _.require;
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /*
      * DomHelper (dimension)
@@ -38,7 +39,7 @@
 
     var setStyle = require('DomHelper', 'setStyle');
 
-    var self = window.self;
+    var self = attr(window, 'self');
 
     /*
      * Common Constants
@@ -86,10 +87,7 @@
         obj = $(obj);
 
         if (!obj || obj.offsetWidth === undefined) {
-            return {
-                width : 0,
-                height : 0
-            };
+            return {width : 0, height : 0};
         }
 
         return {

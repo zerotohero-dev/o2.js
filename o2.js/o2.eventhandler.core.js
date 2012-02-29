@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 18:07:49.576353
+ *  lastModified: 2012-02-28 19:23:16.169497
  * -->
  *
  * <p>A cross-browser event management object.</p>

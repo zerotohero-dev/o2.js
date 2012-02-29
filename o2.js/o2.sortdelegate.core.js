@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 14:09:10.760653
+ *  lastModified: 2012-02-28 18:48:54.602376
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.

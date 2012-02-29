@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 07:43:56.380392
+ *  lastModified: 2012-02-28 16:53:48.901649
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -17,158 +17,26 @@
 (function(framework, window, document) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;
-*/
+    var alias     = attr(_, 'alias');
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-function use() {}
+    /*
+     * DomHelper (scroll)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
-    var $ = use(framework.$);
 
-    var de = document.documentElement;
-    var scrollTo = window.scrollTo;
+    var $ = require('$');
 
-    if (de) {
-
-        /**
-         * @function {static} o2.DomHelper.scrollWindowToBottom
-         *
-         * <p>Scrolls window to bottom.</p>
-         */
-        me.scrollWindowToBottom = function() {
-            var db = document.body;
-
-            if (!db) {
-                return;
-            }
-
-            db.scrollTop = db.scrollHeight;
-            de.scrollTop = de.scrollHeight;
-        };
-    } else {
-        me.scrollWindowToBottom = function() {
-            var db = document.body;
-
-            if (!db) {
-                return;
-            }
-
-            db.scrollTop = db.scrollHeight;
-        };
-    }
-
-    if (de) {
-
-        /**
-         * @function {static} o2.DomHelper.scrollWindowToTop
-         *
-         * <p>Scrolls window to top.</p>
-         */
-        me.scrollWindowToTop = function() {
-            var db = document.body;
-
-            if (!db) {
-                return;
-            }
-
-            db.scrollTop = 0;
-            de.scrollTop = 0;
-        };
-    } else {
-        me.scrollWindowToTop = function() {
-            var db = document.body;
-
-            if (!db) {
-                return;
-            }
-
-            db.scrollTop = 0;
-        };
-    }
-
-    /**
-     * @function {static} o2.DomHelper.scrollObjectToTop
-     *
-     * <p>Scrolls an element to top.</p>
-     *
-     * @param {Object} obj - the element, or the <strong>id</strong> of the
-     * element, to scroll.
-     */
-    me.scrollObjectToTop = function(obj) {
-        obj = $(obj);
-
-        if (!obj) {
-            return;
-        }
-
-        obj.scrollTop = 0;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.scrollObjectToBottom
-     *
-     * <p>Scrolls an element to bottom.</p>
-     *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-     * scroll.
-     */
-    me.scrollObjectToBottom = function(obj) {
-        obj = $(obj);
-
-        if (!obj) {
-            return;
-        }
-
-        obj.scrollTop = obj.scrollHeight;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.scrollWindowToObject
-     *
-     * <p>Scrolls the window to the object's offset position..</p>
-     *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-     * scroll, or an <code>Object</code> in the form
-     * <code>{left : leftPx, top : topPx}</code>.
-     */
-
-    /**
-     * @function {static} o2.DomHelper.scrollToObject
-     *
-     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
-     *
-     * @see o2.DomHelper.scrollWindowToObject
-     */
-
-    /**
-     * @function {static} o2.DomHelper.scrollTo
-     *
-     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
-     *
-     * @see o2.DomHelper.scrollWindowToObject
-     */
-    me.scrollTo = me.scrollToObject = me.scrollWindowToObject = function(obj) {
-        obj = $(obj);
-
-        if (!obj) {
-            return;
-        }
-
-        var offset = me.getOffset(obj);
-
-        scrollTo(offset.left, offset.top);
-    };
+    var de       = document.documentElement;
+    var scrollTo = attr(window, 'scrollTo');
 
     if(de) {
 
@@ -180,7 +48,7 @@ function use() {}
          * @return the the <strong>window</strong>'s scroll offset in the form
          * <code>{left: l, top: t}</code>.
          */
-        me.getWindowScrollOffset = function() {
+        def(me, 'getWindowScrollOffset', function() {
             var db = document.body;
 
             var left = 0;
@@ -200,9 +68,9 @@ function use() {}
                 left : left,
                 top : top
             };
-        };
+        });
     } else {
-        me.getWindowScrollOffset = function() {
+        def(me, 'getWindowScrollOffset', function() {
             var db = document.body;
 
             var left = 0;
@@ -219,8 +87,13 @@ function use() {}
                 left : left,
                 top : top
             };
-        };
+        });
     }
+
+    /*
+     *
+     */
+    var getWindowScrollOffset = require('DomHelper', 'getWindowScrollOffset');
 
     /**
      * @function {static} o2.DomHelper.getObjectScrollOfset
@@ -233,6 +106,18 @@ function use() {}
      * @return the the <strong>DOM</strong> object's scroll offset in the form
      * <code>{left: l, top: t}</code>.
      */
+    def(me, 'getObjectScrollOfset', function(obj) {
+        var item = $(obj);
+
+        if (obj === window) {
+            return getWindowScrollOffset(item);
+        }
+
+        return {
+            left : item.scrollLeft,
+            top : item.scrollTop
+        };
+    });
 
     /**
      * @function {static} o2.DomHelper.getStrollOffset
@@ -241,13 +126,160 @@ function use() {}
      *
      * @see {o2.DomHelper.getObjectScrollOffset}
      */
-    me.scrollOffset = me.getScrollOffset = me.getObjectScrollOfset = function(
-                obj) {
-        var item = $(obj);
+    alias(me, 'getScrollOffset', 'getObjectScrollOfset');
 
-        return {
-            left : item.scrollLeft,
-            top : item.scrollTop
-        };
-    };
+    if (de) {
+
+        /**
+         * @function {static} o2.DomHelper.scrollWindowToBottom
+         *
+         * <p>Scrolls window to bottom.</p>
+         */
+        def(me, 'scrollWindowToBottom', function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
+            db.scrollTop = db.scrollHeight;
+            de.scrollTop = de.scrollHeight;
+        });
+    } else {
+        def(me, 'scrollWindowToBottom', function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
+            db.scrollTop = db.scrollHeight;
+        });
+    }
+
+    /*
+     *
+     */
+    var scrollWindowToBottom = require('DomHelper', 'scrollWindowToBottom');
+
+    if (de) {
+
+        /**
+         * @function {static} o2.DomHelper.scrollWindowToTop
+         *
+         * <p>Scrolls window to top.</p>
+         */
+        def(me, 'scrollWindowToTop', function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
+            db.scrollTop = 0;
+            de.scrollTop = 0;
+        });
+    } else {
+        def(me, 'scrollWindowToTop', function() {
+            var db = document.body;
+
+            if (!db) {
+                return;
+            }
+
+            db.scrollTop = 0;
+        });
+    }
+
+    /*
+     *
+     */
+    var scrollWindowToTop = require('DomHelper', 'scrollWindowToTop');
+
+    /**
+     * @function {static} o2.DomHelper.scrollObjectToTop
+     *
+     * <p>Scrolls an element to top.</p>
+     *
+     * @param {Object} obj - the element, or the <strong>id</strong> of the
+     * element, to scroll.
+     */
+    def(me, 'scrollObjectToTop' = function(obj) {
+        obj = $(obj);
+
+        if (!obj) {
+            return;
+        }
+
+        if(obj === window) {
+            scrollWindowToTop();
+        }
+
+        obj.scrollTop = 0;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.scrollObjectToBottom
+     *
+     * <p>Scrolls an element to bottom.</p>
+     *
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+     * scroll.
+     */
+    def(me, 'scrollObjectToBottom', function(obj) {
+        obj = $(obj);
+
+        if (!obj) {
+            return;
+        }
+
+        if (obj === window) {
+            scrollWindowToBottom();
+        }
+
+        obj.scrollTop = obj.scrollHeight;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.scrollTo
+     *
+     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * @see o2.DomHelper.scrollWindowToObject
+     */
+    def(me, 'scrollTo', function(obj) {
+        obj = $(obj);
+
+        if (!obj) {
+            return;
+        }
+
+        if (obj === window) {
+            return;
+        }
+
+        var offset = me.getOffset(obj);
+
+        scrollTo(offset.left, offset.top);
+    });
+
+    /**
+     * @function {static} o2.DomHelper.scrollWindowToObject
+     *
+     * <p>Scrolls the window to the object's offset position..</p>
+     *
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+     * scroll, or an <code>Object</code> in the form
+     * <code>{left : leftPx, top : topPx}</code>.
+     */
+    alias(me, 'scrollWindowToObject', 'scrollTo');
+
+    /**
+     * @function {static} o2.DomHelper.scrollToObject
+     *
+     * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * @see o2.DomHelper.scrollWindowToObject
+     */
+    alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this, this.document));

@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 19:31:38.170791
+ *  lastModified: 2012-02-28 18:54:41.821501
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -30,8 +30,6 @@
     var nill = require('nill');
 
     var state = require('AjaxState');
-
-    var deleteObserver = require('AjaxState', 'deleteObserver');
 
     /**
      * @class o2.AjaxController
@@ -65,10 +63,12 @@
     });
 
     /**
-     * @function {protected} o2.AjaxController.update
+     * @function {virtual} o2.AjaxController.update
      *
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>
+     *
+     * <p>{@link o2.JsonpController} overrides this implementation.</p>
      *
      * @param {Object} data - parameters passed from the <code>Observable</code>
      * to this <code>Observer</code>.
@@ -89,17 +89,19 @@
     });
 
     /**
-     * @function o2.AjaxController.unregister
+     * @function {virtual} o2.AjaxController.unregister
      *
      * <p>Unregisters the object from the observer.</p>
      * <p>Call this when the <strong>AJAX</strong> request completes.</p>
+     *
+     * <p>{@link o2.JsonpController} overrides this implementation.</p>
      */
     proto(me, 'unregister', function() {
         if (this.isDeleted) {
             return;
         }
 
-        deleteObserver.apply(state, [this]);
+        state.deleteObserver(this);
     });
 }(this.o2, this));
 

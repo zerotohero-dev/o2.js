@@ -29,21 +29,15 @@
     var proto     = _.proto;
     var require   = _.require;*/
 
-    function use() {
-
-    }
-
     /*
      * Aliases
      */
-    var nill = use(framework.nill);
-    var state = use(framework.JsonpState);
-    var copyMethods = use(framework.ObjectHelper.copyMethods);
 
-    /*
-     * State
-     */
-    var purgeQueue = [];
+    var nill = require('nill');
+
+    var state = require('JsonpState');
+
+    var copyMethods = require('ObjectHelper', 'copyMethods');
 
     /**
      * @class o2.JsonpController
@@ -66,25 +60,35 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    framework.JsonpController = function(jsonp, args) {
+    var me = construct('JsonpController', function(jsonp, args) {
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
 
         // Register self.
         state.addObserver(this);
-    };
+    });
 
-    var base = use(framework.AjaxController);
-    var me = framework.JsonpController;
+    /*
+     * State
+     */
+    var purgeQueue = [];
+
+    var base = attr(framework, 'AjaxController');
+    var self = attr(framework, 'JsonpController');
 
     // A quick way of inheriting methods.
-    copyMethods(me.prototype, base.prototype);
+    copyMethods(self.prototype, base.prototype);
+
+    /*
+     *
+     */
+    var sp = self.prototype;
 
     /**
-     * @function o2.JsonpController.update
+     * @function {override} o2.JsonpController.update
      *
-     * Overloaded from {@link o2.AjaxController.update}
+     * <p>Overrides {@link o2.AjaxController.update}.</p>
      *
      * @param {JsonpState} observable - the <code>Observable</code> state
      * object.
@@ -93,7 +97,7 @@
      *
      * @see o2.AjaxController.update
      */
-    me.prototype.update = function(observable, data) {
+    sp.update = function(data) {
         if (!data.isTimedOut) {
             return;
         }
@@ -114,4 +118,21 @@
         // Execute callback.
         this.ontimeout();
     };
+
+    /**
+     * @function {override} o2.JsonpController.unregister
+     *
+     * <p>Overrides {@link o2.AjaxController.unregister}.</p>
+     *
+     * <p>Unregisters this object from its associated observable.
+     * (<em>i.e. <strong>JsonpState</strong></em>)</p>
+     */
+    sp.unregister = function() {
+        if (this.isDeleted) {
+            return;
+        }
+
+        state.deleteObserver(this);
+    };
+
 }(this.o2, this));

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 01:45:04.070027
+ *  lastModified: 2012-02-28 18:49:53.875048
  * -->
  *
  * <p>A <code>String</code> helper.</p>

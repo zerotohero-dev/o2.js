@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 01:38:49.999133
+ *  lastModified: 2012-02-28 19:09:38.637295
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation

@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:32:00.832571
+ *  lastModified: 2012-02-28 12:22:39.902763
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -17,49 +17,26 @@
 (function(framework) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-    var me = framework.accept(framework.classes.DOM_HELPER);
+    /*
+     * DomHelper (form)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var use = framework.require;
-    var $ = use(framework.$);
-    var compact = use(framework.StringHelper.compact);
-    var trim = use(framework.StringHelper.trim);
 
-    /**
-     * @function {static} o2.DomHelper.trimField
-     *
-     * <p>Trims a given field, and returns the trimmed value.</p>
-     *
-     * @param {Object} field - the field to be trimmed, or its
-     * <strong>id</strong>.
-     *
-     * @return field's trimmed value.
-     *
-     * @see o2.StringHelper.trim
-     */
-    me.trimField = function(field) {
-        field = $(field);
+    var $ = require('$');
 
-        if (!field) {
-            return null;
-        }
-
-        field.value = trim(field.value);
-
-        return field.value;
-    };
+    var kStringHelper = 'StringHelper';
+    var compact       = require(kStringHelper, 'compact');
+    var trim          = require(kStringHelper, 'trim');
 
     /**
      * @function {static} o2.DomHelper.compactField
@@ -69,11 +46,12 @@
      * @param {Object} field - the field to be compacted, or its
      * <strong>id</strong>.
      *
-     * @return field's compacted value.
+     * @return field's compacted value; or <code>null</code> if the field
+     * does not exist.
      *
      * @see o2.StringHelper.compact
      */
-    me.compactField = function(field) {
+    def(me, 'compactField', function(field) {
         field = $(field);
 
         if (!field) {
@@ -83,5 +61,30 @@
         field.value = compact(field.value);
 
         return field.value;
-    };
+    });
+
+    /**
+     * @function {static} o2.DomHelper.trimField
+     *
+     * <p>Trims a given field, and returns the trimmed value.</p>
+     *
+     * @param {Object} field - the field to be trimmed, or its
+     * <strong>id</strong>.
+     *
+     * @return field's trimmed value; or <code>null</code> if the field
+     * does not exist.
+     *
+     * @see o2.StringHelper.trim
+     */
+    def(me, 'trimField', function(field) {
+        field = $(field);
+
+        if (!field) {
+            return null;
+        }
+
+        field.value = trim(field.value);
+
+        return field.value;
+    });
 }(this.o2));

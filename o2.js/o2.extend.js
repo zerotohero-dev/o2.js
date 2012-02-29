@@ -1,13 +1,14 @@
 /**
  * @module   extend
  * @requires core
+ * @requires domhelper.traverse
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 00:06:37.854306
+ *  lastModified: 2012-02-28 21:15:11.004055
  * -->
  *
  * Extension functions.
@@ -15,45 +16,26 @@
 (function(framework, document) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
+    var root      = attr(_, 'getRoot');
 
-    function use() {}
-
-    var getElementsByName = document.getElementsByName;
+    /*
+     * framework (extend)
+     */
+    var me = root();
 
     /*
      * Aliases
      */
-    var $ = use(framework.$);
 
-    /**
-     * @function {static} o2.t
-     *
-     * <p>A <code>getElementsByTagName</code> wrapper.</p>
-     *
-     * @param {String} tagName - the name of the tag to search.
-     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
-     * the parent container, or the id of the parent container, to search.
-     *
-     * @return a collection of matching elements.
-     */
-    framework.t = function(tagName, parent) {
-        var p = $(parent || document);
+    var $ = require('$');
 
-        if (!p) {
-            return null;
-        }
+    var isParent = require('DomHelper', 'isParent');
 
-        return p.getElementsByTagName(tagName);
-    };
+    var getElementsByName = attr(document, 'getElementsByName');
 
     /**
      * @function {static} o2.n
@@ -66,11 +48,10 @@
      *
      * @return a collection of matching elements.
      */
-    framework.n = function(name, parent) {
+    def(me, 'n', function(name, parent) {
         var collection = getElementsByName(name);
         var i = 0;
         var len = 0;
-        var isParent = framework.DomHelper.isParent;
         var result = [];
         var item = null;
 
@@ -78,7 +59,7 @@
             return collection;
         }
 
-        var father = framework.$(parent);
+        var father = $(parent);
 
         for (i = 0, len = collection.length; i < len; i++) {
             item = collection[i];
@@ -89,7 +70,12 @@
         }
 
         return result;
-    };
+    });
+
+    /*
+     *
+     */
+    var n = require('n');
 
     /**
      * @function {static} o2.nn
@@ -105,11 +91,37 @@
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    framework.nn = function(name, parent) {
-        var result = framework.n(name, parent);
+    def(me, 'nn', function(name, parent) {
+        var result = n(name, parent);
 
         return result ? result[0] : null;
-    };
+    });
+
+    /**
+     * @function {static} o2.t
+     *
+     * <p>A <code>getElementsByTagName</code> wrapper.</p>
+     *
+     * @param {String} tagName - the name of the tag to search.
+     * @param {DOMNode} parent - (optional defaults to <code>document</code>)
+     * the parent container, or the id of the parent container, to search.
+     *
+     * @return a collection of matching elements.
+     */
+    def(me, 't', function(tagName, parent) {
+        var p = $(parent || document);
+
+        if (!p) {
+            return null;
+        }
+
+        return p.getElementsByTagName(tagName);
+    });
+
+    /*
+     *
+     */
+    var t = require('t');
 
     /**
      * @function {static} o2.tt
@@ -125,11 +137,11 @@
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    framework.tt = function(tagName, parent) {
-        parent = framework.$(parent);
+    def(me, 'tt', function(tagName, parent) {
+        var p = $(parent);
 
-        var result = framework.t(tagName, parent);
+        var result = t(tagName, p);
 
         return result ? result[0] : null;
-    };
+    });
 }(this.o2, this.document));

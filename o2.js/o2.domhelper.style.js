@@ -1,8 +1,8 @@
 /**
  * @module   domhelper.style
  * @requires core
- * @requires stringhelper.core
  * @requires domhelper.core
+ * @requires stringhelper.core
  * @requires stringhelper.transform
  *
  * <!--
@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-09 09:13:37.142847
+ *  lastModified: 2012-02-28 18:22:50.245118
  * -->
  *
  * <p>A utility package to
@@ -21,62 +21,133 @@
 (function(framework, window, document) {
    'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var alias     = attr(_, 'alias');
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-    function use() {}
-
-    function require() {}
+    /*
+     * DomHelper (style)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
-    var $ = use(framework.$);
-    var t = use(framework.t);
-    var myName = use(framework.name);
-    var toCamelCase = use(framework.StringHelper.toCamelCase);
-    var concat = use(framework.StringHelper.concat);
-    var toDashedFromCamelCase = use(framework.StringHelper.toDashedFromCamelCase);
+
+    var $      = require('$');
+    var t      = require('t');
+    var myName = require('name');
+
+    var kStringHelper         = 'StringHelper';
+    var concat                = require(kStringHelper, 'concat');
+    var toCamelCase           = require(kStringHelper, 'toCamelCase');
+    var toDashedFromCamelCase = require(kStringHelper, 'toDashedFromCamelCase');
+
+    var createElement        = attr(document, 'createElement');
+    var getElementsByTagName = attr(document, 'getElementsByTagName');
 
     /*
      * Common Constants
      */
-   // var kObject = 'object';
-    var kOldDisplay = '_oldDisplay';
-    var kNone = 'none';
-    var kHidden = 'hidden';
-    var kEmpty = '';
-    var kDisplay = 'display';
-    var kVisibility = 'visibility';
-    var kTitle = 'title';
-    var kLink = 'link';
-    var kRel = 'rel';
-    var kStyle = 'style';
-    var kTextCss = 'text/css';
-    var kHead = 'head';
-    var kFloat = 'float';
-    var kCssFloat = 'cssFloat';
-    var kPixels = 'px';
-    var kBackgroundPositionY = 'background-position-y';
     var kBackgroundPositionX = 'background-position-x';
-    var kTop = 'top';
-    var kLeft = 'left';
-    var kZeroPx = '0px';
-    var kM$ = 'MSIE';
+    var kBackgroundPositionY = 'background-position-y';
+    var kCssFloat            = 'cssFloat';
+    var kDisplay             = 'display';
+    var kEmpty               = '';
+    var kFloat               = 'float';
+    var kHead                = 'head';
+    var kHidden              = 'hidden';
+    var kLeft                = 'left';
+    var kLink                = 'link';
+    var kM$                  = 'MSIE';
+    var kNone                = 'none';
+    var kOldDisplay          = '_oldDisplay';
+    var kPixels              = 'px';
+    var kRel                 = 'rel';
+    var kStyle               = 'style';
+    var kTextCss             = 'text/css';
+    var kTitle               = 'title';
+    var kTop                 = 'top';
+    var kVisibility          = 'visibility';
+    var kZeroPx              = '0px';
 
     /*
      * Common Regular Expressions
      */
+    var kRegNumber      = /^-?\d/;
     var kRegPixelNumber = /^-?\d+(?:px)?$/i;
-    var kRegNumber = /^-?\d/;
+
+    /**
+     * @function {static} o2.DomHelper.activateAlternateStylesheet
+     *
+     * <p>Activates the <strong>alternate stylesheet</strong> with the given
+     * <code>title</code>.</p>
+     *
+     * @param {String} title - the <code>title</code> of the <strong>alternate
+     * stylesheet</strong> to activate.
+     */
+    def(me, 'activateAlternateStylesheet', function(title) {
+        var link = null;
+        var links = t(kLink);
+        var shouldDisable = false;
+        var linkTitle = kEmpty;
+        var i = 0;
+        var len = 0;
+
+        for (i = 0, len = links.length; i < len; i++) {
+            link = links[i];
+            linkTitle = link.getAttribute(kTitle);
+            shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
+                title;
+            link.disabled = (linkTitle === title) ? false : shouldDisable;
+        }
+    });
+
+    /*
+     *
+     */
+    var isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
+
+    if(isCrap) {
+
+        /**
+         * @function {static} o2.DomHelper.addCssRules
+         *
+         * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
+         * to the document.</p>
+         *
+         * <p>Usage Example:</p>
+         *
+         * <pre>
+         * o2.DomHelper.addCssRules(
+         *      'div.warning { background-color:#c00; color:#fff };'
+         * );
+         * </pre>
+         */
+        def(me, 'addCssRules', function(cssText) {
+            try {
+                document.createStyleSheet().cssText = cssText;
+            } catch(e) {
+                var firstSheet = document.styleSheets[0];
+
+                if(firstSheet) {
+                    firstSheet.cssText = concat(firstSheet.cssText, cssText);
+                }
+            }
+        });
+    } else {
+        def(me, 'addCssRules', function(cssText) {
+            var d = createElement(kStyle);
+
+            d.type = kTextCss;
+            d.textContent = cssText;
+
+            getElementsByTagName(kHead)[0].appendChild(d);
+        });
+    }
 
     /**
      * @function {static} o2.DomHelper.addStyle
@@ -95,23 +166,7 @@
      * @param {Object} style - styles in the form <code>{style1:value1,
      * style2:value2}</code>.
      */
-
-    /**
-     * @function {static} o2.DomHelper.setStyle
-     *
-     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
-     *
-     * @see o2.DomHelper.addStyle
-     */
-
-    /**
-     * @function {static} o2.DomHelper.css
-     *
-     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
-     *
-     * @see o2.DomHelper.addStyle
-     */
-    me.css = me.setStyle = me.addStyle = function(obj, style) {
+    def(me, 'addStyle', function(obj, style) {
         obj = $(obj);
 
         if (!obj) {
@@ -133,7 +188,26 @@
                 }
             }
         }
-    };
+    });
+
+    /**
+     * @function {static} o2.DomHelper.setCss
+     *
+     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     *
+     * @see o2.DomHelper.addStyle
+     */
+    alias(me, 'setCss', 'addStyle');
+
+    /**
+     * @function {static} o2.DomHelper.setStyle
+     *
+     * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     *
+     * @see o2.DomHelper.addStyle
+     */
+    alias(me, 'setStyle', 'addStyle');
+
 
     if (document.defaultView && document.defaultView.getComputedStyle) {
 
@@ -163,7 +237,7 @@
          *
          * @return the calculated <strong>style</strong> value.
          */
-        me.getStyle = function(obj, cssProperty, noForce) {
+        def(me, 'getStyle', function(obj, cssProperty, noForce) {
             obj = $(obj);
             noForce = !!noForce;
 
@@ -201,9 +275,9 @@
             }
 
             return d;
-        };
+        });
     } else {
-        me.getStyle = function(obj, cssProperty, noForce) {
+        def(me, 'getStyle', function(obj, cssProperty, noForce) {
             obj = $(obj);
             noForce = !!noForce;
 
@@ -275,8 +349,69 @@
             }
 
             return null;
-        };
+        });
     }
+
+    /**
+     * @function {static} o2.DomHelper.getCss
+     *
+     * <p>An alias to {@link o2.DomHelper.getStyle}.</p>
+     *
+     * @see o2.DomHelper.getStyle
+     */
+    alias(me, 'getCss', 'getStyle');
+
+    /**
+     * @function {static} o2.DomHelper.hide
+     *
+     * <p>Hides the given object.</p>
+     *
+     * @param {Object} obj - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> to hide.
+     */
+    def(me, 'hide', function(elm) {
+        var obj = $(elm);
+
+        if (!obj) {
+            return;
+        }
+
+        if (obj.style.display !== kNone) {
+            obj[[myName, kOldDisplay].join(kEmpty)] = obj.style.display;
+        }
+
+        obj.style.display = kNone;
+    });
+
+    /*
+     *
+     */
+    var hide = require('DomHelper', 'hide');
+
+    /**
+     * @function {static} o2.DomHelper.show
+     *
+     * <p>Shows the given object.</p>
+     *
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of it, to show.
+     */
+    def(me, 'show', function(elm) {
+        var obj = $(elm);
+
+        if (!obj) {
+            return;
+        }
+
+        obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
+
+        delete obj[[myName, kOldDisplay].join(kEmpty)];
+    });
+
+    /*
+     *
+     */
+    var show = require('DomHelper', 'show');
 
     /**
      * @function {static} o2.DomHelper.isVisible
@@ -295,15 +430,7 @@
      * @return <code>true</code> if the element is visible, <code>false</code>
      * otherwise.
      */
-
-    /**
-     * @function {static} o2.DomHelper.visible
-     *
-     * <p>An alias to {@link o2.DomHelper.isVisible}.</p>
-     *
-     * @see o2.DomHelper.isVisible
-     */
-    me.visible = me.isVisible = function(obj) {
+    def(me, 'isVisible', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -338,83 +465,27 @@
                ((display    ===  null  ) && (visibility !== kHidden)) ||
                ((visibility ===  null  ) && (display    !== kNone  )) ||
                ((display    !== kNone  ) && (visibility !== kHidden));
-    };
+    });
+
+    /*
+     *
+     */
+    var isVisible = require('DomHelper', 'isVisible');
 
     /**
-     * @function {static} o2.DomHelper.activateAlternateStylesheet
+     * @function {static} o2.DomHelper.toggleVisibility
      *
-     * <p>Activates the <strong>alternate stylesheet</strong> with the given
-     * <code>title</code>.</p>
+     * <p>Toggles the visibility of the given element.</p>
      *
-     * @param {String} title - the <code>title</code> of the <strong>alternate
-     * stylesheet</strong> to activate.
+     * @param {Object} elm - a <strong>DOM</strong> reference or its
+     * <code>String</code> id.
+     * @param {Boolean} state - (Optional, defaults to <code>undefined</code>)
+     * if <code>true</code>, show the item; if <code>false</code> hides the
+     * item; if <code>undefined</code> simply toggles the visibility of the
+     * item.
      */
-    me.activateAlternateStylesheet = function(title) {
-        var link = null;
-        var links = t(kLink);
-        var shouldDisable = false;
-        var linkTitle = kEmpty;
-        var i = 0;
-        var len = 0;
-
-        for (i = 0, len = links.length; i < len; i++) {
-            link = links[i];
-            linkTitle = link.getAttribute(kTitle);
-            shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
-                title;
-            link.disabled = (linkTitle === title) ? false : shouldDisable;
-        }
-    };
-
-    /**
-     * @function {static} o2.DomHelper.hide
-     *
-     * <p>Hides the given object.</p>
-     *
-     * @param {Object} obj - the <strong>DOM</strong> node, or the
-     * <strong>id</strong> to hide.
-     */
-    me.hide = function(elm) {
+    def(me, 'toggleVisibility', function(elm, state) {
         var obj = $(elm);
-
-        if (!obj) {
-            return;
-        }
-
-        if (obj.style.display !== kNone) {
-            obj[[myName, kOldDisplay].join(kEmpty)] = obj.style.display;
-        }
-
-        obj.style.display = kNone;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.show
-     *
-     * <p>Shows the given object.</p>
-     *
-     * @param {Object} elm - the <strong>DOM</strong> node, or the
-     * <strong>id</strong> of it, to show.
-     */
-    me.show = function(elm) {
-        var obj = $(elm);
-
-        if (!obj) {
-            return;
-        }
-
-        obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
-
-        delete obj[[myName, kOldDisplay].join(kEmpty)];
-    };
-
-//TODO: add documentation.
-    me.toggleVisibility = function(elm, state) {
-        var obj = $(elm);
-
-        var show      = require('DomHelper', 'show');
-        var hide      = require('DomHelper', 'hide');
-        var isVisible = require('DomHelper', 'isVisible');
 
         if (!obj) {
             return;
@@ -439,41 +510,5 @@
         }
 
         show(elm);
-    };
-
-    if(window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera) {
-
-        /**
-         * @function {static} o2.DomHelper.addCssRules
-         *
-         * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
-         * to the document.</p>
-         *
-         * <p>Usage Example:</p>
-         *
-         * <pre>
-         * o2.DomHelper.addCssRules(
-         *      'div.warning { background-color:#c00; color:#fff };'
-         * );
-         * </pre>
-         */
-        me.addCssRules = function(cssText) {
-            try {
-                document.createStyleSheet().cssText = cssText;
-            } catch(e) {
-                var firstSheet = document.styleSheets[0];
-
-                if(firstSheet) {
-                    firstSheet.cssText = concat(firstSheet.cssText, cssText);
-                }
-            }
-        };
-    } else {
-        me.addCssRules = function(cssText) {
-            var d = document.createElement(kStyle);
-            d.type = kTextCss;
-            d.textContent = cssText;
-            document.getElementsByTagName(kHead)[0].appendChild(d);
-        };
-    }
+    });
 }(this.o2, this, this.document));

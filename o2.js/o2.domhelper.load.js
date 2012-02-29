@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 08:18:18.083618
+ *  lastModified: 2012-02-28 13:02:25.308465
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -18,122 +18,57 @@
 (function(framework, window, document) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-function use() {}
+    /*
+     * DomHelper (load)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
-    var myName = use(framework.name);
-    var nill = use(framework.nill);
-    var format = use(framework.StringHelper.format);
-    var concat = use(framework.StringHelper.concat);
-    var generateGuid = use(framework.StringHelper.generateGuid);
 
-    var Image = window.Image;
-    var setTimeout = window.setTimeout;
+    var myName = require('name');
+    var nill   = require('nill');
+
+    var kStringHelper = 'StringHelper';
+    var concat        = require(kStringHelper, 'concat');
+    var format        = require(kStringHelper, 'format');
+    var generateGuid  = require(kStringHelper, 'generateGuid');
+
+    var Image                = attr(window, 'Image');
+    var setTimeout           = attr(window, 'setTimeout');
+    var createElement        = attr(document, 'createElement');
+    var getElementsByTagName = attr(document, 'getElementsByTagName');
+    var sheets               = attr(document, 'styleSheets');
 
     /*
      * Common Strings
      */
-    var kLink = 'link';
-    var kHead = 'head';
-    var kRel = 'rel';
-    var kSheet = 'stylesheet';
-    var kScript = 'script';
-    var kSheetType = 'text/css';
+    var kCssId      = concat(myName, '-css-{0}');
+    var kHead       = 'head';
+    var kLink       = 'link';
+    var kRel        = 'rel';
+    var kScript     = 'script';
     var kScriptType = 'text/javascript';
+    var kSheet      = 'stylesheet';
+    var kSheetType  = 'text/css';
 
     /*
      * Common Constants
      */
+    var kCssCheckInterval   = 100;
     var kMaxCssCheckAttempt = 500;
-    var kCssCheckInterval = 100;
-    var kCssId = concat(myName, '-css-{0}');
 
     /*
      * Common Regular Expressions
      */
     var kCompleteRegExp = /loaded|complete/;
-
-    /**
-     * @function {static} o2.DomHelper.loadImage
-     *
-     * <p>Tries to load the image into a <strong>JavaScript</strong>
-     * <code>Image</code> object; then triggers
-     * <code>successCallback</code> or <code>failureCallback</code> depending on
-     * the
-     * result of the load attempt.</p>
-     * <p>This function can be used for pre-loading or post-loading images.</p>
-     *
-     * @param {String} url - the <strong>URL</strong> of the
-     * <strong>image</strong>.
-     * @param {Function} successCallback - gets called when the
-     * <strong>image</strong> is loaded successfully.
-     * @param {Function} failureCallback - gets called when the
-     * <strong>image</strong> can <strong>not</strong> be loaded successfully.
-     */
-    me.loadImage = function(url, succesCallback, failureCallback) {
-        var succesCallbackCached = succesCallback || nill;
-        var failureCallbackCached = failureCallback || nill;
-        var testImg = new Image();
-
-        testImg.onload = succesCallbackCached;
-        testImg.onerror = failureCallbackCached;
-        testImg.onabort = failureCallbackCached;
-        testImg.src = url;
-
-        return testImg;
-    };
-
-    /**
-     * @function {static} o2.DomHelper.loadScript
-     *
-     * <p>Asynchronously loads a <strong>script</strong> with a given
-     * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
-     * have to be in the same domain as the web page.</p>
-     *
-     * @param {String} src - the source <strong>URL</strong> of the
-     * <strong>script</strong>.
-     * @param {Function} callback - the callback to execute when the load
-     * operation completes.
-     */
-    me.loadScript = function(src, callback) {
-        var s = document.createElement(kScript);
-        var x = document.getElementsByTagName(kScript)[0] ||
-            document.getElementsByTagName(kHead)[0];
-
-        s.type = kScriptType;
-        s.async = true;
-        s.src = src;
-
-        x.parentNode.insertBefore(s, x);
-
-        if (!callback) {
-            return;
-        }
-
-        s.onreadystatechange = function() {
-            if(kCompleteRegExp.test(s.readyState)) {
-                callback();
-            }
-        };
-
-        s.onload = function() {
-            callback();
-        };
-    };
 
     /**
      * @function {static} o2.DomHelper.loadCss
@@ -150,9 +85,9 @@ function use() {}
      * @param {Function} failureCallback - the callback to execute when the load
      * operation times out or fails.
      */
-    me.loadCss = function(src, successCallback, failureCallback) {
-        var s = document.createElement(kLink);
-        var x = document.getElementsByTagName(kHead)[0];
+    def(me, 'loadCss', function(src, successCallback, failureCallback) {
+        var s = createElement(kLink);
+        var x = getElementsByTagName(kHead)[0];
 
         var id = format(kCssId, generateGuid());
         var counter = 0;
@@ -169,8 +104,6 @@ function use() {}
         x.appendChild(s);
 
         setTimeout(function check() {
-            var sheets = document.styleSheets;
-
             var i = 0;
             var len = 0;
             var sheet = null;
@@ -193,5 +126,74 @@ function use() {}
                 onfailure();
             }
         }, kCssCheckInterval);
-    };
+    });
+
+    /**
+     * @function {static} o2.DomHelper.loadImage
+     *
+     * <p>Tries to load the image into a <strong>JavaScript</strong>
+     * <code>Image</code> object; then triggers
+     * <code>successCallback</code> or <code>failureCallback</code> depending on
+     * the
+     * result of the load attempt.</p>
+     * <p>This function can be used for pre-loading or post-loading images.</p>
+     *
+     * @param {String} url - the <strong>URL</strong> of the
+     * <strong>image</strong>.
+     * @param {Function} successCallback - gets called when the
+     * <strong>image</strong> is loaded successfully.
+     * @param {Function} failureCallback - gets called when the
+     * <strong>image</strong> can <strong>not</strong> be loaded successfully.
+     */
+    def(me, 'loadImage', function(url, succesCallback, failureCallback) {
+        var succesCallbackCached = succesCallback || nill;
+        var failureCallbackCached = failureCallback || nill;
+        var testImg = new Image();
+
+        testImg.onload = succesCallbackCached;
+        testImg.onerror = failureCallbackCached;
+        testImg.onabort = failureCallbackCached;
+        testImg.src = url;
+
+        return testImg;
+    });
+
+    /**
+     * @function {static} o2.DomHelper.loadScript
+     *
+     * <p>Asynchronously loads a <strong>script</strong> with a given
+     * <strong>src</strong>.</p>
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
+     * have to be in the same domain as the web page.</p>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>script</strong>.
+     * @param {Function} callback - the callback to execute when the load
+     * operation completes.
+     */
+    def(me, 'loadScript', function(src, callback) {
+        var s = createElement(kScript);
+        var x = getElementsByTagName(kScript)[0] ||
+            getElementsByTagName(kHead)[0];
+
+        s.type = kScriptType;
+        s.async = true;
+        s.src = src;
+
+        x.parentNode.insertBefore(s, x);
+
+        if (!callback) {
+            return;
+        }
+
+        s.onreadystatechange = function() {
+            if(kCompleteRegExp.test(s.readyState)) {
+                callback();
+            }
+        };
+
+        s.onload = function() {
+            callback();
+        };
+    });
 }(this.o2, this, this.document));

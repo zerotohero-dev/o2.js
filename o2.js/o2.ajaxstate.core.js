@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 19:41:00.159913
+ *  lastModified: 2012-02-28 19:05:26.330513
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>

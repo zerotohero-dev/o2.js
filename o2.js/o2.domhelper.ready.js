@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 08:01:28.493040
+ *  lastModified: 2012-02-28 13:47:10.613225
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -17,34 +17,34 @@
 (function(framework, window, document) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;*/
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-    function use() {}
+    /*
+     * DomHelper (ready)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var me = use(framework.DomHelper);
-    var nill = use(framework.nill);
-    var setTimeout = use(window.setTimeout);
+
+    var nill       = require('nill');
+
+    var setTimeout = attr(window, 'setTimeout');
 
     /*
      * Common Constants
      */
-    var kCheckIntervalMs = 50;
-    var kPropertyToCheck = 'left';
-    var kDomContentLoaded = 'DOMContentLoaded';
-    var kLoad = 'load';
+    var kCheckIntervalMs    = 50;
+    var kDomContentLoaded   = 'DOMContentLoaded';
+    var kLoad               = 'load';
+    var kOnLoad             = 'onload';
     var kOnReadyStateChange = 'onreadystatechange';
-    var kOnLoad = 'onload';
+    var kPropertyToCheck    = 'left';
 
     /*
      * Common Regular Expressions
@@ -62,7 +62,7 @@
      * State
      */
     var isApplicationReady = isDomContentReady();
-    var readyQueue = [];
+    var readyQueue         = [];
 
     /*
      *
@@ -218,7 +218,7 @@
      * @param {Function} delegate - the callback that's called when the DOM is
      * ready.
      */
-    me.ready = function(delegate) {
+    def(me, 'ready', function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
         if (isApplicationReady) {
@@ -232,5 +232,5 @@
 
         // this queue will be processed "only once" after DOM is ready.
         readyQueue.push(delegate);
-    };
+    });
 }(this.o2, this, this.document));
