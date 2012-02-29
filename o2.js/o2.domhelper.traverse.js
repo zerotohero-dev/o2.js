@@ -19,19 +19,137 @@
     'use strict';
 
     var _         = framework.protecteds;
-    var create    = _.create;
-
-    function fn() {}
+    var attr      = _.getAttr;
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /*
      * DomHelper (traverse)
      */
     var me = create('DomHelper');
 
+    /*
+     * Aliases
+     */
+
+    var $ = require('$');
+
+    var kEmpty = '';
+
+    var nodeType  = require('DomHelper', 'nodeType');
+    var kTextNode = attr(nodeType, 'TEXT');
+
+    var getAttribute = require('DomHelper', 'getAttribute');
+
+
+    /**
+     * function {static} o2.DomHelper.getChildren
+     *
+     * <p>Gets the immediate children (that are not text nodes) of the
+     * element.</p>
+     *
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of that node.
+     *
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
+     */
+    def(me, 'getChildren', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        nodeName = nodeName || kEmpty;
+
+        var nodes = target.childNodes;
+        var result = [];
+        var i = 0;
+        var len = 0;
+        var node = null;
+
+        for (i = 0, len = nodes.length; i < len; i++) {
+            node = nodes[i];
+
+            if (node.nodeType !== kTextNode) {
+                if (nodeName) {
+                    if (
+                        node.nodeName.toLowerCase() === nodeName.toLowerCase()
+                    ) {
+                        result.push(node);
+                    }
+                } else {
+                    result.push(node);
+                }
+            }
+        }
+
+        return result;
+    });
+
+    /**
+     * function {static} o2.DomHelper.getChildren
+     *
+     * <p>Gets the immediate children (that are not text nodes) of the
+     * element, if they have a matching <strong>attribute</strong> with
+     * a given <strong>value</strong>.</p>
+     *
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of that node.
+     * @param {String} attr - the name of the attribute.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (optional, defaults to <code>undefined</code>)
+     * if given, the result is filtered by the given node name as well.
+     *
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
+     */
+    def(me, 'getChildrenByAttribute', function(elm, attr, value, name) {
+        // IE7 and IE8 support attribute selectors only if a
+        // !DOCTYPE is specified. To maintain compatibility we implement
+        // attribute selector without using document.querySelector
+
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        var nodeName = name || kEmpty;
+
+        var nodes = target.childNodes;
+        var result = [];
+        var i = 0;
+        var len = 0;
+        var node = null;
+
+        for (i = 0, len = nodes.length; i < len; i++) {
+            node = nodes[i];
+
+            if (node.nodeType !== kTextNode) {
+                if (nodeName) {
+                    if (
+                        node.nodeName.toLowerCase() === nodeName.toLowerCase()
+                    ) {
+                        if(getAttribute(node, attr) === value) {
+                            result.push(node);
+                        }
+                    }
+                } else {
+                    if(getAttribute(node, attr) === value) {
+                        result.push(node);
+                    }
+                }
+            }
+        }
+
+        return result;
+    });
+
 
 /*
-getChildren                   : {MODULE : kDomHelperTraverse},
-getChildrenByAttribute        : {MODULE : kDomHelperTraverse},
 getChildrenByAttributeUntil   : {MODULE : kDomHelperTraverse},
 getChildrenByClass            : {MODULE : kDomHelperTraverse},
 getChildrenByClassUntil       : {MODULE : kDomHelperTraverse},
@@ -268,32 +386,10 @@ isSiblingWithId        : {MODULE : kDomHelperTraverse}
 */
 
 
-
-
-
-
-
-
-/**
- *
- */
-fn(me, 'getChildren', function() {
-    //TODO: implement me!
-    throw 'NOT implemented!';
-});
-
-/**
- *
- */
-fn(me, 'getChildrenByAttribute', function() {
-    //TODO: implement me!
-    throw 'NOT implemented!';
-});
-
 /**
  *
  */
-fn(me, 'getChildrenByAttributeUntil', function() {
+def(me, 'getChildrenByAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -301,7 +397,7 @@ fn(me, 'getChildrenByAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenByClass', function() {
+def(me, 'getChildrenByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -309,7 +405,7 @@ fn(me, 'getChildrenByClass', function() {
 /**
  *
  */
-fn(me, 'getChildrenByClassUntil', function() {
+def(me, 'getChildrenByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -317,7 +413,7 @@ fn(me, 'getChildrenByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenById', function() {
+def(me, 'getChildrenById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -325,7 +421,7 @@ fn(me, 'getChildrenById', function() {
 /**
  *
  */
-fn(me, 'getChildrenByIdUntil', function() {
+def(me, 'getChildrenByIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -333,7 +429,7 @@ fn(me, 'getChildrenByIdUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenUntil', function() {
+def(me, 'getChildrenUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -341,7 +437,7 @@ fn(me, 'getChildrenUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithAttribute', function() {
+def(me, 'getChildrenWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -349,7 +445,7 @@ fn(me, 'getChildrenWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithAttributeUntil', function() {
+def(me, 'getChildrenWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -357,7 +453,7 @@ fn(me, 'getChildrenWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithClass', function() {
+def(me, 'getChildrenWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -365,7 +461,7 @@ fn(me, 'getChildrenWithClass', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithClassUntil', function() {
+def(me, 'getChildrenWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -373,7 +469,7 @@ fn(me, 'getChildrenWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithId', function() {
+def(me, 'getChildrenWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -381,7 +477,7 @@ fn(me, 'getChildrenWithId', function() {
 /**
  *
  */
-fn(me, 'getChildrenWithIdUntil', function() {
+def(me, 'getChildrenWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -389,7 +485,7 @@ fn(me, 'getChildrenWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'getElements', function() {
+def(me, 'getElements', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -397,7 +493,7 @@ fn(me, 'getElements', function() {
 /**
  *
  */
-fn(me, 'getElementsByAttribute', function() {
+def(me, 'getElementsByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -405,7 +501,7 @@ fn(me, 'getElementsByAttribute', function() {
 /**
  *
  */
-fn(me, 'getElementsByClass', function() {
+def(me, 'getElementsByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -413,7 +509,7 @@ fn(me, 'getElementsByClass', function() {
 /**
  *
  */
-fn(me, 'getElementsWithAttribute', function() {
+def(me, 'getElementsWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -421,7 +517,7 @@ fn(me, 'getElementsWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getElementsWithClass', function() {
+def(me, 'getElementsWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -429,7 +525,7 @@ fn(me, 'getElementsWithClass', function() {
 /**
  *
  */
-fn(me, 'getElementsWithId', function() {
+def(me, 'getElementsWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -437,7 +533,7 @@ fn(me, 'getElementsWithId', function() {
 /**
  *
  */
-fn(me, 'getFirst', function() {
+def(me, 'getFirst', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -445,7 +541,7 @@ fn(me, 'getFirst', function() {
 /**
  *
  */
-fn(me, 'getFirstByAttribute', function() {
+def(me, 'getFirstByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -453,7 +549,7 @@ fn(me, 'getFirstByAttribute', function() {
 /**
  *
  */
-fn(me, 'getFirstByClass', function() {
+def(me, 'getFirstByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -461,7 +557,7 @@ fn(me, 'getFirstByClass', function() {
 /**
  *
  */
-fn(me, 'getFirstById', function() {
+def(me, 'getFirstById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -469,7 +565,7 @@ fn(me, 'getFirstById', function() {
 /**
  *
  */
-fn(me, 'getFirstChild', function() {
+def(me, 'getFirstChild', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -477,7 +573,7 @@ fn(me, 'getFirstChild', function() {
 /**
  *
  */
-fn(me, 'getFirstChildByAttribute', function() {
+def(me, 'getFirstChildByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -485,7 +581,7 @@ fn(me, 'getFirstChildByAttribute', function() {
 /**
  *
  */
-fn(me, 'getFirstChildByClass', function() {
+def(me, 'getFirstChildByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -493,7 +589,7 @@ fn(me, 'getFirstChildByClass', function() {
 /**
  *
  */
-fn(me, 'getFirstChildById', function() {
+def(me, 'getFirstChildById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -501,7 +597,7 @@ fn(me, 'getFirstChildById', function() {
 /**
  *
  */
-fn(me, 'getFirstChildWithAttribute', function() {
+def(me, 'getFirstChildWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -509,7 +605,7 @@ fn(me, 'getFirstChildWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getFirstChildWithClass', function() {
+def(me, 'getFirstChildWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -517,7 +613,7 @@ fn(me, 'getFirstChildWithClass', function() {
 /**
  *
  */
-fn(me, 'getFirstChildWithId', function() {
+def(me, 'getFirstChildWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -525,7 +621,7 @@ fn(me, 'getFirstChildWithId', function() {
 /**
  *
  */
-fn(me, 'getFirstWithAttribute', function() {
+def(me, 'getFirstWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -533,7 +629,7 @@ fn(me, 'getFirstWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getFirstWithClass', function() {
+def(me, 'getFirstWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -541,7 +637,7 @@ fn(me, 'getFirstWithClass', function() {
 /**
  *
  */
-fn(me, 'getFirstWithId', function() {
+def(me, 'getFirstWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -549,7 +645,7 @@ fn(me, 'getFirstWithId', function() {
 /**
  *
  */
-fn(me, 'getLast', function() {
+def(me, 'getLast', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -557,7 +653,7 @@ fn(me, 'getLast', function() {
 /**
  *
  */
-fn(me, 'getLastByAttribute', function() {
+def(me, 'getLastByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -565,7 +661,7 @@ fn(me, 'getLastByAttribute', function() {
 /**
  *
  */
-fn(me, 'getLastByClass', function() {
+def(me, 'getLastByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -573,7 +669,7 @@ fn(me, 'getLastByClass', function() {
 /**
  *
  */
-fn(me, 'getLastById', function() {
+def(me, 'getLastById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -581,7 +677,7 @@ fn(me, 'getLastById', function() {
 /**
  *
  */
-fn(me, 'getLastChild', function() {
+def(me, 'getLastChild', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -589,7 +685,7 @@ fn(me, 'getLastChild', function() {
 /**
  *
  */
-fn(me, 'getLastChildByAttribute', function() {
+def(me, 'getLastChildByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -597,7 +693,7 @@ fn(me, 'getLastChildByAttribute', function() {
 /**
  *
  */
-fn(me, 'getLastChildByClass', function() {
+def(me, 'getLastChildByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -605,7 +701,7 @@ fn(me, 'getLastChildByClass', function() {
 /**
  *
  */
-fn(me, 'getLastChildById', function() {
+def(me, 'getLastChildById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -613,7 +709,7 @@ fn(me, 'getLastChildById', function() {
 /**
  *
  */
-fn(me, 'getLastChildWithAttribute', function() {
+def(me, 'getLastChildWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -621,7 +717,7 @@ fn(me, 'getLastChildWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getLastChildWithClass', function() {
+def(me, 'getLastChildWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -629,7 +725,7 @@ fn(me, 'getLastChildWithClass', function() {
 /**
  *
  */
-fn(me, 'getLastChildWithId', function() {
+def(me, 'getLastChildWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -637,7 +733,7 @@ fn(me, 'getLastChildWithId', function() {
 /**
  *
  */
-fn(me, 'getLastWithAttribute', function() {
+def(me, 'getLastWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -645,7 +741,7 @@ fn(me, 'getLastWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getLastWithClass', function() {
+def(me, 'getLastWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -653,7 +749,7 @@ fn(me, 'getLastWithClass', function() {
 /**
  *
  */
-fn(me, 'getLastWithId', function() {
+def(me, 'getLastWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -661,7 +757,7 @@ fn(me, 'getLastWithId', function() {
 /**
  *
  */
-fn(me, 'getNext', function() {
+def(me, 'getNext', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -669,7 +765,7 @@ fn(me, 'getNext', function() {
 /**
  *
  */
-fn(me, 'getNextAll', function() {
+def(me, 'getNextAll', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -677,7 +773,7 @@ fn(me, 'getNextAll', function() {
 /**
  *
  */
-fn(me, 'getNextAllByAttribute', function() {
+def(me, 'getNextAllByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -685,7 +781,7 @@ fn(me, 'getNextAllByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNextAllByAttributeUntil', function() {
+def(me, 'getNextAllByAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -693,7 +789,7 @@ fn(me, 'getNextAllByAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllByClass', function() {
+def(me, 'getNextAllByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -701,7 +797,7 @@ fn(me, 'getNextAllByClass', function() {
 /**
  *
  */
-fn(me, 'getNextAllByClassUntil', function() {
+def(me, 'getNextAllByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -709,7 +805,7 @@ fn(me, 'getNextAllByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllById', function() {
+def(me, 'getNextAllById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -717,7 +813,7 @@ fn(me, 'getNextAllById', function() {
 /**
  *
  */
-fn(me, 'getNextAllByIdUntil', function() {
+def(me, 'getNextAllByIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -725,7 +821,7 @@ fn(me, 'getNextAllByIdUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllUntil', function() {
+def(me, 'getNextAllUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -733,7 +829,7 @@ fn(me, 'getNextAllUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithAttribute', function() {
+def(me, 'getNextAllWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -741,7 +837,7 @@ fn(me, 'getNextAllWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithAttributeUntil', function() {
+def(me, 'getNextAllWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -749,7 +845,7 @@ fn(me, 'getNextAllWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithClass', function() {
+def(me, 'getNextAllWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -757,7 +853,7 @@ fn(me, 'getNextAllWithClass', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithClassUntil', function() {
+def(me, 'getNextAllWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -765,7 +861,7 @@ fn(me, 'getNextAllWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithId', function() {
+def(me, 'getNextAllWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -773,7 +869,7 @@ fn(me, 'getNextAllWithId', function() {
 /**
  *
  */
-fn(me, 'getNextAllWithIdUntil', function() {
+def(me, 'getNextAllWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -781,7 +877,7 @@ fn(me, 'getNextAllWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'getNextByAttribute', function() {
+def(me, 'getNextByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -789,7 +885,7 @@ fn(me, 'getNextByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNextByClass', function() {
+def(me, 'getNextByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -797,7 +893,7 @@ fn(me, 'getNextByClass', function() {
 /**
  *
  */
-fn(me, 'getNextById', function() {
+def(me, 'getNextById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -805,7 +901,7 @@ fn(me, 'getNextById', function() {
 /**
  *
  */
-fn(me, 'getNextWithAttribute', function() {
+def(me, 'getNextWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -813,7 +909,7 @@ fn(me, 'getNextWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNextWithClass', function() {
+def(me, 'getNextWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -821,7 +917,7 @@ fn(me, 'getNextWithClass', function() {
 /**
  *
  */
-fn(me, 'getNextWithId', function() {
+def(me, 'getNextWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -829,7 +925,7 @@ fn(me, 'getNextWithId', function() {
 /**
  *
  */
-fn(me, 'getNth', function() {
+def(me, 'getNth', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -837,7 +933,7 @@ fn(me, 'getNth', function() {
 /**
  *
  */
-fn(me, 'getNthByAttribute', function() {
+def(me, 'getNthByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -845,7 +941,7 @@ fn(me, 'getNthByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthByClass', function() {
+def(me, 'getNthByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -853,7 +949,7 @@ fn(me, 'getNthByClass', function() {
 /**
  *
  */
-fn(me, 'getNthChild', function() {
+def(me, 'getNthChild', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -861,7 +957,7 @@ fn(me, 'getNthChild', function() {
 /**
  *
  */
-fn(me, 'getNthChildByAttribute', function() {
+def(me, 'getNthChildByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -869,7 +965,7 @@ fn(me, 'getNthChildByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthChildByClass', function() {
+def(me, 'getNthChildByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -877,7 +973,7 @@ fn(me, 'getNthChildByClass', function() {
 /**
  *
  */
-fn(me, 'getNthChildWithAttribute', function() {
+def(me, 'getNthChildWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -885,7 +981,7 @@ fn(me, 'getNthChildWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthChildWithClass', function() {
+def(me, 'getNthChildWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -893,7 +989,7 @@ fn(me, 'getNthChildWithClass', function() {
 /**
  *
  */
-fn(me, 'getNthChildWithId', function() {
+def(me, 'getNthChildWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -901,7 +997,7 @@ fn(me, 'getNthChildWithId', function() {
 /**
  *
  */
-fn(me, 'getNthNext', function() {
+def(me, 'getNthNext', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -909,7 +1005,7 @@ fn(me, 'getNthNext', function() {
 /**
  *
  */
-fn(me, 'getNthNextByAttribute', function() {
+def(me, 'getNthNextByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -917,7 +1013,7 @@ fn(me, 'getNthNextByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthNextByClass', function() {
+def(me, 'getNthNextByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -925,7 +1021,7 @@ fn(me, 'getNthNextByClass', function() {
 /**
  *
  */
-fn(me, 'getNthNextWithAttribute', function() {
+def(me, 'getNthNextWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -933,7 +1029,7 @@ fn(me, 'getNthNextWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthNextWithClass', function() {
+def(me, 'getNthNextWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -941,7 +1037,7 @@ fn(me, 'getNthNextWithClass', function() {
 /**
  *
  */
-fn(me, 'getNthNextWithId', function() {
+def(me, 'getNthNextWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -949,7 +1045,7 @@ fn(me, 'getNthNextWithId', function() {
 /**
  *
  */
-fn(me, 'getNthParent', function() {
+def(me, 'getNthParent', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -957,7 +1053,7 @@ fn(me, 'getNthParent', function() {
 /**
  *
  */
-fn(me, 'getNthParentByAttribute', function() {
+def(me, 'getNthParentByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -965,7 +1061,7 @@ fn(me, 'getNthParentByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthParentByClass', function() {
+def(me, 'getNthParentByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -973,7 +1069,7 @@ fn(me, 'getNthParentByClass', function() {
 /**
  *
  */
-fn(me, 'getNthParentWithAttribute', function() {
+def(me, 'getNthParentWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -981,7 +1077,7 @@ fn(me, 'getNthParentWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthParentWithClass', function() {
+def(me, 'getNthParentWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -989,7 +1085,7 @@ fn(me, 'getNthParentWithClass', function() {
 /**
  *
  */
-fn(me, 'getNthParentWithId', function() {
+def(me, 'getNthParentWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -997,7 +1093,7 @@ fn(me, 'getNthParentWithId', function() {
 /**
  *
  */
-fn(me, 'getNthPrev', function() {
+def(me, 'getNthPrev', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1005,7 +1101,7 @@ fn(me, 'getNthPrev', function() {
 /**
  *
  */
-fn(me, 'getNthPrevByAttribute', function() {
+def(me, 'getNthPrevByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1013,7 +1109,7 @@ fn(me, 'getNthPrevByAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthPrevByClass', function() {
+def(me, 'getNthPrevByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1021,7 +1117,7 @@ fn(me, 'getNthPrevByClass', function() {
 /**
  *
  */
-fn(me, 'getNthPrevWithAttribute', function() {
+def(me, 'getNthPrevWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1029,7 +1125,7 @@ fn(me, 'getNthPrevWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthPrevWithClass', function() {
+def(me, 'getNthPrevWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1037,7 +1133,7 @@ fn(me, 'getNthPrevWithClass', function() {
 /**
  *
  */
-fn(me, 'getNthPrevWithId', function() {
+def(me, 'getNthPrevWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1045,7 +1141,7 @@ fn(me, 'getNthPrevWithId', function() {
 /**
  *
  */
-fn(me, 'getNthWithAttribute', function() {
+def(me, 'getNthWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1053,7 +1149,7 @@ fn(me, 'getNthWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getNthWithClass', function() {
+def(me, 'getNthWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1061,7 +1157,7 @@ fn(me, 'getNthWithClass', function() {
 /**
  *
  */
-fn(me, 'getNthWithId', function() {
+def(me, 'getNthWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1069,7 +1165,7 @@ fn(me, 'getNthWithId', function() {
 /**
  *
  */
-fn(me, 'getParent', function() {
+def(me, 'getParent', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1077,7 +1173,7 @@ fn(me, 'getParent', function() {
 /**
  *
  */
-fn(me, 'getParentByAttribute', function() {
+def(me, 'getParentByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1085,7 +1181,7 @@ fn(me, 'getParentByAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentByClass', function() {
+def(me, 'getParentByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1093,7 +1189,7 @@ fn(me, 'getParentByClass', function() {
 /**
  *
  */
-fn(me, 'getParentById', function() {
+def(me, 'getParentById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1101,7 +1197,7 @@ fn(me, 'getParentById', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelf', function() {
+def(me, 'getParentOrSelf', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1109,7 +1205,7 @@ fn(me, 'getParentOrSelf', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfByAttribute', function() {
+def(me, 'getParentOrSelfByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1117,7 +1213,7 @@ fn(me, 'getParentOrSelfByAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfByClass', function() {
+def(me, 'getParentOrSelfByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1125,7 +1221,7 @@ fn(me, 'getParentOrSelfByClass', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfById', function() {
+def(me, 'getParentOrSelfById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1133,7 +1229,7 @@ fn(me, 'getParentOrSelfById', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfWithAttribute', function() {
+def(me, 'getParentOrSelfWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1141,7 +1237,7 @@ fn(me, 'getParentOrSelfWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfWithClass', function() {
+def(me, 'getParentOrSelfWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1149,7 +1245,7 @@ fn(me, 'getParentOrSelfWithClass', function() {
 /**
  *
  */
-fn(me, 'getParentOrSelfWithId', function() {
+def(me, 'getParentOrSelfWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1157,7 +1253,7 @@ fn(me, 'getParentOrSelfWithId', function() {
 /**
  *
  */
-fn(me, 'getParents', function() {
+def(me, 'getParents', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1165,7 +1261,7 @@ fn(me, 'getParents', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelf', function() {
+def(me, 'getParentsAndSelf', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1173,7 +1269,7 @@ fn(me, 'getParentsAndSelf', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfByAttribute', function() {
+def(me, 'getParentsAndSelfByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1181,7 +1277,7 @@ fn(me, 'getParentsAndSelfByAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfByAttributeUntil', function() {
+def(me, 'getParentsAndSelfByAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1189,7 +1285,7 @@ fn(me, 'getParentsAndSelfByAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfByClass', function() {
+def(me, 'getParentsAndSelfByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1197,7 +1293,7 @@ fn(me, 'getParentsAndSelfByClass', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfByClassUntil', function() {
+def(me, 'getParentsAndSelfByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1205,7 +1301,7 @@ fn(me, 'getParentsAndSelfByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfUntil', function() {
+def(me, 'getParentsAndSelfUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1213,7 +1309,7 @@ fn(me, 'getParentsAndSelfUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithAttribute', function() {
+def(me, 'getParentsAndSelfWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1221,7 +1317,7 @@ fn(me, 'getParentsAndSelfWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithAttributeUntil', function() {
+def(me, 'getParentsAndSelfWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1229,7 +1325,7 @@ fn(me, 'getParentsAndSelfWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithClass', function() {
+def(me, 'getParentsAndSelfWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1237,7 +1333,7 @@ fn(me, 'getParentsAndSelfWithClass', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithClassUntil', function() {
+def(me, 'getParentsAndSelfWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1245,7 +1341,7 @@ fn(me, 'getParentsAndSelfWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithId', function() {
+def(me, 'getParentsAndSelfWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1253,7 +1349,7 @@ fn(me, 'getParentsAndSelfWithId', function() {
 /**
  *
  */
-fn(me, 'getParentsAndSelfWithIdUntil', function() {
+def(me, 'getParentsAndSelfWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1261,7 +1357,7 @@ fn(me, 'getParentsAndSelfWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsByAttribute', function() {
+def(me, 'getParentsByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1269,7 +1365,7 @@ fn(me, 'getParentsByAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentsByAttributeUntil', function() {
+def(me, 'getParentsByAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1277,7 +1373,7 @@ fn(me, 'getParentsByAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsByClass', function() {
+def(me, 'getParentsByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1285,7 +1381,7 @@ fn(me, 'getParentsByClass', function() {
 /**
  *
  */
-fn(me, 'getParentsByClassUntil', function() {
+def(me, 'getParentsByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1293,7 +1389,7 @@ fn(me, 'getParentsByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsUntil', function() {
+def(me, 'getParentsUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1301,7 +1397,7 @@ fn(me, 'getParentsUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsWithAttribute', function() {
+def(me, 'getParentsWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1309,7 +1405,7 @@ fn(me, 'getParentsWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentsWithAttributeUntil', function() {
+def(me, 'getParentsWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1317,7 +1413,7 @@ fn(me, 'getParentsWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsWithClass', function() {
+def(me, 'getParentsWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1325,7 +1421,7 @@ fn(me, 'getParentsWithClass', function() {
 /**
  *
  */
-fn(me, 'getParentsWithClassUntil', function() {
+def(me, 'getParentsWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1333,7 +1429,7 @@ fn(me, 'getParentsWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getParentsWithId', function() {
+def(me, 'getParentsWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1341,7 +1437,7 @@ fn(me, 'getParentsWithId', function() {
 /**
  *
  */
-fn(me, 'getParentsWithIdUntil', function() {
+def(me, 'getParentsWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1349,7 +1445,7 @@ fn(me, 'getParentsWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'getParentWithAttribute', function() {
+def(me, 'getParentWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1357,7 +1453,7 @@ fn(me, 'getParentWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getParentWithClass', function() {
+def(me, 'getParentWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1365,7 +1461,7 @@ fn(me, 'getParentWithClass', function() {
 /**
  *
  */
-fn(me, 'getParentWithId', function() {
+def(me, 'getParentWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1373,7 +1469,7 @@ fn(me, 'getParentWithId', function() {
 /**
  *
  */
-fn(me, 'getPrev', function() {
+def(me, 'getPrev', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1381,7 +1477,7 @@ fn(me, 'getPrev', function() {
 /**
  *
  */
-fn(me, 'getPrevAll', function() {
+def(me, 'getPrevAll', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1389,7 +1485,7 @@ fn(me, 'getPrevAll', function() {
 /**
  *
  */
-fn(me, 'getPrevAllByAttribute', function() {
+def(me, 'getPrevAllByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1397,7 +1493,7 @@ fn(me, 'getPrevAllByAttribute', function() {
 /**
  *
  */
-fn(me, 'getPrevAllByClass', function() {
+def(me, 'getPrevAllByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1405,7 +1501,7 @@ fn(me, 'getPrevAllByClass', function() {
 /**
  *
  */
-fn(me, 'getPrevAllByClassUntil', function() {
+def(me, 'getPrevAllByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1413,7 +1509,7 @@ fn(me, 'getPrevAllByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getPrevAllUntil', function() {
+def(me, 'getPrevAllUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1421,7 +1517,7 @@ fn(me, 'getPrevAllUntil', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithAttribute', function() {
+def(me, 'getPrevAllWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1429,7 +1525,7 @@ fn(me, 'getPrevAllWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithAttributeUntil', function() {
+def(me, 'getPrevAllWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1437,7 +1533,7 @@ fn(me, 'getPrevAllWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithClass', function() {
+def(me, 'getPrevAllWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1445,7 +1541,7 @@ fn(me, 'getPrevAllWithClass', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithClassUntil', function() {
+def(me, 'getPrevAllWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1453,7 +1549,7 @@ fn(me, 'getPrevAllWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithId', function() {
+def(me, 'getPrevAllWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1461,7 +1557,7 @@ fn(me, 'getPrevAllWithId', function() {
 /**
  *
  */
-fn(me, 'getPrevAllWithIdUntil', function() {
+def(me, 'getPrevAllWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1469,7 +1565,7 @@ fn(me, 'getPrevAllWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'getPrevByAttribute', function() {
+def(me, 'getPrevByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1477,7 +1573,7 @@ fn(me, 'getPrevByAttribute', function() {
 /**
  *
  */
-fn(me, 'getPrevByClass', function() {
+def(me, 'getPrevByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1485,7 +1581,7 @@ fn(me, 'getPrevByClass', function() {
 /**
  *
  */
-fn(me, 'getPrevById', function() {
+def(me, 'getPrevById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1493,7 +1589,7 @@ fn(me, 'getPrevById', function() {
 /**
  *
  */
-fn(me, 'getPrevWithAttribute', function() {
+def(me, 'getPrevWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1501,7 +1597,7 @@ fn(me, 'getPrevWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getPrevWithClass', function() {
+def(me, 'getPrevWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1509,7 +1605,7 @@ fn(me, 'getPrevWithClass', function() {
 /**
  *
  */
-fn(me, 'getPrevWithId', function() {
+def(me, 'getPrevWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1517,7 +1613,7 @@ fn(me, 'getPrevWithId', function() {
 /**
  *
  */
-fn(me, 'getSiblings', function() {
+def(me, 'getSiblings', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1525,7 +1621,7 @@ fn(me, 'getSiblings', function() {
 /**
  *
  */
-fn(me, 'getSiblingsByAttribute', function() {
+def(me, 'getSiblingsByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1533,7 +1629,7 @@ fn(me, 'getSiblingsByAttribute', function() {
 /**
  *
  */
-fn(me, 'getSiblingsByAttributeUntil', function() {
+def(me, 'getSiblingsByAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1541,7 +1637,7 @@ fn(me, 'getSiblingsByAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getSiblingsByClass', function() {
+def(me, 'getSiblingsByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1549,7 +1645,7 @@ fn(me, 'getSiblingsByClass', function() {
 /**
  *
  */
-fn(me, 'getSiblingsByClassUntil', function() {
+def(me, 'getSiblingsByClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1557,7 +1653,7 @@ fn(me, 'getSiblingsByClassUntil', function() {
 /**
  *
  */
-fn(me, 'getSiblingsUntil', function() {
+def(me, 'getSiblingsUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1565,7 +1661,7 @@ fn(me, 'getSiblingsUntil', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithAttribute', function() {
+def(me, 'getSiblingsWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1573,7 +1669,7 @@ fn(me, 'getSiblingsWithAttribute', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithAttributeUntil', function() {
+def(me, 'getSiblingsWithAttributeUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1581,7 +1677,7 @@ fn(me, 'getSiblingsWithAttributeUntil', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithClass', function() {
+def(me, 'getSiblingsWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1589,7 +1685,7 @@ fn(me, 'getSiblingsWithClass', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithClassUntil', function() {
+def(me, 'getSiblingsWithClassUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1597,7 +1693,7 @@ fn(me, 'getSiblingsWithClassUntil', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithId', function() {
+def(me, 'getSiblingsWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1605,7 +1701,7 @@ fn(me, 'getSiblingsWithId', function() {
 /**
  *
  */
-fn(me, 'getSiblingsWithIdUntil', function() {
+def(me, 'getSiblingsWithIdUntil', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1613,7 +1709,7 @@ fn(me, 'getSiblingsWithIdUntil', function() {
 /**
  *
  */
-fn(me, 'isChild', function() {
+def(me, 'isChild', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1621,7 +1717,7 @@ fn(me, 'isChild', function() {
 /**
  *
  */
-fn(me, 'isChildByAttribute', function() {
+def(me, 'isChildByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1629,7 +1725,7 @@ fn(me, 'isChildByAttribute', function() {
 /**
  *
  */
-fn(me, 'isChildByClass', function() {
+def(me, 'isChildByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1637,7 +1733,7 @@ fn(me, 'isChildByClass', function() {
 /**
  *
  */
-fn(me, 'isChildById', function() {
+def(me, 'isChildById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1645,7 +1741,7 @@ fn(me, 'isChildById', function() {
 /**
  *
  */
-fn(me, 'isChildWithAttribute', function() {
+def(me, 'isChildWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1653,7 +1749,7 @@ fn(me, 'isChildWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isChildWithClass', function() {
+def(me, 'isChildWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1661,7 +1757,7 @@ fn(me, 'isChildWithClass', function() {
 /**
  *
  */
-fn(me, 'isChildWithId', function() {
+def(me, 'isChildWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1669,7 +1765,7 @@ fn(me, 'isChildWithId', function() {
 /**
  *
  */
-fn(me, 'isNext', function() {
+def(me, 'isNext', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1677,7 +1773,7 @@ fn(me, 'isNext', function() {
 /**
  *
  */
-fn(me, 'isNextByAttribute', function() {
+def(me, 'isNextByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1685,7 +1781,7 @@ fn(me, 'isNextByAttribute', function() {
 /**
  *
  */
-fn(me, 'isNextByClass', function() {
+def(me, 'isNextByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1693,7 +1789,7 @@ fn(me, 'isNextByClass', function() {
 /**
  *
  */
-fn(me, 'isNextById', function() {
+def(me, 'isNextById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1701,7 +1797,7 @@ fn(me, 'isNextById', function() {
 /**
  *
  */
-fn(me, 'isNextWithAttribute', function() {
+def(me, 'isNextWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1709,7 +1805,7 @@ fn(me, 'isNextWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isNextWithClass', function() {
+def(me, 'isNextWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1717,7 +1813,7 @@ fn(me, 'isNextWithClass', function() {
 /**
  *
  */
-fn(me, 'isNextWithId', function() {
+def(me, 'isNextWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1725,7 +1821,7 @@ fn(me, 'isNextWithId', function() {
 /**
  *
  */
-fn(me, 'isParent', function() {
+def(me, 'isParent', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1733,7 +1829,7 @@ fn(me, 'isParent', function() {
 /**
  *
  */
-fn(me, 'isParentByAttribute', function() {
+def(me, 'isParentByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1741,7 +1837,7 @@ fn(me, 'isParentByAttribute', function() {
 /**
  *
  */
-fn(me, 'isParentByClass', function() {
+def(me, 'isParentByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1749,7 +1845,7 @@ fn(me, 'isParentByClass', function() {
 /**
  *
  */
-fn(me, 'isParentById', function() {
+def(me, 'isParentById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1757,7 +1853,7 @@ fn(me, 'isParentById', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelf', function() {
+def(me, 'isParentOrSelf', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1765,7 +1861,7 @@ fn(me, 'isParentOrSelf', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfByAttribute', function() {
+def(me, 'isParentOrSelfByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1773,7 +1869,7 @@ fn(me, 'isParentOrSelfByAttribute', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfByClass', function() {
+def(me, 'isParentOrSelfByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1781,7 +1877,7 @@ fn(me, 'isParentOrSelfByClass', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfById', function() {
+def(me, 'isParentOrSelfById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1789,7 +1885,7 @@ fn(me, 'isParentOrSelfById', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfWithAttribute', function() {
+def(me, 'isParentOrSelfWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1797,7 +1893,7 @@ fn(me, 'isParentOrSelfWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfWithClass', function() {
+def(me, 'isParentOrSelfWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1805,7 +1901,7 @@ fn(me, 'isParentOrSelfWithClass', function() {
 /**
  *
  */
-fn(me, 'isParentOrSelfWithId', function() {
+def(me, 'isParentOrSelfWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1813,7 +1909,7 @@ fn(me, 'isParentOrSelfWithId', function() {
 /**
  *
  */
-fn(me, 'isParentWithAttribute', function() {
+def(me, 'isParentWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1821,7 +1917,7 @@ fn(me, 'isParentWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isParentWithClass', function() {
+def(me, 'isParentWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1829,7 +1925,7 @@ fn(me, 'isParentWithClass', function() {
 /**
  *
  */
-fn(me, 'isParentWithId', function() {
+def(me, 'isParentWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1837,7 +1933,7 @@ fn(me, 'isParentWithId', function() {
 /**
  *
  */
-fn(me, 'isPrev', function() {
+def(me, 'isPrev', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1845,7 +1941,7 @@ fn(me, 'isPrev', function() {
 /**
  *
  */
-fn(me, 'isPrevByAttribute', function() {
+def(me, 'isPrevByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1853,7 +1949,7 @@ fn(me, 'isPrevByAttribute', function() {
 /**
  *
  */
-fn(me, 'isPrevByClass', function() {
+def(me, 'isPrevByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1861,7 +1957,7 @@ fn(me, 'isPrevByClass', function() {
 /**
  *
  */
-fn(me, 'isPrevById', function() {
+def(me, 'isPrevById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1869,7 +1965,7 @@ fn(me, 'isPrevById', function() {
 /**
  *
  */
-fn(me, 'isPrevWithAttribute', function() {
+def(me, 'isPrevWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1877,7 +1973,7 @@ fn(me, 'isPrevWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isPrevWithClass', function() {
+def(me, 'isPrevWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1885,7 +1981,7 @@ fn(me, 'isPrevWithClass', function() {
 /**
  *
  */
-fn(me, 'isPrevWithId', function() {
+def(me, 'isPrevWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1893,7 +1989,7 @@ fn(me, 'isPrevWithId', function() {
 /**
  *
  */
-fn(me, 'isSibling', function() {
+def(me, 'isSibling', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1901,7 +1997,7 @@ fn(me, 'isSibling', function() {
 /**
  *
  */
-fn(me, 'isSiblingByAttribute', function() {
+def(me, 'isSiblingByAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1909,7 +2005,7 @@ fn(me, 'isSiblingByAttribute', function() {
 /**
  *
  */
-fn(me, 'isSiblingByClass', function() {
+def(me, 'isSiblingByClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1917,7 +2013,7 @@ fn(me, 'isSiblingByClass', function() {
 /**
  *
  */
-fn(me, 'isSiblingById', function() {
+def(me, 'isSiblingById', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1925,7 +2021,7 @@ fn(me, 'isSiblingById', function() {
 /**
  *
  */
-fn(me, 'isSiblingWithAttribute', function() {
+def(me, 'isSiblingWithAttribute', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1933,7 +2029,7 @@ fn(me, 'isSiblingWithAttribute', function() {
 /**
  *
  */
-fn(me, 'isSiblingWithClass', function() {
+def(me, 'isSiblingWithClass', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
@@ -1941,7 +2037,7 @@ fn(me, 'isSiblingWithClass', function() {
 /**
  *
  */
-fn(me, 'isSiblingWithId', function() {
+def(me, 'isSiblingWithId', function() {
     //TODO: implement me!
     throw 'NOT implemented!';
 });
