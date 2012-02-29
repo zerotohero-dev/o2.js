@@ -162,7 +162,7 @@
         // Mozilla, Opera, webkit
         bindReadyListeners = function() {
 
-            //Listen to native on dom conten loaded event.
+            //Listen to native on dom content loaded event.
             document.addEventListener(kDomContentLoaded, onMozDomContentLoaded,
                 false);
 

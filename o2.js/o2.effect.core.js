@@ -6,5 +6,5 @@
 (function() {
     'use strict';
 
-    throw 'o2.Effect module has not been built yet.';
+    //throw 'o2.Effect module has not been built yet.';
 }());

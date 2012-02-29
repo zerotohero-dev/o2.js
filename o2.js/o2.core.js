@@ -6,13 +6,16 @@
  *  Please see the <strong><a
  *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
  *  >LICENSE</a></strong> file for details.<br /><br />
- *  <strong>lastModified</strong>: 2012-02-26 12:57:04.820238
  *  <p>
  *
- * @project     o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- * @version     2012-02-28 01:52:54.871065
+ * @project     o2.js
+ * @version     0.24.a.0001328773671
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ */
+
+/*
+ *  lastModified: 2012-02-29 17:21:14.755623
  */
 
 /**
@@ -24,7 +27,7 @@
 (function(framework, window, document) {
     'use strict';
 
-    var kFrameworkUndefined = 'Module "core.meta" is not included!';
+    var kFrameworkUndefined = 'Please include module "core.meta"!';
 
     if (framework === undefined) {
         throw kFrameworkUndefined;

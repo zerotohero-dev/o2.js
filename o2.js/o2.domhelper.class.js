@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-17 09:04:50.933695
+ *  lastModified: 2012-02-29 17:13:26.871918
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -16,58 +16,31 @@
 (function(framework) {
     'use strict';
 
-/*    var _         = framework.protecteds;
-    var alias     = _.alias;
+    var _         = framework.protecteds;
     var attr      = _.getAttr;
-    var construct = _.construct;
-    var create    = _.create;
-    var def       = _.define;
-    var obj       = _.getObject;
-    var proto     = _.proto;
-    var require   = _.require;
-*/
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
-function define() {
-
-}
-
-function use() {
-
-}
-
-function require() {
-
-}
-
-function hasClass() {
-
-}
-
-function addClass() {
-
-}
-
-function removeClass() {
-
-}
-
-    var kObjectName = 'DomHelper';
-
-    var me = define(framework, kObjectName);
+    /*
+     * DomHelper (class)
+     */
+    var me = create('DomHelper');
 
     /*
      * Aliases
      */
-    var $ = use(framework.$);
-    var concat = use(framework.StringHelper.concat);
+
+    var $ = require('$');
+
+    var concat = require('StringHelper', 'concat');
 
     /*
      * Common Constants
      */
-    var kBlank = ' ';
     var kBeginOrBlank = '(\\s|^)';
-    var kEndOrBlank = '(\\s|$)';
-    var kUndefined = 'undefined';
+    var kBlank        = ' ';
+    var kEndOrBlank   = '(\\s|$)';
 
     /**
      * @function {static} o2.DomHelper.createClassNameRegExp
@@ -79,10 +52,13 @@ function removeClass() {
      *
      * @returns a <code>RegExp</code> that matches the given class name.
      */
-    me.createClassNameRegExp = function(c) {
+    def(me, 'createClassNameRegExp', function(c) {
         return new RegExp(concat(kBeginOrBlank, c, kEndOrBlank));
-    };
+    });
 
+    /*
+     *
+     */
     var createClassNameRegExp = require('DomHelper', 'createClassNameRegExp');
 
     /**
@@ -98,7 +74,7 @@ function removeClass() {
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
-    me.hasClass = function(el, c) {
+    def(me, 'hasClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -106,7 +82,12 @@ function removeClass() {
         }
 
         return createClassNameRegExp(c).test(el.className);
-    };
+    });
+
+    /*
+     *
+     */
+    var hasClass = require('DomHelper', 'hasClass');
 
     /**
      * @function {static} o2.DomHelper.addClass
@@ -117,7 +98,7 @@ function removeClass() {
      * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to add.
      */
-    me.addClass = function(el, c) {
+    def(me, 'addClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -129,7 +110,12 @@ function removeClass() {
         }
 
         el.className += concat(kBlank, c);
-    };
+    });
+
+    /*
+     *
+     */
+    var addClass = require('DomHelper', 'addClass');
 
     /**
      * @function {static} o2.DomHelper.removeClass
@@ -140,7 +126,7 @@ function removeClass() {
      * <strong>id</strong> of it.
      * @param {String} c - the className to remove.
      */
-    me.removeClass = function(el, c) {
+    def(me, 'removeClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -152,7 +138,12 @@ function removeClass() {
         }
 
         el.className = el.className.replace(createClassNameRegExp(c), kBlank);
-    };
+    });
+
+    /*
+     *
+     */
+    var removeClass = require('DomHelper', 'removeClass');
 
     /**
      * @function {static} o2.DomHelper.toggleClass
@@ -170,8 +161,8 @@ function removeClass() {
      * given, the class is toggled (i.e. added if the class does not exist,
      * and removed if the class exists).
      */
-    me.toggleClass = function(el, c, state) {
-        if (typeof state !== kUndefined) {
+    def(me, 'toggleClass', function(el, c, state) {
+        if (state !== undefined) {
             if (state) {
                 addClass(el, c);
 
@@ -190,5 +181,5 @@ function removeClass() {
         }
 
         addClass(el, c);
-    };
+    });
 }(this.o2, this));

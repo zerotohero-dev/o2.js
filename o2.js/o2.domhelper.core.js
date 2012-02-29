@@ -41,7 +41,8 @@
     var kDocumentNode = attr(nt, 'DOCUMENT');
     var kText         = attr(nt, 'TEXT');
 
-    var createElement = attr(document,'createElement');
+    var createElement          = attr(document,'createElement');
+    var createDocumentFragment = attr(document, 'createDocumentFragment');
 
     /*
      * Common Constants
@@ -108,7 +109,7 @@
      * fragment.
      */
     def(me, 'createDocumentFragment', function(html) {
-        var result = document.createDocumentFragment();
+        var result = createDocumentFragment();
 
         tempFragmentDiv = tempFragmentDiv || createElement(kDiv);
 

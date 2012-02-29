@@ -35,6 +35,7 @@
     var floor  = attr(math, 'floor');
     var random = attr(math, 'random');
     var slice  = attr(Array.prototype, 'slice');
+
     var trim   = String.prototype.trim;
 
     /*

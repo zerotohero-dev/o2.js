@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 11:56:39.839504
+ *  lastModified: 2012-02-29 17:15:04.599303
  * -->
  *
  * <p>A debugging helper.</p>
@@ -53,8 +53,6 @@
     var info    = console.info   || nill;
     var log     = console.log    || nill;
     var warn    = console.warn   || nill;
-
-
 
     /*
      * Configuration
@@ -255,16 +253,14 @@
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
         // boolean.)
-        isUsingConsole = (console !== undefined &&
-            !!shouldUseConsole);
+        isUsingConsole = (console !== undefined && !!shouldUseConsole);
 
         // Is everything ok? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
-        var isConfigOk = ((outputNode && outputNode.nodeName) ||
-                    isUsingConsole);
+        var isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
 
-        if (!isConfigOk) {
+        if (!isCfgOk) {
             throw kCannotInitialize;
         }
 

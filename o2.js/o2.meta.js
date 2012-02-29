@@ -114,6 +114,7 @@ this.o2 = this.o2 || {
      var kCore                  = 'core';
      var kDebuggerCore          = 'debugger.core';
      var kDateHelperCore        = 'datehelper.core';
+     var kDomHelperClass        = 'domhelper.class';
      var kDomHelperConstants    = 'domhelper.constants';
      var kDomHelperCore         = 'domhelper.core';
      var kDomHelperDimension    = 'domhelper.dimension';
@@ -310,6 +311,12 @@ this.o2 = this.o2 || {
                 removeNode              : {MODULE : kDomHelperCore},
                 setAttribute            : {MODULE : kDomHelperCore},
                 setHtml                 : {MODULE : kDomHelperCore},
+
+                addClass              : {MODULE : kDomHelperClass},
+                createClassNameRegExp : {MODULE : kDomHelperClass},
+                hasClass              : {MODULE : kDomHelperClass},
+                removeClass           : {MODULE : kDomHelperClass},
+                toggleClass           : {MODULE : kDomHelperClass},
 
                 getDimension            : {MODULE : kDomHelperDimension},
                 getDocumentDimension    : {MODULE : kDomHelperDimension},

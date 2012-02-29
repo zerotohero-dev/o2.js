@@ -56,7 +56,7 @@
     var myself = require(kMyName);
 
     var baseProtecteds = require(kBaseName, kProtecteds);
-    var myProtecteds   = require(kMyName, kProtecteds);
+    var myProtecteds   = require(kMyName,   kProtecteds);
 
     copyFn(myself, base);
     copyAttr(myProtecteds, baseProtecteds);

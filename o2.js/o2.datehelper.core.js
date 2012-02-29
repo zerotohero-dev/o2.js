@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 07:24:21.642457
+ *  lastModified: 2012-02-29 17:18:51.882653
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -16,11 +16,11 @@
     'use strict';
 
     var _         = framework.protecteds;
-    var alias     = _.alias;
     var attr      = _.getAttr;
-    var create    = _.create;
-    var def       = _.define;
-    var require   = _.require;
+    var alias     = attr(_, 'alias');
+    var create    = attr(_, 'create');
+    var def       = attr(_, 'define');
+    var require   = attr(_, 'require');
 
     /**
      * @class {static} o2.DateHelper
@@ -28,6 +28,7 @@
      * <p>A date/time utilities class.</p>
      */
     var me = create('DateHelper');
+
     /*
      * Aliases
      */
@@ -37,7 +38,7 @@
 
     var format = require('StringHelper', 'format');
 
-    var math = Math;
+    var math  = Math;
     var floor = attr(math, 'floor');
     var abs   = attr(math, 'abs');
 
@@ -77,21 +78,21 @@
      * Time Formats
      */
     var timeFormats = [
-        [60, kSeconds, 1],
-        [120, kOneMinuteAgo, kOneMinuteFromNow],
-        [3600, kMinutes, 60],
-        [7200, kOneHourAgo, kOneHourFromNow],
-        [86400, kHours, 3600],
-        [172800, kYesterday, kTomorrow],
-        [604800, kDays, 86400],
-        [1209600, kLastWeek, kNextWeek],
-        [2419200, kWeeks, 604800],
-        [4838400, kLastMonth, kNextMonth],
-        [29030400, kMonths, 2419200],
-        [58060800, kLastYear, kNextYear],
-        [2903040000, kYears, 29030400],
-        [5806080000, kLastCentury, kNextCentury],
-        [58060800000, kCenturies, 2903040000]
+        [60         , kSeconds     , 1                ],
+        [120        , kOneMinuteAgo, kOneMinuteFromNow],
+        [3600       , kMinutes     , 60               ],
+        [7200       , kOneHourAgo  , kOneHourFromNow  ],
+        [86400      , kHours       , 3600             ],
+        [172800     , kYesterday   , kTomorrow        ],
+        [604800     , kDays        , 86400            ],
+        [1209600    , kLastWeek    , kNextWeek        ],
+        [2419200    , kWeeks       , 604800           ],
+        [4838400    , kLastMonth   , kNextMonth       ],
+        [29030400   , kMonths      , 2419200          ],
+        [58060800   , kLastYear    , kNextYear        ],
+        [2903040000 , kYears       , 29030400         ],
+        [5806080000 , kLastCentury , kNextCentury     ],
+        [58060800000, kCenturies   , 2903040000       ]
     ];
 
     /*
