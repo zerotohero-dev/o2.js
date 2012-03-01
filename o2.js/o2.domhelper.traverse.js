@@ -42,10 +42,15 @@
 
     var getAttribute = require('DomHelper', 'getAttribute');
 
+    /*
+     * Selectors
+     */
+    var kImmediateClassSelector       = '#{0} > .{1}'
+    var kImmediateClassAndTagSelector = '#{0} > {1}.{2}'
+
     function returnTrue() {
         return true;
     }
-
 
     function filter(nodes, name, filterDelegate, filterArgs, filterResult,
                 breakDelegate, breakArgs) {
@@ -89,7 +94,6 @@
         return result;
     }
 
-
     /**
      * function {static} o2.DomHelper.getChildren
      *
@@ -109,7 +113,7 @@
             return [];
         }
 
-        return filter(elm, target.childNodes, name || kEmpty,
+        return filter(target.childNodes, name || kEmpty,
             returnTrue, [], true);
     });
 
@@ -141,35 +145,55 @@
             return [];
         }
 
-        return filter(elm, target.childNodes, name || kEmpty,
+        return filter(target.childNodes, name || kEmpty,
             getAttribute, [attr], value);
     });
-
 
     /**
      *
      */
     def(me, 'getChildrenByAttributeUntil', function(elm, attr, value, until,
                 name) {
-
         var target = $(elm);
 
         if (!target) {
             return [];
         }
 
-        return filter(elm, target.childNodes, name || kEmpty,
+        return filter(target.childNodes, name || kEmpty,
             getAttribute, [attr], value, isNodeEquals, [until]);
     });
 
     if (isNativeQuerySupported) {
+
         /**
          *
          */
         def(me, 'getChildrenByClass', function(elm, className, nodeName) {
+            var el = $(elm);
 
+            // NOTE: IE7+ supports child selector ( > ),
+            // IE8+ supports querySelectorAll
+            // So it's safe to use the child selector with querySelectorAll:
+            // It'll work as expected in IE8+ and it'll degrade gracefully
+            // in IE7-
+
+            if (!el.id) {
+                el.id = [myName, generateGuid()].join(kEmpty);
+            }
+
+            if (nodeName) {
+                return el.querySelectorAll(
+                    format(kImmediateClassAndTagSelector, el.id, nodeName, c)
+                );
+            }
+
+            return el.querySelectorAll(
+                format(kImmediateClassSelector, el.id, c)
+            );
         });
     } else {
+
         /**
          *
          */
@@ -180,17 +204,30 @@
                 return [];
             }
 
-            return filter(elm, target.childNodes, nodeName || kEmpty,
+            return filter(target.childNodes, nodeName || kEmpty,
                 hasClassName, [], className);
         });
-
     }
 
+    var getChildrenByClass = require('DomHelper', 'getChildrenByClass');
+
+    /**
+     *
+     */
+    def(me, 'getChildrenByClassUntil', function(elm, className, until,
+            nodeName) {
+
+        var items = getChildrenByClass(elm, classname, nodeName);
+
+        var result = [];
+
+        return filter(items, nodeName || kEmpty,
+            hasClassName, [], className, isNodeEquals, [until]);
+
+    });
 
 
 /*
-getChildrenByClass            : {MODULE : kDomHelperTraverse},
-getChildrenByClassUntil       : {MODULE : kDomHelperTraverse},
 getChildrenById               : {MODULE : kDomHelperTraverse},
 getChildrenByIdUntil          : {MODULE : kDomHelperTraverse},
 getChildrenUntil              : {MODULE : kDomHelperTraverse},

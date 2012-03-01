@@ -25,7 +25,6 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
-
     /**
      * @class {static} o2.CollectionHelper
      *
