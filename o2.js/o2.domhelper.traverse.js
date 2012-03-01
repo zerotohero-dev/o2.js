@@ -162,9 +162,33 @@
             getAttribute, [attr], value, isNodeEquals, [until]);
     });
 
+    if (isNativeQuerySupported) {
+        /**
+         *
+         */
+        def(me, 'getChildrenByClass', function(elm, className, nodeName) {
+
+        });
+    } else {
+        /**
+         *
+         */
+        def(me, 'getChildrenByClass', function(elm, className, nodeName) {
+            var target = $(elm);
+
+            if (!target) {
+                return [];
+            }
+
+            return filter(elm, target.childNodes, nodeName || kEmpty,
+                hasClassName, [], className);
+        });
+
+    }
+
+
 
 /*
-getChildrenByAttributeUntil   : {MODULE : kDomHelperTraverse},
 getChildrenByClass            : {MODULE : kDomHelperTraverse},
 getChildrenByClassUntil       : {MODULE : kDomHelperTraverse},
 getChildrenById               : {MODULE : kDomHelperTraverse},
@@ -399,15 +423,6 @@ isSiblingWithId        : {MODULE : kDomHelperTraverse}
 
 */
 
-
-
-/**
- *
- */
-def(me, 'getChildrenByClass', function() {
-    //TODO: implement me!
-    throw 'NOT implemented!';
-});
 
 /**
  *
