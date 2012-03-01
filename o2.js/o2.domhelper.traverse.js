@@ -42,6 +42,53 @@
 
     var getAttribute = require('DomHelper', 'getAttribute');
 
+    function returnTrue() {
+        return true;
+    }
+
+
+    function filter(nodes, name, filterDelegate, filterArgs, filterResult,
+                breakDelegate, breakArgs) {
+        var nodeName = name || kEmpty;
+        var result = [];
+        var i = 0;
+        var len = 0;
+        var node = null;
+
+        var fArgs = filterArgs;
+
+        for (i = 0, len = nodes.length; i < len; i++) {
+            node = nodes[i];
+
+            if(breakDelegate &&
+                breakDelegate.apply(node, breakArgs.unshift(node))) {
+                break;
+            }
+
+            if (node.nodeType !== kTextNode) {
+                if (nodeName) {
+                    if (
+                        node.nodeName.toLowerCase() === nodeName.toLowerCase()
+                    ) {
+                        if(filterDelegate.apply(
+                            node, fArgs.unshift(node)) === filterResult
+                    ) {
+                            result.push(node);
+                        }
+                    }
+                } else {
+                    if(filterDelegate.apply(
+                            node, fArgs.unshift(node)) === filterResult
+                    ) {
+                            result.push(node);
+                        }
+                }
+            }
+        }
+
+        return result;
+    }
+
 
     /**
      * function {static} o2.DomHelper.getChildren
@@ -55,38 +102,15 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildren', function(elm, nodeName) {
+    def(me, 'getChildren', function(elm, name) {
         var target = $(elm);
 
         if (!target) {
             return [];
         }
 
-        nodeName = nodeName || kEmpty;
-
-        var nodes = target.childNodes;
-        var result = [];
-        var i = 0;
-        var len = 0;
-        var node = null;
-
-        for (i = 0, len = nodes.length; i < len; i++) {
-            node = nodes[i];
-
-            if (node.nodeType !== kTextNode) {
-                if (nodeName) {
-                    if (
-                        node.nodeName.toLowerCase() === nodeName.toLowerCase()
-                    ) {
-                        result.push(node);
-                    }
-                } else {
-                    result.push(node);
-                }
-            }
-        }
-
-        return result;
+        return filter(elm, target.childNodes, name || kEmpty,
+            returnTrue, [], true);
     });
 
     /**
@@ -117,35 +141,25 @@
             return [];
         }
 
-        var nodeName = name || kEmpty;
+        return filter(elm, target.childNodes, name || kEmpty,
+            getAttribute, [attr], value);
+    });
 
-        var nodes = target.childNodes;
-        var result = [];
-        var i = 0;
-        var len = 0;
-        var node = null;
 
-        for (i = 0, len = nodes.length; i < len; i++) {
-            node = nodes[i];
+    /**
+     *
+     */
+    def(me, 'getChildrenByAttributeUntil', function(elm, attr, value, until,
+                name) {
 
-            if (node.nodeType !== kTextNode) {
-                if (nodeName) {
-                    if (
-                        node.nodeName.toLowerCase() === nodeName.toLowerCase()
-                    ) {
-                        if(getAttribute(node, attr) === value) {
-                            result.push(node);
-                        }
-                    }
-                } else {
-                    if(getAttribute(node, attr) === value) {
-                        result.push(node);
-                    }
-                }
-            }
+        var target = $(elm);
+
+        if (!target) {
+            return [];
         }
 
-        return result;
+        return filter(elm, target.childNodes, name || kEmpty,
+            getAttribute, [attr], value, isNodeEquals, [until]);
     });
 
 
@@ -386,13 +400,6 @@ isSiblingWithId        : {MODULE : kDomHelperTraverse}
 */
 
 
-/**
- *
- */
-def(me, 'getChildrenByAttributeUntil', function() {
-    //TODO: implement me!
-    throw 'NOT implemented!';
-});
 
 /**
  *
