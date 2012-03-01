@@ -209,6 +209,9 @@
         });
     }
 
+    /*
+     *
+     */
     var getChildrenByClass = require('DomHelper', 'getChildrenByClass');
 
     /**
@@ -217,15 +220,13 @@
     def(me, 'getChildrenByClassUntil', function(elm, className, until,
             nodeName) {
 
-        var items = getChildrenByClass(elm, classname, nodeName);
+        var items = getChildrenByClass(elm, className, nodeName);
 
         var result = [];
 
-        return filter(items, nodeName || kEmpty,
-            hasClassName, [], className, isNodeEquals, [until]);
-
+        return filter(items, kEmpty, returnTrue, [], true,
+            isNodeEquals, [until]);
     });
-
 
 /*
 getChildrenById               : {MODULE : kDomHelperTraverse},
