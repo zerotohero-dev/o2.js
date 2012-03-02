@@ -15,7 +15,7 @@
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-(function(framework) {
+(function(framework, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -33,7 +33,8 @@
      * Aliases
      */
 
-    var $ = require('$');
+    var $      = require('$');
+    var myName = require('name');
 
     var kEmpty = '';
 
@@ -42,16 +43,45 @@
 
     var getAttribute = require('DomHelper', 'getAttribute');
 
+    var kStringHelper = 'StringHelper';
+    var format        = require(kStringHelper, 'format');
+    var generateGuid  = require(kStringHelper, 'generateGuid');
+
     /*
      * Selectors
      */
-    var kImmediateClassSelector       = '#{0} > .{1}'
-    var kImmediateClassAndTagSelector = '#{0} > {1}.{2}'
+    var kImmediateClassSelector       = '#{0} > .{1}';
+    var kImmediateClassAndTagSelector = '#{0} > {1}.{2}';
 
+    /*
+     *
+     */
+    var isNativeQuerySupported = !!document.querySelector;
+
+    /*
+     * Simply returns true
+     */
     function returnTrue() {
         return true;
     }
 
+    /*
+     * Checks whether two nodes are equal to one another.
+     */
+    function isNodeEquals(node, until) {
+        return node === until;
+    }
+
+    /*
+     * Does the node hava that class?
+     */
+    function hasClassName(node, name) {
+        return node && node.className.indexOf(name) > -1;
+    }
+
+    /*
+     * Filters a set of nodes into a smaller subset.
+     */
     function filter(nodes, name, filterDelegate, filterArgs, filterResult,
                 breakDelegate, breakArgs) {
         var nodeName = name || kEmpty;
@@ -184,12 +214,13 @@
 
             if (nodeName) {
                 return el.querySelectorAll(
-                    format(kImmediateClassAndTagSelector, el.id, nodeName, c)
+                    format(kImmediateClassAndTagSelector, el.id, nodeName,
+                        className)
                 );
             }
 
             return el.querySelectorAll(
-                format(kImmediateClassSelector, el.id, c)
+                format(kImmediateClassSelector, el.id, className)
             );
         });
     } else {
@@ -205,7 +236,7 @@
             }
 
             return filter(target.childNodes, nodeName || kEmpty,
-                hasClassName, [], className);
+                hasClassName, [className], true);
         });
     }
 
@@ -220,12 +251,11 @@
     def(me, 'getChildrenByClassUntil', function(elm, className, until,
             nodeName) {
 
-        var items = getChildrenByClass(elm, className, nodeName);
-
-        var result = [];
-
-        return filter(items, kEmpty, returnTrue, [], true,
-            isNodeEquals, [until]);
+        return filter(
+            getChildrenByClass(elm, className, nodeName),
+            kEmpty, returnTrue, [], true,
+            isNodeEquals, [until]
+        );
     });
 
 /*
@@ -2102,4 +2132,4 @@ def(me, 'isSiblingWithId', function() {
     throw 'NOT implemented!';
 });
 
-}(this.o2));
+}(this.o2, this.document));
