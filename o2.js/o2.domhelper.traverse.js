@@ -258,13 +258,136 @@
         );
     });
 
+    /**
+     *
+     */
+    def(me, 'getChildrenById', function(elm, id, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        var obj = $(id);
+
+        if (!obj) {
+            return [];
+        }
+
+        if(nodeName) {
+            if(nodeName.toLowerCase() === obj.nodeName.toLowerCase()) {
+                return [obj];
+            }
+
+            return [];
+        }
+
+        return [obj];
+    });
+
+    var getChildrenById = require('DomHelper', 'getChildrenById');
+
+    /**
+     *
+     */
+    def(me, 'getChildrenByIdUntil', function(elm, id, until, nodeName)) {
+        var result = getChildrenById(elm, id, nodeName);
+
+        if (!result.length) {
+            return [];
+        }
+
+        var next = null;
+        var item = result[0];
+
+        while (true) {
+            next = result.nextSibling;
+
+            if (!next) {
+                break;
+            }
+
+            if (next === until) {
+                return result;
+            }
+        }
+
+        return [];
+    });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenUntil', function(elm, until, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, name || kEmpty,
+            returnTrue, [], true, isNodeEquals, [until]);
+    });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenWithAttribute', function(elm, attribute, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasAttribute, [attribute], true);
+    });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasAttribute, [attribute], true, isNodeEquals, [until]);
+    });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenWithClass', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasClassAttribute, [], true);
+    });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenWithClassUntil', function(elm, until, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasClassAttribute, [], true, isNodeEquals, [until]);
+    });
 /*
-getChildrenById               : {MODULE : kDomHelperTraverse},
-getChildrenByIdUntil          : {MODULE : kDomHelperTraverse},
-getChildrenUntil              : {MODULE : kDomHelperTraverse},
-getChildrenWithAttribute      : {MODULE : kDomHelperTraverse},
-getChildrenWithAttributeUntil : {MODULE : kDomHelperTraverse},
-getChildrenWithClass          : {MODULE : kDomHelperTraverse},
+
+
+
 getChildrenWithClassUntil     : {MODULE : kDomHelperTraverse},
 getChildrenWithId             : {MODULE : kDomHelperTraverse},
 getChildrenWithIdUntil        : {MODULE : kDomHelperTraverse},
