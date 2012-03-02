@@ -96,6 +96,6 @@ See my [1][linkedin profile] to find more about me:
 
 I also share [3][worth-following bits an pieces[] on [3][twitter].
 
-[1]: http://linkedin.com/in/volkanozcelik
-[2]: http://o2js.com/
-[3]: http://twitter.com/linkibol
+[1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
+[2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
+[3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
