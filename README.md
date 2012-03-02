@@ -1,8 +1,8 @@
-     ____ ___        _______
-    / __ \__ \      / / ___/
-   / / / /_/ / __  / /\__ \
-  / /_/ / __/_/ /_/ /___/ /
-  \____/____(_)____//____/ -- A Coherent Solution to Your JavaScript Dilemma ;)
+       ____ ___        _______
+      / __ \__ \      / / ___/
+     / / / /_/ / __  / /\__ \
+    / /_/ / __/_/ /_/ /___/ /
+    \____/____(_)____//____/ - A Coherent Solution to Your JavaScript Dilemma ;)
 
 
 ## About o2.js
