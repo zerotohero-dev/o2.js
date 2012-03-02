@@ -5,6 +5,8 @@
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
 
+--------------------------------------------------------------------------------
+
 Hi, I'm [Volkan Özçelik][1].
 
 Front-end development and performance optimization has always been my passion.
@@ -21,6 +23,8 @@ I have three main goals for [o2.js][2]:
 > o2.js will be like fresh oxygen **;)**."
 
 [o2.js][2] is in still in its growth phase with a pretty stable code base.
+
+--------------------------------------------------------------------------------
 
 ## Yet Another JavaScript Framework?! Seriously?
 
@@ -47,6 +51,8 @@ and re-usable **JavaScript** *framework*.
 
 Hope you like the outcome ;).
 
+--------------------------------------------------------------------------------
+
 ## Supported Platforms & User Agents
 
 [o2.js][2] is being designed to run pretty smoothly in almost any device/user
@@ -70,6 +76,8 @@ the following browsers/platforms:
 * **Opera/Windows** (the Most Recent Stable Version)
 * **Google Chrome/Windows** (the Most Recent Stable Version)
 * **Safari/Windows** (the Most Recent Stable Version)
+
+--------------------------------------------------------------------------------
 
 ## About the Author
 
@@ -96,6 +104,8 @@ I also share [worth-following bits an pieces][3] on [twitter][3].
 [1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
 [3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
+
+--------------------------------------------------------------------------------
             ___       _
       ____ |__ \     (_)____
      / __ \__/ /    / / ___/
