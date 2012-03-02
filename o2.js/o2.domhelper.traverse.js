@@ -384,12 +384,24 @@
         return filter(target.childNodes, nodeName || kEmpty,
             hasClassAttribute, [], true, isNodeEquals, [until]);
     });
+
+    /**
+     *
+     */
+    def(me, 'getChildrenWithId', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasIdAttribute, [], true);
+    });
+
+
 /*
 
-
-
-getChildrenWithClassUntil     : {MODULE : kDomHelperTraverse},
-getChildrenWithId             : {MODULE : kDomHelperTraverse},
 getChildrenWithIdUntil        : {MODULE : kDomHelperTraverse},
 
 getElements              : {MODULE : kDomHelperTraverse},
