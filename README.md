@@ -7,29 +7,29 @@
 
 --------------------------------------------------------------------------------
 
-## About **[o2.js][2]**
+## About ****[o2.js][2]****
 
 Hi, I'm [Volkan Özçelik][1].
 
 Front-end development and performance optimization has always been my passion.
-With [o2.js][2], I aim to reflect this passion.
+With **[o2.js][2]**, I aim to reflect this passion.
 
-I have three main goals for [o2.js][2]:
+I have three main goals for **[o2.js][2]**:
 
-* [o2.js][2] will be **fast**,
-* [o2.js][2] will be **flexible**,
-* [o2.js][2] will be **reliable**.
+* **[o2.js][2]** will be **fast**,
+* **[o2.js][2]** will be **flexible**,
+* **[o2.js][2]** will be **reliable**.
 
 > "In the land of heavy JavaScript libraries,
 > o2.js will be like fresh oxygen **;)**."
 
-[o2.js][2] is in still in its growth phase with a pretty stable code base.
+**[o2.js][2]** is in still in its growth phase with a pretty stable code base.
 
 --------------------------------------------------------------------------------
 
 ## Yet Another JavaScript Framework?! Seriously?
 
-Well, [o2.js][2] is not and end-result. It is a **"by-product"**.
+Well, **[o2.js][2]** is not and end-result. It is a **"by-product"**.
 Let me explain:
 
 Up till now, I've used various **JavaScript** techniques, analyzed and used
@@ -56,18 +56,18 @@ Hope you like the outcome ;).
 
 ## Supported Platforms & User Agents
 
-[o2.js][2] is being designed to run pretty smoothly in almost any device/user
-agent. What makes this possible is the fact that [o2.js][2] utilizes modern
-features whenever possible, while gracefully degrading to slower alternatives
-for the less capable browsers.
+**[o2.js][2]** is being designed to run pretty smoothly in almost any
+device/useragent. What makes this possible is the fact that **[o2.js][2]**
+utilizes modern features whenever possible, while gracefully degrading to slower
+alternatives for the less capable browsers.
 
-For instance, [o2.js][2] **DomHelper** selectors will try to use
+For instance, **[o2.js][2]** **DomHelper** selectors will try to use
 *DOM Level 2* *native* **querySelector** method if available, and will fall back
 to a good-old for loop otherwise.
 
-[o2.js][2] is constantly being developed keeping backwards compatibility in
-mind. Before each major release, [o2.js][2] will be unit-tested in **at least**
-the following browsers/platforms:
+**[o2.js][2]** is constantly being developed keeping backwards compatibility in
+mind. Before each major release, **[o2.js][2]** will be unit-tested in
+**at least** the following browsers/platforms:
 
 * **IE6 Windows** (and above)
 * **Firefox/Linux** (the Most Recent Stable Version)
