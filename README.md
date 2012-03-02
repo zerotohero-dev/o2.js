@@ -12,7 +12,6 @@
 Hi, I'm [Volkan Özçelik][1].
 
 Front-end development and performance optimization has always been my passion.
-
 With [o2.js][2], I aim to reflect this passion.
 
 I have three main goals for [o2.js][2]:
