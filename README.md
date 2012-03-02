@@ -1,9 +1,9 @@
-          ___       _
-    ____ |__ \     (_)____
-   / __ \__/ /    / / ___/
-  / /_/ / __/_   / (__  )   A Coherent Solution
-  \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
-             /___/
+            ___       _
+      ____ |__ \     (_)____
+     / __ \__/ /    / / ___/
+    / /_/ / __/_   / (__  )   A Coherent Solution
+    \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
+               /___/
 
 Hi, I'm [Volkan Özçelik][1].
 
