@@ -17,8 +17,10 @@ I have three main goals for [o2.js][2]:
 * [o2.js][2] will be **flexible**,
 * [o2.js][2] will be **reliable**.
 
+>
 > "In the land of heavy JavaScript libraries,
 > o2.js will be like fresh oxygen **;)**."
+>
 
 [o2.js][2] is in still in its growth phase with a pretty stable code base.
 
