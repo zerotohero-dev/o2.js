@@ -1,7 +1,7 @@
             ___       _
       ____ |__ \     (_)____
      / __ \__/ /    / / ___/
-    / /_/ / __/_   / (__  )   A Coherent Solution
+    / /_/ / __/_   / (__  )    A Coherent Solution
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
 
