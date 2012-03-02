@@ -1,10 +1,8 @@
-                                                         ____ ___        _______
-                                                        / __ \__ \      / / ___/
-                                                       / / / /_/ / __  / /\__ \
-                                                      / /_/ / __/_/ /_/ /___/ /
-                                                      \____/____(_)____//____/
-
-## About o2.js
+       ____ ___        _______
+      / __ \__ \      / / ___/
+     / / / /_/ / __  / /\__ \
+    / /_/ / __/_/ /_/ /___/ /
+    \____/____(_)____//____/
 
 Hi, I'm [Volkan Özçelik][1].
 
@@ -47,8 +45,6 @@ snippets that I was mixing together as blog posts were evolving into a solid
 and re-usable **JavaScript** *framework*.
 
 Hope you like the outcome ;).
-
-
 
 ## Supported Platforms & User Agents
 
@@ -99,3 +95,8 @@ I also share [worth-following bits an pieces][3] on [twitter][3].
 [1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
 [3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
+       ____ ___        _______
+      / __ \__ \      / / ___/
+     / / / /_/ / __  / /\__ \
+    / /_/ / __/_/ /_/ /___/ /
+    \____/____(_)____//____/
