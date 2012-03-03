@@ -43,7 +43,6 @@
     ].join('');
 
     function showVCard() {
-        document.getElementById(kActivatorDiv).style.display = kNone;
         document.getElementById(kContentDiv).innerHTML = vCardHtml;
         document.getElementById(kContentDiv).style.display = kBlock;
     }
