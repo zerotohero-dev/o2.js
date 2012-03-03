@@ -1,3 +1,11 @@
+# <!--
+#  This program is distributed under
+#  the terms of the MIT license.
+#  Please see the LICENSE file for details.
+#
+#  lastModified: 2012-03-03 13:03:06.004253
+# -->
+
 Options +FollowSymLinks
 
 RewriteEngine on
@@ -5,4 +13,9 @@ RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^people/(.*)$ ../vcard.php?u=$1
+RewriteRule ^index.php$ http://localhost/o2.js/examples/vcardapp [R]
+RewriteRule ^close$     http://localhost/o2.js/examples/vcardapp [R]
+
+RewriteRule ^people/(.*)$ vcard.php?u=$1
+
+

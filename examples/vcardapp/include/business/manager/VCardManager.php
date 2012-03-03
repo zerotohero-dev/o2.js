@@ -15,22 +15,16 @@
     use \o2js\vcardapp\config\constants\RegExp;
 
     class VCardManager {
-        private static $userName = '';
-
-        private static function replace($matches) {
-            return VCardManager::$userName;
-        }
-
         public static function getVCardHtml($userName) {
-            VCardManager::$userName = $userName;
-
             return file_get_contents(
-                $_SERVER['DOCUMENT_ROOT'].
-                    preg_replace_callback(
-                        RegExp::TEMPLATE,
-                        VCardManager::replace,
-                        Path::VCARD_DATA
-                    )
+                    $_SERVER['DOCUMENT_ROOT'
+                ].preg_replace_callback(
+                    RegExp::TEMPLATE,
+                    function($match) use ($userName) {
+                        return $userName;
+                    },
+                    Path::VCARD_DATA
+                )
             );
         }
     };

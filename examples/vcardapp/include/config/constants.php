@@ -28,7 +28,7 @@
     };
 
     class Path {
-        const VCARD_DATA = '/vcardapp/data/{0}/vcard.html';
+        const VCARD_DATA = '/o2.js/examples/vcardapp/include/persistence/data/{0}/vcard.html';
     };
 
     class RegExp {
