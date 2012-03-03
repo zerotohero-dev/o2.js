@@ -26,4 +26,12 @@
     class ServiceKey {
         const USER_NAME = 'u';
     };
+
+    class Path {
+        const VCARD_DATA = '/vcardapp/data/{0}/vcard.html';
+    };
+
+    class RegExp {
+        const TEMPLATE = '/({\d+})/i';
+    };
 ?>

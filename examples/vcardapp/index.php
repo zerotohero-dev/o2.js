@@ -1,22 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!--
-     This program is distributed under
-     the terms of the MIT license.
-     Please see the LICENSE file for details.
-    -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
-    <title>VCard Demo</title>
-    <link rel="Stylesheet" type="text/css" href="/o2.js/examples/vcardapp/css/master.css" />
-</head>
-<body>
-    <div id="VCardContainer">
-        <p id="VCardActivator"><a href="/"
-            class="super button action" id="vcard-volkan">Volkan Özçelik</a></p>
-        <p id="VCardContent"></p>
-    </div>
-    <script type="text/javascript" charset="utf-8" src="/o2.js/examples/vcardapp/js/index.js"></script>
-</body>
-</html>
+<?php
+    namespace o2js\vcardapp\view\index;
+
+    /*
+     * <!--
+     *  This program is distributed under
+     *  the terms of the MIT license.
+     *  Please see the LICENSE file for details.
+     *
+     *  lastModified: 2012-03-03 12:22:06.732922
+     * -->
+     */
+
+    require("include/common/common.php");
+
+    require("include/init/index.php");
+
+    require("include/presentation/header/common.php");
+    require("include/presentation/body/index.php");
+    require("include/presentation/footer/common.php");
+?>
