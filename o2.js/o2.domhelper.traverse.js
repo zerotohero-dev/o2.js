@@ -105,23 +105,59 @@
                     if (
                         node.nodeName.toLowerCase() === nodeName.toLowerCase()
                     ) {
-                        if(filterDelegate.apply(
-                            node, fArgs.unshift(node)) === filterResult
-                    ) {
+                        if (!filterDelegate) {
                             result.push(node);
+                        } else {
+                            if (filterDelegate.apply(
+                                node, fArgs.unshift(node)) === filterResult
+                            ) {
+                                    result.push(node);
+                                }
+                            }
+                        }
+                } else {
+                    if (!filterDelegate) {
+                        result.push(node);
+                    } else {
+                        if(filterDelegate.apply(
+                                node, fArgs.unshift(node)) === filterResult
+                        ) {
+                                result.push(node);
                         }
                     }
-                } else {
-                    if(filterDelegate.apply(
-                            node, fArgs.unshift(node)) === filterResult
-                    ) {
-                            result.push(node);
-                        }
                 }
             }
         }
 
         return result;
+    }
+
+    /*
+     *
+     */
+    function getChildNodes(elm) {
+        return elm.childNodes;
+    }
+
+    /*
+     *
+     */
+    function execFilter(
+                elm, getter, getterParams, nodeName,
+                checker, checkerParams, checkerResult,
+                stopper, stopperParams, stopperResult) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(
+            getter.apply(target, getterParams.unshift(target)),
+            nodeName,
+            checker, checkerParams, checkerResult,
+            stopper, stopperParams, stopperResult
+        );
     }
 
     /**
@@ -137,14 +173,15 @@
      * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildren', function(elm, name) {
-        var target = $(elm);
+        return execFilter(
+            elm, getChildNodes, [],
+            name,
+            null, [], true,
+            null, [], true
+        );
 
-        if (!target) {
-            return [];
-        }
-
-        return filter(target.childNodes, name || kEmpty,
-            returnTrue, [], true);
+        /*return filter(target.childNodes, name || kEmpty,
+            returnTrue, [], true);*/
     });
 
     /**
@@ -169,14 +206,12 @@
         // !DOCTYPE is specified. To maintain compatibility we implement
         // attribute selector without using document.querySelector
 
-        var target = $(elm);
-
-        if (!target) {
-            return [];
-        }
-
-        return filter(target.childNodes, name || kEmpty,
-            getAttribute, [attr], value);
+        return execFilter(
+            elm, getChildNodes, [],
+            name,
+            getAttribute, [attr], value,
+            null, [], true
+        );
     });
 
     /**
@@ -184,14 +219,12 @@
      */
     def(me, 'getChildrenByAttributeUntil', function(elm, attr, value, until,
                 name) {
-        var target = $(elm);
-
-        if (!target) {
-            return [];
-        }
-
-        return filter(target.childNodes, name || kEmpty,
-            getAttribute, [attr], value, isNodeEquals, [until]);
+        return execFilter(
+            elm, getChildNodes, [],
+            name,
+            getAttribute, [attr], value,
+            isNodeEquals, [until], true
+        );
     });
 
     if (isNativeQuerySupported) {
@@ -229,14 +262,12 @@
          *
          */
         def(me, 'getChildrenByClass', function(elm, className, nodeName) {
-            var target = $(elm);
-
-            if (!target) {
-                return [];
-            }
-
-            return filter(target.childNodes, nodeName || kEmpty,
-                hasClassName, [className], true);
+            return execFilter(
+                elm, getChildNodes, [],
+                name,
+                hasClassName, [className], true,
+                null, [], true
+            );
         });
     }
 
@@ -250,11 +281,11 @@
      */
     def(me, 'getChildrenByClassUntil', function(elm, className, until,
             nodeName) {
-
-        return filter(
-            getChildrenByClass(elm, className, nodeName),
-            kEmpty, returnTrue, [], true,
-            isNodeEquals, [until]
+        return execFilter(
+            elm, getChildrenByClass, [className, nodeName],
+            kEmpty,
+            null, [], true,
+            isNodeEquals, [until], true
         );
     });
 
@@ -319,34 +350,30 @@
      *
      */
     def(me, 'getChildrenUntil', function(elm, until, nodeName) {
-        var target = $(elm);
-
-        if (!target) {
-            return [];
-        }
-
-        return filter(target.childNodes, name || kEmpty,
-            returnTrue, [], true, isNodeEquals, [until]);
+        return execFilter(
+            elm, getChildNodes, [nodeName],
+            kEmpty,
+            null, [], true,
+            isNodeEquals, [until], true
+        );
     });
 
     /**
      *
      */
     def(me, 'getChildrenWithAttribute', function(elm, attribute, nodeName) {
-        var target = $(elm);
-
-        if (!target) {
-            return [];
-        }
-
-        return filter(target.childNodes, nodeName || kEmpty,
-            hasAttribute, [attribute], true);
+        return execFilter(
+            elm, getChildNodes, [nodeName],
+            kEmpty,
+            hasAttribute, [attribute], true,
+            null, [], true
+        );
     });
 
     /**
      *
      */
-    def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until, nodeName) {
+    def(me, 'getChildrenWithAttributeUntil', function(elm, until, nodeName) {
         var target = $(elm);
 
         if (!target) {
@@ -399,15 +426,103 @@
             hasIdAttribute, [], true);
     });
 
+    /**
+     *
+     */
+    def(me, 'getChildrenWithIdUntil', function(elm, nodeName, until) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(target.childNodes, nodeName || kEmpty,
+            hasIdAttribute, [], true, isNodeEquals, [until]);
+    });
+
+    /**
+     *
+     */
+     def(me, 'getElements', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return target.getElementsByTagName(nodeName || kAll);
+     });
+
+     /**
+      *
+      */
+    def(me, 'getElementsByAttribute', function(elm, attribute, value,
+                nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(getElements(target, nodeName), kEmpty,
+            getAttribute, [attribute], value);
+    });
+
+     /**
+      *
+      */
+    def(me, 'getElementsByClass', function(elm, className,
+                nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(getElements(target, nodeName), kEmpty,
+            hasClassName, [className], true);
+    });
+
+    /**
+     *
+     */
+    def(me, 'getElementsWithAttribute', function(elm, attribute, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(getElements(target, nodeName), kEmpty,
+            hasAttribute, [attribute], true, isNodeEquals, [until]);
+    });
+
+    def(me, 'getElementsWithClass', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(getElements(target, nodeName), kEmpty,
+            hasClassAttribute, [], true);
+    });
+
+    def(me, 'getElementsWithId', function(elm, nodeName) {
+        var target = $(elm);
+
+        if (!target) {
+            return [];
+        }
+
+        return filter(getElements(target, nodeName), kEmpty,
+            hasIdAttribute, [], true);
+    });
 
 /*
 
-getChildrenWithIdUntil        : {MODULE : kDomHelperTraverse},
 
-getElements              : {MODULE : kDomHelperTraverse},
-getElementsByAttribute   : {MODULE : kDomHelperTraverse},
-getElementsByClass       : {MODULE : kDomHelperTraverse},
-getElementsWithAttribute : {MODULE : kDomHelperTraverse},
+
 getElementsWithClass     : {MODULE : kDomHelperTraverse},
 getElementsWithId        : {MODULE : kDomHelperTraverse},
 
