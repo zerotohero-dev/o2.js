@@ -38,6 +38,7 @@
     var $      = require('$');
     var myName = require('name');
 
+    var kAll   = '*';
     var kEmpty = '';
 
     var nodeType  = require('DomHelper', 'nodeType');
@@ -61,13 +62,6 @@
     var isNativeQuerySupported = !!document.querySelector;
 
     /*
-     * Simply returns true
-     */
-    function returnTrue() {
-        return true;
-    }
-
-    /*
      * Checks whether two nodes are equal to one another.
      */
     function isNodeEquals(node, until) {
@@ -81,17 +75,39 @@
         return node && node.className.indexOf(name) > -1;
     }
 
+    /*
+     *
+     */
     function isAttributeEquals(node, attribute, value) {
         return getAttribute(node, attribute) === value;
     }
 
     /*
+     *
+     */
+    function hasAttribute(node, attribute) {
+        return getAttribute(node, attribute) !== undefined;
+    }
+
+    /*
+     *
+     */
+    function hasClassAttribute(node) {
+        return node && !!node.className;
+    }
+
+    /*
+     *
+     */
+    function hasIdAttribute(node) {
+        return node && !!node.id;
+    }
+
+    /*
      * Filters a set of nodes into a smaller subset.
      */
-    function filter(nodes,
-                filterDelegate, filterArgs, filterResult,
+    function filter(nodes, filterDelegate, filterArgs,
                 breakDelegate, breakArgs) {
-        var nodeName = name || kEmpty;
         var result = [];
         var i = 0;
         var len = 0;
@@ -102,7 +118,7 @@
         for (i = 0, len = nodes.length; i < len; i++) {
             node = nodes[i];
 
-            if(breakDelegate)
+            if(breakDelegate) {
                 if(breakDelegate.apply(node, breakArgs.unshift(node))) {
                     break;
                 }
@@ -150,10 +166,8 @@
     /*
      *
      */
-    function execFilter(
-                elm, getter, getterParams,
-                checker, checkerParams, checkerResult,
-                stopper, stopperParams, stopperResult) {
+    function execFilter(elm, getter, getterParams,
+                checker, checkerParams, stopper, stopperParams) {
         var target = $(elm);
 
         if (!target) {
@@ -162,8 +176,7 @@
 
         return filter(
             getter.apply(target, getterParams.unshift(target)),
-            checker, checkerParams, checkerResult,
-            stopper, stopperParams, stopperResult
+            checker, checkerParams, stopper, stopperParams
         );
     }
 
@@ -190,6 +203,11 @@
             returnTrue, [], true);*/
     });
 
+    /*
+     *
+     */
+    var getChildren = require('DomHelper', 'getChildren');
+
     /**
      * function {static} o2.DomHelper.getChildren
      *
@@ -197,7 +215,7 @@
      * element, if they have a matching <strong>attribute</strong> with
      * a given <strong>value</strong>.</p>
      *
-     * @param {Object} elm - the <strong>DOM</strong> node, or the
+     * @param {Object} elm - the <strong>DOM</strong> njode, or the
      * <strong>id</strong> of that node.
      * @param {String} attr - the name of the attribute.
      * @param {String} value - the value of the attribute.
@@ -219,6 +237,11 @@
         );
     });
 
+    /*
+     *
+     */
+    var getChildrenByAttribute = require('DomHelper', 'getChildrenByAttribute');
+
     /**
      *
      */
@@ -230,6 +253,12 @@
             isNodeEquals, [until]
         );
     });
+
+    /*
+     *
+     */
+    var getChildrenByAttributeUntil = require('DomHelper',
+        'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
 
@@ -290,6 +319,12 @@
         );
     });
 
+    /*
+     *
+     */
+    var getChildrenByClassUntil = require('DomHelper',
+        'getChildrenByClassUntil');
+
     /**
      *
      */
@@ -300,6 +335,11 @@
             isNodeEquals, [until]
         );
     });
+
+    /*
+     *
+     */
+    var getChildrenUntil = require('DomHelper', 'getChildrenUntil');
 
     /**
      *
@@ -312,16 +352,29 @@
         );
     });
 
+    /*
+     *
+     */
+    var getChildrenWithAttribute = require('DomHelper',
+        'getChildrenWithAttribute');
+
     /**
      *
      */
-    def(me, 'getChildrenWithAttributeUntil', function(elm, until, name) {
+    def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
+                name) {
         return execFilter(
             elm, getChildNodes, [name],
             hasAttribute, [attribute], true,
             isNodeEquals, [until], true
         );
     });
+
+    /*
+     *
+     */
+    var getChildrenWithAttributeUntil = require('DomHelper',
+        'getChildrenWithAttributeUntil');
 
     /**
      *
@@ -334,6 +387,11 @@
         );
     });
 
+    /*
+     *
+     */
+    var getChildrenWithClass = require('DomHelper', 'getChildrenWithClass');
+
     /**
      *
      */
@@ -344,6 +402,12 @@
             isNodeEquals, [until]
         );
     });
+
+    /*
+     *
+     */
+    var getChildrenWithClassUntil = require('DomHelper',
+        'getChildrenWithClassUntil');
 
     /**
      *
@@ -356,6 +420,11 @@
         );
     });
 
+    /*
+     *
+     */
+    var getChildrenWithId = require('DomHelper', 'getChildrenWithId');
+
     /**
      *
      */
@@ -366,6 +435,11 @@
             isNodeEquals, [until]
         );
     });
+
+    /*
+     *
+     */
+    var getChildrenWithIdUntil = require('DomHelper', 'getChildrenWithIdUntil');
 
     /**
      *
@@ -380,29 +454,37 @@
         return target.getElementsByTagName(name || kAll);
      });
 
-     /**
-      *
-      */
+    /*
+     *
+     */
+    var getElements = require('DomHelper', 'getElements');
+
+    /**
+     *
+     */
     def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
         return execFilter(
-            elm, getElements, [nodeName],
+            elm, getElements, [name],
             isAttributeEquals, [attribute, value],
             null, []
         );
     });
 
+    /**
+     *
+     */
     def(me, 'getElementsByAttributeUntil', function(elm, attribute, value,
                 until, name) {
         return execFilter(
-            elm, getElements, [nodeName],
+            elm, getElements, [name],
             isAttributeEquals, [attribute, value],
             isNodeEquals, [until]
         );
     });
 
-     /**
-      *
-      */
+    /**
+     *
+     */
     def(me, 'getElementsByClass', function(elm, className, name) {
         return execFilter(
             elm, getElements, [name],
@@ -425,7 +507,7 @@
     /**
      *
      */
-    def(me, 'getElementsUntil', function(elm, name) {
+    def(me, 'getElementsUntil', function(elm, until, name) {
         return execFilter(
             elm, getElements, [name],
             null, [],
@@ -507,6 +589,11 @@
         return !elm ? [] : getChildren(elm.parentNode, name);
     });
 
+    /*
+     *
+     */
+    var getSiblings = require('DomHelper', 'getSiblings');
+
     /**
      *
      */
@@ -514,6 +601,8 @@
         return !elm ? [] : getChildrenByAttribute(elm.parentNode,
             attribute, value, name);
     });
+
+    var getSiblingsByAttribute = require('DomHelper', 'getSiblingsByAttribute');
 
     /**
      *
@@ -530,6 +619,11 @@
     def(me, 'getSiblingsByClass', function(elm, name) {
         return !elm ? [] : getChildrenByClass(elm.parentNode, name);
     });
+
+    /*
+     *
+     */
+    var getSiblingsByClass = require('DomHelper', 'getSiblingsByClass');
 
     /**
      *
@@ -554,6 +648,12 @@
             attribute, name);
     });
 
+    /*
+     *
+     */
+    var getSiblingsWithAttribute = require('DomHelper',
+        'getSiblingsWithAttribute');
+
     def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
                 name) {
         return !elm ? [] : getChildrenWithAttributeUntil(elm.parentNode,
@@ -566,6 +666,11 @@
     def(me, 'getSiblingsWithClass',  function(elm, name) {
         return !elm ? [] : getChildrenWithClass(elm.parentNode, name);
     });
+
+    /*
+     *
+     */
+    var getSiblingsWithClass = require('DomHelper', 'getSiblingsWithClass');
 
     /**
      *
@@ -581,6 +686,11 @@
     def(me, 'getSiblingsWithId',  function(elm, name) {
         return !elm ? [] : getChildrenWithId(elm.parentNode, name);
     });
+
+    /*
+     *
+     */
+    var getSiblingsWithId = require('DomHelper', 'getSiblingsWithId');
 
     /**
      *
@@ -623,6 +733,7 @@
     def(me, 'getFirstWithClass', function(elm, name) {
         return getSiblingsWithClass(elm, name)[0] || null;
     });
+
 
     /**
      *
