@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -71,11 +71,11 @@
             <b>o2.DomHelper</b>
        </code>
     </div>
-                <div class="comment">A cross-browser DOM manipulation helper.
+                <div class="comment">A cross-browser <strong>DOM</strong> manipulation helper.
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/domhelper/module-core.html">domhelper.core</a>
+        <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
         <hr/> 
     <p />
     
@@ -163,33 +163,6 @@
         <p>Appends the element to the bottom of its parent.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___children"><span class="elementName">children</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to o2.DomHelper.getChildren.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___childrenByClassName"><span class="elementName">childrenByClassName</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___closest"><span class="elementName">closest</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -201,16 +174,13 @@
         <p>Trims a given field, and returns the compacted value.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___create"><span class="elementName">create</span></a>
-                (<span class="type">String</span>
- name, <span class="type">Object</span>
- attributes)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Creates an element with given name and attributes.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___create"><span class="elementName">create</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___createElement">o2.DomHelper.createElement</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -225,13 +195,28 @@
  <strong>CSS</strong> class name.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___createElement"><span class="elementName">createElement</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___create">o2.DomHelper.create</a>.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___createDocumentFragment"><span class="elementName">createDocumentFragment</span></a>
+                (<span class="type">String</span>
+ html)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <strong>Document Fragment</strong> from an
+ <strong>HTML</strong> <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___createElement"><span class="elementName">createElement</span></a>
+                (<span class="type">String</span>
+ name, <span class="type">Object</span>
+ attributes)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates an element with given name and attributes.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -242,232 +227,7 @@
  elm)
             </div>          
                 <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findChildren"><span class="elementName">findChildren</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to o2.DomHelper.getChildren.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findChildrenByClassName"><span class="elementName">findChildrenByClassName</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findFirstChild"><span class="elementName">findFirstChild</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findFirstChildById"><span class="elementName">findFirstChildById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findFirstChildWithId"><span class="elementName">findFirstChildWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findLastChild"><span class="elementName">findLastChild</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findLastChildById"><span class="elementName">findLastChildById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findLastChildWithId"><span class="elementName">findLastChildWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findNext"><span class="elementName">findNext</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findNextById"><span class="elementName">findNextById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextById">o2.DomHelper.getNextById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findNextWithId"><span class="elementName">findNextWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findParent"><span class="elementName">findParent</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findParentByAttribute"><span class="elementName">findParentByAttribute</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentByAttribute">o2.DomHelper.getParentByAttribute</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findParentById"><span class="elementName">findParentById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentById">o2.DomHelper.getParentById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findParentWithAttribute"><span class="elementName">findParentWithAttribute</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentWithAttribute">o2.DomHelper.getParentWithAttribute</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findParentWithId"><span class="elementName">findParentWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentWithId">o2.DomHelper.getParentWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findPrevious"><span class="elementName">findPrevious</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findPreviousById"><span class="elementName">findPreviousById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findPreviousWithId"><span class="elementName">findPreviousWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___findSiblings"><span class="elementName">findSiblings</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___first"><span class="elementName">first</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___firstById"><span class="elementName">firstById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___firstWithId"><span class="elementName">firstWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getAllNext"><span class="elementName">getAllNext</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___nextAll">o2.DomHelper.nextAll</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getAllPrevious"><span class="elementName">getAllPrevious</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___prevAll">o2.DomHelper.prevAll</a>.</p>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -482,17 +242,13 @@
         <p>Gets the attribute of a given node.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getChildrenByClassName"><span class="elementName">getChildrenByClassName</span></a>
-                (<span class="type">DomNode</span>
- elm, <span class="type">String</span>
- c)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets immediate descendants, with a given class name, of the
- element.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___getCss"><span class="elementName">getCss</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getStyle">o2.DomHelper.getStyle</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -516,8 +272,8 @@
         <div class="summaryItemDesc">
         <p>Gets the dimension of the document in the form <code>{width: w,
  height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
- greater than the document's height returns the height of the visible area
- as the height portion.    </div>  
+ greater than the document's height returns the height of the visible
+ area as the height portion.    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -541,54 +297,6 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getElementsByClassName"><span class="elementName">getElementsByClassName</span></a>
-                (<span class="type">DomNode</span>
- elm, <span class="type">String</span>
- c)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets all children, with a given class name, of the element.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getFirstChild"><span class="elementName">getFirstChild</span></a>
-                (<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- nodeName)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the first child that is not a text-node, and has the given
- node name.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getFirstChildById"><span class="elementName">getFirstChildById</span></a>
-                (<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- id)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the first child that has the given id.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getFirstChildWithId"><span class="elementName">getFirstChildWithId</span></a>
-                (<span class="type">DomNode</span>
- targetElm)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the first child with an <strong>id</strong> attribute.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___getHeight"><span class="elementName">getHeight</span></a>
                 (<span class="type">Object</span>
  obj)
@@ -600,81 +308,22 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getLastChild"><span class="elementName">getLastChild</span></a>
-                (<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- nodeName)
+                <a href="logical/o2/DomHelper.html#___getHtml"><span class="elementName">getHtml</span></a>
+                (<span class="type">Object</span>
+ elm)
             </div>          
                 <div class="summaryItemDesc">
-        <p>gets the last child, which is not a text-node, with a given node
- name.</p>    </div>  
+        <p>Gets the <strong>HTML</strong> of a given element.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getLastChildById"><span class="elementName">getLastChildById</span></a>
-                (<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- id)
+                <a href="logical/o2/DomHelper.html#___getObjectScrollOfset"><span class="elementName">getObjectScrollOfset</span></a>
+                (<span class="type">Object</span>
+ obj)
             </div>          
                 <div class="summaryItemDesc">
-        <p>gets the last child that has the given id.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getLastChildWithId"><span class="elementName">getLastChildWithId</span></a>
-                (<span class="type">DomNode</span>
- targetElm)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the last child with an <strong>id</strong> attribute.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getNext"><span class="elementName">getNext</span></a>
-                (<span class="type">DomNode</span>
- elmTarget)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the next <strong>DOM</strong> node sibling that's not a text
- node.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getNextById"><span class="elementName">getNextById</span></a>
-                (<span class="type">DomNode</span>
- elmTarget, <span class="type">String</span>
- id)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the next <strong>DOM</strong> node sibling by its id.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getNextWithId"><span class="elementName">getNextWithId</span></a>
-                (<span class="type">DomNode</span>
- elmTarget)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the next <strong>DOM</strong> node that has a defined
- <strong>id</strong> attribute.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getObjectScrollOfset"><span class="elementName">getObjectScrollOfset</span></a>()
-            </div>
-        <div class="summaryItemDesc">
         <p>Gets the <strong>DOM</strong> object's scroll offset.</p>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -686,7 +335,10 @@
  e)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Gets the left and top offset of a given element.</p>    </div>  
+        //          *
+//          * <p>Gets the left and top offset of a given element.</p>
+//          *
+//          *    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -695,7 +347,10 @@
                 <a href="logical/o2/DomHelper.html#___getOffsetLeft"><span class="elementName">getOffsetLeft</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>    </div>  
+        //      *
+//      * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
+//      *
+//      *    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -704,119 +359,19 @@
                 <a href="logical/o2/DomHelper.html#___getOffsetTop"><span class="elementName">getOffsetTop</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getParent"><span class="elementName">getParent</span></a>
-                (<span class="type">DomNode</span>
- target, <span class="type">String</span>
- nodeName, <span class="type">Boolean</span>
- shouldExcludeSelf)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the first parent element with the given node name.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getParentByAttribute"><span class="elementName">getParentByAttribute</span></a>
-                (<span class="type">DomNode</span>
- obj, <span class="type">String</span>
- attribute, <span class="type">String</span>
- value, <span class="type">Boolean</span>
- shouldExcludeSelf)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the first parent with an <strong>attribute</strong> equal to the
- given <strong>value</strong>.</p>    </div>  
+        //      *
+//      * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
+//      *
+//      *    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getParentById"><span class="elementName">getParentById</span></a>()
+                <a href="logical/o2/DomHelper.html#___getStrollOffset"><span class="elementName">getStrollOffset</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>This is an alias to</p>
- <pre>
- o2.DomHelper.getParentByAttribute(obj, 'id', id, isSelfExcluded)
- </pre>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getParentWithAttribute"><span class="elementName">getParentWithAttribute</span></a>
-                (<span class="type">DomNode</span>
- obj, <span class="type">String</span>
- attribute, <span class="type">Boolean</span>
- isSelfExcluded)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the first parent with a given <strong>attribute</strong>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getParentWithId"><span class="elementName">getParentWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>This is an alias to</p>
- <pre>
- o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
- </pre>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getPrevious"><span class="elementName">getPrevious</span></a>
-                (<span class="type">DomNode</span>
- target)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
- node.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getPreviousById"><span class="elementName">getPreviousById</span></a>
-                (<span class="type">DomNode</span>
- elmTarget, <span class="type">String</span>
- id)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getPreviousWithId"><span class="elementName">getPreviousWithId</span></a>
-                (<span class="type">DomNode</span>
- elmTarget)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>gets the previous <strong>DOM</strong> node that has a defined
- <strong>id</strong> attribute.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___getSiblings"><span class="elementName">getSiblings</span></a>
-                (<span class="type">DomNode</span>
- targetElm)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the same-level siblings.</p>    </div>  
+        <p>An alias to o2.DomHelper.getObjectStrollOffset.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -840,6 +395,19 @@
  styles to modify the view;
  assign <strong>className</strong>'s instead of <strong>style</strong>
  values.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___getText"><span class="elementName">getText</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the textual content of the given node, replacing entities
+ like <code>& amp;</code> with it's corresponding character
+ counterpart (<strong>&</strong> in this example).</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -951,25 +519,23 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___isChild"><span class="elementName">isChild</span></a>
-                (<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent, <span class="type">Boolean</span>
- isSelfExcluded)
+                <a href="logical/o2/DomHelper.html#___isDocument"><span class="elementName">isDocument</span></a>
+                (<span class="type">DOMNode</span>
+ obj)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given item is a descendant of
- the parent node.</p>    </div>  
+        <p>Checks whether the given node is a <code>document</code> node.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___isParent"><span class="elementName">isParent</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to
- <code>o2.DomHelper.isChild(child, parent, shouldExcludeSelf)</code>.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___isElement"><span class="elementName">isElement</span></a>
+                (<span class="type">DOMNode</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given node is an <strong>element</strong> node.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -989,40 +555,14 @@
  "visible".</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___last"><span class="elementName">last</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___lastById"><span class="elementName">lastById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___lastWithId"><span class="elementName">lastWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___loadCss"><span class="elementName">loadCss</span></a>
                 (<span class="type">String</span>
  src, <span class="type">Function</span>
- callback)
+ successCallback, <span class="type">Function</span>
+ failureCallback)
             </div>          
                 <div class="summaryItemDesc">
         <p>Asynchronously loads a <strong>css</strong> file with a given
@@ -1036,12 +576,17 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___loadImage"><span class="elementName">loadImage</span></a>
                 (<span class="type">String</span>
- src, <span class="type">Function</span>
- callback)
+ url, <span class="type">Function</span>
+ successCallback, <span class="type">Function</span>
+ failureCallback)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Asynchronously loads (precaches) an <strong>image</strong> file
- with a given <strong>src</strong>.</p>    </div>  
+        <p>Tries to load the image into a <strong>JavaScript</strong>
+ <code>Image</code> object; then triggers
+ <code>successCallback</code> or <code>failureCallback</code> depending on
+ the
+ result of the load attempt.</p>
+ <p>This function can be used for pre-loading or post-loading images.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1059,71 +604,6 @@
  have to be in the same domain as the web page.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___next"><span class="elementName">next</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___nextAll"><span class="elementName">nextAll</span></a>
-                (<span class="type">Object</span>
- el)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets all of the next siblings.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___nextWithId"><span class="elementName">nextWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___offset"><span class="elementName">offset</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___offsetLeft"><span class="elementName">offsetLeft</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___offsetTop"><span class="elementName">offsetTop</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___parent"><span class="elementName">parent</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -1134,44 +614,6 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Prepends the element to the top of its parent.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___prev"><span class="elementName">prev</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___prevAll"><span class="elementName">prevAll</span></a>
-                (<span class="type">Object</span>
- el)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets all of the previous siblings.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___prevById"><span class="elementName">prevById</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___prevWithId"><span class="elementName">prevWithId</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1238,7 +680,19 @@
                 <a href="logical/o2/DomHelper.html#___removeNode"><span class="elementName">removeNode</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___remove">o2.DomHelper.remove</a>.</p>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/DomHelper.html#___remove">o2.DomHelper.remove</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___replace"><span class="elementName">replace</span></a>
+                (<span class="type"></span>
+ elmTarget, <span class="type"></span>
+ elmToReplace)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Replaces one node with another.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1261,6 +715,24 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Scrolls an element to top.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollTo"><span class="elementName">scrollTo</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___scrollToObject"><span class="elementName">scrollToObject</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -1305,6 +777,15 @@
         <p>Sets the attribute of the given object.</p>    </div>  
                             </div>
                     <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___setCss"><span class="elementName">setCss</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___addStyle">o2.DomHelper.addStyle</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -1327,6 +808,17 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Sets the <strong>height</strong> of the given element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___setHtml"><span class="elementName">setHtml</span></a>
+                (<span class="type">Object</span>
+ elm)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Simply sets the <code>innerHTML</code> of the element.    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -1355,19 +847,36 @@
                 <span class="type"></span>
                 <a href="logical/o2/DomHelper.html#___show"><span class="elementName">show</span></a>
                 (<span class="type">Object</span>
- obj)
+ elm)
             </div>          
                 <div class="summaryItemDesc">
         <p>Shows the given object.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___siblings"><span class="elementName">siblings</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___toggleClass"><span class="elementName">toggleClass</span></a>
+                (<span class="type">Object</span>
+ el, <span class="type">String</span>
+ c, <span class="type">Boolean</span>
+ state)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Toggles the <strong>CSS<strong> <code>className</code> of a given
+ element.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/DomHelper.html#___toggleVisibility"><span class="elementName">toggleVisibility</span></a>
+                (<span class="type">Object</span>
+ elm, <span class="type">Boolean</span>
+ state)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Toggles the visibility of the given element.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1381,13 +890,17 @@
         <p>Trims a given field, and returns the trimmed value.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/DomHelper.html#___visible"><span class="elementName">visible</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___isVisible">o2.DomHelper.isVisible</a>.</p>    </div>  
+                <a href="logical/o2/DomHelper.html#___unwrap"><span class="elementName">unwrap</span></a>
+                (<span class="type">Object</span>
+ elmTarget)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>This is like <a href="logical/o2/DomHelper.html#___wrap">o2.DomHelper.wrap</a> in reverse.</p>
+ <p>Moves all the elements inside the container to the container's
+ position and removes the container from the <strong>DOM</strong>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1588,72 +1101,6 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
-        <a name="___children">
-            <span class="objType">function</span>
-            <span class="objName">children</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    children()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to o2.DomHelper.getChildren.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.DomHelper.getChildren</div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___childrenByClassName">
-            <span class="objType">function</span>
-            <span class="objName">childrenByClassName</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    childrenByClassName()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___closest">
-            <span class="objType">function</span>
-            <span class="objName">closest</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    closest()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
         <a name="___compactField">
             <span class="objType">function</span>
             <span class="objName">compactField</span>            
@@ -1687,7 +1134,8 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             field's compacted value.
+	            	             field's compacted value; or <code>null</code> if the field
+ does not exist.
 
  	            	        </div>
         </div>      
@@ -1702,43 +1150,22 @@
             <span class="objName">create</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    create(<span class="type">String</span>
- name, <span class="type">Object</span>
- attributes)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Creates an element with given name and attributes.</p>
+                    create()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___createElement">o2.DomHelper.createElement</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            name        </code>
-         - the node name of the element (i.e. 'div', 'a').            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            attributes        </code>
-         - an associative array in the form
- <code>{att1:value1, att2:value2}</code>.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the created element.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___createElement">o2.DomHelper.createElement</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___createClassNameRegExp">
             <span class="objType">function</span>
@@ -1778,27 +1205,88 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___createDocumentFragment">
+            <span class="objType">function</span>
+            <span class="objName">createDocumentFragment</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    createDocumentFragment(<span class="type">String</span>
+ html)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <strong>Document Fragment</strong> from an
+ <strong>HTML</strong> <code>String</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            html        </code>
+         - the <strong>HTML</code> to create a fragment
+ from.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             {HTMLDocumentFragment} - the generated <code>document</code>
+ fragment.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___createElement">
             <span class="objType">function</span>
             <span class="objName">createElement</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    createElement()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___create">o2.DomHelper.create</a>.</p>
+                    createElement(<span class="type">String</span>
+ name, <span class="type">Object</span>
+ attributes)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates an element with given name and attributes.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___create">o2.DomHelper.create</a></div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - the node name of the element (i.e. 'div', 'a').            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attributes        </code>
+         - an associative array in the form
+ <code>{att1:value1, att2:value2}</code>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created element.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                                                                     <h3>
         <a name="___empty">
             <span class="objType">function</span>
@@ -1814,7 +1302,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>
+        <p>An <strong>alias</strong> to <a href="logical/o2/DomHelper.html#___removeChildren">o2.DomHelper.removeChildren</a>.</p>
 
      </div>
         	<div class="parameters">
@@ -1831,556 +1319,6 @@
                 </div>
                     </div>
                                                     <hr/>       
-                                                                                    <h3>
-        <a name="___findChildren">
-            <span class="objType">function</span>
-            <span class="objName">findChildren</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findChildren()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to o2.DomHelper.getChildren.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.DomHelper.getChildren</div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findChildrenByClassName">
-            <span class="objType">function</span>
-            <span class="objName">findChildrenByClassName</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findChildrenByClassName()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getChildrenByClassName">o2.DomHelper.getChildrenByClassName</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findFirstChild">
-            <span class="objType">function</span>
-            <span class="objName">findFirstChild</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findFirstChild()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findFirstChildById">
-            <span class="objType">function</span>
-            <span class="objName">findFirstChildById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findFirstChildById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findFirstChildWithId">
-            <span class="objType">function</span>
-            <span class="objName">findFirstChildWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findFirstChildWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findLastChild">
-            <span class="objType">function</span>
-            <span class="objName">findLastChild</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findLastChild()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findLastChildById">
-            <span class="objType">function</span>
-            <span class="objName">findLastChildById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findLastChildById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findLastChildWithId">
-            <span class="objType">function</span>
-            <span class="objName">findLastChildWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findLastChildWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findNext">
-            <span class="objType">function</span>
-            <span class="objName">findNext</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findNext()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findNextById">
-            <span class="objType">function</span>
-            <span class="objName">findNextById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findNextById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextById">o2.DomHelper.getNextById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getNextById">o2.DomHelper.getNextById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findNextWithId">
-            <span class="objType">function</span>
-            <span class="objName">findNextWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findNextWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findParent">
-            <span class="objType">function</span>
-            <span class="objName">findParent</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findParent()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findParentByAttribute">
-            <span class="objType">function</span>
-            <span class="objName">findParentByAttribute</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findParentByAttribute()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentByAttribute">o2.DomHelper.getParentByAttribute</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParentByAttribute">o2.DomHelper.getParentByAttribute</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findParentById">
-            <span class="objType">function</span>
-            <span class="objName">findParentById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findParentById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentById">o2.DomHelper.getParentById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.Domhelper.getParentById</div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findParentWithAttribute">
-            <span class="objType">function</span>
-            <span class="objName">findParentWithAttribute</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findParentWithAttribute()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentWithAttribute">o2.DomHelper.getParentWithAttribute</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParentWithAttribute">o2.DomHelper.getParentWithAttribute</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findParentWithId">
-            <span class="objType">function</span>
-            <span class="objName">findParentWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findParentWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParentWithId">o2.DomHelper.getParentWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParentWithId">o2.DomHelper.getParentWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findPrevious">
-            <span class="objType">function</span>
-            <span class="objName">findPrevious</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findPrevious()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findPreviousById">
-            <span class="objType">function</span>
-            <span class="objName">findPreviousById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findPreviousById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findPreviousWithId">
-            <span class="objType">function</span>
-            <span class="objName">findPreviousWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findPreviousWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___findSiblings">
-            <span class="objType">function</span>
-            <span class="objName">findSiblings</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    findSiblings()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___first">
-            <span class="objType">function</span>
-            <span class="objName">first</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    first()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChild">o2.DomHelper.getFirstChild</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___firstById">
-            <span class="objType">function</span>
-            <span class="objName">firstById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    firstById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChildById">o2.DomHelper.getFirstChildById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___firstWithId">
-            <span class="objType">function</span>
-            <span class="objName">firstWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    firstWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getFirstChildWithId">o2.DomHelper.getFirstChildWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___getAllNext">
-            <span class="objType">function</span>
-            <span class="objName">getAllNext</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getAllNext()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___nextAll">o2.DomHelper.nextAll</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___nextAll">o2.DomHelper.nextAll</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___getAllPrevious">
-            <span class="objType">function</span>
-            <span class="objName">getAllPrevious</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getAllPrevious()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___prevAll">o2.DomHelper.prevAll</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___prevAll">o2.DomHelper.prevAll</a></div>
-                    </div>      
-                                <hr/>       
                                                                                     <h3>
         <a name="___getAttribute">
             <span class="objType">function</span>
@@ -2426,49 +1364,27 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___getChildrenByClassName">
+        <a name="___getCss">
             <span class="objType">function</span>
-            <span class="objName">getChildrenByClassName</span>            
+            <span class="objName">getCss</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getChildrenByClassName(<span class="type">DomNode</span>
- elm, <span class="type">String</span>
- c)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets immediate descendants, with a given class name, of the
- element.</p>
+                    getCss()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___getStyle">o2.DomHelper.getStyle</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elm        </code>
-         - either the <strong>element</strong>, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            c        </code>
-         - the className to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the immediate descendants with the given class name.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getStyle">o2.DomHelper.getStyle</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___getDimension">
             <span class="objType">function</span>
@@ -2526,8 +1442,8 @@
         <div class="comment">
         <p>Gets the dimension of the document in the form <code>{width: w,
  height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
- greater than the document's height returns the height of the visible area
- as the height portion.
+ greater than the document's height returns the height of the visible
+ area as the height portion.
 
      </div>
             	<div class="returns">
@@ -2535,7 +1451,7 @@
 	        <div class="paddedDetails">
 	            	             the dimension of the document in the form <code>{width: w,
  height: h}</code>.
-         	            	        </div>
+     	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -2587,179 +1503,6 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___getElementsByClassName">
-            <span class="objType">function</span>
-            <span class="objName">getElementsByClassName</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getElementsByClassName(<span class="type">DomNode</span>
- elm, <span class="type">String</span>
- c)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets all children, with a given class name, of the element.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elm        </code>
-         - either the <strong>element</strong>, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            c        </code>
-         - the <strong>className</strong> to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             all of the <strong>element</strong>s with the given
- <strong>class name</strong>.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getFirstChild">
-            <span class="objType">function</span>
-            <span class="objName">getFirstChild</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getFirstChild(<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- nodeName)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the first child that is not a text-node, and has the given
- node name.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the current node, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            nodeName        </code>
-         - the node name to seek. (This parameters is
- optional. It defaults to '*', which will match any node name.)            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found, <code>null</code>
- otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getFirstChildById">
-            <span class="objType">function</span>
-            <span class="objName">getFirstChildById</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getFirstChildById(<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- id)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the first child that has the given id.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the target to test,
- or the <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            id        </code>
-         - the id of the child.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found,
- <code>null</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getFirstChildWithId">
-            <span class="objType">function</span>
-            <span class="objName">getFirstChildWithId</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getFirstChildWithId(<span class="type">DomNode</span>
- targetElm)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the first child with an <strong>id</strong> attribute.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the target, or the <strong>id</strong>
- of the target to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the first child with <strong>id</strong> if any,
- <code>null</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
         <a name="___getHeight">
             <span class="objType">function</span>
             <span class="objName">getHeight</span>            
@@ -2798,23 +1541,21 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___getLastChild">
+        <a name="___getHtml">
             <span class="objType">function</span>
-            <span class="objName">getLastChild</span>            
+            <span class="objName">getHtml</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getLastChild(<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- nodeName)
+                    getHtml(<span class="type">Object</span>
+ elm)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>gets the last child, which is not a text-node, with a given node
- name.</p>
+        <p>Gets the <strong>HTML</strong> of a given element.</p>
 
      </div>
         	<div class="parameters">
@@ -2824,226 +1565,17 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            targetElm        </code>
-         - the current node, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            nodeName        </code>
-         - the node name to seek. (This parameters is
- optional. It defaults to '*', which will match any node name.)            </div>   
+            elm        </code>
+         - the <strong>DOM</strong> node or its
+ <code>String</code> id.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getLastChildById">
-            <span class="objType">function</span>
-            <span class="objName">getLastChildById</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getLastChildById(<span class="type">DomNode</span>
- targetElm, <span class="type">String</span>
- id)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the last child that has the given id.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the target to test, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            id        </code>
-         - the id of the child.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <code>DOM</code> node if found, <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getLastChildWithId">
-            <span class="objType">function</span>
-            <span class="objName">getLastChildWithId</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getLastChildWithId(<span class="type">DomNode</span>
- targetElm)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the last child with an <strong>id</strong> attribute.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the target to test, or the
- <strong>id</strong> of the target.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the first child with <strong>id</strong> if any,
+	            	             the <code>innerHTML</code> of the given node, if it exists;
  <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getNext">
-            <span class="objType">function</span>
-            <span class="objName">getNext</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getNext(<span class="type">DomNode</span>
- elmTarget)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the next <strong>DOM</strong> node sibling that's not a text
- node.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elmTarget        </code>
-         - the node to start.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getNextById">
-            <span class="objType">function</span>
-            <span class="objName">getNextById</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getNextById(<span class="type">DomNode</span>
- elmTarget, <span class="type">String</span>
- id)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the next <strong>DOM</strong> node sibling by its id.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elmTarget        </code>
-         - the original node, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            id        </code>
-         - the id to check.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getNextWithId">
-            <span class="objType">function</span>
-            <span class="objName">getNextWithId</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getNextWithId(<span class="type">DomNode</span>
- elmTarget)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the next <strong>DOM</strong> node that has a defined
- <strong>id</strong> attribute.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elmTarget        </code>
-         - the node to start, or the
- <strong>id</strong> of it.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -3053,17 +1585,31 @@
             <span class="objName">getObjectScrollOfset</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getObjectScrollOfset()
-                </code>
-            </div>    
-        <div class="comment">
+                    getObjectScrollOfset(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
         <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
 
      </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <strong>DOM</strong> node to check, or its
+ <code>String</code> id.            </div>   
+                                        </div>
+                </div>
+                    </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
@@ -3087,9 +1633,12 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Gets the left and top offset of a given element.</p>
+        //          *
+//          * <p>Gets the left and top offset of a given element.</p>
+//          *
+//          *
 
-     </div>
+//          *     </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
                             <div>
@@ -3099,7 +1648,9 @@
         <code>
             e        </code>
          - the element, or the id of the element, to get
- the offsets of.            </div>   
+//          * the offsets of.
+//          *
+//          *            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3107,8 +1658,8 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the offset from the top-left corner of the viewport, in the
- form <code>{left: l, top: t}</code>.
-     	            	        </div>
+//          * form <code>{left: l, top: t}</code>.
+//          	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -3125,12 +1676,16 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
+        //      *
+//      * <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
+//      *
+//      *
 
-     </div>
+//      *     </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a>
+//</div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -3147,384 +1702,40 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
+        //      *
+//      * <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
+//      *
+//      *
 
-     </div>
+//      *     </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a>
+//</div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
-        <a name="___getParent">
+        <a name="___getStrollOffset">
             <span class="objType">function</span>
-            <span class="objName">getParent</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getParent(<span class="type">DomNode</span>
- target, <span class="type">String</span>
- nodeName, <span class="type">Boolean</span>
- shouldExcludeSelf)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the first parent element with the given node name.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            target        </code>
-         - the current <strong>DOM</strong> node, it its
- <strong>String</strong> id.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            nodeName        </code>
-         - the node name to search.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            shouldExcludeSelf        </code>
-         - (optional: defaults to false).
- If <code>true</code>, the current node (target) is disregarded while
- seeking.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <strong>DOM</strong> node if found, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getParentByAttribute">
-            <span class="objType">function</span>
-            <span class="objName">getParentByAttribute</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getParentByAttribute(<span class="type">DomNode</span>
- obj, <span class="type">String</span>
- attribute, <span class="type">String</span>
- value, <span class="type">Boolean</span>
- shouldExcludeSelf)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the first parent with an <strong>attribute</strong> equal to the
- given <strong>value</strong>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the current <strong>DOM</strong> node, or its
- <strong>String</strong> id.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            attribute        </code>
-         - the name of the attribute.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            value        </code>
-         - the value of the attribute.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            shouldExcludeSelf        </code>
-         - (optional: defaults to false).
- If <code>true</code>, the current node (obj) is disregarded while seeking.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <strong>DOM</strong> node if found, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getParentById">
-            <span class="objType">function</span>
-            <span class="objName">getParentById</span>            
+            <span class="objName">getStrollOffset</span>            
         </a> 
     </h3>
                 <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getParentById()
+                    getStrollOffset()
                 </code>
             </div>    
         <div class="comment">
-        <p>This is an alias to</p>
- <pre>
- o2.DomHelper.getParentByAttribute(obj, 'id', id, isSelfExcluded)
- </pre>
+        <p>An alias to o2.DomHelper.getObjectStrollOffset.</p>
 
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails">DomHelper.getParentByAttribute</div>
+                            <div class="paddedDetails">{o2.DomHelper.getObjectScrollOffset}</div>
                     </div>      
                                 <hr/>       
-                                                                                    <h3>
-        <a name="___getParentWithAttribute">
-            <span class="objType">function</span>
-            <span class="objName">getParentWithAttribute</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getParentWithAttribute(<span class="type">DomNode</span>
- obj, <span class="type">String</span>
- attribute, <span class="type">Boolean</span>
- isSelfExcluded)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the first parent with a given <strong>attribute</strong>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the current <strong>DOM</strong> node, or its
- <strong>id</strong>.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            attribute        </code>
-         - the name of the attribute.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isSelfExcluded        </code>
-         - (optional: defaults to false).
- If <code>true</code>, the current node (obj) is disregarded while seeking.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the <strong>DOM</strong> node if found, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getParentWithId">
-            <span class="objType">function</span>
-            <span class="objName">getParentWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getParentWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>This is an alias to</p>
- <pre>
- o2.DomHelper.getParentWithAttribute(obj, 'id', value, shouldExcludeSelf)
- </pre>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParentWithAttribute">o2.DomHelper.getParentWithAttribute</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___getPrevious">
-            <span class="objType">function</span>
-            <span class="objName">getPrevious</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getPrevious(<span class="type">DomNode</span>
- target)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the previous <strong>DOM</strong> node sibling that's not a text
- node.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            target        </code>
-         - the node to start, or the <strong>id</strong>
- of it.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getPreviousById">
-            <span class="objType">function</span>
-            <span class="objName">getPreviousById</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getPreviousById(<span class="type">DomNode</span>
- elmTarget, <span class="type">String</span>
- id)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the previous <strong>DOM</strong> node sibling by its id.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elmTarget        </code>
-         - the original node, or the
- <strong>id</strong> of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            id        </code>
-         - the id to check.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getPreviousWithId">
-            <span class="objType">function</span>
-            <span class="objName">getPreviousWithId</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getPreviousWithId(<span class="type">DomNode</span>
- elmTarget)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>gets the previous <strong>DOM</strong> node that has a defined
- <strong>id</strong> attribute.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elmTarget        </code>
-         - the node to start, or the
- <strong>id</strong> of it.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the found <strong>DOM</strong> node if any, <code>null</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___getSiblings">
-            <span class="objType">function</span>
-            <span class="objName">getSiblings</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getSiblings(<span class="type">DomNode</span>
- targetElm)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the same-level siblings.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            targetElm        </code>
-         - the target, or the <strong>id</strong>
- of the target to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the same-level siblings if any, an empty <code>Array</code>
- otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
                                                                                     <h3>
         <a name="___getStyle">
             <span class="objType">function</span>
@@ -3584,6 +1795,46 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the calculated <strong>style</strong> value.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getText">
+            <span class="objType">function</span>
+            <span class="objName">getText</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getText(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the textual content of the given node, replacing entities
+ like <code>& amp;</code> with it's corresponding character
+ counterpart (<strong>&</strong> in this example).</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - the <strong>DOM</strong> node or its
+ <code>String</code> id.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the textual content of the given node.
          	            	        </div>
         </div>      
                                                 <hr/>       
@@ -3903,24 +2154,21 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
-        <a name="___isChild">
+        <a name="___isDocument">
             <span class="objType">function</span>
-            <span class="objName">isChild</span>            
+            <span class="objName">isDocument</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isChild(<span class="type">Object</span>
- child, <span class="type">Object</span>
- parent, <span class="type">Boolean</span>
- isSelfExcluded)
+                    isDocument(<span class="type">DOMNode</span>
+ obj)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given item is a descendant of
- the parent node.</p>
+        <p>Checks whether the given node is a <code>document</code> node.</p>
 
      </div>
         	<div class="parameters">
@@ -3930,56 +2178,57 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            child        </code>
-         - the child node to test, or its
- <strong>DOM</strong> ID.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            parent        </code>
-         - the parent node to test, or its
- <strong>DOM</strong> ID.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isSelfExcluded        </code>
-         - (optional;
- defaults to <code>false</code>) if <code>true</code> the method does
- <strong>NOT</strong> return <code>true</code>, if child and parent are
- the same; if <code>false</code> the method will return <code>true</code>,
- if child and parent are the same.            </div>   
+            obj        </code>
+         - the <strong>node</strong> to test.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if <strong>child</strong> is a child of
- <strong>parent</strong>, <code>false</code> otherwise.
+	            	             <code>true</code> if the <strong>node</strong> is the
+ <code>document</code> element; <code>false</code> otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isParent">
+        <a name="___isElement">
             <span class="objType">function</span>
-            <span class="objName">isParent</span>            
+            <span class="objName">isElement</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isParent()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to
- <code>o2.DomHelper.isChild(child, parent, shouldExcludeSelf)</code>.</p>
+                    isElement(<span class="type">DOMNode</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given node is an <strong>element</strong> node.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___isChild">o2.DomHelper.isChild</a></div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <strong>node</strong> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the <strong>node</strong> is an
+ <strong>element</strong> node; <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                                                                     <h3>
         <a name="___isVisible">
             <span class="objType">function</span>
@@ -4026,72 +2275,6 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___last">
-            <span class="objType">function</span>
-            <span class="objName">last</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    last()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChild">o2.DomHelper.getLastChild</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___lastById">
-            <span class="objType">function</span>
-            <span class="objName">lastById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    lastById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChildById">o2.DomHelper.getLastChildById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___lastWithId">
-            <span class="objType">function</span>
-            <span class="objName">lastWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    lastWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getLastChildWithId">o2.DomHelper.getLastChildWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
         <a name="___loadCss">
             <span class="objType">function</span>
             <span class="objName">loadCss</span>            
@@ -4103,7 +2286,8 @@
                     <span class="type"></span>
                     loadCss(<span class="type">String</span>
  src, <span class="type">Function</span>
- callback)
+ successCallback, <span class="type">Function</span>
+ failureCallback)
                 </code> 
             </div>          
                 <div class="comment">
@@ -4125,9 +2309,14 @@
  <strong>css</strong> file.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            callback        </code>
+            successCallback        </code>
          - the callback to execute when the load
  operation completes.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            failureCallback        </code>
+         - the callback to execute when the load
+ operation times out or fails.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -4143,13 +2332,18 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     loadImage(<span class="type">String</span>
- src, <span class="type">Function</span>
- callback)
+ url, <span class="type">Function</span>
+ successCallback, <span class="type">Function</span>
+ failureCallback)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Asynchronously loads (precaches) an <strong>image</strong> file
- with a given <strong>src</strong>.</p>
+        <p>Tries to load the image into a <strong>JavaScript</strong>
+ <code>Image</code> object; then triggers
+ <code>successCallback</code> or <code>failureCallback</code> depending on
+ the
+ result of the load attempt.</p>
+ <p>This function can be used for pre-loading or post-loading images.</p>
 
      </div>
         	<div class="parameters">
@@ -4159,14 +2353,19 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            src        </code>
-         - the source <strong>URL</strong> of the
- <strong>image</strong> file.            </div>   
+            url        </code>
+         - the <strong>URL</strong> of the
+ <strong>image</strong>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            callback        </code>
-         - the callback to execute when the load
- operation completes.            </div>   
+            successCallback        </code>
+         - gets called when the
+ <strong>image</strong> is loaded successfully.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            failureCallback        </code>
+         - gets called when the
+ <strong>image</strong> can <strong>not</strong> be loaded successfully.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -4213,170 +2412,6 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
-        <a name="___next">
-            <span class="objType">function</span>
-            <span class="objName">next</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    next()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getNext">o2.DomHelper.getNext</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___nextAll">
-            <span class="objType">function</span>
-            <span class="objName">nextAll</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    nextAll(<span class="type">Object</span>
- el)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets all of the next siblings.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            el        </code>
-         - a <strong>DOM</strong> node reference or its
- <code>String</code> id.            </div>   
-                                        </div>
-                </div>
-                    </div>
-                                                    <hr/>       
-                                                                                    <h3>
-        <a name="___nextWithId">
-            <span class="objType">function</span>
-            <span class="objName">nextWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    nextWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getNextWithId">o2.DomHelper.getNextWithId</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___offset">
-            <span class="objType">function</span>
-            <span class="objName">offset</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    offset()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___offsetLeft">
-            <span class="objType">function</span>
-            <span class="objName">offsetLeft</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    offsetLeft()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).left</code>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___offsetTop">
-            <span class="objType">function</span>
-            <span class="objName">offsetTop</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    offsetTop()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <code>o2.DomHelper.getOffset(obj).top</code>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getOffset">o2.DomHelper.getOffset</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___parent">
-            <span class="objType">function</span>
-            <span class="objName">parent</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    parent()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getParent">o2.DomHelper.getParent</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
         <a name="___prepend">
             <span class="objType">function</span>
             <span class="objName">prepend</span>            
@@ -4414,104 +2449,6 @@
                 </div>
                     </div>
                                                     <hr/>       
-                                                                                    <h3>
-        <a name="___prev">
-            <span class="objType">function</span>
-            <span class="objName">prev</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    prev()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPrevious">o2.DomHelper.getPrevious</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___prevAll">
-            <span class="objType">function</span>
-            <span class="objName">prevAll</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    prevAll(<span class="type">Object</span>
- el)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets all of the previous siblings.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            el        </code>
-         - a <strong>DOM</strong> node reference or its
- <code>String</code> id.            </div>   
-                                        </div>
-                </div>
-                    </div>
-                                                    <hr/>       
-                                                                                    <h3>
-        <a name="___prevById">
-            <span class="objType">function</span>
-            <span class="objName">prevById</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    prevById()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPreviousById">o2.DomHelper.getPreviousById</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___prevWithId">
-            <span class="objType">function</span>
-            <span class="objName">prevWithId</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    prevWithId()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getPreviousWithId">o2.DomHelper.getPreviousWithId</a></div>
-                    </div>      
-                                <hr/>       
                                                                                     <h3>
         <a name="___ready">
             <span class="objType">function</span>
@@ -4699,7 +2636,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___remove">o2.DomHelper.remove</a>.</p>
+        <p>An <strong>alias</strong> to <a href="logical/o2/DomHelper.html#___remove">o2.DomHelper.remove</a>.</p>
 
      </div>
                                 <div class="seealso">
@@ -4707,6 +2644,42 @@
                             <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___remove">o2.DomHelper.remove</a></div>
                     </div>      
                                 <hr/>       
+                                                                                    <h3>
+        <a name="___replace">
+            <span class="objType">function</span>
+            <span class="objName">replace</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    replace(<span class="type"></span>
+ elmTarget, <span class="type"></span>
+ elmToReplace)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Replaces one node with another.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elmTarget        </code>
+         - the target node or its <code>String</code> id.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            elmToReplace        </code>
+         - the replacement node or its <code>String</code> id.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
                                                                                     <h3>
         <a name="___scrollObjectToBottom">
             <span class="objType">function</span>
@@ -4772,6 +2745,50 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
+        <a name="___scrollTo">
+            <span class="objType">function</span>
+            <span class="objName">scrollTo</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollTo()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___scrollToObject">
+            <span class="objType">function</span>
+            <span class="objName">scrollToObject</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    scrollToObject()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___scrollWindowToObject">o2.DomHelper.scrollWindowToObject</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___scrollWindowToBottom">
             <span class="objType">function</span>
             <span class="objName">scrollWindowToBottom</span>            
@@ -4816,7 +2833,8 @@
         <code>
             obj        </code>
          - the element, or the <strong>id</strong> of it, to
- scroll.            </div>   
+ scroll, or an <code>Object</code> in the form
+ <code>{left : leftPx, top : topPx}</code>.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -4880,6 +2898,28 @@
                 </div>
                     </div>
                                                     <hr/>       
+                                                                                    <h3>
+        <a name="___setCss">
+            <span class="objType">function</span>
+            <span class="objName">setCss</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    setCss()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/DomHelper.html#___addStyle">o2.DomHelper.addStyle</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___addStyle">o2.DomHelper.addStyle</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___setDimension">
             <span class="objType">function</span>
@@ -4956,6 +2996,38 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
+        <a name="___setHtml">
+            <span class="objType">function</span>
+            <span class="objName">setHtml</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    setHtml(<span class="type">Object</span>
+ elm)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Simply sets the <code>innerHTML</code> of the element.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - The <strong>DOM</strong> element to set the
+ <strong>HTML</strong> of, or its <code>String</code> id.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
         <a name="___setStyle">
             <span class="objType">function</span>
             <span class="objName">setStyle</span>            
@@ -5025,7 +3097,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     show(<span class="type">Object</span>
- obj)
+ elm)
                 </code> 
             </div>          
                 <div class="comment">
@@ -5039,7 +3111,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
+            elm        </code>
          - the <strong>DOM</strong> node, or the
  <strong>id</strong> of it, to show.            </div>   
                                         </div>
@@ -5047,27 +3119,93 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
-        <a name="___siblings">
+        <a name="___toggleClass">
             <span class="objType">function</span>
-            <span class="objName">siblings</span>            
+            <span class="objName">toggleClass</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    siblings()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a>.</p>
+                    toggleClass(<span class="type">Object</span>
+ el, <span class="type">String</span>
+ c, <span class="type">Boolean</span>
+ state)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Toggles the <strong>CSS<strong> <code>className</code> of a given
+ element.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___getSiblings">o2.DomHelper.getSiblings</a></div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            el        </code>
+         - the <strong>DOM</strong> element to toggle or its
+ <code>String</code> id.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            c        </code>
+         - the class name to toggle.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            state        </code>
+         - (Optional, defaults to <code>undefined</code>),
+ if <code>true</code> add class <strong>c</strong> to
+ <strong>el</strong>, if <code>true</code> removes class
+ <strong>c</strong> from <strong>el</strong>. If the parameter is not
+ given, the class is toggled (i.e. added if the class does not exist,
+ and removed if the class exists).            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___toggleVisibility">
+            <span class="objType">function</span>
+            <span class="objName">toggleVisibility</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    toggleVisibility(<span class="type">Object</span>
+ elm, <span class="type">Boolean</span>
+ state)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Toggles the visibility of the given element.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - a <strong>DOM</strong> reference or its
+ <code>String</code> id.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            state        </code>
+         - (Optional, defaults to <code>undefined</code>)
+ if <code>true</code>, show the item; if <code>false</code> hides the
+ item; if <code>undefined</code> simply toggles the visibility of the
+ item.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
                                                                                     <h3>
         <a name="___trimField">
             <span class="objType">function</span>
@@ -5102,7 +3240,8 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             field's trimmed value.
+	            	             field's trimmed value; or <code>null</code> if the field
+ does not exist.
 
  	            	        </div>
         </div>      
@@ -5112,27 +3251,39 @@
                     </div>      
                                 <hr/>       
                                                                                     <h3>
-        <a name="___visible">
+        <a name="___unwrap">
             <span class="objType">function</span>
-            <span class="objName">visible</span>            
+            <span class="objName">unwrap</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    visible()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/DomHelper.html#___isVisible">o2.DomHelper.isVisible</a>.</p>
+                    unwrap(<span class="type">Object</span>
+ elmTarget)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>This is like <a href="logical/o2/DomHelper.html#___wrap">o2.DomHelper.wrap</a> in reverse.</p>
+ <p>Moves all the elements inside the container to the container's
+ position and removes the container from the <strong>DOM</strong>.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/DomHelper.html#___isVisible">o2.DomHelper.isVisible</a></div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elmTarget        </code>
+         - the target node or its <code>String</code> id
+ to unwrap.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
                                                                                     <h3>
         <a name="___wrap">
             <span class="objType">function</span>
@@ -5214,7 +3365,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -5234,13 +3397,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -5252,13 +3415,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -5303,31 +3472,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -5342,19 +3523,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>

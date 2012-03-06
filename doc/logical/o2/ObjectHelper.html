@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -71,12 +71,12 @@
             <b>o2.ObjectHelper</b>
        </code>
     </div>
-                <div class="comment"><p>A helper class for <strong>JavaScript</strong> <code>object</code>
+                <div class="comment"><p>A helper class for <strong>JavaScript</strong> <code>Object</code>
  inheritance.</p>
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/module-objecthelper.html">objecthelper</a>
+        <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
         <hr/> 
     <p />
     
@@ -94,6 +94,19 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/ObjectHelper.html#___copy"><span class="elementName">copy</span></a>
+                (<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ base)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Copies members from <strong>base</strong> to
+ <strong>child</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/ObjectHelper.html#___copyMethods"><span class="elementName">copyMethods</span></a>
                 (<span class="type">Object</span>
  child, <span class="type">Object</span>
@@ -101,7 +114,75 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Copies <strong>base</strong>'s methods, to
- <strong>child</strong></p>.    </div>  
+ <strong>child</strong></p>.
+ <p>Note that the methods are copied by ref. Therefore any change in
+ <strong>base</strong> object's methods will be directly reflected to
+ the <strong>child</strong> object.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/ObjectHelper.html#___copyPrototype"><span class="elementName">copyPrototype</span></a>
+                (<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ base)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Copies every propery in <strong>base.prototype</strong>, to
+ <strong>child.prototype</strong>.</p>
+ <p>This is similar to extending <strong>child</strong>
+ to <strong>base</strong></p>.
+ <p>Note that the methods are copied by ref. Therefore any change in
+ <strong>base</strong> object's prototype methods will be directly
+ reflected to the <strong>child</strong> object's protoype.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/ObjectHelper.html#___extend"><span class="elementName">extend</span></a>
+                (<span class="type">Function</span>
+ childConstructor, <span class="type">Function</span>
+ baseConstructor, <span class="type">Object</span>
+ baseConstructed)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>A simple way of extending objects.<p>
+ <p>Although the so called "object-oriented <strong>JavaScript</strong>"
+ is rarely useful and is against the <strong>functional</strong> nature of
+ the language, this helper method may be handy at times.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function Fruit() {}
+ Fruit.prototype.grow = function() {};
+ Fruit.prototype.name = 'fruit';
+
+ function Apple() {}
+ Apple.prototype.name = 'Steve';
+
+ o2.ObjectHelper.inherit(Apple, Fruit, new Fruit());
+
+ var fruit = new Fruit();
+ var apple = new Apple();
+
+ log(typeof apple.grow); // function
+ log(apple.constructor); // Apple
+ log(apple.parent);      // {grow: function(){}, name : 'fruit'}
+ log(apple.name);        // 'Steve'
+ log(apple.parent.name); // 'fruit'
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/ObjectHelper.html#___stringify"><span class="elementName">stringify</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to o2.ObjectHelper.toJsonString.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -121,6 +202,43 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
+        <a name="___copy">
+            <span class="objType">function</span>
+            <span class="objName">copy</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    copy(<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ base)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Copies members from <strong>base</strong> to
+ <strong>child</strong>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            child        </code>
+                    </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            base        </code>
+                    </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
         <a name="___copyMethods">
             <span class="objType">function</span>
             <span class="objName">copyMethods</span>            
@@ -138,6 +256,9 @@
                 <div class="comment">
         <p>Copies <strong>base</strong>'s methods, to
  <strong>child</strong></p>.
+ <p>Note that the methods are copied by ref. Therefore any change in
+ <strong>base</strong> object's methods will be directly reflected to
+ the <strong>child</strong> object.</p>
 
      </div>
         	<div class="parameters">
@@ -159,6 +280,139 @@
                 </div>
                     </div>
                                                     <hr/>       
+                                                                                    <h3>
+        <a name="___copyPrototype">
+            <span class="objType">function</span>
+            <span class="objName">copyPrototype</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    copyPrototype(<span class="type">Object</span>
+ child, <span class="type">Object</span>
+ base)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Copies every propery in <strong>base.prototype</strong>, to
+ <strong>child.prototype</strong>.</p>
+ <p>This is similar to extending <strong>child</strong>
+ to <strong>base</strong></p>.
+ <p>Note that the methods are copied by ref. Therefore any change in
+ <strong>base</strong> object's prototype methods will be directly
+ reflected to the <strong>child</strong> object's protoype.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            child        </code>
+         - the child <strong>object</strong> to copy
+ methods to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            base        </code>
+         - the base <strong>object</strong> to copy
+ methods from.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___extend">
+            <span class="objType">function</span>
+            <span class="objName">extend</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    extend(<span class="type">Function</span>
+ childConstructor, <span class="type">Function</span>
+ baseConstructor, <span class="type">Object</span>
+ baseConstructed)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>A simple way of extending objects.<p>
+ <p>Although the so called "object-oriented <strong>JavaScript</strong>"
+ is rarely useful and is against the <strong>functional</strong> nature of
+ the language, this helper method may be handy at times.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function Fruit() {}
+ Fruit.prototype.grow = function() {};
+ Fruit.prototype.name = 'fruit';
+
+ function Apple() {}
+ Apple.prototype.name = 'Steve';
+
+ o2.ObjectHelper.inherit(Apple, Fruit, new Fruit());
+
+ var fruit = new Fruit();
+ var apple = new Apple();
+
+ log(typeof apple.grow); // function
+ log(apple.constructor); // Apple
+ log(apple.parent);      // {grow: function(){}, name : 'fruit'}
+ log(apple.name);        // 'Steve'
+ log(apple.parent.name); // 'fruit'
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            childConstructor        </code>
+         - the child object.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            baseConstructor        </code>
+         - the <code>Object</code> to extend.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            baseConstructed        </code>
+         - base object initialized to a default
+ state.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___stringify">
+            <span class="objType">function</span>
+            <span class="objName">stringify</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stringify()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to o2.ObjectHelper.toJsonString.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails">o2.ObjectHelper.toJsonString</div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___toArray">
             <span class="objType">function</span>
@@ -199,7 +453,7 @@
         </div>      
                             <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___toArray">o2.CollectionHelper.toArray</a></div>
+                            <div class="paddedDetails">o2.CollectionHelper.toArray</div>
                     </div>      
                                 <hr/>       
                                     </div>
@@ -239,7 +493,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -259,13 +525,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -277,13 +543,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -328,31 +600,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -367,19 +651,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>

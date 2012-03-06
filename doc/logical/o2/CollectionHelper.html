@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -75,7 +75,7 @@
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/module-collectionhelper.html">collectionhelper</a>
+        <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
         <hr/> 
     <p />
     
@@ -90,6 +90,15 @@
                 <span class="objType">Function</span> Summary
             </div>
                     <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___any"><span class="elementName">any</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___some">o2.CollectionHelper.some</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
@@ -99,6 +108,15 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Removes all the elements of the <code>Object</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___clone"><span class="elementName">clone</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___copy">o2.CollectionHelper.copy</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -142,6 +160,37 @@
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___detect"><span class="elementName">detect</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___find">o2.CollectionHelper.find</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___diff"><span class="elementName">diff</span></a>
+                (<span class="type">Arguments</span>
+ ...)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Takes the difference between the current collection and a number of
+ other collections. Only items that do not remain in the rest of the
+ collections will be returned.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___difference"><span class="elementName">difference</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___each"><span class="elementName">each</span></a>()
             </div>
         <div class="summaryItemDesc">
@@ -151,23 +200,39 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___filter"><span class="elementName">filter</span></a>
+                <a href="logical/o2/CollectionHelper.html#___every"><span class="elementName">every</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
- fnFilter)
+ obj, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Filters a <strong>collection</strong> and returns an
- <code>Array</code> containing the filtered items.    </div>  
+        <p>Check whether every element of a collection passes a truth test.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___first"><span class="elementName">first</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getFirst">o2.CollectionHelper.getFirst</a>.</p>    </div>  
+                <a href="logical/o2/CollectionHelper.html#___find"><span class="elementName">find</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type"></span>
+ delegate, <span class="type">Object</span>
+ context)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the first <strong>collection</strong> item that validates
+ against the given <strong>delegator</strong>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/CollectionHelper.html#___flatten"><span class="elementName">flatten</span></a>
+                (<span class="type">Array</span>
+ collection)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Shallow flattens an <code>Array</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -184,38 +249,31 @@
  of the <strong>collection</strong>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___getFirst"><span class="elementName">getFirst</span></a>
-                (<span class="type">Object</span>
- ar)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the first element of the <code>Array</code> or
- <code>Object</code>.</p>    </div>  
+                <a href="logical/o2/CollectionHelper.html#___getDifference"><span class="elementName">getDifference</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___getKeys"><span class="elementName">getKeys</span></a>
-                (<span class="type">Object</span>
- collection)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets all the keys of a <strong>collection</strong>.    </div>  
+                <a href="logical/o2/CollectionHelper.html#___inArray"><span class="elementName">inArray</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___getLast"><span class="elementName">getLast</span></a>
-                (<span class="type">Object</span>
- ar)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the last element of the array.</p>    </div>  
+                <a href="logical/o2/CollectionHelper.html#___includes"><span class="elementName">includes</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -230,75 +288,47 @@
         <p>Gets the index of the element in the given <code>Array</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___keys"><span class="elementName">keys</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getKeys">o2.CollectionHelper.getKeys</a>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___last"><span class="elementName">last</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getLast">o2.CollectionHelper.getLast</a></p>    </div>  
+                <a href="logical/o2/CollectionHelper.html#___reduce"><span class="elementName">reduce</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type">Functon</span>
+ delegate, <span class="type">Object</span>
+ store, <span class="type">Object</span>
+ context)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Works similar to the <strong>reduce</strong> part of the
+ <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
+ algorithm.</p>
+ <p>Reduces a <strong>collection</strong> into a single value by
+ applying a <strong>delegate</strong> of the form
+ <code>function(cache, value, index, collection)</code> where
+ <strong>cache</strong> is the accumulator, <strong>value</strong>
+ is the iterated item, <strong>index</strong> is the item's index,
+ and <strong>collection</strong> is the collection we are working on.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___map"><span class="elementName">map</span></a>
+                <a href="logical/o2/CollectionHelper.html#___some"><span class="elementName">some</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
- evaluator, <span class="type">Object</span>
- selfRef)
+ collection, <span class="type"></span>
+ delegate, <span class="type">Object</span>
+ -)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Executes the <strong>evaluator</strong> over every element of the
- <strong>collection</strong> and returns an <code>Array</code> of
- mapped elements</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___merge"><span class="elementName">merge</span></a>
-                (<span class="type">Object</span>
- toObj, <span class="type">Object</span>
- fromObj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___removeElementByValue"><span class="elementName">removeElementByValue</span></a>
-                (<span class="type">Object</span>
- collection, <span class="type">String</span>
- name, <span class="type">Object</span>
- value, <span class="type">Boolean</span>
- isRecursive)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Removes and element from the collection if it has a property named
- <strong>name</strong> with a value <strong>value</strong>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___toArray"><span class="elementName">toArray</span></a>
-                (<span class="type">Object</span>
- collection)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Converts the <strong>collection</strong> into an <code>Array</code>.    </div>  
+        <p>Checks whether at least one element of the given
+ <strong>collection</strong> satisfies a condition given with
+ the <strong>delegate</strong>.</p>
+ <p>The <strong>delegate</strong> is in the form
+ <code>function(context, value, index, collection)</code>, iterates
+ through the items of the <strong>collection</strong> and returns
+ a <strong>boolean</strong> value. When this <strong>delegate</strong>
+ returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
+ also returns true; it returns <code>false</code> otherwise.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -307,6 +337,28 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
+        <a name="___any">
+            <span class="objType">function</span>
+            <span class="objName">any</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    any()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___some">o2.CollectionHelper.some</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___some">o2.CollectionHelper.some</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___clear">
             <span class="objType">function</span>
             <span class="objName">clear</span>            
@@ -343,6 +395,28 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___clone">
+            <span class="objType">function</span>
+            <span class="objName">clone</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    clone()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___copy">o2.CollectionHelper.copy</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___copy">o2.CollectionHelper.copy</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___compact">
             <span class="objType">function</span>
@@ -465,6 +539,91 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___detect">
+            <span class="objType">function</span>
+            <span class="objName">detect</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    detect()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___find">o2.CollectionHelper.find</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___find">o2.CollectionHelper.find</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___diff">
+            <span class="objType">function</span>
+            <span class="objName">diff</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    diff(<span class="type">Arguments</span>
+ ...)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Takes the difference between the current collection and a number of
+ other collections. Only items that do not remain in the rest of the
+ collections will be returned.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            ...        </code>
+         - variable number of input arguments; each
+ argument should either be an <code>Array</code> or an iterable
+ <code>Object</code>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             an <code>Array</code> of non-matching items.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___difference">
+            <span class="objType">function</span>
+            <span class="objName">difference</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    difference()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___each">
             <span class="objType">function</span>
             <span class="objName">each</span>            
@@ -487,23 +646,77 @@
                     </div>      
                                 <hr/>       
                                                                                     <h3>
-        <a name="___filter">
+        <a name="___every">
             <span class="objType">function</span>
-            <span class="objName">filter</span>            
+            <span class="objName">every</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    filter(<span class="type">Object</span>
- collection, <span class="type">Function</span>
- fnFilter)
+                    every(<span class="type">Object</span>
+ obj, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Filters a <strong>collection</strong> and returns an
- <code>Array</code> containing the filtered items.
+        <p>Check whether every element of a collection passes a truth test.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - an <code>Array</code> or an iterable collection.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - an iterator of the form
+ <code>function(item, index, obj)</code>; where <strong>item</strong> is
+ the current collection item, <strong>index</strong> is the current index
+ and <strong>obj</strong> is the collection itself.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - the context that the <strong>delegate</strong>
+ uses as the <code>this</code> reference.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if <strong>delegate</strong> returns
+ <code>true</code> for every element of the collection; <code>false</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___find">
+            <span class="objType">function</span>
+            <span class="objName">find</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    find(<span class="type">Object</span>
+ collection, <span class="type"></span>
+ delegate, <span class="type">Object</span>
+ context)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the first <strong>collection</strong> item that validates
+ against the given <strong>delegator</strong>.</p>
 
      </div>
         	<div class="parameters">
@@ -514,41 +727,60 @@
                                                 <div class="param paddedDetails">
         <code>
             collection        </code>
-         - the <strong>collection</strong> to filter.            </div>   
+         - the <code>Array</code> or an iterable
+ <code>Object</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            fnFilter        </code>
-         - the filtering function, that takes each
- item of the filter as a parameter and returns a boolean value. If the
- function returns a falsy value, the item will not be included in
- the result array, if it returns a truthy value, the item will be included
- in the result array.            </div>   
+            delegate        </code>
+         - Iterator <code>Function</code> in the form
+ <code>function(context, value, index, collection)</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - the context that acts as the <code>this</code>
+ reference in the <strong>iterator</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the first truthy evaluated item; <code>null</code> if nothing
+ is found.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___flatten">
+            <span class="objType">function</span>
+            <span class="objName">flatten</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    flatten(<span class="type">Array</span>
+ collection)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Shallow flattens an <code>Array</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            collection        </code>
+         - an <code>Array</code> of <code>Array>            </div>   
                                         </div>
                 </div>
                     </div>
                                                     <hr/>       
-                                                                                    <h3>
-        <a name="___first">
-            <span class="objType">function</span>
-            <span class="objName">first</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    first()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getFirst">o2.CollectionHelper.getFirst</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___getFirst">o2.CollectionHelper.getFirst</a></div>
-                    </div>      
-                                <hr/>       
                                                                                     <h3>
         <a name="___forEach">
             <span class="objType">function</span>
@@ -582,125 +814,78 @@
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
-         - the iterator.            </div>   
+         - the iterator in the form
+ <code>function(item, index, collection)</code>.            </div>   
                                         </div>
                 </div>
                     </div>
                                                     <hr/>       
                                                                                     <h3>
-        <a name="___getFirst">
+        <a name="___getDifference">
             <span class="objType">function</span>
-            <span class="objName">getFirst</span>            
+            <span class="objName">getDifference</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getFirst(<span class="type">Object</span>
- ar)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the first element of the <code>Array</code> or
- <code>Object</code>.</p>
+                    getDifference()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            ar        </code>
-         - the <code>Object</code> to inspect.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the first element if exists, <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___diff">o2.CollectionHelper.diff</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
-        <a name="___getKeys">
+        <a name="___inArray">
             <span class="objType">function</span>
-            <span class="objName">getKeys</span>            
+            <span class="objName">inArray</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getKeys(<span class="type">Object</span>
- collection)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets all the keys of a <strong>collection</strong>.
+                    inArray()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            collection        </code>
-         - An associative array of key-value pairs.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             an <code>Array</code> of the keys of the
- <strong>collection</strong>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
-        <a name="___getLast">
+        <a name="___includes">
             <span class="objType">function</span>
-            <span class="objName">getLast</span>            
+            <span class="objName">includes</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getLast(<span class="type">Object</span>
- ar)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the last element of the array.</p>
+                    includes()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            ar        </code>
-         - the <code>Array</code> or <code>Object</code> to
- inspect.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the last element if exists, <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___contains">o2.CollectionHelper.contains</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___indexOf">
             <span class="objType">function</span>
@@ -741,120 +926,36 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the index of the element if found, <code>-1</code> otherwise.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___keys">
-            <span class="objType">function</span>
-            <span class="objName">keys</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    keys()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getKeys">o2.CollectionHelper.getKeys</a>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___getKeys">o2.CollectionHelper.getKeys</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___last">
-            <span class="objType">function</span>
-            <span class="objName">last</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    last()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___getLast">o2.CollectionHelper.getLast</a></p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___getLast">o2.CollectionHelper.getLast</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___map">
-            <span class="objType">function</span>
-            <span class="objName">map</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    map(<span class="type">Object</span>
- collection, <span class="type">Function</span>
- evaluator, <span class="type">Object</span>
- selfRef)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Executes the <strong>evaluator</strong> over every element of the
- <strong>collection</strong> and returns an <code>Array</code> of
- mapped elements</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            collection        </code>
-         - The collection to map.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            evaluator        </code>
-         - A <code>Function</code> reference in the
- form fn(currentItem, itemIndex, selfRef).            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            selfRef        </code>
-         - A reference to the collection itself.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             an <code>Array</code> of mapped items.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___merge">
+        <a name="___reduce">
             <span class="objType">function</span>
-            <span class="objName">merge</span>            
+            <span class="objName">reduce</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    merge(<span class="type">Object</span>
- toObj, <span class="type">Object</span>
- fromObj)
+                    reduce(<span class="type">Object</span>
+ collection, <span class="type">Functon</span>
+ delegate, <span class="type">Object</span>
+ store, <span class="type">Object</span>
+ context)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>
+        <p>Works similar to the <strong>reduce</strong> part of the
+ <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
+ algorithm.</p>
+ <p>Reduces a <strong>collection</strong> into a single value by
+ applying a <strong>delegate</strong> of the form
+ <code>function(cache, value, index, collection)</code> where
+ <strong>cache</strong> is the accumulator, <strong>value</strong>
+ is the iterated item, <strong>index</strong> is the item's index,
+ and <strong>collection</strong> is the collection we are working on.</p>
 
      </div>
         	<div class="parameters">
@@ -864,43 +965,58 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            toObj        </code>
-         - the <code>Object</code> to copy values to.            </div>   
+            collection        </code>
+         - an <code>Array</code> or an iterable
+ <code>Object</code> to iterate.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            fromObj        </code>
-         - the <code>Object</code> to copy values from.            </div>   
+            delegate        </code>
+         - the reducer <code>Functon</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            store        </code>
+         - the initial seed.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - the context to be used as the <code>this</code>
+ reference in the iterator <strong>delegate</strong>.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             a <strong>reference</strong> to the modified
- <code>toObj</code>.
+	            	             a single reduced value.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___removeElementByValue">
+        <a name="___some">
             <span class="objType">function</span>
-            <span class="objName">removeElementByValue</span>            
+            <span class="objName">some</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    removeElementByValue(<span class="type">Object</span>
- collection, <span class="type">String</span>
- name, <span class="type">Object</span>
- value, <span class="type">Boolean</span>
- isRecursive)
+                    some(<span class="type">Object</span>
+ collection, <span class="type"></span>
+ delegate, <span class="type">Object</span>
+ -)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Removes and element from the collection if it has a property named
- <strong>name</strong> with a value <strong>value</strong>.</p>
+        <p>Checks whether at least one element of the given
+ <strong>collection</strong> satisfies a condition given with
+ the <strong>delegate</strong>.</p>
+ <p>The <strong>delegate</strong> is in the form
+ <code>function(context, value, index, collection)</code>, iterates
+ through the items of the <strong>collection</strong> and returns
+ a <strong>boolean</strong> value. When this <strong>delegate</strong>
+ returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
+ also returns true; it returns <code>false</code> otherwise.</p>
 
      </div>
         	<div class="parameters">
@@ -911,60 +1027,26 @@
                                                 <div class="param paddedDetails">
         <code>
             collection        </code>
-         - an <code>Object</code> or an
- <code>Array</code> to update.            </div>   
+         - An <code>Array</code>, or an iterable
+ <code>Object</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            name        </code>
-         - the name of the property.            </div>   
+            delegate        </code>
+         - Iterator <code>Function</code> in the form
+ <code>function(context, value, index, collection)</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            value        </code>
-         - the value to compare.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isRecursive        </code>
-         - (optionak; defaults to
- <code>false</code>) If <code>true</code> a nesterd search will be
- issued; otherwise the search will be single level.            </div>   
-                                        </div>
-                </div>
-                    </div>
-                                                    <hr/>       
-                                                                                    <h3>
-        <a name="___toArray">
-            <span class="objType">function</span>
-            <span class="objName">toArray</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    toArray(<span class="type">Object</span>
- collection)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Converts the <strong>collection</strong> into an <code>Array</code>.
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            collection        </code>
-         - the <strong>collection</strong> to convert.            </div>   
+            -        </code>
+         The context to regard as <code>this</code> reference.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the converted <code>Array</code>.
+	            	              <code>true</code> if the <strong>iterator</strong> returns
+ <code>true</code> for at least one element; returns <code>false</code>
+ otherwise.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1005,7 +1087,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -1025,13 +1119,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -1043,13 +1137,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -1094,31 +1194,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -1133,19 +1245,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>

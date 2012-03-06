@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -187,12 +187,45 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/Validator.html#___isNan"><span class="elementName">isNan</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given parameter is <code>NaN</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Validator.html#___isNull"><span class="elementName">isNull</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given parameter is <code>null</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/Validator.html#___isNumber"><span class="elementName">isNumber</span></a>
                 (<span class="type">Object</span>
  obj)
             </div>          
                 <div class="summaryItemDesc">
         <p>Checks whether the object is a <code>Number</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Validator.html#___isNumeric"><span class="elementName">isNumeric</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given parameter is a numeric entity.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -231,6 +264,17 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/Validator.html#___isUndefined"><span class="elementName">isUndefined</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given parameter is <code>undefined</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/Validator.html#___isUrl"><span class="elementName">isUrl</span></a>
                 (<span class="type">String</span>
  url)
@@ -250,6 +294,18 @@
                 <div class="summaryItemDesc">
         <p>Checks whether the given argument consists of only whitespace
  characters.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Validator.html#___isWindow"><span class="elementName">isWindow</span></a>
+                (<span class="type">Object</span>
+ obj)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the given parameter is a <code>window</code>
+ object.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -547,6 +603,82 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___isNan">
+            <span class="objType">function</span>
+            <span class="objName">isNan</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isNan(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given parameter is <code>NaN</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the item is <code>NaN</code>,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isNull">
+            <span class="objType">function</span>
+            <span class="objName">isNull</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isNull(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given parameter is <code>null</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the item is <code>null</code>,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___isNumber">
             <span class="objType">function</span>
             <span class="objName">isNumber</span>            
@@ -580,6 +712,44 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             <code>true</code> if obj is a <code>Number</code>,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isNumeric">
+            <span class="objType">function</span>
+            <span class="objName">isNumeric</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isNumeric(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given parameter is a numeric entity.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the item is a numeric entity,
  <code>false</code> otherwise.
      	            	        </div>
         </div>      
@@ -698,6 +868,44 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
+        <a name="___isUndefined">
+            <span class="objType">function</span>
+            <span class="objName">isUndefined</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isUndefined(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given parameter is <code>undefined</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the item is <code>undefined</code>,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___isUrl">
             <span class="objType">function</span>
             <span class="objName">isUrl</span>            
@@ -775,6 +983,45 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___isWindow">
+            <span class="objType">function</span>
+            <span class="objName">isWindow</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isWindow(<span class="type">Object</span>
+ obj)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the given parameter is a <code>window</code>
+ object.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to test.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the item is a <code>window</code>,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                     </div>
     	    	                                    						        </div>
         		          </div>			                    
@@ -812,7 +1059,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -832,13 +1091,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -850,13 +1109,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -901,31 +1166,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -940,19 +1217,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>

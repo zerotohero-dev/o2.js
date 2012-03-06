@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -93,6 +93,19 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___after"><span class="elementName">after</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
                 <a href="logical/o2/MethodHelper.html#___bind"><span class="elementName">bind</span></a>
                 (<span class="type">Object</span>
  base, <span class="type">Function</span>
@@ -121,7 +134,7 @@
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/MethodHelper.html#___bindAseventlistenerventListener"><span class="elementName">bindAseventlistenerventListener</span></a>()
+                <a href="logical/o2/MethodHelper.html#___bindAsEventListener"><span class="elementName">bindAsEventListener</span></a>()
             </div>
         <div class="summaryItemDesc">
         <p>Binds the given function as an event listener, ensuring that
@@ -169,7 +182,7 @@
                 <a href="logical/o2/MethodHelper.html#___compose"><span class="elementName">compose</span></a>
                 (<span class="type">Function</span>
  invoker, <span class="type">Function</span>
- fn)
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
         <p>Create a method that calls the <strong>invoker</strong> with the
@@ -184,7 +197,7 @@
                 <a href="logical/o2/MethodHelper.html#___curry"><span class="elementName">curry</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>Curries the <code>function</code>.</p>
+        <p>Curries the <code>Function</code>.</p>
  <p>See http://www.dustindiaz.com/javascript-curry/ for a
  discussion.</p>
  <p>Usage Example:</p>
@@ -196,11 +209,24 @@
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___debounce"><span class="elementName">debounce</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2/MethodHelper.html#___defer"><span class="elementName">defer</span></a>
                 (<span class="type">Function</span>
- fn, <span class="type">Integer</span>
+ delegate, <span class="type">Integer</span>
  interval, <span class="type">Object</span>
  context, <span class="type">Array</span>
  args)
@@ -219,23 +245,20 @@
  index2)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Flips two arguments of the given <code>function</code>, and returns a
- new <code>function</code>.</p>    </div>  
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/MethodHelper.html#___fold"><span class="elementName">fold</span></a>
+                <a href="logical/o2/MethodHelper.html#___identity"><span class="elementName">identity</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
- fn, <span class="type">Object</span>
- initial)
+ value)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Runs through the collection, accumulating the reuslts by executing
- <code>result = fn(result, currentItem)</code>, where <strong>currentItem</strong>
- is the item of the collection at the current index.    </div>  
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -248,7 +271,7 @@
  ...)
             </div>          
                 <div class="summaryItemDesc">
-        <p><strong>Memoizes</strong> the given <code>function</code>'s
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
  outcome and presents it from cache, instead of recalculating.</p>
  <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
 
@@ -261,6 +284,19 @@
  result = memoized(4,2);//fresh calculation.
  result = memoized(2,3);//retrieve from cache.
  </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___once"><span class="elementName">once</span></a>
+                (<span class="type">Function</span>
+ delegate)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -289,7 +325,7 @@
  varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Defines a partial <code>function</code>.</p>
+        <p>Defines a partial <code>Function</code>.</p>
  <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
  detailed discussion.</p>
  <p>Usage Example:</p>
@@ -312,13 +348,51 @@
  executes <code>Function</code>. Otherwise throws an error.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                           <div class="summaryItemDef">
+                                                                    <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/MethodHelper.html#___stringify"><span class="elementName">stringify</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to o2.MethodHelper.toJsonString.</p>    </div>  
+                <a href="logical/o2/MethodHelper.html#___throttle"><span class="elementName">throttle</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___times"><span class="elementName">times</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___wrap"><span class="elementName">wrap</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.    </div>  
                             </div>
                 </div>
         <p/>
@@ -327,6 +401,51 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
+        <a name="___after">
+            <span class="objType">function</span>
+            <span class="objName">after</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    after(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            count        </code>
+         - the numer of calls required to the
+ <code>Function</code> before executing it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the delegate to execute.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a <code>Function</code> that will only execute after being
+ called <strong>count</strong> times.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
         <a name="___bind">
             <span class="objType">function</span>
             <span class="objName">bind</span>            
@@ -370,11 +489,11 @@
         <code>
             base        </code>
          - the context of the newly created
- <code>function</code>.            </div>   
+ <code>Function</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             fn        </code>
-         - the <code>function</code> to modify.            </div>   
+         - the <code>Function</code> to modify.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             varargin        </code>
@@ -386,21 +505,21 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the modified <code>function</code>.
-     	            	        </div>
+	            	             the modified <code>Function</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___bindAseventlistenerventListener">
+        <a name="___bindAsEventListener">
             <span class="objType">function</span>
-            <span class="objName">bindAseventlistenerventListener</span>            
+            <span class="objName">bindAsEventListener</span>            
         </a> 
     </h3>
                 <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    bindAseventlistenerventListener()
+                    bindAsEventListener()
                 </code>
             </div>    
         <div class="comment">
@@ -467,7 +586,7 @@
                     <span class="type"></span>
                     compose(<span class="type">Function</span>
  invoker, <span class="type">Function</span>
- fn)
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
@@ -488,7 +607,7 @@
          - the invoker.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            fn        </code>
+            delegate        </code>
          - the invokee.            </div>   
                                         </div>
                 </div>
@@ -514,7 +633,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>Curries the <code>function</code>.</p>
+        <p>Curries the <code>Function</code>.</p>
  <p>See http://www.dustindiaz.com/javascript-curry/ for a
  discussion.</p>
  <p>Usage Example:</p>
@@ -528,7 +647,51 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the modified <code>function</code>.
+	            	             the modified <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___debounce">
+            <span class="objType">function</span>
+            <span class="objName">debounce</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    debounce(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to debounce.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the debounced <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -543,7 +706,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     defer(<span class="type">Function</span>
- fn, <span class="type">Integer</span>
+ delegate, <span class="type">Integer</span>
  interval, <span class="type">Object</span>
  context, <span class="type">Array</span>
  args)
@@ -560,8 +723,8 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            fn        </code>
-         - the <code>function</code> to defer.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to defer.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             interval        </code>
@@ -595,8 +758,8 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Flips two arguments of the given <code>function</code>, and returns a
- new <code>function</code>.</p>
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -627,25 +790,22 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___fold">
+        <a name="___identity">
             <span class="objType">function</span>
-            <span class="objName">fold</span>            
+            <span class="objName">identity</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    fold(<span class="type">Object</span>
- collection, <span class="type">Function</span>
- fn, <span class="type">Object</span>
- initial)
+                    identity(<span class="type">Object</span>
+ value)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Runs through the collection, accumulating the reuslts by executing
- <code>result = fn(result, currentItem)</code>, where <strong>currentItem</strong>
- is the item of the collection at the current index.
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>
 
      </div>
         	<div class="parameters">
@@ -655,20 +815,18 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - The collection to iterate.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            fn        </code>
-         - the <code>Function</code> to map.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            initial        </code>
-         - the initial seed.            </div>   
+            value        </code>
+         - input.            </div>   
                                         </div>
                 </div>
                     </div>
-                                                    <hr/>       
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>value</strong> itself.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                                                                     <h3>
         <a name="___memoize">
             <span class="objType">function</span>
@@ -686,7 +844,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p><strong>Memoizes</strong> the given <code>function</code>'s
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
  outcome and presents it from cache, instead of recalculating.</p>
  <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
 
@@ -709,7 +867,7 @@
                                                 <div class="param paddedDetails">
         <code>
             fn        </code>
-         - the <code>function</code> to memoize.            </div>   
+         - the <code>Function</code> to memoize.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             context        </code>
@@ -725,7 +883,46 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             a reference to the memoized <code>function</code>.
+	            	             a reference to the memoized <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___once">
+            <span class="objType">function</span>
+            <span class="objName">once</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    once(<span class="type">Function</span>
+ delegate)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to execute.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a <code>Function</code> that will execute only once.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -796,7 +993,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Defines a partial <code>function</code>.</p>
+        <p>Defines a partial <code>Function</code>.</p>
  <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
  detailed discussion.</p>
  <p>Usage Example:</p>
@@ -816,11 +1013,11 @@
         <code>
             base        </code>
          - the context of the newly created
- <code>function</code>.            </div>   
+ <code>Function</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             fn        </code>
-         - the <code>function</code> to modify.            </div>   
+         - the <code>Function</code> to modify.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             varargin        </code>
@@ -832,7 +1029,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the modified <code>function</code>.
+	            	             the modified <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -863,7 +1060,7 @@
                                                 <div class="param paddedDetails">
         <code>
             fn        </code>
-         - the <code>function</code> to check.            </div>   
+         - the <code>Function</code> to check.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -876,32 +1073,154 @@
         </div>      
             	<div class="throws">
 	        <span class="descSection">Throws:</span><br/>
-	        	                <div class="paddedDetails">excpetion if all of the arguments is not provided to the
+	        	                <div class="paddedDetails">Excpetion if all of the arguments is not provided to the
  <code>Function</code>.</div>
 	                </div>
                                             <hr/>       
                                                                                     <h3>
-        <a name="___stringify">
+        <a name="___throttle">
             <span class="objType">function</span>
-            <span class="objName">stringify</span>            
+            <span class="objName">throttle</span>            
         </a> 
     </h3>
-                <div>
+                        <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    stringify()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to o2.MethodHelper.toJsonString.</p>
+                    throttle(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>
 
      </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.MethodHelper.toJsonString</div>
-                    </div>      
-                                <hr/>       
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to throttle.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the throttled <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___times">
+            <span class="objType">function</span>
+            <span class="objName">times</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    times(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            count        </code>
+         - number of times to execute.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to execute (in
+ the form <code>function(i, payload)</code>).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - what should <code>this</code> refer to inside
+ the <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            payload        </code>
+         - the <code>Object</code> to pass to the
+ <strong>delegate</strong> as a second argument.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___wrap">
+            <span class="objType">function</span>
+            <span class="objName">wrap</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    wrap(<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the first <code>Function</code> to pass
+ as parameter.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            wrapper        </code>
+         - the wrapper <code>Function</code>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the wrapped <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                     </div>
     	    	                                    						        </div>
         		          </div>			                    
@@ -939,7 +1258,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -959,13 +1290,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -977,13 +1308,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -1028,31 +1365,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -1067,19 +1416,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>

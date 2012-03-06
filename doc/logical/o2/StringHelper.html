@@ -1,7 +1,7 @@
  <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</title>
+        <title>o2.js</title>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <script>
 
@@ -29,10 +29,10 @@
         <div class="startup" id="startup">
             <div class="banner" id="banner">
                 <h1 class="projectName">
-	               <a href="http://o2js.com/">o2.js - a Coherent Solution to Your JavaScript Dilemma ;)</a>   
+	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.23.0001328773671
+	                 version 0.24.a.0001328773671
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -71,7 +71,7 @@
             <b>o2.StringHelper</b>
        </code>
     </div>
-                <div class="comment"><p>A <strong>String</strong> helper <strong>class</strong>.</p>
+                <div class="comment"><p>A <code>String</code> helper <strong>class</strong>.</p>
 
  </div>
                                             <span class="definedIn">Defined in </span>
@@ -119,8 +119,8 @@
                 <a href="logical/o2/StringHelper.html#___concat"><span class="elementName">concat</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>Concatanes all its arguments into a single <strong>String</strong>.
- This is faster than adding those <strong>String</strong>s with
+        <p>Concatanes all its arguments into a single <code>String</code>.
+ This is faster than adding those <code>String</code>s with
  <code>+</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -160,7 +160,8 @@
  str)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Encodes the <strong>String</strong> by converting it into a text node
+        <p>Works similar to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
+ <p>Encodes the <code>String</code> by converting it into a text node
  and returning the node's value.</p>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -209,7 +210,16 @@
  length)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Generates a random <strong>String</strong>.</p>    </div>  
+        <p>Generates a random <code>String</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/StringHelper.html#___htmlEncode"><span class="elementName">htmlEncode</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -258,7 +268,7 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Simply removes the phrases that match the <code>RegExp</code> from
- the <strong>String</strong>.</p>    </div>  
+ the <code>String</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -273,16 +283,14 @@
  <code>String</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___strip"><span class="elementName">strip</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Simply returns
- <code>o2.StringHelper.trim(str, false)</code>.    </div>  
+                <a href="logical/o2/StringHelper.html#___safeHtmlEncode"><span class="elementName">safeHtmlEncode</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to
+ <a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -401,7 +409,7 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Trims white space from beginning and end of the
- <strong>String</strong>.</p>    </div>  
+ <code>String</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -414,7 +422,7 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
- is greater than <code>maxLength</code>.</p>    </div>  
+ is greater than <strong>maxLen</strong>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -513,14 +521,14 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
 
  	            	        </div>
         </div>      
@@ -543,15 +551,15 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>Concatanes all its arguments into a single <strong>String</strong>.
- This is faster than adding those <strong>String</strong>s with
+        <p>Concatanes all its arguments into a single <code>String</code>.
+ This is faster than adding those <code>String</code>s with
  <code>+</code>.</p>
 
      </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the concataneted <strong>String</strong>.
+	            	             the concataneted <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -583,14 +591,14 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -624,14 +632,14 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -650,7 +658,8 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Encodes the <strong>String</strong> by converting it into a text node
+        <p>Works similar to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
+ <p>Encodes the <code>String</code> by converting it into a text node
  and returning the node's value.</p>
 
      </div>
@@ -662,17 +671,22 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
-     	            	        </div>
+	            	             the processed <code>String</code>.
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___escape">
             <span class="objType">function</span>
@@ -699,14 +713,14 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -737,7 +751,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formated <strong>String</strong>.
+	            	             the formated <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -781,7 +795,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Generates a random <strong>String</strong>.</p>
+        <p>Generates a random <code>String</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -804,6 +818,28 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___htmlEncode">
+            <span class="objType">function</span>
+            <span class="objName">htmlEncode</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    htmlEncode()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___nl2br">
             <span class="objType">function</span>
@@ -909,7 +945,7 @@
             </div>          
                 <div class="comment">
         <p>Simply removes the phrases that match the <code>RegExp</code> from
- the <strong>String</strong>.</p>
+ the <code>String</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -920,7 +956,7 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             regExp        </code>
@@ -931,7 +967,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -974,46 +1010,26 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___strip">
+        <a name="___safeHtmlEncode">
             <span class="objType">function</span>
-            <span class="objName">strip</span>            
+            <span class="objName">safeHtmlEncode</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    strip(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Simply returns
- <code>o2.StringHelper.trim(str, false)</code>.
+                    safeHtmlEncode()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to
+ <a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <strong>String</strong> to strip.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the stripped <strong>String</strong>.
-
- 	            	        </div>
-        </div>      
-                            <div class="seealso">
+                                <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___trim">o2.StringHelper.trim</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a></div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -1316,6 +1332,7 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the converted <strong>JSON</strong> <code>Object</code>.
+
  	            	        </div>
         </div>      
             	<div class="throws">
@@ -1379,7 +1396,7 @@
             </div>          
                 <div class="comment">
         <p>Trims white space from beginning and end of the
- <strong>String</strong>.</p>
+ <code>String</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -1390,7 +1407,7 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             shouldCompact        </code>
@@ -1404,8 +1421,8 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
-     	            	        </div>
+	            	             the processed <code>String</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
@@ -1425,7 +1442,7 @@
             </div>          
                 <div class="comment">
         <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
- is greater than <code>maxLength</code>.</p>
+ is greater than <strong>maxLen</strong>.</p>
 
      </div>
         	<div class="parameters">
@@ -1478,14 +1495,14 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process.            </div>   
+         - the <code>String</code> to process.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1520,7 +1537,7 @@
                                                 <div class="param paddedDetails">
         <code>
             str        </code>
-         - the <strong>String</strong> to process            </div>   
+         - the <code>String</code> to process            </div>   
                                                 <div class="param paddedDetails">
         <code>
             isAmpersandsPreserved        </code>
@@ -1533,7 +1550,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <strong>String</strong>.
+	            	             the processed <code>String</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1574,7 +1591,19 @@
                 </h2>
                 <ul class="navContent2">
                     <li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/domhelper/collide.js.html">o2.domhelper.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/coordinate.js.html">o2.domhelper.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                <a href="physical/file-o2.js.html">o2.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
                 </ul>
             </div>
         </li>       
@@ -1594,13 +1623,13 @@
                                 <a href="physical/ajax/module-extend.html">ajax.extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-ajaxcontroller.html">ajaxcontroller</a>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-ajaxstate.html">ajaxstate</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-collectionhelper.html">collectionhelper</a>
+                                <a href="physical/collectionhelper/module-core.html">collectionhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-convert.html">convert</a>
@@ -1612,13 +1641,19 @@
                                 <a href="physical/module-core.html">core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-datehelper.html">datehelper</a>
+                                <a href="physical/core/module-meta.html">core.meta</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-debugger.html">debugger</a>
+                                <a href="physical/datehelper/module-core.html">datehelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-class.html">domhelper.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/domhelper/module-constants.html">domhelper.constants</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/domhelper/module-core.html">domhelper.core</a>
@@ -1663,31 +1698,43 @@
                                 <a href="physical/module-extend.html">extend</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-formHelper.html">formHelper</a>
+                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonp.html">jsonp</a>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-jsonpstate.html">jsonpstate</a>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/methodhelper/module-extend.html">methodhelper.extend</a>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-objecthelper.html">objecthelper</a>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-queryparser.html">queryparser</a>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-sortdelegate.html">sortdelegate</a>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
@@ -1702,19 +1749,19 @@
                                 <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-supports.html">supports</a>
+                                <a href="physical/supports/module-core.html">supports.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-template.html">template</a>
+                                <a href="physical/template/module-core.html">template.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-timer.html">timer</a>
+                                <a href="physical/timer/module-core.html">timer.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-try.html">try</a>
+                                <a href="physical/try/module-core.html">try.core</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/module-unit.html">unit</a>
+                                <a href="physical/unit/module-core.html">unit.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/validator/module-core.html">validator.core</a>
