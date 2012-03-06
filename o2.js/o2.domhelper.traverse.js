@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-06 09:55:18.134915
+ *  lastModified: 2012-03-06 22:37:36.424896
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -746,240 +746,1105 @@
      *
      */
     def(me, 'getFirstChild', function(elm, name) {
+        return getChildren(elm, name)[0] || null;
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildByAttribute', function(elm, attribute, value, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildByAttribute', function() {
+    def(me, 'getFirstChildByClass', function(elm, className, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildByClass', function() {
+    def(me, 'getFirstChildWithAttribute', function(elm, attribute, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildById', function() {
+    def(me, 'getFirstChildWithClass', function(elm, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildWithAttribute', function() {
+    def(me, 'getFirstChildWithId', function(elm, name) {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getLast', function(elm, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastByClass', function(elm, className, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastWithId', function(elm, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastWithClass', function(elm, className, name) {
+        throw 'implement me!';
+    };
+
+    /**
+     *
+     */
+    def(me, 'getLastChild', function(elm, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildWithClass', function() {
+    def(me, 'getLastChildByAttribute', function(elm, attribute, value, name) {
         throw 'implement me!';
     });
 
     /**
      *
      */
-    def(me, 'getFirstChildWithId', function() {
+    def(me, 'getLastChildByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getLastChildWithAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getLastChildWithClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getLastChildWithId', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNext', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextWithClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextWithId', function(elm, name) {
         throw 'implement me!';
     });
 
 
-/*
+    /**
+     *
+     */
+    def(me, 'getNextAll', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextAllByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextAllByAttributeUntil', function(elm, attribute, value, until,
+                name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextAllByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNextAllByClassUntil', function(elm, className, until, name) {
+        throw 'implement me!';
+    });
 
 
-getLast              : {MODULE : kDomHelperTraverse},
-getLastByAttribute   : {MODULE : kDomHelperTraverse},
-getLastByClass       : {MODULE : kDomHelperTraverse},
-getLastById          : {MODULE : kDomHelperTraverse},
-getLastWithId        : {MODULE : kDomHelperTraverse},
-getLastWithAttribute : {MODULE : kDomHelperTraverse},
-getLastWithClass     : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllUntil', function(elm, until, name) {
+        throw 'implement me!';
+    });
 
-getLastChild              : {MODULE : kDomHelperTraverse},
-getLastChildByAttribute   : {MODULE : kDomHelperTraverse},
-getLastChildByClass       : {MODULE : kDomHelperTraverse},
-getLastChildById          : {MODULE : kDomHelperTraverse},
-getLastChildWithAttribute : {MODULE : kDomHelperTraverse},
-getLastChildWithClass     : {MODULE : kDomHelperTraverse},
-getLastChildWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    });
 
-getNext              : {MODULE : kDomHelperTraverse},
-getNextByAttribute   : {MODULE : kDomHelperTraverse},
-getNextByClass       : {MODULE : kDomHelperTraverse},
-getNextById          : {MODULE : kDomHelperTraverse},
-getNextWithAttribute : {MODULE : kDomHelperTraverse},
-getNextWithClass     : {MODULE : kDomHelperTraverse},
-getNextWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithAttributeUntil', function(elm, attribute, until,
+                name) {
+        throw 'implement me!';
+    });
 
-getNextAll                   : {MODULE : kDomHelperTraverse},
-getNextAllByAttribute        : {MODULE : kDomHelperTraverse},
-getNextAllByAttributeUntil   : {MODULE : kDomHelperTraverse},
-getNextAllByClass            : {MODULE : kDomHelperTraverse},
-getNextAllByClassUntil       : {MODULE : kDomHelperTraverse},
-getNextAllById               : {MODULE : kDomHelperTraverse},
-getNextAllByIdUntil          : {MODULE : kDomHelperTraverse},
-getNextAllUntil              : {MODULE : kDomHelperTraverse},
-getNextAllWithAttribute      : {MODULE : kDomHelperTraverse},
-getNextAllWithAttributeUntil : {MODULE : kDomHelperTraverse},
-getNextAllWithClass          : {MODULE : kDomHelperTraverse},
-getNextAllWithClassUntil     : {MODULE : kDomHelperTraverse},
-getNextAllWithId             : {MODULE : kDomHelperTraverse},
-getNextAllWithIdUntil        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
 
-getNth              : {MODULE : kDomHelperTraverse},
-getNthByAttribute   : {MODULE : kDomHelperTraverse},
-getNthByClass       : {MODULE : kDomHelperTraverse},
-getNthWithAttribute : {MODULE : kDomHelperTraverse},
-getNthWithClass     : {MODULE : kDomHelperTraverse},
-getNthWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithClassUntil', function(elm, className, until, name) {
+        throw 'implement me!';
+    });
 
-getNthChild              : {MODULE : kDomHelperTraverse},
-getNthChildByAttribute   : {MODULE : kDomHelperTraverse},
-getNthChildByClass       : {MODULE : kDomHelperTraverse},
-getNthChildWithAttribute : {MODULE : kDomHelperTraverse},
-getNthChildWithClass     : {MODULE : kDomHelperTraverse},
-getNthChildWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithId', function(elm, name) {
+        throw 'implement me!';
+    });
 
-getNthNext              : {MODULE : kDomHelperTraverse},
-getNthNextByAttribute   : {MODULE : kDomHelperTraverse},
-getNthNextByClass       : {MODULE : kDomHelperTraverse},
-getNthNextWithAttribute : {MODULE : kDomHelperTraverse},
-getNthNextWithClass     : {MODULE : kDomHelperTraverse},
-getNthNextWithId        : {MODULE : kDomHelperTraverse},
-
-getNthParent              : {MODULE : kDomHelperTraverse},
-getNthParentByAttribute   : {MODULE : kDomHelperTraverse},
-getNthParentByClass       : {MODULE : kDomHelperTraverse},
-getNthParentWithAttribute : {MODULE : kDomHelperTraverse},
-getNthParentWithClass     : {MODULE : kDomHelperTraverse},
-getNthParentWithId        : {MODULE : kDomHelperTraverse},
-
-getNthPrev              : {MODULE : kDomHelperTraverse},
-getNthPrevByAttribute   : {MODULE : kDomHelperTraverse},
-getNthPrevByClass       : {MODULE : kDomHelperTraverse},
-getNthPrevWithAttribute : {MODULE : kDomHelperTraverse},
-getNthPrevWithClass     : {MODULE : kDomHelperTraverse},
-getNthPrevWithId        : {MODULE : kDomHelperTraverse},
-
-getParent              : {MODULE : kDomHelperTraverse},
-getParentByAttribute   : {MODULE : kDomHelperTraverse},
-getParentByClass       : {MODULE : kDomHelperTraverse},
-getParentById          : {MODULE : kDomHelperTraverse},
-getParentWithAttribute : {MODULE : kDomHelperTraverse},
-getParentWithClass     : {MODULE : kDomHelperTraverse},
-getParentWithId        : {MODULE : kDomHelperTraverse},
-
-getParentOrSelf              : {MODULE : kDomHelperTraverse},
-getParentOrSelfByAttribute   : {MODULE : kDomHelperTraverse},
-getParentOrSelfByClass       : {MODULE : kDomHelperTraverse},
-getParentOrSelfById          : {MODULE : kDomHelperTraverse},
-getParentOrSelfWithAttribute : {MODULE : kDomHelperTraverse},
-getParentOrSelfWithClass     : {MODULE : kDomHelperTraverse},
-getParentOrSelfWithId        : {MODULE : kDomHelperTraverse},
-
-getParents                   : {MODULE : kDomHelperTraverse},
-getParentsByAttribute        : {MODULE : kDomHelperTraverse},
-getParentsByAttributeUntil   : {MODULE : kDomHelperTraverse},
-getParentsByClass            : {MODULE : kDomHelperTraverse},
-getParentsByClassUntil       : {MODULE : kDomHelperTraverse},
-getParentsUntil              : {MODULE : kDomHelperTraverse},
-getParentsWithAttribute      : {MODULE : kDomHelperTraverse},
-getParentsWithAttributeUntil : {MODULE : kDomHelperTraverse},
-getParentsWithClass          : {MODULE : kDomHelperTraverse},
-getParentsWithClassUntil     : {MODULE : kDomHelperTraverse},
-getParentsWithId             : {MODULE : kDomHelperTraverse},
-getParentsWithIdUntil        : {MODULE : kDomHelperTraverse},
-
-getParentsAndSelf                   : {MODULE : kDomHelperTraverse},
-getParentsAndSelfByAttribute        : {MODULE : kDomHelperTraverse},
-getParentsAndSelfByAttributeUntil   : {MODULE : kDomHelperTraverse},
-getParentsAndSelfByClass            : {MODULE : kDomHelperTraverse},
-getParentsAndSelfByClassUntil       : {MODULE : kDomHelperTraverse},
-getParentsAndSelfUntil              : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithAttribute      : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithAttributeUntil : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithClass          : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithClassUntil     : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithId             : {MODULE : kDomHelperTraverse},
-getParentsAndSelfWithIdUntil        : {MODULE : kDomHelperTraverse},
-
-getPrev              : {MODULE : kDomHelperTraverse},
-getPrevByAttribute   : {MODULE : kDomHelperTraverse},
-getPrevByClass       : {MODULE : kDomHelperTraverse},
-getPrevById          : {MODULE : kDomHelperTraverse},
-getPrevWithAttribute : {MODULE : kDomHelperTraverse},
-getPrevWithClass     : {MODULE : kDomHelperTraverse},
-getPrevWithId        : {MODULE : kDomHelperTraverse},
-
-getPrevAll                   : {MODULE : kDomHelperTraverse},
-getPrevAllByAttribute        : {MODULE : kDomHelperTraverse},
-getPrevAllByClass            : {MODULE : kDomHelperTraverse},
-getPrevAllByClassUntil       : {MODULE : kDomHelperTraverse},
-getPrevAllUntil              : {MODULE : kDomHelperTraverse},
-getPrevAllWithAttribute      : {MODULE : kDomHelperTraverse},
-getPrevAllWithAttributeUntil : {MODULE : kDomHelperTraverse},
-getPrevAllWithClass          : {MODULE : kDomHelperTraverse},
-getPrevAllWithClassUntil     : {MODULE : kDomHelperTraverse},
-getPrevAllWithId             : {MODULE : kDomHelperTraverse},
-getPrevAllWithIdUntil        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNextAllWithIdUntil', function(elm, until, name) {
+        throw 'implement me!';
+    });
 
 
+    /**
+     *
+     */
+    def(me, 'getNth', function(elm, name) {
+        throw 'implement me!';
+    });
 
-isChild              : {MODULE : kDomHelperTraverse},
-isChildByAttribute   : {MODULE : kDomHelperTraverse},
-isChildByClass       : {MODULE : kDomHelperTraverse},
-isChildById          : {MODULE : kDomHelperTraverse},
-isChildWithAttribute : {MODULE : kDomHelperTraverse},
-isChildWithClass     : {MODULE : kDomHelperTraverse},
-isChildWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNthByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
 
-isNext              : {MODULE : kDomHelperTraverse},
-isNextByAttribute   : {MODULE : kDomHelperTraverse},
-isNextByClass       : {MODULE : kDomHelperTraverse},
-isNextById          : {MODULE : kDomHelperTraverse},
-isNextWithAttribute : {MODULE : kDomHelperTraverse},
-isNextWithClass     : {MODULE : kDomHelperTraverse},
-isNextWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNthByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
 
-isParent              : {MODULE : kDomHelperTraverse},
-isParentByAttribute   : {MODULE : kDomHelperTraverse},
-isParentByClass       : {MODULE : kDomHelperTraverse},
-isParentById          : {MODULE : kDomHelperTraverse},
-isParentWithAttribute : {MODULE : kDomHelperTraverse},
-isParentWithClass     : {MODULE : kDomHelperTraverse},
-isParentWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNthWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    });
 
-isParentOrSelf              : {MODULE : kDomHelperTraverse},
-isParentOrSelfByAttribute   : {MODULE : kDomHelperTraverse},
-isParentOrSelfByClass       : {MODULE : kDomHelperTraverse},
-isParentOrSelfById          : {MODULE : kDomHelperTraverse},
-isParentOrSelfWithAttribute : {MODULE : kDomHelperTraverse},
-isParentOrSelfWithClass     : {MODULE : kDomHelperTraverse},
-isParentOrSelfWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNthWithClass', function(elm, name) {
+        throw 'implement me!';
+    });
 
-isPrev              : {MODULE : kDomHelperTraverse},
-isPrevByAttribute   : {MODULE : kDomHelperTraverse},
-isPrevByClass       : {MODULE : kDomHelperTraverse},
-isPrevById          : {MODULE : kDomHelperTraverse},
-isPrevWithAttribute : {MODULE : kDomHelperTraverse},
-isPrevWithClass     : {MODULE : kDomHelperTraverse},
-isPrevWithId        : {MODULE : kDomHelperTraverse},
+    /**
+     *
+     */
+    def(me, 'getNthWithId', function(elm, name) {
+        throw 'implement me!';
+    });
 
-isSibling              : {MODULE : kDomHelperTraverse},
-isSiblingByAttribute   : {MODULE : kDomHelperTraverse},
-isSiblingByClass       : {MODULE : kDomHelperTraverse},
-isSiblingById          : {MODULE : kDomHelperTraverse},
-isSiblingWithAttribute : {MODULE : kDomHelperTraverse},
-isSiblingWithClass     : {MODULE : kDomHelperTraverse},
-isSiblingWithId        : {MODULE : kDomHelperTraverse}
 
-*/
+    /**
+     *
+     */
+    def(me, 'getNthChild', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthChildByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthChildByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthChildWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthChildWithClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthChildWithId', function(elm, name) {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getNthNext', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthNextByAttribute', function(elm, attribute, value, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthNextByClass', function(elm, className, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthNextWithAttribute', function(elm, attribute, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthNextWithClass', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthNextWithId', function(elm, name) {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getNthParent', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthParentByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthParentByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthParentWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthParentWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthParentWithId', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrev', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrevByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrevByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrevWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrevWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getNthPrevWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getParent', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelf', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelfByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelfByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelfWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelfWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentOrSelfWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getParents', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsByAttributeUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsByClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithAttributeUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithId', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsWithIdUntil', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelf', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfByAttributeUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfByClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithAttributeUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithId', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getParentsAndSelfWithIdUntil', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getPrev', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'getPrevAll', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllByClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithAttributeUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithClassUntil', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithId', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getPrevAllWithIdUntil', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isChild', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isChildByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isChildByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isChildWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isChildWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isChildWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isNext', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNextByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNextByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNextWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNextWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNextWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isParent', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelf', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelfByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelfByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelfWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelfWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelfWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isPrev', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrevByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrevByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrevWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrevWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrevWithId', function() {
+        throw 'implement me!';
+    });
+
+
+    /**
+     *
+     */
+    def(me, 'isSibling', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSiblingByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSiblingByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSiblingWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSiblingWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSiblingWithId', function() {
+        throw 'implement me!';
+    });
 }(this.o2, this.document));
