@@ -82,7 +82,7 @@ mind. Before each major release, **[o2.js][2]** will be unit-tested in
 
 ## About the Author
 
-It's me: [Volkan Özçelik][1]!
+It's me: **[Volkan Özçelik][1]**!
 Jack of all Trades, Samurai of JavaScript **;)**.
 
 Since 2003, I've been doing front-end development on client-heavy **AJAX** web
@@ -98,9 +98,10 @@ a social mash-up.
 Before that, I was the **Chief Technology Officer** of a business network
 (**cember.net**), which was acquired by Xing AG for around 4.2M Euros.
 
-See my [linkedin profile][1] to find more about me:
+See my **[linkedin profile][1]** to find more about me:
 
-I also share [worth-following bits an pieces][3] on [twitter][3].
+I also share [worth-following bits an pieces][3] on **[twitter][3]**
+(_[@linkibol][3]_).
 
 [1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"

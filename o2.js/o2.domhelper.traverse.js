@@ -742,14 +742,58 @@
         return getSiblingsWithId(elm, name)[0] || null;
     });
 
+    /**
+     *
+     */
+    def(me, 'getFirstChild', function(elm, name) {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildByAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildByClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildById', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildWithAttribute', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildWithClass', function() {
+        throw 'implement me!';
+    });
+
+    /**
+     *
+     */
+    def(me, 'getFirstChildWithId', function() {
+        throw 'implement me!';
+    });
+
+
 /*
-getFirstChild              : {MODULE : kDomHelperTraverse},
-getFirstChildByAttribute   : {MODULE : kDomHelperTraverse},
-getFirstChildByClass       : {MODULE : kDomHelperTraverse},
-getFirstChildById          : {MODULE : kDomHelperTraverse},
-getFirstChildWithAttribute : {MODULE : kDomHelperTraverse},
-getFirstChildWithClass     : {MODULE : kDomHelperTraverse},
-getFirstChildWithId        : {MODULE : kDomHelperTraverse},
+
 
 getLast              : {MODULE : kDomHelperTraverse},
 getLastByAttribute   : {MODULE : kDomHelperTraverse},
