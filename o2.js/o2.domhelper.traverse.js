@@ -10,13 +10,15 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-02 07:59:03.167153
+ *  lastModified: 2012-03-06 09:55:18.134915
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
 (function(framework, document) {
     'use strict';
+
+    //TODO: update documentation after completing this module.
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
