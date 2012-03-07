@@ -6,9 +6,6 @@ this.o2 = this.o2 || {
     isProduction : false
 };
 
-//TODO: cleanup.
-//TODO: check all "TODO"s
-
 /**
  * @module core.meta
  *
@@ -28,11 +25,11 @@ this.o2 = this.o2 || {
     /*
      * Common Constants
      */
+
+    var kAny    = '*';
+    var kEmpty  = '';
     var kObject = 'object';
-//    var kRequirementNotSatisfied = ' : Requirement not satisfied.';
-    var kMethodAlreadyDefined = 'Method name is undefined : ';
-    var kDelegateNotdefined = 'Delegate is undefined: ';
-    var kEmpty = '';
+    var kString = 'string';
 
     /*
      *
@@ -71,7 +68,8 @@ this.o2 = this.o2 || {
     }
 
     /*
-     *
+     * Creates a namespace if it does not exists and returns it;
+     * returns the existing namespace otherwise.
      */
     function namespace(root, key) {
         if (!root || typeof root !== kObject) {
@@ -82,6 +80,11 @@ this.o2 = this.o2 || {
     }
 
     var fp = init(framework, 'protecteds', {});
+
+    /*
+     *
+     */
+    var isProduction = framework.isProduction;
 
     /*
      * @property {protected Object} o2.protecteds.classes
@@ -102,9 +105,110 @@ this.o2 = this.o2 || {
      * tests and checking the consistency of the overall framework.</p>
      */
 
-     /*
-      * These constants save some space during minification:
-      */
+    var kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ';
+    var kMethodAlreadyDefined = 'framework.protecteds: Method name is undefined : ';
+    var kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.';
+    var kNameNotProvided      = 'framework.protecteds: name not provided';
+    var kNoMetaDefinition     = 'framework.protecteds: no meta definition.';
+    var kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection';
+    var kObjNameNotString     = 'framework.protecteds: "name" should be  a String.';
+    var kRootNotFound         = 'framework.protecteds: root not found';
+
+    /*
+     *
+     */
+    function getClassNotDefinedWarning(name) {
+        return ['framework.protecteds: Class "', name,
+            '" is not defined yet.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getMethodNotDefinedInMetaWarning(name) {
+        return ['framework.protecteds: Method"', name,
+            '" is not found in framework meta definition'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getMethodNotDefinedInFrameworkWarning(name) {
+        return ['framework.protecteds: method  "', name,
+            '" does not exist in framework.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getClassNotDefinedInMetaWarning(name) {
+        return ['framework.protecteds: Class "', name,
+            '" is not defined in meta definition.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getMethodOfClassNotDefinedInMetaWarning(name, method) {
+        return ['framework.protecteds: Class "', name,
+            '" does not have a method "', method,
+            '"" defined in meta definition.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getClassDoesNotExistWarning(name) {
+        return ['framework.protecteds: Class "', name,
+            '" does not currently exist.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getMethodOfClassDoesNotExistWarning(name, method) {
+        return ['framework.protecteds: Class "', name,
+            '" does not have a method "', method,
+            '"" defined.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getRootDoesNotHaveAttributeWarning(name) {
+        return ['framework.protecteds: ',
+            'root does not have an attribute "', name, '".'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getConstructorAlreadyDefinedWarning(name) {
+        return ['framework.protecteds: Constructor "',
+            name, '" is already defined.'
+        ].join(kEmpty);
+    }
+
+    /*
+     *
+     */
+    function getNoMethodToOverrideWarning(name) {
+        return ['framework.protecteds: No method "',
+            name, '" to override.'
+        ].join(kEmpty);
+    }
+
+    /*
+     * These constants save some space during minification:
+     */
      var kAjaxControllerCore    = 'ajaxcontroller.core';
      var kAjaxCore              = 'ajax.core';
      var kAjaxExtend            = 'ajax.extend';
@@ -380,16 +484,10 @@ this.o2 = this.o2 || {
 
                 getElements                   : {MODULE : kDomHelperTraverse},
                 getElementsByAttribute        : {MODULE : kDomHelperTraverse},
-                getElementsByAttributeUntil   : {MODULE : kDomHelperTraverse},
                 getElementsByClass            : {MODULE : kDomHelperTraverse},
-                getElementsByClassUntil       : {MODULE : kDomHelperTraverse},
-                getElementsUntil              : {MODULE : kDomHelperTraverse},
                 getElementsWithAttribute      : {MODULE : kDomHelperTraverse},
-                getElementsWithAttributeUntil : {MODULE : kDomHelperTraverse},
                 getElementsWithClass          : {MODULE : kDomHelperTraverse},
-                getElementsWithClassUntil     : {MODULE : kDomHelperTraverse},
                 getElementsWithId             : {MODULE : kDomHelperTraverse},
-                getElementsWithIdUntil        : {MODULE : kDomHelperTraverse},
 
                 getFirst              : {MODULE : kDomHelperTraverse},
                 getFirstByAttribute   : {MODULE : kDomHelperTraverse},
@@ -480,14 +578,6 @@ this.o2 = this.o2 || {
                 getParentWithAttribute : {MODULE : kDomHelperTraverse},
                 getParentWithClass     : {MODULE : kDomHelperTraverse},
                 getParentWithId        : {MODULE : kDomHelperTraverse},
-
-                getParentOrSelf              : {MODULE : kDomHelperTraverse},
-                getParentOrSelfByAttribute   : {MODULE : kDomHelperTraverse},
-                getParentOrSelfByClass       : {MODULE : kDomHelperTraverse},
-                getParentOrSelfById          : {MODULE : kDomHelperTraverse},
-                getParentOrSelfWithAttribute : {MODULE : kDomHelperTraverse},
-                getParentOrSelfWithClass     : {MODULE : kDomHelperTraverse},
-                getParentOrSelfWithId        : {MODULE : kDomHelperTraverse},
 
                 getParents                   : {MODULE : kDomHelperTraverse},
                 getParentsByAttribute        : {MODULE : kDomHelperTraverse},
@@ -634,7 +724,7 @@ this.o2 = this.o2 || {
             items : {
                 protecteds : {MODULE : kJsonpStateCore},
 
-                // overrides:
+                // Overrides:
                 update     : {MODULE : kJsonpStateCore},
                 unregister : {MODULE : kJsonpStateCore}
             }
@@ -791,7 +881,7 @@ this.o2 = this.o2 || {
         }
     });
 
-//TODO: complete me.
+    //TODO: complete me.
     init(fp, 'modules', {
         'core.meta' : {
             depends : []
@@ -808,168 +898,163 @@ this.o2 = this.o2 || {
     // to ensure consistency within the framework.
     // They are not meant for external use.
 
-    var isProduction = framework.isProduction;
-
     if (isProduction) {
-        // TODO: rewrite
-
-        init();
-    } else {
-        init(fp, 'require', function(objName, methodName) {
-            //var mixed = null;
-
-//            var objName = null;
-//            var methodName = null;
-
-            if (arguments.length === 1) {
-                methodName = objName;
-                objName = '';
-            }
-//            } else {
-                //objName = name;
-                //methodName = method;
-//            }
-
-            if (typeof objName !== 'string') {
-                dbg();
-                throw 'fwRequire: objName should be  a String.';
-            }
-
-            if (typeof methodName !== 'string') {
-                dbg();
-                throw 'fwRequire: methodName should be  a String.';
-            }
-
-            var meta = null;
-
-            if (objName === '') {
-                var classes = fp.classes;
-                var result = null;
-                //var key = null;
-
-                if (classes.hasOwnProperty(methodName)) {
-                    result = framework[methodName];
-
-                    if (!result) {
-                        dbg();
-                        throw 'Class ' + methodName + ' not defined yet.';
-                    }
-
-
-                    return result;
-                }
-
-                meta = fp.classes.o2.items;
-
-                if (!meta[methodName]) {
-                    dbg();
-                    throw 'Method or attribute ' + methodName + ' not found in framework meta definition';
-                }
-
-                result = framework[methodName];
-
-                if (!result) {
-                    dbg();
-                    throw 'fwRequire: method or attribute "'+ methodName + ' does not exist in framework.';
-                }
-
-                return result;
-            }
-
-            var cls = fp.classes[objName];
-
-            if (!cls) {
-                dbg();
-                throw 'fwRequire: Class "'+ objName + '" is not defined in meta definition.';
-            }
-
-            var method = cls.items[methodName];
-
-            if (!method) {
-                dbg();
-                throw 'fwRequire: Class '+objName+
-                    ' does not have a method '+methodName+ ' defined in meta definition.';
-            }
-
-            var obj = framework[objName];
-
-            if (!obj) {
-                dbg();
-                throw 'fwRequire: Class "'+ objName + '" does not currently exist.';
-            }
-
-            var theMethod = obj[methodName];
-
-            if (!theMethod) {
-                dbg();
-                throw 'fwRequire: method '+methodName+' of object '+objName+
-                    ' does not exist at this time.';
-            }
-
-            return theMethod;
+        /*
+         *
+         */
+        init(fp, 'alias', function(mixed, aliasName, existingName) {
+            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
         });
 
+        /*
+         *
+         */
+        init(fp, 'create', function(name) {
+            var cls = fp.classes[name];
+
+            return [cls.items, namespace(framework, name)];
+        });
+
+        /*
+         *
+         */
+        init(fp, 'construct', function(name, delegate) {
+            var cls = fp.classes[name];
+
+            framework[name] = delegate;
+
+            return [cls.items, delegate];
+        });
+
+        /*
+         *
+         */
+        init(fp, 'define', function(mixed, name, fn) {
+            var me = mixed[1];
+
+            me[name] = fn;
+        });
+
+        /*
+         *
+         */
         init(fp, 'getAttr', function(root, name) {
-            if (!root) {
-                dbg();
-                throw 'getAttr: root not found';
-            }
-
-            if (!name) {
-                dbg();
-                throw 'getAttr: name not provided';
-            }
-
             var elem = root[name];
-
-            if (!elem) {
-                dbg();
-                throw 'getAttr: root does not have an attribute '+ name;
-            }
 
             return elem;
         });
 
-        /**
-         * @function {protected static} o2.protecteds.create
+        /*
          *
-         * <p>Returns a <strong>mixed</strong> <code>Object</code>, if
-         * <strong>name</strong> is defined in
-         * <code>o2.protecteds.classes</code>.</p>
+         */
+        init(fp, 'getObject', function(mixed) {
+            return mixed[1];
+        });
+
+        /*
          *
-         * <p>Creates the object if it does not exist.</p>
+         */
+        init(fp, 'getRoot', function() {
+            return [fp.classes.o2.items, framework];
+        });
+
+        /*
          *
-         * @param {String} name - the name of the <strong>class</strong>.
+         */
+        init(fp, 'override', function(mixed, methodName, fn) {
+            var me = mixed[1];
+
+            me.prototype[methodName] = fn;
+        });
+
+        /*
          *
-         * @return an <code>Array</code>, where the first index is the
-         * class-realated <strong>meta</strong> information, and the second index
-         * is the <strong>static</strong> classs instance.
+         */
+        init(fp, 'proto', function(mixed, methodName, fn) {
+            var me = mixed[1];
+
+            me.prototype[methodName] = fn;
+        });
+
+        /*
          *
-         * @throws Exception - if  <code>o2.protecteds.classes</code> does not
-         * have a member of name `<strong>name</strong>`.
+         */
+        init(fp, 'require', function(name, method) {
+            var methodName = '';
+            var objName = '';
+
+            if (arguments.length === 1) {
+                methodName = name;
+                objName = kEmpty;
+            } else {
+                methodName = method;
+                objName = name;
+            }
+
+            var meta = null;
+            var classes = fp.classes;
+
+            if (objName === kEmpty) {
+                var result = null;
+
+                if (classes.hasOwnProperty(methodName)) {
+                    result = framework[methodName];
+
+                    return result;
+                }
+
+                meta = classes.o2.items;
+
+                result = framework[methodName];
+
+                return result;
+            }
+
+            var obj = framework[objName];
+            var theMethod = obj[methodName];
+
+            return theMethod;
+        });
+    } else {
+
+        /*
+         *
+         */
+        init(fp, 'alias', function(mixed, aliasName, existingName) {
+            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
+        });
+
+        /*
+         *
          */
         init(fp, 'create', function(name) {
             var cls = fp.classes[name];
 
             if (!cls) {
                 dbg();
-                throw 'Meta definition not found for class ' + name;
+
+                throw getClassNotDefinedInMetaWarning(name);
             }
 
             return [cls.items, namespace(framework, name)];
         });
 
+        /*
+         *
+         */
         init(fp, 'construct', function(name, delegate) {
             var cls = fp.classes[name];
 
             if (!cls) {
                 dbg();
-                throw 'Meta definition not found for class ' + name;
+
+                throw getClassNotDefinedInMetaWarning(name);
             }
 
             if (framework[name]) {
                 dbg();
-                throw 'Constructor "' + name + '" is already defined';
+
+                throw getConstructorAlreadyDefinedWarning(name);
             }
 
             framework[name] = delegate;
@@ -977,82 +1062,29 @@ this.o2 = this.o2 || {
             return [cls.items, delegate];
         });
 
-        init(fp, 'proto', function(mixed, methodName, fn) {
-            var meta = mixed[0];
-            var me = mixed[1];
-
-            if (!me) {
-                dbg();
-                throw 'Object not found in mixed collection';
-            }
-
-            if (!fn) {
-                dbg();
-                throw [kDelegateNotdefined, methodName].join(kEmpty);
-            }
-
-            if (!meta[methodName]) {
-                dbg();
-                throw 'Method or attribute ' + methodName + ' not found in meta definition.';
-            }
-
-            if (me.prototype[methodName]) {
-                dbg();
-                throw [kMethodAlreadyDefined, methodName].join(kEmpty);
-            }
-
-            me.prototype[methodName] = fn;
-        });
-
-
-        init(fp, 'override', function(mixed, methodName, fn) {
-            var meta = mixed[0];
-            var me = mixed[1];
-
-            if (!me) {
-                dbg();
-                throw 'Object not found in mixed collection';
-            }
-
-            if (!fn) {
-                dbg();
-                throw [kDelegateNotdefined, methodName].join(kEmpty);
-            }
-
-            if (!meta[methodName]) {
-                dbg();
-                throw 'Method or attribute ' + methodName + ' not found in meta definition.';
-            }
-
-            if (!me.prototype[methodName]) {
-                dbg();
-                throw 'No method' + methodName + ' to override';
-            }
-
-            me.prototype[methodName] = fn;
-        });
-
-        init(fp, 'getRoot', function() {
-            return [fp.classes.o2.items, framework];
-        });
-
+        /*
+         *
+         */
         init(fp, 'define', function(mixed, name, fn) {
             var meta = mixed[0];
-            var me= mixed[1];
+            var me = mixed[1];
 
             if (!me) {
                 dbg();
-                throw 'Object not found in mixed collection';
+
+                throw kObjectNotDefined;
             }
 
             if (!fn) {
                 dbg();
+
                 throw [kDelegateNotdefined, name].join(kEmpty);
             }
 
             if (!meta) {
                 dbg();
-                throw 'no meta definition';
+
+                throw kNoMetaDefinition;
             }
 
             if (meta[name]) {
@@ -1065,61 +1097,212 @@ this.o2 = this.o2 || {
         });
 
         /*
-         * Takes the *mixed* reference and returns the object component of it.
+         *
+         */
+        init(fp, 'getAttr', function(root, name) {
+            if (!root) {
+                dbg();
+
+                throw kRootNotFound;
+            }
+
+            if (!name) {
+                dbg();
+
+                throw kNameNotProvided;
+            }
+
+            var elem = root[name];
+
+            if (!elem) {
+                dbg();
+
+                throw getRootDoesNotHaveAttributeWarning(name);
+            }
+
+            return elem;
+        });
+
+        /*
+         *
          */
         init(fp, 'getObject', function(mixed) {
             return mixed[1];
         });
 
-    //TODO: add documentation to this all and up
-        init(fp, 'alias', function(mixed, aliasName, existingName) {
-            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
+        /*
+         *
+         */
+        init(fp, 'getRoot', function() {
+            return [fp.classes.o2.items, framework];
+        });
+
+        /*
+         *
+         */
+        init(fp, 'override', function(mixed, methodName, fn) {
+            var meta = mixed[0];
+            var me = mixed[1];
+
+            if (!me) {
+                dbg();
+
+                throw 'Object not found in mixed collection';
+            }
+
+            if (!fn) {
+                dbg();
+
+                throw [kDelegateNotdefined, methodName].join(kEmpty);
+            }
+
+            if (!meta[methodName]) {
+                dbg();
+
+                throw getClassNotDefinedInMetaWarning(methodName);
+            }
+
+            if (!me.prototype[methodName]) {
+                dbg();
+
+                throw getNoMethodToOverrideWarning(methodName);
+            }
+
+            me.prototype[methodName] = fn;
+        });
+
+        /*
+         *
+         */
+        init(fp, 'proto', function(mixed, methodName, fn) {
+            var meta = mixed[0];
+            var me = mixed[1];
+
+            if (!me) {
+                dbg();
+
+                throw kObjectNotDefined;
+            }
+
+            if (!fn) {
+                dbg();
+
+                throw [kDelegateNotdefined, methodName].join(kEmpty);
+            }
+
+            if (!meta[methodName]) {
+                dbg();
+
+                throw getMethodOfClassNotDefinedInMetaWarning(kAny, methodName);
+            }
+
+            if (me.prototype[methodName]) {
+                dbg();
+
+                throw [kMethodAlreadyDefined, methodName].join(kEmpty);
+            }
+
+            me.prototype[methodName] = fn;
+        });
+
+        /*
+         *
+         */
+        init(fp, 'require', function(name, method) {
+            var methodName = '';
+            var objName = '';
+
+            if (arguments.length === 1) {
+                methodName = name;
+                objName = kEmpty;
+            } else {
+                methodName = method;
+                objName = name;
+            }
+
+            if (typeof objName !== kString) {
+                dbg();
+
+                throw kObjNameNotString;
+            }
+
+            if (typeof methodName !== kString) {
+                dbg();
+
+                throw kMethodNameNotString;
+            }
+
+            var meta = null;
+            var classes = fp.classes;
+
+            if (objName === kEmpty) {
+                var result = null;
+
+                if (classes.hasOwnProperty(methodName)) {
+                    result = framework[methodName];
+
+                    if (!result) {
+                        dbg();
+
+                        throw getClassNotDefinedWarning(methodName);
+                    }
+
+                    return result;
+                }
+
+                meta = classes.o2.items;
+
+                if (!meta[methodName]) {
+                    dbg();
+
+                    throw getMethodNotDefinedInMetaWarning(methodName);
+                }
+
+                result = framework[methodName];
+
+                if (!result) {
+                    dbg();
+
+                    throw getMethodNotDefinedInFrameworkWarning(methodName);
+                }
+
+                return result;
+            }
+
+            var cls = classes[objName];
+
+            if (!cls) {
+                dbg();
+
+                throw getClassNotDefinedInMetaWarning(objName);
+            }
+
+            var mtd = cls.items[methodName];
+
+            if (!mtd) {
+                dbg();
+
+                throw getMethodOfClassNotDefinedInMetaWarning(objName,
+                    methodName);
+            }
+
+            var obj = framework[objName];
+
+            if (!obj) {
+                dbg();
+
+                throw getClassDoesNotExistWarning(objName);
+            }
+
+            var theMethod = obj[methodName];
+
+            if (!theMethod) {
+                dbg();
+
+                throw getMethodOfClassDoesNotExistWarning(objName, methodName);
+            }
+
+            return theMethod;
         });
     }
 }(this.o2));
-
-    // init(fp, 'fwEval', function(root, name, attr) {
-    //     if (!root) {
-    //         throw 'fwEval: root not found';
-    //     }
-
-    //     if (!name) {
-    //         throw 'fwEval: name not provided';
-    //     }
-
-    //     if (!attr) {
-    //         throw 'fwEval: attr not provided';
-    //     }
-
-    //     var elem = root[name];
-
-    //     if (!elem) {
-    //         throw 'fwEval: root does not have an attribute '+ name;
-    //     }
-
-    //     var val = elem[attr];
-
-    //     if (!val) {
-    //         throw 'fwEval: root does not have an object with name '+  name +
-    //             'and value '+ attr;
-    //     }
-
-    //     return val;
-    // });
-
-    // /*
-    //  * Requirement check.
-    //  * Throws exception if <strong>obj</strong> is falsy.
-    //  */
-    // init(fp, 'require', function(obj) {
-    //     if (!obj) {
-    //         //dbg();
-
-    //         throw [
-    //             framework.name,
-    //             kRequirementNotSatisfied
-    //         ].join(kEmpty);
-    //     }
-
-    //     return obj;
-    // });

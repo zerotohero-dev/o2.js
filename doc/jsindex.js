@@ -2891,24 +2891,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "protecteds",
-           fullName : "o2.protecteds",
-           summary : "namespace protecteds",
-           ref : "logical/o2/protecteds.html",
-           parent : "o2",
-           type : "namespace",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "create",
-           fullName : "o2.protecteds.create",
-           summary : "protected static function  create(String name)",
-           ref : "logical/o2/protecteds.html#___create",
-           parent : "o2.protecteds",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "ready",
            fullName : "o2.ready",
            summary : "static function  ready(Function callback)",
