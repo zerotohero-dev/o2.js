@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-07 09:00:50.982507
+ *  lastModified: 2012-03-07 23:23:15.802174
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -134,14 +134,18 @@
             node = cache[i];
 
             if(breakDelegate) {
-                if(breakDelegate.apply(node, breakArgs.unshift(node))) {
+                breakArgs.unshift(node);
+
+                if(breakDelegate.apply(node, breakArgs)) {
                     break;
                 }
             }
 
             if (node.nodeType !== kTextNode) {
                 if (filterDelegate) {
-                    if(filterDelegate.apply(node, fArgs.unshift(node))) {
+                    fArgs.unshift(node);
+
+                    if(filterDelegate.apply(node, fArgs)) {
                         counter++;
 
                         if (!isNaN(returnSingleItemAt) &&
@@ -207,7 +211,9 @@
             }
 
             if(breakDelegate) {
-                if(breakDelegate.apply(next, breakArgs.unshift(next))) {
+                breakArgs.unshift(next);
+
+                if(breakDelegate.apply(next, breakArgs)) {
                     break;
                 }
             }
@@ -216,8 +222,9 @@
                 if (name) {
                     if (next.nodeName === name) {
                         if (filterDelegate) {
-                            if (filterDelegate.apply(next,
-                                        filterArgs.unshift(next))) {
+                            filterArgs.unshift(next);
+
+                            if (filterDelegate.apply(next, filterArgs)) {
                                 counter++;
 
                                 if (!isNaN(returnSingleItemAt) &&
@@ -252,8 +259,9 @@
                     }
                 } else {
                     if (filterDelegate) {
-                        if (filterDelegate.apply(next,
-                                    filterArgs.unshift(next))) {
+                        filterArgs.unshift(next);
+
+                        if (filterDelegate.apply(next, filterArgs)) {
                             counter++;
 
                             if (!isNaN(returnSingleItemAt) &&
@@ -317,7 +325,9 @@
 
         while (target) {
             if(breakDelegate) {
-                if(breakDelegate.apply(target, breakArgs.unshift(target))) {
+                breakArgs.unshift(target);
+
+                if(breakDelegate.apply(target, breakArgs)) {
                     break;
                 }
             }
@@ -325,8 +335,9 @@
             if (name) {
                 if (target.nodeName.toLowerCase() === name.toLowerCase()) {
                     if (filterDelegate) {
-                        if (filterDelegate.apply(target,
-                                    filterArgs.unshift(target))) {
+                        filterArgs.unshift(target);
+
+                        if (filterDelegate.apply(target, filterArgs)) {
                             counter++;
 
                             if (!isNaN(returnSingleItemAt) &&
@@ -359,8 +370,9 @@
                 }
             } else {
                 if (filterDelegate) {
-                    if (filterDelegate.apply(target,
-                                filterArgs.unshift(target))) {
+                    filterArgs.unshift(target);
+
+                    if (filterDelegate.apply(target, filterArgs)) {
                         counter++;
 
                         if (!isNaN(returnSingleItemAt) &&
@@ -438,8 +450,10 @@
             return [];
         }
 
+        getterParams.unshift(target);
+
         return filter(
-            getter.apply(target, getterParams.unshift(target)),
+            getter.apply(target, getterParams),
             checker, checkerParams, stopper, stopperParams, itemsCountCap,
             returnSingleItemAt, isReverse
         );
@@ -1249,20 +1263,6 @@
             null, [], name, null, n, true);
     });
 
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-
     /**
      *
      */
@@ -1278,144 +1278,109 @@
      *
      */
     def(me, 'getNthChildByAttribute', function(elm, attribute, value, n, name) {
-        return execFilter(
-            elm, getChildNodes, [name],
-            isAttributeEquals, [attribute, value],
-            null, [],
-            null, n
-        )[0] || null;
+        if (!elm) {
+            return null;
+        }
+
+        return getNthByAttribute(elm.firstChild, attribute, value, n, name);
     });
 
     /**
      *
      */
     def(me, 'getNthChildByClass', function(elm, className, n, name) {
-        return execFilter(
-            elm, getChildNodes, [name],
-            hasClassName, [className],
-            null, [],
-            null, n
-        )[0] || null;
+        if (!elm) {
+            return null;
+        }
+
+        return getNthByClass(elm.firstChild, className, n, name);
     });
 
     /**
      *
      */
     def(me, 'getNthChildWithAttribute', function(elm, attribute, n, name) {
-        return execFilter(
-            elm, getChildNodes, [name],
-            hasAttribute, [attribute],
-            null, [],
-            null, n
-        )[0] || null;
+        if (!elm) {
+            return null;
+        }
+
+        return getNthWithAttribute(elm.firstChild, attribute, n, name);
     });
 
     /**
      *
      */
     def(me, 'getNthChildWithClass', function(elm, n, name) {
-        return execFilter(
-            elm, getChildNodes, [name],
-            hasClassAttribute, [],
-            null, [],
-            null, n
-        )[0] || null;
+        if (!elm) {
+            return null;
+        }
+
+        return getNthWithClass(elm.firstChild, n, name);
     });
 
     /**
      *
      */
     def(me, 'getNthChildWithId', function(elm, n, name) {
-        return execFilter(
-            elm, getChildNodes, [name],
-            hasIdAttribute, [],
-            null, [],
-            null, n
-        )[0] || null;
+        if (!elm) {
+            return null;
+        }
+
+        return getNthWithId(elm.firstChild, n, name);
     });
 
     /**
      *
      */
     def(me, 'getNthNext', function(elm, n, name) {
-        return getNextSiblings(
-            elm,
-            null, [],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, null, [], null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthNextByAttribute', function(elm, attribute, value, n, name) {
-        return getNextSiblings(
-            elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, isAttributeEquals, [attribute, value],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthNextByClass', function(elm, className, n, name) {
-        return getNextSiblings(
-            elm,
-            hasClassName, [className],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, hasClassName, [className],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthNextWithAttribute', function(elm, attribute, n, name) {
-        return getNextSiblings(
-            elm,
-            hasAttribute, [attribute],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, hasAttribute, [attribute],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthNextWithClass', function(elm, n, name) {
-        return getNextSiblings(
-            elm,
-            hasClassAttribute, [],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, hasClassAttribute, [],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthNextWithId', function(elm, n, name) {
-        return getNextSiblings(
-            elm,
-            hasIdAttribute, [],
-            null, [],
-            name, null, n
-        );
+        return getNextSiblings(elm, hasIdAttribute, [],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthParent', function(elm n, name) {
-        return getParents(
-            elm,
-            null, [],
-            null, [],
-            name, null, n
-        );
+        return getParents(elm, null, [], null, [], name, null, n);
     });
 
     /**
@@ -1423,234 +1388,149 @@
      */
     def(me, 'getNthParentByAttribute', function(elm, attribute, value, n,
                 name) {
-        return getParents(
-            elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name, null, n
-        );
+        return getParents(elm, isAttributeEquals, [attribute, value],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthParentByClass', function(elm, className, n, name) {
-        return getParents(
-            elm,
-            hasClassName, [className],
-            null, [],
-            name, null, n
-        );
+        return getParents(elm, hasClassName, [className],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthParentWithAttribute', function(elm, attribute, n, name) {
-        return getParents(
-            elm,
-            hasAttribute, [attribute],
-            null, [],
-            name, null, n
-        );
+        return getParents(elm, hasAttribute, [attribute],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthParentWithClass', function(elm, n, name) {
-        return getParents(
-            elm,
-            hasClassAttribute, [],
-            null, [],
-            name, null, n
-        );
+        return getParents(elm, hasClassAttribute, [],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthParentWithId', function(elm, n, name) {
-       return getParents(
-            elm,
-            hasIdAttribute, [],
-            null, [],
-            name, null, n
-        );
+       return getParents(elm, hasIdAttribute, [],
+            null, [], name, null, n);
     });
 
     /**
      *
      */
     def(me, 'getNthPrev', function(elm, n, name) {
-        return getNextSiblings(elm,
-            null, [],
-            null, [],
-            name, null, n,
-            false, true
-        );
+        return getNextSiblings(elm, null, [], null, [],
+            name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getNthPrevByAttribute', function(elm, attribute, value, n, name) {
-        return getNextSiblings(
-            elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name, null, n,
-            false, true
-        );
+        return getNextSiblings(elm, isAttributeEquals, [attribute, value],
+            null, [], name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getNthPrevByClass', function(elm, className, n, name) {
-        return getNextSiblings(
-            elm,
-            hasClassName, [className],
-            null, [],
-            name, null, n,
-            false, true
-        );
+        return getNextSiblings(elm, hasClassName, [className],
+            null, [], name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getNthPrevWithAttribute', function(elm, attribute, n, name) {
-       return getNextSiblings(
-            elm,
-            hasAttribute, [attribute],
-            null, [],
-            name, null, n,
-            false, true
-        );
+       return getNextSiblings(elm, hasAttribute, [attribute],
+            null, [], name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getNthPrevWithClass', function(elm, n, name) {
-       return getNextSiblings(
-            elm,
-            hasClassAttribute, [],
-            null, [],
-            name, null, n,
-            false, true
-        );
+       return getNextSiblings(elm, hasClassAttribute, [],
+            null, [], name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getNthPrevWithId', function(elm, n, name) {
-       return getNextSiblings(
-            elm,
-            hasIdAttribute, [],
-            null, [],
-            name, null, n,
-            false, true
-        );
+       return getNextSiblings(elm, hasIdAttribute, [],
+            null, [], name, null, n, false, true);
     });
 
     /**
      *
      */
     def(me, 'getParent', function(elm, name) {
-        return getParents(
-            elm,
-            null, [],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, null, [], null, [], name, null, 0);
     });
 
     /**
      *
      */
     def(me, 'getParentByAttribute', function(elm, attribute, value, name) {
-        return getParents(
-            elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, isAttributeEquals, [attribute, value],
+            null, [], name, null, 0);
     });
 
     /**
      *
      */
     def(me, 'getParentByClass', function(elm, className, name) {
-        return getParents(
-            elm,
-            hasClassName, [className],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, hasClassName, [className],
+            null, [], name, null, 0);
     });
 
     /**
      *
      */
     def(me, 'getParentWithAttribute', function(elm, attribute, name) {
-        return getParents(
-            elm,
-            hasAttribute, [attribute],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, hasAttribute, [attribute],
+            null, [], name, null, 0);
     });
 
     /**
      *
      */
     def(me, 'getParentWithClass', function(elm, name) {
-        return getParents(
-            elm,
-            hasClassAttribute, [],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, hasClassAttribute, [],
+            null, [], name, null, 0);
     });
 
     /**
      *
      */
     def(me, 'getParentWithId', function(elm, name) {
-        return getParents(
-            elm,
-            hasIdAttribute, [],
-            null, [],
-            name, null, 0
-        );
+        return getParents(elm, hasIdAttribute, [], null, [], name, null, 0);
     });
-
 
     /**
      *
      */
     def(me, 'getParents', function(elm, name) {
-        return getParents(
-            elm,
-            null, [],
-            null, [],
-            name
-        );
+        return getParents(elm, null, [], null, [], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsByAttribute', function(elm, attribute, value, name) {
-        return getParents(
-            elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name
-        );
+        return getParents(elm, isAttributeEquals, [attribute, value],
+            null, [], name);
     });
 
     /**
@@ -1658,60 +1538,37 @@
      */
     def(me, 'getParentsByAttributeUntil', function(elm, attribute, value,
                 until, name) {
-        return getParents(
-            elm,
-            isAttributeEquals, [attribute, value],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, isAttributeEquals, [attribute, value],
+            isNodeEquals, [until], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsByClass', function(elm, className, name) {
-        return getParents(
-            elm,
-            hasClassName, [className],
-            null, [],
-            name
-        );
+        return getParents(elm, hasClassName, [className], null, [], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsByClassUntil', function(elm, className, until, name) {
-        return getParents(
-            elm,
-            hasClassName, [className],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, hasClassName, [className],
+            isNodeEquals, [until], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsUntil', function(elm, until, name) {
-        return getParents(
-            elm,
-            null, [],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, null, [], isNodeEquals, [until], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsWithAttribute', function(elm, attribute, name) {
-        return getParents(
-            elm,
-            hasAttribute, [attribute],
-            null, [],
-            name
-        );
+        return getParents(elm, hasAttribute, [attribute], null, [], name);
     });
 
     /**
@@ -1719,77 +1576,53 @@
      */
     def(me, 'getParentsWithAttributeUntil', function(elm, attribute, until,
                 name) {
-        return getParents(
-            elm,
-            hasAttribute, [attribute],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, hasAttribute, [attribute],
+            isNodeEquals, [until], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsWithClass', function(elm, name) {
-        return getParents(
-            elm,
-            hasClassAttribute, [],
-            null, [],
-            name
-        );
+        return getParents(elm, hasClassAttribute, [], null, [], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsWithClassUntil', function(elm, until, name) {
-        return getParents(
-            elm,
-            hasClassAttribute, [],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, hasClassAttribute, [],
+            isNodeEquals, [until], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsWithId', function(elm, name) {
-        return getParents(
-            elm,
-            hasIdAttribute, [],
-            null, [],
-            name
-        );
+        return getParents(elm, hasIdAttribute, [], null, [], name);
     });
 
     /**
      *
      */
     def(me, 'getParentsWithIdUntil', function(elm, until, name) {
-        return getParents(
-            elm,
-            hasIdAttribute, [],
-            isNodeEquals, [until],
-            name
-        );
+        return getParents(elm, hasIdAttribute, [],
+            isNodeEquals, [until], name);
     });
-
 
     /**
      *
      */
     def(me, 'getParentsAndSelf', function(elm, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                null, [],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, null, [], null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
@@ -1797,17 +1630,16 @@
      */
     def(me, 'getParentsAndSelfByAttribute', function(elm, attribute, value,
                 name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasAttribute, [attribute, value],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasAttribute, [attribute, value],
+                null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
-
+        return result;
     });
 
     /**
@@ -1815,32 +1647,31 @@
      */
     def(me, 'getParentsAndSelfByAttributeUntil', function(elm, attribute, value,
                 until, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasAttribute, [attribute, value],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasAttribute, [attribute, value],
+                isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfByClass', function(elm, className, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasClassName, [className],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasClassName, [className], null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
@@ -1848,48 +1679,46 @@
      */
     def(me, 'getParentsAndSelfByClassUntil', function(elm, className, until,
                 name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasClassName, [className],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasClassName, [className],
+                isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfUntil', function(elm, until, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                null, [],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, null, [], isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfWithAttribute', function(elm, attribute, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasAttribute, [attribute],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasAttribute, [attribute], null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
@@ -1897,80 +1726,78 @@
      */
     def(me, 'getParentsAndSelfWithAttributeUntil', function(elm, attribute,
                 until, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasAttribute, [attribute],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasAttribute, [attribute],
+                isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfWithClass', function(elm, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasClassAttribute, [],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasClassAttribute, [], null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfWithClassUntil', function(elm, until, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasClassAttribute, [],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasClassAttribute, [],
+                isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfWithId', function(elm, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasIdAttribute, [],
-                null, [],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasIdAttribute, [], null, [], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
     /**
      *
      */
     def(me, 'getParentsAndSelfWithIdUntil', function(elm, until, name) {
+        var result = [];
+
         if (elm) {
-            return getParents(
-                elm,
-                hasIdAttribute, [],
-                isNodeEquals, [until],
-                name
-            ).unshift(elm);
+            result = getParents(elm, hasIdAttribute, [],
+                isNodeEquals, [until], name);
+
+            result.unshift(elm);
         }
 
-        return [];
+        return result;
     });
 
 
@@ -1978,418 +1805,152 @@
      *
      */
     def(me, 'getPrev', function(elm, name) {
-        return getNextSiblings(elm,
-            null, [],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+        return getNextSiblings(elm, null, [], null, [],
+            name, null, 0, false, true);
     });
 
     /**
      *
      */
     def(me, 'getPrevByAttribute', function(elm, attribute, value, name) {
-        return getNextSiblings(elm,
-            isAttributeEquals, [attribute, value],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+        return getNextSiblings(elm, isAttributeEquals, [attribute, value],
+            null, [], name, null, 0, false, true);
     });
 
     /**
      *
      */
     def(me, 'getPrevByClass', function(elm, className, name) {
-       return getNextSiblings(elm,
-            hasClassName, [className],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+       return getNextSiblings(elm, hasClassName, [className],
+            null, [], name, null, 0, false, true);
     });
 
     /**
      *
      */
     def(me, 'getPrevWithAttribute', function(elm, attribute, name) {
-        return getNextSiblings(elm,
-            hasAttribute, [attribute],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+        return getNextSiblings(elm, hasAttribute, [attribute],
+            null, [], name, null, 0, false, true);
     });
 
     /**
      *
      */
     def(me, 'getPrevWithClass', function(elm, name) {
-        return getNextSiblings(elm,
-            hasClassAttribute, [],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+        return getNextSiblings(elm, hasClassAttribute, [],
+            null, [], name, null, 0, false, true);
     });
 
     /**
      *
      */
     def(me, 'getPrevWithId', function(elm, name) {
-        return getNextSiblings(elm,
-            hasIdAttribute, [],
-            null, [],
-            name, null, 0,
-            false, true
-        );
+        return getNextSiblings(elm, hasIdAttribute, [],
+            null, [], name, null, 0, false, true);
     });
-
 
     /**
      *
      */
     def(me, 'getPrevAll', function(elm, name) {
-        return getNextSiblings(
-            elm,
-            null, [],
-            null, [],
-            name, null, null,
-            false, true
-        );
+        return getNextSiblings(elm, null, [], null, [],
+            name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllByAttribute', function() {
-        return getNextSiblings(
-            elm,
-            null, [],
-            null, [],
-            name, null, null,
-            false, true
-        );
+    def(me, 'getPrevAllByAttribute', function(elm, attribute, value, name) {
+        return getNextSiblings(elm, isAttributeEqual, [attribute, value],
+            null, [], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllByClass', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllByAttributeUntil', function(elm, attribute, value,
+                until, name) {
+        return getNextSiblings(elm, isAttributeEquals, [attribute, value],
+            isNodeEquals, [until], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllByClassUntil', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllByClass', function(elm, className, name) {
+        return getNextSiblings(elm, hasClassName, [className],
+            null, [], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllUntil', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllByClassUntil', function(elm, className, until, name) {
+        return getNextSiblings(elm, hasClassName, [className],
+            isNodeEquals, [until], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithAttribute', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllUntil', function(elm, until, name) {
+        return getNextSiblings(elm, null, [], isNodeEquals, [until],
+            name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithAttributeUntil', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithAttribute', function(elm, attribute, name) {
+        return getNextSiblings(elm, hasAttribute, [attribute], null, [],
+            name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithClass', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithAttributeUntil', function(elm, attribute, until,
+                name) {
+        return getNextSiblings(elm, hasAttribute, [attribute],
+            isNodeEquals, [until], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithClassUntil', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithClass', function(elm, name) {
+        return getNextSiblings(elm, hasClassAttribute, [],
+            null, [], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithId', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithClassUntil', function(elm, until, name) {
+        return getNextSiblings(elm, hasClassAttribute, [],
+            isNodeEquals, [until], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'getPrevAllWithIdUntil', function() {
-        throw 'implement me!';
-    });
-
-
-    /**
-     *
-     */
-    def(me, 'isChild', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithId', function(elm, name) {
+        return getNextSiblings(elm, hasIdAttribute, [],
+            null, [], name, null, null, false, true);
     });
 
     /**
      *
      */
-    def(me, 'isChildByAttribute', function() {
-        throw 'implement me!';
+    def(me, 'getPrevAllWithIdUntil', function(elm, until, name) {
+        return getNextSiblings(elm, hasIdAttribute, [],
+            isNodeEquals, [until], name, null, null, false, true);
     });
 
-    /**
-     *
-     */
-    def(me, 'isChildByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isChildWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isChildWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isChildWithId', function() {
-        throw 'implement me!';
-    });
-
-
-    /**
-     *
-     */
-    def(me, 'isNext', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isNextByAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isNextByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isNextWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isNextWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isNextWithId', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParent', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentByAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentWithId', function() {
-        throw 'implement me!';
-    });
-
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelf', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelfByAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelfByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelfWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelfWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isParentOrSelfWithId', function() {
-        throw 'implement me!';
-    });
-
-
-    /**
-     *
-     */
-    def(me, 'isPrev', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isPrevByAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isPrevByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isPrevWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isPrevWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isPrevWithId', function() {
-        throw 'implement me!';
-    });
-
-
-    /**
-     *
-     */
-    def(me, 'isSibling', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isSiblingByAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isSiblingByClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isSiblingWithAttribute', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isSiblingWithClass', function() {
-        throw 'implement me!';
-    });
-
-    /**
-     *
-     */
-    def(me, 'isSiblingWithId', function() {
-        throw 'implement me!';
-    });
+// isChild        : {MODULE : kDomHelperTraverse},
+// isNext         : {MODULE : kDomHelperTraverse},
+// isParent       : {MODULE : kDomHelperTraverse},
+// isParentOrSelf : {MODULE : kDomHelperTraverse},
+// isPrev         : {MODULE : kDomHelperTraverse},
+// isSibling      : {MODULE : kDomHelperTraverse}
 }(this.o2, this.document));

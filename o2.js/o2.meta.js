@@ -14,7 +14,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-29 08:18:08.993166
+ *  lastModified: 2012-03-07 23:23:15.802174
  * -->
  *
  * <p>Meta information.</p>
@@ -614,6 +614,7 @@ this.o2 = this.o2 || {
 
                 getPrevAll                   : {MODULE : kDomHelperTraverse},
                 getPrevAllByAttribute        : {MODULE : kDomHelperTraverse},
+                getPrevAllByAttributeUntil   : {MODULE : kDomHelperTraverse},
                 getPrevAllByClass            : {MODULE : kDomHelperTraverse},
                 getPrevAllByClassUntil       : {MODULE : kDomHelperTraverse},
                 getPrevAllUntil              : {MODULE : kDomHelperTraverse},
@@ -637,47 +638,12 @@ this.o2 = this.o2 || {
                 getSiblingsWithId             : {MODULE : kDomHelperTraverse},
                 getSiblingsWithIdUntil        : {MODULE : kDomHelperTraverse},
 
-                isChild              : {MODULE : kDomHelperTraverse},
-                isChildByAttribute   : {MODULE : kDomHelperTraverse},
-                isChildByClass       : {MODULE : kDomHelperTraverse},
-                isChildWithAttribute : {MODULE : kDomHelperTraverse},
-                isChildWithClass     : {MODULE : kDomHelperTraverse},
-                isChildWithId        : {MODULE : kDomHelperTraverse},
-
-                isNext              : {MODULE : kDomHelperTraverse},
-                isNextByAttribute   : {MODULE : kDomHelperTraverse},
-                isNextByClass       : {MODULE : kDomHelperTraverse},
-                isNextWithAttribute : {MODULE : kDomHelperTraverse},
-                isNextWithClass     : {MODULE : kDomHelperTraverse},
-                isNextWithId        : {MODULE : kDomHelperTraverse},
-
-                isParent              : {MODULE : kDomHelperTraverse},
-                isParentByAttribute   : {MODULE : kDomHelperTraverse},
-                isParentByClass       : {MODULE : kDomHelperTraverse},
-                isParentWithAttribute : {MODULE : kDomHelperTraverse},
-                isParentWithClass     : {MODULE : kDomHelperTraverse},
-                isParentWithId        : {MODULE : kDomHelperTraverse},
-
-                isParentOrSelf              : {MODULE : kDomHelperTraverse},
-                isParentOrSelfByAttribute   : {MODULE : kDomHelperTraverse},
-                isParentOrSelfByClass       : {MODULE : kDomHelperTraverse},
-                isParentOrSelfWithAttribute : {MODULE : kDomHelperTraverse},
-                isParentOrSelfWithClass     : {MODULE : kDomHelperTraverse},
-                isParentOrSelfWithId        : {MODULE : kDomHelperTraverse},
-
-                isPrev              : {MODULE : kDomHelperTraverse},
-                isPrevByAttribute   : {MODULE : kDomHelperTraverse},
-                isPrevByClass       : {MODULE : kDomHelperTraverse},
-                isPrevWithAttribute : {MODULE : kDomHelperTraverse},
-                isPrevWithClass     : {MODULE : kDomHelperTraverse},
-                isPrevWithId        : {MODULE : kDomHelperTraverse},
-
-                isSibling              : {MODULE : kDomHelperTraverse},
-                isSiblingByAttribute   : {MODULE : kDomHelperTraverse},
-                isSiblingByClass       : {MODULE : kDomHelperTraverse},
-                isSiblingWithAttribute : {MODULE : kDomHelperTraverse},
-                isSiblingWithClass     : {MODULE : kDomHelperTraverse},
-                isSiblingWithId        : {MODULE : kDomHelperTraverse}
+                isChild        : {MODULE : kDomHelperTraverse},
+                isNext         : {MODULE : kDomHelperTraverse},
+                isParent       : {MODULE : kDomHelperTraverse},
+                isParentOrSelf : {MODULE : kDomHelperTraverse},
+                isPrev         : {MODULE : kDomHelperTraverse},
+                isSibling      : {MODULE : kDomHelperTraverse}
             }
         },
         EventHandler : {
