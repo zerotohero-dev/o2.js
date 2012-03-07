@@ -83,7 +83,7 @@ mind. Before each major release, **[o2.js][2]** will be unit-tested in
 ## About the Author
 
 It's me: **[Volkan Özçelik][1]**!
-Jack of all Trades, Samurai of JavaScript **;)**.
+Jack of all Trades, Samurai of **JavaScript** **;)**.
 
 Since 2003, I've been doing front-end development on client-heavy **AJAX** web
 applications.
