@@ -24,7 +24,7 @@
     /**
      * @class {static} o2.FormHelper
      *
-     * <p>A static <strong>HTML<strong> form helper.</p>
+     * <p>A static <strong>HTML</strong> form helper.</p>
      */
     var me = create('FormHelper');
 

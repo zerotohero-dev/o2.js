@@ -11,15 +11,15 @@
     /*
      * Common constants.
      */
-    var kNone = 'none';
     var kBlock = 'block';
+    var kNone  = 'none';
 
     /*
      * Common elements.
      */
-    var kActivatorDiv = 'VCardActivator';
-    var kContentDiv = 'VCardContent';
-    var kVCardButton = 'vcard-volkan';
+    var kActivatorDiv     = 'VCardActivator';
+    var kContentDiv       = 'VCardContent';
+    var kVCardButton      = 'vcard-volkan';
     var kVCardCloseButton = 'vcard-volkan-close';
 
     /*
@@ -45,6 +45,7 @@
     function showVCard() {
         document.getElementById(kContentDiv).innerHTML = vCardHtml;
         document.getElementById(kContentDiv).style.display = kBlock;
+        document.getElementById(kActivatorDiv).style.display = kNone;
     }
 
     function closeVCard() {

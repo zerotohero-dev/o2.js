@@ -176,13 +176,13 @@
      * <p>Usage Example:</p>
      *
      * <pre>
-     * <script type="text/javascript" charset="UTF-8" src="o2.0.21.js"></script>
-     * <script type="text/javascript" charset="UTF-8">
+     * [script type="text/javascript" charset="UTF-8" src="o2.0.21.js"][/script]
+     * [script type="text/javascript" charset="UTF-8"]
      *     // Now "o2 v.0.21" can be accessed through o3 variable
      *     // (or window.o3).
      *     o2.noConflict('o3');
-     * </script>
-     * <script type="text/javascript" charset="UTF-8" src="o2.0.23.js"></script>
+     * [/script]
+     * [script type="text/javascript" charset="UTF-8" src="o2.0.23.js"][/script]
      * </pre>
      *
      * @param {String} newName - the name of the new namespace.
