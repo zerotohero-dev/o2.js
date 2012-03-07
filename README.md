@@ -101,7 +101,7 @@ Before that, I was the **Chief Technology Officer** of a business network
 See my **[linkedin profile][1]** to find more about me.
 
 I also share [worth-following bits an pieces][3] on **[twitter][3]**
-_( [@linkibol][3] )_.
+([@linkibol][3]).
 
 [1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
