@@ -16,10 +16,14 @@
 
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.meta.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.core.js"></script>
+
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.stringhelper.core.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.eventhandler.constants.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.eventhandler.core.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.ajax.core.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.stringhelper.transform.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.domhelper.style.js"></script>
 
 <script type="text/javascript" charset="UTF-8" src="js/presentation/controller/render/rendercontroller.js"></script>
 

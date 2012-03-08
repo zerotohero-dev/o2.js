@@ -20,11 +20,11 @@
     document.getElementById(kVCardButton).onclick = function() {
         showVCard();
 
-        document.getElementById(kVCardCloseButton).onclick = function() {
-            closeVCard();
-            return false;
-        };
+        return false;
+    };
 
+    document.getElementById(kVCardCloseButton).onclick = function() {
+        closeVCard();
         return false;
     };
 }(this.VCardApp, this.document));
