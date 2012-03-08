@@ -26,6 +26,12 @@
      */
     var page = app.PageController;
 
+    /*
+     * Aliases
+     */
+    var listen    = o2.EventHandler.addEventListener;
+    var getTarget = o2.EventHandler.getTarget;
+
     /**
      *
      */
