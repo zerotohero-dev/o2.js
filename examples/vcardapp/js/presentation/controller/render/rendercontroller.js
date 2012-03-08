@@ -1,16 +1,22 @@
-(function(o2, app, document) {
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-03-08 08:04:46.842332
+ * -->
+ */
+(function(o2, app) {
     'use strict';
 
+    /**
+     *
+     */
     var me = app.RenderController = {};
 
-    var kActivatorDiv     = 'VCardActivator';
-    var kContentDiv       = 'VCardContent';
-
-    /*
-     * Common constants.
-     */
-    var kBlock = 'block';
-    var kNone  = 'none';
+    var kActivatorDiv = 'VCardActivator';
+    var kContentDiv   = 'VCardContent';
 
     /*
      * Aliases
@@ -19,6 +25,9 @@
     var hide = o2.DomHelper.hide;
     var show = o2.DomHelper.show;
 
+    /**
+     *
+     */
     me.showVCard = function(html) {
         var contentDiv = $(kContentDiv);
         contentDiv.innerHTML = html;
@@ -31,4 +40,4 @@
         hide(kContentDiv);
         show(kActivatorDiv);
     };
-}(this.o2, this.VCardApp, this.document));
+}(this.o2, this.VCardApp));

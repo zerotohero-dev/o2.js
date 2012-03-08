@@ -27,4 +27,8 @@
 
 <script type="text/javascript" charset="UTF-8" src="js/presentation/controller/render/rendercontroller.js"></script>
 
-<script type="text/javascript" charset="UTF-8" src="js/index.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/behavior/controller/page/pagecontroller.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="js/communication/controller/event/eventcontroller.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="js/bootstrap/init.js"></script>
