@@ -15,8 +15,12 @@
      */
     var me = app.RenderController = {};
 
-    var kActivatorDiv = 'VCardActivator';
-    var kContentDiv   = 'VCardContent';
+    /*
+     * Containers
+     */
+    var cce           = app.config.constants.element;
+    var kActivatorDiv = cce.CONTAINER_VCARD_ACTIVATOR;
+    var kContentDiv   = cce.CONTAINER_VCARD_CONTENT;
 
     /*
      * Aliases
