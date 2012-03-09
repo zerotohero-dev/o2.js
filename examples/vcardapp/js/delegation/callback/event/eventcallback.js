@@ -51,9 +51,6 @@
             return;
         }
 
-        var source = src;
-        var eventArgs = args;
-
-        delegate.apply(source, [source, eventArgs]);
+        delegate.apply(src, [src, args]);
     };
 }(this.VCardApp, this.o2));

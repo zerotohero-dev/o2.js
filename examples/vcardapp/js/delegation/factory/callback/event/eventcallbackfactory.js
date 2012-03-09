@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-09 08:56:14.724803
+ *  lastModified: 2012-03-09 19:23:55.732890
  * -->
  */
 (function(app) {
@@ -23,26 +23,23 @@
     var kVCardCloseButton = cce.BTN_VCARD_CLOSE;
 
     /*
-     * Behavior Tier Stub
+     * Page Callback
      */
-    var page = app.PageController;
+    var pc                       = app.PageCallback;
+    var callbacks                = {};
+    callbacks[kVCardButton]      = {callback : pc.showVCard,  args: []};
+    callbacks[kVCardCloseButton] = {callback : pc.closeVCard, args: []};
+
+    var defaultCallback = {callback : null, args : null};
 
     /**
      *
      */
     me.create = function(src) {
         if (!src) {
-            return {callback : null, args : null};
+            return defaultCallback;
         }
 
-        switch (src.id) {
-            case kVCardButton :
-                return {callback : page.showVCard, args : {}};
-
-            case kVCardCloseButton :
-                return {callback : page.closeVCard, args : {}};
-        }
-
-        return {callback : null, args : null};
+        return callbacks[src.id] || defaultCallback;
     };
 }(this.VCardApp));

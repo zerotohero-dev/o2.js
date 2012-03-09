@@ -31,6 +31,7 @@
 
 <script type="text/javascript" charset="UTF-8" src="js/behavior/controller/page/pagecontroller.js"></script>
 
+<script type="text/javascript" charset="UTF-8" src="js/delegation/callback/page/pagecallback.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/delegation/factory/callback/event/eventcallbackfactory.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/delegation/callback/event/eventcallback.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/delegation/controller/event/eventcontroller.js"></script>
