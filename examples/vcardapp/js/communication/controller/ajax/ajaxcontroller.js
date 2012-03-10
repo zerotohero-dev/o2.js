@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 08:09:06.723901
+ *  lastModified: 2012-03-10 12:27:29.265356
  * -->
  */
 (function(app) {
@@ -27,12 +27,19 @@
     var kCurrentUser = acc.user.USERNAME;
 
     /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
+    /*
      * Proxy
      */
     var proxy = app.AjaxProxy;
 
 
     me.showVCard = function() {
+        log('app.ajaxcontroller.showVCard');
+
         var params = {};
 
         params[kUsername] = kCurrentUser;

@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-08 08:04:46.842332
+ *  lastModified: 2012-03-10 12:21:50.548139
  * -->
  */
 (function(o2, app) {
@@ -28,11 +28,14 @@
     var $    = o2.$;
     var hide = o2.DomHelper.hide;
     var show = o2.DomHelper.show;
+    var log  = app.Logger.log;
 
     /**
      *
      */
     me.showVCard = function(html) {
+        log('app.RenderController.showVCard');
+
         var contentDiv = $(kContentDiv);
         contentDiv.innerHTML = html;
 
@@ -41,6 +44,8 @@
     };
 
     me.closeVCard = function() {
+        log('app.RenderController.closeVCard');
+
         hide(kContentDiv);
         show(kActivatorDiv);
     };

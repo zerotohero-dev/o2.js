@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 08:09:06.723901
+ *  lastModified: 2012-03-10 12:26:18.432526
  * -->
  */
 (function(app) {
@@ -29,6 +29,15 @@
     var handleShowVCardRequestError     = cb.handleShowVCardRequestError;
     var handleShowVCardRequestException = cb.handleShowVCardRequestException;
 
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
+    /*
+     * Config
+     */
+
     var ac  = app.config;
     var acc = ac.constants;
 
@@ -46,6 +55,8 @@
      *
      */
     me.sendShowVCardRequrest = function(parameters) {
+        log('app.ajaxproxy.sendShowVCardRequrest');
+
         var params = {};
 
         merge(params, getVCardParams);

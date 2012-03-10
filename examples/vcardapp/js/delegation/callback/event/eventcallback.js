@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-09 08:59:53.328108
+ *  lastModified: 2012-03-10 12:23:39.928408
  * -->
  */
 (function(app, o2) {
@@ -23,6 +23,11 @@
     var preventDefault = eh.preventDefault;
 
     /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
+    /*
      * Factory
      */
     var factory = app.EventCallbackFactory;
@@ -31,6 +36,8 @@
      *
      */
     me.document_click = function(evt) {
+        log('app.eventcallback.document_click');
+
         var src = getTarget(evt);
 
         if (!src) {

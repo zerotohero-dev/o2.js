@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 22012-03-09 19:17:51.023992
+ *  lastModified: 2012-03-10 12:21:50.548139
  * -->
  */
 (function(app) {
@@ -16,16 +16,23 @@
     var me = app.PageCallback = {};
 
     /*
-     * Stub to the Behavior Tier
+     * Stubs to the Behavior Tier
      */
     var pc         = app.PageController;
     var showVCard  = pc.showVCard;
     var closeVCard = pc.closeVCard;
 
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
     /**
      *
      */
     me.showVCard = function() {
+        log('app.PageCallback.showVCard');
+
         showVCard();
     };
 
@@ -33,6 +40,8 @@
      *
      */
     me.closeVCard = function() {
+        log('app.PageCallback.closeVCard');
+
         closeVCard();
     };
 }(this.VCardApp));

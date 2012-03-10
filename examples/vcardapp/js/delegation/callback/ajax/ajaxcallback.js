@@ -20,9 +20,10 @@
         app.PageController.renderVCardUi(result)
     }
 
-    function log(stuff) {
-        app.PageController.log(stuff);
-    }
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
 
     /*
      *
@@ -33,6 +34,8 @@
      *
      */
     me.handleShowVCardRequestComplete = function(result) {
+        log('app.ajaxcallback.handleShowVCardRequestComplete');
+
         if (!result) {
             return;
         }
