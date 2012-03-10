@@ -344,15 +344,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "difference",
-           fullName : "o2.CollectionHelper.difference",
-           summary : "static function  difference()",
-           ref : "logical/o2/CollectionHelper.html#___difference",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "each",
            fullName : "o2.CollectionHelper.each",
            summary : "static function  each()",
@@ -366,6 +357,15 @@
            fullName : "o2.CollectionHelper.every",
            summary : "static function  every(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___every",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "extend",
+           fullName : "o2.CollectionHelper.extend",
+           summary : "static function  extend(Object toObj, Object fromObj)",
+           ref : "logical/o2/CollectionHelper.html#___extend",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"

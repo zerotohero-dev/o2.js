@@ -18,8 +18,18 @@
     /*
      * Stubs for the Presentation Tier
      */
-    var show  = app.RenderController.showVCard;
-    var close = app.RenderController.closeVCard;
+    var close    = app.RenderController.closeVCard;
+    var showCard = app.RenderController.showVCard;
+
+    /*
+     * Stubs for the Communication Tier
+     */
+    var show = app.AjaxController.showVCard;
+
+
+    me.renderVCardUi = function(html) {
+        showCard(html);
+    };
 
     /**
      *

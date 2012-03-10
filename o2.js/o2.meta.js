@@ -14,7 +14,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-07 23:23:15.802174
+ *  lastModified: 2012-03-10 08:13:41.427284
  * -->
  *
  * <p>Meta information.</p>
@@ -106,7 +106,7 @@ this.o2 = this.o2 || {
      */
 
     var kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ';
-    var kMethodAlreadyDefined = 'framework.protecteds: Method name is undefined : ';
+    var kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ';
     var kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.';
     var kNameNotProvided      = 'framework.protecteds: name not provided';
     var kNoMetaDefinition     = 'framework.protecteds: no meta definition.';
@@ -203,6 +203,12 @@ this.o2 = this.o2 || {
     function getNoMethodToOverrideWarning(name) {
         return ['framework.protecteds: No method "',
             name, '" to override.'
+        ].join(kEmpty);
+    }
+
+    function getIncorrectMetaDefinitionWarning(name) {
+        return ['framework.protecteds: Incorrect meta definition for "',
+            name, '".'
         ].join(kEmpty);
     }
 
@@ -311,60 +317,64 @@ this.o2 = this.o2 || {
             }
         },
         CollectionHelper : {
-            any            : {MODULE : kCollectionHelperCore},
-            clear          : {MODULE : kCollectionHelperCore},
-            clone          : {MODULE : kCollectionHelperCore},
-            compact        : {MODULE : kCollectionHelperCore},
-            contains       : {MODULE : kCollectionHelperCore},
-            copy           : {MODULE : kCollectionHelperCore},
-            detect         : {MODULE : kCollectionHelperCore},
-            getDifference  : {MODULE : kCollectionHelperCore},
-            each           : {MODULE : kCollectionHelperCore},
-            every          : {MODULE : kCollectionHelperCore},
-            exclude        : {MODULE : kCollectionHelperCore},
-            extend         : {MODULE : kCollectionHelperCore},
-            find           : {MODULE : kCollectionHelperCore},
-            flatten        : {MODULE : kCollectionHelperCore},
-            fold           : {MODULE : kCollectionHelperCore},
-            forEach        : {MODULE : kCollectionHelperCore},
-            getFirst       : {MODULE : kCollectionHelperCore},
-            getFirstN      : {MODULE : kCollectionHelperCore},
-            getFunctions   : {MODULE : kCollectionHelperCore},
-            getKeys        : {MODULE : kCollectionHelperCore},
-            getLast        : {MODULE : kCollectionHelperCore},
-            getLastN       : {MODULE : kCollectionHelperCore},
-            getMax         : {MODULE : kCollectionHelperCore},
-            getMethods     : {MODULE : kCollectionHelperCore},
-            getMin         : {MODULE : kCollectionHelperCore},
-            getRest        : {MODULE : kCollectionHelperCore},
-            getSize        : {MODULE : kCollectionHelperCore},
-            getSortedIndex : {MODULE : kCollectionHelperCore},
-            getValues      : {MODULE : kCollectionHelperCore},
-            grep           : {MODULE : kCollectionHelperCore},
-            group          : {MODULE : kCollectionHelperCore},
-            inArray        : {MODULE : kCollectionHelperCore},
-            includes       : {MODULE : kCollectionHelperCore},
-            indexOf        : {MODULE : kCollectionHelperCore},
-            intersect      : {MODULE : kCollectionHelperCore},
-            invoke         : {MODULE : kCollectionHelperCore},
-            isEmpty        : {MODULE : kCollectionHelperCore},
-            lastIndexOf    : {MODULE : kCollectionHelperCore},
-            map            : {MODULE : kCollectionHelperCore},
-            pluck          : {MODULE : kCollectionHelperCore},
-            reduce         : {MODULE : kCollectionHelperCore},
-            reduceRight    : {MODULE : kCollectionHelperCore},
-            reject         : {MODULE : kCollectionHelperCore},
-            removeElement  : {MODULE : kCollectionHelperCore},
-            select         : {MODULE : kCollectionHelperCore},
-            shuffle        : {MODULE : kCollectionHelperCore},
-            some           : {MODULE : kCollectionHelperCore},
-            sort           : {MODULE : kCollectionHelperCore},
-            tap            : {MODULE : kCollectionHelperCore},
-            toArray        : {MODULE : kCollectionHelperCore},
-            touch          : {MODULE : kCollectionHelperCore},
-            union          : {MODULE : kCollectionHelperCore},
-            unique         : {MODULE : kCollectionHelperCore},
-            zip            : {MODULE : kCollectionHelperCore}
+            items : {
+                any            : {MODULE : kCollectionHelperCore},
+                clear          : {MODULE : kCollectionHelperCore},
+                clone          : {MODULE : kCollectionHelperCore},
+                compact        : {MODULE : kCollectionHelperCore},
+                contains       : {MODULE : kCollectionHelperCore},
+                copy           : {MODULE : kCollectionHelperCore},
+                detect         : {MODULE : kCollectionHelperCore},
+                diff           : {MODULE : kCollectionHelperCore},
+                each           : {MODULE : kCollectionHelperCore},
+                every          : {MODULE : kCollectionHelperCore},
+                exclude        : {MODULE : kCollectionHelperCore},
+                extend         : {MODULE : kCollectionHelperCore},
+                find           : {MODULE : kCollectionHelperCore},
+                flatten        : {MODULE : kCollectionHelperCore},
+                fold           : {MODULE : kCollectionHelperCore},
+                forEach        : {MODULE : kCollectionHelperCore},
+                getDifference  : {MODULE : kCollectionHelperCore},
+                getFirst       : {MODULE : kCollectionHelperCore},
+                getFirstN      : {MODULE : kCollectionHelperCore},
+                getFunctions   : {MODULE : kCollectionHelperCore},
+                getKeys        : {MODULE : kCollectionHelperCore},
+                getLast        : {MODULE : kCollectionHelperCore},
+                getLastN       : {MODULE : kCollectionHelperCore},
+                getMax         : {MODULE : kCollectionHelperCore},
+                getMethods     : {MODULE : kCollectionHelperCore},
+                getMin         : {MODULE : kCollectionHelperCore},
+                getRest        : {MODULE : kCollectionHelperCore},
+                getSize        : {MODULE : kCollectionHelperCore},
+                getSortedIndex : {MODULE : kCollectionHelperCore},
+                getValues      : {MODULE : kCollectionHelperCore},
+                grep           : {MODULE : kCollectionHelperCore},
+                group          : {MODULE : kCollectionHelperCore},
+                inArray        : {MODULE : kCollectionHelperCore},
+                includes       : {MODULE : kCollectionHelperCore},
+                indexOf        : {MODULE : kCollectionHelperCore},
+                intersect      : {MODULE : kCollectionHelperCore},
+                invoke         : {MODULE : kCollectionHelperCore},
+                isEmpty        : {MODULE : kCollectionHelperCore},
+                lastIndexOf    : {MODULE : kCollectionHelperCore},
+                map            : {MODULE : kCollectionHelperCore},
+                merge          : {MODULE : kCollectionHelperCore},
+                pluck          : {MODULE : kCollectionHelperCore},
+                reduce         : {MODULE : kCollectionHelperCore},
+                reduceRight    : {MODULE : kCollectionHelperCore},
+                reject         : {MODULE : kCollectionHelperCore},
+                removeElement  : {MODULE : kCollectionHelperCore},
+                select         : {MODULE : kCollectionHelperCore},
+                shuffle        : {MODULE : kCollectionHelperCore},
+                some           : {MODULE : kCollectionHelperCore},
+                sort           : {MODULE : kCollectionHelperCore},
+                tap            : {MODULE : kCollectionHelperCore},
+                toArray        : {MODULE : kCollectionHelperCore},
+                touch          : {MODULE : kCollectionHelperCore},
+                union          : {MODULE : kCollectionHelperCore},
+                unique         : {MODULE : kCollectionHelperCore},
+                zip            : {MODULE : kCollectionHelperCore}
+            }
         },
         Cookie : {
             items : {
@@ -463,9 +473,12 @@ this.o2 = this.o2 || {
                 activateAlternateStylesheet : {MODULE : kDomHelperStyle},
                 addCssRules                 : {MODULE : kDomHelperStyle},
                 addStyle                    : {MODULE : kDomHelperStyle},
+                getCss                      : {MODULE : kDomHelperStyle},
                 getStyle                    : {MODULE : kDomHelperStyle},
                 hide                        : {MODULE : kDomHelperStyle},
                 isVisible                   : {MODULE : kDomHelperStyle},
+                setCss                      : {MODULE : kDomHelperStyle},
+                setStyle                    : {MODULE : kDomHelperStyle},
                 show                        : {MODULE : kDomHelperStyle},
                 toggleVisibility            : {MODULE : kDomHelperStyle},
 
@@ -865,11 +878,12 @@ this.o2 = this.o2 || {
     // They are not meant for external use.
 
     if (isProduction) {
+
         /*
          *
          */
         init(fp, 'alias', function(mixed, aliasName, existingName) {
-            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
+            mixed[1][aliasName] = mixed[1][existingName];
         });
 
         /*
@@ -987,7 +1001,37 @@ this.o2 = this.o2 || {
          *
          */
         init(fp, 'alias', function(mixed, aliasName, existingName) {
-            fp.define(mixed, aliasName, fp.getObject(mixed)[existingName]);
+            if (!mixed) {
+                dbg();
+
+                throw kNoMetaDefinition;
+            }
+
+            if (!mixed[1]) {
+                dbg();
+
+                throw kObjectNotDefined;
+            }
+
+            if (!mixed[0][existingName]) {
+                dbg();
+
+                throw getMethodNotDefinedInMetaWarning(existingName);
+            }
+
+            if (!mixed[0][aliasName]) {
+                dbg();
+
+                throw getMethodNotDefinedInMetaWarning(aliasName);
+            }
+
+            if (mixed[1][aliasName]) {
+                dbg();
+
+                throw [kMethodAlreadyDefined, aliasName].join(kEmpty);
+            }
+
+            mixed[1][aliasName] = mixed[1][existingName];
         });
 
         /*
@@ -1000,6 +1044,10 @@ this.o2 = this.o2 || {
                 dbg();
 
                 throw getClassNotDefinedInMetaWarning(name);
+            }
+
+            if (!cls.items) {
+                throw getIncorrectMetaDefinitionWarning(name);
             }
 
             return [cls.items, namespace(framework, name)];
@@ -1055,6 +1103,8 @@ this.o2 = this.o2 || {
 
             if (meta[name]) {
                 if (me[name]) {
+                    dbg();
+
                     throw [kMethodAlreadyDefined, name].join(kEmpty);
                 }
 

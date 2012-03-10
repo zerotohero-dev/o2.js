@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-01-29 22:00:03.013716
+ *  lastModified: 2012-03-10 08:13:41.427284
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -60,7 +60,7 @@
      *
      * @return a <strong>reference</strong> to the object itself.
      */
-    def(me,'clear', function(ar) {
+    def(me, 'clear', function(ar) {
         var key = null;
 
         if (!ar) {
@@ -182,7 +182,7 @@
      *
      * @return the index of the element if found, <code>-1</code> otherwise.
      */
-    me.indexOf = function(ar, elm) {
+    def(me, 'indexOf', function(ar, elm) {
         if (!ar) {
             return -1;
         }
@@ -223,7 +223,7 @@
         }
 
         return -1;
-    };
+    });
 
     /*
      *
@@ -264,16 +264,6 @@
      *
      * @see o2.CollectionHelper.contains
      */
-    alias(me, 'inArray', 'contains');
-
-    /**
-     * @function {static} o2.CollectionHelper.inArray
-     *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
-     *
-     * @see o2.CollectionHelper.contains
-     */
-
     alias(me, 'inArray', 'contains');
 
     /**
@@ -575,15 +565,6 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.difference
-     *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.diff}.</p>
-     *
-     * @see o2.CollectionHelper.diff
-     */
-    alias(me, 'difference', 'diff');
-
-    /**
      * @function {static} o2.CollectionHelper.getDifference
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.diff}.</p>
@@ -700,244 +681,283 @@
     alias(me, 'reject', 'exclude');
 
     /**
+     * @function {static} o2.CollectionHelper.extend
      *
+     * <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>
+     *
+     * @param {Object} toObj - the <code>Object</code> to copy values to.
+     * @param {Object} fromObj - the <code>Object</code> to copy values from.
+     *
+     * @return a <strong>reference</strong> to the modified
+     * <code>toObj</code>.
      */
-    def(me,'extend', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'extend', function(toObj, fromObj) {
+         var value = null;
+         var key = null;
+         var i = 0;
+         var len = 0;
+
+         if (isArray(toObj)) {
+             if(!isArray(fromObj)) {
+                 return toObj;
+             }
+
+             i = 0;
+             len = fromObj.length;
+
+             for (i = 0; i < len; i++) {
+                 value = fromObj[i];
+
+                 if(indexOf(toObj, value) === -1) {
+                     toObj.push(value);
+                 }
+             }
+
+             return toObj;
+        }
+
+        for (key in fromObj) {
+            if (fromObj.hasOwnProperty(key)) {
+                toObj[key] = fromObj[key];
+            }
+        }
+
+        return toObj;
     });
 
-    /**
-     *
-     */
-    def(me,'find', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    alias(me, 'merge', 'extend');
 
-    /**
-     *
-     */
-    def(me,'getFirst', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'find', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getFirstN', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getFirst', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getFunctions', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getFirstN', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getKeys', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getFunctions', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getLast', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getKeys', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getLastN', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getLast', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getMax', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getLastN', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getMethods', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getMax', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getMin', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getMethods', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getRest', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getMin', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getSize', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getRest', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getSortedIndex', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getSize', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'getValues', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getSortedIndex', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'grep', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'getValues', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'group', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'grep', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'intersect', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'group', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'invoke', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'intersect', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'isEmpty', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'invoke', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'lastIndexOf', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'isEmpty', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'map', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'lastIndexOf', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'pluck', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'map', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'reduce', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'pluck', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'reduceRight', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'reduce', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'reject', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'reduceRight', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'removeElement', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'reject', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'select', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'removeElement', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'shuffle', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'select', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'sort', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'shuffle', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
+
+    // /**
+    //  *
+    //  */
+    // def(me,'sort', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
     /**
      * @function {static} o2.CollectionHelper.some
@@ -1003,51 +1023,51 @@
      */
     alias(me, 'any', 'some');
 
-    /**
-     *
-     */
-    def(me,'tap', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'tap', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'toArray', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'toArray', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'touch', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'touch', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'union', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'union', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'unique', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'unique', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 
-    /**
-     *
-     */
-    def(me,'zip', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    // /**
+    //  *
+    //  */
+    // def(me,'zip', function() {
+    //     //TODO: implement me!
+    //     throw 'IMPLEMENT ME!';
+    // });
 }(this.o2, this));

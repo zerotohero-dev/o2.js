@@ -25,9 +25,21 @@
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.stringhelper.transform.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.domhelper.style.js"></script>
 
-<script type="text/javascript" charset="UTF-8" src="js/config/constants/element.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.validator.core.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.methodhelper.core.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.collectionhelper.core.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/element/element.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/user/user.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/api/api.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/key/service/servicekey.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/config/parameter/service/serviceparameter.js"></script>
 
 <script type="text/javascript" charset="UTF-8" src="js/presentation/controller/render/rendercontroller.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="js/delegation/callback/ajax/ajaxcallback.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/communication/proxy/ajax/ajaxproxy.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/communication/controller/ajax/ajaxcontroller.js"></script>
 
 <script type="text/javascript" charset="UTF-8" src="js/behavior/controller/page/pagecontroller.js"></script>
 
