@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 12:23:39.928408
+ *  lastModified: 2012-03-11 05:57:27.999144
  * -->
  */
 (function(app, o2) {
@@ -36,7 +36,7 @@
      *
      */
     me.document_click = function(evt) {
-        log('app.eventcallback.document_click');
+        log('app.EventCallback.document_click');
 
         var src = getTarget(evt);
 

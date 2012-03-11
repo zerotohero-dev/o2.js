@@ -7,7 +7,7 @@
      *  the terms of the MIT license.
      *  Please see the LICENSE file for details.
      *
-     *  lastModified: 2012-03-09 08:57:16.674016'
+     *  lastModified: 2012-03-11 05:11:21.119782
      * -->
      */
 ?>
@@ -32,8 +32,11 @@
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/element/element.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/user/user.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/api/api.js"></script>
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/template/template.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/key/service/servicekey.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/parameter/service/serviceparameter.js"></script>
+
+<script type="text/javascript" charset="UTF-8" src="js/log/logger.js"></script>
 
 <script type="text/javascript" charset="UTF-8" src="js/presentation/controller/render/rendercontroller.js"></script>
 

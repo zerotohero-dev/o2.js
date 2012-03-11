@@ -7,7 +7,7 @@
      *  the terms of the MIT license.
      *  Please see the LICENSE file for details.
      *
-     *  lastModified: 2012-03-03 11:48:37.770219
+     *  lastModified: 2012-03-11 05:22:08.338214
      * -->
      */
 
@@ -16,6 +16,10 @@
 
     class VCardManager {
         public static function getVCardHtml($userName) {
+
+            // to simulate network delay.
+            sleep(5);
+
             return file_get_contents(
                     $_SERVER['DOCUMENT_ROOT'
                 ].preg_replace_callback(

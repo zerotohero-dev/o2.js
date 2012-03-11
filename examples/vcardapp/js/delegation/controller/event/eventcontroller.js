@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-09 08:17:05.167453
+ *  lastModified: 2012-03-11 05:56:25.208537
  * -->
  */
 (function(app, o2, document) {
@@ -23,8 +23,13 @@
     /*
      * Aliases
      */
-    var eh             = o2.EventHandler;
-    var listen         = eh.addEventListener;
+    var eh     = o2.EventHandler;
+    var listen = eh.addEventListener;
+
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
 
     /*
      * Callbacks
@@ -35,6 +40,8 @@
      *
      */
     me.bindEventHandlers = function() {
+        log('app.EventController.bindEventHandlers');
+
         listen(document, kClick, document_click);
     };
 }(this.VCardApp, this.o2, this.document));

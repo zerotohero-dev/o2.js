@@ -13,11 +13,9 @@
 
     use o2js\vcardapp\config\constants\ServiceKey;
     use o2js\vcardapp\business\manager\VCardManager;
-
-    $user_name = $_GET[ServiceKey::USER_NAME];
 ?>
 <div id="VCardContainer">
 <?php
-    echo VCardManager::getVCardHtml($user_name);
+    echo VCardManager::getVCardHtml($_GET[ServiceKey::USER_NAME]);
 ?>
 </div>

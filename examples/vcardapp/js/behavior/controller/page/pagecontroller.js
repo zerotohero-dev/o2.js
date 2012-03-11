@@ -16,37 +16,63 @@
     var me = app.PageController = {};
 
     /*
+     * Loading...
+     */
+    var kProgress = app.config.constants.template.LOADING;
+
+    /*
      * Stubs for the Presentation Tier
      */
     var close    = app.RenderController.closeVCard;
     var showCard = app.RenderController.showVCard;
 
     /*
-     * Logger
-     */
-    var log = app.Logger.log;
-
-    /*
      * Stubs for the Communication Tier
      */
     var show = app.AjaxController.showVCard;
 
-
-    /**
-     *
+    /*
+     * Logger
      */
-    me.renderVCardUi = function(html) {
-        log('app.pagecontroller.renderVCardUi');
+    var log = app.Logger.log;
 
-        showCard(html);
+
+
+    /*
+     * Stubs for the Delegation Tier
+     */
+    var bindEventHandlers = function() {
+        app.EventController.bindEventHandlers();
     };
 
     /**
      *
      */
-    me.showVCard = function() {
-        log('app.pagecontroller.showVCard');
+    me.renderVCardUi = function(html) {
+        log('app.PageController.renderVCardUi');
 
+        showCard(html);
+    };
+
+    /*
+     *
+     */
+    var renderVCardUi = me.renderVCardUi;
+
+    /*
+     *
+     */
+    function showLoading() {
+        renderVCardUi(kProgress);
+    }
+
+    /**
+     *
+     */
+    me.showVCard = function() {
+        log('app.PageController.showVCard');
+
+        showLoading();
         show();
     };
 
@@ -54,8 +80,17 @@
      *
      */
     me.closeVCard = function() {
-        log('app.pagecontroller.closeVCard');
+        log('app.PageController.closeVCard');
 
         close();
     };
+
+    /**
+     *
+     */
+    me.init = function() {
+        log('app.PageController.init');
+
+        bindEventHandlers();
+    }
 }(this.VCardApp));

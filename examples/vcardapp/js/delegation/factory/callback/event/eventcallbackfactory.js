@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-09 19:23:55.732890
+ *  lastModified: 2012-03-11 05:55:27.065468
  * -->
  */
 (function(app) {
@@ -32,10 +32,17 @@
 
     var defaultCallback = {callback : null, args : null};
 
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
     /**
      *
      */
     me.create = function(src) {
+        log('app.EventCallbackFactory.create');
+
         if (!src) {
             return defaultCallback;
         }

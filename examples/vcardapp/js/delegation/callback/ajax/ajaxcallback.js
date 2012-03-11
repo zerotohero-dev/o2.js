@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 08:09:06.723901
+ *  lastModified: 2012-03-11 05:57:27.999144
  * -->
  */
 (function(app, window) {
@@ -34,7 +34,7 @@
      *
      */
     me.handleShowVCardRequestComplete = function(result) {
-        log('app.ajaxcallback.handleShowVCardRequestComplete');
+        log('app.AjaxCallback.handleShowVCardRequestComplete');
 
         if (!result) {
             return;
@@ -47,7 +47,7 @@
      *
      */
     me.handleShowVCardRequestError = function(status, statusText) {
-        log(['ajaxcallback:handleShowVCardRequestError status: "',
+        log(['app.AjaxCallback.handleShowVCardRequestError status: "',
             status ,'" statusText: "', statusText ,'".'
         ].join(kEmpty));
     };
@@ -56,7 +56,7 @@
      *
      */
     me.handleShowVCardRequestException = function(ex){
-        log(['ajaxcallback:handleShowVCardException message: "',
+        log(['app.Ajaxcallback.handleShowVCardException message: "',
             ex.message ,'" ex: "', ex.toString() ,'".'
         ].join(kEmpty));
     };

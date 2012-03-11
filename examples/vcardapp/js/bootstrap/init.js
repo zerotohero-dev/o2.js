@@ -10,7 +10,16 @@
 (function(app) {
     'use strict';
 
-    var controller = app.EventController;
+    var controller = app.PageController;
 
-    controller.bindEventHandlers();
+    /*
+     * Logger
+     */
+    var log = app.Logger.log;
+
+    log('bootstrapping...')
+
+    controller.init();
+
+    log('ready!');
 }(this.VCardApp));

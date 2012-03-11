@@ -38,7 +38,7 @@
 
 
     me.showVCard = function() {
-        log('app.ajaxcontroller.showVCard');
+        log('app.AjaxController.showVCard');
 
         var params = {};
 

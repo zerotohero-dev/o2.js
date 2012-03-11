@@ -7,7 +7,7 @@
  *  lastModified: 2012-03-10 12:26:18.432526
  * -->
  */
-(function(app) {
+(function(app, o2) {
     'use strict';
 
     /**
@@ -55,7 +55,7 @@
      *
      */
     me.sendShowVCardRequrest = function(parameters) {
-        log('app.ajaxproxy.sendShowVCardRequrest');
+        log('app.AjaxProxy.sendShowVCardRequrest');
 
         var params = {};
 
@@ -67,6 +67,5 @@
             onerror     : handleShowVCardRequestError,
             onexception : handleShowVCardRequestException
         });
-
     };
-}(this.VCardApp));
+}(this.VCardApp, this.o2));

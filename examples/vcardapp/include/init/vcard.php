@@ -14,7 +14,13 @@
     use \o2js\vcardapp\state\State;
     use \o2js\vcardapp\config\constants\PageTitle;
     use \o2js\vcardapp\config\constants\PageEnum;
+    use \o2js\vcardapp\config\constants\RegExp;
+    use \o2js\vcardapp\config\constants\ServiceKey;
 
-    State::$currentPageTitle = PageTitle::VCARD;
+    State::$currentPageTitle = preg_replace(
+        RegExp::TEMPLATE,
+        $_GET[ServiceKey::USER_NAME],
+        PageTitle::VCARD
+    );
     State::$currentPageEnum  = PageEnum::VCARD;
 ?>
