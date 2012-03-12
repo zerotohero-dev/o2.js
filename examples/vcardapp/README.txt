@@ -8,7 +8,7 @@ I will be pushing updates to this folder as I continue to write the series.
 
 This demo project is assumed to be run under
 
-	http://{siteRoot}/o2.js/examples/vcardapp.
+	http://localhost/o2.js/examples/vcardapp
 
 Testing it in a different folder may cause problems.
 
@@ -16,5 +16,3 @@ The PHP version the application uses is 5.3.6.
 
 Cheers,
 Volkan Özçelik
-
-
