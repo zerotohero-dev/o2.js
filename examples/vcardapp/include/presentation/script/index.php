@@ -7,7 +7,7 @@
      *  the terms of the MIT license.
      *  Please see the LICENSE file for details.
      *
-     *  lastModified: 2012-03-11 05:11:21.119782
+     *  lastModified: 2012-03-12 07:55:56.758363
      * -->
      */
 ?>
@@ -29,6 +29,7 @@
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.methodhelper.core.js"></script>
 <script type="text/javascript" charset="UTF-8" src="../../o2.js/o2.collectionhelper.core.js"></script>
 
+<script type="text/javascript" charset="UTF-8" src="js/config/constants/main/main.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/element/element.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/user/user.js"></script>
 <script type="text/javascript" charset="UTF-8" src="js/config/constants/api/api.js"></script>

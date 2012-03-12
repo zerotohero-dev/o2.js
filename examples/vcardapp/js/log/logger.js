@@ -12,7 +12,7 @@
 
     var me = app.Logger = app.Logger || {};
 
-    var isProduction = false;
+    var isProduction = app.config.constants.IS_PRODUCTION;
 
     if (!isProduction) {
 

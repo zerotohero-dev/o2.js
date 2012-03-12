@@ -36,8 +36,6 @@
      */
     var log = app.Logger.log;
 
-
-
     /*
      * Stubs for the Delegation Tier
      */

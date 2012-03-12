@@ -7,7 +7,7 @@
  *  lastModified: 2012-03-11 05:57:27.999144
  * -->
  */
-(function(app, window) {
+(function(app) {
     'use strict';
 
     var me = app.AjaxCallback = {};
@@ -17,7 +17,7 @@
      */
 
     function renderVCardUi(result) {
-        app.PageController.renderVCardUi(result)
+        app.PageController.renderVCardUi(result);
     }
 
     /*
@@ -60,4 +60,4 @@
             ex.message ,'" ex: "', ex.toString() ,'".'
         ].join(kEmpty));
     };
-}(this.VCardApp, this));
+}(this.VCardApp));

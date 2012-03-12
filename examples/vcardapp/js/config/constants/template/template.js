@@ -20,6 +20,7 @@
      *
      */
     acc.template = {
-        LOADING : '<img src="images/progress.gif" width="110" height="64" alt="progress indicator" title="loading..." />'
+        LOADING         : '<img src="images/progress.gif" width="110" height="64" alt="progress indicator" title="loading..." />',
+        TEMPORARY_ERROR : '<p>A temporary error has occured. Please try again later.</p>'
     };
 }(this.VCardApp));
