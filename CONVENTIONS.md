@@ -1717,6 +1717,39 @@ relation should be **explicitly indicated**:
     var kMaxItems = 32;
     var kHighWaterRank = (3 * kMaxItems) / 4; //instead of 24.
 
+### Use Event Constants
+
+
+Related to the above item, instead of using string literals for registering
+events like
+
+    listen(document, 'click', function(evt)) {
+        ...
+    });
+
+prefer to use a event constant as follows:
+
+    var kClick = 'click';
+
+    ... other initialization ...
+
+    listen(document, kClick, function(evt) {
+
+    });
+
+**Event constants** provide an easy way to refer to specific event types.
+Using a constant instead of the String value helps us identify typographical
+errors more quickly. If we misspell a constant name in our code, the
+**JavaScript **parser will catch the mistake.
+
+On the other hand, if we misspell the event String as in
+`listen(document, ‘click1‘, function(evt) {`, the event handler will be
+registered for a type of event that will never be dispatched (*i.e. "click1").
+And we’ll spend hours of your development time, trying to debug what went wrong.
+
+In addition to that, assigning commonly-used strings to constants will help in
+**minification** and **obfuscation** of our **JavaScript** code.
+
 ### Decouple Objects and Minimize Variable Scope
 
 Objects and methods should have as little information about each other
