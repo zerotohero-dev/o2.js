@@ -11,7 +11,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 19:26:22.276620
+ *  lastModified: 2012-03-16 01:05:13.172677
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
