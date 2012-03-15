@@ -713,6 +713,96 @@
            elementType : "function"
        } ,         
        {
+           localName : "getChildrenByAttributeUntil",
+           fullName : "o2.DomHelper.getChildrenByAttributeUntil",
+           summary : "static function  getChildrenByAttributeUntil(Object elm, String attr, String value, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenByAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenByClass",
+           fullName : "o2.DomHelper.getChildrenByClass",
+           summary : "static function  getChildrenByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenByClassUntil",
+           fullName : "o2.DomHelper.getChildrenByClassUntil",
+           summary : "static function  getChildrenByClassUntil(Object elm, String className, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenByClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenUntil",
+           fullName : "o2.DomHelper.getChildrenUntil",
+           summary : "static function  getChildrenUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithAttribute",
+           fullName : "o2.DomHelper.getChildrenWithAttribute",
+           summary : "static function  getChildrenWithAttribute(String attribute)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithAttributeUntil",
+           fullName : "o2.DomHelper.getChildrenWithAttributeUntil",
+           summary : "static function  getChildrenWithAttributeUntil(String attribute, Object until)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithClass",
+           fullName : "o2.DomHelper.getChildrenWithClass",
+           summary : "static function  getChildrenWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithClassUntil",
+           fullName : "o2.DomHelper.getChildrenWithClassUntil",
+           summary : "static function  getChildrenWithClassUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithId",
+           fullName : "o2.DomHelper.getChildrenWithId",
+           summary : "static function  getChildrenWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getChildrenWithIdUntil",
+           fullName : "o2.DomHelper.getChildrenWithIdUntil",
+           summary : "static function  getChildrenWithIdUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getChildrenWithIdUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getCss",
            fullName : "o2.DomHelper.getCss",
            summary : "static function  getCss()",
@@ -758,6 +848,168 @@
            elementType : "function"
        } ,         
        {
+           localName : "getElements",
+           fullName : "o2.DomHelper.getElements",
+           summary : "static function  getElements(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getElements",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getElementsByAttribute",
+           fullName : "o2.DomHelper.getElementsByAttribute",
+           summary : "static function  getElementsByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getElementsByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getElementsByClass",
+           fullName : "o2.DomHelper.getElementsByClass",
+           summary : "static function  getElementsByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getElementsByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getElementsWithAttribute",
+           fullName : "o2.DomHelper.getElementsWithAttribute",
+           summary : "static function  getElementsWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getElementsWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getElementsWithClass",
+           fullName : "o2.DomHelper.getElementsWithClass",
+           summary : "static function  getElementsWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getElementsWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getElementsWithId",
+           fullName : "o2.DomHelper.getElementsWithId",
+           summary : "static function  getElementsWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getElementsWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirst",
+           fullName : "o2.DomHelper.getFirst",
+           summary : "static function  getFirst(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirst",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstByAttribute",
+           fullName : "o2.DomHelper.getFirstByAttribute",
+           summary : "static function  getFirstByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstByClass",
+           fullName : "o2.DomHelper.getFirstByClass",
+           summary : "static function  getFirstByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChild",
+           fullName : "o2.DomHelper.getFirstChild",
+           summary : "static function  getFirstChild(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChild",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChildByAttribute",
+           fullName : "o2.DomHelper.getFirstChildByAttribute",
+           summary : "static function  getFirstChildByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChildByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChildByClass",
+           fullName : "o2.DomHelper.getFirstChildByClass",
+           summary : "static function  getFirstChildByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChildByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChildWithAttribute",
+           fullName : "o2.DomHelper.getFirstChildWithAttribute",
+           summary : "static function  getFirstChildWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChildWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChildWithClass",
+           fullName : "o2.DomHelper.getFirstChildWithClass",
+           summary : "static function  getFirstChildWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChildWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstChildWithId",
+           fullName : "o2.DomHelper.getFirstChildWithId",
+           summary : "static function  getFirstChildWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstChildWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstWithAttribute",
+           fullName : "o2.DomHelper.getFirstWithAttribute",
+           summary : "static function  getFirstWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstWithClass",
+           fullName : "o2.DomHelper.getFirstWithClass",
+           summary : "static function  getFirstWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstWithId",
+           fullName : "o2.DomHelper.getFirstWithId",
+           summary : "static function  getFirstWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getFirstWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getHeight",
            fullName : "o2.DomHelper.getHeight",
            summary : "static function  getHeight(Object obj)",
@@ -771,6 +1023,546 @@
            fullName : "o2.DomHelper.getHtml",
            summary : "static function  getHtml(Object elm)",
            ref : "logical/o2/DomHelper.html#___getHtml",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLast",
+           fullName : "o2.DomHelper.getLast",
+           summary : "static function  getLast(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getLast",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastByAttribute",
+           fullName : "o2.DomHelper.getLastByAttribute",
+           summary : "static function  getLastByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastByClass",
+           fullName : "o2.DomHelper.getLastByClass",
+           summary : "static function  getLastByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChild",
+           fullName : "o2.DomHelper.getLastChild",
+           summary : "static function  getLastChild(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChild",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildByAttribute",
+           fullName : "o2.DomHelper.getLastChildByAttribute",
+           summary : "static function  getLastChildByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChildByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildByClass",
+           fullName : "o2.DomHelper.getLastChildByClass",
+           summary : "static function  getLastChildByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChildByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildWithAttribute",
+           fullName : "o2.DomHelper.getLastChildWithAttribute",
+           summary : "static function  getLastChildWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChildWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildWithClass",
+           fullName : "o2.DomHelper.getLastChildWithClass",
+           summary : "static function  getLastChildWithClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChildWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildWithId",
+           fullName : "o2.DomHelper.getLastChildWithId",
+           summary : "static function  getLastChildWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastChildWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastWithAttribute",
+           fullName : "o2.DomHelper.getLastWithAttribute",
+           summary : "static function  getLastWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastWithClass",
+           fullName : "o2.DomHelper.getLastWithClass",
+           summary : "static function  getLastWithClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastWithId",
+           fullName : "o2.DomHelper.getLastWithId",
+           summary : "static function  getLastWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getLastWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNext",
+           fullName : "o2.DomHelper.getNext",
+           summary : "static function  getNext(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNext",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAll",
+           fullName : "o2.DomHelper.getNextAll",
+           summary : "static function  getNextAll(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAll",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllByAttribute",
+           fullName : "o2.DomHelper.getNextAllByAttribute",
+           summary : "static function  getNextAllByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllByAttributeUntil",
+           fullName : "o2.DomHelper.getNextAllByAttributeUntil",
+           summary : "static function  getNextAllByAttributeUntil(Object elm, String attribute, String value, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllByAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllByClass",
+           fullName : "o2.DomHelper.getNextAllByClass",
+           summary : "static function  getNextAllByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllByClassUntil",
+           fullName : "o2.DomHelper.getNextAllByClassUntil",
+           summary : "static function  getNextAllByClassUntil(Object elm, String className, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllByClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllUntil",
+           fullName : "o2.DomHelper.getNextAllUntil",
+           summary : "static function  getNextAllUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithAttribute",
+           fullName : "o2.DomHelper.getNextAllWithAttribute",
+           summary : "static function  getNextAllWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithAttributeUntil",
+           fullName : "o2.DomHelper.getNextAllWithAttributeUntil",
+           summary : "static function  getNextAllWithAttributeUntil(Object elm, String attribute, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithClass",
+           fullName : "o2.DomHelper.getNextAllWithClass",
+           summary : "static function  getNextAllWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithClassUntil",
+           fullName : "o2.DomHelper.getNextAllWithClassUntil",
+           summary : "static function  getNextAllWithClassUntil(Object elm, Oject until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithId",
+           fullName : "o2.DomHelper.getNextAllWithId",
+           summary : "static function  getNextAllWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextAllWithIdUntil",
+           fullName : "o2.DomHelper.getNextAllWithIdUntil",
+           summary : "static function  getNextAllWithIdUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextAllWithIdUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextByAttribute",
+           fullName : "o2.DomHelper.getNextByAttribute",
+           summary : "static function  getNextByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextByClass",
+           fullName : "o2.DomHelper.getNextByClass",
+           summary : "static function  getNextByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextWithAttribute",
+           fullName : "o2.DomHelper.getNextWithAttribute",
+           summary : "static function  getNextWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextWithClass",
+           fullName : "o2.DomHelper.getNextWithClass",
+           summary : "static function  getNextWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNextWithId",
+           fullName : "o2.DomHelper.getNextWithId",
+           summary : "static function  getNextWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getNextWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNth",
+           fullName : "o2.DomHelper.getNth",
+           summary : "static function  getNth(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNth",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthByAttribute",
+           fullName : "o2.DomHelper.getNthByAttribute",
+           summary : "static function  getNthByAttribute(Object elm, String value, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthByClass",
+           fullName : "o2.DomHelper.getNthByClass",
+           summary : "static function  getNthByClass(Object elm, String className, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChild",
+           fullName : "o2.DomHelper.getNthChild",
+           summary : "static function  getNthChild(Integer n, Stringg name)",
+           ref : "logical/o2/DomHelper.html#___getNthChild",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChildByAttribute",
+           fullName : "o2.DomHelper.getNthChildByAttribute",
+           summary : "static function  getNthChildByAttribute(Object elm, String attribute, String value, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthChildByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChildByClass",
+           fullName : "o2.DomHelper.getNthChildByClass",
+           summary : "static function  getNthChildByClass(Object elm, String className, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthChildByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChildWithAttribute",
+           fullName : "o2.DomHelper.getNthChildWithAttribute",
+           summary : "static function  getNthChildWithAttribute(Object elm, String attribute, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthChildWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChildWithClass",
+           fullName : "o2.DomHelper.getNthChildWithClass",
+           summary : "static function  getNthChildWithClass(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthChildWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthChildWithId",
+           fullName : "o2.DomHelper.getNthChildWithId",
+           summary : "static function  getNthChildWithId(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthChildWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNext",
+           fullName : "o2.DomHelper.getNthNext",
+           summary : "static function  getNthNext(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNext",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNextByAttribute",
+           fullName : "o2.DomHelper.getNthNextByAttribute",
+           summary : "static function  getNthNextByAttribute(Object elm, String attribute, String value, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNextByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNextByClass",
+           fullName : "o2.DomHelper.getNthNextByClass",
+           summary : "static function  getNthNextByClass(Object elm, String className, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNextByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNextWithAttribute",
+           fullName : "o2.DomHelper.getNthNextWithAttribute",
+           summary : "static function  getNthNextWithAttribute(Object elm, String attribute, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNextWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNextWithClass",
+           fullName : "o2.DomHelper.getNthNextWithClass",
+           summary : "static function  getNthNextWithClass(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNextWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthNextWithId",
+           fullName : "o2.DomHelper.getNthNextWithId",
+           summary : "static function  getNthNextWithId(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthNextWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParent",
+           fullName : "o2.DomHelper.getNthParent",
+           summary : "static function  getNthParent(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParent",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParentByAttribute",
+           fullName : "o2.DomHelper.getNthParentByAttribute",
+           summary : "static function  getNthParentByAttribute(Object elm, String attribute, String value, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParentByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParentByClass",
+           fullName : "o2.DomHelper.getNthParentByClass",
+           summary : "static function  getNthParentByClass(Object elm, String className, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParentByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParentWithAttribute",
+           fullName : "o2.DomHelper.getNthParentWithAttribute",
+           summary : "static function  getNthParentWithAttribute(Object elm, String attribute, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParentWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParentWithClass",
+           fullName : "o2.DomHelper.getNthParentWithClass",
+           summary : "static function  getNthParentWithClass(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParentWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthParentWithId",
+           fullName : "o2.DomHelper.getNthParentWithId",
+           summary : "static function  getNthParentWithId(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthParentWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrev",
+           fullName : "o2.DomHelper.getNthPrev",
+           summary : "static function  getNthPrev(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrev",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrevByAttribute",
+           fullName : "o2.DomHelper.getNthPrevByAttribute",
+           summary : "static function  getNthPrevByAttribute(Object elm, String attribute, String value, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrevByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrevByClass",
+           fullName : "o2.DomHelper.getNthPrevByClass",
+           summary : "static function  getNthPrevByClass(Object elm, String className, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrevByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrevWithAttribute",
+           fullName : "o2.DomHelper.getNthPrevWithAttribute",
+           summary : "static function  getNthPrevWithAttribute(Object elm, String attribute, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrevWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrevWithClass",
+           fullName : "o2.DomHelper.getNthPrevWithClass",
+           summary : "static function  getNthPrevWithClass(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrevWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthPrevWithId",
+           fullName : "o2.DomHelper.getNthPrevWithId",
+           summary : "static function  getNthPrevWithId(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthPrevWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthWithAttribute",
+           fullName : "o2.DomHelper.getNthWithAttribute",
+           summary : "static function  getNthWithAttribute(Object elm, String attribute, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthWithClass",
+           fullName : "o2.DomHelper.getNthWithClass",
+           summary : "static function  getNthWithClass(Object elm, Integer n, String name)",
+           ref : "logical/o2/DomHelper.html#___getNthWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getNthWithId",
+           fullName : "o2.DomHelper.getNthWithId",
+           summary : "static function  getNthWithId(Integer n, Stringg name)",
+           ref : "logical/o2/DomHelper.html#___getNthWithId",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -807,6 +1599,438 @@
            fullName : "o2.DomHelper.getOffsetTop",
            summary : "static function  getOffsetTop()",
            ref : "logical/o2/DomHelper.html#___getOffsetTop",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParent",
+           fullName : "o2.DomHelper.getParent",
+           summary : "static function  getParent(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParent",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentByAttribute",
+           fullName : "o2.DomHelper.getParentByAttribute",
+           summary : "static function  getParentByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentByClass",
+           fullName : "o2.DomHelper.getParentByClass",
+           summary : "static function  getParentByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentWithAttribute",
+           fullName : "o2.DomHelper.getParentWithAttribute",
+           summary : "static function  getParentWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentWithClass",
+           fullName : "o2.DomHelper.getParentWithClass",
+           summary : "static function  getParentWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentWithId",
+           fullName : "o2.DomHelper.getParentWithId",
+           summary : "static function  getParentWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParents",
+           fullName : "o2.DomHelper.getParents",
+           summary : "static function  getParents(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParents",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsByAttribute",
+           fullName : "o2.DomHelper.getParentsByAttribute",
+           summary : "static function  getParentsByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsByAttributeUntil",
+           fullName : "o2.DomHelper.getParentsByAttributeUntil",
+           summary : "static function  getParentsByAttributeUntil(Object elm, String attribute, String value, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsByAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsByClass",
+           fullName : "o2.DomHelper.getParentsByClass",
+           summary : "static function  getParentsByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsByClassUntil",
+           fullName : "o2.DomHelper.getParentsByClassUntil",
+           summary : "static function  getParentsByClassUntil(Object elm, String className, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsByClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsUntil",
+           fullName : "o2.DomHelper.getParentsUntil",
+           summary : "static function  getParentsUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithAttribute",
+           fullName : "o2.DomHelper.getParentsWithAttribute",
+           summary : "static function  getParentsWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithAttributeUntil",
+           fullName : "o2.DomHelper.getParentsWithAttributeUntil",
+           summary : "static function  getParentsWithAttributeUntil(Object elm, String attribute, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithClass",
+           fullName : "o2.DomHelper.getParentsWithClass",
+           summary : "static function  getParentsWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithClassUntil",
+           fullName : "o2.DomHelper.getParentsWithClassUntil",
+           summary : "static function  getParentsWithClassUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithId",
+           fullName : "o2.DomHelper.getParentsWithId",
+           summary : "static function  getParentsWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getParentsWithIdUntil",
+           fullName : "o2.DomHelper.getParentsWithIdUntil",
+           summary : "static function  getParentsWithIdUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getParentsWithIdUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrev",
+           fullName : "o2.DomHelper.getPrev",
+           summary : "static function  getPrev(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrev",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAll",
+           fullName : "o2.DomHelper.getPrevAll",
+           summary : "static function  getPrevAll(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAll",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllByAttribute",
+           fullName : "o2.DomHelper.getPrevAllByAttribute",
+           summary : "static function  getPrevAllByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllByAttributeUntil",
+           fullName : "o2.DomHelper.getPrevAllByAttributeUntil",
+           summary : "static function  getPrevAllByAttributeUntil(Object elm, String attribute, String value, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllByAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllByClass",
+           fullName : "o2.DomHelper.getPrevAllByClass",
+           summary : "static function  getPrevAllByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllByClassUntil",
+           fullName : "o2.DomHelper.getPrevAllByClassUntil",
+           summary : "static function  getPrevAllByClassUntil(Object elm, String className, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllByClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllUntil",
+           fullName : "o2.DomHelper.getPrevAllUntil",
+           summary : "static function  getPrevAllUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithAttribute",
+           fullName : "o2.DomHelper.getPrevAllWithAttribute",
+           summary : "static function  getPrevAllWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithAttributeUntil",
+           fullName : "o2.DomHelper.getPrevAllWithAttributeUntil",
+           summary : "static function  getPrevAllWithAttributeUntil(Object elm, String attribute, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithClass",
+           fullName : "o2.DomHelper.getPrevAllWithClass",
+           summary : "static function  getPrevAllWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithClassUntil",
+           fullName : "o2.DomHelper.getPrevAllWithClassUntil",
+           summary : "static function  getPrevAllWithClassUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithId",
+           fullName : "o2.DomHelper.getPrevAllWithId",
+           summary : "static function  getPrevAllWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevAllWithIdUntil",
+           fullName : "o2.DomHelper.getPrevAllWithIdUntil",
+           summary : "static function  getPrevAllWithIdUntil(Object elm, Object until-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevAllWithIdUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevByAttribute",
+           fullName : "o2.DomHelper.getPrevByAttribute",
+           summary : "static function  getPrevByAttribute(Object elm, String attribute, String value-, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevByClass",
+           fullName : "o2.DomHelper.getPrevByClass",
+           summary : "static function  getPrevByClass(Object elm, String className, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevWithAttribute",
+           fullName : "o2.DomHelper.getPrevWithAttribute",
+           summary : "static function  getPrevWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevWithClass",
+           fullName : "o2.DomHelper.getPrevWithClass",
+           summary : "static function  getPrevWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getPrevWithId",
+           fullName : "o2.DomHelper.getPrevWithId",
+           summary : "static function  getPrevWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getPrevWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblings",
+           fullName : "o2.DomHelper.getSiblings",
+           summary : "static function  getSiblings(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblings",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsByAttribute",
+           fullName : "o2.DomHelper.getSiblingsByAttribute",
+           summary : "static function  getSiblingsByAttribute(Object elm, String attribute, String value, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsByAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsByAttributeUntil",
+           fullName : "o2.DomHelper.getSiblingsByAttributeUntil",
+           summary : "static function  getSiblingsByAttributeUntil(Object elm, String attribute, String value, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsByAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsByClass",
+           fullName : "o2.DomHelper.getSiblingsByClass",
+           summary : "static function  getSiblingsByClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsByClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsByClassUntil",
+           fullName : "o2.DomHelper.getSiblingsByClassUntil",
+           summary : "static function  getSiblingsByClassUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsByClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsUntil",
+           fullName : "o2.DomHelper.getSiblingsUntil",
+           summary : "static function  getSiblingsUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithAttribute",
+           fullName : "o2.DomHelper.getSiblingsWithAttribute",
+           summary : "static function  getSiblingsWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithAttributeUntil",
+           fullName : "o2.DomHelper.getSiblingsWithAttributeUntil",
+           summary : "static function  getSiblingsWithAttributeUntil(Object elm, String attribute, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithAttributeUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithClass",
+           fullName : "o2.DomHelper.getSiblingsWithClass",
+           summary : "static function  getSiblingsWithClass(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithClassUntil",
+           fullName : "o2.DomHelper.getSiblingsWithClassUntil",
+           summary : "static function  getSiblingsWithClassUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithClassUntil",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithId",
+           fullName : "o2.DomHelper.getSiblingsWithId",
+           summary : "static function  getSiblingsWithId(Object elm, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithId",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSiblingsWithIdUntil",
+           fullName : "o2.DomHelper.getSiblingsWithIdUntil",
+           summary : "static function  getSiblingsWithIdUntil(Object elm, Object until, String name)",
+           ref : "logical/o2/DomHelper.html#___getSiblingsWithIdUntil",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -929,6 +2153,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "isChild",
+           fullName : "o2.DomHelper.isChild",
+           summary : "static function  isChild(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isChild",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "isDocument",
            fullName : "o2.DomHelper.isDocument",
            summary : "static function  isDocument(DOMNode obj)",
@@ -942,6 +2175,51 @@
            fullName : "o2.DomHelper.isElement",
            summary : "static function  isElement(DOMNode obj)",
            ref : "logical/o2/DomHelper.html#___isElement",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isNext",
+           fullName : "o2.DomHelper.isNext",
+           summary : "static function  isNext(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isNext",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isParent",
+           fullName : "o2.DomHelper.isParent",
+           summary : "static function  isParent(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isParent",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isParentOrSelf",
+           fullName : "o2.DomHelper.isParentOrSelf",
+           summary : "static function  isParentOrSelf(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isParentOrSelf",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isPrev",
+           fullName : "o2.DomHelper.isPrev",
+           summary : "static function  isPrev(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isPrev",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isSibling",
+           fullName : "o2.DomHelper.isSibling",
+           summary : "static function  isSibling(Object elm, Object ref)",
+           ref : "logical/o2/DomHelper.html#___isSibling",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
