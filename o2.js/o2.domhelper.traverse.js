@@ -79,7 +79,15 @@
      * Checks whether two nodes are equal to one another.
      */
     function isNodeEquals(node, until) {
-        return node === until;
+        if (!node) {
+            return false;
+        }
+
+        if (!until) {
+            return false;
+        }
+
+        return $(node) === $(until);
     }
 
     /*
@@ -198,8 +206,9 @@
     }
 
     /*
-     *
+     * A multipurpose method to get next/previous sibling(s).
      */
+    //TODO: this name is misleading, rename
     function getNextSiblings(elm,
                 filterDelegate, filterArgs,
                 breakDelegate, breakArgs,
@@ -320,8 +329,9 @@
     }
 
     /*
-     *
+     * A multifunctional method to get next/previous parent(s).
      */
+    //TODO: this name is misleading, rename.
     function getParents(elm,
                 filterDelegate, filterArgs,
                 breakDelegate, breakArgs,
@@ -424,7 +434,7 @@
     }
 
     /*
-     *
+     * Gets child nodes of the elm.
      */
     function getChildNodes(elm, name) {
         var items = elm ? elm.childNodes : [];
@@ -453,7 +463,7 @@
     }
 
     /*
-     *
+     * Executes the filter.
      */
     function execFilter(elm, getter, getterParams,
                 checker, checkerParams, stopper, stopperParams, itemsCountCap,
@@ -530,6 +540,19 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenByAttributeUntil
+     *
+     * <p>Gets the children of the element until a given node (exclusive).</p>
+     *
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attr - attribute name.
+     * @param {String} value - attribute value.
+     * @param {Object} until - The node to seek until, or its
+     * <code>String</code> id.
+     * @param {String} name - (Optional, defaults to <code>undefined</code>) If
+     * given only items with that node name (i.e. tag name) are selected.
+     *
+     * @return and <code>Array</code> of selected nodes.
      */
     def(me, 'getChildrenByAttributeUntil', function(elm, attr, value, until,
                 name) {
@@ -547,6 +570,12 @@
 
         /**
          * @function {static} o2.DomHelper.getChildrenByClass
+         *
+         * <p>Gets the children of the element having a specific class.</p>
+         *
+         * @param {Object} elm -
+         * @param {String} className -
+         * @param {String} name -
          */
         def(me, 'getChildrenByClass', function(elm, className, name) {
             var el = $(elm);
@@ -590,6 +619,13 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenByClassUntil
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenByClassUntil', function(elm, className, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -604,6 +640,12 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -617,6 +659,12 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithAttribute
+     *
+     * @parma {Object} elm -
+     * @param {String} attribute -
+     * @parma {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -631,6 +679,13 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithAttributeUntil
+     *
+     * @parma {Object} elm -
+     * @param {String} attribute -
+     * @param {Object} until -
+     * @parma {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -646,6 +701,11 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithClass', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
@@ -658,6 +718,12 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithClassUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -672,6 +738,11 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithId', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
@@ -684,6 +755,12 @@
 
     /**
      * @function {static} o2.DomHelper.getChildrenWithIdUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getChildrenWithIdUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -697,6 +774,11 @@
 
     /**
      * @function {static} o2.DomHelper.getElements
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
      def(me, 'getElements', function(elm, name) {
         var target = $(elm);
@@ -715,6 +797,13 @@
 
     /**
      * @function {static} o2.DomHelper.getElementsByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
         return execFilter(elm, getElements, [name],
@@ -723,6 +812,12 @@
 
     /**
      * @function {static} o2.DomHelper.getElementsByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getElementsByClass', function(elm, className, name) {
         return execFilter(elm, getElements, [name], hasClassName, [className]);
@@ -730,6 +825,12 @@
 
     /**
      * @function {static} o2.DomHelper.getElementsWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getElementsWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getElements, [name],
@@ -738,6 +839,11 @@
 
     /**
      * @function {static} o2.DomHelper.getElementsWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getElementsWithClass', function(elm, name) {
         return execFilter(elm, getElements, [name],
@@ -746,14 +852,23 @@
 
     /**
      * @function {static} o2.DomHelper.getElementsWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getElementsWithId', function(elm, name) {
         return execFilter(elm, getElements, [name], hasIdAttribute, []);
     });
 
-
     /**
      * @function {static} o2.DomHelper.getSiblings
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
@@ -766,6 +881,13 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsByAttribute', function(elm, attribute, value, name) {
         return !elm ? [] : getChildrenByAttribute(elm.parentNode,
@@ -774,6 +896,14 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsByAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsByAttributeUntil', function(elm, attribute, value,
             until, name) {
@@ -783,6 +913,11 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsByClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsByClass', function(elm, name) {
         return !elm ? [] : getChildrenByClass(elm.parentNode, name);
@@ -790,6 +925,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsByClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsByClassUntil', function(elm, until, name) {
         return !elm ? [] : getChildrenByClassUntil(elm.parentNode, until,
@@ -798,6 +939,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenUntil(elm.parentNode, until, name);
@@ -805,6 +952,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithAttribute',  function(elm, attribute, name) {
         return !elm ? [] : getChildrenWithAttribute(elm.parentNode,
@@ -813,6 +966,13 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
                 name) {
@@ -822,6 +982,11 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithClass',  function(elm, name) {
         return !elm ? [] : getChildrenWithClass(elm.parentNode, name);
@@ -829,6 +994,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithClassUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithClassUntil(elm.parentNode, until,
@@ -837,6 +1008,11 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithId',  function(elm, name) {
         return !elm ? [] : getChildrenWithId(elm.parentNode, name);
@@ -844,6 +1020,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithIdUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getSiblingsWithIdUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithIdUntil(elm.parentNode, until, name);
@@ -851,6 +1033,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirst
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirst', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
@@ -863,6 +1050,13 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -876,6 +1070,12 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -889,6 +1089,12 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -902,6 +1108,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -915,6 +1126,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -928,6 +1144,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChild
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChild', function(elm, name) {
         if (!elm) {
@@ -939,6 +1160,13 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChildByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChildByAttribute', function(elm, attribute, value, name) {
         if (!elm) {
@@ -950,6 +1178,12 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChildByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChildByClass', function(elm, className, name) {
         if (!elm) {
@@ -961,6 +1195,12 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChildWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChildWithAttribute', function(elm, attribute, name) {
         if (!elm) {
@@ -972,6 +1212,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChildWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChildWithClass', function(elm, name) {
         if (!elm) {
@@ -983,6 +1228,11 @@
 
     /**
      * @function {static} o2.DomHelper.getFirstChildWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getFirstChildWithId', function(elm, name) {
         if (!elm) {
@@ -994,6 +1244,11 @@
 
     /**
      * @function {static} o2.DomHelper.getLast
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLast', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name,
@@ -1007,6 +1262,13 @@
 
     /**
      * @function {static} o2.DomHelper.getLastByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1020,6 +1282,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1033,6 +1301,11 @@
 
     /**
      * @function {static} o2.DomHelper.getLastWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1046,6 +1319,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1059,6 +1338,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastWithClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1072,6 +1357,11 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChild
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChild', function(elm, name) {
         if (!elm) {
@@ -1083,6 +1373,13 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChildByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChildByAttribute', function(elm, attribute, value, name) {
         if (!elm) {
@@ -1094,6 +1391,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChildByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChildByClass', function(elm, className, name) {
         if (!elm) {
@@ -1105,6 +1408,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChildWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChildWithAttribute', function(elm, attribute, name) {
         if (!elm) {
@@ -1116,6 +1425,12 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChildWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChildWithClass', function(elm, className, name) {
         if (!elm) {
@@ -1127,6 +1442,11 @@
 
     /**
      * @function {static} o2.DomHelper.getLastChildWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getLastChildWithId', function(elm, name) {
         if (!elm) {
@@ -1138,6 +1458,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNext
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNext', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0);
@@ -1145,6 +1470,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNextByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1153,6 +1485,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1161,6 +1499,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1169,6 +1513,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNextWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextWithClass', function(elm, name) {
         return getNextSiblings(elm,hasClassAttribute, [],
@@ -1177,6 +1526,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNextWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1185,6 +1539,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAll
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name);
@@ -1197,6 +1556,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1205,6 +1571,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllByAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllByAttributeUntil', function(elm, attribute, value, until,
                 name) {
@@ -1214,6 +1588,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className], null, [], name);
@@ -1221,6 +1601,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllByClassUntil
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllByClassUntil', function(elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1229,6 +1616,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllUntil', function(elm, until, name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until], name);
@@ -1236,6 +1629,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [], name);
@@ -1243,6 +1642,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -1252,6 +1658,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name =
+     *
+     * @return
      */
     def(me, 'getNextAllWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [], name);
@@ -1259,6 +1670,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Oject} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllWithClassUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1267,6 +1684,11 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [], null, [], name);
@@ -1274,6 +1696,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextAllWithIdUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNextAllWithIdUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [], isNodeEquals, [until],
@@ -1282,6 +1710,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNth
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
@@ -1291,6 +1725,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthByAttribute
+     *
+     * @param {Object} elm -
+     * @laram {String} attribute -
+     * @param {String} value -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1304,6 +1746,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1317,6 +1766,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1330,6 +1786,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthWithClass
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [],
@@ -1343,6 +1805,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthWithId
+     *
+     * @parma {Object} elm -
+     * @param {Integer} n -
+     * @param {Stringg} name -
+     *
+     * @return
      */
     def(me, 'getNthWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1356,6 +1824,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChild
+     *
+     * @parma {Object} elm -
+     * @param {Integer} n -
+     * @param {Stringg} name -
+     *
+     * @return
      */
     def(me, 'getNthChild', function(elm, n, name) {
         if (!elm) {
@@ -1367,6 +1841,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChildByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthChildByAttribute', function(elm, attribute, value, n, name) {
         if (!elm) {
@@ -1378,6 +1860,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChildByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthChildByClass', function(elm, className, n, name) {
         if (!elm) {
@@ -1389,6 +1878,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChildWithAttribute
+     *
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthChildWithAttribute', function(elm, attribute, n, name) {
         if (!elm) {
@@ -1400,6 +1897,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChildWithClass
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthChildWithClass', function(elm, n, name) {
         if (!elm) {
@@ -1411,6 +1914,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthChildWithId
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthChildWithId', function(elm, n, name) {
         if (!elm) {
@@ -1422,6 +1931,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNext
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNext', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n);
@@ -1429,6 +1944,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNextByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1437,6 +1960,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNextByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1445,6 +1975,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNextWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1453,6 +1990,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextWithClass
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNextWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1461,6 +2004,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextWithId
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthNextWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1469,6 +2018,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParent
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParent', function(elm, n, name) {
         return getParents(elm, null, [], null, [], name, null, n);
@@ -1476,6 +2031,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParentByAttribute', function(elm, attribute, value, n,
                 name) {
@@ -1485,6 +2048,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParentByClass', function(elm, className, n, name) {
         return getParents(elm, hasClassName, [className],
@@ -1493,6 +2063,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParentWithAttribute', function(elm, attribute, n, name) {
         return getParents(elm, hasAttribute, [attribute],
@@ -1501,6 +2078,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentWithClass
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParentWithClass', function(elm, n, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -1509,6 +2092,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentWithId
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthParentWithId', function(elm, n, name) {
        return getParents(elm, hasIdAttribute, [],
@@ -1517,6 +2106,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrev
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrev', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [],
@@ -1525,6 +2120,14 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrevByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrevByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1533,6 +2136,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrevByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrevByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1541,6 +2151,13 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrevWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrevWithAttribute', function(elm, attribute, n, name) {
        return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1549,6 +2166,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrevWithClass
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrevWithClass', function(elm, n, name) {
        return getNextSiblings(elm, hasClassAttribute, [],
@@ -1557,6 +2180,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthPrevWithId
+     *
+     * @param {Object} elm -
+     * @param {Integer} n -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getNthPrevWithId', function(elm, n, name) {
        return getNextSiblings(elm, hasIdAttribute, [],
@@ -1565,6 +2194,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParent
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParent', function(elm, name) {
         return getParents(elm, null, [], null, [], name, null, 0);
@@ -1572,6 +2206,13 @@
 
     /**
      * @function {static} o2.DomHelper.getParentByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentByAttribute', function(elm, attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
@@ -1580,6 +2221,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentByClass', function(elm, className, name) {
         return getParents(elm, hasClassName, [className],
@@ -1588,6 +2235,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentWithAttribute', function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute],
@@ -1596,6 +2249,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParentWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentWithClass', function(elm, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -1604,6 +2262,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParentWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name, null, 0);
@@ -1611,6 +2274,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParents
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParents', function(elm, name) {
         return getParents(elm, null, [], null, [], name);
@@ -1618,6 +2286,13 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsByAttribute', function(elm, attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
@@ -1626,6 +2301,14 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsByAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsByAttributeUntil', function(elm, attribute, value,
                 until, name) {
@@ -1635,6 +2318,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsByClass', function(elm, className, name) {
         return getParents(elm, hasClassName, [className], null, [], name);
@@ -1642,6 +2331,13 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsByClassUntil
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsByClassUntil', function(elm, className, until, name) {
         return getParents(elm, hasClassName, [className],
@@ -1650,6 +2346,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsUntil', function(elm, until, name) {
         return getParents(elm, null, [], isNodeEquals, [until], name);
@@ -1657,6 +2359,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithAttribute', function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute], null, [], name);
@@ -1664,6 +2372,13 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -1673,6 +2388,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithClass', function(elm, name) {
         return getParents(elm, hasClassAttribute, [], null, [], name);
@@ -1680,6 +2400,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithClassUntil', function(elm, until, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -1688,6 +2414,11 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name);
@@ -1695,6 +2426,12 @@
 
     /**
      * @function {static} o2.DomHelper.getParentsWithIdUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getParentsWithIdUntil', function(elm, until, name) {
         return getParents(elm, hasIdAttribute, [],
@@ -1703,7 +2440,13 @@
 
     /**
      * @function {static} o2.DomHelper.getPrev
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
+
     def(me, 'getPrev', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
             name, null, 0, false, true);
@@ -1711,6 +2454,13 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1719,6 +2469,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevByClass', function(elm, className, name) {
        return getNextSiblings(elm, hasClassName, [className],
@@ -1727,6 +2483,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1735,6 +2497,11 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1743,6 +2510,11 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1751,6 +2523,11 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAll
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
@@ -1764,6 +2541,13 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllByAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1772,6 +2556,14 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllByAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} value -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllByAttributeUntil', function(elm, attribute, value,
                 until, name) {
@@ -1781,6 +2573,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllByClass
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1789,6 +2587,13 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllByClassUntil
+     *
+     * @param {Object} elm -
+     * @param {String} className -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllByClassUntil', function(elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1797,6 +2602,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllUntil', function(elm, until, name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until],
@@ -1805,6 +2616,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithAttribute
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [],
@@ -1813,6 +2630,13 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithAttributeUntil
+     *
+     * @param {Object} elm -
+     * @param {String} attribute -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -1822,6 +2646,11 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithClass
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1830,6 +2659,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithClassUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithClassUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1838,6 +2673,11 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithId
+     *
+     * @param {Object} elm -
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1846,6 +2686,12 @@
 
     /**
      * @function {static} o2.DomHelper.getPrevAllWithIdUntil
+     *
+     * @param {Object} elm -
+     * @param {Object} until-
+     * @param {String} name -
+     *
+     * @return
      */
     def(me, 'getPrevAllWithIdUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1854,6 +2700,11 @@
 
     /**
      * @function {static} o2.DomHelper.isChild
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isChild', function(elm, ref) {
         if (!ref) {
@@ -1865,6 +2716,11 @@
 
     /**
      * @function {static} o2.DomHelper.isNext
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isNext', function(elm, ref) {
         if (!ref) {
@@ -1876,6 +2732,11 @@
 
     /**
      * @function {static} o2.DomHelper.isParent
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isParent', function(elm, ref) {
         if (!ref) {
@@ -1892,6 +2753,11 @@
 
     /**
      * @function {static} o2.DomHelper.isParentOrSelf
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isParentOrSelf', function(elm, ref) {
         if (!ref) {
@@ -1907,6 +2773,11 @@
 
     /**
      * @function {static} o2.DomHelper.isPrev
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isPrev', function(elm, ref) {
         if (!ref) {
@@ -1918,6 +2789,11 @@
 
     /**
      * @function {static} o2.DomHelper.isSibling
+     *
+     * @param {Object} elm -
+     * @param {Object} ref -
+     *
+     * @return
      */
     def(me, 'isSibling', function(elm, ref) {
         if (!ref) {
