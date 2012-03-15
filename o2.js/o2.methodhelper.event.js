@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:24:04.087421
+ *  lastModified: 2012-03-15 08:38:19.749361
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
@@ -21,9 +21,14 @@
     var def       = attr(_, 'define');
 
     /*
-    * MethodHelper (event)
-    */
-    var me = create('MethodHelper');
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
+    /*
+     * MethodHelper (event)
+     */
+    var me = create(kModuleName);
 
     /*
      * Aliases

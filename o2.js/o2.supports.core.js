@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:10:56.715488
+ *  lastModified: 2012-03-15 08:27:39.961032
  * -->
  *
  * <p>An object support checker.</p>
@@ -21,13 +21,18 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Supports';
+
     /**
      * @class {static} o2.Supports
      *
      * <p>Checks support for various objects and properties like
      * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
      */
-    var me = create('Supports');
+    var me = create(kModuleName);
 
     /*
      * Aliases

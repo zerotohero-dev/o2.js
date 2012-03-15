@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:29:23.830081
+ *  lastModified: 2012-03-15 08:34:46.142293
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -24,13 +24,18 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'ObjectHelper';
+
     /**
      * @class {static} o2.ObjectHelper
      *
      * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
      * inheritance.</p>
      */
-    var me = create('ObjectHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

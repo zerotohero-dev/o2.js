@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:48:54.602376
+ *  lastModified: 2012-03-15 08:32:24.544691
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
@@ -22,12 +22,18 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'SortDelegate';
+
+
     /**
      * @class {static} o2.SortDelegate
      *
      * <p>Custom delegates for <code>Array.sort</code> method.</p>
      */
-    var me = create('SortDelegate');
+    var me = create(kModuleName);
 
     var inf = Infinity;
 
@@ -76,7 +82,7 @@
      */
     alias(me, 'sortAsc', 'sort');
 
-    var sort = require('SortDelegate', 'sort');
+    var sort = require(kModuleName, 'sort');
 
     /**
      * @function {static} o2.SortDelegate.sortDesc

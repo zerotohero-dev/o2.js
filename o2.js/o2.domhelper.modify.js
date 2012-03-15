@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 13:28:25.384956
+ *  lastModified: 2012-03-15 08:50:53.331958
  * -->
  *
  * <p>A utility package for additional <strong>DOM</strong> modifications.</p>
@@ -24,9 +24,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      *
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -34,12 +39,11 @@
 
     var $ = require('$');
 
-    var kDomHelper   = 'DomHelper';
-    var append       = require(kDomHelper, 'append');
-    var insertAfter  = require(kDomHelper, 'insertAfter');
-    var insertBefore = require(kDomHelper, 'insertBefore');
-    var isElement    = require(kDomHelper, 'isElement');
-    var remove       = require(kDomHelper, 'remove');
+    var append       = require(kModuleName, 'append');
+    var insertAfter  = require(kModuleName, 'insertAfter');
+    var insertBefore = require(kModuleName, 'insertBefore');
+    var isElement    = require(kModuleName, 'isElement');
+    var remove       = require(kModuleName, 'remove');
 
     /**
      * @function {static} o2.DomHelper.replace

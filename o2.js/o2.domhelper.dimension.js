@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 12:11:37.290683
+ *  lastModified: 2012-03-15 08:53:05.426552
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -25,9 +25,15 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+
+    /*
      * DomHelper (dimension)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -37,7 +43,7 @@
 
     var concat = require('StringHelper', 'concat');
 
-    var setStyle = require('DomHelper', 'setStyle');
+    var setStyle = require(kModuleName, 'setStyle');
 
     var self = attr(window, 'self');
 
@@ -99,7 +105,7 @@
     /*
      *
      */
-    var getDimension = require('DomHelper', 'getDimension');
+    var getDimension = require(kModuleName, 'getDimension');
 
     /**
      * @function {static} o2.DomHelper.getDocumentDimension
@@ -136,7 +142,7 @@
     /*
      *
      */
-    var getDocumentDimension = require('DomHelper', 'getDocumentDimension');
+    var getDocumentDimension = require(kModuleName, 'getDocumentDimension');
 
     /**
      * @function {static} o2.DomHelper.getDocumentHeight
@@ -250,7 +256,7 @@
     /*
      *
      */
-    var getWindowInnerDimension = require('DomHelper',
+    var getWindowInnerDimension = require(kModuleName,
         'getWindowInnerDimension');
 
     /**
@@ -321,7 +327,7 @@
     /*
      *
      */
-     var setWidth = require('DomHelper', 'setWidth');
+     var setWidth = require(kModuleName, 'setWidth');
 
     /**
      * @function {static} o2.DomHelper.setHeight
@@ -363,7 +369,7 @@
     /*
      *
      */
-    var setHeight = require('DomHelper', 'setHeight');
+    var setHeight = require(kModuleName, 'setHeight');
 
     /**
      * @function {static} o2.DomHelper.setDimension

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:39:39.479905
+ *  lastModified: 2012-03-15 08:20:28.515117
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -22,9 +22,14 @@
     var def       = attr(_, 'define');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'Validator';
+
+    /*
      * Validator (regexp)
      */
-    var me = create('Validator');
+    var me = create(kModuleName);
 
     /*
      * Common Regular Expressions

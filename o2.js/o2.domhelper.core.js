@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 12:06:04.851535
+ *  lastModified: 2012-03-15 08:54:02.833908
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
@@ -25,9 +25,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (core)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -35,8 +40,7 @@
 
     var $ = require('$');
 
-    var kDomHelper    = 'DomHelper';
-    var nt            = require(kDomHelper, 'nodeType');
+    var nt            = require(kModuleName, 'nodeType');
     var kElementNode  = attr(nt, 'ELEMENT');
     var kDocumentNode = attr(nt, 'DOCUMENT');
     var kText         = attr(nt, 'TEXT');

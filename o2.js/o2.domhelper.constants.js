@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:35:25.711423
+ *  lastModified: 2012-03-15 08:54:59.791852
  * -->
  *
  * <p>Constant definitions for {@link o2.DomHelper}.</p>
@@ -20,13 +20,17 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
 
     /**
      * @class {static} o2.DomHelper
      *
      * A cross-browser <strong>DOM</strong> manipulation helper.
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /**
      * @struct {static} o2.DomHelper.nodeType

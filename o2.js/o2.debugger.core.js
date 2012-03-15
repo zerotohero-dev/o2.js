@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-29 17:15:04.599303
+ *  lastModified: 2012-03-15 08:56:55.951496
  * -->
  *
  * <p>A debugging helper.</p>
@@ -20,6 +20,11 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Debugger';
 
     /**
      * @class {static} o2.Debugger
@@ -37,7 +42,7 @@
      *
      * @see o2.Unit
      */
-    var me = create('Debugger');
+    var me = create(kModuleName);
 
     /*
      * Aliases

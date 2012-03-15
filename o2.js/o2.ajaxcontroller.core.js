@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:54:41.821501
+ *  lastModified: 2012-03-15 09:37:04.581055
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -22,6 +22,11 @@
     var construct = attr(_, 'construct');
     var proto     = attr(_, 'proto');
     var require   = attr(_, 'require');
+
+    /*
+     * Module Name
+     */
+    var kModuleName = 'AjaxController';
 
     /*
      * Aliases
@@ -52,7 +57,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    var me = construct('AjaxController', function(xhr, args) {
+    var me = construct(kModuleName, function(xhr, args) {
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;

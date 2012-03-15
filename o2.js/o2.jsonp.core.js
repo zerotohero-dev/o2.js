@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 21:26:59.448996
+ *  lastModified: 2012-03-15 08:41:52.873413
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -22,12 +22,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Jsonp';
+
     /**
      * @class {static} o2.Jsonp
      *
      * <p>An object to make <strong>JSONP</strong> calls.</p>
      */
-    var me = create('Jsonp');
+    var me = create(kModuleName);
 
     /*
      * Aliases

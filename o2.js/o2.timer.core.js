@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 19:48:07.827072
+ *  lastModified: 2012-03-15 08:24:16.113893
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -21,6 +21,11 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Timer';
 
     /**
      * @class {static} o2.Timer
@@ -46,7 +51,7 @@
      * o2.Timer.start(kCheckId);
      * </pre>
      */
-    var me = create('Timer');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -103,7 +108,7 @@
     /*
      *
      */
-    var start = require('Timer', 'start');
+    var start = require(kModuleName, 'start');
 
     /**
      * @function {static} o2.Timer.stop
@@ -132,7 +137,7 @@
     /*
      *
      */
-    var stop = require('Timer', 'stop');
+    var stop = require(kModuleName, 'stop');
 
     /**
      * @function {static} o2.Timer.set

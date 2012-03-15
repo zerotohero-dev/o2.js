@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-29 08:41:39.580152
+ *  lastModified: 2012-03-15 08:41:06.079591
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -24,6 +24,11 @@
     var construct = attr(_, 'construct');
     var override  = attr(_, 'override');
     var require   = attr(_, 'require');
+
+    /*
+     * Module Name
+     */
+    var kModuleName = 'JsonpController';
 
     /*
      * Aliases
@@ -56,7 +61,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    var me = construct('JsonpController', function(jsonp, args) {
+    var me = construct(kModuleName, function(jsonp, args) {
         this.jsonp = jsonp;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -71,7 +76,7 @@
     var purgeQueue = [];
 
     var base = require('AjaxController');
-    var self = require('JsonpController');
+    var self = require(kModuleName);
 
     // A quick way of inheriting methods without constructing base
     // (i.e. without the `self.prototype = new base();` assignment).

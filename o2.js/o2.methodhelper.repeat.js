@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:39:45.681775
+ *  lastModified: 2012-03-15 08:36:50.239049
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
@@ -21,9 +21,14 @@
     var def       = attr(_, 'define');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
+    /*
      * MethodHelper (repeat)
      */
-    var me = create('MethodHelper');
+    var me = create(kModuleName);
 
     /**
      * @function {static} o2.MethodHelper.after

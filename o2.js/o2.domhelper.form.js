@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 12:22:39.902763
+ *  lastModified: 2012-03-15 08:52:09.392151
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -24,9 +24,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (form)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

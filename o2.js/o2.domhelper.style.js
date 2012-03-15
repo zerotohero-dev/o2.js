@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:22:50.245118
+ *  lastModified: 2012-03-15 08:47:25.199497
  * -->
  *
  * <p>A utility package to
@@ -29,9 +29,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (style)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -386,7 +391,7 @@
     /*
      *
      */
-    var hide = require('DomHelper', 'hide');
+    var hide = require(kModuleName, 'hide');
 
     /**
      * @function {static} o2.DomHelper.show
@@ -411,7 +416,7 @@
     /*
      *
      */
-    var show = require('DomHelper', 'show');
+    var show = require(kModuleName, 'show');
 
     /**
      * @function {static} o2.DomHelper.isVisible
@@ -470,7 +475,7 @@
     /*
      *
      */
-    var isVisible = require('DomHelper', 'isVisible');
+    var isVisible = require(kModuleName, 'isVisible');
 
     /**
      * @function {static} o2.DomHelper.toggleVisibility

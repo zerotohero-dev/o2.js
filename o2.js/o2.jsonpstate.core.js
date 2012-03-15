@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-26 13:16:07.917177
+ *  lastModified: 2012-03-15 08:39:59.780020
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
@@ -25,6 +25,11 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'JsonpState';
+
     /**
      * @class {static} o2.JsonpState
      * @extends o2.AjaxState
@@ -32,7 +37,7 @@
      * <p>Implements all public methods of {@link AjaxState} for
      * <strong>JSONP</strong> requests.</p>
      */
-    var me = create('JsonpState');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -47,7 +52,7 @@
      */
 
     var kBaseName   = 'AjaxState';
-    var kMyName     = 'JsonpState';
+    var kMyName     = kModuleName;
     var kProtecteds = 'protecteds';
 
     def(me, kProtecteds, {});

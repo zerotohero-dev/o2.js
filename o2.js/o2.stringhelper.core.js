@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:49:53.875048
+ *  lastModified: 2012-03-15 08:31:32.736933
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -21,12 +21,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'StringHelper';
+
     /**
      * @class {static} o2.StringHelper
      *
      * <p>A <code>String</code> helper <strong>class</strong>.</p>
      */
-    var me = create('StringHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -91,7 +96,7 @@
     /*
      *
      */
-    var concat = require('StringHelper', 'concat');
+    var concat = require(kModuleName, 'concat');
 
     /**
      * @function {static} o2.StringHelper.format
@@ -281,7 +286,7 @@
         });
     }
 
-    var strim = require('StringHelper', 'trim');
+    var strim = require(kModuleName, 'trim');
 
     /**
      * @function {static} o2.StringHelper.compact

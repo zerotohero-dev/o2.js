@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:23:16.169497
+ *  lastModified: 2012-03-15 08:45:17.559807
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -24,9 +24,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'EventHandler';
+
+    /*
      * EventHandler (core)
      */
-    var me = create('EventHandler');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -176,7 +181,7 @@
     /*
      *
      */
-    var addEventListener = require('EventHandler', 'addEventListener');
+    var addEventListener = require(kModuleName, 'addEventListener');
 
     /**
      * @function {static} o2.EventHandler.addEventListeners
@@ -252,7 +257,7 @@
     /*
      *
      */
-    var getEventObject = require('EventHandler', 'getEventObject');
+    var getEventObject = require(kModuleName, 'getEventObject');
 
     /**
      * @function {static} o2.EventHandler.getKeyCode

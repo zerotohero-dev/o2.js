@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:51:58.286003
+ *  lastModified: 2012-03-15 09:38:38.914438
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -23,13 +23,18 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Ajax';
+
     /**
      * @class {static} o2.Ajax
      *
      * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
      * <strong>GET</strong> and <strong>POST</strong> requests.</p>
      */
-    var me = create('Ajax');
+    var me = create(kModuleName);
 
     /*
      * Aliases

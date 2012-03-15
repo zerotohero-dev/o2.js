@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 16:53:48.901649
+ *  lastModified: 2012-03-15 08:48:07.858025
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -25,9 +25,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (scroll)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -93,7 +98,7 @@
     /*
      *
      */
-    var getWindowScrollOffset = require('DomHelper', 'getWindowScrollOffset');
+    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
 
     /**
      * @function {static} o2.DomHelper.getObjectScrollOfset
@@ -160,7 +165,7 @@
     /*
      *
      */
-    var scrollWindowToBottom = require('DomHelper', 'scrollWindowToBottom');
+    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
 
     if (de) {
 
@@ -194,7 +199,7 @@
     /*
      *
      */
-    var scrollWindowToTop = require('DomHelper', 'scrollWindowToTop');
+    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.DomHelper.scrollObjectToTop

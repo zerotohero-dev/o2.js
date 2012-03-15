@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:53:21.963926
+ *  lastModified: 2012-03-15 08:36:14.305963
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
@@ -24,9 +24,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
+    /*
      * MethodHelper (timer)
      */
-    var me = create('MethodHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

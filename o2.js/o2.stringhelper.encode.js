@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:34:56.755731
+ *  lastModified: 2012-03-15 08:30:16.108039
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
@@ -23,9 +23,14 @@
     var def       = attr(_, 'define');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'StringHelper';
+
+    /*
      * StringHelper (encode)
      */
-    var me = create('StringHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

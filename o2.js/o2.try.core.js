@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 19:43:05.813464
+ *  lastModified: 2012-03-15 08:23:20.190518
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -23,6 +23,11 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Try';
+
     /**
      * @class {static} o2.Try
      *
@@ -32,7 +37,7 @@
      * <p>Even if an error occurs when calling a <code>Function</code>, the next
      * <code>Function</code> will be tried, disregarding the error.</p>
      */
-    var me = create('Try');
+    var me = create(kModuleName);
 
     /**
      * @function {static} o2.Try.all

@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 13:02:25.308465
+ *  lastModified: 2012-03-15 08:51:26.811415
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -25,9 +25,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (load)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

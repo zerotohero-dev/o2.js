@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:28:28.562424
+ *  lastModified: 2012-03-15 08:46:14.798479
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -20,12 +20,17 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'EventHandler';
+
     /**
      * @class {static} o2.EventHandler
      *
      * <p>A cross-browser event handling and event utilities class.</p>
      */
-     var me = create('EventHandler');
+    var me = create(kModuleName);
 
     /**
     * @struct {static} o2.EventHandler.keyCode

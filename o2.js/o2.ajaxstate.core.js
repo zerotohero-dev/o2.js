@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:05:26.330513
+ *  lastModified: 2012-03-15 09:36:16.648952
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -21,6 +21,11 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'AjaxState';
+
     /**
      * @class {static} o2.AjaxState
      * @implements Observable
@@ -32,7 +37,7 @@
      * <p>See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html</p>
      */
-    var me = create('AjaxState');
+    var me = create(kModuleName);
 
     /*
      * Aliases

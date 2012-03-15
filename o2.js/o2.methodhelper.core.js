@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:18:06.489305
+ *  lastModified: 2012-03-15 08:38:58.812812
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
@@ -22,12 +22,17 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
     /**
      * @class {static} o2.MethodHelper
      *
      * <p>A method helper class.</p>
      */
-    var me = create('MethodHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

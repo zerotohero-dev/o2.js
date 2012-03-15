@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:09:38.637295
+ *  lastModified: 2012-03-15 08:28:50.317276
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -22,9 +22,14 @@
     var def       = attr(_, 'define');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'StringHelper';
+
+    /*
      * StringHelper (transform)
      */
-    var me = create('StringHelper');
+    var me = create(kModuleName);
 
     /*
      * Common Regular Expressions

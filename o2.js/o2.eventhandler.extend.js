@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 20:53:49.020733
+ *  lastModified: 2012-03-15 08:44:33.236722
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
@@ -22,19 +22,24 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'EventHandler';
+
+    /*
      * EventHandler (extend)
      */
-    var me = require('EventHandler');
+    var me = require(kModuleName);
 
     /*
      * Aliases
      */
 
-    var kEventHandler  = 'EventHandler';
+    var kEventHandler  = kModuleName;
     var getKeyCode     = require(kEventHandler, 'getKeyCode');
     var getEventObject = require(kEventHandler, 'getEventObject');
 
-    var keyCode    = require('EventHandler', 'keyCode');
+    var keyCode    = require(kModuleName, 'keyCode');
     var kBackspace = attr(keyCode, 'BACKSPACE');
     var kBottom    = attr(keyCode, 'BOTTOM');
     var kEnter     = attr(keyCode, 'ENTER');

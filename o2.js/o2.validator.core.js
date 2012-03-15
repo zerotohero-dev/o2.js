@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:11:35.077547
+ *  lastModified: 2012-03-15 08:21:20.608714
  * -->
  *
  * <p>A validation helper.</p>
@@ -21,13 +21,19 @@
     var def       = attr(_, 'define');
     var obj       = attr(_, 'getObject');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Validator';
+
+
     /**
      * @class {static} o2.Validator
      *
      * <p>A simple class for validating various kinds of
      * <strong>object</strong>s.</p>
      */
-    var me = create('Validator');
+    var me = create(kModuleName);
 
     /*
      * Aliases

@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 19:08:38.133157
+ *  lastModified: 2012-03-15 09:35:29.732069
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -22,12 +22,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Cookie';
+
     /**
      * @class {static} o2.Cookie
      *
      * <p>A <strong>cookie</strong> helper class.</p>
      */
-    var me = create('Cookie');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -132,7 +137,7 @@
     /*
      *
      */
-    var save = require('Cookie', 'save');
+    var save = require(kModuleName, 'save');
 
     /**
      * @function {static} o2.Cookie.remove

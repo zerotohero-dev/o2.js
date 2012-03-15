@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 13:47:10.613225
+ *  lastModified: 2012-03-15 08:49:04.872359
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -24,9 +24,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (ready)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

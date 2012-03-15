@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:54:49.446848
+ *  lastModified: 2012-03-15 08:35:36.268929
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose
@@ -22,9 +22,14 @@
     var def       = attr(_, 'define');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
+    /*
      * MethodHelper (transpose)
      */
-    var me = create('MethodHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

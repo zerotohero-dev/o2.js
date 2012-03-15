@@ -12,7 +12,7 @@
  */
 function main() {
     $k_build_reg_exp = '@\.000\d*@';
-    $k_o2_file_path = dirname(__DIR__).'/o2.js/o2.js';
+    $k_o2_file_path = dirname(__DIR__).'/o2.js/o2.core.js';
     $k_marker = '.000';
 
     file_put_contents(

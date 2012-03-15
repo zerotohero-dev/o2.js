@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:30:13.509642
+ *  lastModified: 2012-03-15 08:33:28.542023
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
@@ -20,12 +20,17 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'QueryParser';
+
     /**
      * @class {static} o2.QueryParser
      *
      * <p>Used for parsing the browser's <strong>query string</strong>.</p>
      */
-    var me = create('QueryParser');
+    var me = create(kModuleName);
 
     /*
      * Aliases

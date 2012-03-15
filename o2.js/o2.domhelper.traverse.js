@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-07 23:23:15.802174
+ *  lastModified: 2012-03-15 09:43:37.931637
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -27,9 +27,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Class Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (traverse)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -41,14 +46,16 @@
     var kAll   = '*';
     var kEmpty = '';
 
-    var nodeType  = require('DomHelper', 'nodeType');
+    var nodeType  = require(kModuleName, 'nodeType');
     var kTextNode = attr(nodeType, 'TEXT');
 
-    var getAttribute = require('DomHelper', 'getAttribute');
+    var getAttribute = require(kModuleName, 'getAttribute');
 
     var kStringHelper = 'StringHelper';
     var format        = require(kStringHelper, 'format');
     var generateGuid  = require(kStringHelper, 'generateGuid');
+
+    var contains = require('CollectionHelper', 'contains');
 
     /*
      * Selectors
@@ -57,9 +64,15 @@
     var kImmediateClassAndTagSelector = '#{0} > {1}.{2}';
 
     /*
-     *
+     * Checks document.querySelector support.
+     * Using document.documentMode for IE, since the compatMode property is
+     * deprecated in IE8+ in favor of the documentMode property, and IE7-
+     * does not suppory document.querySelector anyway.
+     * ref: http://msdn.microsoft.com/en-us/library/cc196988(v=vs.85).aspx
      */
-    var isNativeQuerySupported = !!document.querySelector;
+    var isNativeQuerySupported =
+        (document.documentMode && document.documentMode >= 8) ||
+        (!!document.querySelector);
 
     /*
      * Checks whether two nodes are equal to one another.
@@ -345,7 +358,7 @@
                                 return target;
                             }
 
-                            results.push(target);
+                            result.push(target);
 
                             if (!isNaN(itemsCountCap) &&
                                         itemsCountCap <= counter) {
@@ -380,7 +393,7 @@
                             return target;
                         }
 
-                        results.push(target);
+                        result.push(target);
 
                         if (!isNaN(itemsCountCap) &&
                                     itemsCountCap <= counter) {
@@ -459,22 +472,6 @@
         );
     }
 
-    /*
-     *
-     */
-    function getLastItem(items) {
-        var len = items.length;
-
-        return len ? items[len - 1] : null;
-    }
-
-    /*
-     *
-     */
-    function getLastItemExecFilter() {
-       getLastItem(execFilter.apply(null, arguments));
-    }
-
     /**
      * function {static} o2.DomHelper.getChildren
      *
@@ -494,7 +491,7 @@
     /*
      *
      */
-    var getChildren = require('DomHelper', 'getChildren');
+    var getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.DomHelper.getChildren
@@ -514,6 +511,9 @@
      * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenByAttribute', function(elm, attr, value, name) {
+        // TODO: this comment will be irrelevant after fixing
+        // https://github.com/v0lkan/o2.js/issues/58
+        //
         // IE7 and IE8 support attribute selectors only if a
         // !DOCTYPE is specified. To maintain compatibility we implement
         // attribute selector without using document.querySelector
@@ -525,7 +525,7 @@
     /*
      *
      */
-    var getChildrenByAttribute = require('DomHelper', 'getChildrenByAttribute');
+    var getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
 
     /**
      *
@@ -539,7 +539,7 @@
     /*
      *
      */
-    var getChildrenByAttributeUntil = require('DomHelper',
+    var getChildrenByAttributeUntil = require(kModuleName,
         'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
@@ -585,7 +585,7 @@
     /*
      *
      */
-    var getChildrenByClass = require('DomHelper', 'getChildrenByClass');
+    var getChildrenByClass = require(kModuleName, 'getChildrenByClass');
 
     /**
      *
@@ -598,7 +598,7 @@
     /*
      *
      */
-    var getChildrenByClassUntil = require('DomHelper',
+    var getChildrenByClassUntil = require(kModuleName,
         'getChildrenByClassUntil');
 
     /**
@@ -612,7 +612,7 @@
     /*
      *
      */
-    var getChildrenUntil = require('DomHelper', 'getChildrenUntil');
+    var getChildrenUntil = require(kModuleName, 'getChildrenUntil');
 
     /**
      *
@@ -625,7 +625,7 @@
     /*
      *
      */
-    var getChildrenWithAttribute = require('DomHelper',
+    var getChildrenWithAttribute = require(kModuleName,
         'getChildrenWithAttribute');
 
     /**
@@ -640,7 +640,7 @@
     /*
      *
      */
-    var getChildrenWithAttributeUntil = require('DomHelper',
+    var getChildrenWithAttributeUntil = require(kModuleName,
         'getChildrenWithAttributeUntil');
 
     /**
@@ -653,7 +653,7 @@
     /*
      *
      */
-    var getChildrenWithClass = require('DomHelper', 'getChildrenWithClass');
+    var getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      *
@@ -666,7 +666,7 @@
     /*
      *
      */
-    var getChildrenWithClassUntil = require('DomHelper',
+    var getChildrenWithClassUntil = require(kModuleName,
         'getChildrenWithClassUntil');
 
     /**
@@ -679,7 +679,7 @@
     /*
      *
      */
-    var getChildrenWithId = require('DomHelper', 'getChildrenWithId');
+    var getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      *
@@ -692,7 +692,7 @@
     /*
      *
      */
-    var getChildrenWithIdUntil = require('DomHelper', 'getChildrenWithIdUntil');
+    var getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
 
     /**
      *
@@ -710,7 +710,7 @@
     /*
      *
      */
-    var getElements = require('DomHelper', 'getElements');
+    var getElements = require(kModuleName, 'getElements');
 
     /**
      *
@@ -761,7 +761,7 @@
     /*
      *
      */
-    var getSiblings = require('DomHelper', 'getSiblings');
+    var getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      *
@@ -855,6 +855,11 @@
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
     });
 
+    /*
+     *
+     */
+    var getFirst = require(kModuleName, 'getFirst');
+
     /**
      *
      */
@@ -862,6 +867,11 @@
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true);
     });
+
+    /*
+     *
+     */
+    var getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
 
     /**
      *
@@ -871,6 +881,11 @@
             null, [], name, null, 0, true);
     });
 
+    /*
+     *
+     */
+    var getFirstByClass = require(kModuleName, 'getFirstByClass');
+
     /**
      *
      */
@@ -878,6 +893,11 @@
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, 0, true);
     });
+
+    /*
+     *
+     */
+    var getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
 
     /**
      *
@@ -887,6 +907,11 @@
             null, [], name, null, 0, true);
     });
 
+    /*
+     *
+     */
+    var getFirstWithClass = require(kModuleName, 'getFirstWithClass');
+
     /**
      *
      */
@@ -894,6 +919,11 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, true);
     });
+
+    /*
+     *
+     */
+    var getFirstWithId = require(kModuleName, 'getFirstWithId');
 
     /**
      *
@@ -936,7 +966,7 @@
             return null;
         }
 
-        return getFirstWithAttribute(elm.firstChild, atribute, name);
+        return getFirstWithAttribute(elm.firstChild, attribute, name);
     });
 
     /**
@@ -969,6 +999,11 @@
             null, 0, true, true);
     });
 
+    /*
+     *
+     */
+    var getLast = require(kModuleName, 'getLast');
+
     /**
      *
      */
@@ -976,6 +1011,11 @@
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true, true);
     });
+
+    /*
+     *
+     */
+    var getLastByAttribute = require(kModuleName, 'getLastByAttribute');
 
     /**
      *
@@ -985,6 +1025,11 @@
             null, [], name, null, 0, true, true);
     });
 
+    /*
+     *
+     */
+    var getLastByClass = require(kModuleName, 'getLastByClass');
+
     /**
      *
      */
@@ -992,6 +1037,11 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, true, true);
     });
+
+    /*
+     *
+     */
+    var getLastWithId = require(kModuleName, 'getLastWithId');
 
     /**
      *
@@ -1001,6 +1051,11 @@
             null, [], name, null, 0, true, true);
     });
 
+    /*
+     *
+     */
+    var getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
+
     /**
      *
      */
@@ -1008,6 +1063,11 @@
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, true, true);
     });
+
+    /*
+     *
+     */
+    var getLastWithClass = require(kModuleName, 'getLastWithClass');
 
     /**
      *
@@ -1129,6 +1189,11 @@
         return getNextSiblings(elm, null, [], null, [], name);
     });
 
+    /*
+     *
+     */
+    var getNextAll = require(kModuleName, 'getNextAll');
+
     /**
      *
      */
@@ -1215,13 +1280,14 @@
             name);
     });
 
-
     /**
      *
      */
     def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
     });
+
+    var getNth = require(kModuleName, 'getNth');
 
     /**
      *
@@ -1231,6 +1297,11 @@
             null, [], name, null, n, true);
     });
 
+    /*
+     *
+     */
+    var getNthByAttribute = require(kModuleName, 'getNthByAttribute');
+
     /**
      *
      */
@@ -1238,6 +1309,11 @@
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, n, true);
     });
+
+    /*
+     *
+     */
+    var getNthByClass = require(kModuleName, 'getNthByClass');
 
     /**
      *
@@ -1247,6 +1323,11 @@
             null, [], name, null, n, true);
     });
 
+    /*
+     *
+     */
+    var getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
+
     /**
      *
      */
@@ -1255,6 +1336,11 @@
             name, null, n, true);
     });
 
+    /*
+     *
+     */
+    var getNthWithClass = require(kModuleName, 'getNthWithClass');
+
     /**
      *
      */
@@ -1262,6 +1348,11 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n, true);
     });
+
+    /*
+     *
+     */
+    var getNthWithId = require(kModuleName, 'getNthWithId');
 
     /**
      *
@@ -1379,7 +1470,7 @@
     /**
      *
      */
-    def(me, 'getNthParent', function(elm n, name) {
+    def(me, 'getNthParent', function(elm, n, name) {
         return getParents(elm, null, [], null, [], name, null, n);
     });
 
@@ -1857,11 +1948,16 @@
             name, null, null, false, true);
     });
 
+    /*
+     *
+     */
+    var getPrevAll = require(kModuleName, 'getPrevAll');
+
     /**
      *
      */
     def(me, 'getPrevAllByAttribute', function(elm, attribute, value, name) {
-        return getNextSiblings(elm, isAttributeEqual, [attribute, value],
+        return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, null, false, true);
     });
 
@@ -1947,10 +2043,79 @@
             isNodeEquals, [until], name, null, null, false, true);
     });
 
-// isChild        : {MODULE : kDomHelperTraverse},
-// isNext         : {MODULE : kDomHelperTraverse},
-// isParent       : {MODULE : kDomHelperTraverse},
-// isParentOrSelf : {MODULE : kDomHelperTraverse},
-// isPrev         : {MODULE : kDomHelperTraverse},
-// isSibling      : {MODULE : kDomHelperTraverse}
+
+    /**
+     *
+     */
+    def(me, 'isChild', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getChildren(ref), elm);
+    });
+
+    /**
+     *
+     */
+    def(me, 'isNext', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getNextAll(ref), elm);
+    });
+
+    /**
+     *
+     */
+    def(me, 'isParent', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getParents(ref), elm);
+    });
+
+    /*
+     *
+     */
+    var isParent = require(kModuleName, 'isParent');
+
+    /**
+     *
+     */
+    def(me, 'isParentOrSelf', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        if (ref === elm) {
+            return true;
+        }
+
+        return isParent(elm, ref);
+    });
+
+    /**
+     *
+     */
+    def(me, 'isPrev', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getPrevAll(ref), elm);
+    });
+
+    /**
+     *
+     */
+    def(me, 'isSibling', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getSiblings(ref), elm);
+    });
 }(this.o2, this.document));

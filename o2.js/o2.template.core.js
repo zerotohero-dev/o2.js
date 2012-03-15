@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 19:49:25.158365
+ *  lastModified: 2012-03-15 08:25:17.971028
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -21,12 +21,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Template';
+
     /**
      * @class {static} o2.Template
      *
      * <p>A really <strong>fast</strong> template engine.</p>
      */
-    var me = create('Template');
+    var me = create(kModuleName);
 
     /*
      * Common Constants
@@ -137,5 +142,5 @@
      /*
       *
       */
-     doParse = require('Template', 'parse');
+     doParse = require(kModuleName, 'parse');
 }(this.o2));

@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 18:52:48.137876
+ *  lastModified: 2012-03-15 09:38:12.314607
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -24,16 +24,20 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'Ajax';
+
+    /*
      * Ajax (extend)
      */
-    var me = create('Ajax');
+    var me = create(kModuleName);
 
     /*
      * Aliases
      */
-    var kAjax = 'Ajax';
-    var get  = require(kAjax, 'get');
-    var post = require(kAjax, 'post');
+    var get  = require(kModuleName, 'get');
+    var post = require(kModuleName, 'post');
 
     /*
      * Caches

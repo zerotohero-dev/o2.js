@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 19:42:37.807589
+ *  lastModified: 2012-03-15 08:22:24.227871
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -26,13 +26,18 @@
     var obj       = attr(_, 'getObject');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'Unit';
+
     /**
      * @class {static} o2.Unit
      *
      * <p>A "unit test" <strong>runner</strong>.</p>
      * <p>Runs <code>UnitTest</code>s.</p>
      */
-    var me     = create('Unit');
+    var me     = create(kModuleName);
     var myself = obj(me);
 
     /*

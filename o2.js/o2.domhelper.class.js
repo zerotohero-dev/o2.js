@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-29 17:13:26.871918
+ *  lastModified: 2012-03-15 08:55:58.818965
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -23,9 +23,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'DomHelper';
+
+    /*
      * DomHelper (class)
      */
-    var me = create('DomHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -59,7 +64,7 @@
     /*
      *
      */
-    var createClassNameRegExp = require('DomHelper', 'createClassNameRegExp');
+    var createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.DomHelper.hasClass
@@ -87,7 +92,7 @@
     /*
      *
      */
-    var hasClass = require('DomHelper', 'hasClass');
+    var hasClass = require(kModuleName, 'hasClass');
 
     /**
      * @function {static} o2.DomHelper.addClass
@@ -115,7 +120,7 @@
     /*
      *
      */
-    var addClass = require('DomHelper', 'addClass');
+    var addClass = require(kModuleName, 'addClass');
 
     /**
      * @function {static} o2.DomHelper.removeClass
@@ -143,7 +148,7 @@
     /*
      *
      */
-    var removeClass = require('DomHelper', 'removeClass');
+    var removeClass = require(kModuleName, 'removeClass');
 
     /**
      * @function {static} o2.DomHelper.toggleClass

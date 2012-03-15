@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-28 21:21:03.136605
+ *  lastModified: 2012-03-15 08:43:26.649531
  * -->
  *
  * <p>A <strong>HTML</strong> form helper module.</p>
@@ -21,12 +21,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'FormHelper';
+
     /**
      * @class {static} o2.FormHelper
      *
      * <p>A static <strong>HTML</strong> form helper.</p>
      */
-    var me = create('FormHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-29 17:18:51.882653
+ *  lastModified: 2012-03-15 08:58:01.114735
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -22,12 +22,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'DateHelper';
+
     /**
      * @class {static} o2.DateHelper
      *
      * <p>A date/time utilities class.</p>
      */
-    var me = create('DateHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases

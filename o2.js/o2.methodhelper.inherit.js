@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-02-27 13:32:23.626459
+ *  lastModified: 2012-03-15 08:37:34.702924
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>
@@ -23,9 +23,14 @@
     var require   = attr(_, 'require');
 
     /*
+     * Module Name
+     */
+    var kModuleName = 'MethodHelper';
+
+    /*
      * MethodHelper (inherit)
      */
-    var me = create('MethodHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
