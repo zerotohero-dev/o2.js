@@ -4,7 +4,7 @@
 --------------------------------------------------------------------------------
 
 ## Introduction
- 
+ ///////
 This document includes **JavaScript** usage and naming conventions, best
 practices, and recommendations.
 
