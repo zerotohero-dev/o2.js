@@ -106,7 +106,7 @@
      * <p>Creates a <strong>Document Fragment</strong> from an
      * <strong>HTML</strong> <code>String</code>.</p>
      *
-     * @param {String} html - the <strong>HTML</code> to create a fragment
+     * @param {String} html - the <strong>HTML</strong> to create a fragment
      * from.
      *
      * @return {HTMLDocumentFragment} - the generated <code>document</code>

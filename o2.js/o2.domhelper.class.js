@@ -153,7 +153,7 @@
     /**
      * @function {static} o2.DomHelper.toggleClass
      *
-     * <p>Toggles the <strong>CSS<strong> <code>className</code> of a given
+     * <p>Toggles the <strong>CSS</strong> <code>className</code> of a given
      * element.</p>
      *
      * @param {Object} el - the <strong>DOM</strong> element to toggle or its
