@@ -704,6 +704,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "ge0tLastChildWithAttribute",
+           fullName : "o2.DomHelper.ge0tLastChildWithAttribute",
+           summary : "static function  ge0tLastChildWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/DomHelper.html#___ge0tLastChildWithAttribute",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getAttribute",
            fullName : "o2.DomHelper.getAttribute",
            summary : "static function  getAttribute(Object elm, String attribute)",
@@ -715,7 +724,7 @@
        {
            localName : "getChildrenByAttributeUntil",
            fullName : "o2.DomHelper.getChildrenByAttributeUntil",
-           summary : "static function  getChildrenByAttributeUntil(Object elm, String attr, String value, Object until, String name)",
+           summary : "static function  getChildrenByAttributeUntil(Object elm, String attribute, String value, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getChildrenByAttributeUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -751,7 +760,7 @@
        {
            localName : "getChildrenWithAttribute",
            fullName : "o2.DomHelper.getChildrenWithAttribute",
-           summary : "static function  getChildrenWithAttribute(String attribute)",
+           summary : "static function  getChildrenWithAttribute(Object elm, String attribute, String name)",
            ref : "logical/o2/DomHelper.html#___getChildrenWithAttribute",
            parent : "o2.DomHelper",
            type : "function",
@@ -760,7 +769,7 @@
        {
            localName : "getChildrenWithAttributeUntil",
            fullName : "o2.DomHelper.getChildrenWithAttributeUntil",
-           summary : "static function  getChildrenWithAttributeUntil(String attribute, Object until)",
+           summary : "static function  getChildrenWithAttributeUntil(Object elm, String attribute, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getChildrenWithAttributeUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -1082,15 +1091,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "getLastChildWithAttribute",
-           fullName : "o2.DomHelper.getLastChildWithAttribute",
-           summary : "static function  getLastChildWithAttribute(Object elm, String attribute, String name)",
-           ref : "logical/o2/DomHelper.html#___getLastChildWithAttribute",
-           parent : "o2.DomHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "getLastChildWithClass",
            fullName : "o2.DomHelper.getLastChildWithClass",
            summary : "static function  getLastChildWithClass(Object elm, String className, String name)",
@@ -1228,7 +1228,7 @@
        {
            localName : "getNextAllWithClassUntil",
            fullName : "o2.DomHelper.getNextAllWithClassUntil",
-           summary : "static function  getNextAllWithClassUntil(Object elm, Oject until, String name)",
+           summary : "static function  getNextAllWithClassUntil(Object elm, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getNextAllWithClassUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -1309,7 +1309,7 @@
        {
            localName : "getNthByAttribute",
            fullName : "o2.DomHelper.getNthByAttribute",
-           summary : "static function  getNthByAttribute(Object elm, String value, Integer n, String name)",
+           summary : "static function  getNthByAttribute(Object elm, String attribute, String value, Integer n, String name)",
            ref : "logical/o2/DomHelper.html#___getNthByAttribute",
            parent : "o2.DomHelper",
            type : "function",
@@ -1327,7 +1327,7 @@
        {
            localName : "getNthChild",
            fullName : "o2.DomHelper.getNthChild",
-           summary : "static function  getNthChild(Integer n, Stringg name)",
+           summary : "static function  getNthChild(Object elm, Integer n, String name)",
            ref : "logical/o2/DomHelper.html#___getNthChild",
            parent : "o2.DomHelper",
            type : "function",
@@ -1561,7 +1561,7 @@
        {
            localName : "getNthWithId",
            fullName : "o2.DomHelper.getNthWithId",
-           summary : "static function  getNthWithId(Integer n, Stringg name)",
+           summary : "static function  getNthWithId(Object elm, Integer n, String name)",
            ref : "logical/o2/DomHelper.html#___getNthWithId",
            parent : "o2.DomHelper",
            type : "function",
@@ -1795,7 +1795,7 @@
        {
            localName : "getPrevAllByAttributeUntil",
            fullName : "o2.DomHelper.getPrevAllByAttributeUntil",
-           summary : "static function  getPrevAllByAttributeUntil(Object elm, String attribute, String value, Object until-, String name)",
+           summary : "static function  getPrevAllByAttributeUntil(Object elm, String attribute, String value, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getPrevAllByAttributeUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -1840,7 +1840,7 @@
        {
            localName : "getPrevAllWithAttributeUntil",
            fullName : "o2.DomHelper.getPrevAllWithAttributeUntil",
-           summary : "static function  getPrevAllWithAttributeUntil(Object elm, String attribute, Object until-, String name)",
+           summary : "static function  getPrevAllWithAttributeUntil(Object elm, String attribute, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getPrevAllWithAttributeUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -1858,7 +1858,7 @@
        {
            localName : "getPrevAllWithClassUntil",
            fullName : "o2.DomHelper.getPrevAllWithClassUntil",
-           summary : "static function  getPrevAllWithClassUntil(Object elm, Object until-, String name)",
+           summary : "static function  getPrevAllWithClassUntil(Object elm, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getPrevAllWithClassUntil",
            parent : "o2.DomHelper",
            type : "function",
@@ -1876,7 +1876,7 @@
        {
            localName : "getPrevAllWithIdUntil",
            fullName : "o2.DomHelper.getPrevAllWithIdUntil",
-           summary : "static function  getPrevAllWithIdUntil(Object elm, Object until-, String name)",
+           summary : "static function  getPrevAllWithIdUntil(Object elm, Object until, String name)",
            ref : "logical/o2/DomHelper.html#___getPrevAllWithIdUntil",
            parent : "o2.DomHelper",
            type : "function",
