@@ -513,15 +513,16 @@
      *
      * @param {Object} elm - the <strong>DOM</strong> njode, or the
      * <strong>id</strong> of that node.
-     * @param {String} attr - the name of the attribute.
+     * @param {String} attribute - the name of the attribute to filter.
      * @param {String} value - the value of the attribute.
-     * @param {String} name - (optional, defaults to <code>undefined</code>)
-     * if given, the result is filtered by the given node name as well.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenByAttribute', function(elm, attr, value, name) {
+    def(me, 'getChildrenByAttribute', function(elm, attribute, value, name) {
         // TODO: this comment will be irrelevant after fixing
         // https://github.com/v0lkan/o2.js/issues/58
         //
@@ -530,7 +531,7 @@
         // attribute selector without using document.querySelector
 
         return execFilter(elm, getChildNodes, [name],
-            isAttributeEquals, [attr, value]);
+            isAttributeEquals, [attribute, value]);
     });
 
     /*
@@ -545,19 +546,21 @@
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
-     * @param {String} attr - attribute name.
-     * @param {String} value - attribute value.
-     * @param {Object} until - The node to seek until, or its
-     * <code>String</code> id.
-     * @param {String} name - (Optional, defaults to <code>undefined</code>) If
-     * given only items with that node name (i.e. tag name) are selected.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return and <code>Array</code> of selected nodes.
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenByAttributeUntil', function(elm, attr, value, until,
-                name) {
+    def(me, 'getChildrenByAttributeUntil', function(elm, attribute, value,
+            until, name) {
         return execFilter(elm, getChildNodes, [name],
-            isAttributeEquals, [attr, value], isNodeEquals, [until]);
+            isAttributeEquals, [attribute, value], isNodeEquals, [until]);
     });
 
     /*
@@ -573,9 +576,15 @@
          *
          * <p>Gets the children of the element having a specific class.</p>
          *
-         * @param {Object} elm -
-         * @param {String} className -
-         * @param {String} name -
+         * @param {Object} elm - the element reference, or a <code>String</code>
+         * id of it.
+         * @param {String} className - the <strong>CSS</strong> class name.
+         * @param {String} name - (Optional; defaults to <code>undefined</code>),
+         * if true, only the results with that <strong>node name</strong> (i.e.
+         * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
+         *
+         * @return an <code>Array</code> of nodes, if found; and empty
+         * <code>Array</code> if nothing is found.
          */
         def(me, 'getChildrenByClass', function(elm, className, name) {
             var el = $(elm);
@@ -620,12 +629,17 @@
     /**
      * @function {static} o2.DomHelper.getChildrenByClassUntil
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenByClassUntil', function(elm, className, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -641,11 +655,16 @@
     /**
      * @function {static} o2.DomHelper.getChildrenUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -660,11 +679,15 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithAttribute
      *
-     * @parma {Object} elm -
-     * @param {String} attribute -
-     * @parma {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -680,12 +703,17 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithAttributeUntil
      *
-     * @parma {Object} elm -
-     * @param {String} attribute -
-     * @param {Object} until -
-     * @parma {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -702,10 +730,14 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithClass', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
@@ -719,11 +751,16 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithClassUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithClassUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -739,10 +776,14 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithId', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
@@ -756,11 +797,16 @@
     /**
      * @function {static} o2.DomHelper.getChildrenWithIdUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getChildrenWithIdUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
@@ -775,10 +821,14 @@
     /**
      * @function {static} o2.DomHelper.getElements
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
      def(me, 'getElements', function(elm, name) {
         var target = $(elm);
@@ -798,12 +848,16 @@
     /**
      * @function {static} o2.DomHelper.getElementsByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * HTML <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
         return execFilter(elm, getElements, [name],
@@ -813,11 +867,15 @@
     /**
      * @function {static} o2.DomHelper.getElementsByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getElementsByClass', function(elm, className, name) {
         return execFilter(elm, getElements, [name], hasClassName, [className]);
@@ -826,11 +884,15 @@
     /**
      * @function {static} o2.DomHelper.getElementsWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getElementsWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getElements, [name],
@@ -840,10 +902,14 @@
     /**
      * @function {static} o2.DomHelper.getElementsWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getElementsWithClass', function(elm, name) {
         return execFilter(elm, getElements, [name],
@@ -853,10 +919,14 @@
     /**
      * @function {static} o2.DomHelper.getElementsWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getElementsWithId', function(elm, name) {
         return execFilter(elm, getElements, [name], hasIdAttribute, []);
@@ -865,10 +935,14 @@
     /**
      * @function {static} o2.DomHelper.getSiblings
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
@@ -882,12 +956,16 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsByAttribute', function(elm, attribute, value, name) {
         return !elm ? [] : getChildrenByAttribute(elm.parentNode,
@@ -897,13 +975,18 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsByAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsByAttributeUntil', function(elm, attribute, value,
             until, name) {
@@ -914,10 +997,14 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsByClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsByClass', function(elm, name) {
         return !elm ? [] : getChildrenByClass(elm.parentNode, name);
@@ -926,11 +1013,16 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsByClassUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsByClassUntil', function(elm, until, name) {
         return !elm ? [] : getChildrenByClassUntil(elm.parentNode, until,
@@ -940,11 +1032,16 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenUntil(elm.parentNode, until, name);
@@ -953,11 +1050,15 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithAttribute',  function(elm, attribute, name) {
         return !elm ? [] : getChildrenWithAttribute(elm.parentNode,
@@ -967,12 +1068,17 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
                 name) {
@@ -983,10 +1089,14 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithClass',  function(elm, name) {
         return !elm ? [] : getChildrenWithClass(elm.parentNode, name);
@@ -995,11 +1105,16 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithClassUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithClassUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithClassUntil(elm.parentNode, until,
@@ -1009,10 +1124,14 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithId',  function(elm, name) {
         return !elm ? [] : getChildrenWithId(elm.parentNode, name);
@@ -1021,11 +1140,16 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithIdUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getSiblingsWithIdUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithIdUntil(elm.parentNode, until, name);
@@ -1034,10 +1158,14 @@
     /**
      * @function {static} o2.DomHelper.getFirst
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirst', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
@@ -1051,12 +1179,16 @@
     /**
      * @function {static} o2.DomHelper.getFirstByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1071,11 +1203,15 @@
     /**
      * @function {static} o2.DomHelper.getFirstByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1090,11 +1226,15 @@
     /**
      * @function {static} o2.DomHelper.getFirstWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1109,10 +1249,14 @@
     /**
      * @function {static} o2.DomHelper.getFirstWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1127,10 +1271,14 @@
     /**
      * @function {static} o2.DomHelper.getFirstWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1145,10 +1293,14 @@
     /**
      * @function {static} o2.DomHelper.getFirstChild
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChild', function(elm, name) {
         if (!elm) {
@@ -1161,12 +1313,16 @@
     /**
      * @function {static} o2.DomHelper.getFirstChildByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChildByAttribute', function(elm, attribute, value, name) {
         if (!elm) {
@@ -1179,11 +1335,15 @@
     /**
      * @function {static} o2.DomHelper.getFirstChildByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChildByClass', function(elm, className, name) {
         if (!elm) {
@@ -1196,11 +1356,15 @@
     /**
      * @function {static} o2.DomHelper.getFirstChildWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChildWithAttribute', function(elm, attribute, name) {
         if (!elm) {
@@ -1213,10 +1377,14 @@
     /**
      * @function {static} o2.DomHelper.getFirstChildWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChildWithClass', function(elm, name) {
         if (!elm) {
@@ -1229,10 +1397,14 @@
     /**
      * @function {static} o2.DomHelper.getFirstChildWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getFirstChildWithId', function(elm, name) {
         if (!elm) {
@@ -1245,10 +1417,14 @@
     /**
      * @function {static} o2.DomHelper.getLast
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLast', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name,
@@ -1263,12 +1439,16 @@
     /**
      * @function {static} o2.DomHelper.getLastByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1283,11 +1463,15 @@
     /**
      * @function {static} o2.DomHelper.getLastByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1302,10 +1486,14 @@
     /**
      * @function {static} o2.DomHelper.getLastWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1320,11 +1508,15 @@
     /**
      * @function {static} o2.DomHelper.getLastWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1339,11 +1531,15 @@
     /**
      * @function {static} o2.DomHelper.getLastWithClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastWithClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1358,10 +1554,14 @@
     /**
      * @function {static} o2.DomHelper.getLastChild
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChild', function(elm, name) {
         if (!elm) {
@@ -1374,12 +1574,16 @@
     /**
      * @function {static} o2.DomHelper.getLastChildByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChildByAttribute', function(elm, attribute, value, name) {
         if (!elm) {
@@ -1392,11 +1596,15 @@
     /**
      * @function {static} o2.DomHelper.getLastChildByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChildByClass', function(elm, className, name) {
         if (!elm) {
@@ -1409,11 +1617,15 @@
     /**
      * @function {static} o2.DomHelper.getLastChildWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChildWithAttribute', function(elm, attribute, name) {
         if (!elm) {
@@ -1426,11 +1638,15 @@
     /**
      * @function {static} o2.DomHelper.getLastChildWithClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChildWithClass', function(elm, className, name) {
         if (!elm) {
@@ -1443,10 +1659,14 @@
     /**
      * @function {static} o2.DomHelper.getLastChildWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the last child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getLastChildWithId', function(elm, name) {
         if (!elm) {
@@ -1459,10 +1679,14 @@
     /**
      * @function {static} o2.DomHelper.getNext
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNext', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0);
@@ -1471,12 +1695,16 @@
     /**
      * @function {static} o2.DomHelper.getNextByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNextByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1486,11 +1714,15 @@
     /**
      * @function {static} o2.DomHelper.getNextByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNextByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1500,11 +1732,15 @@
     /**
      * @function {static} o2.DomHelper.getNextWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNextWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1514,10 +1750,14 @@
     /**
      * @function {static} o2.DomHelper.getNextWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNextWithClass', function(elm, name) {
         return getNextSiblings(elm,hasClassAttribute, [],
@@ -1527,10 +1767,14 @@
     /**
      * @function {static} o2.DomHelper.getNextWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNextWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1540,10 +1784,14 @@
     /**
      * @function {static} o2.DomHelper.getNextAll
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name);
@@ -1557,12 +1805,16 @@
     /**
      * @function {static} o2.DomHelper.getNextAllByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1572,13 +1824,18 @@
     /**
      * @function {static} o2.DomHelper.getNextAllByAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllByAttributeUntil', function(elm, attribute, value, until,
                 name) {
@@ -1589,11 +1846,15 @@
     /**
      * @function {static} o2.DomHelper.getNextAllByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className], null, [], name);
@@ -1602,12 +1863,17 @@
     /**
      * @function {static} o2.DomHelper.getNextAllByClassUntil
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllByClassUntil', function(elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1617,11 +1883,16 @@
     /**
      * @function {static} o2.DomHelper.getNextAllUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllUntil', function(elm, until, name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until], name);
@@ -1630,11 +1901,15 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [], name);
@@ -1643,12 +1918,17 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -1659,10 +1939,14 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name =
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [], name);
@@ -1671,11 +1955,16 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithClassUntil
      *
-     * @param {Object} elm -
-     * @param {Oject} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithClassUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -1685,10 +1974,14 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [], null, [], name);
@@ -1697,11 +1990,16 @@
     /**
      * @function {static} o2.DomHelper.getNextAllWithIdUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getNextAllWithIdUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [], isNodeEquals, [until],
@@ -1711,11 +2009,15 @@
     /**
      * @function {static} o2.DomHelper.getNth
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
@@ -1726,13 +2028,17 @@
     /**
      * @function {static} o2.DomHelper.getNthByAttribute
      *
-     * @param {Object} elm -
-     * @laram {String} attribute -
-     * @param {String} value -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1747,12 +2053,16 @@
     /**
      * @function {static} o2.DomHelper.getNthByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1767,12 +2077,16 @@
     /**
      * @function {static} o2.DomHelper.getNthWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1787,11 +2101,15 @@
     /**
      * @function {static} o2.DomHelper.getNthWithClass
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [],
@@ -1806,11 +2124,15 @@
     /**
      * @function {static} o2.DomHelper.getNthWithId
      *
-     * @parma {Object} elm -
-     * @param {Integer} n -
-     * @param {Stringg} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -1825,11 +2147,15 @@
     /**
      * @function {static} o2.DomHelper.getNthChild
      *
-     * @parma {Object} elm -
-     * @param {Integer} n -
-     * @param {Stringg} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChild', function(elm, n, name) {
         if (!elm) {
@@ -1842,13 +2168,17 @@
     /**
      * @function {static} o2.DomHelper.getNthChildByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChildByAttribute', function(elm, attribute, value, n, name) {
         if (!elm) {
@@ -1861,12 +2191,16 @@
     /**
      * @function {static} o2.DomHelper.getNthChildByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChildByClass', function(elm, className, n, name) {
         if (!elm) {
@@ -1880,12 +2214,16 @@
      * @function {static} o2.DomHelper.getNthChildWithAttribute
      *
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithAttribute', function(elm, attribute, n, name) {
         if (!elm) {
@@ -1898,11 +2236,15 @@
     /**
      * @function {static} o2.DomHelper.getNthChildWithClass
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithClass', function(elm, n, name) {
         if (!elm) {
@@ -1915,11 +2257,15 @@
     /**
      * @function {static} o2.DomHelper.getNthChildWithId
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth child available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithId', function(elm, n, name) {
         if (!elm) {
@@ -1932,11 +2278,15 @@
     /**
      * @function {static} o2.DomHelper.getNthNext
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNext', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n);
@@ -1945,13 +2295,17 @@
     /**
      * @function {static} o2.DomHelper.getNthNextByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNextByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -1961,12 +2315,16 @@
     /**
      * @function {static} o2.DomHelper.getNthNextByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNextByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -1976,12 +2334,16 @@
     /**
      * @function {static} o2.DomHelper.getNthNextWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -1991,11 +2353,15 @@
     /**
      * @function {static} o2.DomHelper.getNthNextWithClass
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -2005,11 +2371,15 @@
     /**
      * @function {static} o2.DomHelper.getNthNextWithId
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth next sibling available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2019,11 +2389,15 @@
     /**
      * @function {static} o2.DomHelper.getNthParent
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParent', function(elm, n, name) {
         return getParents(elm, null, [], null, [], name, null, n);
@@ -2032,13 +2406,17 @@
     /**
      * @function {static} o2.DomHelper.getNthParentByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParentByAttribute', function(elm, attribute, value, n,
                 name) {
@@ -2049,12 +2427,16 @@
     /**
      * @function {static} o2.DomHelper.getNthParentByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParentByClass', function(elm, className, n, name) {
         return getParents(elm, hasClassName, [className],
@@ -2064,12 +2446,16 @@
     /**
      * @function {static} o2.DomHelper.getNthParentWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithAttribute', function(elm, attribute, n, name) {
         return getParents(elm, hasAttribute, [attribute],
@@ -2079,11 +2465,15 @@
     /**
      * @function {static} o2.DomHelper.getNthParentWithClass
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithClass', function(elm, n, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -2093,11 +2483,15 @@
     /**
      * @function {static} o2.DomHelper.getNthParentWithId
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth parent available with the given criteria, if found;
+     * <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithId', function(elm, n, name) {
        return getParents(elm, hasIdAttribute, [],
@@ -2107,11 +2501,15 @@
     /**
      * @function {static} o2.DomHelper.getNthPrev
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrev', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [],
@@ -2121,13 +2519,17 @@
     /**
      * @function {static} o2.DomHelper.getNthPrevByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2137,12 +2539,16 @@
     /**
      * @function {static} o2.DomHelper.getNthPrevByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2152,12 +2558,16 @@
     /**
      * @function {static} o2.DomHelper.getNthPrevWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithAttribute', function(elm, attribute, n, name) {
        return getNextSiblings(elm, hasAttribute, [attribute],
@@ -2167,11 +2577,15 @@
     /**
      * @function {static} o2.DomHelper.getNthPrevWithClass
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithClass', function(elm, n, name) {
        return getNextSiblings(elm, hasClassAttribute, [],
@@ -2181,11 +2595,15 @@
     /**
      * @function {static} o2.DomHelper.getNthPrevWithId
      *
-     * @param {Object} elm -
-     * @param {Integer} n -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Integer} n - the element index.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the nth previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithId', function(elm, n, name) {
        return getNextSiblings(elm, hasIdAttribute, [],
@@ -2195,10 +2613,14 @@
     /**
      * @function {static} o2.DomHelper.getParent
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParent', function(elm, name) {
         return getParents(elm, null, [], null, [], name, null, 0);
@@ -2207,12 +2629,16 @@
     /**
      * @function {static} o2.DomHelper.getParentByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParentByAttribute', function(elm, attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
@@ -2222,11 +2648,15 @@
     /**
      * @function {static} o2.DomHelper.getParentByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParentByClass', function(elm, className, name) {
         return getParents(elm, hasClassName, [className],
@@ -2236,11 +2666,15 @@
     /**
      * @function {static} o2.DomHelper.getParentWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParentWithAttribute', function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute],
@@ -2250,10 +2684,14 @@
     /**
      * @function {static} o2.DomHelper.getParentWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParentWithClass', function(elm, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -2263,10 +2701,14 @@
     /**
      * @function {static} o2.DomHelper.getParentWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getParentWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name, null, 0);
@@ -2275,10 +2717,14 @@
     /**
      * @function {static} o2.DomHelper.getParents
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParents', function(elm, name) {
         return getParents(elm, null, [], null, [], name);
@@ -2287,12 +2733,16 @@
     /**
      * @function {static} o2.DomHelper.getParentsByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsByAttribute', function(elm, attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
@@ -2302,13 +2752,17 @@
     /**
      * @function {static} o2.DomHelper.getParentsByAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsByAttributeUntil', function(elm, attribute, value,
                 until, name) {
@@ -2319,11 +2773,15 @@
     /**
      * @function {static} o2.DomHelper.getParentsByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsByClass', function(elm, className, name) {
         return getParents(elm, hasClassName, [className], null, [], name);
@@ -2332,12 +2790,16 @@
     /**
      * @function {static} o2.DomHelper.getParentsByClassUntil
      *
-     * @param {Object} elm -
-     * @param {String} className -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsByClassUntil', function(elm, className, until, name) {
         return getParents(elm, hasClassName, [className],
@@ -2347,11 +2809,15 @@
     /**
      * @function {static} o2.DomHelper.getParentsUntil
      *
-     * @param {Object} elm -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsUntil', function(elm, until, name) {
         return getParents(elm, null, [], isNodeEquals, [until], name);
@@ -2360,11 +2826,15 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithAttribute', function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute], null, [], name);
@@ -2373,12 +2843,16 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -2389,10 +2863,14 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithClass', function(elm, name) {
         return getParents(elm, hasClassAttribute, [], null, [], name);
@@ -2401,11 +2879,15 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithClassUntil
      *
-     * @param {Object} elm -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithClassUntil', function(elm, until, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -2415,10 +2897,14 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name);
@@ -2427,11 +2913,15 @@
     /**
      * @function {static} o2.DomHelper.getParentsWithIdUntil
      *
-     * @param {Object} elm -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getParentsWithIdUntil', function(elm, until, name) {
         return getParents(elm, hasIdAttribute, [],
@@ -2441,12 +2931,15 @@
     /**
      * @function {static} o2.DomHelper.getPrev
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
-
     def(me, 'getPrev', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
             name, null, 0, false, true);
@@ -2455,12 +2948,16 @@
     /**
      * @function {static} o2.DomHelper.getPrevByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
      * @param {String} value-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getPrevByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2470,11 +2967,15 @@
     /**
      * @function {static} o2.DomHelper.getPrevByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getPrevByClass', function(elm, className, name) {
        return getNextSiblings(elm, hasClassName, [className],
@@ -2484,11 +2985,15 @@
     /**
      * @function {static} o2.DomHelper.getPrevWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getPrevWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -2498,10 +3003,14 @@
     /**
      * @function {static} o2.DomHelper.getPrevWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getPrevWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -2511,10 +3020,14 @@
     /**
      * @function {static} o2.DomHelper.getPrevWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return the first previous sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getPrevWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2524,10 +3037,14 @@
     /**
      * @function {static} o2.DomHelper.getPrevAll
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
@@ -2542,12 +3059,16 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllByAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2557,13 +3078,18 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllByAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} value -
-     * @param {Object} until-
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} value - the value of the attribute.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllByAttributeUntil', function(elm, attribute, value,
                 until, name) {
@@ -2574,11 +3100,15 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllByClass
      *
-     * @param {Object} elm -
-     * @param {String} className -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllByClass', function(elm, className, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2588,12 +3118,16 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllByClassUntil
      *
-     * @param {Object} elm -
-     * @param {String} className -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} className - the <strong>CSS</strong> class name.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllByClassUntil', function(elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2603,11 +3137,15 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllUntil
      *
-     * @param {Object} elm -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
      * @param {Object} until-
-     * @param {String} name -
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllUntil', function(elm, until, name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until],
@@ -2617,11 +3155,15 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithAttribute
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithAttribute', function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [],
@@ -2631,12 +3173,17 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithAttributeUntil
      *
-     * @param {Object} elm -
-     * @param {String} attribute -
-     * @param {Object} until-
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} attribute - the name of the attribute to filter.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithAttributeUntil', function(elm, attribute, until,
                 name) {
@@ -2647,10 +3194,14 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithClass
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -2660,11 +3211,16 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithClassUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until-
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithClassUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -2674,10 +3230,14 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithId
      *
-     * @param {Object} elm -
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2687,11 +3247,16 @@
     /**
      * @function {static} o2.DomHelper.getPrevAllWithIdUntil
      *
-     * @param {Object} elm -
-     * @param {Object} until-
-     * @param {String} name -
+     * @param {Object} elm - the element reference, or a <code>String</code>
+     * id of it.
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
+     * @param {String} name - (Optional; defaults to <code>undefined</code>),
+     * if true, only the results with that <strong>node name</strong> (i.e.
+     * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return
+     * @return an <code>Array</code> of nodes, if found; and empty
+     * <code>Array</code> if nothing is found.
      */
     def(me, 'getPrevAllWithIdUntil', function(elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2701,10 +3266,13 @@
     /**
      * @function {static} o2.DomHelper.isChild
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a child of
+     * <strong>ref</strong>; <code>false</code> otherwise.
      */
     def(me, 'isChild', function(elm, ref) {
         if (!ref) {
@@ -2717,10 +3285,13 @@
     /**
      * @function {static} o2.DomHelper.isNext
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a sibling after
+     * <strong>ref</strong>; <code>false</code> otherwise.
      */
     def(me, 'isNext', function(elm, ref) {
         if (!ref) {
@@ -2733,10 +3304,13 @@
     /**
      * @function {static} o2.DomHelper.isParent
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a parent of
+     * <strong>ref</strong>; <code>false</code> otherwise.
      */
     def(me, 'isParent', function(elm, ref) {
         if (!ref) {
@@ -2754,10 +3328,13 @@
     /**
      * @function {static} o2.DomHelper.isParentOrSelf
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a parent of
+     * <strong>ref</strong>, or the node itself; <code>false</code> otherwise.
      */
     def(me, 'isParentOrSelf', function(elm, ref) {
         if (!ref) {
@@ -2774,10 +3351,13 @@
     /**
      * @function {static} o2.DomHelper.isPrev
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a sibling before
+     * <strong>ref</strong>; <code>false</code> otherwise.
      */
     def(me, 'isPrev', function(elm, ref) {
         if (!ref) {
@@ -2790,10 +3370,13 @@
     /**
      * @function {static} o2.DomHelper.isSibling
      *
-     * @param {Object} elm -
-     * @param {Object} ref -
+     * @param {Object} elm - the source element, or a <code>String</code>
+     * id of it.
+     * @param {Object} ref - the reference element, or a <code>String</code>
+     * id of it.
      *
-     * @return
+     * @return <code>true</code> if <strong>elm</strong> is a sibling of
+     * <strong>ref</strong>; <code>false</code> otherwise.
      */
     def(me, 'isSibling', function(elm, ref) {
         if (!ref) {
