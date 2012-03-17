@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-17 21:06:17.605375
+ *  lastModified: 2012-03-18 00:36:51.308628
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -432,7 +432,7 @@
         var isSeeded = arguments.length > 2;
 
         if (typeof collection !== kObject) {
-            return;
+            return null;
         }
 
         var obj = collection || [];
@@ -478,7 +478,7 @@
             return cache;
         }
 
-        for(key in collection) {
+        for(key in collection) {\
             if(collection.hasOwnProperty(key)) {
                 value = collection[key];
 
@@ -1316,97 +1316,393 @@
     /**
      *
      */
-    def(me,'invoke', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'invoke', function(obj, delegate) {
+        if (arguments.length < 2) {
+            return;
+        }
+
+        if (typeof obj !== kObject) {
+            return;
+        }
+
+        var args = slice.apply(arguments, [2]);
+
+        if (isArray(obj)) {
+            for (i = 0; len = obj.length; i < len; i++) {\
+                item = obj[i];
+                invoker = isFunction(delegate) ? delegate : item[delegate];
+                invoker.apply(item, args);
+            }
+
+            return;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                item = obj[key];
+                invoker = isFunction(delegate) ? delegate : item[delegate];
+                invoker.apply(item, args);
+            }
+        }
     });
 
     /**
      *
      */
-    def(me,'isEmpty', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'isEmpty', function (collection) {
+         if (!collection) {
+             return true;
+         }
+
+         if (typeof collection !== kObject) {
+            return true;
+         }
+
+         var key = null;
+
+         for (key in collection) {
+             if (collection.hasOwnProperty(key)) {
+                 return false;
+             }
+         }
+
+         return true;
+    });
+
+    if ()
+
+    /**
+     *
+     */
+    def(me,'lastIndexOf', function(obj, item) {
+        if (!obj) {
+            return -1;
+        }
+
+        if (typeof obj !== kObject) {
+            return -1;
+        }
+
+        // Array.prototype.lastIndexOf
+        if (obj.lastIndexOf) {
+            return obj.lastIndexOf(item);
+        }
+
+        var collection = isArray(obj) ? obj : toArray(obj);
+
+        for (i = collection.length - 1; i >= 0; i--) {
+            if (collection[i] === item) {
+                return i;
+            }
+        }
+
+        return -1;
     });
 
     /**
      *
      */
-    def(me,'lastIndexOf', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'map', function(obj, delegate, context) {
+        var results = [];
+
+        if (!obj) {
+            return results;
+        }
+
+        if (typeof obj !== kObject) {
+            return results;
+        }
+
+        // Array.prototype.map
+        if (obj.map) {
+            return obj.map(delegate, context);
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
+
+                results.push(
+                    delegate.apply(context, [value, i, obj])
+                )
+            }
+
+            return results;
+        }
+
+        i = 0;
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
+
+                results.push(
+                    delegate.apply(context, [value, i, obj])
+                )
+
+                i++;
+            }
+        }
+
+        return results;
     });
 
     /**
      *
      */
-    def(me,'map', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'pluck', function(obj, key) {
+        var results = [];
+
+        if (!obj) {
+            return results;
+        }
+
+        if (typeof obj !== kObject) {
+            return results;
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                results.push(obj[i][key]);
+            }
+
+            return results;
+        }
+
+        for (k in obj) {
+            if (obj.hasOwnProperty(k)) {
+                results.push(obj[k][key]);
+            }
+        }
+
+        return results;
     });
 
     /**
      *
      */
-    def(me,'pluck', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'reduceRight', function(collection, delegate, store, context) {
+        var isSeeded = arguments.length > 2;
+        var obj = collection || [];
+        var iterator = delegate;
+
+        if (typeof collection !== kObject) {
+            return null;
+        }
+
+        if (context) {
+            iterator = bind(context, delegate);
+        }
+
+        // Array.prototype.reduceRight
+        if (obj.reduceRight) {
+            return isSeeded ?
+                obj.reduceRight(iterator, store) :
+                obj.reduceRight(iterator);
+        }
+
+        var reversed = reverse(toArray(obj));
+
+        return isSeeded ? reduce(reversed, iterator, store, context) :
+            reduce(reversed, iterator);
     });
 
     /**
      *
      */
-    def(me,'reduce', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'reject', function(obj, delegate, context) {
+        var results = [];
+
+        if (!obj) {
+            return results;
+        }
+
+        if (typeof obj !== kObject) {
+            return results;
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
+
+                if (!delegate.apply(context, [value, i, obj])) {
+                    results.push(value);
+                }
+            }
+
+            return results;
+        }
+
+
+        i = 0;
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
+
+                if (!delegate.apply(context, [value, i, obj])) {
+                    results.push(value);
+                }
+
+                i++;
+            }
+        }
+
+        return results;
     });
 
     /**
      *
      */
-    def(me,'reduceRight', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    me.removeElement = function(collection, elm) {
+        var item = null;
+        var i = 0;
+        var len = 0;
+        var key = null;
+
+        if (isArray(collection)) {
+            for (i = 0, len = collection.length; i < len; i++) {
+                item = collection[i];
+
+                if(item === elm) {
+                    collection.splice(i, 1);
+                    i--;
+                    len = collection.length;
+                }
+            }
+
+            return;
+        }
+
+        for (key in collection) {
+            if (collection.hasOwnProperty(key)) {
+                item = collection[key];
+
+                if(item === elm) {
+                    delete collection[key];
+                }
+            }
+        }
+    };
+
+    /**
+     * @function {static} o2.CollectionHelper.removeElementByValue
+     *
+     * <p>Removes and element from the collection if it has a property named
+     * <strong>name</strong> with a value <strong>value</strong>.</p>
+     *
+     * @param {Object} collection - an <code>Object</code> or an
+     * <code>Array</code> to update.
+     * @param {String} name - the name of the property.
+     * @param {Object} value - the value to compare.
+     */
+    me.removeElementByValue = function(collection, name, value) {
+        var item = null;
+        var i = 0;
+        var len = 0;
+        var key = null;
+
+        if (isArray(collection)) {
+            for (i = 0, len = collection.length; i < len; i++) {
+                item = collection[i];
+
+                if(item[name] === value) {
+                    collection.splice(i, 1);
+                    i--;
+                    len = collection.length;
+                }
+            }
+
+            return;
+        }
+
+        for (key in collection) {
+            if (collection.hasOwnProperty(key)) {
+                item = collection[key];
+
+                if(item[name] === value) {
+                    delete collection[key];
+                }
+            }
+        }
+    };
+
+    /**
+     *
+     */
+    def(me,'shuffle', function(collection) {
+        var result = [];
+
+        if (!collection) {
+            return result;
+        }
+
+        if (typeof collection !== kObject) {
+            return result;
+        }
+
+        if (isArray(collection)) {
+            for (i = 0, len = collection.length; i < len; i++) {
+                value = collection[i];
+
+                if (i === 0) {
+                    result.push(value);
+                } else {
+                    index = floor(random() * (i + 1));
+                    result[i] = result[index];
+                    result[index] = value;
+                }
+            }
+        }
+
+        return result;
     });
 
     /**
      *
      */
-    def(me,'reject', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    def(me,'sort', function(obj, delegate, context) {
+        var meta = [];
 
-    /**
-     *
-     */
-    def(me,'removeElement', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+        if (!obj) {
+            reutrn meta;
+        }
 
-    /**
-     *
-     */
-    def(me,'select', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+        if (typeof obj !== kObject) {
+            return meta;
+        }
 
-    /**
-     *
-     */
-    def(me,'shuffle', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                meta.push({
+                    value : value,
+                    order : delegate.apply(context, value, i, obj)
+                });
+            }
+        }
 
-    /**
-     *
-     */
-    def(me,'sort', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+        meta.sort(function(left, right) {
+            var l = left.order;
+            var r = right.order;
+
+            if (l < r) {
+                return -1;
+            }
+
+            if (l > r) {
+                return 1;
+            }
+
+            return 0;
+        });
+
+        var result = [];
+
+        for(i = 0, len = meta.length; i < len; i++) {
+            result.push(meta[i].value);
+        }
+
+        return result;
     });
 
     /**
@@ -1476,48 +1772,105 @@
     /**
      *
      */
-    def(me,'tap', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'touch', function(obj, inceptor) {
+        if (!obj) {
+            return null;
+        }
+
+        if (typeof obj !== kObject) {
+            return null;
+        }
+
+        inceptor(obj);
+
+        return obj;
     });
 
     /**
      *
      */
-    def(me,'toArray', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
-    });
+    def(me,'toArray', function(obj) {
+        var result = [];
 
-    /**
-     *
-     */
-    def(me,'touch', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+        if (!obj) {
+            return result;
+        }
+
+        if (obj.toArray) {
+            return obj.toArray();
+        }
+
+        if (isArray(obj)) {
+            return slice.apply(obj);
+        }
+
+        if (isArguments(obj)) {
+            return slice.apply(obj);
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push(obj[key]);
+            }
+        }
+
+        return result;
     });
 
     /**
      *
      */
     def(me,'union', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+        return unique(flatten(arguments));
     });
 
     /**
      *
      */
-    def(me,'unique', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'unique', function(array, delegate) {
+        var result = [];
+        var cache = [];
+        var ar = null;
+
+        if (!array) {
+            return result;
+        }
+
+        if (isArray(array)) {
+            ar = array.slice().sort();
+        }
+
+        ar = toArray(array);
+
+        if (delegate) {
+            ar = delegate ? map(array, delegate) : ar;
+        }
+
+        for (i = 0, len = ar.length; i < len; i++) {
+            elm = ar[i];
+            if (i === 0 || cache[cache.length-1] !== elm) {
+                cache.push(elm);
+                result.push(elm);
+            }
+        }
+
+        return result;
     });
 
     /**
      *
      */
     def(me,'zip', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+        var args = slice.call(arguments);
+        var length = getMax(pluck(args, kLength));
+        var results = [];
+
+        for (i = 0)
+
+        for (i = 0; i < length; i++) {
+            results[i] = pluck(args, [kEmpty, i].join(kEmpty));
+        }
+
+        return results;
     });
 }(this.o2, this));
