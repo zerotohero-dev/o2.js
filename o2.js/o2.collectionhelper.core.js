@@ -9,12 +9,11 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 08:13:41.427284
+ *  lastModified: 2012-03-17 10:29:37.453321
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-
 (function(framework) {
     'use strict';
 
@@ -25,12 +24,17 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    /*
+     * Module Name
+     */
+    var kModuleName = 'CollectionHelper';
+
     /**
      * @class {static} o2.CollectionHelper
      *
      * <p>A <strong>class</strong> to modify collections.</p>
      */
-    var me = create('CollectionHelper');
+    var me = create(kModuleName);
 
     /*
      * Aliases
@@ -40,8 +44,6 @@
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 
-
-//////////////////////////
     var slice = Array.prototype.slice;
 
     var isArray  = require('Validator', 'isArray');
@@ -73,6 +75,10 @@
             return ar;
         }
 
+        if (typeof ar !== kObject) {
+            return ar;
+        }
+
         for (key in ar) {
             if (ar.hasOwnProperty(key)) {
                 delete ar[key];
@@ -93,7 +99,7 @@
      * @return the copied <code>Object</code>.
      */
     def(me,'copy', function(ar) {
-        if (typeof ar !== 'object') {
+        if (typeof ar !== kObject) {
             return ar;
         }
 
@@ -141,6 +147,10 @@
 
         if (!ar) {
             return null;
+        }
+
+        if (typeof ar !== kObject) {
+            return ar;
         }
 
         if (isArray(ar)) {
@@ -195,6 +205,10 @@
         var i = 0;
         var len = 0;
 
+        if (typeof ar !== kObject) {
+            return -1;
+        }
+
         if (isArray(ar)) {
             for (i = 0, len = ar.length; i < len; i++) {
                 if (elm === ar[i]) {
@@ -228,7 +242,7 @@
     /*
      *
      */
-    var indexOf = require('CollectionHelper', 'indexOf');
+    var indexOf = require(kModuleName, 'indexOf');
 
     /**
      * @function {static} o2.CollectionHelper.contains
@@ -243,6 +257,10 @@
      * <code>false</code> otherwise.
      */
     def(me,'contains', function(ar, elm) {
+        if (typeof ar !== kObject) {
+            return -1;
+        }
+
         return indexOf(ar, elm) > -1;
     });
 
@@ -255,7 +273,7 @@
      */
     alias(me, 'includes', 'contains');
 
-    var contains = require('CollectionHelper', 'contains');
+    var contains = require(kModuleName, 'contains');
 
     /**
      * @function {static} o2.CollectionHelper.inArray
@@ -289,6 +307,10 @@
         var i = 0;
         var value = null;
         var len = 0;
+
+        if (typeof collection !== kObject) {
+            return null;
+        }
 
         if (isArray(collection)) {
             for (i = 0, len = collection.length; i < len; i++) {
@@ -342,6 +364,10 @@
      */
     def(me, 'forEach', function(collection, delegate) {
         if (!collection) {
+            return;
+        }
+
+        if (typeof collection !== kObject) {
             return;
         }
 
@@ -404,6 +430,10 @@
      */
     def(me, 'reduce', function(collection, delegate, store, context) {
         var isSeeded = arguments.length > 2;
+
+        if (typeof collection !== kObject) {
+            return;
+        }
 
         var obj = collection || [];
 
@@ -488,6 +518,10 @@
         var value = null;
         var key = null;
 
+        if (typeof collection !== kObject) {
+            return store;
+        }
+
         if (isArray(collection)) {
             for(i = 0, len = collection.length; i < len; i++) {
                 value = collection[key];
@@ -532,6 +566,10 @@
      */
     def(me,'diff', function(collection) {
         var rest = slice.call(arguments, 1);
+
+        if (typeof collection !== kObject) {
+            return store;
+        }
 
         var result = [];
         var value = null;
@@ -600,6 +638,10 @@
             return true;
         }
 
+        if (typeof obj !== kObject) {
+            return;
+        }
+
         // Array.prototype.every
         if (obj.every) {
             return obj.every(delegate, context);
@@ -646,6 +688,10 @@
 
          if (!obj) {
              return results;
+         }
+
+         if (typeof obj !== kObject) {
+            return results;
          }
 
          if (isArray(obj)) {
@@ -697,6 +743,14 @@
          var i = 0;
          var len = 0;
 
+        if (typeof toObj !== kObject) {
+            return toObj;
+        }
+
+        if (typeof fromObj !== kObject) {
+            return toObj;
+        }
+
          if (isArray(toObj)) {
              if(!isArray(fromObj)) {
                  return toObj;
@@ -727,237 +781,505 @@
 
     alias(me, 'merge', 'extend');
 
-    // /**
-    //  *
-    //  */
-    // def(me,'find', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getFirst', function(obj) {
+        var key = null;
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getFirst', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (!obj) {
+            return null;
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getFirstN', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (typeof obj !== kObject) {
+            return null;
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getFunctions', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (isArray(obj)) {
+            return obj[0] || null;
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getKeys', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        for(key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                return obj[key];
+            }
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getLast', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        return null;
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getLastN', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getFirstN', function(obj, n) {
+        var i = 0;
+        var len = 0;
+        var key = null;
+        var result = [];
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getMax', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (!obj) {
+            return [];
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getMethods', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (typeof obj !== kObject) {
+            return [];
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getMin', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (isArray(obj)) {
+            for (i = 0; i < len && i < n; i++) {
+                result.push(obj[i]);
+            }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getRest', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+            return result;
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getSize', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (i < n) {
+                    result.push(obj[key]);
+                }
+            }
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getSortedIndex', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        return result;
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'getValues', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getFunctions', function(obj) {
+        var result = [];
+        var key = null;
+        var value = null;
 
-    // /**
-    //  *
-    //  */
-    // def(me,'grep', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (typeof obj !== kObject) {
+            return [];
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'group', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
 
-    // /**
-    //  *
-    //  */
-    // def(me,'intersect', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+                if (typeof value === kFunction) {
+                    result.push(value);
+                }
+            }
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'invoke', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        return result;
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'isEmpty', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    alias(me, 'getMethods', 'getFunctions');
 
-    // /**
-    //  *
-    //  */
-    // def(me,'lastIndexOf', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getKeys', function(obj) {
+        var key = null;
+        var result = [];
 
-    // /**
-    //  *
-    //  */
-    // def(me,'map', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (typeof obj !== kObject) {
+            return [];
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'pluck', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push[key];
+            }
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'reduce', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        return result;
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'reduceRight', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getLast', function(obj) {
+        var last = null;
 
-    // /**
-    //  *
-    //  */
-    // def(me,'reject', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (typeof obj !== kObject) {
+            return [];
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'removeElement', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        if (isArray(obj)) {
+            return obj.length ? obj[obj.length - 1] : null;
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'select', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                last = obj[key];
+            }
+        }
 
-    // /**
-    //  *
-    //  */
-    // def(me,'shuffle', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+        return last;
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'sort', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'getLastN', function(obj, n) {
+        var len = 0;
+        var i = 0;
+        var result = [];
+
+        if (typeof obj !== kObject) {
+            return [];
+        }
+
+        if (!n) {
+            return [];
+        }
+
+        if (isArray(obj)) {
+            return slice.apply(obj, [Math.max(obj.length - n, 0)]);
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                len++;
+            }
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (i >= len - n) {
+                    result.push(obj[key]);
+                }
+            }
+        }
+
+        return result;
+    });
+
+    /**
+     *
+     */
+    def(me,'getMax', function(obj, calculator, context) {
+        var key = null;
+        var value = null;
+        var store = null;
+        var result = -Infinity;
+        var calculated = null;
+        var index = 0;
+
+        if (typeof obj !== kObject) {
+            return -Infinity;
+        }
+
+        if (!calculator) {
+            if (isArray(obj)) {
+                return max.apply(Math, obj);
+            }
+
+            if (isEmpty(obj)) {
+                return -Infinity;
+            }
+
+
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    store = store || obj[key];
+
+                    if (store < obj[key]) {
+                        store = obj[key];
+                    }
+                }
+            }
+
+            return store;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                store = obj[key];
+
+                calculated = calculator ? calculator.apply(context,
+                    [store, index, obj]) : obj;
+
+                if (calculated >= result) {
+                    result = calculated;
+                }
+
+                index++;
+            }
+        }
+
+        return result;
+    });
+
+
+
+    /**
+     *
+     */
+    def(me,'getMin', function() {
+        var key = null;
+        var value = null;
+        var store = null;
+        var result = Infinity;
+        var calculated = null;
+        var index = 0;
+
+        if (typeof obj !== kObject) {
+            return -Infinity;
+        }
+
+        if (!calculator) {
+            if (isArray(obj)) {
+                return min.apply(Math, obj);
+            }
+
+            if (isEmpty(obj)) {
+                return Infinity;
+            }
+
+
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    store = store || obj[key];
+
+                    if (store >= obj[key]) {
+                        store = obj[key];
+                    }
+                }
+            }
+
+            return store;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                store = obj[key];
+
+                calculated = calculator ? calculator.apply(context,
+                    [store, index, obj]) : obj;
+
+                if (calculated < result) {
+                    result = calculated;
+                }
+
+                index++;
+            }
+        }
+
+        return result;
+    });
+
+    /**
+     *
+     */
+    def(me,'getRest', function(obj, n) {
+        var result = [];
+        var key = null;
+        var index = 0;
+
+        if (typeof obj !== kObject) {
+            return [];
+        }
+
+        if (isArray(obj)) {
+            return slice.apply(obj, [n  || 1]);
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (index >= n) {
+                    result.push(obj[key]);
+                }
+            }
+        }
+
+        return result;
+    });
+
+    /**
+     *
+     */
+    def(me,'getSize', function(obj) {
+        var counter = 0;
+        var key = null;
+
+        if (typeof obj !== kObject) {
+            return 0;
+        }
+
+        if (obj.length !== undefined) {
+            return obj.length;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                counter++;
+            }
+        }
+
+        return counter;
+    });
+
+    /**
+     *
+     */
+    alias(me, 'getCount', 'getSize');
+
+    /**
+     *
+     */
+    alias(me, 'getLength', 'getSize');
+
+    /**
+     *
+     */
+    def(me,'getSortedIndex', function(array, item, delegate) {
+        if (!isArray(array)) {
+            return -1;
+        }
+
+        var iterator = delegate || identity;
+
+        var low = 0;
+        var high = array.length;
+        var mid = 0;
+
+        // Binary search:
+        while (low < high) {
+            mid = (low + high) >> 1;
+
+            iterator(array[mid]) < iterator[item] ? low = mid +1 : high = mid;
+        }
+
+        return low;
+    });
+
+    /**
+     *
+     */
+    def(me,'getValues', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'grep', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'group', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'intersect', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'invoke', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'isEmpty', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'lastIndexOf', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'map', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'pluck', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'reduce', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'reduceRight', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'reject', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'removeElement', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'select', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'shuffle', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
+
+    /**
+     *
+     */
+    def(me,'sort', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
     /**
      * @function {static} o2.CollectionHelper.some
@@ -1023,51 +1345,51 @@
      */
     alias(me, 'any', 'some');
 
-    // /**
-    //  *
-    //  */
-    // def(me,'tap', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'tap', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'toArray', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'toArray', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'touch', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'touch', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'union', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'union', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'unique', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'unique', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 
-    // /**
-    //  *
-    //  */
-    // def(me,'zip', function() {
-    //     //TODO: implement me!
-    //     throw 'IMPLEMENT ME!';
-    // });
+    /**
+     *
+     */
+    def(me,'zip', function() {
+        //TODO: implement me!
+        throw 'IMPLEMENT ME!';
+    });
 }(this.o2, this));

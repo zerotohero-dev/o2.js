@@ -346,6 +346,8 @@ this.o2 = this.o2 || {
                 getMin         : {MODULE : kCollectionHelperCore},
                 getRest        : {MODULE : kCollectionHelperCore},
                 getSize        : {MODULE : kCollectionHelperCore},
+                getCount       : {MODULE : kCollectionHelperCore},
+                getLength      : {MODULE : kCollectionHelperCore},
                 getSortedIndex : {MODULE : kCollectionHelperCore},
                 getValues      : {MODULE : kCollectionHelperCore},
                 grep           : {MODULE : kCollectionHelperCore},
