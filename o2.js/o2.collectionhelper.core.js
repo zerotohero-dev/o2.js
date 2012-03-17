@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-17 10:29:37.453321
+ *  lastModified: 2012-03-17 21:06:17.605375
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -1156,33 +1156,161 @@
     /**
      *
      */
-    def(me,'getValues', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'getValues', function(obj) {
+        var key = null;
+        var result = [];
+
+        if (!obj) {
+            return null;
+        }
+
+        if (typeof obj !== kObject) {
+            return null;
+        }
+
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push(obj[key]);
+            }
+        }
+
+        return result;
     });
 
     /**
      *
      */
-    def(me,'grep', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'grep', function(collection, fnFilter) {
+        var result = [];
+
+        var item = null;
+        var key = null;
+        var len = 0;
+        var i = 0;
+
+        if (!collection) {
+            return result;
+        }
+
+        if (isArray(collection)) {
+            for (i = 0, len = collection.length; i < len; i++) {
+                item = collection[i];
+
+                if(fnFilter(item)) {
+                    result.push(item);
+                }
+            }
+
+            return result;
+        }
+
+        for (key in collection) {
+            if (collection.hasOwnProperty(key)) {
+                item = collection[key];
+
+                if(fnFilter(item)) {
+                    result.push(item);
+                }
+            }
+        }
+
+        return result;
     });
 
     /**
      *
      */
-    def(me,'group', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    alias(me, 'select', 'grep');
+
+    /**
+     *
+     */
+    alias(me. 'filter', 'grep');
+
+
+    /**
+     *
+     */
+    def(me,'group', function(obj, evaluator) {
+        if (!obj) {
+            return {};
+        }
+
+        if (typeof obj !== kObject) {
+            return {};
+        }
+
+        var iterator = isFunction(evaluator) ? evaluator :
+            function(obj) { return obj[evaluator]; };
+
+        var result = {};
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
+                key = iterator(value, i);
+
+                if (!result[key]) {
+                    result[key] = [];
+                }
+
+                result[key].push(value);
+            }
+         } else {
+            i = 0;
+
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    value = obj[key];
+                    key = iterator(value, i);
+
+                    if (!result[key]) {
+                        result[key] = [];
+                    }
+
+                    result[key].push(value);
+
+                    i++;
+                }
+            }
+         }
+
+         return result;
     });
 
     /**
      *
      */
-    def(me,'intersect', function() {
-        //TODO: implement me!
-        throw 'IMPLEMENT ME!';
+    def(me,'intersect', function(ar) {
+        var result = unique(ar);
+        var peers = slice.apply(arguments, [1]);
+        var peer = null;
+
+        if (result.length === 0) {
+            return [];
+        }
+
+        for (i = 0, len = peers.length; i < len; i++) {
+            peer = unique(peers[i]);
+
+            if (typeof peer !== kObject) {
+                return [];
+            }
+
+            for (j = 0, jlen = peer.length; j < jlen; j++) {
+                item = peer[j];
+
+                if (!contains(initial, item)) {
+                    result.splice(indexOf(result, item), 1);
+
+                    if (result.length === 0) {
+                        return [];
+                    }
+                }
+            }
+        }
+
+        return result;
     });
 
     /**
