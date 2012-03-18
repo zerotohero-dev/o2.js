@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-18 00:36:51.308628
+ *  lastModified: 2012-03-18 08:58:44.979524
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -44,14 +44,15 @@
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 
-    var slice = Array.prototype.slice;
+    var kValidator = 'Validator';
+    var isArguments = require(kValidator, 'isArguments');
+    var isArray     = require(kValidator, 'isArray');
+    var isFunction  = require(kValidator, 'isFunction');
+    var isObject    = require(kValidator, 'isObject');
 
-    var isArray  = require('Validator', 'isArray');
-
-    /*
-     * Common Constants
-     */
-    var kObject = 'object';
+    var slice = attr(Array.prototype, 'slice');
+    var max   = attr(Math, 'max');
+    var min   = attr(Math, 'min');
 
     /**
      * @function {static} o2.CollectionHelper.clear
@@ -75,7 +76,7 @@
             return ar;
         }
 
-        if (typeof ar !== kObject) {
+        if (!isObject(ar)) {
             return ar;
         }
 
@@ -99,7 +100,11 @@
      * @return the copied <code>Object</code>.
      */
     def(me,'copy', function(ar) {
-        if (typeof ar !== kObject) {
+        if (!ar) {
+            return [];
+        }
+
+        if (!isObject(ar)) {
             return ar;
         }
 
@@ -149,7 +154,7 @@
             return null;
         }
 
-        if (typeof ar !== kObject) {
+        if (!isObject(ar)) {
             return ar;
         }
 
@@ -205,7 +210,7 @@
         var i = 0;
         var len = 0;
 
-        if (typeof ar !== kObject) {
+        if (!isObject(ar)) {
             return -1;
         }
 
@@ -222,7 +227,7 @@
         var key = null;
         var counter = 0;
 
-        if (typeof ar === kObject) {
+        if (!isObject(ar)) {
             for (key in ar) {
                 if (ar.hasOwnProperty(key)) {
                     if (ar[key] === elm) {
@@ -257,7 +262,11 @@
      * <code>false</code> otherwise.
      */
     def(me,'contains', function(ar, elm) {
-        if (typeof ar !== kObject) {
+        if (!ar) {
+            return -1;
+        }
+
+        if (!isObject(ar)) {
             return -1;
         }
 
@@ -308,7 +317,11 @@
         var value = null;
         var len = 0;
 
-        if (typeof collection !== kObject) {
+        if (!collection) {
+            return null;
+        }
+
+        if (!isObject(collection)) {
             return null;
         }
 
@@ -367,7 +380,7 @@
             return;
         }
 
-        if (typeof collection !== kObject) {
+        if (!isObject(collection)) {
             return;
         }
 
@@ -407,104 +420,6 @@
     alias(me, 'each', 'forEach');
 
     /**
-     * @function {static} o2.CollectionHelper.reduce
-     *
-     * <p>Works similar to the <strong>reduce</strong> part of the
-     * <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
-     * algorithm.</p>
-     * <p>Reduces a <strong>collection</strong> into a single value by
-     * applying a <strong>delegate</strong> of the form
-     * <code>function(cache, value, index, collection)</code> where
-     * <strong>cache</strong> is the accumulator, <strong>value</strong>
-     * is the iterated item, <strong>index</strong> is the item's index,
-     * and <strong>collection</strong> is the collection we are working on.</p>
-     *
-     * @param {Object} collection - an <code>Array</code> or an iterable
-     * <code>Object</code> to iterate.
-     * @param {Functon} delegate - the reducer <code>Functon</code>.
-     * @param {Object} store - the initial seed.
-     * @param {Object} context - the context to be used as the <code>this</code>
-     * reference in the iterator <strong>delegate</strong>.
-     *
-     * @return a single reduced value.
-     */
-    def(me, 'reduce', function(collection, delegate, store, context) {
-        var isSeeded = arguments.length > 2;
-
-        if (typeof collection !== kObject) {
-            return null;
-        }
-
-        var obj = collection || [];
-
-        var iterator = delegate;
-
-        // Array.prototype.reduce
-        if (obj.reduce) {
-            if (context) {
-                iterator = bind(context, delegate);
-            }
-
-            return isSeeded ?
-                obj.reduce(iterator, store) :
-                obj.reduce(iterator);
-        }
-
-        var value = null;
-        var key = null;
-        var cache = store;
-        var index = 0;
-        var i = 0;
-        var len = 0;
-
-        if (isArray(collection)) {
-            for(i = 0, len = collection.length; i < len; i++) {
-                value = collection[i];
-
-                if (!isSeeded) {
-                    cache = value;
-                    isSeeded = true;
-                } else {
-                    cache = iterator.apply(context,
-                        [cache, value, i, collection]
-                    );
-                }
-            }
-
-            if (!isSeeded) {
-                throw 'redude: empty collection with no seed';
-            }
-
-            return cache;
-        }
-
-        for(key in collection) {\
-            if(collection.hasOwnProperty(key)) {
-                value = collection[key];
-
-                if (!isSeeded) {
-                    cache = value;
-                    isSeeded = true;
-                } else {
-                    cache = iterator.apply(context,
-                        [cache, value, index, collection]
-                    );
-                }
-
-                index++;
-            }
-        }
-
-        if (!isSeeded) {
-            throw 'redude: empty collection with no seed';
-        }
-
-        return cache;
-    });
-
-    alias(me, 'fold', 'reduce');
-
-    /**
      * @function {static} o2.CollectionHelper.flatten
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
@@ -518,7 +433,11 @@
         var value = null;
         var key = null;
 
-        if (typeof collection !== kObject) {
+        if (!collection) {
+            return store;
+        }
+
+        if (!isObject(collection)) {
             return store;
         }
 
@@ -565,17 +484,22 @@
      * @return an <code>Array</code> of non-matching items.
      */
     def(me,'diff', function(collection) {
-        var rest = slice.call(arguments, 1);
-
-        if (typeof collection !== kObject) {
-            return store;
-        }
-
         var result = [];
+        var rest = null;
         var value = null;
         var i = 0;
         var len = 0;
         var key = null;
+
+        if (!collection) {
+            return result;
+        }
+
+        if (!isObject(collection)) {
+            return result;
+        }
+
+        rest = slice.call(arguments, 1);
 
         if (isArray(collection)) {
             for(i = 0, len = collection.length; i < len; i++) {
@@ -638,7 +562,7 @@
             return true;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return;
         }
 
@@ -690,7 +614,7 @@
              return results;
          }
 
-         if (typeof obj !== kObject) {
+         if (!isObject(obj)) {
             return results;
          }
 
@@ -743,11 +667,15 @@
          var i = 0;
          var len = 0;
 
-        if (typeof toObj !== kObject) {
+        if (!toObj) {
+            return {};
+        }
+
+        if (!isObject(toObj)) {
             return toObj;
         }
 
-        if (typeof fromObj !== kObject) {
+        if (!isObject(fromObj)) {
             return toObj;
         }
 
@@ -779,6 +707,9 @@
         return toObj;
     });
 
+    /*
+     *
+     */
     alias(me, 'merge', 'extend');
 
     /**
@@ -791,7 +722,7 @@
             return null;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return null;
         }
 
@@ -821,7 +752,7 @@
             return [];
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return [];
         }
 
@@ -852,15 +783,19 @@
         var key = null;
         var value = null;
 
-        if (typeof obj !== kObject) {
-            return [];
+        if (!obj) {
+            return result;
+        }
+
+        if (!isObject(obj)) {
+            return result;
         }
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
 
-                if (typeof value === kFunction) {
+                if (isFunction(value)) {
                     result.push(value);
                 }
             }
@@ -881,13 +816,17 @@
         var key = null;
         var result = [];
 
-        if (typeof obj !== kObject) {
-            return [];
+        if (!obj) {
+            return result;
         }
 
-        for (var key in obj) {
+        if (!isObject(obj)) {
+            return result;
+        }
+
+        for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                result.push[key];
+                result.push(key);
             }
         }
 
@@ -899,9 +838,14 @@
      */
     def(me,'getLast', function(obj) {
         var last = null;
+        var key = null;
 
-        if (typeof obj !== kObject) {
-            return [];
+        if (!obj) {
+            return last;
+        }
+
+        if (!isObject(obj)) {
+            return last;
         }
 
         if (isArray(obj)) {
@@ -923,18 +867,23 @@
     def(me,'getLastN', function(obj, n) {
         var len = 0;
         var i = 0;
+        var key = null;
         var result = [];
 
-        if (typeof obj !== kObject) {
-            return [];
+        if (!obj) {
+            return result;
+        }
+
+        if (!isObject(obj)) {
+            return result;
         }
 
         if (!n) {
-            return [];
+            return result;
         }
 
         if (isArray(obj)) {
-            return slice.apply(obj, [Math.max(obj.length - n, 0)]);
+            return slice.apply(obj, [max(obj.length - n, 0)]);
         }
 
         for (key in obj) {
@@ -957,6 +906,34 @@
     /**
      *
      */
+    def(me,'isEmpty', function (collection) {
+         if (!collection) {
+             return true;
+         }
+
+         if (!isObject(collection)) {
+            return true;
+         }
+
+         var key = null;
+
+         for (key in collection) {
+             if (collection.hasOwnProperty(key)) {
+                 return false;
+             }
+         }
+
+         return true;
+    });
+
+    /*
+     *
+     */
+    var isEmpty = require(kModuleName, 'isEmpty');
+
+    /**
+     *
+     */
     def(me,'getMax', function(obj, calculator, context) {
         var key = null;
         var value = null;
@@ -965,8 +942,12 @@
         var calculated = null;
         var index = 0;
 
-        if (typeof obj !== kObject) {
-            return -Infinity;
+        if (!obj) {
+            return result;
+        }
+
+        if (!isObject(obj)) {
+            return result;
         }
 
         if (!calculator) {
@@ -975,7 +956,7 @@
             }
 
             if (isEmpty(obj)) {
-                return -Infinity;
+                return result;
             }
 
 
@@ -1015,7 +996,7 @@
     /**
      *
      */
-    def(me,'getMin', function() {
+    def(me,'getMin', function(obj, calculator, context) {
         var key = null;
         var value = null;
         var store = null;
@@ -1023,8 +1004,12 @@
         var calculated = null;
         var index = 0;
 
-        if (typeof obj !== kObject) {
-            return -Infinity;
+        if (!obj) {
+            return result;
+        }
+
+        if (!isObject(obj)) {
+            return result;
         }
 
         if (!calculator) {
@@ -1033,9 +1018,8 @@
             }
 
             if (isEmpty(obj)) {
-                return Infinity;
+                return result;
             }
-
 
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
@@ -1075,18 +1059,25 @@
         var result = [];
         var key = null;
         var index = 0;
+        var cutAt = 0;
 
-        if (typeof obj !== kObject) {
-            return [];
+        if (!obj) {
+            return result;
         }
 
+        if (!isObject(obj)) {
+            return result;
+        }
+
+        cutAt = n || 1;
+
         if (isArray(obj)) {
-            return slice.apply(obj, [n  || 1]);
+            return slice.apply(obj, [cutAt]);
         }
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                if (index >= n) {
+                if (index >= cutAt) {
                     result.push(obj[key]);
                 }
             }
@@ -1102,7 +1093,11 @@
         var counter = 0;
         var key = null;
 
-        if (typeof obj !== kObject) {
+        if (!obj) {
+            return 0;
+        }
+
+        if (!isObject(obj)) {
             return 0;
         }
 
@@ -1147,7 +1142,11 @@
         while (low < high) {
             mid = (low + high) >> 1;
 
-            iterator(array[mid]) < iterator[item] ? low = mid +1 : high = mid;
+            if (iterator(array[mid]) < iterator(item)) {
+                low = mid +1;
+            } else {
+                high = mid;
+            }
         }
 
         return low;
@@ -1164,11 +1163,11 @@
             return null;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return null;
         }
 
-        for (var key in obj) {
+        for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 result.push(obj[key]);
             }
@@ -1225,36 +1224,39 @@
     /**
      *
      */
-    alias(me. 'filter', 'grep');
-
+    alias(me, 'filter', 'grep');
 
     /**
      *
      */
     def(me,'group', function(obj, evaluator) {
-        if (!obj) {
-            return {};
-        }
-
-        if (typeof obj !== kObject) {
-            return {};
-        }
-
+        var result = {};
+        var i = 0;
+        var len = 0;
+        var value = null;
+        var key = null;
+        var ky = null;
         var iterator = isFunction(evaluator) ? evaluator :
             function(obj) { return obj[evaluator]; };
 
-        var result = {};
+        if (!obj) {
+            return result;
+        }
+
+        if (!isObject(obj)) {
+            return result;
+        }
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
                 value = obj[i];
-                key = iterator(value, i);
+                ky = iterator(value, i);
 
-                if (!result[key]) {
-                    result[key] = [];
+                if (!result[ky]) {
+                    result[ky] = [];
                 }
 
-                result[key].push(value);
+                result[ky].push(value);
             }
          } else {
             i = 0;
@@ -1262,13 +1264,13 @@
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
                     value = obj[key];
-                    key = iterator(value, i);
+                    ky = iterator(value, i);
 
-                    if (!result[key]) {
-                        result[key] = [];
+                    if (!result[ky]) {
+                        result[ky] = [];
                     }
 
-                    result[key].push(value);
+                    result[ky].push(value);
 
                     i++;
                 }
@@ -1281,10 +1283,149 @@
     /**
      *
      */
+    def(me,'toArray', function(obj) {
+        var key = null;
+        var result = [];
+
+        if (!obj) {
+            return result;
+        }
+
+        if (obj.toArray) {
+            return obj.toArray();
+        }
+
+        if (isArray(obj)) {
+            return slice.apply(obj);
+        }
+
+        if (isArguments(obj)) {
+            return slice.apply(obj);
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push(obj[key]);
+            }
+        }
+
+        return result;
+    });
+
+    /*
+     *
+     */
+    var toArray = require(kModuleName, 'toArray');
+
+    /**
+     *
+     */
+    def(me,'map', function(obj, delegate, context) {
+        var results = [];
+        var i = 0;
+        var len = 0;
+        var value = null;
+        var key = null;
+
+        if (!obj) {
+            return results;
+        }
+
+        if (!isObject(obj)) {
+            return results;
+        }
+
+        // Array.prototype.map
+        if (obj.map) {
+            return obj.map(delegate, context);
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
+
+                results.push(
+                    delegate.apply(context, [value, i, obj])
+                );
+            }
+
+            return results;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
+
+                results.push(
+                    delegate.apply(context, [value, i, obj])
+                );
+
+                i++;
+            }
+        }
+
+        return results;
+    });
+
+    /*
+     *
+     */
+    var map = require(kModuleName, 'map');
+
+    /**
+     *
+     */
+    def(me,'unique', function(array, delegate) {
+        var result = [];
+        var cache = [];
+        var ar = null;
+        var elm = null;
+        var i = 0;
+        var len = 0;
+
+        if (!array) {
+            return result;
+        }
+
+        if (isArray(array)) {
+            ar = array.slice().sort();
+        } else {
+            ar = toArray(array).sort();
+        }
+
+        if (delegate) {
+            ar = delegate ? map(array, delegate) : ar;
+        }
+
+        for (i = 0, len = ar.length; i < len; i++) {
+            elm = ar[i];
+
+            if (i === 0 || cache[cache.length-1] !== elm) {
+                cache.push(elm);
+                result.push(elm);
+            }
+        }
+
+        return result;
+    });
+
+    /*
+     *
+     */
+     var unique = require(kModuleName, 'unique');
+
+    /**
+     *
+     */
     def(me,'intersect', function(ar) {
         var result = unique(ar);
         var peers = slice.apply(arguments, [1]);
         var peer = null;
+        var item = null;
+        var i = 0;
+        var len = 0;
+        var j = 0;
+        var jlen = 0;
 
         if (result.length === 0) {
             return [];
@@ -1293,19 +1434,19 @@
         for (i = 0, len = peers.length; i < len; i++) {
             peer = unique(peers[i]);
 
-            if (typeof peer !== kObject) {
+            if (!isObject(peer)) {
                 return [];
             }
 
-            for (j = 0, jlen = peer.length; j < jlen; j++) {
-                item = peer[j];
+            for (j = 0, jlen = result.length; j < jlen; j++) {
+                item = result[j];
 
-                if (!contains(initial, item)) {
-                    result.splice(indexOf(result, item), 1);
+                if (!contains(peer, item)) {
+                    result.splice(j, 1);
+                }
 
-                    if (result.length === 0) {
-                        return [];
-                    }
+                if (result.length === 0) {
+                    return [];
                 }
             }
         }
@@ -1317,18 +1458,28 @@
      *
      */
     def(me,'invoke', function(obj, delegate) {
+        var i = 0;
+        var len = 0;
+        var item = null;
+        var invoker = null;
+        var key = null;
+
         if (arguments.length < 2) {
             return;
         }
 
-        if (typeof obj !== kObject) {
+        if (!obj) {
+            return;
+        }
+
+        if (!isObject(obj)) {
             return;
         }
 
         var args = slice.apply(arguments, [2]);
 
         if (isArray(obj)) {
-            for (i = 0; len = obj.length; i < len; i++) {\
+            for (i = 0, len = obj.length; i < len; i++) {
                 item = obj[i];
                 invoker = isFunction(delegate) ? delegate : item[delegate];
                 invoker.apply(item, args);
@@ -1349,37 +1500,14 @@
     /**
      *
      */
-    def(me,'isEmpty', function (collection) {
-         if (!collection) {
-             return true;
-         }
-
-         if (typeof collection !== kObject) {
-            return true;
-         }
-
-         var key = null;
-
-         for (key in collection) {
-             if (collection.hasOwnProperty(key)) {
-                 return false;
-             }
-         }
-
-         return true;
-    });
-
-    if ()
-
-    /**
-     *
-     */
     def(me,'lastIndexOf', function(obj, item) {
+        var i = 0;
+
         if (!obj) {
             return -1;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return -1;
         }
 
@@ -1402,81 +1530,146 @@
     /**
      *
      */
-    def(me,'map', function(obj, delegate, context) {
-        var results = [];
-
-        if (!obj) {
-            return results;
-        }
-
-        if (typeof obj !== kObject) {
-            return results;
-        }
-
-        // Array.prototype.map
-        if (obj.map) {
-            return obj.map(delegate, context);
-        }
-
-        if (isArray(obj)) {
-            for (i = 0, len = obj.length; i < len; i++) {
-                value = obj[i];
-
-                results.push(
-                    delegate.apply(context, [value, i, obj])
-                )
-            }
-
-            return results;
-        }
-
-        i = 0;
-
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                value = obj[key];
-
-                results.push(
-                    delegate.apply(context, [value, i, obj])
-                )
-
-                i++;
-            }
-        }
-
-        return results;
-    });
-
-    /**
-     *
-     */
     def(me,'pluck', function(obj, key) {
-        var results = [];
+        var result = [];
+        var i = 0;
+        var len = 0;
+        var k = null;
 
         if (!obj) {
-            return results;
+            return result;
         }
 
-        if (typeof obj !== kObject) {
-            return results;
+        if (!isObject(obj)) {
+            return result;
         }
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
-                results.push(obj[i][key]);
+                result.push(obj[i][key]);
             }
 
-            return results;
+            return result;
         }
 
         for (k in obj) {
             if (obj.hasOwnProperty(k)) {
-                results.push(obj[k][key]);
+                result.push(obj[k][key]);
             }
         }
 
-        return results;
+        return result;
     });
+
+    /**
+     * @function {static} o2.CollectionHelper.reduce
+     *
+     * <p>Works similar to the <strong>reduce</strong> part of the
+     * <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
+     * algorithm.</p>
+     * <p>Reduces a <strong>collection</strong> into a single value by
+     * applying a <strong>delegate</strong> of the form
+     * <code>function(cache, value, index, collection)</code> where
+     * <strong>cache</strong> is the accumulator, <strong>value</strong>
+     * is the iterated item, <strong>index</strong> is the item's index,
+     * and <strong>collection</strong> is the collection we are working on.</p>
+     *
+     * @param {Object} collection - an <code>Array</code> or an iterable
+     * <code>Object</code> to iterate.
+     * @param {Functon} delegate - the reducer <code>Functon</code>.
+     * @param {Object} store - the initial seed.
+     * @param {Object} context - the context to be used as the <code>this</code>
+     * reference in the iterator <strong>delegate</strong>.
+     *
+     * @return a single reduced value.
+     */
+    def(me, 'reduce', function(collection, delegate, store, context) {
+        var isSeeded = arguments.length > 2;
+
+        if (!collection) {
+            return null;
+        }
+
+        if (!isObject(collection)) {
+            return null;
+        }
+
+        var obj = collection || [];
+
+        var iterator = delegate;
+
+        // Array.prototype.reduce
+        if (obj.reduce) {
+            if (context) {
+                iterator = bind(context, delegate);
+            }
+
+            return isSeeded ?
+                obj.reduce(iterator, store) :
+                obj.reduce(iterator);
+        }
+
+        var value = null;
+        var key = null;
+        var cache = store;
+        var index = 0;
+        var i = 0;
+        var len = 0;
+
+        if (isArray(collection)) {
+            for(i = 0, len = collection.length; i < len; i++) {
+                value = collection[i];
+
+                if (!isSeeded) {
+                    cache = value;
+                    isSeeded = true;
+                } else {
+                    cache = iterator.apply(context,
+                        [cache, value, i, collection]
+                    );
+                }
+            }
+
+            if (!isSeeded) {
+                throw 'redude: empty collection with no seed';
+            }
+
+            return cache;
+        }
+
+        for(key in collection) {
+            if(collection.hasOwnProperty(key)) {
+                value = collection[key];
+
+                if (!isSeeded) {
+                    cache = value;
+                    isSeeded = true;
+                } else {
+                    cache = iterator.apply(context,
+                        [cache, value, index, collection]
+                    );
+                }
+
+                index++;
+            }
+        }
+
+        if (!isSeeded) {
+            throw 'redude: empty collection with no seed';
+        }
+
+        return cache;
+    });
+
+    /*
+     *
+     */
+    var reduce = require(kModuleName, 'reduce');
+
+    /**
+     *
+     */
+    alias(me, 'fold', 'reduce');
 
     /**
      *
@@ -1486,7 +1679,7 @@
         var obj = collection || [];
         var iterator = delegate;
 
-        if (typeof collection !== kObject) {
+        if (!isObject(obj)) {
             return null;
         }
 
@@ -1501,7 +1694,7 @@
                 obj.reduceRight(iterator);
         }
 
-        var reversed = reverse(toArray(obj));
+        var reversed = toArray(obj).reverse();
 
         return isSeeded ? reduce(reversed, iterator, store, context) :
             reduce(reversed, iterator);
@@ -1512,12 +1705,14 @@
      */
     def(me,'reject', function(obj, delegate, context) {
         var results = [];
+        var i = 0;
+        var len = 0;
 
         if (!obj) {
             return results;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return results;
         }
 
@@ -1789,72 +1984,8 @@
     /**
      *
      */
-    def(me,'toArray', function(obj) {
-        var result = [];
-
-        if (!obj) {
-            return result;
-        }
-
-        if (obj.toArray) {
-            return obj.toArray();
-        }
-
-        if (isArray(obj)) {
-            return slice.apply(obj);
-        }
-
-        if (isArguments(obj)) {
-            return slice.apply(obj);
-        }
-
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                result.push(obj[key]);
-            }
-        }
-
-        return result;
-    });
-
-    /**
-     *
-     */
     def(me,'union', function() {
         return unique(flatten(arguments));
-    });
-
-    /**
-     *
-     */
-    def(me,'unique', function(array, delegate) {
-        var result = [];
-        var cache = [];
-        var ar = null;
-
-        if (!array) {
-            return result;
-        }
-
-        if (isArray(array)) {
-            ar = array.slice().sort();
-        }
-
-        ar = toArray(array);
-
-        if (delegate) {
-            ar = delegate ? map(array, delegate) : ar;
-        }
-
-        for (i = 0, len = ar.length; i < len; i++) {
-            elm = ar[i];
-            if (i === 0 || cache[cache.length-1] !== elm) {
-                cache.push(elm);
-                result.push(elm);
-            }
-        }
-
-        return result;
     });
 
     /**
@@ -1864,8 +1995,6 @@
         var args = slice.call(arguments);
         var length = getMax(pluck(args, kLength));
         var results = [];
-
-        for (i = 0)
 
         for (i = 0; i < length; i++) {
             results[i] = pluck(args, [kEmpty, i].join(kEmpty));
