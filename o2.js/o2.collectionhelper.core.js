@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-18 15:28:35.976781
+ *  lastModified: 2012-03-18 17:09:55.394486
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -560,6 +560,12 @@
 
     /**
      * @function {static} o2.CollectionHelper.exclude
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     * @param {Object} context -
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -605,6 +611,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.reject
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'reject', 'exclude');
 
@@ -665,13 +675,23 @@
         return toObj;
     });
 
-    /*
+    /**
+     * @function {static} o2.CollectionHelper.merge
      *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'merge', 'extend');
 
     /**
      * @function {static} o2.CollectionHelper.getFirst
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     *
+     * @return
      */
     def(me,'getFirst', function(obj) {
         var key = null;
@@ -699,6 +719,11 @@
 
     /**
      * @function {static} o2.CollectionHelper.getFirstN
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Integer} n -
      */
     def(me,'getFirstN', function(obj, n) {
         var i = 0;
@@ -735,6 +760,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.getFunctions
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
      */
     def(me,'getFunctions', function(obj) {
         var result = [];
@@ -764,11 +793,19 @@
 
     /**
      * @function {static} o2.CollectionHelper.getMethods
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'getMethods', 'getFunctions');
 
     /**
      * @function {static} o2.CollectionHelper.getKeys
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
      */
     def(me,'getKeys', function(obj) {
         var key = null;
@@ -793,6 +830,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.getLast
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
      */
     def(me,'getLast', function(obj) {
         var last = null;
@@ -821,6 +862,13 @@
 
     /**
      * @function {static} o2.CollectionHelper.getLastN
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Integer} n -
+     *
+     * @return
      */
     def(me,'getLastN', function(obj, n) {
         var len = 0;
@@ -863,6 +911,12 @@
 
     /**
      * @function {static} o2.CollectionHelper.isEmpty
+     *
+     * <p></p>
+     *
+     * @param {Object} collection
+     *
+     * @return
      */
     def(me,'isEmpty', function (collection) {
          if (!collection) {
@@ -891,6 +945,14 @@
 
     /**
      * @function {static} o2.CollectionHelper.getMax
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} calculator -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'getMax', function(obj, calculator, context) {
         var key = null;
@@ -954,6 +1016,14 @@
 
     /**
      * @function {static} o2.CollectionHelper.getMin
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} calculator -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'getMin', function(obj, calculator, context) {
         var key = null;
@@ -1012,6 +1082,13 @@
 
     /**
      * @function {static} o2.CollectionHelper.getRest
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Integer} n -
+     *
+     * @return
      */
     def(me,'getRest', function(obj, n) {
         var result = [];
@@ -1046,6 +1123,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.getSize
+     *
+     * @param {Object} obj -
+     *
+     * @return
      */
     def(me,'getSize', function(obj) {
         var counter = 0;
@@ -1074,16 +1155,32 @@
 
     /**
      * @function {static} o2.CollectionHelper.getCount
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'getCount', 'getSize');
 
     /**
      * @function {static} o2.CollectionHelper.getLength
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'getLength', 'getSize');
 
     /**
      * @function {static} o2.CollectionHelper.getSortedIndex
+     *
+     * <p></p>
+     *
+     * @param {Array} array -
+     * @param {Object} item -
+     * @param {Function} delegate -
+     *
+     * @return
      */
     def(me,'getSortedIndex', function(array, item, delegate) {
         if (!isArray(array)) {
@@ -1112,6 +1209,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.getValues
+     *
+     * @param {Object} obj -
+     *
+     * @return
      */
     def(me,'getValues', function(obj) {
         var key = null;
@@ -1136,8 +1237,15 @@
 
     /**
      * @function {static} o2.CollectionHelper.grep
+     *
+     * <p></p>
+     *
+     * @param {Object} collection -
+     * @param {Function} delegate -
+     *
+     * @return
      */
-    def(me,'grep', function(collection, fnFilter) {
+    def(me,'grep', function(collection, delegate) {
         var result = [];
 
         var item = null;
@@ -1153,7 +1261,7 @@
             for (i = 0, len = collection.length; i < len; i++) {
                 item = collection[i];
 
-                if(fnFilter(item)) {
+                if(delegate(item)) {
                     result.push(item);
                 }
             }
@@ -1165,7 +1273,7 @@
             if (collection.hasOwnProperty(key)) {
                 item = collection[key];
 
-                if(fnFilter(item)) {
+                if(delegate(item)) {
                     result.push(item);
                 }
             }
@@ -1176,26 +1284,41 @@
 
     /**
      * @function {static} o2.CollectionHelper.select
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'select', 'grep');
 
     /**
      * @function {static} o2.CollectionHelper.filter
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'filter', 'grep');
 
     /**
      * @function {static} o2.CollectionHelper.group
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     *
+     * @return
      */
-    def(me,'group', function(obj, evaluator) {
+    def(me,'group', function(obj, delegate) {
         var result = {};
         var i = 0;
         var len = 0;
         var value = null;
         var key = null;
         var ky = null;
-        var iterator = isFunction(evaluator) ? evaluator :
-            function(obj) { return obj[evaluator]; };
+        var iterator = isFunction(delegate) ? delegate :
+            function(obj) { return obj[delegate]; };
 
         if (!obj) {
             return result;
@@ -1240,6 +1363,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.toArray
+     *
+     * @param {Object} obj -
+     *
+     * @return
      */
     def(me,'toArray', function(obj) {
         var key = null;
@@ -1277,6 +1404,14 @@
 
     /**
      * @function {static} o2.CollectionHelper.map
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'map', function(obj, delegate, context) {
         var results = [];
@@ -1332,6 +1467,11 @@
 
     /**
      * @function {static} o2.CollectionHelper.unique
+     *
+     * @param {Object} array -
+     * @param {Function} delegate -
+     *
+     * @return
      */
     def(me,'unique', function(array, delegate) {
         var result = [];
@@ -1374,6 +1514,10 @@
 
     /**
      * @function {static} o2.CollectionHelper.intersect
+     *
+     * @param {...} varargin -
+     *
+     * @return
      */
     def(me,'intersect', function(ar) {
         var result = unique(ar);
@@ -1414,6 +1558,13 @@
 
     /**
      * @function {static} o2.CollectionHelper.invoke
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     *
+     * @return
      */
     def(me,'invoke', function(obj, delegate) {
         var i = 0;
@@ -1457,6 +1608,13 @@
 
     /**
      * @function {static} o2.CollectionHelper.lastIndexOf
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Object} item -
+     *
+     * @return
      */
     def(me,'lastIndexOf', function(obj, item) {
         var i = 0;
@@ -1487,6 +1645,13 @@
 
     /**
      * @function {static} o2.CollectionHelper.pluck
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Object} key -
+     *
+     * @return
      */
     def(me,'pluck', function(obj, key) {
         var result = [];
@@ -1630,11 +1795,22 @@
 
     /**
      * @function {static} o2.CollectionHelper.fold
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'fold', 'reduce');
 
     /**
      * @function {static} o2.CollectionHelper.reduceRight
+     *
+     * @param {Object} collection -
+     * @param {Function} delegate -
+     * @param {Object} store -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'reduceRight', function(collection, delegate, store, context) {
         var isSeeded = arguments.length > 2;
@@ -1664,11 +1840,23 @@
 
     /**
      * @function {static} o2.CollectionHelper.foldR
+     *
+     * <p></p>
+     *
+     * @see
      */
     alias(me, 'foldR', 'reduceRight');
 
     /**
      * @function {static} o2.CollectionHelper.reject
+     *
+     * <p></p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'reject', function(obj, delegate, context) {
         var results = [];
@@ -1714,6 +1902,11 @@
 
     /**
      * @function {static} o2.CollectionHelper.removeElement
+     *
+     * <p></p>
+     *
+     * @param {Object} collection -
+     * @param {Object} elm -
      */
     def(me, 'removeElement', function(collection, elm) {
         var item = null;
@@ -1790,33 +1983,42 @@
 
     /**
      * @function {static} o2.CollectionHelper.shuffle
+     *
+     * @param {Object} -
+     *
+     * @return
      */
-    def(me,'shuffle', function(collection) {
+    def(me,'shuffle', function(obj) {
         var result = [];
         var i = 0;
         var len = 0;
         var value = null;
         var index = null;
+        var collection = null;
 
-        if (!collection) {
+        if (!obj) {
             return result;
         }
 
-        if (!isObject(collection)) {
+        if (!isObject(obj)) {
             return result;
         }
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                value = collection[i];
+        if (!isArray(obj)) {
+            collection = toArray(obj);
+        } else {
+            collection = obj;
+        }
 
-                if (i === 0) {
-                    result.push(value);
-                } else {
-                    index = floor(random() * (i + 1));
-                    result[i] = result[index];
-                    result[index] = value;
-                }
+        for (i = 0, len = collection.length; i < len; i++) {
+            value = collection[i];
+
+            if (i === 0) {
+                result.push(value);
+            } else {
+                index = floor(random() * (i + 1));
+                result[i] = result[index];
+                result[index] = value;
             }
         }
 
@@ -1825,6 +2027,15 @@
 
     /**
      * @function {static} o2.CollectionHelper.sort
+     *
+     * <p>Contrary to array.sort, this does not sort in place, and does
+     * not alter the initial object</p>
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     * @param {Object} context -
+     *
+     * @return
      */
     def(me,'sort', function(obj, delegate, context) {
         var meta = [];
@@ -1939,6 +2150,11 @@
 
     /**
      * @function {static} o2.CollectionHelper.touch
+     *
+     * @param {Object} obj -
+     * @param {Function} delegate -
+     *
+     * @return
      */
     def(me,'touch', function(obj, delegate) {
         if (!obj) {
@@ -1960,6 +2176,8 @@
      * <p>Shallow flattens an <code>Array</code>.</p>
      *
      * @param {Array} collection - an <code>Array</code> of <code>Array>
+     *
+     * @return
      */
     def(me, 'flatten', function(collection) {
         var store = [];
@@ -2012,6 +2230,12 @@
 
     /**
      * @function {static} o2.CollectionHelper.union
+     *
+     * <p></p>
+     *
+     * @param {...} varargin -
+     *
+     * @return
      */
     def(me,'union', function() {
         return unique(flatten(arguments));
@@ -2019,6 +2243,12 @@
 
     /**
      * @function {static} o2.CollectionHelper.zip
+     *
+     * <p></p>
+     *
+     * @param {...} varargin -
+     *
+     * @return
      */
     def(me,'zip', function() {
         var args = slice.call(arguments);

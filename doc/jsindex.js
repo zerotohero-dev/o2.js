@@ -364,7 +364,7 @@
        {
            localName : "exclude",
            fullName : "o2.CollectionHelper.exclude",
-           summary : "static function  exclude()",
+           summary : "static function  exclude(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___exclude",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -375,15 +375,6 @@
            fullName : "o2.CollectionHelper.extend",
            summary : "static function  extend(Object toObj, Object fromObj)",
            ref : "logical/o2/CollectionHelper.html#___extend",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "filter",
-           fullName : "o2.CollectionHelper.filter",
-           summary : "static function  filter()",
-           ref : "logical/o2/CollectionHelper.html#___filter",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -407,37 +398,10 @@
            elementType : "function"
        } ,         
        {
-           localName : "fold",
-           fullName : "o2.CollectionHelper.fold",
-           summary : "static function  fold()",
-           ref : "logical/o2/CollectionHelper.html#___fold",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "foldR",
-           fullName : "o2.CollectionHelper.foldR",
-           summary : "static function  foldR()",
-           ref : "logical/o2/CollectionHelper.html#___foldR",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "forEach",
            fullName : "o2.CollectionHelper.forEach",
            summary : "static function  forEach(Object collection, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___forEach",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "getCount",
-           fullName : "o2.CollectionHelper.getCount",
-           summary : "static function  getCount()",
-           ref : "logical/o2/CollectionHelper.html#___getCount",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -454,7 +418,7 @@
        {
            localName : "getFirst",
            fullName : "o2.CollectionHelper.getFirst",
-           summary : "static function  getFirst()",
+           summary : "static function  getFirst(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getFirst",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -463,7 +427,7 @@
        {
            localName : "getFirstN",
            fullName : "o2.CollectionHelper.getFirstN",
-           summary : "static function  getFirstN()",
+           summary : "static function  getFirstN(Object obj, Integer n)",
            ref : "logical/o2/CollectionHelper.html#___getFirstN",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -472,7 +436,7 @@
        {
            localName : "getFunctions",
            fullName : "o2.CollectionHelper.getFunctions",
-           summary : "static function  getFunctions()",
+           summary : "static function  getFunctions(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getFunctions",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -481,7 +445,7 @@
        {
            localName : "getKeys",
            fullName : "o2.CollectionHelper.getKeys",
-           summary : "static function  getKeys()",
+           summary : "static function  getKeys(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getKeys",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -490,7 +454,7 @@
        {
            localName : "getLast",
            fullName : "o2.CollectionHelper.getLast",
-           summary : "static function  getLast()",
+           summary : "static function  getLast(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getLast",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -499,17 +463,8 @@
        {
            localName : "getLastN",
            fullName : "o2.CollectionHelper.getLastN",
-           summary : "static function  getLastN()",
+           summary : "static function  getLastN(Object obj, Integer n)",
            ref : "logical/o2/CollectionHelper.html#___getLastN",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "getLength",
-           fullName : "o2.CollectionHelper.getLength",
-           summary : "static function  getLength()",
-           ref : "logical/o2/CollectionHelper.html#___getLength",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -517,17 +472,8 @@
        {
            localName : "getMax",
            fullName : "o2.CollectionHelper.getMax",
-           summary : "static function  getMax()",
+           summary : "static function  getMax(Object obj, Function calculator, Object context)",
            ref : "logical/o2/CollectionHelper.html#___getMax",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "getMethods",
-           fullName : "o2.CollectionHelper.getMethods",
-           summary : "static function  getMethods()",
-           ref : "logical/o2/CollectionHelper.html#___getMethods",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -535,7 +481,7 @@
        {
            localName : "getMin",
            fullName : "o2.CollectionHelper.getMin",
-           summary : "static function  getMin()",
+           summary : "static function  getMin(Object obj, Function calculator, Object context)",
            ref : "logical/o2/CollectionHelper.html#___getMin",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -544,7 +490,7 @@
        {
            localName : "getRest",
            fullName : "o2.CollectionHelper.getRest",
-           summary : "static function  getRest()",
+           summary : "static function  getRest(Object obj, Integer n)",
            ref : "logical/o2/CollectionHelper.html#___getRest",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -553,7 +499,7 @@
        {
            localName : "getSize",
            fullName : "o2.CollectionHelper.getSize",
-           summary : "static function  getSize()",
+           summary : "static function  getSize(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getSize",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -562,7 +508,7 @@
        {
            localName : "getSortedIndex",
            fullName : "o2.CollectionHelper.getSortedIndex",
-           summary : "static function  getSortedIndex()",
+           summary : "static function  getSortedIndex(Array array, Object item, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___getSortedIndex",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -571,7 +517,7 @@
        {
            localName : "getValues",
            fullName : "o2.CollectionHelper.getValues",
-           summary : "static function  getValues()",
+           summary : "static function  getValues(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___getValues",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -580,7 +526,7 @@
        {
            localName : "grep",
            fullName : "o2.CollectionHelper.grep",
-           summary : "static function  grep()",
+           summary : "static function  grep(Object collection, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___grep",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -589,7 +535,7 @@
        {
            localName : "group",
            fullName : "o2.CollectionHelper.group",
-           summary : "static function  group()",
+           summary : "static function  group(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___group",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -625,7 +571,7 @@
        {
            localName : "intersect",
            fullName : "o2.CollectionHelper.intersect",
-           summary : "static function  intersect()",
+           summary : "static function  intersect(... varargin)",
            ref : "logical/o2/CollectionHelper.html#___intersect",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -634,7 +580,7 @@
        {
            localName : "invoke",
            fullName : "o2.CollectionHelper.invoke",
-           summary : "static function  invoke()",
+           summary : "static function  invoke(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___invoke",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -643,7 +589,7 @@
        {
            localName : "isEmpty",
            fullName : "o2.CollectionHelper.isEmpty",
-           summary : "static function  isEmpty()",
+           summary : "static function  isEmpty(Object collection)",
            ref : "logical/o2/CollectionHelper.html#___isEmpty",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -652,7 +598,7 @@
        {
            localName : "lastIndexOf",
            fullName : "o2.CollectionHelper.lastIndexOf",
-           summary : "static function  lastIndexOf()",
+           summary : "static function  lastIndexOf(Object obj, Object item)",
            ref : "logical/o2/CollectionHelper.html#___lastIndexOf",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -661,7 +607,7 @@
        {
            localName : "map",
            fullName : "o2.CollectionHelper.map",
-           summary : "static function  map()",
+           summary : "static function  map(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___map",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -670,7 +616,7 @@
        {
            localName : "pluck",
            fullName : "o2.CollectionHelper.pluck",
-           summary : "static function  pluck()",
+           summary : "static function  pluck(Object obj, Object key)",
            ref : "logical/o2/CollectionHelper.html#___pluck",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -688,7 +634,7 @@
        {
            localName : "reduceRight",
            fullName : "o2.CollectionHelper.reduceRight",
-           summary : "static function  reduceRight()",
+           summary : "static function  reduceRight(Object collection, Function delegate, Object store, Object context)",
            ref : "logical/o2/CollectionHelper.html#___reduceRight",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -697,7 +643,7 @@
        {
            localName : "reject",
            fullName : "o2.CollectionHelper.reject",
-           summary : "static function  reject()",
+           summary : "static function  reject(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___reject",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -706,7 +652,7 @@
        {
            localName : "removeElement",
            fullName : "o2.CollectionHelper.removeElement",
-           summary : "static function  removeElement()",
+           summary : "static function  removeElement(Object collection, Object elm)",
            ref : "logical/o2/CollectionHelper.html#___removeElement",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -722,18 +668,9 @@
            elementType : "function"
        } ,         
        {
-           localName : "select",
-           fullName : "o2.CollectionHelper.select",
-           summary : "static function  select()",
-           ref : "logical/o2/CollectionHelper.html#___select",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "shuffle",
            fullName : "o2.CollectionHelper.shuffle",
-           summary : "static function  shuffle()",
+           summary : "static function  shuffle(Object -)",
            ref : "logical/o2/CollectionHelper.html#___shuffle",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -751,7 +688,7 @@
        {
            localName : "sort",
            fullName : "o2.CollectionHelper.sort",
-           summary : "static function  sort()",
+           summary : "static function  sort(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___sort",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -760,7 +697,7 @@
        {
            localName : "toArray",
            fullName : "o2.CollectionHelper.toArray",
-           summary : "static function  toArray()",
+           summary : "static function  toArray(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___toArray",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -769,7 +706,7 @@
        {
            localName : "touch",
            fullName : "o2.CollectionHelper.touch",
-           summary : "static function  touch()",
+           summary : "static function  touch(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___touch",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -778,7 +715,7 @@
        {
            localName : "union",
            fullName : "o2.CollectionHelper.union",
-           summary : "static function  union()",
+           summary : "static function  union(... varargin)",
            ref : "logical/o2/CollectionHelper.html#___union",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -787,7 +724,7 @@
        {
            localName : "unique",
            fullName : "o2.CollectionHelper.unique",
-           summary : "static function  unique()",
+           summary : "static function  unique(Object array, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___unique",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -796,7 +733,7 @@
        {
            localName : "zip",
            fullName : "o2.CollectionHelper.zip",
-           summary : "static function  zip()",
+           summary : "static function  zip(... varargin)",
            ref : "logical/o2/CollectionHelper.html#___zip",
            parent : "o2.CollectionHelper",
            type : "function",
