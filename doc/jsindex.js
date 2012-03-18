@@ -443,6 +443,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "removeElementByValue",
+           fullName : "o2.CollectionHelper.removeElementByValue",
+           summary : "static function  removeElementByValue(Object collection, String name, Object value)",
+           ref : "logical/o2/CollectionHelper.html#___removeElementByValue",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "some",
            fullName : "o2.CollectionHelper.some",
            summary : "static function  some(Object collection, delegate, Object -)",

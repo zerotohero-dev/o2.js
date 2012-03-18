@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-18 08:58:44.979524
+ *  lastModified: 2012-03-18 10:17:24.911147
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -51,8 +51,17 @@
     var isObject    = require(kValidator, 'isObject');
 
     var slice = attr(Array.prototype, 'slice');
-    var max   = attr(Math, 'max');
-    var min   = attr(Math, 'min');
+
+    var floor  = attr(Math, 'floor');
+    var max    = attr(Math, 'max');
+    var min    = attr(Math, 'min');
+    var random = attr(Math, 'random');
+
+    /*
+     * Common Constants
+     */
+    var kEmpty  = '';
+    var kLength = 'length';
 
     /**
      * @function {static} o2.CollectionHelper.clear
@@ -418,57 +427,6 @@
      * @see o2.CollectionHelper.forEach
      */
     alias(me, 'each', 'forEach');
-
-    /**
-     * @function {static} o2.CollectionHelper.flatten
-     *
-     * <p>Shallow flattens an <code>Array</code>.</p>
-     *
-     * @param {Array} collection - an <code>Array</code> of <code>Array>
-     */
-    def(me, 'flatten', function(collection) {
-        var store = [];
-        var i = 0;
-        var len = 0;
-        var value = null;
-        var key = null;
-
-        if (!collection) {
-            return store;
-        }
-
-        if (!isObject(collection)) {
-            return store;
-        }
-
-        if (isArray(collection)) {
-            for(i = 0, len = collection.length; i < len; i++) {
-                value = collection[key];
-
-                if (isArray(value)) {
-                    store.concat(value);
-                } else {
-                    store.push(value);
-                }
-            }
-
-            return store;
-        }
-
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
-                value = collection[key];
-
-                if (isArray(value)) {
-                    store.concat(value);
-                } else {
-                    store.push(value);
-                }
-            }
-        }
-
-        return store;
-    });
 
     /**
      * @function {static} o2.CollectionHelper.diff
@@ -936,7 +894,6 @@
      */
     def(me,'getMax', function(obj, calculator, context) {
         var key = null;
-        var value = null;
         var store = null;
         var result = -Infinity;
         var calculated = null;
@@ -991,14 +948,16 @@
         return result;
     });
 
-
+    /*
+     *
+     */
+    var getMax = require(kModuleName, 'getMax');
 
     /**
      *
      */
     def(me,'getMin', function(obj, calculator, context) {
         var key = null;
-        var value = null;
         var store = null;
         var result = Infinity;
         var calculated = null;
@@ -1561,6 +1520,11 @@
         return result;
     });
 
+    /*
+     *
+     */
+    var pluck = require(kModuleName, 'pluck');
+
     /**
      * @function {static} o2.CollectionHelper.reduce
      *
@@ -1707,6 +1671,8 @@
         var results = [];
         var i = 0;
         var len = 0;
+        var value = null;
+        var key = null;
 
         if (!obj) {
             return results;
@@ -1827,12 +1793,16 @@
      */
     def(me,'shuffle', function(collection) {
         var result = [];
+        var i = 0;
+        var len = 0;
+        var value = null;
+        var index = null;
 
         if (!collection) {
             return result;
         }
 
-        if (typeof collection !== kObject) {
+        if (!isObject(collection)) {
             return result;
         }
 
@@ -1858,12 +1828,15 @@
      */
     def(me,'sort', function(obj, delegate, context) {
         var meta = [];
+        var i = 0;
+        var len = 0;
+        var value = null;
 
         if (!obj) {
-            reutrn meta;
+            return meta;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return meta;
         }
 
@@ -1967,19 +1940,75 @@
     /**
      *
      */
-    def(me,'touch', function(obj, inceptor) {
+    def(me,'touch', function(obj, delegate) {
         if (!obj) {
             return null;
         }
 
-        if (typeof obj !== kObject) {
+        if (!isObject(obj)) {
             return null;
         }
 
-        inceptor(obj);
+        delegate(obj);
 
         return obj;
     });
+
+    /**
+     * @function {static} o2.CollectionHelper.flatten
+     *
+     * <p>Shallow flattens an <code>Array</code>.</p>
+     *
+     * @param {Array} collection - an <code>Array</code> of <code>Array>
+     */
+    def(me, 'flatten', function(collection) {
+        var store = [];
+        var i = 0;
+        var len = 0;
+        var value = null;
+        var key = null;
+
+        if (!collection) {
+            return store;
+        }
+
+        if (!isObject(collection)) {
+            return store;
+        }
+
+        if (isArray(collection)) {
+            for(i = 0, len = collection.length; i < len; i++) {
+                value = collection[key];
+
+                if (isArray(value)) {
+                    store.concat(value);
+                } else {
+                    store.push(value);
+                }
+            }
+
+            return store;
+        }
+
+        for (key in collection) {
+            if (collection.hasOwnProperty(key)) {
+                value = collection[key];
+
+                if (isArray(value)) {
+                    store.concat(value);
+                } else {
+                    store.push(value);
+                }
+            }
+        }
+
+        return store;
+    });
+
+    /*
+     *
+     */
+    var flatten = require(kModuleName, 'flatten');
 
     /**
      *
@@ -1995,6 +2024,7 @@
         var args = slice.call(arguments);
         var length = getMax(pluck(args, kLength));
         var results = [];
+        var i = 0;
 
         for (i = 0; i < length; i++) {
             results[i] = pluck(args, [kEmpty, i].join(kEmpty));
