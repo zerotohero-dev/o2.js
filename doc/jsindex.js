@@ -362,10 +362,28 @@
            elementType : "function"
        } ,         
        {
+           localName : "exclude",
+           fullName : "o2.CollectionHelper.exclude",
+           summary : "static function  exclude()",
+           ref : "logical/o2/CollectionHelper.html#___exclude",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "extend",
            fullName : "o2.CollectionHelper.extend",
            summary : "static function  extend(Object toObj, Object fromObj)",
            ref : "logical/o2/CollectionHelper.html#___extend",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "filter",
+           fullName : "o2.CollectionHelper.filter",
+           summary : "static function  filter()",
+           ref : "logical/o2/CollectionHelper.html#___filter",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -389,6 +407,24 @@
            elementType : "function"
        } ,         
        {
+           localName : "fold",
+           fullName : "o2.CollectionHelper.fold",
+           summary : "static function  fold()",
+           ref : "logical/o2/CollectionHelper.html#___fold",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "foldR",
+           fullName : "o2.CollectionHelper.foldR",
+           summary : "static function  foldR()",
+           ref : "logical/o2/CollectionHelper.html#___foldR",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "forEach",
            fullName : "o2.CollectionHelper.forEach",
            summary : "static function  forEach(Object collection, Function delegate)",
@@ -398,10 +434,163 @@
            elementType : "function"
        } ,         
        {
+           localName : "getCount",
+           fullName : "o2.CollectionHelper.getCount",
+           summary : "static function  getCount()",
+           ref : "logical/o2/CollectionHelper.html#___getCount",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getDifference",
            fullName : "o2.CollectionHelper.getDifference",
            summary : "static function  getDifference()",
            ref : "logical/o2/CollectionHelper.html#___getDifference",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirst",
+           fullName : "o2.CollectionHelper.getFirst",
+           summary : "static function  getFirst()",
+           ref : "logical/o2/CollectionHelper.html#___getFirst",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFirstN",
+           fullName : "o2.CollectionHelper.getFirstN",
+           summary : "static function  getFirstN()",
+           ref : "logical/o2/CollectionHelper.html#___getFirstN",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getFunctions",
+           fullName : "o2.CollectionHelper.getFunctions",
+           summary : "static function  getFunctions()",
+           ref : "logical/o2/CollectionHelper.html#___getFunctions",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getKeys",
+           fullName : "o2.CollectionHelper.getKeys",
+           summary : "static function  getKeys()",
+           ref : "logical/o2/CollectionHelper.html#___getKeys",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLast",
+           fullName : "o2.CollectionHelper.getLast",
+           summary : "static function  getLast()",
+           ref : "logical/o2/CollectionHelper.html#___getLast",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastN",
+           fullName : "o2.CollectionHelper.getLastN",
+           summary : "static function  getLastN()",
+           ref : "logical/o2/CollectionHelper.html#___getLastN",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLength",
+           fullName : "o2.CollectionHelper.getLength",
+           summary : "static function  getLength()",
+           ref : "logical/o2/CollectionHelper.html#___getLength",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getMax",
+           fullName : "o2.CollectionHelper.getMax",
+           summary : "static function  getMax()",
+           ref : "logical/o2/CollectionHelper.html#___getMax",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getMethods",
+           fullName : "o2.CollectionHelper.getMethods",
+           summary : "static function  getMethods()",
+           ref : "logical/o2/CollectionHelper.html#___getMethods",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getMin",
+           fullName : "o2.CollectionHelper.getMin",
+           summary : "static function  getMin()",
+           ref : "logical/o2/CollectionHelper.html#___getMin",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getRest",
+           fullName : "o2.CollectionHelper.getRest",
+           summary : "static function  getRest()",
+           ref : "logical/o2/CollectionHelper.html#___getRest",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSize",
+           fullName : "o2.CollectionHelper.getSize",
+           summary : "static function  getSize()",
+           ref : "logical/o2/CollectionHelper.html#___getSize",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getSortedIndex",
+           fullName : "o2.CollectionHelper.getSortedIndex",
+           summary : "static function  getSortedIndex()",
+           ref : "logical/o2/CollectionHelper.html#___getSortedIndex",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getValues",
+           fullName : "o2.CollectionHelper.getValues",
+           summary : "static function  getValues()",
+           ref : "logical/o2/CollectionHelper.html#___getValues",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "grep",
+           fullName : "o2.CollectionHelper.grep",
+           summary : "static function  grep()",
+           ref : "logical/o2/CollectionHelper.html#___grep",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "group",
+           fullName : "o2.CollectionHelper.group",
+           summary : "static function  group()",
+           ref : "logical/o2/CollectionHelper.html#___group",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -434,10 +623,91 @@
            elementType : "function"
        } ,         
        {
+           localName : "intersect",
+           fullName : "o2.CollectionHelper.intersect",
+           summary : "static function  intersect()",
+           ref : "logical/o2/CollectionHelper.html#___intersect",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "invoke",
+           fullName : "o2.CollectionHelper.invoke",
+           summary : "static function  invoke()",
+           ref : "logical/o2/CollectionHelper.html#___invoke",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "isEmpty",
+           fullName : "o2.CollectionHelper.isEmpty",
+           summary : "static function  isEmpty()",
+           ref : "logical/o2/CollectionHelper.html#___isEmpty",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "lastIndexOf",
+           fullName : "o2.CollectionHelper.lastIndexOf",
+           summary : "static function  lastIndexOf()",
+           ref : "logical/o2/CollectionHelper.html#___lastIndexOf",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "map",
+           fullName : "o2.CollectionHelper.map",
+           summary : "static function  map()",
+           ref : "logical/o2/CollectionHelper.html#___map",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "pluck",
+           fullName : "o2.CollectionHelper.pluck",
+           summary : "static function  pluck()",
+           ref : "logical/o2/CollectionHelper.html#___pluck",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "reduce",
            fullName : "o2.CollectionHelper.reduce",
            summary : "static function  reduce(Object collection, Functon delegate, Object store, Object context)",
            ref : "logical/o2/CollectionHelper.html#___reduce",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "reduceRight",
+           fullName : "o2.CollectionHelper.reduceRight",
+           summary : "static function  reduceRight()",
+           ref : "logical/o2/CollectionHelper.html#___reduceRight",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "reject",
+           fullName : "o2.CollectionHelper.reject",
+           summary : "static function  reject()",
+           ref : "logical/o2/CollectionHelper.html#___reject",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "removeElement",
+           fullName : "o2.CollectionHelper.removeElement",
+           summary : "static function  removeElement()",
+           ref : "logical/o2/CollectionHelper.html#___removeElement",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -452,10 +722,82 @@
            elementType : "function"
        } ,         
        {
+           localName : "select",
+           fullName : "o2.CollectionHelper.select",
+           summary : "static function  select()",
+           ref : "logical/o2/CollectionHelper.html#___select",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "shuffle",
+           fullName : "o2.CollectionHelper.shuffle",
+           summary : "static function  shuffle()",
+           ref : "logical/o2/CollectionHelper.html#___shuffle",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "some",
            fullName : "o2.CollectionHelper.some",
            summary : "static function  some(Object collection, delegate, Object -)",
            ref : "logical/o2/CollectionHelper.html#___some",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "sort",
+           fullName : "o2.CollectionHelper.sort",
+           summary : "static function  sort()",
+           ref : "logical/o2/CollectionHelper.html#___sort",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "toArray",
+           fullName : "o2.CollectionHelper.toArray",
+           summary : "static function  toArray()",
+           ref : "logical/o2/CollectionHelper.html#___toArray",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "touch",
+           fullName : "o2.CollectionHelper.touch",
+           summary : "static function  touch()",
+           ref : "logical/o2/CollectionHelper.html#___touch",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "union",
+           fullName : "o2.CollectionHelper.union",
+           summary : "static function  union()",
+           ref : "logical/o2/CollectionHelper.html#___union",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "unique",
+           fullName : "o2.CollectionHelper.unique",
+           summary : "static function  unique()",
+           ref : "logical/o2/CollectionHelper.html#___unique",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "zip",
+           fullName : "o2.CollectionHelper.zip",
+           summary : "static function  zip()",
+           ref : "logical/o2/CollectionHelper.html#___zip",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"

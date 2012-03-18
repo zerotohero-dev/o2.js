@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-18 10:17:24.911147
+ *  lastModified: 2012-03-18 15:28:35.976781
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -559,7 +559,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.exclude
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -604,7 +604,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.reject
      */
     alias(me, 'reject', 'exclude');
 
@@ -671,7 +671,7 @@
     alias(me, 'merge', 'extend');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getFirst
      */
     def(me,'getFirst', function(obj) {
         var key = null;
@@ -698,7 +698,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getFirstN
      */
     def(me,'getFirstN', function(obj, n) {
         var i = 0;
@@ -734,7 +734,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getFunctions
      */
     def(me,'getFunctions', function(obj) {
         var result = [];
@@ -763,12 +763,12 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getMethods
      */
     alias(me, 'getMethods', 'getFunctions');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getKeys
      */
     def(me,'getKeys', function(obj) {
         var key = null;
@@ -792,7 +792,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getLast
      */
     def(me,'getLast', function(obj) {
         var last = null;
@@ -820,7 +820,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getLastN
      */
     def(me,'getLastN', function(obj, n) {
         var len = 0;
@@ -862,7 +862,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.isEmpty
      */
     def(me,'isEmpty', function (collection) {
          if (!collection) {
@@ -890,7 +890,7 @@
     var isEmpty = require(kModuleName, 'isEmpty');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getMax
      */
     def(me,'getMax', function(obj, calculator, context) {
         var key = null;
@@ -915,7 +915,6 @@
             if (isEmpty(obj)) {
                 return result;
             }
-
 
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
@@ -954,7 +953,7 @@
     var getMax = require(kModuleName, 'getMax');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getMin
      */
     def(me,'getMin', function(obj, calculator, context) {
         var key = null;
@@ -1012,7 +1011,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getRest
      */
     def(me,'getRest', function(obj, n) {
         var result = [];
@@ -1046,7 +1045,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getSize
      */
     def(me,'getSize', function(obj) {
         var counter = 0;
@@ -1074,17 +1073,17 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getCount
      */
     alias(me, 'getCount', 'getSize');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getLength
      */
     alias(me, 'getLength', 'getSize');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getSortedIndex
      */
     def(me,'getSortedIndex', function(array, item, delegate) {
         if (!isArray(array)) {
@@ -1112,7 +1111,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.getValues
      */
     def(me,'getValues', function(obj) {
         var key = null;
@@ -1136,7 +1135,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.grep
      */
     def(me,'grep', function(collection, fnFilter) {
         var result = [];
@@ -1176,17 +1175,17 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.select
      */
     alias(me, 'select', 'grep');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.filter
      */
     alias(me, 'filter', 'grep');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.group
      */
     def(me,'group', function(obj, evaluator) {
         var result = {};
@@ -1240,7 +1239,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.toArray
      */
     def(me,'toArray', function(obj) {
         var key = null;
@@ -1277,7 +1276,7 @@
     var toArray = require(kModuleName, 'toArray');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.map
      */
     def(me,'map', function(obj, delegate, context) {
         var results = [];
@@ -1332,7 +1331,7 @@
     var map = require(kModuleName, 'map');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.unique
      */
     def(me,'unique', function(array, delegate) {
         var result = [];
@@ -1374,7 +1373,7 @@
      var unique = require(kModuleName, 'unique');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.intersect
      */
     def(me,'intersect', function(ar) {
         var result = unique(ar);
@@ -1414,7 +1413,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.invoke
      */
     def(me,'invoke', function(obj, delegate) {
         var i = 0;
@@ -1457,7 +1456,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.lastIndexOf
      */
     def(me,'lastIndexOf', function(obj, item) {
         var i = 0;
@@ -1487,7 +1486,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.pluck
      */
     def(me,'pluck', function(obj, key) {
         var result = [];
@@ -1549,6 +1548,14 @@
      */
     def(me, 'reduce', function(collection, delegate, store, context) {
         var isSeeded = arguments.length > 2;
+        var value = null;
+        var key = null;
+        var cache = store;
+        var iterator = delegate;
+        var index = 0;
+        var i = 0;
+        var len = 0;
+        var obj = null;
 
         if (!collection) {
             return null;
@@ -1558,9 +1565,7 @@
             return null;
         }
 
-        var obj = collection || [];
-
-        var iterator = delegate;
+        obj = collection || [];
 
         // Array.prototype.reduce
         if (obj.reduce) {
@@ -1572,13 +1577,6 @@
                 obj.reduce(iterator, store) :
                 obj.reduce(iterator);
         }
-
-        var value = null;
-        var key = null;
-        var cache = store;
-        var index = 0;
-        var i = 0;
-        var len = 0;
 
         if (isArray(collection)) {
             for(i = 0, len = collection.length; i < len; i++) {
@@ -1631,12 +1629,12 @@
     var reduce = require(kModuleName, 'reduce');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.fold
      */
     alias(me, 'fold', 'reduce');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.reduceRight
      */
     def(me,'reduceRight', function(collection, delegate, store, context) {
         var isSeeded = arguments.length > 2;
@@ -1665,7 +1663,12 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.foldR
+     */
+    alias(me, 'foldR', 'reduceRight');
+
+    /**
+     * @function {static} o2.CollectionHelper.reject
      */
     def(me,'reject', function(obj, delegate, context) {
         var results = [];
@@ -1694,9 +1697,6 @@
             return results;
         }
 
-
-        i = 0;
-
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
@@ -1713,9 +1713,9 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.removeElement
      */
-    me.removeElement = function(collection, elm) {
+    def(me, 'removeElement', function(collection, elm) {
         var item = null;
         var i = 0;
         var len = 0;
@@ -1744,7 +1744,7 @@
                 }
             }
         }
-    };
+    });
 
     /**
      * @function {static} o2.CollectionHelper.removeElementByValue
@@ -1789,7 +1789,7 @@
     };
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.shuffle
      */
     def(me,'shuffle', function(collection) {
         var result = [];
@@ -1824,7 +1824,7 @@
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.sort
      */
     def(me,'sort', function(obj, delegate, context) {
         var meta = [];
@@ -1938,7 +1938,7 @@
     alias(me, 'any', 'some');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.touch
      */
     def(me,'touch', function(obj, delegate) {
         if (!obj) {
@@ -2011,14 +2011,14 @@
     var flatten = require(kModuleName, 'flatten');
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.union
      */
     def(me,'union', function() {
         return unique(flatten(arguments));
     });
 
     /**
-     *
+     * @function {static} o2.CollectionHelper.zip
      */
     def(me,'zip', function() {
         var args = slice.call(arguments);
