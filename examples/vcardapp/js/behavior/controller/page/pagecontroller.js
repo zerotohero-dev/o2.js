@@ -4,11 +4,18 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 12:41:01.457409
+ *  lastModified: 2012-03-19 16:36:19.884686
  * -->
  */
 (function(app) {
     'use strict';
+
+    // NOTE:
+    // This module belongs to the "Behavior Tier"; it cannot access to DOM
+    // or render-related method directly (i.e. it cannot get elements'
+    // innerHTML, it cannot alter element contents, show an alert, or
+    // a confirm dialog etc.). All of these
+    // actions should be delegated to the "RenderController".
 
     /**
      *
