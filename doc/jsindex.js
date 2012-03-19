@@ -407,6 +407,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "getCount",
+           fullName : "o2.CollectionHelper.getCount",
+           summary : "static function  getCount()",
+           ref : "logical/o2/CollectionHelper.html#___getCount",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getDifference",
            fullName : "o2.CollectionHelper.getDifference",
            summary : "static function  getDifference()",
@@ -470,10 +479,28 @@
            elementType : "function"
        } ,         
        {
+           localName : "getLength",
+           fullName : "o2.CollectionHelper.getLength",
+           summary : "static function  getLength()",
+           ref : "logical/o2/CollectionHelper.html#___getLength",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "getMax",
            fullName : "o2.CollectionHelper.getMax",
            summary : "static function  getMax(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___getMax",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getMethods",
+           fullName : "o2.CollectionHelper.getMethods",
+           summary : "static function  getMethods()",
+           ref : "logical/o2/CollectionHelper.html#___getMethods",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -609,6 +636,15 @@
            fullName : "o2.CollectionHelper.map",
            summary : "static function  map(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___map",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "merge",
+           fullName : "o2.CollectionHelper.merge",
+           summary : "static function  merge()",
+           ref : "logical/o2/CollectionHelper.html#___merge",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"

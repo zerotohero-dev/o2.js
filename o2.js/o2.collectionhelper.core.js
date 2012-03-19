@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-19 08:45:59.982416
+ *  lastModified: 2012-03-20 00:10:58.911044
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -613,9 +613,9 @@
     /**
      * @function {static} o2.CollectionHelper.reject
      *
-     * <p></p>
+     * <p>An <strong>alıas</strong> to {@link o2.CollectionHelper.exclude}.</p>
      *
-     * @see
+     * @see o2.CollectionHelper.reject
      */
     alias(me, 'reject', 'exclude');
 
@@ -627,8 +627,7 @@
      * @param {Object} toObj - the <code>Object</code> to copy values to.
      * @param {Object} fromObj - the <code>Object</code> to copy values from.
      *
-     * @return a <strong>reference</strong> to the modified
-     * <code>toObj</code>.
+     * @return a <strong>reference</strong> to the modified <code>toObj</code>.
      */
     def(me,'extend', function(toObj, fromObj) {
          var value = null;
@@ -648,23 +647,23 @@
             return toObj;
         }
 
-         if (isArray(toObj)) {
-             if(!isArray(fromObj)) {
-                 return toObj;
-             }
+        if (isArray(toObj)) {
+            if(!isArray(fromObj)) {
+                return toObj;
+            }
 
-             i = 0;
-             len = fromObj.length;
+            i = 0;
+            len = fromObj.length;
 
-             for (i = 0; i < len; i++) {
-                 value = fromObj[i];
+            for (i = 0; i < len; i++) {
+                value = fromObj[i];
 
-                 if(indexOf(toObj, value) === -1) {
-                     toObj.push(value);
-                 }
-             }
+                if(indexOf(toObj, value) === -1) {
+                    toObj.push(value);
+                }
+            }
 
-             return toObj;
+            return toObj;
         }
 
         for (key in fromObj) {
@@ -679,21 +678,22 @@
     /**
      * @function {static} o2.CollectionHelper.merge
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.extend}.</p>
      *
-     * @see
+     * @see o2.CollectionHelper.extend
      */
     alias(me, 'merge', 'extend');
 
     /**
      * @function {static} o2.CollectionHelper.getFirst
      *
-     * <p></p>
+     * <p>Gets the first item in the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return the first item in the collection if exists; <code>null</code>
+     * otherwise.
      */
     def(me,'getFirst', function(obj) {
         var key = null;
@@ -722,11 +722,15 @@
     /**
      * @function {static} o2.CollectionHelper.getFirstN
      *
-     * <p></p>
+     * <p>Gets the first <strong>n</strong> elements of the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Integer} n -
+     * @param {Integer} n - the number of items to retrieve.
+     *
+     * @return the first <strong>n</strong> elements of the collection if
+     * the collection has more than <strong>n</strong> items; all of the items
+     * in the collection otherwise.
      */
     def(me,'getFirstN', function(obj, n) {
         var i = 0;
@@ -764,10 +768,13 @@
     /**
      * @function {static} o2.CollectionHelper.getFunctions
      *
-     * <p></p>
+     * <p>Gets all the <strong>static</strong> methods of the object.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
+     *
+     * @return gets all the member <code>Function</code>s in the current
+     * object.
      */
     def(me,'getFunctions', function(obj) {
         var result = [];
@@ -812,19 +819,22 @@
     /**
      * @function {static} o2.CollectionHelper.getMethods
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to
+     * {@link o2.CollectionHelper.getFunctions}.</p>
      *
-     * @see
+     * @see o2.CollectionHelper.getFunctions
      */
     alias(me, 'getMethods', 'getFunctions');
 
     /**
      * @function {static} o2.CollectionHelper.getKeys
      *
-     * <p></p>
+     * <p>Gets all the keys of the object.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
+     *
+     * @return an <code>Array</code> of the object's keys.
      */
     def(me,'getKeys', function(obj) {
         var key = null;
@@ -860,14 +870,18 @@
     /**
      * @function {static} o2.CollectionHelper.getLast
      *
-     * <p></p>
+     * <p>Gets the last item in the collection.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
+     *
+     * @return the last item in the collection if any; <code>null</code>
+     * otherwise.
      */
     def(me,'getLast', function(obj) {
         var last = null;
         var key = null;
+        var len = 0;
 
         if (!obj) {
             return last;
@@ -878,7 +892,9 @@
         }
 
         if (isArray(obj)) {
-            return obj.length ? obj[obj.length - 1] : null;
+            len = obj.length;
+
+            return len ? obj[len - 1] : null;
         }
 
         for (key in obj) {
@@ -893,13 +909,14 @@
     /**
      * @function {static} o2.CollectionHelper.getLastN
      *
-     * <p></p>
+     * <p>Gets the last <strong>n</strong> items in the collection.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Integer} n -
+     * @param {Integer} n - the number of items to retrieve.
      *
-     * @return
+     * @return the last <strong>n</strong> items if the collection has at least
+     * <strong>n</strong> items; all the items of the collection otherwise.
      */
     def(me,'getLastN', function(obj, n) {
         var len = 0;
@@ -943,12 +960,13 @@
     /**
      * @function {static} o2.CollectionHelper.isEmpty
      *
-     * <p></p>
+     * <p>Check whether the collection contains any members.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return <code>true</code> if the collection is empty; <code>false</code>
+     * otherwise.
      */
     def(me,'isEmpty', function (obj) {
          if (!obj) {
@@ -978,14 +996,19 @@
     /**
      * @function {static} o2.CollectionHelper.getMax
      *
-     * <p></p>
+     * <p>Gets the maximum value of the collection.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Function} delegate - (optional, defaults to
+     * <code>undefined</code>) the evaluator <code>Function</code> in the
+     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * is the current collection item; <strong>index</strong> is the index
+     * of that item.
+     * @param {Object} context - The context to use as <code>this</code>
+     * reference in the delegate.
      *
-     * @return
+     * @return the maximum value in the collection.
      */
     def(me,'getMax', function(obj, delegate, context) {
         var key = null;
@@ -1050,14 +1073,19 @@
     /**
      * @function {static} o2.CollectionHelper.getMin
      *
-     * <p></p>
+     * <p>Gets the maximum value of the collection.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Function} delegate - (optional, defaults to
+     * <code>undefined</code>) the evaluator <code>Function</code> in the
+     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * is the current collection item; <strong>index</strong> is the index
+     * of that item.
+     * @param {Object} context - The context to use as <code>this</code>
+     * reference in the delegate.
      *
-     * @return
+     * @return the minimum value in the collection.
      */
     def(me,'getMin', function(obj, delegate, context) {
         var key = null;
@@ -1117,13 +1145,15 @@
     /**
      * @function {static} o2.CollectionHelper.getRest
      *
-     * <p></p>
+     * <p>Gets the elements of the collection after index n.</p>
      *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Integer} n -
+     * @param {Integer} n - (optional; defaults to <code>1</code>) the
+     * zero-based index to cut at.
      *
-     * @return
+     * @return the items after the index <strong>n</strong> (n<sup>th</sup>
+     * item included)
      */
     def(me,'getRest', function(obj, n) {
         var result = [];
@@ -1139,7 +1169,7 @@
             return result;
         }
 
-        cutAt = n || 1;
+        cutAt = n === undefined ? 1 : n;
 
         if (isArray(obj)) {
             return slice.apply(obj, [cutAt]);
@@ -1159,10 +1189,12 @@
     /**
      * @function {static} o2.CollectionHelper.getSize
      *
+     * <p>Gets the number of items in the collection.</p>
+     *
      * @param {Object} obj - An <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return the number of items in the collection.
      */
     def(me,'getSize', function(obj) {
         var counter = 0;
@@ -1192,31 +1224,35 @@
     /**
      * @function {static} o2.CollectionHelper.getCount
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
      *
-     * @see
+     * @see o2.CollectionHelper.getSize
      */
     alias(me, 'getCount', 'getSize');
 
     /**
      * @function {static} o2.CollectionHelper.getLength
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
      *
-     * @see
+     * @see o2.CollectionHelper.getSize
      */
     alias(me, 'getLength', 'getSize');
 
     /**
      * @function {static} o2.CollectionHelper.getSortedIndex
      *
-     * <p></p>
+     * <p>Gets an index to insert the item at a sorted <strong>Array</code>,
+     * so that is not needed to be resorted.</p>
      *
-     * @param {Array} array - An <code>Array</code> to work on.
-     * @param {Object} item -
-     * @param {Function} delegate -
+     * @param {Array} array - an <code>Array</code> to work on.
+     * @param {Object} item - the item to insert.
+     * @param {Function} delegate - (optional, defaults to identity function),
+     * a <code>Function</code> that takes the current item as a parameter and
+     * returns an <code>Integer</code> value.
      *
-     * @return
+     * @return <code>-1</code> if the collection is not an <code>Array</code>;
+     * the computed sorted index otherwise.
      */
     def(me,'getSortedIndex', function(array, item, delegate) {
         if (!isArray(array)) {
