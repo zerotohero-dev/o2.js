@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.24.a.0001332083434
+	                 version 0.24.a.0001332139579
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -185,7 +185,7 @@
                 <a href="logical/o2/CollectionHelper.html#___each"><span class="elementName">each</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___forEach">o2.CollectionHelper.forEach</a>.</p>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___forEach">o2.CollectionHelper.forEach</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -207,11 +207,12 @@
                 <a href="logical/o2/CollectionHelper.html#___exclude"><span class="elementName">exclude</span></a>
                 (<span class="type">Object</span>
  obj, <span class="type">Function</span>
- delegate, <span class="type">Object</span>
+ delegate, <span class="type">Array</span>
  context)
             </div>          
                 <div class="summaryItemDesc">
-        <p></p>    </div>  
+        <p>Excludes filtered out items from the collection. Returns a new
+ collection without alterin the initial one.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -231,7 +232,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___find"><span class="elementName">find</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type"></span>
+ obj, <span class="type"></span>
  delegate, <span class="type">Object</span>
  context)
             </div>          
@@ -244,8 +245,8 @@
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___flatten"><span class="elementName">flatten</span></a>
-                (<span class="type">Array</span>
- collection)
+                (<span class="type">Object</span>
+ obj)
             </div>          
                 <div class="summaryItemDesc">
         <p>Shallow flattens an <code>Array</code>.</p>    </div>  
@@ -256,7 +257,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___forEach"><span class="elementName">forEach</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
             </div>          
                 <div class="summaryItemDesc">
@@ -348,7 +349,7 @@
                 <a href="logical/o2/CollectionHelper.html#___getMax"><span class="elementName">getMax</span></a>
                 (<span class="type">Object</span>
  obj, <span class="type">Function</span>
- calculator, <span class="type">Object</span>
+ delegate, <span class="type">Object</span>
  context)
             </div>          
                 <div class="summaryItemDesc">
@@ -361,7 +362,7 @@
                 <a href="logical/o2/CollectionHelper.html#___getMin"><span class="elementName">getMin</span></a>
                 (<span class="type">Object</span>
  obj, <span class="type">Function</span>
- calculator, <span class="type">Object</span>
+ delegate, <span class="type">Object</span>
  context)
             </div>          
                 <div class="summaryItemDesc">
@@ -422,7 +423,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___grep"><span class="elementName">grep</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
             </div>          
                 <div class="summaryItemDesc">
@@ -500,7 +501,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___isEmpty"><span class="elementName">isEmpty</span></a>
                 (<span class="type">Object</span>
- collection)
+ obj)
             </div>          
                 <div class="summaryItemDesc">
         <p></p>    </div>  
@@ -548,7 +549,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___reduce"><span class="elementName">reduce</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Functon</span>
+ obj, <span class="type">Functon</span>
  delegate, <span class="type">Object</span>
  store, <span class="type">Object</span>
  context)
@@ -570,7 +571,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___reduceRight"><span class="elementName">reduceRight</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate, <span class="type">Object</span>
  store, <span class="type">Object</span>
  context)
@@ -598,7 +599,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___removeElement"><span class="elementName">removeElement</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">Object</span>
+ obj, <span class="type">Object</span>
  elm)
             </div>          
                 <div class="summaryItemDesc">
@@ -610,7 +611,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___removeElementByValue"><span class="elementName">removeElementByValue</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type">String</span>
+ obj, <span class="type">String</span>
  name, <span class="type">Object</span>
  value)
             </div>          
@@ -624,7 +625,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___shuffle"><span class="elementName">shuffle</span></a>
                 (<span class="type">Object</span>
- -)
+ obj)
             </div>          
                 <div class="summaryItemDesc">
         
@@ -636,7 +637,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___some"><span class="elementName">some</span></a>
                 (<span class="type">Object</span>
- collection, <span class="type"></span>
+ obj, <span class="type"></span>
  delegate, <span class="type">Object</span>
  -)
             </div>          
@@ -707,7 +708,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/CollectionHelper.html#___unique"><span class="elementName">unique</span></a>
                 (<span class="type">Object</span>
- array, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
             </div>          
                 <div class="summaryItemDesc">
@@ -1010,7 +1011,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An alias to <a href="logical/o2/CollectionHelper.html#___forEach">o2.CollectionHelper.forEach</a>.</p>
+        <p>An <strong>alias</strong> to <a href="logical/o2/CollectionHelper.html#___forEach">o2.CollectionHelper.forEach</a>.</p>
 
      </div>
                                 <div class="seealso">
@@ -1083,12 +1084,13 @@
                     <span class="type"></span>
                     exclude(<span class="type">Object</span>
  obj, <span class="type">Function</span>
- delegate, <span class="type">Object</span>
+ delegate, <span class="type">Array</span>
  context)
                 </code> 
             </div>          
                 <div class="comment">
-        <p></p>
+        <p>Excludes filtered out items from the collection. Returns a new
+ collection without alterin the initial one.</p>
 
      </div>
         	<div class="parameters">
@@ -1099,15 +1101,20 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
-         -            </div>   
+         - the iterator in the form
+ <code>function(context, value, index, obj)</code> where
+ <strong>value</strong> is the current element of <strong>obj</strong>
+ being iterated over, and <strong>index</strong> is the index of that
+ element.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             context        </code>
-         -            </div>   
+         -a new filtered object.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1166,7 +1173,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     find(<span class="type">Object</span>
- collection, <span class="type"></span>
+ obj, <span class="type"></span>
  delegate, <span class="type">Object</span>
  context)
                 </code> 
@@ -1183,7 +1190,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
+            obj        </code>
          - the <code>Array</code> or an iterable
  <code>Object</code>.            </div>   
                                                 <div class="param paddedDetails">
@@ -1217,8 +1224,8 @@
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    flatten(<span class="type">Array</span>
- collection)
+                    flatten(<span class="type">Object</span>
+ obj)
                 </code> 
             </div>          
                 <div class="comment">
@@ -1232,8 +1239,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - an <code>Array</code> of <code>Array>            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1255,7 +1263,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     forEach(<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
                 </code> 
             </div>          
@@ -1272,8 +1280,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - the current object to iterate.            </div>   
+            obj        </code>
+         - the <code>Array</code> or an iterable
+ <code>Object</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -1331,7 +1340,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1369,7 +1379,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             n        </code>
@@ -1404,7 +1415,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1435,7 +1447,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1466,7 +1479,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1498,7 +1512,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             n        </code>
@@ -1525,7 +1540,7 @@
                     <span class="type"></span>
                     getMax(<span class="type">Object</span>
  obj, <span class="type">Function</span>
- calculator, <span class="type">Object</span>
+ delegate, <span class="type">Object</span>
  context)
                 </code> 
             </div>          
@@ -1541,10 +1556,11 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            calculator        </code>
+            delegate        </code>
          -            </div>   
                                                 <div class="param paddedDetails">
         <code>
@@ -1572,7 +1588,7 @@
                     <span class="type"></span>
                     getMin(<span class="type">Object</span>
  obj, <span class="type">Function</span>
- calculator, <span class="type">Object</span>
+ delegate, <span class="type">Object</span>
  context)
                 </code> 
             </div>          
@@ -1588,10 +1604,11 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            calculator        </code>
+            delegate        </code>
          -            </div>   
                                                 <div class="param paddedDetails">
         <code>
@@ -1634,7 +1651,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             n        </code>
@@ -1674,7 +1692,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1713,7 +1732,7 @@
                                                 <div class="param paddedDetails">
         <code>
             array        </code>
-         -            </div>   
+         - An <code>Array</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             item        </code>
@@ -1757,7 +1776,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1779,7 +1799,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     grep(<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
                 </code> 
             </div>          
@@ -1794,8 +1814,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         -            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -1837,7 +1858,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2002,7 +2024,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2028,7 +2051,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     isEmpty(<span class="type">Object</span>
- collection)
+ obj)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2042,8 +2065,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-                    </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2081,7 +2105,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             item        </code>
@@ -2124,7 +2149,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2170,7 +2196,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             key        </code>
@@ -2196,7 +2223,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     reduce(<span class="type">Object</span>
- collection, <span class="type">Functon</span>
+ obj, <span class="type">Functon</span>
  delegate, <span class="type">Object</span>
  store, <span class="type">Object</span>
  context)
@@ -2221,9 +2248,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - an <code>Array</code> or an iterable
- <code>Object</code> to iterate.            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2258,7 +2285,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     reduceRight(<span class="type">Object</span>
- collection, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate, <span class="type">Object</span>
  store, <span class="type">Object</span>
  context)
@@ -2274,8 +2301,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         -            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2326,7 +2354,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2356,7 +2385,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     removeElement(<span class="type">Object</span>
- collection, <span class="type">Object</span>
+ obj, <span class="type">Object</span>
  elm)
                 </code> 
             </div>          
@@ -2371,8 +2400,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         -            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             elm        </code>
@@ -2392,7 +2422,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     removeElementByValue(<span class="type">Object</span>
- collection, <span class="type">String</span>
+ obj, <span class="type">String</span>
  name, <span class="type">Object</span>
  value)
                 </code> 
@@ -2409,9 +2439,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - an <code>Object</code> or an
- <code>Array</code> to update.            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -2435,7 +2465,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     shuffle(<span class="type">Object</span>
- -)
+ obj)
                 </code> 
             </div>          
                 <div class="comment">
@@ -2448,8 +2478,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            -        </code>
-                    </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2471,7 +2502,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     some(<span class="type">Object</span>
- collection, <span class="type"></span>
+ obj, <span class="type"></span>
  delegate, <span class="type">Object</span>
  -)
                 </code> 
@@ -2495,9 +2526,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            collection        </code>
-         - An <code>Array</code>, or an iterable
- <code>Object</code>.            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2548,7 +2579,8 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
@@ -2592,7 +2624,10 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         -            </div>   
+         - Any <code>Object</code> to convert to an
+ <code>Array</code>. If <strong>obj</strong> is, in deed, an
+ <code>Array</code>, then a copy of it is returned without altering
+ the original <code>Object</code>.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2692,7 +2727,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     unique(<span class="type">Object</span>
- array, <span class="type">Function</span>
+ obj, <span class="type">Function</span>
  delegate)
                 </code> 
             </div>          
@@ -2706,8 +2741,9 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            array        </code>
-         -            </div>   
+            obj        </code>
+         - An <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>

@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-18 17:09:55.394486
+ *  lastModified: 2012-03-19 08:45:59.982416
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -207,20 +207,22 @@
      * @return the index of the element if found, <code>-1</code> otherwise.
      */
     def(me, 'indexOf', function(ar, elm) {
+        var i = 0;
+        var len = 0;
+        var key = null;
+        var counter = 0;
+
         if (!ar) {
+            return -1;
+        }
+
+        if (!isObject(ar)) {
             return -1;
         }
 
         // Array.prototype.indexOf
         if (ar.indexOf) {
             return ar.indexOf(elm);
-        }
-
-        var i = 0;
-        var len = 0;
-
-        if (!isObject(ar)) {
-            return -1;
         }
 
         if (isArray(ar)) {
@@ -233,21 +235,14 @@
             return -1;
         }
 
-        var key = null;
-        var counter = 0;
-
-        if (!isObject(ar)) {
-            for (key in ar) {
-                if (ar.hasOwnProperty(key)) {
-                    if (ar[key] === elm) {
-                        return counter;
-                    }
-
-                    counter++;
+        for (key in ar) {
+            if (ar.hasOwnProperty(key)) {
+                if (ar[key] === elm) {
+                    return counter;
                 }
-            }
 
-            return -1;
+                counter++;
+            }
         }
 
         return -1;
@@ -308,7 +303,7 @@
      * <p>Gets the first <strong>collection</strong> item that validates
      * against the given <strong>delegator</strong>.</p>
      *
-     * @param {Object} collection - the <code>Array</code> or an iterable
+     * @param {Object} obj - the <code>Array</code> or an iterable
      * <code>Object</code>.
      * @param delegate - Iterator <code>Function</code> in the form
      * <code>function(context, value, index, collection)</code>.
@@ -318,7 +313,7 @@
      * @return the first truthy evaluated item; <code>null</code> if nothing
      * is found.
      */
-    def(me,'find', function(collection, delegate, context) {
+    def(me,'find', function(obj, delegate, context) {
         var result = null;
         var index = 0;
         var key = null;
@@ -326,19 +321,19 @@
         var value = null;
         var len = 0;
 
-        if (!collection) {
+        if (!obj) {
             return null;
         }
 
-        if (!isObject(collection)) {
+        if (!isObject(obj)) {
             return null;
         }
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                value = collection[i];
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
 
-                if(delegate.apply(context, [value, i, collection])) {
+                if(delegate.apply(context, [value, i, obj])) {
                     result = value;
 
                     break;
@@ -348,10 +343,10 @@
             return result;
         }
 
-        for(key in collection) {
-            if(collection.hasOwnProperty(key)) {
-                value = collection[key];
-                if(delegate.apply(context, [value, index, collection])) {
+        for(key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                value = obj[key];
+                if(delegate.apply(context, [value, index, obj])) {
                     result = value;
 
                     break;
@@ -380,41 +375,41 @@
      * <code>fn(item, currentIndex, collection)</code> for each element
      * of the <strong>collection</strong>.</p>
      *
-     * @param {Object} collection - the current object to iterate.
+     * @param {Object} obj - the <code>Array</code> or an iterable
+     * <code>Object</code>.
      * @param {Function} delegate - the iterator in the form
      * <code>function(item, index, collection)</code>.
      */
-    def(me, 'forEach', function(collection, delegate) {
-        if (!collection) {
-            return;
-        }
-
-        if (!isObject(collection)) {
-            return;
-        }
-
-        if (collection.forEach) {
-            collection.forEach(delegate);
-
-            return;
-        }
-
+    def(me, 'forEach', function(obj, delegate) {
         var i = 0;
         var len = 0;
+        var key = null;
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                delegate(collection[i], i, collection);
+        if (!obj) {
+            return;
+        }
+
+        if (!isObject(obj)) {
+            return;
+        }
+
+        if (obj.forEach) {
+            obj.forEach(delegate);
+
+            return;
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                delegate(obj[i], i, obj);
             }
 
             return;
         }
 
-        var key = null;
-
-        for (key in collection) {
-            if(collection.hasOwnProperty(key)) {
-                delegate(collection[key], key, collection);
+        for (key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                delegate(obj[key], key, obj);
             }
         }
     });
@@ -422,7 +417,7 @@
     /**
      * @function {static} o2.CollectionHelper.each
      *
-     * <p>An alias to {@link o2.CollectionHelper.forEach}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.forEach}.</p>
      *
      * @see o2.CollectionHelper.forEach
      */
@@ -561,11 +556,17 @@
     /**
      * @function {static} o2.CollectionHelper.exclude
      *
-     * <p></p>
+     * <p>Excludes filtered out items from the collection. Returns a new
+     * collection without alterin the initial one.</p>
      *
-     * @param {Object} obj -
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
+     * @param {Function} delegate - the iterator in the form
+     * <code>function(context, value, index, obj)</code> where
+     * <strong>value</strong> is the current element of <strong>obj</strong>
+     * being iterated over, and <strong>index</strong> is the index of that
+     * element.
+     * @param {Array} context -a new filtered object.
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -689,7 +690,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
@@ -722,7 +724,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Integer} n -
      */
     def(me,'getFirstN', function(obj, n) {
@@ -763,18 +766,33 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      */
     def(me,'getFunctions', function(obj) {
         var result = [];
         var key = null;
         var value = null;
+        var i = 0;
+        var len = 0;
 
         if (!obj) {
             return result;
         }
 
         if (!isObject(obj)) {
+            return result;
+        }
+
+        if (!isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
+
+                if (isFunction(value)) {
+                    result.push(value);
+                }
+            }
+
             return result;
         }
 
@@ -805,17 +823,28 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      */
     def(me,'getKeys', function(obj) {
         var key = null;
         var result = [];
+        var i = 0;
+        var len = 0;
 
         if (!obj) {
             return result;
         }
 
         if (!isObject(obj)) {
+            return result;
+        }
+
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                result.push([kEmpty, i].join(kEmpty));
+            }
+
             return result;
         }
 
@@ -833,7 +862,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      */
     def(me,'getLast', function(obj) {
         var last = null;
@@ -865,7 +895,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Integer} n -
      *
      * @return
@@ -914,23 +945,24 @@
      *
      * <p></p>
      *
-     * @param {Object} collection
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
-    def(me,'isEmpty', function (collection) {
-         if (!collection) {
+    def(me,'isEmpty', function (obj) {
+         if (!obj) {
              return true;
          }
 
-         if (!isObject(collection)) {
+         if (!isObject(obj)) {
             return true;
          }
 
          var key = null;
 
-         for (key in collection) {
-             if (collection.hasOwnProperty(key)) {
+         for (key in obj) {
+             if (obj.hasOwnProperty(key)) {
                  return false;
              }
          }
@@ -948,13 +980,14 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
-     * @param {Function} calculator -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
+     * @param {Function} delegate -
      * @param {Object} context -
      *
      * @return
      */
-    def(me,'getMax', function(obj, calculator, context) {
+    def(me,'getMax', function(obj, delegate, context) {
         var key = null;
         var store = null;
         var result = -Infinity;
@@ -969,7 +1002,7 @@
             return result;
         }
 
-        if (!calculator) {
+        if (!delegate) {
             if (isArray(obj)) {
                 return max.apply(Math, obj);
             }
@@ -995,7 +1028,7 @@
             if (obj.hasOwnProperty(key)) {
                 store = obj[key];
 
-                calculated = calculator ? calculator.apply(context,
+                calculated = delegate ? delegate.apply(context,
                     [store, index, obj]) : obj;
 
                 if (calculated >= result) {
@@ -1019,13 +1052,14 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
-     * @param {Function} calculator -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
+     * @param {Function} delegate -
      * @param {Object} context -
      *
      * @return
      */
-    def(me,'getMin', function(obj, calculator, context) {
+    def(me,'getMin', function(obj, delegate, context) {
         var key = null;
         var store = null;
         var result = Infinity;
@@ -1040,7 +1074,7 @@
             return result;
         }
 
-        if (!calculator) {
+        if (!delegate) {
             if (isArray(obj)) {
                 return min.apply(Math, obj);
             }
@@ -1066,7 +1100,7 @@
             if (obj.hasOwnProperty(key)) {
                 store = obj[key];
 
-                calculated = calculator ? calculator.apply(context,
+                calculated = delegate ? delegate.apply(context,
                     [store, index, obj]) : obj;
 
                 if (calculated < result) {
@@ -1085,7 +1119,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Integer} n -
      *
      * @return
@@ -1124,7 +1159,8 @@
     /**
      * @function {static} o2.CollectionHelper.getSize
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
@@ -1176,7 +1212,7 @@
      *
      * <p></p>
      *
-     * @param {Array} array -
+     * @param {Array} array - An <code>Array</code> to work on.
      * @param {Object} item -
      * @param {Function} delegate -
      *
@@ -1210,7 +1246,8 @@
     /**
      * @function {static} o2.CollectionHelper.getValues
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
@@ -1224,6 +1261,10 @@
 
         if (!isObject(obj)) {
             return null;
+        }
+
+        if (isArray(obj)) {
+            return obj.slice();
         }
 
         for (key in obj) {
@@ -1240,12 +1281,14 @@
      *
      * <p></p>
      *
-     * @param {Object} collection -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
+
      * @param {Function} delegate -
      *
      * @return
      */
-    def(me,'grep', function(collection, delegate) {
+    def(me,'grep', function(obj, delegate) {
         var result = [];
 
         var item = null;
@@ -1253,13 +1296,13 @@
         var len = 0;
         var i = 0;
 
-        if (!collection) {
+        if (!obj) {
             return result;
         }
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                item = collection[i];
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                item = obj[i];
 
                 if(delegate(item)) {
                     result.push(item);
@@ -1269,9 +1312,9 @@
             return result;
         }
 
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
-                item = collection[key];
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                item = obj[key];
 
                 if(delegate(item)) {
                     result.push(item);
@@ -1305,7 +1348,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      *
      * @return
@@ -1364,7 +1408,10 @@
     /**
      * @function {static} o2.CollectionHelper.toArray
      *
-     * @param {Object} obj -
+     * @param {Object} obj - Any <code>Object</code> to convert to an
+     * <code>Array</code>. If <strong>obj</strong> is, in deed, an
+     * <code>Array</code>, then a copy of it is returned without altering
+     * the original <code>Object</code>.
      *
      * @return
      */
@@ -1381,7 +1428,7 @@
         }
 
         if (isArray(obj)) {
-            return slice.apply(obj);
+            return obj.slice();
         }
 
         if (isArguments(obj)) {
@@ -1407,7 +1454,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      * @param {Object} context -
      *
@@ -1468,7 +1516,8 @@
     /**
      * @function {static} o2.CollectionHelper.unique
      *
-     * @param {Object} array -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      *
      * @return
@@ -1561,7 +1610,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      *
      * @return
@@ -1611,7 +1661,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Object} item -
      *
      * @return
@@ -1648,7 +1699,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Object} key -
      *
      * @return
@@ -1702,8 +1754,8 @@
      * is the iterated item, <strong>index</strong> is the item's index,
      * and <strong>collection</strong> is the collection we are working on.</p>
      *
-     * @param {Object} collection - an <code>Array</code> or an iterable
-     * <code>Object</code> to iterate.
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Functon} delegate - the reducer <code>Functon</code>.
      * @param {Object} store - the initial seed.
      * @param {Object} context - the context to be used as the <code>this</code>
@@ -1711,7 +1763,7 @@
      *
      * @return a single reduced value.
      */
-    def(me, 'reduce', function(collection, delegate, store, context) {
+    def(me, 'reduce', function(obj, delegate, store, context) {
         var isSeeded = arguments.length > 2;
         var value = null;
         var key = null;
@@ -1720,17 +1772,14 @@
         var index = 0;
         var i = 0;
         var len = 0;
-        var obj = null;
 
-        if (!collection) {
+        if (!obj) {
             return null;
         }
 
-        if (!isObject(collection)) {
+        if (!isObject(obj)) {
             return null;
         }
-
-        obj = collection || [];
 
         // Array.prototype.reduce
         if (obj.reduce) {
@@ -1743,37 +1792,38 @@
                 obj.reduce(iterator);
         }
 
-        if (isArray(collection)) {
-            for(i = 0, len = collection.length; i < len; i++) {
-                value = collection[i];
+        if (isArray(obj)) {
+            for(i = 0, len = obj.length; i < len; i++) {
+                value = obj[i];
 
                 if (!isSeeded) {
                     cache = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
-                        [cache, value, i, collection]
+                        [cache, value, i, obj]
                     );
                 }
             }
 
             if (!isSeeded) {
-                throw 'redude: empty collection with no seed';
+                //TODO: const.
+                throw 'reduce: empty collection with no seed';
             }
 
             return cache;
         }
 
-        for(key in collection) {
-            if(collection.hasOwnProperty(key)) {
-                value = collection[key];
+        for(key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                value = obj[key];
 
                 if (!isSeeded) {
                     cache = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
-                        [cache, value, index, collection]
+                        [cache, value, index, obj]
                     );
                 }
 
@@ -1782,6 +1832,7 @@
         }
 
         if (!isSeeded) {
+            //TODO: const.
             throw 'redude: empty collection with no seed';
         }
 
@@ -1805,19 +1856,23 @@
     /**
      * @function {static} o2.CollectionHelper.reduceRight
      *
-     * @param {Object} collection -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      * @param {Object} store -
      * @param {Object} context -
      *
      * @return
      */
-    def(me,'reduceRight', function(collection, delegate, store, context) {
+    def(me,'reduceRight', function(obj, delegate, store, context) {
         var isSeeded = arguments.length > 2;
-        var obj = collection || [];
         var iterator = delegate;
 
         if (!isObject(obj)) {
+            return null;
+        }
+
+        if (!obj) {
             return null;
         }
 
@@ -1852,7 +1907,8 @@
      *
      * <p></p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      * @param {Object} context -
      *
@@ -1905,35 +1961,36 @@
      *
      * <p></p>
      *
-     * @param {Object} collection -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Object} elm -
      */
-    def(me, 'removeElement', function(collection, elm) {
+    def(me, 'removeElement', function(obj, elm) {
         var item = null;
         var i = 0;
         var len = 0;
         var key = null;
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                item = collection[i];
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                item = obj[i];
 
                 if(item === elm) {
-                    collection.splice(i, 1);
+                    obj.splice(i, 1);
                     i--;
-                    len = collection.length;
+                    len = obj.length;
                 }
             }
 
             return;
         }
 
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
-                item = collection[key];
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                item = obj[key];
 
                 if(item === elm) {
-                    delete collection[key];
+                    delete obj[key];
                 }
             }
         }
@@ -1945,37 +2002,37 @@
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
      *
-     * @param {Object} collection - an <code>Object</code> or an
-     * <code>Array</code> to update.
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {String} name - the name of the property.
      * @param {Object} value - the value to compare.
      */
-    me.removeElementByValue = function(collection, name, value) {
+    me.removeElementByValue = function(obj, name, value) {
         var item = null;
         var i = 0;
         var len = 0;
         var key = null;
 
-        if (isArray(collection)) {
-            for (i = 0, len = collection.length; i < len; i++) {
-                item = collection[i];
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                item = obj[i];
 
                 if(item[name] === value) {
-                    collection.splice(i, 1);
+                    obj.splice(i, 1);
                     i--;
-                    len = collection.length;
+                    len = obj.length;
                 }
             }
 
             return;
         }
 
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
-                item = collection[key];
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                item = obj[key];
 
                 if(item[name] === value) {
-                    delete collection[key];
+                    delete obj[key];
                 }
             }
         }
@@ -1984,7 +2041,8 @@
     /**
      * @function {static} o2.CollectionHelper.shuffle
      *
-     * @param {Object} -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
@@ -2031,7 +2089,8 @@
      * <p>Contrary to array.sort, this does not sort in place, and does
      * not alter the initial object</p>
      *
-     * @param {Object} obj -
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param {Function} delegate -
      * @param {Object} context -
      *
@@ -2041,6 +2100,7 @@
         var meta = [];
         var i = 0;
         var len = 0;
+        var key = null;
         var value = null;
 
         if (!obj) {
@@ -2057,6 +2117,17 @@
                     value : value,
                     order : delegate.apply(context, value, i, obj)
                 });
+            }
+        } else {
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    meta.push({
+                        value : obj[key],
+                        order : delegate.apply(context, value, i, obj)
+                    });
+
+                    i++;
+                }
             }
         }
 
@@ -2097,8 +2168,8 @@
      * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
-     * @param {Object} collection - An <code>Array</code>, or an iterable
-     * <code>Object</code>.
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      * @param delegate - Iterator <code>Function</code> in the form
      * <code>function(context, value, index, collection)</code>.
      * @param {Object} - The context to regard as <code>this</code> reference.
@@ -2107,30 +2178,43 @@
      * <code>true</code> for at least one element; returns <code>false</code>
      * otherwise.
      */
-    def(me,'some', function(collection, delegate, context) {
+    def(me,'some', function(obj, delegate, context) {
         var iterator = delegate || identity;
+        var index = 0;
+        var key = null;
+        var result = false;
+        var i = 0;
+        var len = 0;
 
-        if (!collection) {
+        if (!obj) {
             return false;
         }
 
         // Array.prototype.some
-        if (collection.some) {
-            return collection.some(iterator, context);
+        if (obj.some) {
+            return obj.some(iterator, context);
         }
 
-        var index = 0;
-        var key = null;
-        var result = false;
+        if (isArray(obj)) {
+            for (i = 0, len = obj.length; i < len; i++) {
+                if (result) {
+                    break;
+                }
 
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
+                result = iterator.apply(context, [obj[i], i, obj]);
+            }
+
+            return !!result;
+        }
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
                 if (result) {
                     break;
                 }
 
                 result = iterator.apply(context,
-                    [collection[key], index, collection]);
+                    [obj[key], index, obj]);
 
                 index++;
             }
@@ -2175,28 +2259,29 @@
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
      *
-     * @param {Array} collection - an <code>Array</code> of <code>Array>
+     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
      *
      * @return
      */
-    def(me, 'flatten', function(collection) {
+    def(me, 'flatten', function(obj) {
         var store = [];
         var i = 0;
         var len = 0;
         var value = null;
         var key = null;
 
-        if (!collection) {
+        if (!obj) {
             return store;
         }
 
-        if (!isObject(collection)) {
+        if (!isObject(obj)) {
             return store;
         }
 
-        if (isArray(collection)) {
-            for(i = 0, len = collection.length; i < len; i++) {
-                value = collection[key];
+        if (isArray(obj)) {
+            for(i = 0, len = obj.length; i < len; i++) {
+                value = obj[key];
 
                 if (isArray(value)) {
                     store.concat(value);
@@ -2208,9 +2293,9 @@
             return store;
         }
 
-        for (key in collection) {
-            if (collection.hasOwnProperty(key)) {
-                value = collection[key];
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
 
                 if (isArray(value)) {
                     store.concat(value);

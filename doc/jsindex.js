@@ -364,7 +364,7 @@
        {
            localName : "exclude",
            fullName : "o2.CollectionHelper.exclude",
-           summary : "static function  exclude(Object obj, Function delegate, Object context)",
+           summary : "static function  exclude(Object obj, Function delegate, Array context)",
            ref : "logical/o2/CollectionHelper.html#___exclude",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -382,7 +382,7 @@
        {
            localName : "find",
            fullName : "o2.CollectionHelper.find",
-           summary : "static function  find(Object collection, delegate, Object context)",
+           summary : "static function  find(Object obj, delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___find",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -391,7 +391,7 @@
        {
            localName : "flatten",
            fullName : "o2.CollectionHelper.flatten",
-           summary : "static function  flatten(Array collection)",
+           summary : "static function  flatten(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___flatten",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -400,7 +400,7 @@
        {
            localName : "forEach",
            fullName : "o2.CollectionHelper.forEach",
-           summary : "static function  forEach(Object collection, Function delegate)",
+           summary : "static function  forEach(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___forEach",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -472,7 +472,7 @@
        {
            localName : "getMax",
            fullName : "o2.CollectionHelper.getMax",
-           summary : "static function  getMax(Object obj, Function calculator, Object context)",
+           summary : "static function  getMax(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___getMax",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -481,7 +481,7 @@
        {
            localName : "getMin",
            fullName : "o2.CollectionHelper.getMin",
-           summary : "static function  getMin(Object obj, Function calculator, Object context)",
+           summary : "static function  getMin(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___getMin",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -526,7 +526,7 @@
        {
            localName : "grep",
            fullName : "o2.CollectionHelper.grep",
-           summary : "static function  grep(Object collection, Function delegate)",
+           summary : "static function  grep(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___grep",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -589,7 +589,7 @@
        {
            localName : "isEmpty",
            fullName : "o2.CollectionHelper.isEmpty",
-           summary : "static function  isEmpty(Object collection)",
+           summary : "static function  isEmpty(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___isEmpty",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -625,7 +625,7 @@
        {
            localName : "reduce",
            fullName : "o2.CollectionHelper.reduce",
-           summary : "static function  reduce(Object collection, Functon delegate, Object store, Object context)",
+           summary : "static function  reduce(Object obj, Functon delegate, Object store, Object context)",
            ref : "logical/o2/CollectionHelper.html#___reduce",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -634,7 +634,7 @@
        {
            localName : "reduceRight",
            fullName : "o2.CollectionHelper.reduceRight",
-           summary : "static function  reduceRight(Object collection, Function delegate, Object store, Object context)",
+           summary : "static function  reduceRight(Object obj, Function delegate, Object store, Object context)",
            ref : "logical/o2/CollectionHelper.html#___reduceRight",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -652,7 +652,7 @@
        {
            localName : "removeElement",
            fullName : "o2.CollectionHelper.removeElement",
-           summary : "static function  removeElement(Object collection, Object elm)",
+           summary : "static function  removeElement(Object obj, Object elm)",
            ref : "logical/o2/CollectionHelper.html#___removeElement",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -661,7 +661,7 @@
        {
            localName : "removeElementByValue",
            fullName : "o2.CollectionHelper.removeElementByValue",
-           summary : "static function  removeElementByValue(Object collection, String name, Object value)",
+           summary : "static function  removeElementByValue(Object obj, String name, Object value)",
            ref : "logical/o2/CollectionHelper.html#___removeElementByValue",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -670,7 +670,7 @@
        {
            localName : "shuffle",
            fullName : "o2.CollectionHelper.shuffle",
-           summary : "static function  shuffle(Object -)",
+           summary : "static function  shuffle(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___shuffle",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -679,7 +679,7 @@
        {
            localName : "some",
            fullName : "o2.CollectionHelper.some",
-           summary : "static function  some(Object collection, delegate, Object -)",
+           summary : "static function  some(Object obj, delegate, Object -)",
            ref : "logical/o2/CollectionHelper.html#___some",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -724,7 +724,7 @@
        {
            localName : "unique",
            fullName : "o2.CollectionHelper.unique",
-           summary : "static function  unique(Object array, Function delegate)",
+           summary : "static function  unique(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___unique",
            parent : "o2.CollectionHelper",
            type : "function",
