@@ -364,7 +364,7 @@
        {
            localName : "exclude",
            fullName : "o2.CollectionHelper.exclude",
-           summary : "static function  exclude(Object obj, Function delegate, Array context)",
+           summary : "static function  exclude(Object obj, Function delegate, Object context)",
            ref : "logical/o2/CollectionHelper.html#___exclude",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -375,6 +375,15 @@
            fullName : "o2.CollectionHelper.extend",
            summary : "static function  extend(Object toObj, Object fromObj)",
            ref : "logical/o2/CollectionHelper.html#___extend",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "filter",
+           fullName : "o2.CollectionHelper.filter",
+           summary : "static function  filter()",
+           ref : "logical/o2/CollectionHelper.html#___filter",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -393,6 +402,24 @@
            fullName : "o2.CollectionHelper.flatten",
            summary : "static function  flatten(Object obj)",
            ref : "logical/o2/CollectionHelper.html#___flatten",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "fold",
+           fullName : "o2.CollectionHelper.fold",
+           summary : "static function  fold()",
+           ref : "logical/o2/CollectionHelper.html#___fold",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "foldR",
+           fullName : "o2.CollectionHelper.foldR",
+           summary : "static function  foldR()",
+           ref : "logical/o2/CollectionHelper.html#___foldR",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"
@@ -607,7 +634,7 @@
        {
            localName : "invoke",
            fullName : "o2.CollectionHelper.invoke",
-           summary : "static function  invoke(Object obj, Function delegate)",
+           summary : "static function  invoke(Object obj, Function delegate, ... -)",
            ref : "logical/o2/CollectionHelper.html#___invoke",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -668,18 +695,9 @@
            elementType : "function"
        } ,         
        {
-           localName : "reduceRight",
-           fullName : "o2.CollectionHelper.reduceRight",
-           summary : "static function  reduceRight(Object obj, Function delegate, Object store, Object context)",
-           ref : "logical/o2/CollectionHelper.html#___reduceRight",
-           parent : "o2.CollectionHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "reject",
            fullName : "o2.CollectionHelper.reject",
-           summary : "static function  reject(Object obj, Function delegate, Object context)",
+           summary : "static function  reject(Object obj, Function delegate)",
            ref : "logical/o2/CollectionHelper.html#___reject",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -699,6 +717,15 @@
            fullName : "o2.CollectionHelper.removeElementByValue",
            summary : "static function  removeElementByValue(Object obj, String name, Object value)",
            ref : "logical/o2/CollectionHelper.html#___removeElementByValue",
+           parent : "o2.CollectionHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "select",
+           fullName : "o2.CollectionHelper.select",
+           summary : "static function  select()",
+           ref : "logical/o2/CollectionHelper.html#___select",
            parent : "o2.CollectionHelper",
            type : "function",
            elementType : "function"

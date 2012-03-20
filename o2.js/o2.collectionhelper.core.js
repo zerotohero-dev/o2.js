@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 00:10:58.911044
+ *  lastModified: 2012-03-20 08:18:39.643271
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -307,7 +307,8 @@
      * <code>Object</code>.
      * @param delegate - Iterator <code>Function</code> in the form
      * <code>function(context, value, index, collection)</code>.
-     * @param {Object} context - the context that acts as the <code>this</code>
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that acts as the <code>this</code>
      * reference in the <strong>iterator</strong>.
      *
      * @return the first truthy evaluated item; <code>null</code> if nothing
@@ -498,7 +499,8 @@
      * <code>function(item, index, obj)</code>; where <strong>item</strong> is
      * the current collection item, <strong>index</strong> is the current index
      * and <strong>obj</strong> is the collection itself.
-     * @param {Object} context - the context that the <strong>delegate</strong>
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
      * uses as the <code>this</code> reference.
      *
      * @return <code>true</code> if <strong>delegate</strong> returns
@@ -559,14 +561,18 @@
      * <p>Excludes filtered out items from the collection. Returns a new
      * collection without alterin the initial one.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - the iterator in the form
      * <code>function(context, value, index, obj)</code> where
      * <strong>value</strong> is the current element of <strong>obj</strong>
      * being iterated over, and <strong>index</strong> is the index of that
      * element.
-     * @param {Array} context -a new filtered object.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
+     *
+     * @return a new filtered object.
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -770,7 +776,7 @@
      *
      * <p>Gets all the <strong>static</strong> methods of the object.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
      * @return gets all the member <code>Function</code>s in the current
@@ -831,7 +837,7 @@
      *
      * <p>Gets all the keys of the object.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
      * @return an <code>Array</code> of the object's keys.
@@ -872,7 +878,7 @@
      *
      * <p>Gets the last item in the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
      * @return the last item in the collection if any; <code>null</code>
@@ -911,7 +917,7 @@
      *
      * <p>Gets the last <strong>n</strong> items in the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Integer} n - the number of items to retrieve.
      *
@@ -962,7 +968,7 @@
      *
      * <p>Check whether the collection contains any members.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
      * @return <code>true</code> if the collection is empty; <code>false</code>
@@ -998,15 +1004,17 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
      * form <code>functon(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
-     * @param {Object} context - The context to use as <code>this</code>
-     * reference in the delegate.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
+
      *
      * @return the maximum value in the collection.
      */
@@ -1075,15 +1083,17 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
      * form <code>functon(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
-     * @param {Object} context - The context to use as <code>this</code>
-     * reference in the delegate.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
+
      *
      * @return the minimum value in the collection.
      */
@@ -1147,7 +1157,7 @@
      *
      * <p>Gets the elements of the collection after index n.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Integer} n - (optional; defaults to <code>1</code>) the
      * zero-based index to cut at.
@@ -1191,7 +1201,7 @@
      *
      * <p>Gets the number of items in the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
      * @return the number of items in the collection.
@@ -1282,10 +1292,16 @@
     /**
      * @function {static} o2.CollectionHelper.getValues
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <p>Gets the value of an <code>Object</code> that has
+     * <code>{key1 : value1, key2 : value2 ... }</code> kind of layout.</p>
+     *
+     * <p>If an <code>Array</code> is passed, it makes a shallow copy of that
+     * array and returns it.</code></p>
+     *
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return the values in the collection.
      */
     def(me,'getValues', function(obj) {
         var key = null;
@@ -1315,14 +1331,15 @@
     /**
      * @function {static} o2.CollectionHelper.grep
      *
-     * <p></p>
+     * <p>Filters the items of a collections using an evaluator delegate
+     * and returns the filtered result set.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-
-     * @param {Function} delegate -
+     * @param {Function} delegate - the filter <code>Function</code> in the form
+     * <code><Boolean> function(item)</code>.
      *
-     * @return
+     * @return the filtered collection.
      */
     def(me,'grep', function(obj, delegate) {
         var result = [];
@@ -1364,31 +1381,36 @@
     /**
      * @function {static} o2.CollectionHelper.select
      *
-     * <p></p>
+     * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
      *
-     * @see
+     * @see @o2.CollectionHelper.grep
      */
     alias(me, 'select', 'grep');
 
     /**
      * @function {static} o2.CollectionHelper.filter
      *
-     * <p></p>
+     * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
      *
-     * @see
+     * @see @o2.CollectionHelper.grep
      */
     alias(me, 'filter', 'grep');
 
     /**
      * @function {static} o2.CollectionHelper.group
      *
-     * <p></p>
+     * <p>Groups the items in the collection by a key or an evaluator
+     * <code>Function</code>.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
+     * @param {Function} delegate - A <code>String</code> key that the items
+     * in the collection share, or a <code>Function</code> in the form
+     * <code><key> function(item, index)</code> where <strong>item</strong>
+     * is the current collection item, <strong>index</strong> if that item's
+     * index; and the return value is a key to group.
      *
-     * @return
+     * @return an <code>Array</code> of grouped items.
      */
     def(me,'group', function(obj, delegate) {
         var result = {};
@@ -1397,6 +1419,7 @@
         var value = null;
         var key = null;
         var ky = null;
+
         var iterator = isFunction(delegate) ? delegate :
             function(obj) { return obj[delegate]; };
 
@@ -1419,26 +1442,26 @@
 
                 result[ky].push(value);
             }
-         } else {
-            i = 0;
 
-            for (key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    value = obj[key];
-                    ky = iterator(value, i);
-
-                    if (!result[ky]) {
-                        result[ky] = [];
-                    }
-
-                    result[ky].push(value);
-
-                    i++;
-                }
-            }
+            return result;
          }
 
-         return result;
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                value = obj[key];
+                ky = iterator(value, i);
+
+                if (!result[ky]) {
+                    result[ky] = [];
+                }
+
+                result[ky].push(value);
+
+                i++;
+            }
+        }
+
+        return result;
     });
 
     /**
@@ -1446,10 +1469,10 @@
      *
      * @param {Object} obj - Any <code>Object</code> to convert to an
      * <code>Array</code>. If <strong>obj</strong> is, in deed, an
-     * <code>Array</code>, then a copy of it is returned without altering
-     * the original <code>Object</code>.
+     * <code>Array</code>, then a shallow copy of it is returned without
+     * altering the original <code>Object</code>.
      *
-     * @return
+     * @return the generated <code>Array</code>.
      */
     def(me,'toArray', function(obj) {
         var key = null;
@@ -1488,14 +1511,22 @@
     /**
      * @function {static} o2.CollectionHelper.map
      *
-     * <p></p>
+     * <p>Calls a <code>Function</code> for each member of the collection,
+     * passing the current item as a parameter. Returns an <code>Array</code>
+     * containing the results of eachcall.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Function} delegate - A mapper in the form
+     * <code>function(item, index, collection)</code> where
+     * <strong>item</strong> is the current collection element,
+     * <strong>index</strong> is its index, and <strong>collection</strong> is
+     * the current object <strong>obj</strong>.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
      *
-     * @return
+     * @return a mapped <code>Array</code>.
      */
     def(me,'map', function(obj, delegate, context) {
         var results = [];
@@ -1552,11 +1583,19 @@
     /**
      * @function {static} o2.CollectionHelper.unique
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
-     * <code>Object</code> to work on.
-     * @param {Function} delegate -
+     * <p>Removes duplicate entries from the collection. Returns a new
+     * <code>Array</code>; does not alter the original collection.</p>
      *
-     * @return
+     * @param {Object} obj - an <code>Array</code> or an iterable
+     * <code>Object</code> to work on.
+     * @param {Function} delegate - (optional,
+     * defaults to <code>undefined</code>) a mapper in the form
+     * <code>function(item, index, collection)</code> where
+     * <strong>item</strong> is the current collection element,
+     * <strong>index</strong> is its index, and <strong>collection</strong> is
+     * the current object <strong>obj</strong>.
+     *
+     * @return a copy of the collection containing unique items.
      */
     def(me,'unique', function(array, delegate) {
         var result = [];
@@ -1600,9 +1639,13 @@
     /**
      * @function {static} o2.CollectionHelper.intersect
      *
-     * @param {...} varargin -
+     * <p>Returns an <code>Array</code> of items that are common in all of
+     * the collections passed in as parameters.</p>
      *
-     * @return
+     * @param {...} varargin - the objects to intersect as input arguments.
+     *
+     * @return an <code>Array</code> containing only the values that are common
+     * in all of the collections given.
      */
     def(me,'intersect', function(ar) {
         var result = unique(ar);
@@ -1632,7 +1675,7 @@
                     result.splice(j, 1);
                 }
 
-                if (result.length === 0) {
+                if (!result.length) {
                     return [];
                 }
             }
@@ -1644,13 +1687,13 @@
     /**
      * @function {static} o2.CollectionHelper.invoke
      *
-     * <p></p>
+     * <p>Calls the delegate <code>Function</code> with an optional set
+     * of parametrs for each item in the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate -
-     *
-     * @return
+     * @param {...} - A set of parameters to pass after the delegate.
      */
     def(me,'invoke', function(obj, delegate) {
         var i = 0;
@@ -1695,13 +1738,13 @@
     /**
      * @function {static} o2.CollectionHelper.lastIndexOf
      *
-     * <p></p>
+     * <p>Returns the last index of the given item.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Object} item -
+     * @param {Object} item - the item to check the index of.
      *
-     * @return
+     * @return the last index of the item if exists, <code>-1</code> otherwise.
      */
     def(me,'lastIndexOf', function(obj, item) {
         var i = 0;
@@ -1733,13 +1776,29 @@
     /**
      * @function {static} o2.CollectionHelper.pluck
      *
-     * <p></p>
+     * <p>Hard to explain in words. Let us demonstrate by an example:</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <pre>
+     * var collection = [
+     *      {key1 : {lorem1 : 'ipsum1'}, key2 : {dolor1 : 'amet1'}},
+     *      {key1 : {lorem2 : 'ipsum2'}, key2 : {dolor2 : 'amet2'}},
+     *      {key1 : {lorem3 : 'ipsum3'}, key2 : {dolor3 : 'amet3'}}
+     * ];
+     *
+     * // Will return:
+     * // [
+     * //    {dolor1 : 'amet1'},
+     * //    {dolor2 : 'amet2'},
+     * //    {dolor3 : 'amet3'}
+     * // ]
+     * o2.CollectionHelper.pluck(collection, 'key2');
+     * </pre>
+     *
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Object} key -
+     * @param {Object} key - the key to pluck.
      *
-     * @return
+     * @return a plucked subset.
      */
     def(me,'pluck', function(obj, key) {
         var result = [];
@@ -1790,12 +1849,13 @@
      * is the iterated item, <strong>index</strong> is the item's index,
      * and <strong>collection</strong> is the collection we are working on.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Functon} delegate - the reducer <code>Functon</code>.
      * @param {Object} store - the initial seed.
-     * @param {Object} context - the context to be used as the <code>this</code>
-     * reference in the iterator <strong>delegate</strong>.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
      *
      * @return a single reduced value.
      */
@@ -1883,22 +1943,29 @@
     /**
      * @function {static} o2.CollectionHelper.fold
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to {o2.CollectionHelper.reduce}.</p>
      *
-     * @see
+     * @see o2.CollectionHelper.reduce
      */
     alias(me, 'fold', 'reduce');
 
     /**
-     * @function {static} o2.CollectionHelper.reduceRight
+     * @function {static} o2.CollectionHelper.reduce
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <p>Works similar to {@link o2.CollectionHelper.fold}, but goes from
+     * the end of the collection to the beginning of the collection.</p>
+     *
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} store -
-     * @param {Object} context -
+     * @param {Functon} delegate - the reducer <code>Functon</code>.
+     * @param {Object} store - the initial seed.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
      *
-     * @return
+     * @return a single reduced value.
+     *
+     * @see o2.CollectionHelper.reduce
      */
     def(me,'reduceRight', function(obj, delegate, store, context) {
         var isSeeded = arguments.length > 2;
@@ -1932,23 +1999,27 @@
     /**
      * @function {static} o2.CollectionHelper.foldR
      *
-     * <p></p>
+     * <p>An <strong>alias</strong> to
+     * {@link o2.CollectionHelper.reduceRight}.</p>
      *
-     * @see
+     * @see o2.CollectionHelper.reduceRight
      */
     alias(me, 'foldR', 'reduceRight');
 
     /**
      * @function {static} o2.CollectionHelper.reject
      *
-     * <p></p>
+     * <p>Works just opposite to {@link o2.CollectionHelper.grep}. Rejects
+     * the items that return <code>true</code> in the delegate.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Function} delegate - the filter <code>Function</code> in the form
+     * <code><Boolean> function(item)</code>.
      *
-     * @return
+     * @return the filtered collection.
+     *
+     * @see o2.CollectionHelper.grep
      */
     def(me,'reject', function(obj, delegate, context) {
         var results = [];
@@ -1995,11 +2066,11 @@
     /**
      * @function {static} o2.CollectionHelper.removeElement
      *
-     * <p></p>
+     * <p>Removes all ocurences of the element from the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Object} elm -
+     * @param {Object} elm - the element to remove.
      */
     def(me, 'removeElement', function(obj, elm) {
         var item = null;
@@ -2038,7 +2109,7 @@
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {String} name - the name of the property.
      * @param {Object} value - the value to compare.
@@ -2077,10 +2148,14 @@
     /**
      * @function {static} o2.CollectionHelper.shuffle
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <p>Randomizes the collection. Does not alter the original collection,
+     * just returns a randomized copy.</p>
+     *
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return an <code>Array</code> that's a shuffled copy of the initial
+     * collection.
      */
     def(me,'shuffle', function(obj) {
         var result = [];
@@ -2122,15 +2197,26 @@
     /**
      * @function {static} o2.CollectionHelper.sort
      *
-     * <p>Contrary to array.sort, this does not sort in place, and does
-     * not alter the initial object</p>
+     * <p>Sorts the collection.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * <p>Contrary to <code>Array.prototype.sort</code>, this function does not
+     * sort the collection in place, and therefore it  does not alter the
+     * initial object's contents.</p>
+     *
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
-     * @param {Object} context -
+     * @param {Function} delegate - the sorter in the form
+     * <code>function(value, index, collection)</code> where
+     * <strong>value</strong> is the current item, <strong>index</strong> is
+     * that item's index; and <strong>collection</strong> is
+     * <strong>obj</strong>; this delegate should return an <code>Integer</code>
+     * value.
+     * <code>function(item, index, collection)</code>.
+     * @param {Object} context - (optional, defaults to <code>undefined</code>)
+     * the context that the <strong>delegate</strong>
+     * uses as the <code>this</code> reference.
      *
-     * @return
+     * @return a sorted copy of the initial collection.
      */
     def(me,'sort', function(obj, delegate, context) {
         var meta = [];
@@ -2204,13 +2290,13 @@
      * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param delegate - Iterator <code>Function</code> in the form
      * <code>function(context, value, index, collection)</code>.
      * @param {Object} - The context to regard as <code>this</code> reference.
      *
-     * @return  <code>true</code> if the <strong>iterator</strong> returns
+     * @return <code>true</code> if the <strong>iterator</strong> returns
      * <code>true</code> for at least one element; returns <code>false</code>
      * otherwise.
      */
@@ -2271,10 +2357,16 @@
     /**
      * @function {static} o2.CollectionHelper.touch
      *
-     * @param {Object} obj -
-     * @param {Function} delegate -
+     * <p>Executes the delegate by passing the <strong>obj</stong> to it as a
+     * parameter, then returns the <strong>obj</strong>.</p>
      *
-     * @return
+     * @param {Object} obj - the <code>Object</code> to touch.
+     * @param {Function} delegate - the delegate to execute
+     * on <strong>obj</strong>.
+     *
+     * @return <code>null</code> if <strong>obj</<code> is falsy or it's a
+     * primitive type; returns the <strong>obj</strong> itself (after applying
+     * delagate to it) otherwise.
      */
     def(me,'touch', function(obj, delegate) {
         if (!obj) {
@@ -2295,10 +2387,10 @@
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
      *
-     * @param {Object} obj - An <code>Array</code> or an iterable
+     * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
-     * @return
+     * @return the flattened collection.
      */
     def(me, 'flatten', function(obj) {
         var store = [];
@@ -2352,11 +2444,11 @@
     /**
      * @function {static} o2.CollectionHelper.union
      *
-     * <p></p>
+     * <p>Merges several collections into a singl <code>Array</code></p>
      *
-     * @param {...} varargin -
+     * @param {...} varargin - the collections to merge as input parameters.
      *
-     * @return
+     * @return the merged <code>Array</code>.
      */
     def(me,'union', function() {
         return unique(flatten(arguments));
@@ -2365,7 +2457,25 @@
     /**
      * @function {static} o2.CollectionHelper.zip
      *
-     * <p></p>
+     * <p>Takes a set of <code>Array</code>s as parameters and brings together
+     * the elements that have the same index.</p>
+     *
+     * <p>Usage Example:</p>
+     *
+     * <pre>
+     * var ar1 = [1,2,3];
+     * var ar2 = ['a', 'b', 'c', 'd'];
+     * var ar3 = [true, false];
+     *
+     * // returns:
+     * // [
+     * //       [1, 'a', true],
+     * //       [2. 'b', false],
+     * //       [3, 'c'],
+     * //       ['d']
+     * // ]
+     * zip(ar1, ar2, ar3);
+     * </pre>
      *
      * @param {...} varargin -
      *
