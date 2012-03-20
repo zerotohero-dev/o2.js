@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.24.a.0001332224973
+	                 version 0.24.a.0001332227522
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -649,17 +649,13 @@
  the end of the collection to the beginning of the collection.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/CollectionHelper.html#___reject"><span class="elementName">reject</span></a>
-                (<span class="type">Object</span>
- obj, <span class="type">Function</span>
- delegate)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Works just opposite to <a href="logical/o2/CollectionHelper.html#___grep">o2.CollectionHelper.grep</a>. Rejects
- the items that return <code>true</code> in the delegate.</p>    </div>  
+                <a href="logical/o2/CollectionHelper.html#___reject"><span class="elementName">reject</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alıas</strong> to <a href="logical/o2/CollectionHelper.html#___exclude">o2.CollectionHelper.exclude</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1223,9 +1219,14 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             a new filtered object.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___grep">o2.CollectionHelper.grep</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___extend">
             <span class="objType">function</span>
@@ -2631,48 +2632,20 @@
             <span class="objName">reject</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    reject(<span class="type">Object</span>
- obj, <span class="type">Function</span>
- delegate)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Works just opposite to <a href="logical/o2/CollectionHelper.html#___grep">o2.CollectionHelper.grep</a>. Rejects
- the items that return <code>true</code> in the delegate.</p>
+                    reject()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alıas</strong> to <a href="logical/o2/CollectionHelper.html#___exclude">o2.CollectionHelper.exclude</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - an <code>Array</code> or an iterable
- <code>Object</code> to work on.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            delegate        </code>
-         - the filter <code>Function</code> in the form
- <code><Boolean> function(item)</code>.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the filtered collection.
-
- 	            	        </div>
-        </div>      
-                            <div class="seealso">
+                                <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___grep">o2.CollectionHelper.grep</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/CollectionHelper.html#___reject">o2.CollectionHelper.reject</a></div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -3208,7 +3181,7 @@
                                                                                                                                                                                                                                                                                                                                                                                 <div>
                                 <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div>
                                 <a href="physical/file-o2.js.html">o2.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </li>
@@ -3304,9 +3277,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/module-extend.html">extend</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/formhelper/module-core.html">formhelper.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/jsonp/module-core.html">jsonp.core</a>

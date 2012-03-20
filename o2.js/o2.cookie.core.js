@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 09:35:29.732069
+ *  lastModified: 2012-03-20 09:11:14.837157
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -41,7 +41,6 @@
     var concat = require('StringHelper', 'concat');
 
     var escape = attr(window, 'escape');
-    var cookie = attr(document, 'cookie');
 
     /*
      * Common Constants
@@ -71,7 +70,7 @@
      */
     def(me, 'read', function(name) {
         var eq = concat(decodeURIComponent(name), kEmpty);
-        var ca = cookie.split(kDelimeter);
+        var ca = document.cookie.split(kDelimeter);
         var i = 0;
 
         for (i = 0; i < ca.length; i++) {

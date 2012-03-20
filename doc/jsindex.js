@@ -697,7 +697,7 @@
        {
            localName : "reject",
            fullName : "o2.CollectionHelper.reject",
-           summary : "static function  reject(Object obj, Function delegate)",
+           summary : "static function  reject()",
            ref : "logical/o2/CollectionHelper.html#___reject",
            parent : "o2.CollectionHelper",
            type : "function",
@@ -3370,10 +3370,10 @@
        {
            localName : "FormHelper",
            fullName : "o2.FormHelper",
-           summary : "static class FormHelper",
+           summary : "namespace FormHelper",
            ref : "logical/o2/FormHelper.html",
            parent : "o2",
-           type : "class",
+           type : "namespace",
            elementType : "logical_container"
        } ,         
        {

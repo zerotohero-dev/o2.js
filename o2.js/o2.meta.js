@@ -14,7 +14,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-10 08:13:41.427284
+ *  lastModified: 2012-03-20 09:10:55.636260
  * -->
  *
  * <p>Meta information.</p>
@@ -330,10 +330,13 @@ this.o2 = this.o2 || {
                 every               : {MODULE : kCollectionHelperCore},
                 exclude             : {MODULE : kCollectionHelperCore},
                 extend              : {MODULE : kCollectionHelperCore},
+                filter              : {MODULE : kCollectionHelperCore},
                 find                : {MODULE : kCollectionHelperCore},
                 flatten             : {MODULE : kCollectionHelperCore},
                 fold                : {MODULE : kCollectionHelperCore},
+                foldR               : {MODULE : kCollectionHelperCore},
                 forEach             : {MODULE : kCollectionHelperCore},
+                getCount            : {MODULE : kCollectionHelperCore},
                 getDifference       : {MODULE : kCollectionHelperCore},
                 getFirst            : {MODULE : kCollectionHelperCore},
                 getFirstN           : {MODULE : kCollectionHelperCore},
@@ -341,13 +344,12 @@ this.o2 = this.o2 || {
                 getKeys             : {MODULE : kCollectionHelperCore},
                 getLast             : {MODULE : kCollectionHelperCore},
                 getLastN            : {MODULE : kCollectionHelperCore},
+                getLength           : {MODULE : kCollectionHelperCore},
                 getMax              : {MODULE : kCollectionHelperCore},
                 getMethods          : {MODULE : kCollectionHelperCore},
                 getMin              : {MODULE : kCollectionHelperCore},
                 getRest             : {MODULE : kCollectionHelperCore},
                 getSize             : {MODULE : kCollectionHelperCore},
-                getCount            : {MODULE : kCollectionHelperCore},
-                getLength           : {MODULE : kCollectionHelperCore},
                 getSortedIndex      : {MODULE : kCollectionHelperCore},
                 getValues           : {MODULE : kCollectionHelperCore},
                 grep                : {MODULE : kCollectionHelperCore},
@@ -448,8 +450,9 @@ this.o2 = this.o2 || {
                 setHeight               : {MODULE : kDomHelperDimension},
                 setWidth                : {MODULE : kDomHelperDimension},
 
-                compactField : {MODULE : kDomHelperForm},
-                trimField    : {MODULE : kDomHelperForm},
+                compactField          : {MODULE : kDomHelperForm},
+                preventMultipleSubmit : {MODULE : kDomHelperForm},
+                trimField             : {MODULE : kDomHelperForm},
 
                 loadCss    : {MODULE : kDomHelperLoad},
                 loadImage  : {MODULE : kDomHelperLoad},
@@ -669,11 +672,6 @@ this.o2 = this.o2 || {
                 isEscapeKey              : {MODULE : kEventHandlerExtend},
                 isRightClick             : {MODULE : kEventHandlerExtend},
                 isTabKey                 : {MODULE : kEventHandlerExtend}
-            }
-        },
-        FormHelper : {
-            items : {
-                preventMultipleSubmit : {MODULE : kFormHelperCore}
             }
         },
         Jsonp : {

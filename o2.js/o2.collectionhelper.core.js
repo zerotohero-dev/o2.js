@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 08:18:39.643271
+ *  lastModified: 2012-03-20 09:11:14.837157
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -573,6 +573,8 @@
      * uses as the <code>this</code> reference.
      *
      * @return a new filtered object.
+     *
+     * @see o2.CollectionHelper.grep
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -2005,63 +2007,6 @@
      * @see o2.CollectionHelper.reduceRight
      */
     alias(me, 'foldR', 'reduceRight');
-
-    /**
-     * @function {static} o2.CollectionHelper.reject
-     *
-     * <p>Works just opposite to {@link o2.CollectionHelper.grep}. Rejects
-     * the items that return <code>true</code> in the delegate.</p>
-     *
-     * @param {Object} obj - an <code>Array</code> or an iterable
-     * <code>Object</code> to work on.
-     * @param {Function} delegate - the filter <code>Function</code> in the form
-     * <code><Boolean> function(item)</code>.
-     *
-     * @return the filtered collection.
-     *
-     * @see o2.CollectionHelper.grep
-     */
-    def(me,'reject', function(obj, delegate, context) {
-        var results = [];
-        var i = 0;
-        var len = 0;
-        var value = null;
-        var key = null;
-
-        if (!obj) {
-            return results;
-        }
-
-        if (!isObject(obj)) {
-            return results;
-        }
-
-        if (isArray(obj)) {
-            for (i = 0, len = obj.length; i < len; i++) {
-                value = obj[i];
-
-                if (!delegate.apply(context, [value, i, obj])) {
-                    results.push(value);
-                }
-            }
-
-            return results;
-        }
-
-        for (key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                value = obj[key];
-
-                if (!delegate.apply(context, [value, i, obj])) {
-                    results.push(value);
-                }
-
-                i++;
-            }
-        }
-
-        return results;
-    });
 
     /**
      * @function {static} o2.CollectionHelper.removeElement

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:36:14.305963
+ *  lastModified: 2012-03-20 09:11:14.837157
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
@@ -186,4 +186,4 @@
             loop();
         };
     });
-}(this.o2));
+}(this.o2, this));

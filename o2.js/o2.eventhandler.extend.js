@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:44:33.236722
+ *  lastModified: 2012-03-20 09:11:14.837157
  * -->
  *
  * <p>Extension methods for the {@link EventHandler} object.</p>
@@ -18,6 +18,7 @@
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
+    var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
@@ -29,7 +30,7 @@
     /*
      * EventHandler (extend)
      */
-    var me = require(kModuleName);
+    var me = create(kModuleName);
 
     /*
      * Aliases
