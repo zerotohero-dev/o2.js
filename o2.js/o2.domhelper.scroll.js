@@ -209,7 +209,7 @@
      * @param {Object} obj - the element, or the <strong>id</strong> of the
      * element, to scroll.
      */
-    def(me, 'scrollObjectToTop' = function(obj) {
+    def(me, 'scrollObjectToTop', function(obj) {
         obj = $(obj);
 
         if (!obj) {

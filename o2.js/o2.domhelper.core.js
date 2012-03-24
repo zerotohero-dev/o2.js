@@ -259,7 +259,7 @@
      * @return the <code>innerHTML</code> of the given node, if it exists;
      * <code>null</code> otherwise.
      */
-    def(me, 'getHtml' = function(elm) {
+    def(me, 'getHtml', function(elm) {
         var obj = $(elm);
 
         if (!obj) {
@@ -517,7 +517,7 @@
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
-    def(me, 'removeEmptyTextNodes' = function(e) {
+    def(me, 'removeEmptyTextNodes', function(e) {
         var arRemove = [];
         var i = 0;
         var child = null;

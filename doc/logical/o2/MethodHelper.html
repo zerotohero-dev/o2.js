@@ -58,7 +58,7 @@
 			                    <hr/>
 						        <div>
 						        						        		<H2>
-        <span class="objType">Class</span> o2.Validator
+        <span class="objType">Class</span> o2.MethodHelper
     </H2>
     
 
@@ -68,15 +68,14 @@
        <code>
             <span class="modifiers">static</span>
             <span class="objType">class</span> 
-            <b>o2.Validator</b>
+            <b>o2.MethodHelper</b>
        </code>
     </div>
-                <div class="comment"><p>A simple class for validating various kinds of
- <strong>object</strong>s.</p>
+                <div class="comment"><p>A method helper class.</p>
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/validator/module-core.html">validator.core</a>
+        <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
         <hr/> 
     <p />
     
@@ -92,220 +91,308 @@
             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers">private</span>
+                <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___is"><span class="elementName">is</span></a>
-                (<span class="type">Object</span>
- obj, <span class="type">String</span>
- type)
+                <a href="logical/o2/MethodHelper.html#___after"><span class="elementName">after</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Returns the type information of the given object.</p>
- <p>The type can be any of the following:</p>
- <p><code>Array, Boolean, Date, Error, Function, JSON,
- Math, Number, Object, RegExp, String, Arguments</code>.</p>    </div>  
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isArguments"><span class="elementName">isArguments</span></a>
+                <a href="logical/o2/MethodHelper.html#___bind"><span class="elementName">bind</span></a>
                 (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>arguments</code> object.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isArray"><span class="elementName">isArray</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>Array</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isBoolean"><span class="elementName">isBoolean</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Boolean</code>.    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isDate"><span class="elementName">isDate</span></a>
-                (<span class="type">Arguments</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
  varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Date</code>.</p>    </div>  
+        <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+ the "<code>this</code>" reference.</p>
+
+ <p><strong>bind</strong> can often be used to bind a different
+ context to a <strong>curried</strong> function.
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function test(a,b,c){ return this.number + (a*b+c); };
+ var context = {number:10};
+ var bound = o2.MethodHelper.bind(context, test);
+ bound(20,2,10);//gives 60
+ var bound2 = o2.MethodHelper.bind(context, test, 20);
+ bound2(2, 10);//gives 60
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___bindAsEventListener"><span class="elementName">bindAsEventListener</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
+
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
+
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
+
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isEmail"><span class="elementName">isEmail</span></a>
-                (<span class="type">String</span>
- mail)
+                <a href="logical/o2/MethodHelper.html#___compose"><span class="elementName">compose</span></a>
+                (<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Did you know that <code>Abc\@def@example.com</code>, and
- <code>customer/department=shipping@example.com</code> are all valid
- e-mails?</p>
- <p>There is no good (and realistic) regular expression to match an e-mail
- address.<p>
- <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
- for that.</p>
- <p>This method matches <strong>e-mail</strong> addresses, while giving
- some false-positives.</p>
- <p>The correct action to validate an <strong>e-mail</strong> address is
- to validate by trying
- (i.e. try sending an account activation <strong>e-mail</strong> to a
- newly registered user, for example.).</p>    </div>  
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___curry"><span class="elementName">curry</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Curries the <code>Function</code>.</p>
+ <p>See http://www.dustindiaz.com/javascript-curry/ for a
+ discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c) { return a+b+c; }
+ var curried = o2.MethodHelper.curry(this, test, 1, 2);
+ var result = curried(3);//returns 6;
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___debounce"><span class="elementName">debounce</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isFunction"><span class="elementName">isFunction</span></a>
+                <a href="logical/o2/MethodHelper.html#___defer"><span class="elementName">defer</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ interval, <span class="type">Object</span>
+ context, <span class="type">Array</span>
+ args)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Defers a <code>Function</code> for a specified amount of time.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___flip"><span class="elementName">flip</span></a>
+                (<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___identity"><span class="elementName">identity</span></a>
                 (<span class="type">Object</span>
- obj)
+ value)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Function</code>.</p>    </div>  
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isNan"><span class="elementName">isNan</span></a>
+                <a href="logical/o2/MethodHelper.html#___memoize"><span class="elementName">memoize</span></a>
+                (<span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ context, <span class="type">...</span>
+ ...)
+            </div>          
+                <div class="summaryItemDesc">
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
+ outcome and presents it from cache, instead of recalculating.</p>
+ <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function multiply(a,b){return a*b; }
+ var memoized = o2.MethodHelper.memoize(multiply);
+ var result = memoized(2,3);//fresh calculation.
+ result = memoized(4,2);//fresh calculation.
+ result = memoized(2,3);//retrieve from cache.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___once"><span class="elementName">once</span></a>
+                (<span class="type">Function</span>
+ delegate)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___overload"><span class="elementName">overload</span></a>
                 (<span class="type">Object</span>
- obj)
+ object, <span class="type">String</span>
+ name, <span class="type">Function</span>
+ fn)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given parameter is <code>NaN</code>.</p>    </div>  
+        <p>Adds a method to the <code>Object</code>.</p>
+ <p>If parameters count is different but the name is same,
+ adds the method with a different signature, overloading the former
+ one.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isNull"><span class="elementName">isNull</span></a>
+                <a href="logical/o2/MethodHelper.html#___partial"><span class="elementName">partial</span></a>
                 (<span class="type">Object</span>
- obj)
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given parameter is <code>null</code>.</p>    </div>  
+        <p>Defines a partial <code>Function</code>.</p>
+ <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
+ detailed discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c){ return a*b+c; }
+ var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
+ var result = partial(3);//returns 50;
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isNumber"><span class="elementName">isNumber</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2/MethodHelper.html#___requireAllArguments"><span class="elementName">requireAllArguments</span></a>
+                (<span class="type">Function</span>
+ fn)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>Number</code>.</p>    </div>  
+        <p>Checks the passed in arguments, and if all arguments are present,
+ executes <code>Function</code>. Otherwise throws an error.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isNumeric"><span class="elementName">isNumeric</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2/MethodHelper.html#___throttle"><span class="elementName">throttle</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given parameter is a numeric entity.</p>    </div>  
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isObject"><span class="elementName">isObject</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2/MethodHelper.html#___times"><span class="elementName">times</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is an <code>Object</code>({}).</p>    </div>  
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isRegExp"><span class="elementName">isRegExp</span></a>
-                (<span class="type">Object</span>
- obj)
+                <a href="logical/o2/MethodHelper.html#___wrap"><span class="elementName">wrap</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>RegExp</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isString"><span class="elementName">isString</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the object is a <code>String</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isUndefined"><span class="elementName">isUndefined</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the given parameter is <code>undefined</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isUrl"><span class="elementName">isUrl</span></a>
-                (<span class="type">String</span>
- url)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the given argument is a valid <strong>URL</strong>
- address.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isWhitespace"><span class="elementName">isWhitespace</span></a>
-                (<span class="type">String</span>
- text)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the given argument consists of only whitespace
- characters.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Validator.html#___isWindow"><span class="elementName">isWindow</span></a>
-                (<span class="type">Object</span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Checks whether the given parameter is a <code>window</code>
- object.</p>    </div>  
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.    </div>  
                             </div>
                 </div>
         <p/>
@@ -314,25 +401,23 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
-        <a name="___is">
+        <a name="___after">
             <span class="objType">function</span>
-            <span class="objName">is</span>            
+            <span class="objName">after</span>            
         </a> 
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">private</span>
+                    <span class="modifiers">static</span>
                     <span class="type"></span>
-                    is(<span class="type">Object</span>
- obj, <span class="type">String</span>
- type)
+                    after(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Returns the type information of the given object.</p>
- <p>The type can be any of the following:</p>
- <p><code>Array, Boolean, Date, Error, Function, JSON,
- Math, Number, Object, RegExp, String, Arguments</code>.</p>
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>
 
      </div>
         	<div class="parameters">
@@ -342,153 +427,57 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to check type against.            </div>   
+            count        </code>
+         - the numer of calls required to the
+ <code>Function</code> before executing it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            type        </code>
-         - the type to compare.            </div>   
+            delegate        </code>
+         - the delegate to execute.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the <strong>object</strong>'s type matches
- the <strong>type</strong> parameter, <code>false</code> otherwise.
+	            	             a <code>Function</code> that will only execute after being
+ called <strong>count</strong> times.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isArguments">
+        <a name="___bind">
             <span class="objType">function</span>
-            <span class="objName">isArguments</span>            
+            <span class="objName">bind</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isArguments(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is an <code>arguments</code> object.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>arguments</code> object,
- <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isArray">
-            <span class="objType">function</span>
-            <span class="objName">isArray</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isArray(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is an <code>Array</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>Array</code>,
- <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isBoolean">
-            <span class="objType">function</span>
-            <span class="objName">isBoolean</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isBoolean(<span class="type">Object</span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Checks whether the object is a <code>Boolean</code>.
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the object to test.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Boolean</code>,
- <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___isDate">
-            <span class="objType">function</span>
-            <span class="objName">isDate</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    isDate(<span class="type">Arguments</span>
+                    bind(<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
  varargin)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>Date</code>.</p>
+        <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+ the "<code>this</code>" reference.</p>
+
+ <p><strong>bind</strong> can often be used to bind a different
+ context to a <strong>curried</strong> function.
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function test(a,b,c){ return this.number + (a*b+c); };
+ var context = {number:10};
+ var bound = o2.MethodHelper.bind(context, test);
+ bound(20,2,10);//gives 60
+ var bound2 = o2.MethodHelper.bind(context, test, 20);
+ bound2(2, 10);//gives 60
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -496,52 +485,115 @@
                             <div>
                     <div class="paramset"></div>
                     <div>
+                                                <div class="param paddedDetails">
+        <code>
+            base        </code>
+         - the context of the newly created
+ <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the <code>Function</code> to modify.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             varargin        </code>
-         - if a single argument is given it checks
- whether it identifies a <code>Date</code> object. Otherwise the
- function takes three parameters (year, month, date) and cheks whether
- they denote a valid Date.            </div>   
+         - variable number of input arguments to be
+ passed as initial set of arguments.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Date</code>,
- <code>false</code> otherwise.
-     	            	        </div>
+	            	             the modified <code>Function</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isEmail">
+        <a name="___bindAsEventListener">
             <span class="objType">function</span>
-            <span class="objName">isEmail</span>            
+            <span class="objName">bindAsEventListener</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    bindAsEventListener()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
+
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
+
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
+
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the bound <code>Function</code>.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___compose">
+            <span class="objType">function</span>
+            <span class="objName">compose</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isEmail(<span class="type">String</span>
- mail)
+                    compose(<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Did you know that <code>Abc\@def@example.com</code>, and
- <code>customer/department=shipping@example.com</code> are all valid
- e-mails?</p>
- <p>There is no good (and realistic) regular expression to match an e-mail
- address.<p>
- <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
- for that.</p>
- <p>This method matches <strong>e-mail</strong> addresses, while giving
- some false-positives.</p>
- <p>The correct action to validate an <strong>e-mail</strong> address is
- to validate by trying
- (i.e. try sending an account activation <strong>e-mail</strong> to a
- newly registered user, for example.).</p>
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.
 
      </div>
         	<div class="parameters">
@@ -551,35 +603,72 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            mail        </code>
-         - the <strong>e-mail</strong> address to test.            </div>   
+            invoker        </code>
+         - the invoker.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the invokee.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the <strong>e-mail</strong> address is a
- potentially valid e-mail, <code>false</code> otherwise.
+	            	             the created <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isFunction">
+        <a name="___curry">
             <span class="objType">function</span>
-            <span class="objName">isFunction</span>            
+            <span class="objName">curry</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    curry()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Curries the <code>Function</code>.</p>
+ <p>See http://www.dustindiaz.com/javascript-curry/ for a
+ discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c) { return a+b+c; }
+ var curried = o2.MethodHelper.curry(this, test, 1, 2);
+ var result = curried(3);//returns 6;
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the modified <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___debounce">
+            <span class="objType">function</span>
+            <span class="objName">debounce</span>            
         </a> 
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">static</span>
+                    <span class="modifiers"></span>
                     <span class="type"></span>
-                    isFunction(<span class="type">Object</span>
- obj)
+                    debounce(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>Function</code>.</p>
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>
 
      </div>
         	<div class="parameters">
@@ -589,35 +678,42 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to debounce.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Function</code>,
- <code>false</code> otherwise.
+	            	             the debounced <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isNan">
+        <a name="___defer">
             <span class="objType">function</span>
-            <span class="objName">isNan</span>            
+            <span class="objName">defer</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isNan(<span class="type">Object</span>
- obj)
+                    defer(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ interval, <span class="type">Object</span>
+ context, <span class="type">Array</span>
+ args)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given parameter is <code>NaN</code>.</p>
+        <p>Defers a <code>Function</code> for a specified amount of time.</p>
 
      </div>
         	<div class="parameters">
@@ -627,35 +723,43 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the <code>Object</code> to test.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to defer.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            interval        </code>
+         - the interval to defer in milliseconds.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - the context (this reference) to bind.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            args        </code>
+         - arguments to pass to the function.            </div>   
                                         </div>
                 </div>
                     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if the item is <code>NaN</code>,
- <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                                    <hr/>       
                                                                                     <h3>
-        <a name="___isNull">
+        <a name="___flip">
             <span class="objType">function</span>
-            <span class="objName">isNull</span>            
+            <span class="objName">flip</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isNull(<span class="type">Object</span>
- obj)
+                    flip(<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given parameter is <code>null</code>.</p>
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -665,35 +769,43 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the <code>Object</code> to test.            </div>   
+            fn        </code>
+         - the delegate to flip arguments of.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index1        </code>
+         - the index of the first argument.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index2        </code>
+         - the index of the second argument.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the item is <code>null</code>,
- <code>false</code> otherwise.
+	            	             the created <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isNumber">
+        <a name="___identity">
             <span class="objType">function</span>
-            <span class="objName">isNumber</span>            
+            <span class="objName">identity</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isNumber(<span class="type">Object</span>
- obj)
+                    identity(<span class="type">Object</span>
+ value)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>Number</code>.</p>
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>
 
      </div>
         	<div class="parameters">
@@ -703,35 +815,48 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            value        </code>
+         - input.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>Number</code>,
- <code>false</code> otherwise.
+	            	             the <strong>value</strong> itself.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isNumeric">
+        <a name="___memoize">
             <span class="objType">function</span>
-            <span class="objName">isNumeric</span>            
+            <span class="objName">memoize</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isNumeric(<span class="type">Object</span>
- obj)
+                    memoize(<span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ context, <span class="type">...</span>
+ ...)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given parameter is a numeric entity.</p>
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
+ outcome and presents it from cache, instead of recalculating.</p>
+ <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function multiply(a,b){return a*b; }
+ var memoized = o2.MethodHelper.memoize(multiply);
+ var result = memoized(2,3);//fresh calculation.
+ result = memoized(4,2);//fresh calculation.
+ result = memoized(2,3);//retrieve from cache.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -741,35 +866,45 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the <code>Object</code> to test.            </div>   
+            fn        </code>
+         - the <code>Function</code> to memoize.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - what should "this" refer to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            ...        </code>
+         - variable number of input arguments to pass
+ arguments to fn.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the item is a numeric entity,
- <code>false</code> otherwise.
+	            	             a reference to the memoized <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isObject">
+        <a name="___once">
             <span class="objType">function</span>
-            <span class="objName">isObject</span>            
+            <span class="objName">once</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isObject(<span class="type">Object</span>
- obj)
+                    once(<span class="type">Function</span>
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is an <code>Object</code>({}).</p>
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>
 
      </div>
         	<div class="parameters">
@@ -779,35 +914,39 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to execute.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is an <code>Object</code> ({}),
- <code>false</code> otherwise.
+	            	             a <code>Function</code> that will execute only once.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isRegExp">
+        <a name="___overload">
             <span class="objType">function</span>
-            <span class="objName">isRegExp</span>            
+            <span class="objName">overload</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isRegExp(<span class="type">Object</span>
- obj)
+                    overload(<span class="type">Object</span>
+ object, <span class="type">String</span>
+ name, <span class="type">Function</span>
+ fn)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>RegExp</code>.</p>
+        <p>Adds a method to the <code>Object</code>.</p>
+ <p>If parameters count is different but the name is same,
+ adds the method with a different signature, overloading the former
+ one.</p>
 
      </div>
         	<div class="parameters">
@@ -817,35 +956,52 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            object        </code>
+         - the <code>Object</code> to add methods to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - the name of the method.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the method reference.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if obj is a <code>RegExp</code>,
- <code>false</code> otherwise.
+	            	             the overloaded <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isString">
+        <a name="___partial">
             <span class="objType">function</span>
-            <span class="objName">isString</span>            
+            <span class="objName">partial</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isString(<span class="type">Object</span>
- obj)
+                    partial(<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the object is a <code>String</code>.</p>
+        <p>Defines a partial <code>Function</code>.</p>
+ <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
+ detailed discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c){ return a*b+c; }
+ var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
+ var result = partial(3);//returns 50;
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -855,34 +1011,45 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the object to test.            </div>   
+            base        </code>
+         - the context of the newly created
+ <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the <code>Function</code> to modify.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            varargin        </code>
+         - variable number of input arguments to
+ be passed as initial set of arguments.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             true if obj is a String, false otherwise.
+	            	             the modified <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isUndefined">
+        <a name="___requireAllArguments">
             <span class="objType">function</span>
-            <span class="objName">isUndefined</span>            
+            <span class="objName">requireAllArguments</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isUndefined(<span class="type">Object</span>
- obj)
+                    requireAllArguments(<span class="type">Function</span>
+ fn)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given parameter is <code>undefined</code>.</p>
+        <p>Checks the passed in arguments, and if all arguments are present,
+ executes <code>Function</code>. Otherwise throws an error.</p>
 
      </div>
         	<div class="parameters">
@@ -892,36 +1059,47 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the <code>Object</code> to test.            </div>   
+            fn        </code>
+         - the <code>Function</code> to check.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the item is <code>undefined</code>,
- <code>false</code> otherwise.
-     	            	        </div>
+	            	             the applied <code>Function</code>.
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+            	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">Excpetion if all of the arguments is not provided to the
+ <code>Function</code>.</div>
+	                </div>
+                                            <hr/>       
                                                                                     <h3>
-        <a name="___isUrl">
+        <a name="___throttle">
             <span class="objType">function</span>
-            <span class="objName">isUrl</span>            
+            <span class="objName">throttle</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isUrl(<span class="type">String</span>
- url)
+                    throttle(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given argument is a valid <strong>URL</strong>
- address.</p>
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>
 
      </div>
         	<div class="parameters">
@@ -931,36 +1109,43 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            url        </code>
-         - the address to check.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to throttle.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the address is a valid <strong>URL</strong>,
- <code>false</code> otherwise.
+	            	             the throttled <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___isWhitespace">
+        <a name="___times">
             <span class="objType">function</span>
-            <span class="objName">isWhitespace</span>            
+            <span class="objName">times</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isWhitespace(<span class="type">String</span>
- text)
+                    times(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given argument consists of only whitespace
- characters.</p>
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>
 
      </div>
         	<div class="parameters">
@@ -970,36 +1155,46 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            text        </code>
-         - the text to check.            </div>   
+            count        </code>
+         - number of times to execute.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to execute (in
+ the form <code>function(i, payload)</code>).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - what should <code>this</code> refer to inside
+ the <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            payload        </code>
+         - the <code>Object</code> to pass to the
+ <strong>delegate</strong> as a second argument.            </div>   
                                         </div>
                 </div>
                     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>true</code> if the argument consists of only whitespace
- characters, <code>false</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
+                                                    <hr/>       
                                                                                     <h3>
-        <a name="___isWindow">
+        <a name="___wrap">
             <span class="objType">function</span>
-            <span class="objName">isWindow</span>            
+            <span class="objName">wrap</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    isWindow(<span class="type">Object</span>
- obj)
+                    wrap(<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given parameter is a <code>window</code>
- object.</p>
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.
 
      </div>
         	<div class="parameters">
@@ -1009,16 +1204,20 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
-         - the <code>Object</code> to test.            </div>   
+            delegate        </code>
+         - the first <code>Function</code> to pass
+ as parameter.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            wrapper        </code>
+         - the wrapper <code>Function</code>.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             <code>true</code> if the item is a <code>window</code>,
- <code>false</code> otherwise.
+	            	             the wrapped <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1242,7 +1441,7 @@
 	</body>
     <script type="text/javascript">
         jgdoc.Searcher.start();
-        jgdoc.NavTree.initialize("o2.Validator");
+        jgdoc.NavTree.initialize("o2.MethodHelper");
     </script>			
 	<script type="text/javascript" src="jsindex.js">
     </script>

@@ -14,7 +14,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 09:10:55.636260
+ *  lastModified: 2012-03-25 00:56:52.052120
  * -->
  *
  * <p>Meta information.</p>
@@ -682,7 +682,9 @@ this.o2 = this.o2 || {
         JsonpController : {
             base  : 'AjaxController',
             items : {
-                protecteds : {MODULE : kJsonpControllerCore}
+                /*protecteds : {MODULE : kJsonpControllerCore},*/
+                update     : {MODULE : kAjaxControllerCore},
+                unregister : {MODULE : kJsonpStateCore}                
             }
         },
         JsonpState : {
