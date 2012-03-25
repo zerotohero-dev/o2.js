@@ -58,7 +58,7 @@
 			                    <hr/>
 						        <div>
 						        						        		<H2>
-        <span class="objType">Class</span> o2.StringHelper
+        <span class="objType">Class</span> o2.MethodHelper
     </H2>
     
 
@@ -68,14 +68,14 @@
        <code>
             <span class="modifiers">static</span>
             <span class="objType">class</span> 
-            <b>o2.StringHelper</b>
+            <b>o2.MethodHelper</b>
        </code>
     </div>
-                <div class="comment"><p>A <code>String</code> helper <strong>class</strong>.</p>
+                <div class="comment"><p>A method helper class.</p>
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+        <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
         <hr/> 
     <p />
     
@@ -93,363 +93,306 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___br2nl"><span class="elementName">br2nl</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___after"><span class="elementName">after</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Replaces HTML [br /] tags with new line.</p>    </div>  
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___compact"><span class="elementName">compact</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___bind"><span class="elementName">bind</span></a>
+                (<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Works identical to <code>StringHelper.trim(str,
- true)</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___concat"><span class="elementName">concat</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>Concatanes all its arguments into a single <code>String</code>.
- This is faster than adding those <code>String</code>s with
- <code>+</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___decode"><span class="elementName">decode</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
- <p>If possible try using standard decoding methods like
- <code>decodeURIComponent</code>, instead of using this method.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___encode"><span class="elementName">encode</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
- entities.</p>
- <p>If possible try using standard encoding methods like
- <code>encodeURIComponent</code>,
- instead of using this method.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___encodeSafeHtml"><span class="elementName">encodeSafeHtml</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Works similar to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
- <p>Encodes the <code>String</code> by converting it into a text node
- and returning the node's value.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___escape"><span class="elementName">escape</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___format"><span class="elementName">format</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>Works similar to <strong>C#</strong>'s
- <code>String.Format</code>.</p>
- <p>Usage Example:<p>
+        <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+ the "<code>this</code>" reference.</p>
+
+ <p><strong>bind</strong> can often be used to bind a different
+ context to a <strong>curried</strong> function.
+
+ <p>Usage Example:</p>
+
  <pre>
- o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
- 'California');
- //will return "Hello Ninja. What's going on in California"
+ function test(a,b,c){ return this.number + (a*b+c); };
+ var context = {number:10};
+ var bound = o2.MethodHelper.bind(context, test);
+ bound(20,2,10);//gives 60
+ var bound2 = o2.MethodHelper.bind(context, test, 20);
+ bound2(2, 10);//gives 60
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___generateGuid"><span class="elementName">generateGuid</span></a>()
+                <a href="logical/o2/MethodHelper.html#___bindAsEventListener"><span class="elementName">bindAsEventListener</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
- for that browsing session.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___generateRandom"><span class="elementName">generateRandom</span></a>
-                (<span class="type">Integer</span>
- length)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Generates a random <code>String</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___htmlEncode"><span class="elementName">htmlEncode</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___nl2br"><span class="elementName">nl2br</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Replaces new lines [\n] with HTML [br /] tags.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___printf"><span class="elementName">printf</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
- function.</p>
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
+
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
 
  <p>Usage example:</p>
 
  <pre>
- var test1 = 'lorem %s %s sit amet';
- var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
 
- //This will return 'lorem ipsum dolor sit amet''
- o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
 
- //This will return 'lorem ipsum dolor sit dolor amet ipsum'
- o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___remove"><span class="elementName">remove</span></a>
-                (<span class="type">String</span>
- str, <span class="type">RegExp</span>
- regExp)
+                <a href="logical/o2/MethodHelper.html#___compose"><span class="elementName">compose</span></a>
+                (<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Simply removes the phrases that match the <code>RegExp</code> from
- the <code>String</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___removeTags"><span class="elementName">removeTags</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Removes all the <strong>HTML</strong> tags in the
- <code>String</code>.</p>    </div>  
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___safeHtmlEncode"><span class="elementName">safeHtmlEncode</span></a>()
+                <a href="logical/o2/MethodHelper.html#___curry"><span class="elementName">curry</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to
- <a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a>.</p>    </div>  
+        <p>Curries the <code>Function</code>.</p>
+ <p>See http://www.dustindiaz.com/javascript-curry/ for a
+ discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c) { return a+b+c; }
+ var curried = o2.MethodHelper.curry(this, test, 1, 2);
+ var result = curried(3);//returns 6;
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers"></span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___debounce"><span class="elementName">debounce</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___stripNonAlpha"><span class="elementName">stripNonAlpha</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___defer"><span class="elementName">defer</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ interval, <span class="type">Object</span>
+ context, <span class="type">Array</span>
+ args)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes non alphabetical characters from the <code>String</code>
- (excluding numbers).</p>    </div>  
+        <p>Defers a <code>Function</code> for a specified amount of time.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___stripNonAlphanumeric"><span class="elementName">stripNonAlphanumeric</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___flip"><span class="elementName">flip</span></a>
+                (<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes alpha-numeric characters from the <code>String</code>.</p>    </div>  
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___stripNonNumeric"><span class="elementName">stripNonNumeric</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___identity"><span class="elementName">identity</span></a>
+                (<span class="type">Object</span>
+ value)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes non-numeric characters from the <code>String</code>.</p>    </div>  
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___stripNumeric"><span class="elementName">stripNumeric</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___memoize"><span class="elementName">memoize</span></a>
+                (<span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ context, <span class="type">...</span>
+ ...)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes numeric characters from the <code>String</code>.</p>    </div>  
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
+ outcome and presents it from cache, instead of recalculating.</p>
+ <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function multiply(a,b){return a*b; }
+ var memoized = o2.MethodHelper.memoize(multiply);
+ var result = memoized(2,3);//fresh calculation.
+ result = memoized(4,2);//fresh calculation.
+ result = memoized(2,3);//retrieve from cache.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___stripTags"><span class="elementName">stripTags</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___once"><span class="elementName">once</span></a>
+                (<span class="type">Function</span>
+ delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Removes tags from the <code>String</code>.    </div>  
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___toCamelCase"><span class="elementName">toCamelCase</span></a>
-                (<span class="type">String</span>
- input)
+                <a href="logical/o2/MethodHelper.html#___overload"><span class="elementName">overload</span></a>
+                (<span class="type">Object</span>
+ object, <span class="type">String</span>
+ name, <span class="type">Function</span>
+ fn)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Converts the input to camel case.</p>
- <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
- <p>This is especially useful for converting <code>CSS</code> classes
- to their <strong>DOM</strong> style representations.</p>    </div>  
+        <p>Adds a method to the <code>Object</code>.</p>
+ <p>If parameters count is different but the name is same,
+ adds the method with a different signature, overloading the former
+ one.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___toDashedFromCamelCase"><span class="elementName">toDashedFromCamelCase</span></a>
-                (<span class="type">String</span>
- input)
+                <a href="logical/o2/MethodHelper.html#___partial"><span class="elementName">partial</span></a>
+                (<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Converts a <code>String</code> of the form 'loremIpsum' to
- 'lorem-ipsum'.</p>    </div>  
+        <p>Defines a partial <code>Function</code>.</p>
+ <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
+ detailed discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c){ return a*b+c; }
+ var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
+ var result = partial(3);//returns 50;
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___toJson"><span class="elementName">toJson</span></a>
-                (<span class="type">String</span>
- str)
+                <a href="logical/o2/MethodHelper.html#___requireAllArguments"><span class="elementName">requireAllArguments</span></a>
+                (<span class="type">Function</span>
+ fn)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Converts the given <code>String</code> to a <strong>JSON</strong>
- object.</p>    </div>  
+        <p>Checks the passed in arguments, and if all arguments are present,
+ executes <code>Function</code>. Otherwise throws an error.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___toUnderscoreFromCamelCase"><span class="elementName">toUnderscoreFromCamelCase</span></a>
-                (<span class="type">String</span>
- input)
+                <a href="logical/o2/MethodHelper.html#___throttle"><span class="elementName">throttle</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Converts a <code>String</code> of the form 'loremIpsum' to
- 'lorem_ipsum'.</p>    </div>  
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___trim"><span class="elementName">trim</span></a>
-                (<span class="type">String</span>
- str, <span class="type">Boolean</span>
- shouldCompact)
+                <a href="logical/o2/MethodHelper.html#___times"><span class="elementName">times</span></a>
+                (<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Trims white space from beginning and end of the
- <code>String</code>.</p>    </div>  
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___truncate"><span class="elementName">truncate</span></a>
-                (<span class="type">String</span>
- str, <span class="type">Integer</span>
- maxLen)
+                <a href="logical/o2/MethodHelper.html#___wrap"><span class="elementName">wrap</span></a>
+                (<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
- is greater than <strong>maxLen</strong>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___unescape"><span class="elementName">unescape</span></a>
-                (<span class="type">String</span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/StringHelper.html#___xssEncode"><span class="elementName">xssEncode</span></a>
-                (<span class="type">String</span>
- str, <span class="type">Boolean</span>
- isAmpersandsPreserved)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
- entities. Works similar to {link StringHelper.encode}, with an
- exception that it does not encode whitespace characters.</p>
- <p>This method is specially designed to prevent cross-site script
- injection attacks.</p>    </div>  
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.    </div>  
                             </div>
                 </div>
         <p/>
@@ -458,21 +401,23 @@
     	    	    	    	            <div class="details function">
             <h2 class="sectionHeader">Function Details</h2>
                                                                     <h3>
-        <a name="___br2nl">
+        <a name="___after">
             <span class="objType">function</span>
-            <span class="objName">br2nl</span>            
+            <span class="objName">after</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    br2nl(<span class="type">String</span>
- str)
+                    after(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Replaces HTML [br /] tags with new line.</p>
+        <p>Creates a <code>Function</code> that only executes after being called
+ <strong>count</code> times.</p>
 
      </div>
         	<div class="parameters">
@@ -482,322 +427,59 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
+            count        </code>
+         - the numer of calls required to the
+ <code>Function</code> before executing it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the delegate to execute.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
+	            	             a <code>Function</code> that will only execute after being
+ called <strong>count</strong> times.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___compact">
+        <a name="___bind">
             <span class="objType">function</span>
-            <span class="objName">compact</span>            
+            <span class="objName">bind</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    compact(<span class="type">String</span>
- str)
+                    bind(<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Works identical to <code>StringHelper.trim(str,
- true)</code>.</p>
+        <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+ the "<code>this</code>" reference.</p>
 
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
+ <p><strong>bind</strong> can often be used to bind a different
+ context to a <strong>curried</strong> function.
 
- 	            	        </div>
-        </div>      
-                            <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">StringHelper.trim</div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___concat">
-            <span class="objType">function</span>
-            <span class="objName">concat</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    concat()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>Concatanes all its arguments into a single <code>String</code>.
- This is faster than adding those <code>String</code>s with
- <code>+</code>.</p>
+ <p>Usage Example:</p>
 
-     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the concataneted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___decode">
-            <span class="objType">function</span>
-            <span class="objName">decode</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    decode(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
- <p>If possible try using standard decoding methods like
- <code>decodeURIComponent</code>, instead of using this method.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___encode">
-            <span class="objType">function</span>
-            <span class="objName">encode</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    encode(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
- entities.</p>
- <p>If possible try using standard encoding methods like
- <code>encodeURIComponent</code>,
- instead of using this method.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___encodeSafeHtml">
-            <span class="objType">function</span>
-            <span class="objName">encodeSafeHtml</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    encodeSafeHtml(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Works similar to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
- <p>Encodes the <code>String</code> by converting it into a text node
- and returning the node's value.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-
- 	            	        </div>
-        </div>      
-                            <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___escape">
-            <span class="objType">function</span>
-            <span class="objName">escape</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    escape(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___format">
-            <span class="objType">function</span>
-            <span class="objName">format</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    format()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>Works similar to <strong>C#</strong>'s
- <code>String.Format</code>.</p>
- <p>Usage Example:<p>
  <pre>
- o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
- 'California');
- //will return "Hello Ninja. What's going on in California"
+ function test(a,b,c){ return this.number + (a*b+c); };
+ var context = {number:10};
+ var bound = o2.MethodHelper.bind(context, test);
+ bound(20,2,10);//gives 60
+ var bound2 = o2.MethodHelper.bind(context, test, 20);
+ bound2(2, 10);//gives 60
  </pre>
 
      </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formated <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___generateGuid">
-            <span class="objType">function</span>
-            <span class="objName">generateGuid</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    generateGuid()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
- for that browsing session.</p>
-
-     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             a <strong>GUID</strong>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___generateRandom">
-            <span class="objType">function</span>
-            <span class="objName">generateRandom</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    generateRandom(<span class="type">Integer</span>
- length)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Generates a random <code>String</code>.</p>
-
-     </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
                             <div>
@@ -805,107 +487,375 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            length        </code>
-         - (optional - default: StringHelper.config.constants.DEFAULT_RANDOM_LENGTH)
- length of the <code>String</code> to be generated.            </div>   
+            base        </code>
+         - the context of the newly created
+ <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the <code>Function</code> to modify.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            varargin        </code>
+         - variable number of input arguments to be
+ passed as initial set of arguments.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the generated <code>String</code>.
-     	            	        </div>
+	            	             the modified <code>Function</code>.
+         	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___htmlEncode">
+        <a name="___bindAsEventListener">
             <span class="objType">function</span>
-            <span class="objName">htmlEncode</span>            
+            <span class="objName">bindAsEventListener</span>            
         </a> 
     </h3>
                 <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    htmlEncode()
+                    bindAsEventListener()
                 </code>
             </div>    
         <div class="comment">
-        <p>An <strong>alias</strong> to <a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a>.</p>
+        <p>Binds the given function as an event listener, ensuring that
+ the first parameter is always the event object.</p>
 
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encode">o2.StringHelper.encode</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___nl2br">
-            <span class="objType">function</span>
-            <span class="objName">nl2br</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    nl2br(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Replaces new lines [\n] with HTML [br /] tags.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___printf">
-            <span class="objType">function</span>
-            <span class="objName">printf</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    printf(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
- function.</p>
+ <p>This method is generally used in conjunction with
+ <a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a>.</p>
 
  <p>Usage example:</p>
 
  <pre>
- var test1 = 'lorem %s %s sit amet';
- var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+ var $ = o2.$;
+ var listen = o2.EventHandler.addEventListener;
+ var getTarget = o2.EventHandler.getTarget;
+ var bind = o2.MethodHelper.bindAsEventListener;
 
- //This will return 'lorem ipsum dolor sit amet''
- o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ var context = {id : 1, description : 'hello world.'};
+ var kClick = 'click';
+ var menu = $('mainMenu');
 
- //This will return 'lorem ipsum dolor sit dolor amet ipsum'
- o2.StringHelper.printf(test1, 'ipsum', 'dolor');
+ function test(evt, a, b) {
+      console.log( getTarget(evt) );
+      console.log( this.id );
+      console.log( this.description );
+      console.log( a );
+      console.log( b );
+ }
+
+ var delegate = bind(context, test, 20, 30);
+ listen(menu, kClick, delegate);
+
+ // When mainMenu element is clicked the output will be as follows:
+ //
+ // [DOM Element]
+ // 1
+ // hello world
+ // 20
+ // 30
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the bound <code>Function</code>.
+
+ 	            	        </div>
+        </div>      
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/EventHandler.html#___addEventListener">o2.EventHandler.addEventListener</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
+        <a name="___compose">
+            <span class="objType">function</span>
+            <span class="objName">compose</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    compose(<span class="type">Function</span>
+ invoker, <span class="type">Function</span>
+ delegate)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Create a method that calls the <strong>invoker</strong> with the
+ return value of the evaluated function <strong>fn</strong>. The current
+ arguments are passed to <strong>fn</strong>, and the evaluated result
+ is passed to the <strong>invoker</strong>.
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            invoker        </code>
+         - the invoker.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the invokee.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___curry">
+            <span class="objType">function</span>
+            <span class="objName">curry</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    curry()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Curries the <code>Function</code>.</p>
+ <p>See http://www.dustindiaz.com/javascript-curry/ for a
+ discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c) { return a+b+c; }
+ var curried = o2.MethodHelper.curry(this, test, 1, 2);
+ var result = curried(3);//returns 6;
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the modified <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___debounce">
+            <span class="objType">function</span>
+            <span class="objName">debounce</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers"></span>
+                    <span class="type"></span>
+                    debounce(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Creates a <code>Function</code> that will not be triggered, as long as
+ it continues to get invoked within a certain time window.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to debounce.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the debounced <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___defer">
+            <span class="objType">function</span>
+            <span class="objName">defer</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    defer(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ interval, <span class="type">Object</span>
+ context, <span class="type">Array</span>
+ args)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Defers a <code>Function</code> for a specified amount of time.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the <code>Function</code> to defer.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            interval        </code>
+         - the interval to defer in milliseconds.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - the context (this reference) to bind.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            args        </code>
+         - arguments to pass to the function.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___flip">
+            <span class="objType">function</span>
+            <span class="objName">flip</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    flip(<span class="type">Function</span>
+ fn, <span class="type">Integer</span>
+ index1, <span class="type">Integer</span>
+ index2)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Flips two arguments of the given <code>Function</code>, and returns a
+ new <code>Function</code>.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the delegate to flip arguments of.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index1        </code>
+         - the index of the first argument.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            index2        </code>
+         - the index of the second argument.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the created <code>Function</code>.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___identity">
+            <span class="objType">function</span>
+            <span class="objName">identity</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    identity(<span class="type">Object</span>
+ value)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Just an identity function, that return what it's given without
+ changing it.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            value        </code>
+         - input.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>value</strong> itself.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___memoize">
+            <span class="objType">function</span>
+            <span class="objName">memoize</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    memoize(<span class="type">Function</span>
+ fn, <span class="type">Object</span>
+ context, <span class="type">...</span>
+ ...)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p><strong>Memoizes</strong> the given <code>Function</code>'s
+ outcome and presents it from cache, instead of recalculating.</p>
+ <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+
+ <p>Usage Example:</p>
+
+ <pre>
+ function multiply(a,b){return a*b; }
+ var memoized = o2.MethodHelper.memoize(multiply);
+ var result = memoized(2,3);//fresh calculation.
+ result = memoized(4,2);//fresh calculation.
+ result = memoized(2,3);//retrieve from cache.
  </pre>
 
      </div>
@@ -916,36 +866,45 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
+            fn        </code>
+         - the <code>Function</code> to memoize.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - what should "this" refer to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            ...        </code>
+         - variable number of input arguments to pass
+ arguments to fn.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
+	            	             a reference to the memoized <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___remove">
+        <a name="___once">
             <span class="objType">function</span>
-            <span class="objName">remove</span>            
+            <span class="objName">once</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    remove(<span class="type">String</span>
- str, <span class="type">RegExp</span>
- regExp)
+                    once(<span class="type">Function</span>
+ delegate)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Simply removes the phrases that match the <code>RegExp</code> from
- the <code>String</code>.</p>
+        <p>Creates a <code>Function</code> that will only get called once.<p>
+ <p>May be useful for creating <strong>singleton</strong>
+ <code>Object</code>s, or for lazy-loading modules.</p>
 
      </div>
         	<div class="parameters">
@@ -955,39 +914,39 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            regExp        </code>
-         - the <code>RegExp</code> to process agains.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to execute.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
+	            	             a <code>Function</code> that will execute only once.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___removeTags">
+        <a name="___overload">
             <span class="objType">function</span>
-            <span class="objName">removeTags</span>            
+            <span class="objName">overload</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    removeTags(<span class="type">String</span>
- str)
+                    overload(<span class="type">Object</span>
+ object, <span class="type">String</span>
+ name, <span class="type">Function</span>
+ fn)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Removes all the <strong>HTML</strong> tags in the
- <code>String</code>.</p>
+        <p>Adds a method to the <code>Object</code>.</p>
+ <p>If parameters count is different but the name is same,
+ adds the method with a different signature, overloading the former
+ one.</p>
 
      </div>
         	<div class="parameters">
@@ -997,58 +956,52 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
+            object        </code>
+         - the <code>Object</code> to add methods to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - the name of the method.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the method reference.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the cleaned output.
+	            	             the overloaded <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___safeHtmlEncode">
+        <a name="___partial">
             <span class="objType">function</span>
-            <span class="objName">safeHtmlEncode</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    safeHtmlEncode()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An <strong>alias</strong> to
- <a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a>.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails"><a href="logical/o2/StringHelper.html#___encodeSafeHtml">o2.StringHelper.encodeSafeHtml</a></div>
-                    </div>      
-                                <hr/>       
-                                                                                    <h3>
-        <a name="___stripNonAlpha">
-            <span class="objType">function</span>
-            <span class="objName">stripNonAlpha</span>            
+            <span class="objName">partial</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    stripNonAlpha(<span class="type">String</span>
- str)
+                    partial(<span class="type">Object</span>
+ base, <span class="type">Function</span>
+ fn, <span class="type">Arguments</span>
+ varargin)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Removes non alphabetical characters from the <code>String</code>
- (excluding numbers).</p>
+        <p>Defines a partial <code>Function</code>.</p>
+ <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
+ detailed discussion.</p>
+ <p>Usage Example:</p>
+ <pre>
+ function test(a,b,c){ return a*b+c; }
+ var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
+ var result = partial(3);//returns 50;
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -1058,34 +1011,45 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
+            base        </code>
+         - the context of the newly created
+ <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - the <code>Function</code> to modify.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            varargin        </code>
+         - variable number of input arguments to
+ be passed as initial set of arguments.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
+	            	             the modified <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___stripNonAlphanumeric">
+        <a name="___requireAllArguments">
             <span class="objType">function</span>
-            <span class="objName">stripNonAlphanumeric</span>            
+            <span class="objName">requireAllArguments</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    stripNonAlphanumeric(<span class="type">String</span>
- str)
+                    requireAllArguments(<span class="type">Function</span>
+ fn)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Removes alpha-numeric characters from the <code>String</code>.</p>
+        <p>Checks the passed in arguments, and if all arguments are present,
+ executes <code>Function</code>. Otherwise throws an error.</p>
 
      </div>
         	<div class="parameters">
@@ -1095,269 +1059,47 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
+            fn        </code>
+         - the <code>Function</code> to check.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___stripNonNumeric">
-            <span class="objType">function</span>
-            <span class="objName">stripNonNumeric</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    stripNonNumeric(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Removes non-numeric characters from the <code>String</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to format.
-     -            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___stripNumeric">
-            <span class="objType">function</span>
-            <span class="objName">stripNumeric</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    stripNumeric(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Removes numeric characters from the <code>String</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___stripTags">
-            <span class="objType">function</span>
-            <span class="objName">stripTags</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    stripTags(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Removes tags from the <code>String</code>.
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to format.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___toCamelCase">
-            <span class="objType">function</span>
-            <span class="objName">toCamelCase</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    toCamelCase(<span class="type">String</span>
- input)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Converts the input to camel case.</p>
- <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
- <p>This is especially useful for converting <code>CSS</code> classes
- to their <strong>DOM</strong> style representations.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            input        </code>
-         - the <code>String</code> to convert.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted String.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___toDashedFromCamelCase">
-            <span class="objType">function</span>
-            <span class="objName">toDashedFromCamelCase</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    toDashedFromCamelCase(<span class="type">String</span>
- input)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Converts a <code>String</code> of the form 'loremIpsum' to
- 'lorem-ipsum'.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            input        </code>
-         - the <code>String</code> to convert.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___toJson">
-            <span class="objType">function</span>
-            <span class="objName">toJson</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    toJson(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Converts the given <code>String</code> to a <strong>JSON</strong>
- object.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to convert.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the converted <strong>JSON</strong> <code>Object</code>.
+	            	             the applied <code>Function</code>.
 
  	            	        </div>
         </div>      
             	<div class="throws">
 	        <span class="descSection">Throws:</span><br/>
-	        	                <div class="paddedDetails">Exception - if <strong>str</strong> is not a well-formed
- <strong>JSON</strong> <code>String</code>.</div>
+	        	                <div class="paddedDetails">Excpetion if all of the arguments is not provided to the
+ <code>Function</code>.</div>
 	                </div>
                                             <hr/>       
                                                                                     <h3>
-        <a name="___toUnderscoreFromCamelCase">
+        <a name="___throttle">
             <span class="objType">function</span>
-            <span class="objName">toUnderscoreFromCamelCase</span>            
+            <span class="objName">throttle</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    toUnderscoreFromCamelCase(<span class="type">String</span>
- input)
+                    throttle(<span class="type">Function</span>
+ delegate, <span class="type">Integer</span>
+ waitMs)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Converts a <code>String</code> of the form 'loremIpsum' to
- 'lorem_ipsum'.</p>
+        <p>Returns a <code>Function</code> that will execute at most once in a
+ given time window. That is to say, quick repetitive calls to the function
+ are <strong>throttled</strong>.</p>
+
+ <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+ requests, preventing the client to bombard the server with too many
+ simultaneous requests.</p>
 
      </div>
         	<div class="parameters">
@@ -1367,36 +1109,43 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            input        </code>
-         - the <code>String</code> to convert.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to throttle.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            waitMs        </code>
+         - the least amount of time (in milliseconds)
+ to wait between calls.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the formatted <code>String</code>.
+	            	             the throttled <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___trim">
+        <a name="___times">
             <span class="objType">function</span>
-            <span class="objName">trim</span>            
+            <span class="objName">times</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    trim(<span class="type">String</span>
- str, <span class="type">Boolean</span>
- shouldCompact)
+                    times(<span class="type">Integer</span>
+ count, <span class="type">Function</span>
+ delegate, <span class="type">Object</span>
+ context, <span class="type">Object</span>
+ payload)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Trims white space from beginning and end of the
- <code>String</code>.</p>
+        <p>Sequentially executes a given <code>Function</code> given amount
+ of times.</p>
 
      </div>
         	<div class="parameters">
@@ -1406,43 +1155,46 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
+            count        </code>
+         - number of times to execute.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            shouldCompact        </code>
-         - Optional (default:
- <code>false</code>)
-     if <code>true</code>, multiple whitespace is compacted into single
- whitespace.            </div>   
+            delegate        </code>
+         - the <code>Function</code> to execute (in
+ the form <code>function(i, payload)</code>).            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - what should <code>this</code> refer to inside
+ the <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            payload        </code>
+         - the <code>Object</code> to pass to the
+ <strong>delegate</strong> as a second argument.            </div>   
                                         </div>
                 </div>
                     </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-         	            	        </div>
-        </div>      
-                                                <hr/>       
+                                                    <hr/>       
                                                                                     <h3>
-        <a name="___truncate">
+        <a name="___wrap">
             <span class="objType">function</span>
-            <span class="objName">truncate</span>            
+            <span class="objName">wrap</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    truncate(<span class="type">String</span>
- str, <span class="type">Integer</span>
- maxLen)
+                    wrap(<span class="type">Function</span>
+ delegate, <span class="type">Function</span>
+ wrapper)
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
- is greater than <strong>maxLen</strong>.</p>
+        <p>Returns the first <strong>delegate</strong> passed as an argument
+ to the second <strong>wrapper</strong> followed by the arguments of
+ the returned <code>Funciton</code>.
 
      </div>
         	<div class="parameters">
@@ -1452,105 +1204,20 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
+            delegate        </code>
+         - the first <code>Function</code> to pass
+ as parameter.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            maxLen        </code>
-         - Optional (defaults TRUNCATION_LENGTH},
- maximum <code>String</code> length that's allowed without truncation.            </div>   
+            wrapper        </code>
+         - the wrapper <code>Function</code>.            </div>   
                                         </div>
                 </div>
                     </div>
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___unescape">
-            <span class="objType">function</span>
-            <span class="objName">unescape</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    unescape(<span class="type">String</span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
-        <a name="___xssEncode">
-            <span class="objType">function</span>
-            <span class="objName">xssEncode</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    xssEncode(<span class="type">String</span>
- str, <span class="type">Boolean</span>
- isAmpersandsPreserved)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Encodes special charaters to their corresponding <strong>HTML</strong>
- entities. Works similar to {link StringHelper.encode}, with an
- exception that it does not encode whitespace characters.</p>
- <p>This method is specially designed to prevent cross-site script
- injection attacks.</p>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            isAmpersandsPreserved        </code>
-         - (Optional. Defaults to
- <code>false</code>). If <code>true</code> & characters will not be
- encoded, otherwise they will be.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the processed <code>String</code>.
+	            	             the wrapped <code>Function</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1777,7 +1444,7 @@
 	</body>
     <script type="text/javascript">
         jgdoc.Searcher.start();
-        jgdoc.NavTree.initialize("o2.StringHelper");
+        jgdoc.NavTree.initialize("o2.MethodHelper");
     </script>			
 	<script type="text/javascript" src="jsindex.js">
     </script>
