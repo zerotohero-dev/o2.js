@@ -1,6 +1,6 @@
 /**
  * @module   domhelper.traverse
- * @requires collectionhelper.core
+ * @requires collection.core
  * @requires core
  * @requires domhelper.class
  * @requires domhelper.core
@@ -54,7 +54,7 @@
     var format        = require(kStringHelper, 'format');
     var generateGuid  = require(kStringHelper, 'generateGuid');
 
-    var contains = require('CollectionHelper', 'contains');
+    var contains = require('Collection', 'contains');
 
     /*
      * Selectors

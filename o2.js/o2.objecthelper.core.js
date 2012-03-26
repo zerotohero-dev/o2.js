@@ -1,6 +1,6 @@
 /**
  * @module   objecthelper.core
- * @requires collectionhelper.core
+ * @requires collection.core
  * @requires core
  * @requires stringhelper.core
  *
@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:34:46.142293
+ *  lastModified: 2012-03-26 23:41:19.189929
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -47,7 +47,7 @@
     var format        = require(kStringHelper, 'format');
     var concat        = require(kStringHelper, 'concat');
 
-    var toArray = require('CollectionHelper', 'toArray');
+    var toArray = require('Collection', 'toArray');
 
     var JSON = window.JSON;
 
@@ -209,7 +209,7 @@
      *
      * @return the converted <code>Array</code>.
      *
-     * @see o2.CollectionHelper.toArray
+     * @see o2.Collection.toArray
      */
     def(me, 'toArray', function(obj) {
         return toArray(obj);
