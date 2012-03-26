@@ -289,7 +289,7 @@
      *
      * <p>Creates a new <code>UnitTest</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -321,7 +321,7 @@
     /**
      * @function o2.UnitTest.terminate
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -371,7 +371,7 @@
      * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
      * adds it to the test queue.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -403,7 +403,7 @@
      * <p>Asserts whether the given <strong>expression</strong> evaluates to
      * <code>true</code> or not.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -429,7 +429,7 @@
      * @function {static} o2.Unit.assertEqual
      * <p>Asserts whether two values are equal.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -459,7 +459,7 @@
      * @function {static} o2.Unit.assertNotEqual
      * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -491,7 +491,7 @@
      * <p>Asserts whether two values are strictly equal (by value and
      * type).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -522,7 +522,7 @@
      * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
      * (by value and type).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -552,7 +552,7 @@
      *
      * <p>Gets the total number of failed assertions so far.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -569,7 +569,7 @@
      *
      * <p>Gets the total number of successful assertions so far.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -587,7 +587,7 @@
      * <p>Checks whether the current <strong>test suite</strong> is still
      * running.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -603,7 +603,7 @@
     /**
      * @function {static} o2.Unit.log
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -624,7 +624,7 @@
      * <p>Asynchronously runs all of the registered
      * <code>UnitTest</code>s, one after another.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

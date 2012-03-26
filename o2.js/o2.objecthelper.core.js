@@ -63,7 +63,7 @@
      * <p>Copies members from <strong>base</strong> to
      * <strong>child</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -90,7 +90,7 @@
      * <strong>base</strong> object's methods will be directly reflected to
      * the <strong>child</strong> object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -126,7 +126,7 @@
      * <strong>base</strong> object's prototype methods will be directly
      * reflected to the <strong>child</strong> object's protoype.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -157,7 +157,7 @@
      * is rarely useful and is against the <strong>functional</strong> nature of
      * the language, this helper method may be handy at times.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * function Fruit() {}
@@ -201,7 +201,7 @@
      * @param {Object} obj - the <code>Object</code> to convert to an
      * <code>Array</code>.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -223,7 +223,7 @@
      * you can use 3rdparty/json2/json2.js to add cross-browser
      * <strong>JSON</strong> support.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -247,7 +247,7 @@
     /**
      * @function {static} o2.ObjectHelper.stringify
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

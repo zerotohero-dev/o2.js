@@ -116,7 +116,7 @@
      *
      * <p>An alias for <code>document.getElementById</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -151,7 +151,7 @@
      *
      * <p>An alias for <code>DomHelper.ready</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -170,7 +170,7 @@
      * <p>An alias for <code>EventHandler.addEventListener(window, 'load',
      * callback)</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -189,7 +189,7 @@
      * <p>Returns the unix time (i.e. the number of milliseconds since
      * midnight of January 1, 1970)</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -207,7 +207,7 @@
      * <p>Exports the <strong>o2</strong> namespace under a new name, so that
      * it can be used together with an older version of <strong>o2.js</strong>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * [script type="text/javascript" charset="UTF-8" src="o2.0.21.js"][/script]
@@ -234,7 +234,7 @@
      *
      * <p>A <code>getElementsByName</code> wrapper.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -283,7 +283,7 @@
      * returns the first matched node, instead of returning a node
      * collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -307,7 +307,7 @@
      *
      * <p>A <code>getElementsByTagName</code> wrapper.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -341,7 +341,7 @@
      * returns the first matched node, instead of returning a node
      * collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

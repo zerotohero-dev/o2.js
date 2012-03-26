@@ -56,7 +56,7 @@
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -93,7 +93,7 @@
      *
      * <p>Overrides {@link o2.AjaxController.update}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -137,7 +137,7 @@
      * (<em>i.e. <strong>JsonpState</strong></em>)</p>
      *
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

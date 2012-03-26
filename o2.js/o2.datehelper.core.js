@@ -111,7 +111,7 @@
      * <p>Prints a human-readable time string, by looking at the difference
      * between two timestamps.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -164,7 +164,7 @@
      *
      * <p>An alias to {@link o2.now}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -181,7 +181,7 @@
      *
      * <p>An alias to {@link o2.now}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

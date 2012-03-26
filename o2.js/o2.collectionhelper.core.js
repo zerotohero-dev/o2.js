@@ -68,7 +68,7 @@
      *
      * <p>Removes all the elements of the <code>Object</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -110,7 +110,7 @@
      * <p>Creates a clone of the given <code>Object</code>, and returns it;
      * leaving the original intact.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -150,7 +150,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.copy}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -167,7 +167,7 @@
      * the <code>Object</code>.
      * This function alters the actual <code>Object</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -224,7 +224,7 @@
      *
      * <p>Gets the index of the element in the given <code>Array</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -289,7 +289,7 @@
      * <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
      * elm) &gt; -1</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -318,7 +318,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -335,7 +335,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -351,7 +351,7 @@
      * <p>Gets the first <strong>collection</strong> item that validates
      * against the given <strong>delegator</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -419,7 +419,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.find}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -436,7 +436,7 @@
      * <code>fn(item, currentIndex, collection)</code> for each element
      * of the <strong>collection</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -486,7 +486,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.forEach}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -503,7 +503,7 @@
      * other collections. Only items that do not remain in the rest of the
      * collections will be returned.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -563,7 +563,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.diff}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -578,7 +578,7 @@
      *
      * <p>Check whether every element of a collection passes a truth test.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -651,7 +651,7 @@
      * <p>Excludes filtered out items from the collection. Returns a new
      * collection without alterin the initial one.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -719,7 +719,7 @@
      *
      * <p>An <strong>alıas</strong> to {@link o2.CollectionHelper.exclude}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -734,7 +734,7 @@
      *
      * <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -796,7 +796,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.extend}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -811,7 +811,7 @@
      *
      * <p>Gets the first item in the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -852,7 +852,7 @@
      *
      * <p>Gets the first <strong>n</strong> elements of the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -904,7 +904,7 @@
      *
      * <p>Gets all the <strong>static</strong> methods of the object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -959,7 +959,7 @@
     /**
      * @function {static} o2.CollectionHelper.getMethods
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -977,7 +977,7 @@
      *
      * <p>Gets all the keys of the object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1024,7 +1024,7 @@
      *
      * <p>Gets the last item in the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1069,7 +1069,7 @@
      *
      * <p>Gets the last <strong>n</strong> items in the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1126,7 +1126,7 @@
      *
      * <p>Check whether the collection contains any members.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1168,7 +1168,7 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1252,7 +1252,7 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1331,7 +1331,7 @@
      *
      * <p>Gets the elements of the collection after index n.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1381,7 +1381,7 @@
      *
      * <p>Gets the number of items in the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1420,7 +1420,7 @@
     /**
      * @function {static} o2.CollectionHelper.getCount
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1435,7 +1435,7 @@
     /**
      * @function {static} o2.CollectionHelper.getLength
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1450,7 +1450,7 @@
     /**
      * @function {static} o2.CollectionHelper.getSortedIndex
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1502,7 +1502,7 @@
      * <p>If an <code>Array</code> is passed, it makes a shallow copy of that
      * array and returns it.</code></p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1544,7 +1544,7 @@
      * <p>Filters the items of a collections using an evaluator delegate
      * and returns the filtered result set.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1599,7 +1599,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1614,7 +1614,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1630,7 +1630,7 @@
      * <p>Groups the items in the collection by a key or an evaluator
      * <code>Function</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1703,7 +1703,7 @@
      *
      * <p>Safely converts the <code>Object</code> in question into anarray.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1757,7 +1757,7 @@
      * passing the current item as a parameter. Returns an <code>Array</code>
      * containing the results of each call.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1834,7 +1834,7 @@
      * <p>Removes duplicate entries from the collection. Returns a new
      * <code>Array</code>; does not alter the original collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1896,7 +1896,7 @@
      * <p>Returns an <code>Array</code> of items that are common in all of
      * the collections passed in as parameters.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1950,7 +1950,7 @@
      * <p>Calls the delegate <code>Function</code> with an optional set
      * of parametrs for each item in the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2006,7 +2006,7 @@
      *
      * <p>Returns the last index of the given item.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2050,7 +2050,7 @@
      *
      * <p>Hard to explain in words. Let us demonstrate by an example:</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * var collection = [
@@ -2123,7 +2123,7 @@
      * is the iterated item, <strong>index</strong> is the item's index,
      * and <strong>collection</strong> is the collection we are working on.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2225,7 +2225,7 @@
      *
      * <p>An <strong>alias</strong> to {o2.CollectionHelper.reduce}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2241,7 +2241,7 @@
      * <p>Works similar to {@link o2.CollectionHelper.fold}, but goes from
      * the end of the collection to the beginning of the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2294,7 +2294,7 @@
      * <p>An <strong>alias</strong> to
      * {@link o2.CollectionHelper.reduceRight}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2309,7 +2309,7 @@
      *
      * <p>Removes all ocurences of the element from the collection.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2356,7 +2356,7 @@
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2404,7 +2404,7 @@
      * <p>Randomizes the collection. Does not alter the original collection,
      * just returns a randomized copy.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2462,7 +2462,7 @@
      * sort the collection in place, and therefore it  does not alter the
      * initial object's contents.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2555,7 +2555,7 @@
      * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2621,7 +2621,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.some}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2637,7 +2637,7 @@
      * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
      * parameter, then returns the <strong>obj</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2670,7 +2670,7 @@
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2735,7 +2735,7 @@
      *
      * <p>Merges several collections into a singl <code>Array</code></p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2755,7 +2755,7 @@
      * <p>Takes a set of <code>Array</code>s as parameters and brings together
      * the elements that have the same index.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * var ar1 = [1,2,3];

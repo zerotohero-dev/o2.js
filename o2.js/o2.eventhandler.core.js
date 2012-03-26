@@ -65,7 +65,7 @@
          *
          * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -105,7 +105,7 @@
          *
          * <p>Removes an already-added new event listener from the DOM Node.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -201,7 +201,7 @@
      * <p>Adds a set of event handlers the the <strong>eventName</strong> of
      * the given <strong>collection</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -240,7 +240,7 @@
          *
          * <p>Gets the actual event object.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -260,7 +260,7 @@
          *
          * <p>Gets the originating source of the event.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -295,7 +295,7 @@
      * <p>Gets the key code of the key-related event (keydown, keyup, keypress
      * etc.).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -384,7 +384,7 @@
      *
      * <p>Gets the current mouse coordinates.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -413,7 +413,7 @@
          * event on a link, then the browser does not go to the
          * <code>href</code> of that link.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -463,7 +463,7 @@
          * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
          * for details.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.

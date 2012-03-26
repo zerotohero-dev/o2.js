@@ -32,7 +32,7 @@
      *
      * <p>A class for executing repeated timed actions.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * // A unique id for the timer.
@@ -78,7 +78,7 @@
      *
      * <p>Starts/restarts the timer with the given id.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -121,7 +121,7 @@
      *
      * <p>Stops the timer with the given id.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -156,7 +156,7 @@
      *
      * <p>Sets and optionally starts a new timer.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

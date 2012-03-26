@@ -98,7 +98,7 @@
      * <p>Creates a <code>Function</code> that will not be triggered, as long as
      * it continues to get invoked within a certain time window.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -130,7 +130,7 @@
      *
      * <p>Defers a <code>Function</code> for a specified amount of time.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -167,7 +167,7 @@
      * requests, preventing the client to bombard the server with too many
      * simultaneous requests.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

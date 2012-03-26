@@ -64,7 +64,7 @@
      * alphabeticaly at the bottom, and
      * <code>Number</code>s will be sorted numerically before them.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -83,7 +83,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.SortDelegate.sort}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -102,7 +102,7 @@
      * is that the items are sorted in a <strong>descending</strong>
      * order.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

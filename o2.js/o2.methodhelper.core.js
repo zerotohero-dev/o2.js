@@ -55,7 +55,7 @@
          * <p><strong>bind</strong> can often be used to bind a different
          * context to a <strong>curried</strong> function.
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * function test(a,b,c){ return this.number + (a*b+c); };
@@ -102,7 +102,7 @@
      * <p>See http://www.dustindiaz.com/javascript-curry/ for a
      * discussion.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * function test(a,b,c) { return a+b+c; }
@@ -132,7 +132,7 @@
      * <p>Just an identity function, that return what it's given without
      * changing it.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -152,7 +152,7 @@
      * outcome and presents it from cache, instead of recalculating.</p>
      * <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * function multiply(a,b){return a*b; }
@@ -204,7 +204,7 @@
      * <p>Defines a partial <code>Function</code>.</p>
      * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
      * detailed discussion.</p>
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      * <pre>
      * function test(a,b,c){ return a*b+c; }
      * var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);

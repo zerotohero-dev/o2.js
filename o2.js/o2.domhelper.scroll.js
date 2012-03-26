@@ -50,7 +50,7 @@
          *
          * <p>Gets the <strong>window</strong>'s scroll offset.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -111,7 +111,7 @@
      *
      * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -141,7 +141,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.getObjectStrollOffset}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -156,7 +156,7 @@
         /**
          * @function {static} o2.DomHelper.scrollWindowToBottom
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -196,7 +196,7 @@
         /**
          * @function {static} o2.DomHelper.scrollWindowToTop
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -236,7 +236,7 @@
      *
      * <p>Scrolls an element to top.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -264,7 +264,7 @@
      *
      * <p>Scrolls an element to bottom.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -292,7 +292,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -321,7 +321,7 @@
      *
      * <p>Scrolls the window to the object's offset position..</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -338,7 +338,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

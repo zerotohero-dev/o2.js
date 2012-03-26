@@ -126,7 +126,7 @@
      * <p>If possible try using standard decoding methods like
      * <code>decodeURIComponent</code>, instead of using this method.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -149,7 +149,7 @@
      * <code>encodeURIComponent</code>,
      * instead of using this method.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -168,7 +168,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.StringHelper.encode}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -185,7 +185,7 @@
      * <p>Encodes the <code>String</code> by converting it into a text node
      * and returning the node's value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -211,7 +211,7 @@
     /**
      * @function {static} o2.StringHelper.safeHtmlEncode
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -227,7 +227,7 @@
     /**
      * @function {static} o2.StringHelper.escape
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -248,7 +248,7 @@
      *
      * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -271,7 +271,7 @@
      * <p>This method is specially designed to prevent cross-site script
      * injection attacks.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

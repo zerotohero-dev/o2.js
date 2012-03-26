@@ -62,7 +62,7 @@
      * <p>Reads the value of the <strong>cookie</strong> with the given
      * name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -99,7 +99,7 @@
      *
      * <p>Saves a <strong>cookie</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -155,7 +155,7 @@
      *
      * <p>Removes a <strong>cookie</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

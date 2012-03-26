@@ -176,7 +176,7 @@
      * method.</p>
      * <p>Registers an <code>Observer</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -210,7 +210,7 @@
      * method.</p>
      * <p>Gets the <code>Observer</code> count.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -229,7 +229,7 @@
      * method.</p>
      * <p>Removes an <code>Observer</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -266,7 +266,7 @@
      * method.</p>
      * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -283,7 +283,7 @@
      * <p>Initializes the <strong>object</strong> and starts notifying
      * registered <strong>observer</strong>s.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -307,7 +307,7 @@
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -324,7 +324,7 @@
      * <p>Sends a timeout request and unregisters all registered
      * <code>Observer</code>s.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

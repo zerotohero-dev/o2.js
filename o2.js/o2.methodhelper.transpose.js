@@ -45,7 +45,7 @@
      * arguments are passed to <strong>fn</strong>, and the evaluated result
      * is passed to the <strong>invoker</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -68,7 +68,7 @@
      * <p>Flips two arguments of the given <code>Function</code>, and returns a
      * new <code>Function</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -99,7 +99,7 @@
      * to the second <strong>wrapper</strong> followed by the arguments of
      * the returned <code>Funciton</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

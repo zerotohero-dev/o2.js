@@ -31,7 +31,7 @@
      *
      * <p>A static object for debugging purposes.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * // note: initalize Debugger only once,
@@ -180,7 +180,7 @@
      * <p>The class name can be one of the {@link
      * Debugger.config.constants.className} members.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Debugger.assert((1==true), '1 == true');
@@ -210,7 +210,7 @@
      *
      * <p>Prints an error message to the output.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Debugger.error('A serious error occured');
@@ -231,7 +231,7 @@
      *
      * <p>Prints an info message to the output.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Debugger.info('An info.');
@@ -255,7 +255,7 @@
      * <strong>>shouldUseConsole</strong>, or
      * both should be provided.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -299,7 +299,7 @@
      * <p>This is an <strong>alias</strong> to {@link Debugger.println}.</p>
      * <p>Simply logs a message.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Debugger.log('Hello world');
@@ -322,7 +322,7 @@
      *
      * <p>Prints the string representation of value to the next line.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -357,7 +357,7 @@
      *
      * <p>Prints an warning message to the output.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Debugger.warn('caution!');

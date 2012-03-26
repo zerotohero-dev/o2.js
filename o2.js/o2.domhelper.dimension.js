@@ -83,7 +83,7 @@
      * <code>{width: w, height: h}</code>, where <strong>w</strong> and
      * <strong>h</strong> are in pixels.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -121,7 +121,7 @@
      * greater than the document's height returns the height of the visible
      * area as the height portion.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -161,7 +161,7 @@
      *
      * <p>Gets the total height of the document in pixels.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -178,7 +178,7 @@
      *
      * <p>Gets the total width of the document in pixels.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -195,7 +195,7 @@
      *
      * <p>Gets the <strong>height</strong> of the given element, in pixels.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -216,7 +216,7 @@
      * <p>Gets the viewport information in the form
      * <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -252,7 +252,7 @@
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -271,7 +271,7 @@
          * <p>Gets the dimension of the visible area of the browser in the form
          * <code>{width: w, height: h}</code>.
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -312,7 +312,7 @@
      *
      * <p>Gets the inner height of the visible area.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -329,7 +329,7 @@
      *
      * <p>Gets the inner width of the visible area.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -346,7 +346,7 @@
      *
      * <p>Sets the <strong>width</strong> of the given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -400,7 +400,7 @@
      *
      * <p>Sets the <strong>height</strong> of the given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -448,7 +448,7 @@
      *
      * <p>Sets the dimension of the given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

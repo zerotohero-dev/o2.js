@@ -50,7 +50,7 @@
      *
      * <p>Replaces one node with another.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -74,7 +74,7 @@
      * <p>Moves all the elements inside the container to the container's
      * position and removes the container from the <strong>DOM</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -108,7 +108,7 @@
      *
      * <p>Puts the target element into the wrapper element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

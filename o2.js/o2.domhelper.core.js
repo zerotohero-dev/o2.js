@@ -77,7 +77,7 @@
      *
      * <p>Appends the element to the bottom of its parent.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -112,7 +112,7 @@
      * <p>Creates a <strong>Document Fragment</strong> from an
      * <strong>HTML</strong> <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -145,7 +145,7 @@
      *
      * <p>Creates an element with given name and attributes.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -212,7 +212,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.createElement}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -227,7 +227,7 @@
      *
      * <p>Gets the attribute of a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -283,7 +283,7 @@
      *
      * <p>Gets the <strong>HTML</strong> of a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -314,7 +314,7 @@
          * like <code>& amp;</code> with it's corresponding character
          * counterpart (<strong>&</strong> in this example).</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -379,7 +379,7 @@
      *
      * <p>Adds the node after the reference node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -414,7 +414,7 @@
      *
      * <p>Adds the node before the reference node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -443,7 +443,7 @@
      *
      * <p>Checks whether the given node is a <code>document</code> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -463,7 +463,7 @@
      *
      * <p>Checks whether the given node is an <strong>element</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -483,7 +483,7 @@
      *
      * <p>Prepends the element to the top of its parent.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -525,7 +525,7 @@
      *
      * <p>Removes the element from the <strong>DOM</strong> flow.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -553,7 +553,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.DomHelper.remove}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -568,7 +568,7 @@
      *
      * <p>Removes all the children of the element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -592,7 +592,7 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.DomHelper.removeChildren}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -610,7 +610,7 @@
      * <p>Note that this removal is not recursive; only the first-level empty
      * child nodes of the element will be removed.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -659,7 +659,7 @@
      * <p>An <strong>alias</strong> to
      * {@link o2.DomHelper.removeEmptyTextNodes}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -674,7 +674,7 @@
      *
      * <p>Sets the attribute of the given object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -711,7 +711,7 @@
      *
      * <p>Simply sets the <code>innerHTML</code> of the element.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

@@ -46,7 +46,7 @@
      * <p>If an exception occurs while executing the argument, the next one
      * will be tried.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Try.all(fn1, fn2, fn3);
@@ -76,7 +76,7 @@
      * <p>But after the first successful execution, with no error,
      * no further functions will be executed.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * o2.Try.these(fn1, fn2, fn3);

@@ -111,7 +111,7 @@
      *
      * <p>Creates a <strong>JSONP</strong> request.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

@@ -403,7 +403,7 @@
      * <p>When the request is explicitly abourted, <strong>onaborted</strong>
      * callback is fired.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -433,7 +433,7 @@
      * You may most probably want to use {@link Ajax.get} or {@link
      * Ajax.post} instead, for more functionality.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -449,7 +449,7 @@
      *
      * <p>Sends and <strong>AJAX GET</strong> request.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -475,7 +475,7 @@
     /**
      * @function {static} o2.Ajax.post
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

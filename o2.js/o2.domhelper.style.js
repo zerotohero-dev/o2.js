@@ -91,7 +91,7 @@
      * <p>Activates the <strong>alternate stylesheet</strong> with the given
      * <code>title</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -130,7 +130,7 @@
          * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
          * to the document.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * o2.DomHelper.addCssRules(
@@ -172,7 +172,7 @@
      * assign <strong>className</strong>'s instead of <strong>style</strong>
      * values.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -212,7 +212,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -227,7 +227,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -255,7 +255,7 @@
          * assign <strong>className</strong>'s instead of <strong>style</strong>
          * values.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -392,7 +392,7 @@
      *
      * <p>An alias to {@link o2.DomHelper.getStyle}.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -407,7 +407,7 @@
      *
      * <p>Hides the given object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -440,7 +440,7 @@
      *
      * <p>Shows the given object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -477,7 +477,7 @@
      * then it's regarded as "invisible", otherwise it is considered to be
      * "visible".</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -536,7 +536,7 @@
      *
      * <p>Toggles the visibility of the given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

@@ -56,7 +56,7 @@
      * <p>Converts the <strong>JSON</strong> object in parameters into a
      * query string.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -85,7 +85,7 @@
      *
      * <p>Parses the <strong>query string</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

@@ -58,7 +58,7 @@
      * <p>Checks whether <strong>AJAX</strong> (At least XmlHttpRequest Level 1)
      * is supported.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -78,7 +78,7 @@
      *
      * <p>Checks for <strong>cookie</strong> support.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -119,7 +119,7 @@
      *
      * <p>Checks whether <strong>DOM</strong> is adequately supported.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

@@ -81,7 +81,7 @@
     * unique <strong>GET</strong> requests will be fired without waiting for the
     * other.</p>
     *
-    * <p>Usage example:</p>
+    * <p><strong>Usage example:</strong></p>
     *
     * <pre>
     * //TODO: add usage example.
@@ -128,7 +128,7 @@
     * unique <strong>POST</strong> requests will be fired without waiting for the
     * other.</p>
     *
-    * <p>Usage example:</p>
+    * <p><strong>Usage example:</strong></p>
     *
     * <pre>
     * //TODO: add usage example.

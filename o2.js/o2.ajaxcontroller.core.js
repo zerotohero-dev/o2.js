@@ -53,7 +53,7 @@
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
      * </p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -80,7 +80,7 @@
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -114,7 +114,7 @@
      *
      * <p>{@link o2.JsonpController} overrides this implementation.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

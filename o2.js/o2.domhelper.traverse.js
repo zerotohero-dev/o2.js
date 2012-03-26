@@ -487,7 +487,7 @@
      * <p>Gets the immediate children (that are not text nodes) of the
      * element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -514,7 +514,7 @@
      * element, if they have a matching <strong>attribute</strong> with
      * a given <strong>value</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -552,7 +552,7 @@
      *
      * <p>Gets the children of the element until a given node (exclusive).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -589,7 +589,7 @@
          *
          * <p>Gets the children of the element having a specific class.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -651,7 +651,7 @@
      * <p>Gets the children of the element having a specific class, and until
      * (but not included to) a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -686,7 +686,7 @@
      * <p>Gets the children of the element until
      * (but not included to) a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -718,7 +718,7 @@
      *
      * <p>Gets the children of the element having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -751,7 +751,7 @@
      * <p>Gets the children of the element with a given attribute defined,
      * and until (but not included to) a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -786,7 +786,7 @@
      *
      * <p>Gets the children of the element with a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -816,7 +816,7 @@
      * <p>Gets the children of the element with a "class" attribute defined,
      * and until (but not included to) a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -849,7 +849,7 @@
      *
      * <p>Gets the children of the element with an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -879,7 +879,7 @@
      * <p>Gets the children of the element with an "id" attribute defined,
      * and until (but not included to) a given element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -911,7 +911,7 @@
      *
      * <p>Gets all of the elements of the node <strong>elm</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -947,7 +947,7 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, filtering
      * the nodes having a given attribute equals to a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -975,7 +975,7 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a given <strong>CSS</strong> <strong>class</strong> name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1001,7 +1001,7 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1028,7 +1028,7 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a '<strong>class</strong>" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1054,7 +1054,7 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * an '<strong>id</strong>" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1078,7 +1078,7 @@
      *
      * <p>Gets the siblings of the element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1108,7 +1108,7 @@
      * <p>Gets the siblings of the element, having a given attribute equals
      * a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1136,7 +1136,7 @@
      * <p>Gets the siblings of the element, having a given attribute equals
      * a given value, until (but not included to) a specific node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1166,7 +1166,7 @@
      *
      * <p>Gets the siblings of the element, having a given class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1191,7 +1191,7 @@
      * <p>Gets the siblings of the element, having a given class name,
      * until (but not included to) a specific node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1219,7 +1219,7 @@
      * <p>Gets the siblings of the element until (but not included to) a
      * specific node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1246,7 +1246,7 @@
      * <p>Gets the siblings of the element, having a given attribute
      * defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1273,7 +1273,7 @@
      * <p>Gets the siblings of the element, having a given attribute
      * defined, until (but not included to) a specific node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1303,7 +1303,7 @@
      * <p>Gets the siblings of the element, having "class" attribute
      * defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1328,7 +1328,7 @@
      * <p>Gets the siblings of the element, having a "class" attribute
      * defined, until (but not included to) a specific node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1356,7 +1356,7 @@
      * <p>Gets the siblings of the element, having an "id" attribute
      * defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1378,7 +1378,7 @@
     /**
      * @function {static} o2.DomHelper.getSiblingsWithIdUntil
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1407,7 +1407,7 @@
      *
      * <p>Gets the first sibling of the element that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1437,7 +1437,7 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having an attibute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1470,7 +1470,7 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1502,7 +1502,7 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1534,7 +1534,7 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1565,7 +1565,7 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1595,7 +1595,7 @@
      *
      * <p>Gets the first child of the element that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1624,7 +1624,7 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1655,7 +1655,7 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having a given class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1685,7 +1685,7 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1715,7 +1715,7 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1744,7 +1744,7 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1772,7 +1772,7 @@
      *
      * <p>Gets the last sibling of the element that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1803,7 +1803,7 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1836,7 +1836,7 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a given class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1868,7 +1868,7 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1899,7 +1899,7 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1931,7 +1931,7 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1962,7 +1962,7 @@
      *
      * <p>Gets the last child of the element that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -1991,7 +1991,7 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2022,7 +2022,7 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2052,7 +2052,7 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2082,7 +2082,7 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2112,7 +2112,7 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2140,7 +2140,7 @@
      *
      * <p>Gets the next sibling of the element, that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2165,7 +2165,7 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2190,7 +2190,7 @@
     /**
      * @function {static} o2.DomHelper.getNextByClass
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2220,7 +2220,7 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2247,7 +2247,7 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2273,7 +2273,7 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2299,7 +2299,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2329,7 +2329,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2358,7 +2358,7 @@
      * nodes, having an attribute with a given value, until (but not included
      * to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2389,7 +2389,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2416,7 +2416,7 @@
      * nodes, having a given <strong>CSS</strong> class name, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2445,7 +2445,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, until (but not included to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2472,7 +2472,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2499,7 +2499,7 @@
      * nodes, having a given attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2529,7 +2529,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2555,7 +2555,7 @@
      * nodes, having a "class" attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2583,7 +2583,7 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2609,7 +2609,7 @@
      * nodes, having an "id" attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2637,7 +2637,7 @@
      * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
      * from the first sibling.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2665,7 +2665,7 @@
      * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
      * from the first sibling, having a given attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2700,7 +2700,7 @@
      * from the first sibling, having a given <strong>CSS</strong>
      * class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2730,7 +2730,7 @@
     /**
      * @function {static} o2.DomHelper.getNthWithAttribute
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2766,7 +2766,7 @@
      * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
      * from the first sibling, having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2795,7 +2795,7 @@
     /**
      * @function {static} o2.DomHelper.getNthWithId
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2829,7 +2829,7 @@
      *
      * <p>Gets n<sup>th</sup> non-text-node child of an element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2859,7 +2859,7 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element, having
      * a given attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2891,7 +2891,7 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element, having a
      * given attribute with a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2922,7 +2922,7 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2953,7 +2953,7 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -2983,7 +2983,7 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3012,7 +3012,7 @@
      *
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3038,7 +3038,7 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3067,7 +3067,7 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3095,7 +3095,7 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3123,7 +3123,7 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3147,7 +3147,7 @@
     /**
      * @function {static} o2.DomHelper.getNthNextWithId
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3176,7 +3176,7 @@
      *
      * <p>Gets n<sup>th</sup> parent node of an element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3199,7 +3199,7 @@
     /**
      * @function {static} o2.DomHelper.getNthParentByAttribute
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3232,7 +3232,7 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
      * class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3260,7 +3260,7 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3288,7 +3288,7 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a "class"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3315,7 +3315,7 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having an "id"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3342,7 +3342,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3369,7 +3369,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3398,7 +3398,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3426,7 +3426,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3454,7 +3454,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3481,7 +3481,7 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3507,7 +3507,7 @@
      *
      * <p>Gets the parent node of an element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3532,7 +3532,7 @@
      * <p>Gets the parent node of an element, having an attribute with a
      * given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3560,7 +3560,7 @@
      * <p>Gets the parent node of an element, having a given
      * <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3587,7 +3587,7 @@
      * <p>Gets the parent node of an element, having a given
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3614,7 +3614,7 @@
      * <p>Gets the parent node of an element, having a "class"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3640,7 +3640,7 @@
      * <p>Gets the parent node of an element, having an "id"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3664,7 +3664,7 @@
      *
      * <p>Gets all the parent nodes of an element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3689,7 +3689,7 @@
      * <p>Gets all the parent nodes of an element, having a given attribute
      * with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3717,7 +3717,7 @@
      * <p>Gets all the parent nodes of an element, having a given attribute
      * with a given value, until (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3747,7 +3747,7 @@
      * <p>Gets all the parent nodes of an element, having a given
      * <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3774,7 +3774,7 @@
      * <strong>CSS</strong> class name, until (but not included to) a
      * given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3802,7 +3802,7 @@
      * <p>Gets all the parent nodes of an element, until (but not included to) a
      * given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3828,7 +3828,7 @@
      * <p>Gets all the parent nodes of an element, having a given
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3855,7 +3855,7 @@
      * attribute defined, until (but not included to) a
      * given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3884,7 +3884,7 @@
      * <p>Gets all the parent nodes of an element, having a "class"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3910,7 +3910,7 @@
      * attribute defined, until (but not included to) a
      * given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3937,7 +3937,7 @@
      * <p>Gets all the parent nodes of an element, having an "id"
      * attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3963,7 +3963,7 @@
      * attribute defined, until (but not included to) a
      * given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -3989,7 +3989,7 @@
      *
      * <p>Gets the previous sibling of an element that's not a text node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4015,7 +4015,7 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having an attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4043,7 +4043,7 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4070,7 +4070,7 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4097,7 +4097,7 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4123,7 +4123,7 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4148,7 +4148,7 @@
      *
      * <p>Gets all previous sibling of an element, that are not text nodes.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4179,7 +4179,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute with a given value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4208,7 +4208,7 @@
      * having a given attribute with a given value, until
      * (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4239,7 +4239,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4267,7 +4267,7 @@
      * having a given <strong>CSS</strong> class name, until
      * (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4295,7 +4295,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * until (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4322,7 +4322,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4350,7 +4350,7 @@
      * having a given attribute defined, until
      * (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4380,7 +4380,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a "class" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4407,7 +4407,7 @@
      * having a "class" attribute defined, until
      * (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4435,7 +4435,7 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having an "id" attribute defined.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4462,7 +4462,7 @@
      * having an "id" attribute defined, until
      * (but not included to) a given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4490,7 +4490,7 @@
      * <p>Checks whether <strong>elm</strong> is the child of
      * <strong>ref</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4518,7 +4518,7 @@
      * <p>Checks whether <strong>elm</strong> is a sibling after
      * <strong>ref</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4546,7 +4546,7 @@
      * <p>Checks whether <strong>elm</strong> is a parent of
      * <strong>ref</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4579,7 +4579,7 @@
      * <p>Checks whether <strong>elm</strong> is parent of
      * <strong>ref</strong>, or it's the <strong>ref</strong> itself.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4611,7 +4611,7 @@
      * <p>Checks whether <strong>elm</strong> is a sibling before
      * <strong>ref</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -4639,7 +4639,7 @@
      * <p>Checks whether <strong>elm</strong> is a sibling of
      * <strong>ref</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

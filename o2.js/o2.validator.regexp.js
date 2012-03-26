@@ -55,7 +55,7 @@
      * (i.e. try sending an account activation <strong>e-mail</strong> to a
      * newly registered user, for example.).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -76,7 +76,7 @@
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -97,7 +97,7 @@
      * <p>Checks whether the given argument consists of only whitespace
      * characters.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

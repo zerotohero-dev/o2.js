@@ -44,7 +44,7 @@
     * <p>This method is generally used in conjunction with
     * {@link o2.EventHandler.addEventListener}.</p>
     *
-    * <p>Usage example:</p>
+    * <p><strong>Usage example:</strong></p>
     *
     * <pre>
     * var $ = o2.$;

@@ -48,7 +48,7 @@
      *
      * <p>Trims a given field, and returns the compacted value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -79,7 +79,7 @@
      *
      * <p>Trims a given field, and returns the trimmed value.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -111,7 +111,7 @@
      * <p>Prevents the form to re-submit itself when the submit button
      * is pressed more than once.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

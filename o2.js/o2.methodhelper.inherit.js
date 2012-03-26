@@ -53,7 +53,7 @@
      * adds the method with a different signature, overloading the former
      * one.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -89,7 +89,7 @@
      * <p>Checks the passed in arguments, and if all arguments are present,
      * executes <code>Function</code>. Otherwise throws an error.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

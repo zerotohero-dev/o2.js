@@ -53,7 +53,7 @@
      * <p>Creates a regular expression that will match a given
      * <strong>CSS</strong> class name.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -78,7 +78,7 @@
      * <p>Checks whether an <strong>element</strong> has the given
      * <strong>className</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -111,7 +111,7 @@
      *
      * <p>Add a class to the given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -145,7 +145,7 @@
      *
      * <p>Removes a <strong>class</strong> name from the given node.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -180,7 +180,7 @@
      * <p>Toggles the <strong>CSS</strong> <code>className</code> of a given
      * element.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

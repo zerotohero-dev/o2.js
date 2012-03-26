@@ -120,7 +120,7 @@
      *
      * <p>Parses the given template.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

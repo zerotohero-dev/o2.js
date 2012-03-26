@@ -220,7 +220,7 @@
      *
      * <p>Fires when the <code>HTML DOM</code> is ready.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

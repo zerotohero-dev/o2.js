@@ -72,7 +72,7 @@
      *
      * <p>Checks whether the pressed key is an arrow key.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -95,7 +95,7 @@
      *
      * <p>Checks whether the pressed key is the backspace (DEL) key.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -125,7 +125,7 @@
          * The printable key is determined only in the <code>onkeypress</code>
          * handler.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -168,7 +168,7 @@
      *
      * <p>Checks whether the pressed key is the enter (return) key.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -205,7 +205,7 @@
          *
          * <p>Checks whether or not the curent action is a right click action.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -243,7 +243,7 @@
      *
      * <p>Checks whether the pressed key is the tab key.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

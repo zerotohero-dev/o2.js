@@ -36,7 +36,7 @@
      * <p>Creates a <code>Function</code> that only executes after being called
      * <strong>count</strong> times.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -73,7 +73,7 @@
      * <p>May be useful for creating <strong>singleton</strong>
      * <code>Object</code>s, or for lazy-loading modules.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -109,7 +109,7 @@
      * <p>Sequentially executes a given <code>Function</code> given amount
      * of times.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

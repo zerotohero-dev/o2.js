@@ -84,7 +84,7 @@
      * <p><code>Array, Boolean, Date, Error, Function, JSON,
      * Math, Number, Object, RegExp, String, Arguments</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -110,7 +110,7 @@
      *
      * <p>Checks whether the object is an <code>arguments</code> object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -130,7 +130,7 @@
      *
      * <p>Checks whether the object is an <code>Array</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -151,7 +151,7 @@
      *
      * <p>Checks whether the object is a <code>Boolean</code>.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -171,7 +171,7 @@
      *
      * <p>Checks whether the object is a <code>Date</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -219,7 +219,7 @@
     /**
      * @function {static} o2.Validator.isFunction
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -239,7 +239,7 @@
     /**
      * @function {static} o2.Validator.isNan
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -262,7 +262,7 @@
     /**
      * @function {static} o2.Validator.isNull
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -282,7 +282,7 @@
     /**
      * @function {static} o2.Validator.isNumber
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -302,7 +302,7 @@
     /**
      * @function {static} o2.Validator.isNumeric
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -322,7 +322,7 @@
     /**
      * @function {static} o2.Validator.isObject
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -342,7 +342,7 @@
     /**
      * @function {static} o2.Validator.isRegExp
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -362,7 +362,7 @@
     /**
      * @function {static} o2.Validator.isString
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -381,7 +381,7 @@
     /**
      * @function {static} o2.Validator.isUndefined
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -401,7 +401,7 @@
     /**
      * @function {static} o2.Validator.isWindow
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

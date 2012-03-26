@@ -62,7 +62,7 @@
      *
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -81,7 +81,7 @@
      *
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -101,7 +101,7 @@
      * <p>Removes all the <strong>HTML</strong> tags in the
      * <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -123,7 +123,7 @@
      * <p>This is especially useful for converting <code>CSS</code> classes
      * to their <strong>DOM</strong> style representations.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -145,7 +145,7 @@
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem-ipsum'.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -167,7 +167,7 @@
      * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
      * object.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -194,7 +194,7 @@
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem_ipsum'.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -216,7 +216,7 @@
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
      * is greater than <strong>maxLen</strong>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

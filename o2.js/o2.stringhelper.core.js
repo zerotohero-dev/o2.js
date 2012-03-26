@@ -87,7 +87,7 @@
      * This is faster than adding those <code>String</code>s with
      * <code>+</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -148,7 +148,7 @@
      * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
      * for that browsing session.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -167,7 +167,7 @@
      *
      * <p>Generates a random <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -205,7 +205,7 @@
      * <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
      * function.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * var test1 = 'lorem %s %s sit amet';
@@ -259,7 +259,7 @@
      * <p>Simply removes the phrases that match the <code>RegExp</code> from
      * the <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -282,7 +282,7 @@
          * <p>Trims white space from beginning and end of the
          * <code>String</code>.</p>
          *
-         * <p>Usage example:</p>
+         * <p><strong>Usage example:</strong></p>
          *
          * <pre>
          * //TODO: add usage example.
@@ -326,7 +326,7 @@
      * <p>Works identical to <code>StringHelper.trim(str,
      * true)</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.

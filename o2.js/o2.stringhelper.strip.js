@@ -51,7 +51,7 @@
      * <p>Removes non alphabetical characters from the <code>String</code>
      * (excluding numbers).</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -70,7 +70,7 @@
      *
      * <p>Removes alpha-numeric characters from the <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -89,7 +89,7 @@
      *
      * <p>Removes tags from the <code>String</code>.
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -108,7 +108,7 @@
      *
      * <p>Removes non-numeric characters from the <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
@@ -127,7 +127,7 @@
      *
      * <p>Removes numeric characters from the <code>String</code>.</p>
      *
-     * <p>Usage example:</p>
+     * <p><strong>Usage example:</strong></p>
      *
      * <pre>
      * //TODO: add usage example.
