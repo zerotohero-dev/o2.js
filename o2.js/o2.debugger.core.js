@@ -30,7 +30,9 @@
      * @class {static} o2.Debugger
      *
      * <p>A static object for debugging purposes.</p>
-     * <p>Sample Usage:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * // note: initalize Debugger only once,
      * // possibly on window.load or dom content ready
@@ -177,7 +179,9 @@
      * className.</p>
      * <p>The class name can be one of the {@link
      * Debugger.config.constants.className} members.</p>
-     * <p>Usage Example:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * o2.Debugger.assert((1==true), '1 == true');
      * </pre>
@@ -205,7 +209,9 @@
      * @function {static} o2.Debugger.error
      *
      * <p>Prints an error message to the output.</p>
-     * <p>Usage Example:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * o2.Debugger.error('A serious error occured');
      * </pre>
@@ -224,7 +230,9 @@
      * @function {static} o2.Debugger.info
      *
      * <p>Prints an info message to the output.</p>
-     * <p>Usage Example:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * o2.Debugger.info('An info.');
      * </pre>
@@ -246,6 +254,12 @@
      * <p>Either <strong>>outputElement</strong>>, or
      * <strong>>shouldUseConsole</strong>, or
      * both should be provided.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} outputElement - Either the <strong>id</strong> of the
      * element, or the element itself to append debug messages.
@@ -284,7 +298,9 @@
      *
      * <p>This is an <strong>alias</strong> to {@link Debugger.println}.</p>
      * <p>Simply logs a message.</p>
-     * <p>Usage Example:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * o2.Debugger.log('Hello world');
      * </pre>
@@ -305,6 +321,12 @@
      * @function {static} o2.Debugger.println
      *
      * <p>Prints the string representation of value to the next line.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} value - the value to print.
      * @param {String} className - the CSS class name that is associated with
@@ -334,7 +356,9 @@
      * @function {static} o2.Debugger.warn
      *
      * <p>Prints an warning message to the output.</p>
-     * <p>Usage Example:</p>
+     *
+     * <p>Usage example:</p>
+     *
      * <pre>
      * o2.Debugger.warn('caution!');
      * </pre>

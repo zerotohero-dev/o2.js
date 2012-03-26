@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001332662885
+	                 version 0.25.a.0001332791089
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -100,7 +100,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Creates a <code>Function</code> that only executes after being called
- <strong>count</code> times.</p>    </div>  
+ <strong>count</strong> times.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -119,7 +125,7 @@
  <p><strong>bind</strong> can often be used to bind a different
  context to a <strong>curried</strong> function.
 
- <p>Usage Example:</p>
+ <p>Usage example:</p>
 
  <pre>
  function test(a,b,c){ return this.number + (a*b+c); };
@@ -188,7 +194,13 @@
         <p>Create a method that calls the <strong>invoker</strong> with the
  return value of the evaluated function <strong>fn</strong>. The current
  arguments are passed to <strong>fn</strong>, and the evaluated result
- is passed to the <strong>invoker</strong>.    </div>  
+ is passed to the <strong>invoker</strong>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -200,7 +212,9 @@
         <p>Curries the <code>Function</code>.</p>
  <p>See http://www.dustindiaz.com/javascript-curry/ for a
  discussion.</p>
- <p>Usage Example:</p>
+
+ <p>Usage example:</p>
+
  <pre>
  function test(a,b,c) { return a+b+c; }
  var curried = o2.MethodHelper.curry(this, test, 1, 2);
@@ -218,7 +232,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Creates a <code>Function</code> that will not be triggered, as long as
- it continues to get invoked within a certain time window.</p>    </div>  
+ it continues to get invoked within a certain time window.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -232,7 +252,22 @@
  args)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Defers a <code>Function</code> for a specified amount of time.</p>    </div>  
+        <p>Defers a <code>Function</code> for a specified amount of time.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/MethodHelper.html#___delay"><span class="elementName">delay</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An <strong>alias</strong> to <a href="logical/o2/MethodHelper.html#___defer">o2.MethodHelper.defer</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -246,7 +281,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Flips two arguments of the given <code>Function</code>, and returns a
- new <code>Function</code>.</p>    </div>  
+ new <code>Function</code>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -258,7 +299,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Just an identity function, that return what it's given without
- changing it.</p>    </div>  
+ changing it.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -275,7 +322,7 @@
  outcome and presents it from cache, instead of recalculating.</p>
  <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
 
- <p>Usage Example:</p>
+ <p>Usage example:</p>
 
  <pre>
  function multiply(a,b){return a*b; }
@@ -296,7 +343,13 @@
                 <div class="summaryItemDesc">
         <p>Creates a <code>Function</code> that will only get called once.<p>
  <p>May be useful for creating <strong>singleton</strong>
- <code>Object</code>s, or for lazy-loading modules.</p>    </div>  
+ <code>Object</code>s, or for lazy-loading modules.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -312,7 +365,13 @@
         <p>Adds a method to the <code>Object</code>.</p>
  <p>If parameters count is different but the name is same,
  adds the method with a different signature, overloading the former
- one.</p>    </div>  
+ one.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -328,7 +387,7 @@
         <p>Defines a partial <code>Function</code>.</p>
  <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
  detailed discussion.</p>
- <p>Usage Example:</p>
+ <p>Usage example:</p>
  <pre>
  function test(a,b,c){ return a*b+c; }
  var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
@@ -345,7 +404,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Checks the passed in arguments, and if all arguments are present,
- executes <code>Function</code>. Otherwise throws an error.</p>    </div>  
+ executes <code>Function</code>. Otherwise throws an error.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -363,7 +428,13 @@
 
  <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
  requests, preventing the client to bombard the server with too many
- simultaneous requests.</p>    </div>  
+ simultaneous requests.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -378,7 +449,13 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Sequentially executes a given <code>Function</code> given amount
- of times.</p>    </div>  
+ of times.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -392,7 +469,13 @@
                 <div class="summaryItemDesc">
         <p>Returns the first <strong>delegate</strong> passed as an argument
  to the second <strong>wrapper</strong> followed by the arguments of
- the returned <code>Funciton</code>.    </div>  
+ the returned <code>Funciton</code>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
                             </div>
                 </div>
         <p/>
@@ -417,7 +500,13 @@
             </div>          
                 <div class="comment">
         <p>Creates a <code>Function</code> that only executes after being called
- <strong>count</code> times.</p>
+ <strong>count</strong> times.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -468,7 +557,7 @@
  <p><strong>bind</strong> can often be used to bind a different
  context to a <strong>curried</strong> function.
 
- <p>Usage Example:</p>
+ <p>Usage example:</p>
 
  <pre>
  function test(a,b,c){ return this.number + (a*b+c); };
@@ -593,7 +682,13 @@
         <p>Create a method that calls the <strong>invoker</strong> with the
  return value of the evaluated function <strong>fn</strong>. The current
  arguments are passed to <strong>fn</strong>, and the evaluated result
- is passed to the <strong>invoker</strong>.
+ is passed to the <strong>invoker</strong>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -636,7 +731,9 @@
         <p>Curries the <code>Function</code>.</p>
  <p>See http://www.dustindiaz.com/javascript-curry/ for a
  discussion.</p>
- <p>Usage Example:</p>
+
+ <p>Usage example:</p>
+
  <pre>
  function test(a,b,c) { return a+b+c; }
  var curried = o2.MethodHelper.curry(this, test, 1, 2);
@@ -669,6 +766,12 @@
                 <div class="comment">
         <p>Creates a <code>Function</code> that will not be triggered, as long as
  it continues to get invoked within a certain time window.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -715,6 +818,12 @@
                 <div class="comment">
         <p>Defers a <code>Function</code> for a specified amount of time.</p>
 
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -742,6 +851,28 @@
                     </div>
                                                     <hr/>       
                                                                                     <h3>
+        <a name="___delay">
+            <span class="objType">function</span>
+            <span class="objName">delay</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    delay()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An <strong>alias</strong> to <a href="logical/o2/MethodHelper.html#___defer">o2.MethodHelper.defer</a>.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/MethodHelper.html#___defer">o2.MethodHelper.defer</a></div>
+                    </div>      
+                                <hr/>       
+                                                                                    <h3>
         <a name="___flip">
             <span class="objType">function</span>
             <span class="objName">flip</span>            
@@ -760,6 +891,12 @@
                 <div class="comment">
         <p>Flips two arguments of the given <code>Function</code>, and returns a
  new <code>Function</code>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -807,6 +944,12 @@
         <p>Just an identity function, that return what it's given without
  changing it.</p>
 
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -848,7 +991,7 @@
  outcome and presents it from cache, instead of recalculating.</p>
  <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
 
- <p>Usage Example:</p>
+ <p>Usage example:</p>
 
  <pre>
  function multiply(a,b){return a*b; }
@@ -906,6 +1049,12 @@
  <p>May be useful for creating <strong>singleton</strong>
  <code>Object</code>s, or for lazy-loading modules.</p>
 
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -947,6 +1096,12 @@
  <p>If parameters count is different but the name is same,
  adds the method with a different signature, overloading the former
  one.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -996,7 +1151,7 @@
         <p>Defines a partial <code>Function</code>.</p>
  <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
  detailed discussion.</p>
- <p>Usage Example:</p>
+ <p>Usage example:</p>
  <pre>
  function test(a,b,c){ return a*b+c; }
  var partial = o2.MethodHelper.partial(this, test, 10, undefined, 20);
@@ -1051,6 +1206,12 @@
         <p>Checks the passed in arguments, and if all arguments are present,
  executes <code>Function</code>. Otherwise throws an error.</p>
 
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -1101,6 +1262,12 @@
  requests, preventing the client to bombard the server with too many
  simultaneous requests.</p>
 
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -1146,6 +1313,12 @@
                 <div class="comment">
         <p>Sequentially executes a given <code>Function</code> given amount
  of times.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -1194,7 +1367,13 @@
                 <div class="comment">
         <p>Returns the first <strong>delegate</strong> passed as an argument
  to the second <strong>wrapper</strong> followed by the arguments of
- the returned <code>Funciton</code>.
+ the returned <code>Funciton</code>.</p>
+
+ <p>Usage example:</p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
 
      </div>
         	<div class="parameters">
@@ -1267,10 +1446,7 @@
                                                                                                                                                                                                                                                                                                                                                                                 <div>
                                 <a href="physical/file-o2/domhelper/range.js.html">o2.domhelper.range.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div>
-                                <a href="physical/file-o2.js.html">o2.js</a>
-                            </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
                 </ul>
             </div>
         </li>       

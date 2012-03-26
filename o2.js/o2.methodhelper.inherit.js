@@ -53,6 +53,12 @@
      * adds the method with a different signature, overloading the former
      * one.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} object - the <code>Object</code> to add methods to.
      * @param {String} name - the name of the method.
      * @param {Function} fn - the method reference.
@@ -82,6 +88,12 @@
      *
      * <p>Checks the passed in arguments, and if all arguments are present,
      * executes <code>Function</code>. Otherwise throws an error.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} fn - the <code>Function</code> to check.
      *

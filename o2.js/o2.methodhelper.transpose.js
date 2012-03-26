@@ -43,7 +43,13 @@
      * <p>Create a method that calls the <strong>invoker</strong> with the
      * return value of the evaluated function <strong>fn</strong>. The current
      * arguments are passed to <strong>fn</strong>, and the evaluated result
-     * is passed to the <strong>invoker</strong>.
+     * is passed to the <strong>invoker</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} invoker - the invoker.
      * @param {Function} delegate - the invokee.
@@ -61,6 +67,12 @@
      *
      * <p>Flips two arguments of the given <code>Function</code>, and returns a
      * new <code>Function</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} fn - the delegate to flip arguments of.
      * @param {Integer} index1 - the index of the first argument.
@@ -85,7 +97,13 @@
      *
      * <p>Returns the first <strong>delegate</strong> passed as an argument
      * to the second <strong>wrapper</strong> followed by the arguments of
-     * the returned <code>Funciton</code>.
+     * the returned <code>Funciton</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} delegate - the first <code>Function</code> to pass
      * as parameter.

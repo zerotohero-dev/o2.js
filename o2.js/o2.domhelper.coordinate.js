@@ -8,6 +8,7 @@
 //     var proto     = _.proto;
 //     var require   = _.require;
 
+//TODO: complete me.
 
 //     if (document.documentElement &&
 //                 document.documentElement.getBoundingClientRect) {

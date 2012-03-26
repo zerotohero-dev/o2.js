@@ -72,6 +72,12 @@
      *
      * <p>Checks whether the pressed key is an arrow key.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
      *
@@ -88,6 +94,12 @@
      * @function {static} o2.EventHandler.isBackspaceKey
      *
      * <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
@@ -112,6 +124,12 @@
          * typed in a <code>onkeydown</code> or <code>onkeyup</code> event:
          * The printable key is determined only in the <code>onkeypress</code>
          * handler.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @return <code>true</code> if the pressed key is a printable
          * character; <code>false</code> otherwise.
@@ -150,6 +168,12 @@
      *
      * <p>Checks whether the pressed key is the enter (return) key.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
      *
@@ -180,6 +204,12 @@
          * @function {static} o2.EventHandler.isRightClick
          *
          * <p>Checks whether or not the curent action is a right click action.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link o2.EventHandler.addEventListener}.
@@ -212,6 +242,12 @@
      * @function {static} o2.EventHandler.isTabKey
      *
      * <p>Checks whether the pressed key is the tab key.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}

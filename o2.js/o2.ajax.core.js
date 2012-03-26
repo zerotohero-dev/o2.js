@@ -399,10 +399,15 @@
 
     /**
      * @function {static} o2.Ajax.abort
-     *
      * <p>Explicitly abort the request.</p>
      * <p>When the request is explicitly abourted, <strong>onaborted</strong>
      * callback is fired.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {XMLHttpRequest} xhr - the original
      * <strong>XMLHttpRequest</strong> being sent.
@@ -428,6 +433,11 @@
      * You may most probably want to use {@link Ajax.get} or {@link
      * Ajax.post} instead, for more functionality.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      * @return the created <code>XMLHttpRequest</code> object.
      */
     def(me, 'createXhr', function() {
@@ -438,6 +448,12 @@
      * @function {static} o2.Ajax.get
      *
      * <p>Sends and <strong>AJAX GET</strong> request.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} url - the URL to send the request.
      * @param {Object} parameters - parameters collection as a name/value
@@ -458,6 +474,12 @@
 
     /**
      * @function {static} o2.Ajax.post
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Sends an <strong>AJAX POST</strong> request.</p>
      *

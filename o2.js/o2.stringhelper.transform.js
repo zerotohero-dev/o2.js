@@ -62,6 +62,12 @@
      *
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to format.
      *
      * @return the formatted <code>String</code>.
@@ -74,6 +80,12 @@
      * @function {static} o2.StringHelper.nl2br
      *
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
      *
@@ -88,6 +100,12 @@
      *
      * <p>Removes all the <strong>HTML</strong> tags in the
      * <code>String</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      *
@@ -105,6 +123,12 @@
      * <p>This is especially useful for converting <code>CSS</code> classes
      * to their <strong>DOM</strong> style representations.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} input - the <code>String</code> to convert.
      *
      * @return the formatted String.
@@ -121,6 +145,12 @@
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem-ipsum'.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} input - the <code>String</code> to convert.
      *
      * @return the formatted <code>String</code>.
@@ -136,6 +166,12 @@
      *
      * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
      * object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to convert.
      *
@@ -158,6 +194,12 @@
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem_ipsum'.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} input - the <code>String</code> to convert.
      *
      * @return the formatted <code>String</code>.
@@ -173,6 +215,12 @@
      *
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
      * is greater than <strong>maxLen</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      * @param {Integer} maxLen - Optional (defaults TRUNCATION_LENGTH},

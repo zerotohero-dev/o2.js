@@ -32,7 +32,7 @@
      *
      * <p>A class for executing repeated timed actions.</p>
      *
-     * <p>Usage Example:</p>
+     * <p>Usage example:</p>
      *
      * <pre>
      * // A unique id for the timer.
@@ -78,6 +78,12 @@
      *
      * <p>Starts/restarts the timer with the given id.
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} id - the id of the timer to start.
      */
     def(me, 'start', function(id) {
@@ -115,6 +121,12 @@
      *
      * <p>Stops the timer with the given id.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} id - the id of the timer to stop.
      */
     def(me, 'stop', function(id) {
@@ -143,6 +155,12 @@
      * @function {static} o2.Timer.set
      *
      * <p>Sets and optionally starts a new timer.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} id - a unique identifier for the timer.
      * @param {Function} delegate - action to be done when the timer ticks.

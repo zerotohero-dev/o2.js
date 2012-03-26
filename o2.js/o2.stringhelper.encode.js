@@ -126,6 +126,12 @@
      * <p>If possible try using standard decoding methods like
      * <code>decodeURIComponent</code>, instead of using this method.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to process.
      *
      * @return the processed <code>String</code>.
@@ -143,6 +149,12 @@
      * <code>encodeURIComponent</code>,
      * instead of using this method.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to process.
      *
      * @return the processed <code>String</code>.
@@ -156,6 +168,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.StringHelper.encode}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.StringHelper.encode
      */
     alias(me, 'htmlEncode', 'encode');
@@ -166,6 +184,12 @@
      * <p>Works similar to {@link o2.StringHelper.encode}.</p>
      * <p>Encodes the <code>String</code> by converting it into a text node
      * and returning the node's value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      *
@@ -187,6 +211,12 @@
     /**
      * @function {static} o2.StringHelper.safeHtmlEncode
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>An <strong>alias</strong> to
      * {@link o2.StringHelper.encodeSafeHtml}.</p>
      *
@@ -196,6 +226,12 @@
 
     /**
      * @function {static} o2.StringHelper.escape
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
@@ -211,6 +247,12 @@
      * @function {static} o2.StringHelper.unescape
      *
      * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      *
@@ -228,6 +270,12 @@
      * exception that it does not encode whitespace characters.</p>
      * <p>This method is specially designed to prevent cross-site script
      * injection attacks.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process
      * @param {Boolean} isAmpersandsPreserved - (Optional. Defaults to

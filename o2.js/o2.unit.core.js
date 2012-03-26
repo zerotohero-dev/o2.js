@@ -289,6 +289,12 @@
      *
      * <p>Creates a new <code>UnitTest</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} description - the description of the unit test.
      * @param {String} totalAssertionCount - the overall number of assertions
      * that the <code>UnitTest</code>'s <strong>testCase</strong> will run.
@@ -314,6 +320,12 @@
 
     /**
      * @function o2.UnitTest.terminate
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Terminates the unit test by setting remaining assertion count to
      * zero.</p>
@@ -359,6 +371,12 @@
      * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
      * adds it to the test queue.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} description - the description of the test.
      * @param {Object} testMeta - test meta data in the form {count:
      * [number], test: [callback]}, where <strong>count</strong> is the
@@ -385,6 +403,12 @@
      * <p>Asserts whether the given <strong>expression</strong> evaluates to
      * <code>true</code> or not.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {o2.UnitTest} unitTest - the current active unit test.
      * @param {Expression} expression - the expression to evaluate.
      * @param {String} message - the associated message.
@@ -404,6 +428,12 @@
     /**
      * @function {static} o2.Unit.assertEqual
      * <p>Asserts whether two values are equal.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
      * @param {Object} currentValue - the current value to assert.
@@ -428,6 +458,12 @@
     /**
      * @function {static} o2.Unit.assertNotEqual
      * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
      * @param {Object} currentValue - the current value to assert.
@@ -455,6 +491,12 @@
      * <p>Asserts whether two values are strictly equal (by value and
      * type).</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {o2.UnitTest} unitTest - the current active unit test.
      * @param {Object} currentValue - the current value to assert.
      * @param {Object} expectedValue - the expected value to check against.
@@ -478,8 +520,13 @@
      * @function {static} o2.Unit.assertStrictNotEqual
      *
      * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
-     * (by value and
-     * type).</p>
+     * (by value and type).</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
      * @param {Object} currentValue - the current value to assert.
@@ -505,6 +552,12 @@
      *
      * <p>Gets the total number of failed assertions so far.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the total number of failed assertions.
      */
     def(me, 'getGlobalFailureCount', function() {
@@ -515,6 +568,12 @@
      * @function {static} o2.Unit.getGlobalSuccessCount
      *
      * <p>Gets the total number of successful assertions so far.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @return the total number of successful assertions.
      */
@@ -528,7 +587,13 @@
      * <p>Checks whether the current <strong>test suite</strong> is still
      * running.</p>
      *
-     * @return <code>true</code> if the current <strong>test suite</code>
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
+     * @return <code>true</code> if the current <strong>test suite</strong>
      * is still runing; <code>false</code> otherwise.
      */
     def(me, 'isRunning', function() {
@@ -537,6 +602,12 @@
 
     /**
      * @function {static} o2.Unit.log
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Logs the <strong>message</strong>.</p>
      * <p>An alias to {@link Debugger.log}.</p>
@@ -552,6 +623,12 @@
      *
      * <p>Asynchronously runs all of the registered
      * <code>UnitTest</code>s, one after another.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} globalCompletionCallback - (Optional) this callback
      * will be run with <code>o2.Unit</code> as a parameter passed to it.

@@ -84,6 +84,12 @@
      * <p><code>Array, Boolean, Date, Error, Function, JSON,
      * Math, Number, Object, RegExp, String, Arguments</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the object to check type against.
      * @param {String} type - the type to compare.
      *
@@ -104,6 +110,12 @@
      *
      * <p>Checks whether the object is an <code>arguments</code> object.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the object to test.
      *
      * @return <code>true</code> if obj is an <code>arguments</code> object,
@@ -117,6 +129,12 @@
      * @function {static} o2.Validator.isArray
      *
      * <p>Checks whether the object is an <code>Array</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the object to test.
      *
@@ -133,6 +151,12 @@
      *
      * <p>Checks whether the object is a <code>Boolean</code>.
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the object to test.
      *
      * @return <code>true</code> if obj is a <code>Boolean</code>,
@@ -146,6 +170,12 @@
      * @function {static} o2.Validator.isDate
      *
      * <p>Checks whether the object is a <code>Date</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Arguments} varargin - if a single argument is given it checks
      * whether it identifies a <code>Date</code> object. Otherwise the
@@ -189,6 +219,12 @@
     /**
      * @function {static} o2.Validator.isFunction
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Checks whether the object is a <code>Function</code>.</p>
      *
      * @param {Object} obj - the object to test.
@@ -202,6 +238,12 @@
 
     /**
      * @function {static} o2.Validator.isNan
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Checks whether the given parameter is <code>NaN</code>.</p>
      *
@@ -220,6 +262,12 @@
     /**
      * @function {static} o2.Validator.isNull
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Checks whether the given parameter is <code>null</code>.</p>
      *
      * @param {Object} obj - the <code>Object</code> to test.
@@ -233,6 +281,12 @@
 
     /**
      * @function {static} o2.Validator.isNumber
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Checks whether the object is a <code>Number</code>.</p>
      *
@@ -248,6 +302,12 @@
     /**
      * @function {static} o2.Validator.isNumeric
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Checks whether the given parameter is a numeric entity.</p>
      *
      * @param {Object} obj - the <code>Object</code> to test.
@@ -261,6 +321,12 @@
 
     /**
      * @function {static} o2.Validator.isObject
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Checks whether the object is an <code>Object</code>({}).</p>
      *
@@ -276,6 +342,12 @@
     /**
      * @function {static} o2.Validator.isRegExp
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Checks whether the object is a <code>RegExp</code>.</p>
      *
      * @param {Object} obj - the object to test.
@@ -290,6 +362,12 @@
     /**
      * @function {static} o2.Validator.isString
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Checks whether the object is a <code>String</code>.</p>
      *
      * @param {Object} obj - the object to test.
@@ -302,6 +380,12 @@
 
     /**
      * @function {static} o2.Validator.isUndefined
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Checks whether the given parameter is <code>undefined</code>.</p>
      *
@@ -316,6 +400,12 @@
 
     /**
      * @function {static} o2.Validator.isWindow
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Checks whether the given parameter is a <code>window</code>
      * object.</p>

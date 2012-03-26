@@ -48,6 +48,12 @@
      *
      * <p>Trims a given field, and returns the compacted value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} field - the field to be compacted, or its
      * <strong>id</strong>.
      *
@@ -73,6 +79,12 @@
      *
      * <p>Trims a given field, and returns the trimmed value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} field - the field to be trimmed, or its
      * <strong>id</strong>.
      *
@@ -94,10 +106,16 @@
     });
 
     /**
-     * @function {static} o2.FormHelper.preventMultipleSubmit
+     * @function {static} o2.DomHelper.preventMultipleSubmit
      *
      * <p>Prevents the form to re-submit itself when the submit button
      * is pressed more than once.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} form - A <strong>DOM</strong> reference to the form
      * object or its <code>String</code> id.

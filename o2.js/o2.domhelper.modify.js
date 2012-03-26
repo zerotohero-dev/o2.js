@@ -50,6 +50,12 @@
      *
      * <p>Replaces one node with another.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param elmTarget - the target node or its <code>String</code> id.
      * @param elmToReplace - the replacement node or its <code>String</code> id.
      */
@@ -67,6 +73,12 @@
      * <p>This is like {@link o2.DomHelper.wrap} in reverse.</p>
      * <p>Moves all the elements inside the container to the container's
      * position and removes the container from the <strong>DOM</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elmTarget - the target node or its <code>String</code> id
      * to unwrap.
@@ -95,6 +107,12 @@
      * @function {public static} o2.DomHelper.wrap
      *
      * <p>Puts the target element into the wrapper element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elmTarget - the node to wrap or its <code>String</code>
      * id.

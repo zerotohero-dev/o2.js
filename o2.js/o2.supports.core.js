@@ -58,6 +58,12 @@
      * <p>Checks whether <strong>AJAX</strong> (At least XmlHttpRequest Level 1)
      * is supported.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return <code>true</code> if <strong>AJAX</strong> is supported,
      * <code>false</code> otherwise.
      *
@@ -71,6 +77,12 @@
      * @function {static} o2.Supports.cookie
      *
      * <p>Checks for <strong>cookie</strong> support.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @return <code>true</code> if <strong>cookie</strong>s are supported,
      * <code>false</code> otherwise.
@@ -106,6 +118,12 @@
      * @function {static} o2.Supports.dom
      *
      * <p>Checks whether <strong>DOM</strong> is adequately supported.
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @return <code>true</code> if <strong>DOM</strong> is supported,
      * <code>false</code> otherwise.

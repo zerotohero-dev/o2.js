@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001332662885
+ * @version     0.25.a.0001332791089
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -109,12 +109,18 @@
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001332662885');
+    def(me, 'build', '.0001332791089');
 
     /**
      * @function {static} o2.$
      *
      * <p>An alias for <code>document.getElementById</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the id to check.
      *
@@ -145,6 +151,12 @@
      *
      * <p>An alias for <code>DomHelper.ready</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Function} callback - The callback to execute when DOM is
      * ready.
      */
@@ -157,6 +169,12 @@
      *
      * <p>An alias for <code>EventHandler.addEventListener(window, 'load',
      * callback)</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} callback - The callback to execute when window is
      * loaded.
@@ -171,6 +189,12 @@
      * <p>Returns the unix time (i.e. the number of milliseconds since
      * midnight of January 1, 1970)</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the current unix time.
      */
     def(me, 'now', function() {
@@ -183,7 +207,7 @@
      * <p>Exports the <strong>o2</strong> namespace under a new name, so that
      * it can be used together with an older version of <strong>o2.js</strong>
      *
-     * <p>Usage Example:</p>
+     * <p>Usage example:</p>
      *
      * <pre>
      * [script type="text/javascript" charset="UTF-8" src="o2.0.21.js"][/script]
@@ -209,6 +233,12 @@
      * @function {static} o2.n
      *
      * <p>A <code>getElementsByName</code> wrapper.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} tagName - the name of the form item to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
@@ -253,6 +283,12 @@
      * returns the first matched node, instead of returning a node
      * collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} name - the name of the element to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
      * the parent container, or the id of the parent container, to search.
@@ -270,6 +306,12 @@
      * @function {static} o2.t
      *
      * <p>A <code>getElementsByTagName</code> wrapper.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} tagName - the name of the tag to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)
@@ -298,6 +340,12 @@
      * <p>Acts similar to {link o2.t} -- with one exception: The method
      * returns the first matched node, instead of returning a node
      * collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} tagName - the name of the tag to search.
      * @param {DOMNode} parent - (optional defaults to <code>document</code>)

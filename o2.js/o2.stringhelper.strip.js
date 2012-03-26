@@ -51,6 +51,12 @@
      * <p>Removes non alphabetical characters from the <code>String</code>
      * (excluding numbers).</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to format.
      *
      * @return the formatted <code>String</code>.
@@ -63,6 +69,12 @@
      * @function {static} o2.StringHelper.stripNonAlphanumeric
      *
      * <p>Removes alpha-numeric characters from the <code>String</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
      *
@@ -77,6 +89,12 @@
      *
      * <p>Removes tags from the <code>String</code>.
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to format.
      *
      * @return the formatted <code>String</code>.
@@ -90,6 +108,12 @@
      *
      * <p>Removes non-numeric characters from the <code>String</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to format.
      -
      * @return the formatted <code>String</code>.
@@ -102,6 +126,12 @@
      * @function {static} o2.StringHelper.stripNumeric
      *
      * <p>Removes numeric characters from the <code>String</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
      *

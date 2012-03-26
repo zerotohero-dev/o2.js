@@ -91,6 +91,12 @@
      * <p>Activates the <strong>alternate stylesheet</strong> with the given
      * <code>title</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} title - the <code>title</code> of the <strong>alternate
      * stylesheet</strong> to activate.
      */
@@ -124,7 +130,7 @@
          * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
          * to the document.</p>
          *
-         * <p>Usage Example:</p>
+         * <p>Usage example:</p>
          *
          * <pre>
          * o2.DomHelper.addCssRules(
@@ -166,6 +172,12 @@
      * assign <strong>className</strong>'s instead of <strong>style</strong>
      * values.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the current <code>DOM</code> node, or the
      * <strong>id</strong> of that node, to add styles to.
      * @param {Object} style - styles in the form <code>{style1:value1,
@@ -200,6 +212,12 @@
      *
      * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.DomHelper.addStyle
      */
     alias(me, 'setCss', 'addStyle');
@@ -208,6 +226,12 @@
      * @function {static} o2.DomHelper.setStyle
      *
      * <p>An alias to {@link o2.DomHelper.addStyle}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see o2.DomHelper.addStyle
      */
@@ -230,6 +254,12 @@
          * styles to modify the view;
          * assign <strong>className</strong>'s instead of <strong>style</strong>
          * values.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Object} obj - the element, or the <strong>id</strong> of it, to
          * check.
@@ -362,6 +392,12 @@
      *
      * <p>An alias to {@link o2.DomHelper.getStyle}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.DomHelper.getStyle
      */
     alias(me, 'getCss', 'getStyle');
@@ -370,6 +406,12 @@
      * @function {static} o2.DomHelper.hide
      *
      * <p>Hides the given object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <strong>DOM</strong> node, or the
      * <strong>id</strong> to hide.
@@ -397,6 +439,12 @@
      * @function {static} o2.DomHelper.show
      *
      * <p>Shows the given object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of it, to show.
@@ -428,6 +476,12 @@
      * or <code>visibility == 'hidden'</code> <strong>CSS</strong> properties,
      * then it's regarded as "invisible", otherwise it is considered to be
      * "visible".</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <strong>DOM</strong> element, or the
      * <strong>id</strong> of it, to test.
@@ -481,6 +535,12 @@
      * @function {static} o2.DomHelper.toggleVisibility
      *
      * <p>Toggles the visibility of the given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - a <strong>DOM</strong> reference or its
      * <code>String</code> id.

@@ -111,6 +111,12 @@
      * <p>Prints a human-readable time string, by looking at the difference
      * between two timestamps.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Integer} time - the offset time in milliseconds.
      * @param {Integer} currTime - (Optional, default to NOW) the base time
      * in milliseconds.
@@ -158,6 +164,12 @@
      *
      * <p>An alias to {@link o2.now}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.now
      */
     def(me, 'getTime', function() {
@@ -168,6 +180,12 @@
      * @function {static} o2.DateHelper.now
      *
      * <p>An alias to {@link o2.now}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see o2.now
      */

@@ -87,6 +87,12 @@
      * This is faster than adding those <code>String</code>s with
      * <code>+</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the concataneted <code>String</code>.
      */
     def(me, 'concat', function() {
@@ -103,7 +109,9 @@
      *
      * <p>Works similar to <strong>C#</strong>'s
      * <code>String.Format</code>.</p>
-     * <p>Usage Example:<p>
+     *
+     * <p>Usage example:<p>
+     *
      * <pre>
      * o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
      * 'California');
@@ -140,6 +148,12 @@
      * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
      * for that browsing session.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return a <strong>GUID</strong>.
      */
     def(me, 'generateGuid', function() {
@@ -152,6 +166,12 @@
      * @function {static} o2.StringHelper.generateRandom
      *
      * <p>Generates a random <code>String</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Integer} length - (optional - default: {@link
      * StringHelper.config.constants.DEFAULT_RANDOM_LENGTH})
@@ -239,6 +259,12 @@
      * <p>Simply removes the phrases that match the <code>RegExp</code> from
      * the <code>String</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} str - the <code>String</code> to process.
      * @param {RegExp} regExp - the <code>RegExp</code> to process agains.
      *
@@ -255,6 +281,12 @@
          *
          * <p>Trims white space from beginning and end of the
          * <code>String</code>.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {String} str - the <code>String</code> to process.
          * @param {Boolean} shouldCompact - Optional (default:
@@ -293,6 +325,12 @@
      *
      * <p>Works identical to <code>StringHelper.trim(str,
      * true)</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      *

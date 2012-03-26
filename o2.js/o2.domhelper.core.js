@@ -77,6 +77,12 @@
      *
      * <p>Appends the element to the bottom of its parent.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elmChild - the child node, or the <strong>id</strong> of
      * the node to append.
      * @param {Object} elmParent - the parent container, or the
@@ -106,6 +112,12 @@
      * <p>Creates a <strong>Document Fragment</strong> from an
      * <strong>HTML</strong> <code>String</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} html - the <strong>HTML</strong> to create a fragment
      * from.
      *
@@ -132,6 +144,12 @@
      * @function {static} o2.DomHelper.createElement
      *
      * <p>Creates an element with given name and attributes.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} name - the node name of the element (i.e. 'div', 'a').
      * @param {Object} attributes - an associative array in the form
@@ -194,6 +212,12 @@
      *
      * <p>An alias to {@link o2.DomHelper.createElement}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.DomHelper.createElement
      */
     alias(me, 'create', 'createElement');
@@ -202,6 +226,12 @@
      * @function {static} o2.DomHelper.getAttribute
      *
      * <p>Gets the attribute of a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the node, or the <strong>id</strong> of the
      * node, to get the attribute of.
@@ -253,6 +283,12 @@
      *
      * <p>Gets the <strong>HTML</strong> of a given element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the <strong>DOM</strong> node or its
      * <code>String</code> id.
      *
@@ -277,6 +313,12 @@
          * <p>Gets the textual content of the given node, replacing entities
          * like <code>& amp;</code> with it's corresponding character
          * counterpart (<strong>&</strong> in this example).</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Object} elm - the <strong>DOM</strong> node or its
          * <code>String</code> id.
@@ -337,6 +379,12 @@
      *
      * <p>Adds the node after the reference node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elmNewNode - the DOM node, or the <strong>id</strong> of
      * the node, to insert after.
      * @param {Object} elmRefNode - the reference node, or the
@@ -366,6 +414,12 @@
      *
      * <p>Adds the node before the reference node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
      * node, to insert before.
      * @param {Object} elmRefNode - the reference, or the <strong>id</strong> of
@@ -389,6 +443,12 @@
      *
      * <p>Checks whether the given node is a <code>document</code> node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {DOMNode} obj - the <strong>node</strong> to test.
      *
      * @return <code>true</code> if the <strong>node</strong> is the
@@ -403,6 +463,12 @@
      *
      * <p>Checks whether the given node is an <strong>element</strong> node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {DOMNode} obj - the <strong>node</strong> to test.
      *
      * @return <code>true</code> if the <strong>node</strong> is an
@@ -416,6 +482,12 @@
      * @function {static} o2.DomHelper.prepend
      *
      * <p>Prepends the element to the top of its parent.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elmChild - the child node, or the id of the node to
      * prepend.
@@ -453,6 +525,12 @@
      *
      * <p>Removes the element from the <strong>DOM</strong> flow.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it, to remove.
      *
@@ -475,6 +553,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.DomHelper.remove}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.DomHelper.remove
      */
     alias(me, 'removeNode', 'remove');
@@ -483,6 +567,12 @@
      * @function {static} o2.DomHelper.removeChildren
      *
      * <p>Removes all the children of the element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
@@ -502,6 +592,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.DomHelper.removeChildren}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
@@ -513,6 +609,12 @@
      * <p>Removes empty text nodes from the element.</p>
      * <p>Note that this removal is not recursive; only the first-level empty
      * child nodes of the element will be removed.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
@@ -552,10 +654,16 @@
     });
 
     /**
-     * @function {static} o2.Domhelper.removeEmpty.
+     * @function {static} o2.DomHelper.removeEmpty
      *
      * <p>An <strong>alias</strong> to
      * {@link o2.DomHelper.removeEmptyTextNodes}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see o2.DomHelper.removeEmptyTextNodes
      */
@@ -565,6 +673,12 @@
      * @function {static} o2.DomHelper.setAttribute
      *
      * <p>Sets the attribute of the given object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the object or the <code>String</code> id of it.
      * @param {String} attribute - the name of the attribute.
@@ -596,6 +710,12 @@
      * @function {static} o2.DomHelper.setHtml
      *
      * <p>Simply sets the <code>innerHTML</code> of the element.
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - The <strong>DOM</strong> element to set the
      * <strong>HTML</strong> of, or its <code>String</code> id.

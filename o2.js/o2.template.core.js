@@ -120,6 +120,12 @@
      *
      * <p>Parses the given template.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} data - the source data as a <strong>JSON</strong> object.
      * @param {String} tpl - the template to parse against.
      *
