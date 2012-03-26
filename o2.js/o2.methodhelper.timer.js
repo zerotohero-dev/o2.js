@@ -98,6 +98,12 @@
      * <p>Creates a <code>Function</code> that will not be triggered, as long as
      * it continues to get invoked within a certain time window.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Function} delegate - the <code>Function</code> to debounce.
      * @param {Integer} waitMs - the least amount of time (in milliseconds)
      * to wait between calls.
@@ -123,6 +129,12 @@
      * @function {static} o2.MethodHelper.defer
      *
      * <p>Defers a <code>Function</code> for a specified amount of time.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to defer.
      * @param {Integer} interval - the interval to defer in milliseconds.
@@ -154,6 +166,12 @@
      * <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
      * requests, preventing the client to bombard the server with too many
      * simultaneous requests.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to throttle.
      * @param {Integer} waitMs - the least amount of time (in milliseconds)

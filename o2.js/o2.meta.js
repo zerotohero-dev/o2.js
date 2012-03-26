@@ -684,7 +684,7 @@ this.o2 = this.o2 || {
             items : {
                 /*protecteds : {MODULE : kJsonpControllerCore},*/
                 update     : {MODULE : kAjaxControllerCore},
-                unregister : {MODULE : kJsonpStateCore}                
+                unregister : {MODULE : kJsonpStateCore}
             }
         },
         JsonpState : {

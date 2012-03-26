@@ -55,6 +55,13 @@
      *
      * <p>Converts the <strong>JSON</strong> object in parameters into a
      * query string.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'encode', function(collection) {
         var key = null;
@@ -77,6 +84,12 @@
      * @function {static} o2.QueryParser.parse
      *
      * <p>Parses the <strong>query string</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} url - (Optional) if given, parses the
      * <strong>URL</strong>.

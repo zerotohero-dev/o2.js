@@ -65,6 +65,12 @@
          *
          * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
          *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
+         *
          * @param {DomNode} node - the <strong>DOM</strong> object (or its
          * <code>String</code> id) the evet shall be attached.
          * @param {String} evt - the name of the event (like "click",
@@ -98,6 +104,12 @@
          * @function {static} o2.EventHandler.removeEventListener
          *
          * <p>Removes an already-added new event listener from the DOM Node.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {DomNode} node - the DOM object (or its <code>String</code>
          * reference) the evet shall be removed.
@@ -189,6 +201,12 @@
      * <p>Adds a set of event handlers the the <strong>eventName</strong> of
      * the given <strong>collection</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} collection - an <code>Object</code> or an
      * <code>Array</code> of <strong>DOM</strong> nodes, or their
      * <strong>id</strong>s.
@@ -222,6 +240,12 @@
          *
          * <p>Gets the actual event object.</p>
          *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
+         *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link EventHandler.addEventListener}
          *
@@ -235,6 +259,12 @@
          * @function {static} o2.EventHandler.getTarget
          *
          * <p>Gets the originating source of the event.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link EventHandler.addEventListener}
@@ -264,6 +294,12 @@
      *
      * <p>Gets the key code of the key-related event (keydown, keyup, keypress
      * etc.).</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
@@ -348,6 +384,12 @@
      *
      * <p>Gets the current mouse coordinates.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.EventHandler.addEventListener}
      *
@@ -370,6 +412,12 @@
          * event is not triggered. Like, if it is an <code>onclick</code>
          * event on a link, then the browser does not go to the
          * <code>href</code> of that link.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link EventHandler.addEventListener}
@@ -414,6 +462,12 @@
          * <p>See {@link
          * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
          * for details.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link EventHandler.addEventListener}

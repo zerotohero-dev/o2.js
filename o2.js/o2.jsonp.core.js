@@ -111,6 +111,12 @@
      *
      * <p>Creates a <strong>JSONP</strong> request.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} url - the <strong>URL</strong> of the
      * <strong>JSONP</strong> service.
      * @param {Object} params - parameters in the form of {name1:value1,...}

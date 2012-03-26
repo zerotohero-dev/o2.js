@@ -55,6 +55,12 @@
      * (i.e. try sending an account activation <strong>e-mail</strong> to a
      * newly registered user, for example.).</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} mail - the <strong>e-mail</strong> address to test.
      *
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
@@ -70,6 +76,12 @@
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} url - the address to check.
      *
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
@@ -84,6 +96,12 @@
      *
      * <p>Checks whether the given argument consists of only whitespace
      * characters.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} text - the text to check.
      *

@@ -91,6 +91,12 @@
      * <p>Activates the <strong>alternate stylesheet</strong> with the given
      * <code>title</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} title - the <code>title</code> of the <strong>alternate
      * stylesheet</strong> to activate.
      */

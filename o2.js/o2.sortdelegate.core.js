@@ -61,9 +61,14 @@
      * <p>A generic sort function.</p>
      * <p>If the collecion consists of <code>String</code>s and
      * <code>Number</code>s, <code>String</code>s will be stored
-     * alphabeticaly at the bottom,
-     * and
+     * alphabeticaly at the bottom, and
      * <code>Number</code>s will be sorted numerically before them.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      */
     def(me, 'sort', function(a, b) {
         if (isNaN(a) && isNaN(b)) {
@@ -78,6 +83,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.SortDelegate.sort}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.SortDelegate.sort
      */
     alias(me, 'sortAsc', 'sort');
@@ -90,6 +101,13 @@
      * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
      * is that the items are sorted in a <strong>descending</strong>
      * order.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'sortDesc', function(a, b) {
         return sort(b, a);

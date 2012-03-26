@@ -487,6 +487,11 @@
      * <p>Gets the immediate children (that are not text nodes) of the
      * element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of that node.
      *
@@ -509,6 +514,11 @@
      * element, if they have a matching <strong>attribute</strong> with
      * a given <strong>value</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      * @param {Object} elm - the <strong>DOM</strong> njode, or the
      * <strong>id</strong> of that node.
      * @param {String} attribute - the name of the attribute to filter.
@@ -542,6 +552,11 @@
      *
      * <p>Gets the children of the element until a given node (exclusive).</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -573,6 +588,12 @@
          * @function {static} o2.DomHelper.getChildrenByClass
          *
          * <p>Gets the children of the element having a specific class.</p>
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @param {Object} elm - the element reference, or a <code>String</code>
          * id of it.
@@ -630,6 +651,12 @@
      * <p>Gets the children of the element having a specific class, and until
      * (but not included to) a given element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -659,6 +686,12 @@
      * <p>Gets the children of the element until
      * (but not included to) a given element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until - the <strong>DOM</strong> to search until (but
@@ -684,6 +717,12 @@
      * @function {static} o2.DomHelper.getChildrenWithAttribute
      *
      * <p>Gets the children of the element having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -711,6 +750,12 @@
      *
      * <p>Gets the children of the element with a given attribute defined,
      * and until (but not included to) a given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -741,6 +786,12 @@
      *
      * <p>Gets the children of the element with a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -764,6 +815,12 @@
      *
      * <p>Gets the children of the element with a "class" attribute defined,
      * and until (but not included to) a given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -792,6 +849,12 @@
      *
      * <p>Gets the children of the element with an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -815,6 +878,12 @@
      *
      * <p>Gets the children of the element with an "id" attribute defined,
      * and until (but not included to) a given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -841,6 +910,12 @@
      * @function {static} o2.DomHelper.getElements
      *
      * <p>Gets all of the elements of the node <strong>elm</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -872,6 +947,12 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, filtering
      * the nodes having a given attribute equals to a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -894,6 +975,12 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a given <strong>CSS</strong> <strong>class</strong> name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -913,6 +1000,12 @@
      *
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -935,6 +1028,12 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * a '<strong>class</strong>" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -955,6 +1054,12 @@
      * <p>Gets all of the elements of the node <strong>elm</strong>, having
      * an '<strong>id</strong>" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -972,6 +1077,12 @@
      * @function {static} o2.DomHelper.getSiblings
      *
      * <p>Gets the siblings of the element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -997,6 +1108,12 @@
      * <p>Gets the siblings of the element, having a given attribute equals
      * a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -1018,6 +1135,12 @@
      *
      * <p>Gets the siblings of the element, having a given attribute equals
      * a given value, until (but not included to) a specific node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1043,6 +1166,12 @@
      *
      * <p>Gets the siblings of the element, having a given class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1061,6 +1190,12 @@
      *
      * <p>Gets the siblings of the element, having a given class name,
      * until (but not included to) a specific node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1084,6 +1219,12 @@
      * <p>Gets the siblings of the element until (but not included to) a
      * specific node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until - the <strong>DOM</strong> to search until (but
@@ -1105,6 +1246,12 @@
      * <p>Gets the siblings of the element, having a given attribute
      * defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -1125,6 +1272,12 @@
      *
      * <p>Gets the siblings of the element, having a given attribute
      * defined, until (but not included to) a specific node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1150,6 +1303,12 @@
      * <p>Gets the siblings of the element, having "class" attribute
      * defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1168,6 +1327,12 @@
      *
      * <p>Gets the siblings of the element, having a "class" attribute
      * defined, until (but not included to) a specific node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1191,6 +1356,12 @@
      * <p>Gets the siblings of the element, having an "id" attribute
      * defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1206,6 +1377,12 @@
 
     /**
      * @function {static} o2.DomHelper.getSiblingsWithIdUntil
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Gets the siblings of the element, having an "id" attribute
      * defined, until (but not included to) a specific node.</p>
@@ -1230,6 +1407,12 @@
      *
      * <p>Gets the first sibling of the element that's not a text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1253,6 +1436,12 @@
      *
      * <p>Gets the first sibling of the element that's not a text node, and
      * having an attibute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1281,6 +1470,12 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1306,6 +1501,12 @@
      *
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1333,6 +1534,12 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1358,6 +1565,12 @@
      * <p>Gets the first sibling of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1382,6 +1595,12 @@
      *
      * <p>Gets the first child of the element that's not a text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1404,6 +1623,12 @@
      *
      * <p>Gets the first child of the element that's not a text node, and
      * having an attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1430,6 +1655,12 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having a given class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1453,6 +1684,12 @@
      *
      * <p>Gets the first child of the element that's not a text node, and
      * having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1478,6 +1715,12 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1501,6 +1744,12 @@
      * <p>Gets the first child of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1522,6 +1771,12 @@
      * @function {static} o2.DomHelper.getLast
      *
      * <p>Gets the last sibling of the element that's not a text node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1547,6 +1802,12 @@
      *
      * <p>Gets the last sibling of the element that's not a text node, and
      * has an attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1575,6 +1836,12 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a given class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1601,6 +1868,12 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1625,6 +1898,12 @@
      *
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1652,6 +1931,12 @@
      * <p>Gets the last sibling of the element that's not a text node, and
      * has a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1677,6 +1962,12 @@
      *
      * <p>Gets the last child of the element that's not a text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1699,6 +1990,12 @@
      *
      * <p>Gets the last child of the element that's not a text node, and
      * having an attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1725,6 +2022,12 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1748,6 +2051,12 @@
      *
      * <p>Gets the last child of the element that's not a text node, and
      * having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1773,6 +2082,12 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -1797,6 +2112,12 @@
      * <p>Gets the last child of the element that's not a text node, and
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1819,6 +2140,12 @@
      *
      * <p>Gets the next sibling of the element, that's not a text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1838,6 +2165,12 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having an attribute with a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -1856,6 +2189,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNextByClass
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having a given <strong>CSS</strong> class name.</p>
@@ -1881,6 +2220,12 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having a given attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -1902,6 +2247,12 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1922,6 +2273,12 @@
      * <p>Gets the next sibling of the element, that's not a text node, and
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -1941,6 +2298,12 @@
      *
      * <p>Gets all the following siblings of the element that are not text
      * nodes.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -1966,6 +2329,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having an attribute with a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -1988,6 +2357,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having an attribute with a given value, until (but not included
      * to) a given <strong>DOM</strong> node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2014,6 +2389,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -2034,6 +2415,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given <strong>CSS</strong> class name, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2058,6 +2445,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, until (but not included to) a given <strong>DOM</strong> node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until - the <strong>DOM</strong> to search until (but
@@ -2079,6 +2472,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2099,6 +2498,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a given attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2124,6 +2529,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -2143,6 +2554,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having a "class" attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2166,6 +2583,12 @@
      * <p>Gets all the following siblings of the element that are not text
      * nodes, having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -2186,6 +2609,12 @@
      * nodes, having an "id" attribute defined, until (but not
      * included to) a given <strong>DOM</strong> node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until - the <strong>DOM</strong> to search until (but
@@ -2205,8 +2634,14 @@
     /**
      * @function {static} o2.DomHelper.getNth
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     sibling.</p>
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2215,8 +2650,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
@@ -2227,8 +2662,14 @@
     /**
      * @function {static} o2.DomHelper.getNthByAttribute
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     * sibling, having a given attribute with a given value.</p>
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling, having a given attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2239,8 +2680,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2255,8 +2696,15 @@
     /**
      * @function {static} o2.DomHelper.getNthByClass
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     * sibling, having a given <strong>CSS</strong> class name.</p>
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling, having a given <strong>CSS</strong>
+     * class name.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2266,8 +2714,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2282,8 +2730,14 @@
     /**
      * @function {static} o2.DomHelper.getNthWithAttribute
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     * sibling, having a given attribute defined.</p>
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling, having a given attribute defined.</p>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2293,8 +2747,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -2309,8 +2763,14 @@
     /**
      * @function {static} o2.DomHelper.getNthWithClass
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     * sibling, having a "class" attribute defined.</p>
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling, having a "class" attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2319,8 +2779,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [],
@@ -2335,8 +2795,14 @@
     /**
      * @function {static} o2.DomHelper.getNthWithId
      *
-     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting from the first
-     * sibling, having an "id" attribute defined.</p>
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
+     * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
+     * from the first sibling, having an "id" attribute defined.</p>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2345,8 +2811,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> sibling available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2363,6 +2829,12 @@
      *
      * <p>Gets n<sup>th</sup> non-text-node child of an element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2370,8 +2842,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChild', function(elm, n, name) {
         if (!elm) {
@@ -2384,8 +2856,14 @@
     /**
      * @function {static} o2.DomHelper.getNthChildByAttribute
      *
-     * <p>Gets n<sup>th</sup> non-text-node child of an element, having a given attribute
-     * with a given value.</p>
+     * <p>Gets n<sup>th</sup> non-text-node child of an element, having
+     * a given attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2396,8 +2874,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChildByAttribute', function(elm, attribute, value, n, name) {
         if (!elm) {
@@ -2410,8 +2888,14 @@
     /**
      * @function {static} o2.DomHelper.getNthChildByClass
      *
-     * <p>Gets n<sup>th</sup> non-text-node child of an element, having a given attribute
-     * with a given <strong>CSS</strong> class name.</p>
+     * <p>Gets n<sup>th</sup> non-text-node child of an element, having a
+     * given attribute with a given <strong>CSS</strong> class name.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2421,8 +2905,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChildByClass', function(elm, className, n, name) {
         if (!elm) {
@@ -2438,6 +2922,12 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a given attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2446,8 +2936,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithAttribute', function(elm, attribute, n, name) {
         if (!elm) {
@@ -2463,6 +2953,12 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2470,8 +2966,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithClass', function(elm, n, name) {
         if (!elm) {
@@ -2487,6 +2983,12 @@
      * <p>Gets n<sup>th</sup> non-text-node child of an element,
      * with a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2494,8 +2996,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> child available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> child available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthChildWithId', function(elm, n, name) {
         if (!elm) {
@@ -2510,6 +3012,12 @@
      *
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2517,8 +3025,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNext', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n);
@@ -2530,6 +3038,12 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given attribute with a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2539,8 +3053,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNextByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2553,6 +3067,12 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -2561,8 +3081,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNextByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2575,6 +3095,12 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a given attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2583,8 +3109,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithAttribute', function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
@@ -2597,6 +3123,12 @@
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2604,8 +3136,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithClass', function(elm, n, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
@@ -2614,6 +3146,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthNextWithId
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
      * having an "id" attribute defined.</p>
@@ -2625,8 +3163,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> next sibling available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> next sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthNextWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
@@ -2638,6 +3176,12 @@
      *
      * <p>Gets n<sup>th</sup> parent node of an element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2645,8 +3189,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParent', function(elm, n, name) {
         return getParents(elm, null, [], null, [], name, null, n);
@@ -2654,6 +3198,12 @@
 
     /**
      * @function {static} o2.DomHelper.getNthParentByAttribute
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
      * attribute with a given value.</p>
@@ -2667,8 +3217,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParentByAttribute', function(elm, attribute, value, n,
                 name) {
@@ -2682,6 +3232,12 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
      * class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -2690,8 +3246,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParentByClass', function(elm, className, n, name) {
         return getParents(elm, hasClassName, [className],
@@ -2704,6 +3260,12 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2712,8 +3274,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithAttribute', function(elm, attribute, n, name) {
         return getParents(elm, hasAttribute, [attribute],
@@ -2726,6 +3288,12 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having a "class"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2733,8 +3301,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithClass', function(elm, n, name) {
         return getParents(elm, hasClassAttribute, [],
@@ -2747,6 +3315,12 @@
      * <p>Gets n<sup>th</sup> parent node of an element, having an "id"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2754,8 +3328,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> parent available with the given criteria, if found;
-     * <code>null</code> otherwise.
+     * @return the n<sup>th</sup> parent available with the given criteria,
+     * if found; <code>null</code> otherwise.
      */
     def(me, 'getNthParentWithId', function(elm, n, name) {
        return getParents(elm, hasIdAttribute, [],
@@ -2768,6 +3342,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2775,8 +3355,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrev', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [],
@@ -2789,6 +3369,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given attribute with a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2798,8 +3384,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevByAttribute', function(elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
@@ -2812,6 +3398,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -2820,8 +3412,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevByClass', function(elm, className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
@@ -2834,6 +3426,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a given attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -2842,8 +3440,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithAttribute', function(elm, attribute, n, name) {
        return getNextSiblings(elm, hasAttribute, [attribute],
@@ -2856,6 +3454,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2863,8 +3467,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the given
+     * criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithClass', function(elm, n, name) {
        return getNextSiblings(elm, hasClassAttribute, [],
@@ -2877,6 +3481,12 @@
      * <p>Gets n<sup>th</sup> previous sibling of an element that's not a
      * text node, having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Integer} n - the element index.
@@ -2884,8 +3494,8 @@
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
      *
-     * @return the n<sup>th</sup> previous sibling available with the given criteria,
-     * if found; <code>null</code> otherwise.
+     * @return the n<sup>th</sup> previous sibling available with the
+     * given criteria, if found; <code>null</code> otherwise.
      */
     def(me, 'getNthPrevWithId', function(elm, n, name) {
        return getNextSiblings(elm, hasIdAttribute, [],
@@ -2896,6 +3506,12 @@
      * @function {static} o2.DomHelper.getParent
      *
      * <p>Gets the parent node of an element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2915,6 +3531,12 @@
      *
      * <p>Gets the parent node of an element, having an attribute with a
      * given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2938,6 +3560,12 @@
      * <p>Gets the parent node of an element, having a given
      * <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -2958,6 +3586,12 @@
      *
      * <p>Gets the parent node of an element, having a given
      * attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -2980,6 +3614,12 @@
      * <p>Gets the parent node of an element, having a "class"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3000,6 +3640,12 @@
      * <p>Gets the parent node of an element, having an "id"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3017,6 +3663,12 @@
      * @function {static} o2.DomHelper.getParents
      *
      * <p>Gets all the parent nodes of an element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3036,6 +3688,12 @@
      *
      * <p>Gets all the parent nodes of an element, having a given attribute
      * with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3058,6 +3716,12 @@
      *
      * <p>Gets all the parent nodes of an element, having a given attribute
      * with a given value, until (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3083,6 +3747,12 @@
      * <p>Gets all the parent nodes of an element, having a given
      * <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -3103,6 +3773,12 @@
      * <p>Gets all the parent nodes of an element, having a given
      * <strong>CSS</strong> class name, until (but not included to) a
      * given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3126,6 +3802,12 @@
      * <p>Gets all the parent nodes of an element, until (but not included to) a
      * given node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until-
@@ -3145,6 +3827,12 @@
      *
      * <p>Gets all the parent nodes of an element, having a given
      * attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3166,6 +3854,12 @@
      * <p>Gets all the parent nodes of an element, having a given
      * attribute defined, until (but not included to) a
      * given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3190,6 +3884,12 @@
      * <p>Gets all the parent nodes of an element, having a "class"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3209,6 +3909,12 @@
      * <p>Gets all the parent nodes of an element, having a "class"
      * attribute defined, until (but not included to) a
      * given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3231,6 +3937,12 @@
      * <p>Gets all the parent nodes of an element, having an "id"
      * attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3250,6 +3962,12 @@
      * <p>Gets all the parent nodes of an element, having an "id"
      * attribute defined, until (but not included to) a
      * given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3271,6 +3989,12 @@
      *
      * <p>Gets the previous sibling of an element that's not a text node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3290,6 +4014,12 @@
      *
      * <p>Gets the previous sibling of an element that's not a text node,
      * having an attribute with a given value.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3313,6 +4043,12 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -3333,6 +4069,12 @@
      *
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3355,6 +4097,12 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3375,6 +4123,12 @@
      * <p>Gets the previous sibling of an element that's not a text node,
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3393,6 +4147,12 @@
      * @function {static} o2.DomHelper.getPrevAll
      *
      * <p>Gets all previous sibling of an element, that are not text nodes.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3419,6 +4179,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute with a given value.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -3441,6 +4207,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute with a given value, until
      * (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3467,6 +4239,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
@@ -3488,6 +4266,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given <strong>CSS</strong> class name, until
      * (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3511,6 +4295,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * until (but not included to) a given node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {Object} until-
@@ -3531,6 +4321,12 @@
      *
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute defined.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3553,6 +4349,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a given attribute defined, until
      * (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3578,6 +4380,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a "class" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3598,6 +4406,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having a "class" attribute defined, until
      * (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3621,6 +4435,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having an "id" attribute defined.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
@@ -3641,6 +4461,12 @@
      * <p>Gets all previous sibling of an element, that are not text nodes,
      * having an "id" attribute defined, until
      * (but not included to) a given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
@@ -3664,6 +4490,12 @@
      * <p>Checks whether <strong>elm</strong> is the child of
      * <strong>ref</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.
      * @param {Object} ref - the reference element, or a <code>String</code>
@@ -3686,6 +4518,12 @@
      * <p>Checks whether <strong>elm</strong> is a sibling after
      * <strong>ref</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.
      * @param {Object} ref - the reference element, or a <code>String</code>
@@ -3707,6 +4545,12 @@
      *
      * <p>Checks whether <strong>elm</strong> is a parent of
      * <strong>ref</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.
@@ -3735,6 +4579,12 @@
      * <p>Checks whether <strong>elm</strong> is parent of
      * <strong>ref</strong>, or it's the <strong>ref</strong> itself.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.
      * @param {Object} ref - the reference element, or a <code>String</code>
@@ -3761,6 +4611,12 @@
      * <p>Checks whether <strong>elm</strong> is a sibling before
      * <strong>ref</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.
      * @param {Object} ref - the reference element, or a <code>String</code>
@@ -3782,6 +4638,12 @@
      *
      * <p>Checks whether <strong>elm</strong> is a sibling of
      * <strong>ref</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
      * id of it.

@@ -56,6 +56,12 @@
      * See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} jsonp - the current jsonp unique identifier.
      * @param {Object} args - an associative array in the form
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
@@ -86,6 +92,12 @@
      * @function {override} o2.JsonpController.update
      *
      * <p>Overrides {@link o2.AjaxController.update}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {JsonpState} observable - the <code>Observable</code> state
      * object.
@@ -123,6 +135,14 @@
      *
      * <p>Unregisters this object from its associated observable.
      * (<em>i.e. <strong>JsonpState</strong></em>)</p>
+     *
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     override(me, 'unregister', function() {
         if (this.isDeleted) {

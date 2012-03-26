@@ -36,6 +36,12 @@
      * <p>Creates a <code>Function</code> that only executes after being called
      * <strong>count</code> times.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Integer} count - the numer of calls required to the
      * <code>Function</code> before executing it.
      * @param {Function} delegate - the delegate to execute.
@@ -67,6 +73,12 @@
      * <p>May be useful for creating <strong>singleton</strong>
      * <code>Object</code>s, or for lazy-loading modules.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Function} delegate - the <code>Function</code> to execute.
      *
      * @return a <code>Function</code> that will execute only once.
@@ -96,6 +108,12 @@
      *
      * <p>Sequentially executes a given <code>Function</code> given amount
      * of times.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Integer} count - number of times to execute.
      * @param {Function} delegate - the <code>Function</code> to execute (in
