@@ -62,6 +62,12 @@
      * <p>Reads the value of the <strong>cookie</strong> with the given
      * name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} name - the name of the <strong>cookie</strong> to
      * read.
      *
@@ -92,6 +98,12 @@
      * @function {static} o2.Cookie.save
      *
      * <p>Saves a <strong>cookie</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} name - the name of the <strong>cookie</strong>.
      * @param {String} value - the value of the <strong>cookie</strong>.
@@ -142,6 +154,12 @@
      * @function {static} o2.Cookie.remove
      *
      * <p>Removes a <strong>cookie</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} name - the name of the <strong>cookie</strong> to
      * remove.

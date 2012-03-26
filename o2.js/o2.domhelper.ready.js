@@ -220,6 +220,12 @@
      *
      * <p>Fires when the <code>HTML DOM</code> is ready.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Function} delegate - the callback that's called when the DOM is
      * ready.
      */

@@ -49,8 +49,15 @@
     /**
      * @constructor o2.AjaxController.AjaxController
      *
-     * See
+     * <p>See
      * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
+     * </p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {XmlHttpRequest} xhr - the original XmlHttpRequest
      * @param {Object} args - an associative array in the form
@@ -72,6 +79,12 @@
      *
      * <p>Implementation of the <code>Observer.update</code> interface
      * method.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>{@link o2.JsonpController} overrides this implementation.</p>
      *
@@ -100,6 +113,13 @@
      * <p>Call this when the <strong>AJAX</strong> request completes.</p>
      *
      * <p>{@link o2.JsonpController} overrides this implementation.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     proto(me, 'unregister', function() {
         if (this.isDeleted) {
@@ -109,4 +129,3 @@
         state.deleteObserver(this);
     });
 }(this.o2, this));
-

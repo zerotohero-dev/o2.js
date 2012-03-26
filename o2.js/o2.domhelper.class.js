@@ -53,6 +53,12 @@
      * <p>Creates a regular expression that will match a given
      * <strong>CSS</strong> class name.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} c - The name of the class.
      *
      * @returns a <code>RegExp</code> that matches the given class name.
@@ -71,6 +77,12 @@
      *
      * <p>Checks whether an <strong>element</strong> has the given
      * <strong>className</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {DomNode} el - either the <strong>element</strong>, or the
      * <strong>id</strong> of it.
@@ -98,6 +110,12 @@
      * @function {static} o2.DomHelper.addClass
      *
      * <p>Add a class to the given node.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {DomNode} el - either the <strong>element</strong>, or the
      * <strong>id</strong> of it.
@@ -127,6 +145,12 @@
      *
      * <p>Removes a <strong>class</strong> name from the given node.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {DomNode} el - either the <strong>element</strong>, or the
      * <strong>id</strong> of it.
      * @param {String} c - the className to remove.
@@ -155,6 +179,12 @@
      *
      * <p>Toggles the <strong>CSS</strong> <code>className</code> of a given
      * element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} el - the <strong>DOM</strong> element to toggle or its
      * <code>String</code> id.

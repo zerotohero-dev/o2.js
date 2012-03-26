@@ -81,6 +81,12 @@
     * unique <strong>GET</strong> requests will be fired without waiting for the
     * other.</p>
     *
+    * <p>Usage example:</p>
+    *
+    * <pre>
+    * //TODO: add usage example.
+    * </pre>
+    *
     * @param {String} url - the URL to send the request.
     * @param {Object} parameters - parameters collection as a name/value
     * pair object ({}).
@@ -121,6 +127,12 @@
     * name-value pairs, are considered uniqe. This method, ensures that no two
     * unique <strong>POST</strong> requests will be fired without waiting for the
     * other.</p>
+    *
+    * <p>Usage example:</p>
+    *
+    * <pre>
+    * //TODO: add usage example.
+    * </pre>
     *
     * @param {String} url - the URL to send the request.
     * @param {Object} parameters - parameters collection as a name/value

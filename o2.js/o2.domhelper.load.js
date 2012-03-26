@@ -83,6 +83,12 @@
      * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
      * not have to be in the same domain as the web page.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>css</strong> file.
      * @param {Function} successCallback - the callback to execute when the load
@@ -143,6 +149,12 @@
      * result of the load attempt.</p>
      * <p>This function can be used for pre-loading or post-loading images.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {String} url - the <strong>URL</strong> of the
      * <strong>image</strong>.
      * @param {Function} successCallback - gets called when the
@@ -170,6 +182,12 @@
      * <strong>src</strong>.</p>
      * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
      * have to be in the same domain as the web page.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {String} src - the source <strong>URL</strong> of the
      * <strong>script</strong>.

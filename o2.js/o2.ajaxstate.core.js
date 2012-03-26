@@ -176,6 +176,12 @@
      * method.</p>
      * <p>Registers an <code>Observer</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} observer - the <code>Observer</code> to register.
      */
     def(me, 'addObserver', function(observer) {
@@ -204,6 +210,12 @@
      * method.</p>
      * <p>Gets the <code>Observer</code> count.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the number of registered <code>Observer</code>s.
      */
     def(me, 'countObservers', function() {
@@ -216,6 +228,12 @@
      * <p>An implementation of the <code>Observer.deleteObserver</code>
      * method.</p>
      * <p>Removes an <code>Observer</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
@@ -247,6 +265,13 @@
      * <p>An implementation of the <code>Observer.deleteObservers</code>
      * method.</p>
      * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'deleteObservers', function() {
         getObservers(this).length = 0;
@@ -257,6 +282,13 @@
      *
      * <p>Initializes the <strong>object</strong> and starts notifying
      * registered <strong>observer</strong>s.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'init', function() {
 
@@ -274,6 +306,13 @@
      *
      * @param {Array} observers - A collection of {link AjaxController}
      * objects.
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'timeoutObservers', function(observers) {
         timeoutObservers(this, observers);
@@ -284,6 +323,13 @@
      *
      * <p>Sends a timeout request and unregisters all registered
      * <code>Observer</code>s.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      */
     def(me, 'timeoutAllObservers', function() {
         timeoutObservers(this, getObservers(this));

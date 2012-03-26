@@ -83,6 +83,12 @@
      * <code>{width: w, height: h}</code>, where <strong>w</strong> and
      * <strong>h</strong> are in pixels.
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
      *
@@ -114,6 +120,12 @@
      * height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
      * greater than the document's height returns the height of the visible
      * area as the height portion.
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @return the dimension of the document in the form <code>{width: w,
      * height: h}</code>.
@@ -149,6 +161,12 @@
      *
      * <p>Gets the total height of the document in pixels.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the document's height.
      */
     def(me, 'getDocumentHeight', function() {
@@ -160,6 +178,12 @@
      *
      * <p>Gets the total width of the document in pixels.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the document's width.
      */
     def(me, 'getDocumentWidth', function() {
@@ -170,6 +194,12 @@
      * @function {static} o2.DomHelper.getHeight
      *
      * <p>Gets the <strong>height</strong> of the given element, in pixels.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
@@ -185,6 +215,12 @@
      *
      * <p>Gets the viewport information in the form
      * <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @return the viewport information.
      */
@@ -216,6 +252,12 @@
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the width of the element, in pixels.
      */
     def(me, 'getWidth', function(obj) {
@@ -228,6 +270,12 @@
          *
          * <p>Gets the dimension of the visible area of the browser in the form
          * <code>{width: w, height: h}</code>.
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * @return the dimension of the visible area of the browser in the form
          * <code>{width: w, height: h}</code>.
@@ -264,6 +312,12 @@
      *
      * <p>Gets the inner height of the visible area.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the inner height of the window in pixels.
      */
     def(me, 'getWindowInnerHeight', function() {
@@ -275,6 +329,12 @@
      *
      * <p>Gets the inner width of the visible area.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @return the inner width of the window in pixels.
      */
     def(me, 'getWindowInnerWidth', function() {
@@ -285,6 +345,12 @@
      * @function {static} o2.DomHelper.setWidth
      *
      * <p>Sets the <strong>width</strong> of the given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
@@ -334,6 +400,12 @@
      *
      * <p>Sets the <strong>height</strong> of the given element.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.
      * @param {Integer} height - the new height in pixels.
@@ -375,6 +447,12 @@
      * @function {static} o2.DomHelper.setDimension
      *
      * <p>Sets the dimension of the given element.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
      * of, or the <code>String</code> <strong>id</strong> of it.

@@ -68,6 +68,12 @@
      *
      * <p>Removes all the elements of the <code>Object</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} ar - the <code>Object</code> to clear.
      *
      * @return a <strong>reference</strong> to the object itself.
@@ -104,6 +110,12 @@
      * <p>Creates a clone of the given <code>Object</code>, and returns it;
      * leaving the original intact.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} ar - the object to clone.
      *
      * @return the copied <code>Object</code>.
@@ -138,6 +150,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.copy}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.copy
      */
     alias(me, 'clone', 'copy');
@@ -148,6 +166,12 @@
      * <p>Remove <code>null</code>, and <code>undefined</code> members from
      * the <code>Object</code>.
      * This function alters the actual <code>Object</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} ar - the <code>Object</code> to clean.
      *
@@ -199,6 +223,12 @@
      * @function {static} o2.CollectionHelper.indexOf
      *
      * <p>Gets the index of the element in the given <code>Array</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
      * search.
@@ -259,6 +289,12 @@
      * <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
      * elm) &gt; -1</code>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Array} ar - the <code>Array</code> to search.
      * @param {Object} elm - the <code>Object</code> to match.
      *
@@ -282,6 +318,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.contains
      */
     alias(me, 'includes', 'contains');
@@ -293,6 +335,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.contains
      */
     alias(me, 'inArray', 'contains');
@@ -302,6 +350,12 @@
      *
      * <p>Gets the first <strong>collection</strong> item that validates
      * against the given <strong>delegator</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <code>Array</code> or an iterable
      * <code>Object</code>.
@@ -365,6 +419,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.find}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.find
      */
     alias(me, 'detect', 'find');
@@ -375,6 +435,12 @@
      * <p>Executes a delegate of the form
      * <code>fn(item, currentIndex, collection)</code> for each element
      * of the <strong>collection</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <code>Array</code> or an iterable
      * <code>Object</code>.
@@ -420,6 +486,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.forEach}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.forEach
      */
     alias(me, 'each', 'forEach');
@@ -430,6 +502,12 @@
      * <p>Takes the difference between the current collection and a number of
      * other collections. Only items that do not remain in the rest of the
      * collections will be returned.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Arguments} ... - variable number of input arguments; each
      * argument should either be an <code>Array</code> or an iterable
@@ -485,6 +563,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.diff}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.diff
      */
     alias(me, 'getDifference', 'diff');
@@ -493,6 +577,12 @@
      * @function {static} o2.CollectionHelper.every
      *
      * <p>Check whether every element of a collection passes a truth test.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable collection.
      * @param {Function} delegate - an iterator of the form
@@ -561,6 +651,12 @@
      * <p>Excludes filtered out items from the collection. Returns a new
      * collection without alterin the initial one.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - the iterator in the form
@@ -623,6 +719,12 @@
      *
      * <p>An <strong>alıas</strong> to {@link o2.CollectionHelper.exclude}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.reject
      */
     alias(me, 'reject', 'exclude');
@@ -631,6 +733,12 @@
      * @function {static} o2.CollectionHelper.extend
      *
      * <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} toObj - the <code>Object</code> to copy values to.
      * @param {Object} fromObj - the <code>Object</code> to copy values from.
@@ -688,6 +796,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.extend}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.extend
      */
     alias(me, 'merge', 'extend');
@@ -696,6 +810,12 @@
      * @function {static} o2.CollectionHelper.getFirst
      *
      * <p>Gets the first item in the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -731,6 +851,12 @@
      * @function {static} o2.CollectionHelper.getFirstN
      *
      * <p>Gets the first <strong>n</strong> elements of the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -777,6 +903,12 @@
      * @function {static} o2.CollectionHelper.getFunctions
      *
      * <p>Gets all the <strong>static</strong> methods of the object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -827,6 +959,12 @@
     /**
      * @function {static} o2.CollectionHelper.getMethods
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>An <strong>alias</strong> to
      * {@link o2.CollectionHelper.getFunctions}.</p>
      *
@@ -838,6 +976,12 @@
      * @function {static} o2.CollectionHelper.getKeys
      *
      * <p>Gets all the keys of the object.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -880,6 +1024,12 @@
      *
      * <p>Gets the last item in the collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
@@ -918,6 +1068,12 @@
      * @function {static} o2.CollectionHelper.getLastN
      *
      * <p>Gets the last <strong>n</strong> items in the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -970,6 +1126,12 @@
      *
      * <p>Check whether the collection contains any members.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
@@ -1006,6 +1168,12 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
@@ -1016,7 +1184,6 @@
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that the <strong>delegate</strong>
      * uses as the <code>this</code> reference.
-
      *
      * @return the maximum value in the collection.
      */
@@ -1085,6 +1252,12 @@
      *
      * <p>Gets the maximum value of the collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
@@ -1095,7 +1268,6 @@
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that the <strong>delegate</strong>
      * uses as the <code>this</code> reference.
-
      *
      * @return the minimum value in the collection.
      */
@@ -1159,6 +1331,12 @@
      *
      * <p>Gets the elements of the collection after index n.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Integer} n - (optional; defaults to <code>1</code>) the
@@ -1203,6 +1381,12 @@
      *
      * <p>Gets the number of items in the collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
@@ -1236,6 +1420,12 @@
     /**
      * @function {static} o2.CollectionHelper.getCount
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
      *
      * @see o2.CollectionHelper.getSize
@@ -1245,6 +1435,12 @@
     /**
      * @function {static} o2.CollectionHelper.getLength
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
      *
      * @see o2.CollectionHelper.getSize
@@ -1253,6 +1449,12 @@
 
     /**
      * @function {static} o2.CollectionHelper.getSortedIndex
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * <p>Gets an index to insert the item at a sorted <strong>Array</code>,
      * so that is not needed to be resorted.</p>
@@ -1300,6 +1502,12 @@
      * <p>If an <code>Array</code> is passed, it makes a shallow copy of that
      * array and returns it.</code></p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      *
@@ -1335,6 +1543,12 @@
      *
      * <p>Filters the items of a collections using an evaluator delegate
      * and returns the filtered result set.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -1385,6 +1599,12 @@
      *
      * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see @o2.CollectionHelper.grep
      */
     alias(me, 'select', 'grep');
@@ -1393,6 +1613,12 @@
      * @function {static} o2.CollectionHelper.filter
      *
      * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see @o2.CollectionHelper.grep
      */
@@ -1403,6 +1629,12 @@
      *
      * <p>Groups the items in the collection by a key or an evaluator
      * <code>Function</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -1469,6 +1701,14 @@
     /**
      * @function {static} o2.CollectionHelper.toArray
      *
+     * <p>Safely converts the <code>Object</code> in question into anarray.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - Any <code>Object</code> to convert to an
      * <code>Array</code>. If <strong>obj</strong> is, in deed, an
      * <code>Array</code>, then a shallow copy of it is returned without
@@ -1515,7 +1755,13 @@
      *
      * <p>Calls a <code>Function</code> for each member of the collection,
      * passing the current item as a parameter. Returns an <code>Array</code>
-     * containing the results of eachcall.</p>
+     * containing the results of each call.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -1588,6 +1834,12 @@
      * <p>Removes duplicate entries from the collection. Returns a new
      * <code>Array</code>; does not alter the original collection.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional,
@@ -1644,6 +1896,12 @@
      * <p>Returns an <code>Array</code> of items that are common in all of
      * the collections passed in as parameters.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {...} varargin - the objects to intersect as input arguments.
      *
      * @return an <code>Array</code> containing only the values that are common
@@ -1691,6 +1949,12 @@
      *
      * <p>Calls the delegate <code>Function</code> with an optional set
      * of parametrs for each item in the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -1742,6 +2006,12 @@
      *
      * <p>Returns the last index of the given item.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Object} item - the item to check the index of.
@@ -1779,6 +2049,8 @@
      * @function {static} o2.CollectionHelper.pluck
      *
      * <p>Hard to explain in words. Let us demonstrate by an example:</p>
+     *
+     * <p>Usage example:</p>
      *
      * <pre>
      * var collection = [
@@ -1851,6 +2123,12 @@
      * is the iterated item, <strong>index</strong> is the item's index,
      * and <strong>collection</strong> is the collection we are working on.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Functon} delegate - the reducer <code>Functon</code>.
@@ -1912,8 +2190,8 @@
             return cache;
         }
 
-        for(key in obj) {
-            if(obj.hasOwnProperty(key)) {
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
                 value = obj[key];
 
                 if (!isSeeded) {
@@ -1947,6 +2225,12 @@
      *
      * <p>An <strong>alias</strong> to {o2.CollectionHelper.reduce}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.reduce
      */
     alias(me, 'fold', 'reduce');
@@ -1956,6 +2240,12 @@
      *
      * <p>Works similar to {@link o2.CollectionHelper.fold}, but goes from
      * the end of the collection to the beginning of the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -2004,6 +2294,12 @@
      * <p>An <strong>alias</strong> to
      * {@link o2.CollectionHelper.reduceRight}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.reduceRight
      */
     alias(me, 'foldR', 'reduceRight');
@@ -2012,6 +2308,12 @@
      * @function {static} o2.CollectionHelper.removeElement
      *
      * <p>Removes all ocurences of the element from the collection.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -2054,6 +2356,12 @@
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {String} name - the name of the property.
@@ -2095,6 +2403,12 @@
      *
      * <p>Randomizes the collection. Does not alter the original collection,
      * just returns a randomized copy.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -2147,6 +2461,12 @@
      * <p>Contrary to <code>Array.prototype.sort</code>, this function does not
      * sort the collection in place, and therefore it  does not alter the
      * initial object's contents.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -2235,6 +2555,12 @@
      * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param delegate - Iterator <code>Function</code> in the form
@@ -2295,6 +2621,12 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.some}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see o2.CollectionHelper.some
      */
     alias(me, 'any', 'some');
@@ -2304,6 +2636,12 @@
      *
      * <p>Executes the delegate by passing the <strong>obj</stong> to it as a
      * parameter, then returns the <strong>obj</strong>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - the <code>Object</code> to touch.
      * @param {Function} delegate - the delegate to execute
@@ -2331,6 +2669,12 @@
      * @function {static} o2.CollectionHelper.flatten
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
@@ -2391,6 +2735,12 @@
      *
      * <p>Merges several collections into a singl <code>Array</code></p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {...} varargin - the collections to merge as input parameters.
      *
      * @return the merged <code>Array</code>.
@@ -2405,7 +2755,7 @@
      * <p>Takes a set of <code>Array</code>s as parameters and brings together
      * the elements that have the same index.</p>
      *
-     * <p>Usage Example:</p>
+     * <p>Usage example:</p>
      *
      * <pre>
      * var ar1 = [1,2,3];
@@ -2422,9 +2772,10 @@
      * zip(ar1, ar2, ar3);
      * </pre>
      *
-     * @param {...} varargin -
+     * @param {...} varargin - the <code>Array</code>s to zip as a variable
+     * number of input arguments.
      *
-     * @return
+     * @return a zipped <code>Array</<code>.
      */
     def(me,'zip', function() {
         var args = slice.call(arguments);

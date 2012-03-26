@@ -50,6 +50,12 @@
          *
          * <p>Gets the <strong>window</strong>'s scroll offset.</p>
          *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
+         *
          * @return the the <strong>window</strong>'s scroll offset in the form
          * <code>{left: l, top: t}</code>.
          */
@@ -105,6 +111,12 @@
      *
      * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the <strong>DOM</strong> node to check, or its
      * <code>String</code> id.
      *
@@ -129,6 +141,12 @@
      *
      * <p>An alias to {@link o2.DomHelper.getObjectStrollOffset}.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @see {o2.DomHelper.getObjectScrollOffset}
      */
     alias(me, 'getScrollOffset', 'getObjectScrollOfset');
@@ -137,6 +155,12 @@
 
         /**
          * @function {static} o2.DomHelper.scrollWindowToBottom
+         *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
          *
          * <p>Scrolls window to bottom.</p>
          */
@@ -172,6 +196,12 @@
         /**
          * @function {static} o2.DomHelper.scrollWindowToTop
          *
+         * <p>Usage example:</p>
+         *
+         * <pre>
+         * //TODO: add usage example.
+         * </pre>
+         *
          * <p>Scrolls window to top.</p>
          */
         def(me, 'scrollWindowToTop', function() {
@@ -206,6 +236,12 @@
      *
      * <p>Scrolls an element to top.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the element, or the <strong>id</strong> of the
      * element, to scroll.
      */
@@ -228,6 +264,12 @@
      *
      * <p>Scrolls an element to bottom.</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
      * scroll.
      */
@@ -249,6 +291,12 @@
      * @function {static} o2.DomHelper.scrollTo
      *
      * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see o2.DomHelper.scrollWindowToObject
      */
@@ -273,6 +321,12 @@
      *
      * <p>Scrolls the window to the object's offset position..</p>
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
      * scroll, or an <code>Object</code> in the form
      * <code>{left : leftPx, top : topPx}</code>.
@@ -283,6 +337,12 @@
      * @function {static} o2.DomHelper.scrollToObject
      *
      * <p>An alias to {@link o2.DomHelper.scrollWindowToObject}.</p>
+     *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
      *
      * @see o2.DomHelper.scrollWindowToObject
      */
