@@ -330,7 +330,6 @@
 
     var contains = require(kModuleName, 'contains');
 
-
     /**
      * @function {static} o2.Collection.inArray
      *
