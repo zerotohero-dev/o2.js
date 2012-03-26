@@ -267,7 +267,7 @@
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
-         * internally in {@link EventHandler.addEventListener}
+         * internally in {@link o2.EventHandler.addEventListener}
          *
          * @return the actual <strong>DOM</strong> target of the event object.
          */

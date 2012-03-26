@@ -106,7 +106,7 @@
     });
 
     /**
-     * @function {static} o2.FormHelper.preventMultipleSubmit
+     * @function {static} o2.DomHelper.preventMultipleSubmit
      *
      * <p>Prevents the form to re-submit itself when the submit button
      * is pressed more than once.</p>

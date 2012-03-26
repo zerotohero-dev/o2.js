@@ -148,7 +148,7 @@
     });
 
     /**
-     * @function {static} o2.Methodhelper.delay
+     * @function {static} o2.MethodHelper.delay
      *
      * <p>An <strong>alias</strong> to {@link o2.MethodHelper.defer}.</p>
      *

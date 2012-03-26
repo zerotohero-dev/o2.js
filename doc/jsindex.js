@@ -2738,6 +2738,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "preventMultipleSubmit",
+           fullName : "o2.DomHelper.preventMultipleSubmit",
+           summary : "static function  preventMultipleSubmit(Object form)",
+           ref : "logical/o2/DomHelper.html#___preventMultipleSubmit",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "ready",
            fullName : "o2.DomHelper.ready",
            summary : "static function  ready(Function delegate)",
@@ -2769,6 +2778,15 @@
            fullName : "o2.DomHelper.removeClass",
            summary : "static function  removeClass(DomNode el, String c)",
            ref : "logical/o2/DomHelper.html#___removeClass",
+           parent : "o2.DomHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "removeEmpty",
+           fullName : "o2.DomHelper.removeEmpty",
+           summary : "static function  removeEmpty()",
+           ref : "logical/o2/DomHelper.html#___removeEmpty",
            parent : "o2.DomHelper",
            type : "function",
            elementType : "function"
@@ -2977,24 +2995,6 @@
            summary : "public static function  wrap(Object elmTarget, Object elmWrapper)",
            ref : "logical/o2/DomHelper.html#___wrap",
            parent : "o2.DomHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "Domhelper",
-           fullName : "o2.Domhelper",
-           summary : "namespace Domhelper",
-           ref : "logical/o2/Domhelper.html",
-           parent : "o2",
-           type : "namespace",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "removeEmpty.",
-           fullName : "o2.Domhelper.removeEmpty.",
-           summary : "static function  removeEmpty.()",
-           ref : "logical/o2/Domhelper.html#___removeEmpty.",
-           parent : "o2.Domhelper",
            type : "function",
            elementType : "function"
        } ,         
@@ -3368,24 +3368,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "FormHelper",
-           fullName : "o2.FormHelper",
-           summary : "namespace FormHelper",
-           ref : "logical/o2/FormHelper.html",
-           parent : "o2",
-           type : "namespace",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "preventMultipleSubmit",
-           fullName : "o2.FormHelper.preventMultipleSubmit",
-           summary : "static function  preventMultipleSubmit(Object form)",
-           ref : "logical/o2/FormHelper.html#___preventMultipleSubmit",
-           parent : "o2.FormHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "Jsonp",
            fullName : "o2.Jsonp",
            summary : "static class Jsonp",
@@ -3521,6 +3503,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "delay",
+           fullName : "o2.MethodHelper.delay",
+           summary : "static function  delay()",
+           ref : "logical/o2/MethodHelper.html#___delay",
+           parent : "o2.MethodHelper",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "flip",
            fullName : "o2.MethodHelper.flip",
            summary : "static function  flip(Function fn, Integer index1, Integer index2)",
@@ -3607,24 +3598,6 @@
            summary : "static function  wrap(Function delegate, Function wrapper)",
            ref : "logical/o2/MethodHelper.html#___wrap",
            parent : "o2.MethodHelper",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "Methodhelper",
-           fullName : "o2.Methodhelper",
-           summary : "namespace Methodhelper",
-           ref : "logical/o2/Methodhelper.html",
-           parent : "o2",
-           type : "namespace",
-           elementType : "logical_container"
-       } ,         
-       {
-           localName : "delay",
-           fullName : "o2.Methodhelper.delay",
-           summary : "static function  delay()",
-           ref : "logical/o2/Methodhelper.html#___delay",
-           parent : "o2.Methodhelper",
            type : "function",
            elementType : "function"
        } ,         

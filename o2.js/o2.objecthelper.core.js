@@ -85,7 +85,7 @@
     /**
      * @function {static} o2.ObjectHelper.copyMethods
      * <p>Copies <strong>base</strong>'s methods, to
-     * <strong>child</strong></p>.
+     * <strong>child</strong>.  </p>
      * <p>Note that the methods are copied by ref. Therefore any change in
      * <strong>base</strong> object's methods will be directly reflected to
      * the <strong>child</strong> object.</p>
@@ -121,7 +121,7 @@
      * <p>Copies every propery in <strong>base.prototype</strong>, to
      * <strong>child.prototype</strong>.</p>
      * <p>This is similar to extending <strong>child</strong>
-     * to <strong>base</strong></p>.
+     * to <strong>base</strong>.</p>
      * <p>Note that the methods are copied by ref. Therefore any change in
      * <strong>base</strong> object's prototype methods will be directly
      * reflected to the <strong>child</strong> object's protoype.</p>

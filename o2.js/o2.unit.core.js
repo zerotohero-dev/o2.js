@@ -321,6 +321,12 @@
     /**
      * @function o2.UnitTest.terminate
      *
+     * <p>Usage example:</p>
+     *
+     * <pre>
+     * //TODO: add usage example.
+     * </pre>
+     *
      * <p>Terminates the unit test by setting remaining assertion count to
      * zero.</p>
      */
@@ -587,7 +593,7 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @return <code>true</code> if the current <strong>test suite</code>
+     * @return <code>true</code> if the current <strong>test suite</strong>
      * is still runing; <code>false</code> otherwise.
      */
     def(me, 'isRunning', function() {

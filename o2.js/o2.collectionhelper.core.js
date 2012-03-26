@@ -1456,7 +1456,7 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * <p>Gets an index to insert the item at a sorted <strong>Array</code>,
+     * <p>Gets an index to insert the item at a sorted <code>Array</code>,
      * so that is not needed to be resorted.</p>
      *
      * @param {Array} array - an <code>Array</code> to work on.
@@ -1597,7 +1597,7 @@
     /**
      * @function {static} o2.CollectionHelper.select
      *
-     * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
      *
      * <p>Usage example:</p>
      *
@@ -1612,7 +1612,7 @@
     /**
      * @function {static} o2.CollectionHelper.filter
      *
-     * <p>An <strong>alias</storng> to {@link o2.CollectionHelper.grep}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
      *
      * <p>Usage example:</p>
      *
@@ -2634,7 +2634,7 @@
     /**
      * @function {static} o2.CollectionHelper.touch
      *
-     * <p>Executes the delegate by passing the <strong>obj</stong> to it as a
+     * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
      * parameter, then returns the <strong>obj</strong>.</p>
      *
      * <p>Usage example:</p>
@@ -2647,7 +2647,7 @@
      * @param {Function} delegate - the delegate to execute
      * on <strong>obj</strong>.
      *
-     * @return <code>null</code> if <strong>obj</<code> is falsy or it's a
+     * @return <code>null</code> if <strong>obj</strong> is falsy or it's a
      * primitive type; returns the <strong>obj</strong> itself (after applying
      * delagate to it) otherwise.
      */

@@ -304,7 +304,7 @@
      * <p>Sends a timeout request and unregisters the given
      * <code>Observer</code>s.</p>
      *
-     * @param {Array} observers - A collection of {link AjaxController}
+     * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      *
      * <p>Usage example:</p>

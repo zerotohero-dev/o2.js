@@ -34,7 +34,7 @@
      * @function {static} o2.MethodHelper.after
      *
      * <p>Creates a <code>Function</code> that only executes after being called
-     * <strong>count</code> times.</p>
+     * <strong>count</strong> times.</p>
      *
      * <p>Usage example:</p>
      *

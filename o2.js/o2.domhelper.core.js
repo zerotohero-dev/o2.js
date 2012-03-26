@@ -654,7 +654,7 @@
     });
 
     /**
-     * @function {static} o2.Domhelper.removeEmpty.
+     * @function {static} o2.DomHelper.removeEmpty
      *
      * <p>An <strong>alias</strong> to
      * {@link o2.DomHelper.removeEmptyTextNodes}.</p>
