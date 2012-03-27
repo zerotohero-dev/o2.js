@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 09:11:14.837157
+ *  lastModified: 2012-03-27 06:11:13.524919
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
