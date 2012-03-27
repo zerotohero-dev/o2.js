@@ -1,5 +1,5 @@
 /**
- * @module   collectionhelper.core
+ * @module   collection.core
  * @requires core
  * @requires methodhelper.core
  * @requires validator.core
@@ -27,10 +27,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'CollectionHelper';
+    var kModuleName = 'Collection';
 
     /**
-     * @class {static} o2.CollectionHelper
+     * @class {static} o2.Collection
      *
      * <p>A <strong>class</strong> to modify collections.</p>
      */
@@ -64,7 +64,7 @@
     var kLength = 'length';
 
     /**
-     * @function {static} o2.CollectionHelper.clear
+     * @function {static} o2.Collection.clear
      *
      * <p>Removes all the elements of the <code>Object</code>.</p>
      *
@@ -105,7 +105,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.copy
+     * @function {static} o2.Collection.copy
      *
      * <p>Creates a clone of the given <code>Object</code>, and returns it;
      * leaving the original intact.</p>
@@ -146,9 +146,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.clone
+     * @function {static} o2.Collection.clone
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.copy}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.copy}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -156,12 +156,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.copy
+     * @see o2.Collection.copy
      */
     alias(me, 'clone', 'copy');
 
     /**
-     * @function {static} o2.CollectionHelper.compact
+     * @function {static} o2.Collection.compact
      *
      * <p>Remove <code>null</code>, and <code>undefined</code> members from
      * the <code>Object</code>.
@@ -220,7 +220,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.indexOf
+     * @function {static} o2.Collection.indexOf
      *
      * <p>Gets the index of the element in the given <code>Array</code>.</p>
      *
@@ -284,9 +284,9 @@
     var indexOf = require(kModuleName, 'indexOf');
 
     /**
-     * @function {static} o2.CollectionHelper.contains
+     * @function {static} o2.Collection.contains
      *
-     * <p>An <strong>alias</strong> to <code>o2.CollectionHelper.indexOf(ar,
+     * <p>An <strong>alias</strong> to <code>o2.Collection.indexOf(ar,
      * elm) &gt; -1</code>.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -314,9 +314,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.includes
+     * @function {static} o2.Collection.includes
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
+     * <p>An <strong>alias</strong> to {@link o2.Collection.contains}
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -324,16 +324,16 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.contains
+     * @see o2.Collection.contains
      */
     alias(me, 'includes', 'contains');
 
     var contains = require(kModuleName, 'contains');
 
     /**
-     * @function {static} o2.CollectionHelper.inArray
+     * @function {static} o2.Collection.inArray
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.contains}
+     * <p>An <strong>alias</strong> to {@link o2.Collection.contains}
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -341,12 +341,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.contains
+     * @see o2.Collection.contains
      */
     alias(me, 'inArray', 'contains');
 
     /**
-     * @function {static} o2.CollectionHelper.find
+     * @function {static} o2.Collection.find
      *
      * <p>Gets the first <strong>collection</strong> item that validates
      * against the given <strong>delegator</strong>.</p>
@@ -415,9 +415,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.detect
+     * @function {static} o2.Collection.detect
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.find}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.find}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -425,12 +425,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.find
+     * @see o2.Collection.find
      */
     alias(me, 'detect', 'find');
 
     /**
-     * @function {static} o2.CollectionHelper.forEach
+     * @function {static} o2.Collection.forEach
      *
      * <p>Executes a delegate of the form
      * <code>fn(item, currentIndex, collection)</code> for each element
@@ -482,9 +482,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.each
+     * @function {static} o2.Collection.each
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.forEach}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.forEach}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -492,12 +492,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.forEach
+     * @see o2.Collection.forEach
      */
     alias(me, 'each', 'forEach');
 
     /**
-     * @function {static} o2.CollectionHelper.diff
+     * @function {static} o2.Collection.diff
      *
      * <p>Takes the difference between the current collection and a number of
      * other collections. Only items that do not remain in the rest of the
@@ -559,9 +559,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getDifference
+     * @function {static} o2.Collection.getDifference
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.diff}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.diff}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -569,12 +569,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.diff
+     * @see o2.Collection.diff
      */
     alias(me, 'getDifference', 'diff');
 
     /**
-     * @function {static} o2.CollectionHelper.every
+     * @function {static} o2.Collection.every
      *
      * <p>Check whether every element of a collection passes a truth test.</p>
      *
@@ -646,7 +646,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.exclude
+     * @function {static} o2.Collection.exclude
      *
      * <p>Excludes filtered out items from the collection. Returns a new
      * collection without alterin the initial one.</p>
@@ -670,7 +670,7 @@
      *
      * @return a new filtered object.
      *
-     * @see o2.CollectionHelper.grep
+     * @see o2.Collection.grep
      */
     def(me,'exclude', function(obj, delegate, context) {
          var results = [];
@@ -715,9 +715,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.reject
+     * @function {static} o2.Collection.reject
      *
-     * <p>An <strong>alıas</strong> to {@link o2.CollectionHelper.exclude}.</p>
+     * <p>An <strong>alıas</strong> to {@link o2.Collection.exclude}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -725,12 +725,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.reject
+     * @see o2.Collection.reject
      */
     alias(me, 'reject', 'exclude');
 
     /**
-     * @function {static} o2.CollectionHelper.extend
+     * @function {static} o2.Collection.extend
      *
      * <p>Merges two <code>Object</code>s or <code>Array</code>s.</p>
      *
@@ -792,9 +792,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.merge
+     * @function {static} o2.Collection.merge
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.extend}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.extend}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -802,12 +802,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.extend
+     * @see o2.Collection.extend
      */
     alias(me, 'merge', 'extend');
 
     /**
-     * @function {static} o2.CollectionHelper.getFirst
+     * @function {static} o2.Collection.getFirst
      *
      * <p>Gets the first item in the collection.</p>
      *
@@ -848,7 +848,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getFirstN
+     * @function {static} o2.Collection.getFirstN
      *
      * <p>Gets the first <strong>n</strong> elements of the collection.</p>
      *
@@ -900,7 +900,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getFunctions
+     * @function {static} o2.Collection.getFunctions
      *
      * <p>Gets all the <strong>static</strong> methods of the object.</p>
      *
@@ -957,7 +957,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getMethods
+     * @function {static} o2.Collection.getMethods
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -966,14 +966,14 @@
      * </pre>
      *
      * <p>An <strong>alias</strong> to
-     * {@link o2.CollectionHelper.getFunctions}.</p>
+     * {@link o2.Collection.getFunctions}.</p>
      *
-     * @see o2.CollectionHelper.getFunctions
+     * @see o2.Collection.getFunctions
      */
     alias(me, 'getMethods', 'getFunctions');
 
     /**
-     * @function {static} o2.CollectionHelper.getKeys
+     * @function {static} o2.Collection.getKeys
      *
      * <p>Gets all the keys of the object.</p>
      *
@@ -1020,7 +1020,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getLast
+     * @function {static} o2.Collection.getLast
      *
      * <p>Gets the last item in the collection.</p>
      *
@@ -1065,7 +1065,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getLastN
+     * @function {static} o2.Collection.getLastN
      *
      * <p>Gets the last <strong>n</strong> items in the collection.</p>
      *
@@ -1122,7 +1122,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.isEmpty
+     * @function {static} o2.Collection.isEmpty
      *
      * <p>Check whether the collection contains any members.</p>
      *
@@ -1164,7 +1164,7 @@
     var isEmpty = require(kModuleName, 'isEmpty');
 
     /**
-     * @function {static} o2.CollectionHelper.getMax
+     * @function {static} o2.Collection.getMax
      *
      * <p>Gets the maximum value of the collection.</p>
      *
@@ -1248,7 +1248,7 @@
     var getMax = require(kModuleName, 'getMax');
 
     /**
-     * @function {static} o2.CollectionHelper.getMin
+     * @function {static} o2.Collection.getMin
      *
      * <p>Gets the maximum value of the collection.</p>
      *
@@ -1327,7 +1327,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getRest
+     * @function {static} o2.Collection.getRest
      *
      * <p>Gets the elements of the collection after index n.</p>
      *
@@ -1377,7 +1377,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getSize
+     * @function {static} o2.Collection.getSize
      *
      * <p>Gets the number of items in the collection.</p>
      *
@@ -1418,7 +1418,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getCount
+     * @function {static} o2.Collection.getCount
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1426,14 +1426,14 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
+     * <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
      *
-     * @see o2.CollectionHelper.getSize
+     * @see o2.Collection.getSize
      */
     alias(me, 'getCount', 'getSize');
 
     /**
-     * @function {static} o2.CollectionHelper.getLength
+     * @function {static} o2.Collection.getLength
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1441,14 +1441,14 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * <p>An <strong>alias</strong> to {o2.CollectionHelper.getSize}</p>
+     * <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
      *
-     * @see o2.CollectionHelper.getSize
+     * @see o2.Collection.getSize
      */
     alias(me, 'getLength', 'getSize');
 
     /**
-     * @function {static} o2.CollectionHelper.getSortedIndex
+     * @function {static} o2.Collection.getSortedIndex
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1494,7 +1494,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.getValues
+     * @function {static} o2.Collection.getValues
      *
      * <p>Gets the value of an <code>Object</code> that has
      * <code>{key1 : value1, key2 : value2 ... }</code> kind of layout.</p>
@@ -1539,7 +1539,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.grep
+     * @function {static} o2.Collection.grep
      *
      * <p>Filters the items of a collections using an evaluator delegate
      * and returns the filtered result set.</p>
@@ -1595,9 +1595,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.select
+     * @function {static} o2.Collection.select
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1605,14 +1605,14 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see @o2.CollectionHelper.grep
+     * @see @o2.Collection.grep
      */
     alias(me, 'select', 'grep');
 
     /**
-     * @function {static} o2.CollectionHelper.filter
+     * @function {static} o2.Collection.filter
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.grep}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1620,12 +1620,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see @o2.CollectionHelper.grep
+     * @see @o2.Collection.grep
      */
     alias(me, 'filter', 'grep');
 
     /**
-     * @function {static} o2.CollectionHelper.group
+     * @function {static} o2.Collection.group
      *
      * <p>Groups the items in the collection by a key or an evaluator
      * <code>Function</code>.</p>
@@ -1699,7 +1699,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.toArray
+     * @function {static} o2.Collection.toArray
      *
      * <p>Safely converts the <code>Object</code> in question into anarray.</p>
      *
@@ -1751,7 +1751,7 @@
     var toArray = require(kModuleName, 'toArray');
 
     /**
-     * @function {static} o2.CollectionHelper.map
+     * @function {static} o2.Collection.map
      *
      * <p>Calls a <code>Function</code> for each member of the collection,
      * passing the current item as a parameter. Returns an <code>Array</code>
@@ -1829,7 +1829,7 @@
     var map = require(kModuleName, 'map');
 
     /**
-     * @function {static} o2.CollectionHelper.unique
+     * @function {static} o2.Collection.unique
      *
      * <p>Removes duplicate entries from the collection. Returns a new
      * <code>Array</code>; does not alter the original collection.</p>
@@ -1891,7 +1891,7 @@
      var unique = require(kModuleName, 'unique');
 
     /**
-     * @function {static} o2.CollectionHelper.intersect
+     * @function {static} o2.Collection.intersect
      *
      * <p>Returns an <code>Array</code> of items that are common in all of
      * the collections passed in as parameters.</p>
@@ -1945,7 +1945,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.invoke
+     * @function {static} o2.Collection.invoke
      *
      * <p>Calls the delegate <code>Function</code> with an optional set
      * of parametrs for each item in the collection.</p>
@@ -2002,7 +2002,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.lastIndexOf
+     * @function {static} o2.Collection.lastIndexOf
      *
      * <p>Returns the last index of the given item.</p>
      *
@@ -2046,7 +2046,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.pluck
+     * @function {static} o2.Collection.pluck
      *
      * <p>Hard to explain in words. Let us demonstrate by an example:</p>
      *
@@ -2065,7 +2065,7 @@
      * //    {dolor2 : 'amet2'},
      * //    {dolor3 : 'amet3'}
      * // ]
-     * o2.CollectionHelper.pluck(collection, 'key2');
+     * o2.Collection.pluck(collection, 'key2');
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2111,7 +2111,7 @@
     var pluck = require(kModuleName, 'pluck');
 
     /**
-     * @function {static} o2.CollectionHelper.reduce
+     * @function {static} o2.Collection.reduce
      *
      * <p>Works similar to the <strong>reduce</strong> part of the
      * <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
@@ -2221,9 +2221,9 @@
     var reduce = require(kModuleName, 'reduce');
 
     /**
-     * @function {static} o2.CollectionHelper.fold
+     * @function {static} o2.Collection.fold
      *
-     * <p>An <strong>alias</strong> to {o2.CollectionHelper.reduce}.</p>
+     * <p>An <strong>alias</strong> to {o2.Collection.reduce}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -2231,14 +2231,14 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.reduce
+     * @see o2.Collection.reduce
      */
     alias(me, 'fold', 'reduce');
 
     /**
-     * @function {static} o2.CollectionHelper.reduce
+     * @function {static} o2.Collection.reduce
      *
-     * <p>Works similar to {@link o2.CollectionHelper.fold}, but goes from
+     * <p>Works similar to {@link o2.Collection.fold}, but goes from
      * the end of the collection to the beginning of the collection.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -2257,7 +2257,7 @@
      *
      * @return a single reduced value.
      *
-     * @see o2.CollectionHelper.reduce
+     * @see o2.Collection.reduce
      */
     def(me,'reduceRight', function(obj, delegate, store, context) {
         var isSeeded = arguments.length > 2;
@@ -2289,10 +2289,10 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.foldR
+     * @function {static} o2.Collection.foldR
      *
      * <p>An <strong>alias</strong> to
-     * {@link o2.CollectionHelper.reduceRight}.</p>
+     * {@link o2.Collection.reduceRight}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -2300,12 +2300,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.reduceRight
+     * @see o2.Collection.reduceRight
      */
     alias(me, 'foldR', 'reduceRight');
 
     /**
-     * @function {static} o2.CollectionHelper.removeElement
+     * @function {static} o2.Collection.removeElement
      *
      * <p>Removes all ocurences of the element from the collection.</p>
      *
@@ -2351,7 +2351,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.removeElementByValue
+     * @function {static} o2.Collection.removeElementByValue
      *
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
@@ -2399,7 +2399,7 @@
     };
 
     /**
-     * @function {static} o2.CollectionHelper.shuffle
+     * @function {static} o2.Collection.shuffle
      *
      * <p>Randomizes the collection. Does not alter the original collection,
      * just returns a randomized copy.</p>
@@ -2454,7 +2454,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.sort
+     * @function {static} o2.Collection.sort
      *
      * <p>Sorts the collection.</p>
      *
@@ -2543,7 +2543,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.some
+     * @function {static} o2.Collection.some
      *
      * <p>Checks whether at least one element of the given
      * <strong>collection</strong> satisfies a condition given with
@@ -2617,9 +2617,9 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.any
+     * @function {static} o2.Collection.any
      *
-     * <p>An <strong>alias</strong> to {@link o2.CollectionHelper.some}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.some}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -2627,12 +2627,12 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.CollectionHelper.some
+     * @see o2.Collection.some
      */
     alias(me, 'any', 'some');
 
     /**
-     * @function {static} o2.CollectionHelper.touch
+     * @function {static} o2.Collection.touch
      *
      * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
      * parameter, then returns the <strong>obj</strong>.</p>
@@ -2666,7 +2666,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.flatten
+     * @function {static} o2.Collection.flatten
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
      *
@@ -2731,7 +2731,7 @@
     var flatten = require(kModuleName, 'flatten');
 
     /**
-     * @function {static} o2.CollectionHelper.union
+     * @function {static} o2.Collection.union
      *
      * <p>Merges several collections into a singl <code>Array</code></p>
      *
@@ -2750,7 +2750,7 @@
     });
 
     /**
-     * @function {static} o2.CollectionHelper.zip
+     * @function {static} o2.Collection.zip
      *
      * <p>Takes a set of <code>Array</code>s as parameters and brings together
      * the elements that have the same index.</p>
