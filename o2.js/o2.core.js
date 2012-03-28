@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001332954071
+ * @version     0.25.a.0001332954296
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -109,7 +109,7 @@
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001332954071');
+    def(me, 'build', '.0001332954296');
 
     /**
      * @function {static} o2.$
