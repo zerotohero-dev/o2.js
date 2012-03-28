@@ -2,7 +2,7 @@
  * @module   collection.core
  * @requires core
  * @requires methodhelper.core
- * @requires validator.core
+ * @requires validation.core
  *
  * <!--
  *  This program is distributed under
@@ -44,7 +44,7 @@
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 
-    var kValidator = 'Validator';
+    var kValidator = 'Validation';
     var isArguments = require(kValidator, 'isArguments');
     var isArray     = require(kValidator, 'isArray');
     var isFunction  = require(kValidator, 'isFunction');

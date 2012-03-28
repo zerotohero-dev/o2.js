@@ -14,7 +14,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-26 23:41:19.189929
+ *  lastModified: 2012-03-28 21:50:38.494901
  * -->
  *
  * <p>Meta information.</p>
@@ -261,8 +261,8 @@ this.o2 = this.o2 || {
      var kTimerCore             = 'timer.core';
      var kTryCore               = 'try.core';
      var kUnitCore              = 'unit.core';
-     var kValidatorCore         = 'validator.core';
-     var kValidatorRegExp       = 'validator.regexp';
+     var kValidationCore        = 'validation.core';
+     var kValidationRegExp      = 'validation.regexp';
 
      init(fp, 'classes', {
         o2 : {
@@ -824,27 +824,27 @@ this.o2 = this.o2 || {
                 run                   : {MODULE : kUnitCore}
             }
         },
-        Validator : {
+        Validation : {
             items : {
-                is          : {MODULE : kValidatorCore},
-                isArguments : {MODULE : kValidatorCore},
-                isArray     : {MODULE : kValidatorCore},
-                isBoolean   : {MODULE : kValidatorCore},
-                isDate      : {MODULE : kValidatorCore},
-                isFunction  : {MODULE : kValidatorCore},
-                isNaN       : {MODULE : kValidatorCore},
-                isNull      : {MODULE : kValidatorCore},
-                isNumber    : {MODULE : kValidatorCore},
-                isNumeric   : {MODULE : kValidatorCore},
-                isObject    : {MODULE : kValidatorCore},
-                isRegExp    : {MODULE : kValidatorCore},
-                isString    : {MODULE : kValidatorCore},
-                isUndefined : {MODULE : kValidatorCore},
-                isWindow    : {MODULE : kValidatorCore},
+                is          : {MODULE : kValidationCore},
+                isArguments : {MODULE : kValidationCore},
+                isArray     : {MODULE : kValidationCore},
+                isBoolean   : {MODULE : kValidationCore},
+                isDate      : {MODULE : kValidationCore},
+                isFunction  : {MODULE : kValidationCore},
+                isNaN       : {MODULE : kValidationCore},
+                isNull      : {MODULE : kValidationCore},
+                isNumber    : {MODULE : kValidationCore},
+                isNumeric   : {MODULE : kValidationCore},
+                isObject    : {MODULE : kValidationCore},
+                isRegExp    : {MODULE : kValidationCore},
+                isString    : {MODULE : kValidationCore},
+                isUndefined : {MODULE : kValidationCore},
+                isWindow    : {MODULE : kValidationCore},
 
-                isEmail      : {MODULE : kValidatorRegExp},
-                isUrl        : {MODULE : kValidatorRegExp},
-                isWhitespace : {MODULE : kValidatorRegExp}
+                isEmail      : {MODULE : kValidationRegExp},
+                isUrl        : {MODULE : kValidationRegExp},
+                isWhitespace : {MODULE : kValidationRegExp}
             }
         }
     });

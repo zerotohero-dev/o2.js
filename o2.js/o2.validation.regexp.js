@@ -1,5 +1,5 @@
 /**
- * @module   validator.regexp
+ * @module   validation.regexp
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:20:28.515117
+ *  lastModified: 2012-03-28 21:46:55.621322
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -24,10 +24,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'Validator';
+    var kModuleName = 'Validation';
 
     /*
-     * Validator (regexp)
+     * Validation (regexp)
      */
     var me = create(kModuleName);
 
@@ -39,7 +39,7 @@
     var kWhitespaceRegExp = /^\s*$/;
 
     /**
-     * @function {static} o2.Validator.isEmail
+     * @function {static} o2.Validation.isEmail
      *
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
@@ -71,7 +71,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isUrl
+     * @function {static} o2.Validation.isUrl
      *
      * <p>Checks whether the given argument is a valid <strong>URL</strong>
      * address.</p>
@@ -92,7 +92,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isWhitespace
+     * @function {static} o2.Validation.isWhitespace
      *
      * <p>Checks whether the given argument consists of only whitespace
      * characters.</p>

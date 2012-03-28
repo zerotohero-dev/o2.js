@@ -1,5 +1,5 @@
 /**
- * @module   validator.core
+ * @module   validation.core
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:21:20.608714
+ *  lastModified: 2012-03-28 21:48:57.353405
  * -->
  *
  * <p>A validation helper.</p>
@@ -24,11 +24,11 @@
     /*
      * Module Name
      */
-    var kModuleName = 'Validator';
+    var kModuleName = 'Validation';
 
 
     /**
-     * @class {static} o2.Validator
+     * @class {static} o2.Validation
      *
      * <p>A simple class for validating various kinds of
      * <strong>object</strong>s.</p>
@@ -77,7 +77,7 @@
     }
 
     /**
-     * @function {private} o2.Validator.is
+     * @function {private} o2.Validation.is
      *
      * <p>Returns the type information of the given object.</p>
      * <p>The type can be any of the following:</p>
@@ -106,7 +106,7 @@
     var is = obj(me).is;
 
     /**
-     * @function {static} o2.Validator.isArguments
+     * @function {static} o2.Validation.isArguments
      *
      * <p>Checks whether the object is an <code>arguments</code> object.</p>
      *
@@ -126,7 +126,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isArray
+     * @function {static} o2.Validation.isArray
      *
      * <p>Checks whether the object is an <code>Array</code>.</p>
      *
@@ -147,7 +147,7 @@
 
 
     /**
-     * @function {static} o2.Validator.isBoolean
+     * @function {static} o2.Validation.isBoolean
      *
      * <p>Checks whether the object is a <code>Boolean</code>.
      *
@@ -167,7 +167,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isDate
+     * @function {static} o2.Validation.isDate
      *
      * <p>Checks whether the object is a <code>Date</code>.</p>
      *
@@ -217,7 +217,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isFunction
+     * @function {static} o2.Validation.isFunction
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -237,7 +237,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isNan
+     * @function {static} o2.Validation.isNan
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -260,7 +260,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isNull
+     * @function {static} o2.Validation.isNull
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -280,7 +280,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isNumber
+     * @function {static} o2.Validation.isNumber
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -300,7 +300,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isNumeric
+     * @function {static} o2.Validation.isNumeric
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -320,7 +320,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isObject
+     * @function {static} o2.Validation.isObject
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -340,7 +340,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isRegExp
+     * @function {static} o2.Validation.isRegExp
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -360,7 +360,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isString
+     * @function {static} o2.Validation.isString
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -379,7 +379,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isUndefined
+     * @function {static} o2.Validation.isUndefined
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -399,7 +399,7 @@
     });
 
     /**
-     * @function {static} o2.Validator.isWindow
+     * @function {static} o2.Validation.isWindow
      *
      * <p><strong>Usage example:</strong></p>
      *
