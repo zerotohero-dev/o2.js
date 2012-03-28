@@ -250,7 +250,7 @@ this.o2 = this.o2 || {
      var kMethodTimer           = 'method.timer';
      var kMethodTranspose       = 'method.transpose';
      var kObjectCore            = 'object.core';
-     var kQueryParserCore       = 'queryparser.core';
+     var kQueryStringCore       = 'querystring.core';
      var kSortDelegateCore      = 'sortdelegate.core';
      var kStringHelperCore      = 'stringhelper.core';
      var kStringHelperEncode    = 'stringhelper.encode';
@@ -735,10 +735,10 @@ this.o2 = this.o2 || {
                 toJsonString  : {MODULE : kObjectCore}
             }
         },
-        QueryParser : {
+        QueryString : {
             items : {
-                encode : {MODULE : kQueryParserCore},
-                parse  : {MODULE : kQueryParserCore}
+                encode : {MODULE : kQueryStringCore},
+                parse  : {MODULE : kQueryStringCore}
             }
         },
         SortDelegate : {

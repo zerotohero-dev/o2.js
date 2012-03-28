@@ -3665,29 +3665,29 @@
            elementType : "function"
        } ,         
        {
-           localName : "QueryParser",
-           fullName : "o2.QueryParser",
-           summary : "static class QueryParser",
-           ref : "logical/o2/QueryParser.html",
+           localName : "QueryString",
+           fullName : "o2.QueryString",
+           summary : "static class QueryString",
+           ref : "logical/o2/QueryString.html",
            parent : "o2",
            type : "class",
            elementType : "logical_container"
        } ,         
        {
            localName : "encode",
-           fullName : "o2.QueryParser.encode",
+           fullName : "o2.QueryString.encode",
            summary : "static function  encode()",
-           ref : "logical/o2/QueryParser.html#___encode",
-           parent : "o2.QueryParser",
+           ref : "logical/o2/QueryString.html#___encode",
+           parent : "o2.QueryString",
            type : "function",
            elementType : "function"
        } ,         
        {
            localName : "parse",
-           fullName : "o2.QueryParser.parse",
+           fullName : "o2.QueryString.parse",
            summary : "static function  parse(String url)",
-           ref : "logical/o2/QueryParser.html#___parse",
-           parent : "o2.QueryParser",
+           ref : "logical/o2/QueryString.html#___parse",
+           parent : "o2.QueryString",
            type : "function",
            elementType : "function"
        } ,         

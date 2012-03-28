@@ -1,5 +1,5 @@
 /**
- * @module   queryparser.core
+ * @module   querystring.core
  * @requires core
  *
  * <!--
@@ -23,10 +23,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'QueryParser';
+    var kModuleName = 'QueryString';
 
     /**
-     * @class {static} o2.QueryParser
+     * @class {static} o2.QueryString
      *
      * <p>Used for parsing the browser's <strong>query string</strong>.</p>
      */
@@ -51,7 +51,7 @@
     var kValueIndex = 1;
 
     /**
-     * @function {static} o2.QueryParser.encode
+     * @function {static} o2.QueryString.encode
      *
      * <p>Converts the <strong>JSON</strong> object in parameters into a
      * query string.</p>
@@ -81,7 +81,7 @@
     });
 
     /**
-     * @function {static} o2.QueryParser.parse
+     * @function {static} o2.QueryString.parse
      *
      * <p>Parses the <strong>query string</strong>.</p>
      *
