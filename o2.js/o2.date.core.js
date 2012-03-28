@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:58:01.114735
+ *  lastModified: 2012-03-28 21:25:45.919029
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -41,7 +41,7 @@
     var $      = require('$');
     var now    = require('now');
 
-    var format = require('StringHelper', 'format');
+    var format = require('String', 'format');
 
     var math  = Math;
     var floor = attr(math, 'floor');

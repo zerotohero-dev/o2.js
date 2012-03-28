@@ -2,14 +2,14 @@
  * @module   event.core
  * @requires core
  * @requires event.constants
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:12:08.014711
+ *  lastModified: 2012-03-28 21:12:37.510854
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -41,7 +41,7 @@
     var myName = require('name');
     var nill   = require('nill');
 
-    var kStringHelper = 'StringHelper';
+    var kStringHelper = 'String';
     var concat        = require(kStringHelper, 'concat');
     var format        = require(kStringHelper, 'format');
 

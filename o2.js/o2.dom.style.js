@@ -2,15 +2,15 @@
  * @module   dom.style
  * @requires core
  * @requires dom.core
- * @requires stringhelper.core
- * @requires stringhelper.transform
+ * @requires string.core
+ * @requires string.transform
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 18:56:41.325263
+ *  lastModified: 2012-03-28 21:17:48.687380
  * -->
  *
  * <p>A utility package to
@@ -45,10 +45,10 @@
     var t      = require('t');
     var myName = require('name');
 
-    var kStringHelper         = 'StringHelper';
-    var concat                = require(kStringHelper, 'concat');
-    var toCamelCase           = require(kStringHelper, 'toCamelCase');
-    var toDashedFromCamelCase = require(kStringHelper, 'toDashedFromCamelCase');
+    var kString               = 'String';
+    var concat                = require(kString, 'concat');
+    var toCamelCase           = require(kString, 'toCamelCase');
+    var toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase');
 
     var createElement        = attr(document, 'createElement');
     var getElementsByTagName = attr(document, 'getElementsByTagName');

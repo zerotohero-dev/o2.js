@@ -252,10 +252,10 @@ this.o2 = this.o2 || {
      var kObjectCore            = 'object.core';
      var kQueryStringCore       = 'querystring.core';
      var kSortDelegateCore      = 'sortdelegate.core';
-     var kStringHelperCore      = 'stringhelper.core';
-     var kStringHelperEncode    = 'stringhelper.encode';
-     var kStringHelperStrip     = 'stringhelper.strip';
-     var kStringHelperTransform = 'stringhelper.transform';
+     var kStringCore            = 'string.core';
+     var kStringEncode          = 'string.encode';
+     var kStringStrip           = 'string.strip';
+     var kStringTransform       = 'string.transform';
      var kSupportsCore          = 'supports.core';
      var kTemplateCore          = 'template.core';
      var kTimerCore             = 'timer.core';
@@ -748,40 +748,40 @@ this.o2 = this.o2 || {
                 sortDesc : {MODULE : kSortDelegateCore}
             }
         },
-        StringHelper : {
+        String : {
             items : {
-                compact        : {MODULE : kStringHelperCore},
-                concat         : {MODULE : kStringHelperCore},
-                format         : {MODULE : kStringHelperCore},
-                generateGuid   : {MODULE : kStringHelperCore},
-                generateRandom : {MODULE : kStringHelperCore},
-                printf         : {MODULE : kStringHelperCore},
-                remove         : {MODULE : kStringHelperCore},
-                trim           : {MODULE : kStringHelperCore},
+                compact        : {MODULE : kStringCore},
+                concat         : {MODULE : kStringCore},
+                format         : {MODULE : kStringCore},
+                generateGuid   : {MODULE : kStringCore},
+                generateRandom : {MODULE : kStringCore},
+                printf         : {MODULE : kStringCore},
+                remove         : {MODULE : kStringCore},
+                trim           : {MODULE : kStringCore},
 
-                decode         : {MODULE : kStringHelperEncode},
-                encode         : {MODULE : kStringHelperEncode},
-                encodeSafeHtml : {MODULE : kStringHelperEncode},
-                escape         : {MODULE : kStringHelperEncode},
-                htmlEncode     : {MODULE : kStringHelperEncode},
-                safeHtmlEncode : {MODULE : kStringHelperEncode},
-                unescape       : {MODULE : kStringHelperEncode},
-                xssEncode      : {MODULE : kStringHelperEncode},
+                decode         : {MODULE : kStringEncode},
+                encode         : {MODULE : kStringEncode},
+                encodeSafeHtml : {MODULE : kStringEncode},
+                escape         : {MODULE : kStringEncode},
+                htmlEncode     : {MODULE : kStringEncode},
+                safeHtmlEncode : {MODULE : kStringEncode},
+                unescape       : {MODULE : kStringEncode},
+                xssEncode      : {MODULE : kStringEncode},
 
-                stripNonAlpha        : {MODULE : kStringHelperStrip},
-                stripNonAlphanumeric : {MODULE : kStringHelperStrip},
-                stripTags            : {MODULE : kStringHelperStrip},
-                stripNonNumeric      : {MODULE : kStringHelperStrip},
-                stripNumeric         : {MODULE : kStringHelperStrip},
+                stripNonAlpha        : {MODULE : kStringStrip},
+                stripNonAlphanumeric : {MODULE : kStringStrip},
+                stripTags            : {MODULE : kStringStrip},
+                stripNonNumeric      : {MODULE : kStringStrip},
+                stripNumeric         : {MODULE : kStringStrip},
 
-                br2nl                     : {MODULE : kStringHelperTransform},
-                nl2br                     : {MODULE : kStringHelperTransform},
-                removeTags                : {MODULE : kStringHelperTransform},
-                toCamelCase               : {MODULE : kStringHelperTransform},
-                toDashedFromCamelCase     : {MODULE : kStringHelperTransform},
-                toJson                    : {MODULE : kStringHelperTransform},
-                toUnderscoreFromCamelCase : {MODULE : kStringHelperTransform},
-                truncate                  : {MODULE : kStringHelperTransform}
+                br2nl                     : {MODULE : kStringTransform},
+                nl2br                     : {MODULE : kStringTransform},
+                removeTags                : {MODULE : kStringTransform},
+                toCamelCase               : {MODULE : kStringTransform},
+                toDashedFromCamelCase     : {MODULE : kStringTransform},
+                toJson                    : {MODULE : kStringTransform},
+                toUnderscoreFromCamelCase : {MODULE : kStringTransform},
+                truncate                  : {MODULE : kStringTransform}
             }
         },
         Supports : {

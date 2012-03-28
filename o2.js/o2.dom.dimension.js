@@ -2,14 +2,14 @@
  * @module   dom.dimension
  * @requires core
  * @requires dom.style
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:36:44.657330
+ *  lastModified: 2012-03-28 21:23:14.106427
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -41,7 +41,7 @@
 
     var $ = require('$');
 
-    var concat = require('StringHelper', 'concat');
+    var concat = require('String', 'concat');
 
     var setStyle = require(kModuleName, 'setStyle');
 

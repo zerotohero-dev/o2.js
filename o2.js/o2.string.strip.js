@@ -1,5 +1,5 @@
 /**
- * @module   stringhelper.strip
+ * @module   string.strip
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:29:32.648493
+ *  lastModified: 2012-03-28 21:05:17.842229
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
@@ -24,10 +24,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'StringHelper';
+    var kModuleName = 'String';
 
     /*
-     * StringHelper (strip)
+     * String (strip)
      */
     var me = create(kModuleName);
 
@@ -46,7 +46,7 @@
     var kEmpty = '';
 
     /**
-     * @function {static} o2.StringHelper.stripNonAlpha
+     * @function {static} o2.String.stripNonAlpha
      *
      * <p>Removes non alphabetical characters from the <code>String</code>
      * (excluding numbers).</p>
@@ -66,7 +66,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.stripNonAlphanumeric
+     * @function {static} o2.String.stripNonAlphanumeric
      *
      * <p>Removes alpha-numeric characters from the <code>String</code>.</p>
      *
@@ -85,7 +85,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.stripTags
+     * @function {static} o2.String.stripTags
      *
      * <p>Removes tags from the <code>String</code>.
      *
@@ -104,7 +104,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.stripNonNumeric
+     * @function {static} o2.String.stripNonNumeric
      *
      * <p>Removes non-numeric characters from the <code>String</code>.</p>
      *
@@ -123,7 +123,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.stripNumeric
+     * @function {static} o2.String.stripNumeric
      *
      * <p>Removes numeric characters from the <code>String</code>.</p>
      *

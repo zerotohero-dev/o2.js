@@ -1,14 +1,14 @@
 /**
  * @module   cookie.core
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 09:11:14.837157
+ *  lastModified: 2012-03-28 21:26:32.437447
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -38,7 +38,7 @@
      * Aliases
      */
 
-    var concat = require('StringHelper', 'concat');
+    var concat = require('String', 'concat');
 
     var escape = attr(window, 'escape');
 
@@ -75,9 +75,9 @@
      * if the <strong>cookie</strong> is not found.
      */
     def(me, 'read', function(name) {
-        var eq = concat(decodeURIComponent(name), kEmpty);
         var ca = document.cookie.split(kDelimeter);
-        var i = 0;
+        var eq = concat(decodeURIComponent(name), kEmpty);
+        var i  = 0;
 
         for (i = 0; i < ca.length; i++) {
             var c = ca[i];
@@ -115,8 +115,8 @@
      * secure connection.
      */
     def(me, 'save', function(name, value, days, path, domain, isSecure) {
+        var d  = new Date();
         var ex = kEmpty;
-        var d = new Date();
 
         if (days) {
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));

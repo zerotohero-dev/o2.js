@@ -1,15 +1,15 @@
 /**
  * @module   ajax.core
  * @requires core
- * @requires stringhelper.core
- * @requires eventhandler.core
+ * @requires string.core
+ * @requires event.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 09:38:38.914438
+ *  lastModified: 2012-03-28 21:31:11.737130
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -42,9 +42,9 @@
 
     var nill = require('nill');
 
-    var kStringHelper = 'StringHelper';
-    var generateGuid  = require(kStringHelper, 'generateGuid');
-    var concat        = require(kStringHelper, 'concat');
+    var kString       = 'String';
+    var generateGuid  = require(kString, 'generateGuid');
+    var concat        = require(kString, 'concat');
 
     var listen = require('EventHandler', 'addEventListener');
 
@@ -213,16 +213,15 @@
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-        var oncomplete = callbacks.oncomplete || nill;
-        var onerror = callbacks.onerror || nill;
-        var onexception = callbacks.onexception || nill;
-        var onaborted = callbacks.onaborted || nill;
-
-        var isSuccess = false;
-        var status = 0;
+        var isSuccess    = false;
+        var onaborted    = callbacks.onaborted || nill;
+        var oncomplete   = callbacks.oncomplete || nill;
+        var onerror      = callbacks.onerror || nill;
+        var onexception  = callbacks.onexception || nill;
         var responseText = kEmpty;
-        var responseXml = null;
-        var statusText = kEmpty;
+        var responseXml  = null;
+        var status       = 0;
+        var statusText   = kEmpty;
 
         if (xhr.isAborted) {
             onaborted(xhr);
@@ -298,9 +297,9 @@
      */
     function addHeaders(xhr, headers) {
         var header = null;
-        var i = 0;
-        var len = 0;
-        var key = 0;
+        var i      = 0;
+        var key    = 0;
+        var len    = 0;
 
         for (i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
@@ -361,16 +360,15 @@
             return null;
         }
 
-        var ajaxParameters = parameters || {};
-        var ajaxCallbacks = callbacks || {};
-        var isAsync = !!!isSync;
-        var isPost = verb !== kGet;
-        var xhr = createXhr();
-        var parametrizedQuery = generateParametrizeQueryString(ajaxParameters);
-        var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
-        var postQuery = isPost ? parametrizedQuery : kEmpty;
-
-        var index = counter++;
+        var ajaxCallbacks      = callbacks || {};
+        var ajaxParameters     = parameters || {};
+        var getQuery           = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
+        var index              = counter++;
+        var isAsync            = !!!isSync;
+        var isPost             = verb !== kGet;
+        var parametrizedQuery  = generateParametrizeQueryString(ajaxParameters);
+        var postQuery          = isPost ? parametrizedQuery : kEmpty;
+        var xhr                = createXhr();
 
         // Add request to cache.
         requestCache[kKey+index] = xhr;
@@ -507,7 +505,7 @@
     // long-polling, the next time you open a page on that domain it will
     // hang forever. The below event listener fixes that.
     listen(window, kUnload, function() {
-        var key = null;
+        var key     = null;
         var request = null;
 
         try {

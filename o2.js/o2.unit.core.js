@@ -3,14 +3,14 @@
  * @requires core
  * @requires debugger.core
  * @requires dom.scroll
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 18:50:20.581680
+ *  lastModified: 2012-03-28 21:02:26.684262
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -51,7 +51,7 @@
     var initDebugger = require(kDebugger, 'init');
     var log          = require(kDebugger, 'log');
 
-    var kStringHelper = 'StringHelper';
+    var kStringHelper = 'String';
     var concat = require(kStringHelper, 'concat');
     var format = require(kStringHelper, 'format');
 

@@ -2,14 +2,14 @@
  * @module   dom.form
  * @requires core
  * @requires dom.core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:33:19.096278
+ *  lastModified: 2012-03-28 21:21:14.564185
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -39,9 +39,9 @@
 
     var $ = require('$');
 
-    var kStringHelper = 'StringHelper';
-    var compact       = require(kStringHelper, 'compact');
-    var trim          = require(kStringHelper, 'trim');
+    var kString = 'String';
+    var compact = require(kString, 'compact');
+    var trim    = require(kString, 'trim');
 
     /**
      * @function {static} o2.Dom.compactField
@@ -60,7 +60,7 @@
      * @return field's compacted value; or <code>null</code> if the field
      * does not exist.
      *
-     * @see o2.StringHelper.compact
+     * @see o2.String.compact
      */
     def(me, 'compactField', function(field) {
         field = $(field);
@@ -91,7 +91,7 @@
      * @return field's trimmed value; or <code>null</code> if the field
      * does not exist.
      *
-     * @see o2.StringHelper.trim
+     * @see o2.String.trim
      */
     def(me, 'trimField', function(field) {
         field = $(field);

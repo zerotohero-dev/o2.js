@@ -1,14 +1,14 @@
 /**
  * @module   method.inherit
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:23:21.278033
+ *  lastModified: 2012-03-28 21:10:36.975421
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>
@@ -35,7 +35,7 @@
     /*
      * Aliases
      */
-    var format = require('StringHelper', 'format');
+    var format = require('String', 'format');
 
     /*
      * Common Constants

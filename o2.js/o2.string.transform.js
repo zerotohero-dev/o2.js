@@ -1,5 +1,5 @@
 /**
- * @module   stringhelper.transform
+ * @module   string.transform
  * @requires core
  *
  * <!--
@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:28:50.317276
+ *  lastModified: 2012-03-28 21:03:34.339861
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -24,10 +24,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'StringHelper';
+    var kModuleName = 'String';
 
     /*
-     * StringHelper (transform)
+     * String (transform)
      */
     var me = create(kModuleName);
 
@@ -58,7 +58,7 @@
     var kTruncationLength = 100;
 
     /**
-     * @function {static} o2.StringHelper.br2nl
+     * @function {static} o2.String.br2nl
      *
      * <p>Replaces HTML [br /] tags with new line.</p>
      *
@@ -77,7 +77,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.nl2br
+     * @function {static} o2.String.nl2br
      *
      * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
      *
@@ -96,7 +96,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.removeTags
+     * @function {static} o2.String.removeTags
      *
      * <p>Removes all the <strong>HTML</strong> tags in the
      * <code>String</code>.</p>
@@ -116,7 +116,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.toCamelCase
+     * @function {static} o2.String.toCamelCase
      *
      * <p>Converts the input to camel case.</p>
      * <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
@@ -140,7 +140,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.toDashedFromCamelCase
+     * @function {static} o2.String.toDashedFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem-ipsum'.</p>
@@ -162,7 +162,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.toJson
+     * @function {static} o2.String.toJson
      *
      * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
      * object.</p>
@@ -189,7 +189,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.toUnderscoreFromCamelCase
+     * @function {static} o2.String.toUnderscoreFromCamelCase
      *
      * <p>Converts a <code>String</code> of the form 'loremIpsum' to
      * 'lorem_ipsum'.</p>
@@ -211,7 +211,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.truncate
+     * @function {static} o2.String.truncate
      *
      * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
      * is greater than <strong>maxLen</strong>.</p>
@@ -229,7 +229,7 @@
      * @return the processed <code>String</code>.
      */
     def(me, 'truncate', function(str, maxLen) {
-        var eLen = kEllipsis.length;
+        var eLen      = kEllipsis.length;
         var maxLength = maxLen || kTruncationLength;
 
         if (str.length > maxLength) {

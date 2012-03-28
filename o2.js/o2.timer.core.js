@@ -1,14 +1,14 @@
 /**
  * @module   timer.core
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:24:16.113893
+ *  lastModified: 2012-03-28 21:03:04.083736
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -56,7 +56,7 @@
     /*
      * Aliases
      */
-    var concat = require('StringHelper', 'concat');
+    var concat = require('String', 'concat');
 
     var clearInterval = attr(window, 'clearInterval');
     var clearTimeout  = attr(window, 'clearTimeout');

@@ -2,7 +2,7 @@
  * @module   object.core
  * @requires collection.core
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
@@ -43,9 +43,9 @@
 
     var myName = require('name');
 
-    var kStringHelper = 'StringHelper';
-    var format        = require(kStringHelper, 'format');
-    var concat        = require(kStringHelper, 'concat');
+    var kString = 'String';
+    var format  = require(kString, 'format');
+    var concat  = require(kString, 'concat');
 
     var toArray = require('Collection', 'toArray');
 

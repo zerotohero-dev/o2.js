@@ -1,14 +1,14 @@
 /**
- * @module   stringhelper.encode
+ * @module   string.encode
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:30:16.108039
+ *  lastModified: 2012-03-28 21:06:03.291217
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
@@ -25,10 +25,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'StringHelper';
+    var kModuleName = 'String';
 
     /*
-     * StringHelper (encode)
+     * String (encode)
      */
     var me = create(kModuleName);
 
@@ -120,7 +120,7 @@
     }
 
     /**
-     * @function {static} o2.StringHelper.decode
+     * @function {static} o2.String.decode
      *
      * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
      * <p>If possible try using standard decoding methods like
@@ -141,7 +141,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.encode
+     * @function {static} o2.String.encode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
      * entities.</p>
@@ -164,9 +164,9 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.htmlEncode
+     * @function {static} o2.String.htmlEncode
      *
-     * <p>An <strong>alias</strong> to {@link o2.StringHelper.encode}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.String.encode}.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -174,14 +174,14 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * @see o2.StringHelper.encode
+     * @see o2.String.encode
      */
     alias(me, 'htmlEncode', 'encode');
 
     /**
-     * @function {static} o2.StringHelper.encodeSafeHtml
+     * @function {static} o2.String.encodeSafeHtml
      *
-     * <p>Works similar to {@link o2.StringHelper.encode}.</p>
+     * <p>Works similar to {@link o2.String.encode}.</p>
      * <p>Encodes the <code>String</code> by converting it into a text node
      * and returning the node's value.</p>
      *
@@ -195,7 +195,7 @@
      *
      * @return the processed <code>String</code>.
      *
-     * @see o2.StringHelper.encode
+     * @see o2.String.encode
      */
     def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
@@ -209,7 +209,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.safeHtmlEncode
+     * @function {static} o2.String.safeHtmlEncode
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -218,14 +218,14 @@
      * </pre>
      *
      * <p>An <strong>alias</strong> to
-     * {@link o2.StringHelper.encodeSafeHtml}.</p>
+     * {@link o2.String.encodeSafeHtml}.</p>
      *
-     * @see o2.StringHelper.encodeSafeHtml
+     * @see o2.String.encodeSafeHtml
      */
     alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
 
     /**
-     * @function {static} o2.StringHelper.escape
+     * @function {static} o2.String.escape
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -244,7 +244,7 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.unescape
+     * @function {static} o2.String.unescape
      *
      * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
      *
@@ -263,10 +263,10 @@
     });
 
     /**
-     * @function {static} o2.StringHelper.xssEncode
+     * @function {static} o2.String.xssEncode
      *
      * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
-     * entities. Works similar to {link StringHelper.encode}, with an
+     * entities. Works similar to {link String.encode}, with an
      * exception that it does not encode whitespace characters.</p>
      * <p>This method is specially designed to prevent cross-site script
      * injection attacks.</p>

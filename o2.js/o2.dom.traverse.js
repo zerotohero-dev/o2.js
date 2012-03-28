@@ -4,14 +4,14 @@
  * @requires core
  * @requires dom.class
  * @requires dom.core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 18:56:20.120691
+ *  lastModified: 2012-03-28 21:14:43.031720
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -50,9 +50,9 @@
 
     var getAttribute = require(kModuleName, 'getAttribute');
 
-    var kStringHelper = 'StringHelper';
-    var format        = require(kStringHelper, 'format');
-    var generateGuid  = require(kStringHelper, 'generateGuid');
+    var kString       = 'String';
+    var format        = require(kString, 'format');
+    var generateGuid  = require(kString, 'generateGuid');
 
     var contains = require('Collection', 'contains');
 

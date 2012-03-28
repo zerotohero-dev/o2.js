@@ -1,14 +1,14 @@
 /**
  * @module   jsonp.core
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:41:52.873413
+ *  lastModified: 2012-03-28 21:11:47.267768
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -40,7 +40,7 @@
     var myName = require('name');
     var nill   = require('nill');
 
-    var concat = require('StringHelper', 'concat');
+    var concat = require('String', 'concat');
 
     var createElement        = attr(document, 'createElement');
     var getElementsByTagName = attr(document, 'getElementsByTagName');

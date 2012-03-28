@@ -2,14 +2,14 @@
  * @module   dom.load
  * @requires core
  * @requires dom.core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:31:16.090504
+ *  lastModified: 2012-03-28 21:19:57.666976
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -41,13 +41,13 @@
     var myName = require('name');
     var nill   = require('nill');
 
-    var kStringHelper = 'StringHelper';
-    var concat        = require(kStringHelper, 'concat');
-    var format        = require(kStringHelper, 'format');
-    var generateGuid  = require(kStringHelper, 'generateGuid');
+    var kString       = 'String';
+    var concat        = require(kString, 'concat');
+    var format        = require(kString, 'format');
+    var generateGuid  = require(kString, 'generateGuid');
 
-    var Image                = attr(window, 'Image');
-    var setTimeout           = attr(window, 'setTimeout');
+    var Image                = attr(window,   'Image');
+    var setTimeout           = attr(window,   'setTimeout');
     var createElement        = attr(document, 'createElement');
     var getElementsByTagName = attr(document, 'getElementsByTagName');
     var sheets               = attr(document, 'styleSheets');

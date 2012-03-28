@@ -1,14 +1,14 @@
 /**
  * @module   dom.class
  * @requires core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:42:14.406262
+ *  lastModified: 2012-03-28 21:24:46.685924
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -38,7 +38,7 @@
 
     var $ = require('$');
 
-    var concat = require('StringHelper', 'concat');
+    var concat = require('String', 'concat');
 
     /*
      * Common Constants
