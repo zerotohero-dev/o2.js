@@ -1,0 +1,1360 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <title>o2.js</title>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">        
+        <script>
+
+			(function()
+			{
+			    var loc = window.location.protocol + '//' + window.location.hostname + window.location.pathname;
+                loc = loc.split('\\');
+                loc = loc.join('/');					    
+			    loc = loc.split('/');
+			    loc.pop();
+			    loc = loc.join('/');
+			    loc += '/' + '../../';
+			
+			    document.write("<base href='" + loc + "'></base>");
+			})();
+         
+        </script>
+
+        <link rel="stylesheet" type="text/css" href="jgdoc.css">
+        <link rel="stylesheet" type="text/css" href="theme.css">
+        	    <script type="text/javascript" src="navTree.js"></script>
+	    <script type="text/javascript" src="jgdoc.js"></script>
+	</head>
+    <body>
+        <div class="startup" id="startup">
+            <div class="banner" id="banner">
+                <h1 class="projectName">
+	               <a href="http://o2js.com/">o2.js</a>   
+                </h1>
+                <div class="bar">
+	                 version 0.25.a.0001332954994
+	            </div>
+	         </div>
+             <div class="content" id="docContent">
+                  <div class="block">
+                        <div id="searchBlock">
+			                <div class="search" >
+			                    <div class="searchLabel">Search:</div>
+			                    <div class="searchBlock" style="height:100%">
+					                <input id="jgsSearchString" type="text" size="60" class="jgdSearchString"/>
+					                <div id="jgsSearchPanel" class="jgsSearchPanel" style="display:none">
+						                <div  class="jgdSearchRect" >
+						                    <div id="jgsSearchResults">
+						                        Loading....
+						                    </div>
+						                </div>
+					                   <div id="jgsInfo" class="jgsInfo" >No selection</div>
+                                    </div>
+                                 </div>
+			                </div>
+		                </div>
+		                <div id="docScroll" class="docScroll">
+		                    <div>
+			                    <hr/>
+						        <div>
+						        						        		<H2>
+        <span class="objType">Class</span> o2.Event
+    </H2>
+    
+
+    <hr/>
+    <!-- description -->
+    <div>
+       <code>
+            <span class="modifiers">static</span>
+            <span class="objType">class</span> 
+            <b>o2.Event</b>
+       </code>
+    </div>
+                <div class="comment"><p>A cross-browser event handling and event utilities class.</p>
+
+ </div>
+                                            <span class="definedIn">Defined in </span>
+        <a href="physical/event/module-constants.html">event.constants</a>
+        <hr/> 
+    <p />
+    
+            	
+                                
+                    
+    
+                    
+            
+                <div class="summaryTable function">
+            <div class="summaryTableHeader">
+                <span class="objType">Function</span> Summary
+            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___addEventListener"><span class="elementName">addEventListener</span></a>
+                (<span class="type">DomNode</span>
+ node, <span class="type">String</span>
+ evt, <span class="type">Function</span>
+ fn)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___addEventListeners"><span class="elementName">addEventListeners</span></a>
+                (<span class="type">Object</span>
+ collection, <span class="type">String</span>
+ eventName, <span class="type">Function</span>
+ handler)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Adds a set of event handlers the the <strong>eventName</strong> of
+ the given <strong>collection</strong>.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___getEventObject"><span class="elementName">getEventObject</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the actual event object.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___getKeyCode"><span class="elementName">getKeyCode</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the key code of the key-related event (keydown, keyup, keypress
+ etc.).</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___getMouseCoordinates"><span class="elementName">getMouseCoordinates</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the current mouse coordinates.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___getTarget"><span class="elementName">getTarget</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the originating source of the event.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isArrowKey"><span class="elementName">isArrowKey</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is an arrow key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isBackspaceKey"><span class="elementName">isBackspaceKey</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isCharacterKeypressEvent"><span class="elementName">isCharacterKeypressEvent</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>Checks whether the character in a <code>onkeypress</code> event
+ actually produces a printable char.</p>
+
+ <p>The thing you have to remember is that you can't reliably tell
+ <strong>anything at all</strong> about any character that may be
+ typed in a <code>onkeydown</code> or <code>onkeyup</code> event:
+ The printable key is determined only in the <code>onkeypress</code>
+ handler.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isEnterKey"><span class="elementName">isEnterKey</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the enter (return) key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isEscapeKey"><span class="elementName">isEscapeKey</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the escape (ESC) key.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isRightClick"><span class="elementName">isRightClick</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether or not the curent action is a right click action.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___isTabKey"><span class="elementName">isTabKey</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Checks whether the pressed key is the tab key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___preventDefault"><span class="elementName">preventDefault</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Prevents the default action. When this method is called inside an
+ even handling callback, the default action associated with that
+ event is not triggered. Like, if it is an <code>onclick</code>
+ event on a link, then the browser does not go to the
+ <code>href</code> of that link.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___removeEventListener"><span class="elementName">removeEventListener</span></a>
+                (<span class="type">DomNode</span>
+ node, <span class="type">String</span>
+ evt, <span class="type">Function</span>
+ fn)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Removes an already-added new event listener from the DOM Node.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Event.html#___stopPropagation"><span class="elementName">stopPropagation</span></a>
+                (<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Stops the propagation of the event upwards in the DOM
+ hierarchy.</p>
+
+ <p>Note that "change" event does not bubble.</p>
+
+ <p>Also, events: change, submit, reset, focus, blur do not bubble
+ in Internet Explorer.</p>
+
+ <p>According to specification, "focus" and "blur" should not bubble,
+ while "change", "submit", "reset" should.</p>
+
+ <p>This behavior implemented properly in all web browsers but IE.</p>
+
+ <p>See http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
+ for details.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>    </div>  
+                            </div>
+                </div>
+        <p/>
+                
+                    <!-- ============== Details coming here =================== -->
+    	    	    	    	            <div class="details function">
+            <h2 class="sectionHeader">Function Details</h2>
+                                                                    <h3>
+        <a name="___addEventListener">
+            <span class="objType">function</span>
+            <span class="objName">addEventListener</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    addEventListener(<span class="type">DomNode</span>
+ node, <span class="type">String</span>
+ evt, <span class="type">Function</span>
+ fn)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            node        </code>
+         - the <strong>DOM</strong> object (or its
+ <code>String</code> id) the evet shall be attached.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the name of the event (like "click",
+ "mousemove"...)            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - a reference to the on[event] callback action.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">exception - if <strong>fn</strong> callback is not defined.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
+        <a name="___addEventListeners">
+            <span class="objType">function</span>
+            <span class="objName">addEventListeners</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    addEventListeners(<span class="type">Object</span>
+ collection, <span class="type">String</span>
+ eventName, <span class="type">Function</span>
+ handler)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Adds a set of event handlers the the <strong>eventName</strong> of
+ the given <strong>collection</strong>.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            collection        </code>
+         - an <code>Object</code> or an
+ <code>Array</code> of <strong>DOM</strong> nodes, or their
+ <strong>id</strong>s.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            eventName        </code>
+         - the name of the <strong>event</strong> to
+ attach to.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            handler        </code>
+         - the common event handling
+ <strong>callback</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">Exception - if the <strong>handler</strong> callback is not
+ defined.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
+        <a name="___getEventObject">
+            <span class="objType">function</span>
+            <span class="objName">getEventObject</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getEventObject(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the actual event object.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in Event.addEventListener            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the actual <code>DOM Event</code> object.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getKeyCode">
+            <span class="objType">function</span>
+            <span class="objName">getKeyCode</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getKeyCode(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the key code of the key-related event (keydown, keyup, keypress
+ etc.).</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <strong>unicode</strong> key code associated
+ with the event as an <code>Integer</code>, if found; <code>0</code>
+ otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getMouseCoordinates">
+            <span class="objType">function</span>
+            <span class="objName">getMouseCoordinates</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getMouseCoordinates(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the current mouse coordinates.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the coordinates in the form of
+ <code>{x: mouseX, y: mouseY}</code>
+ where <code>x</code> is the distance from the top of the screen, and
+ <code>y</code> is the distance from the left of the screen.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getTarget">
+            <span class="objType">function</span>
+            <span class="objName">getTarget</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getTarget(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the originating source of the event.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the actual <strong>DOM</strong> target of the event object.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isArrowKey">
+            <span class="objType">function</span>
+            <span class="objName">isArrowKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isArrowKey(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is an arrow key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is an arrow key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isBackspaceKey">
+            <span class="objType">function</span>
+            <span class="objName">isBackspaceKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isBackspaceKey(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the backspace key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isCharacterKeypressEvent">
+            <span class="objType">function</span>
+            <span class="objName">isCharacterKeypressEvent</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isCharacterKeypressEvent()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>Checks whether the character in a <code>onkeypress</code> event
+ actually produces a printable char.</p>
+
+ <p>The thing you have to remember is that you can't reliably tell
+ <strong>anything at all</strong> about any character that may be
+ typed in a <code>onkeydown</code> or <code>onkeyup</code> event:
+ The printable key is determined only in the <code>onkeypress</code>
+ handler.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the pressed key is a printable
+ character; <code>false</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isEnterKey">
+            <span class="objType">function</span>
+            <span class="objName">isEnterKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isEnterKey(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the enter (return) key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the enter key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isEscapeKey">
+            <span class="objType">function</span>
+            <span class="objName">isEscapeKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isEscapeKey(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the escape (ESC) key.</p>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the escape key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isRightClick">
+            <span class="objType">function</span>
+            <span class="objName">isRightClick</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isRightClick(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether or not the curent action is a right click action.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>true</code> if the event is a right click event,
+ <code>false</code> otherwise.
+         	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___isTabKey">
+            <span class="objType">function</span>
+            <span class="objName">isTabKey</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    isTabKey(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Checks whether the pressed key is the tab key.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in <a href="logical/o2/Event.html#___addEventListener">o2.Event.addEventListener</a>            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the <code>true</code> if the pressed key is the tab key,
+ <code>false</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___preventDefault">
+            <span class="objType">function</span>
+            <span class="objName">preventDefault</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    preventDefault(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Prevents the default action. When this method is called inside an
+ even handling callback, the default action associated with that
+ event is not triggered. Like, if it is an <code>onclick</code>
+ event on a link, then the browser does not go to the
+ <code>href</code> of that link.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in Event.addEventListener            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                                                                    <h3>
+        <a name="___removeEventListener">
+            <span class="objType">function</span>
+            <span class="objName">removeEventListener</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    removeEventListener(<span class="type">DomNode</span>
+ node, <span class="type">String</span>
+ evt, <span class="type">Function</span>
+ fn)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Removes an already-added new event listener from the DOM Node.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            node        </code>
+         - the DOM object (or its <code>String</code>
+ reference) the evet shall be removed.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the name of the event (like "click",
+ "mousemove"...)            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            fn        </code>
+         - a reference to the on[event] callback action.            </div>   
+                                        </div>
+                </div>
+                    </div>
+                	<div class="throws">
+	        <span class="descSection">Throws:</span><br/>
+	        	                <div class="paddedDetails">Exception - if <strong>fn</strong> callback is not defined.</div>
+	                </div>
+                                            <hr/>       
+                                                                                    <h3>
+        <a name="___stopPropagation">
+            <span class="objType">function</span>
+            <span class="objName">stopPropagation</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    stopPropagation(<span class="type"><a href="logical/o2/Event.html">Event</a></span>
+ evt)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Stops the propagation of the event upwards in the DOM
+ hierarchy.</p>
+
+ <p>Note that "change" event does not bubble.</p>
+
+ <p>Also, events: change, submit, reset, focus, blur do not bubble
+ in Internet Explorer.</p>
+
+ <p>According to specification, "focus" and "blur" should not bubble,
+ while "change", "submit", "reset" should.</p>
+
+ <p>This behavior implemented properly in all web browsers but IE.</p>
+
+ <p>See http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow
+ for details.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ //TODO: add usage example.
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            evt        </code>
+         - the actual <code>DOM Event</code> object used
+ internally in Event.addEventListener            </div>   
+                                        </div>
+                </div>
+                    </div>
+                                                    <hr/>       
+                                    </div>
+    	    	                                    						        </div>
+        		          </div>			                    
+		                </div>
+        	       </div>
+             </div>
+             <div class="navigation" id="navigation">
+    <ul class="navContent">
+        <li>
+            <div class="navTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Navigation</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                        <div>
+                            <a class="openAll" href="javascript:jgdoc.NavTree.onOpenAll()">Open All</a>
+                            <a class="closeAll" href="javascript:jgdoc.NavTree.onCloseAll()">Close All</a>
+                        </div>
+                        <div>
+                            <ul id = "content" class="contents">
+                                Loading...
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="fileTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Files</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div>
+                                <a href="physical/file-o2/dom/collide.js.html">o2.dom.collide.js</a>
+                            </div>                              
+                                                                                                                                                                <div>
+                                <a href="physical/file-o2/dom/coordinate.js.html">o2.dom.coordinate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/dom/range.js.html">o2.dom.range.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+    <ul class="navContent closed">
+        <li>
+            <div class="moduleTree">
+                <h2 onclick="jgdoc.NavPanel.clicked(event)">
+                    <a href="javascript:jgdoc.NavPanel.dummy()">Modules</a>
+                </h2>
+                <ul class="navContent2">
+                    <li>
+                                                    <div>
+                                <a href="physical/ajax/module-core.html">ajax.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/ajax/module-extend.html">ajax.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/ajaxcontroller/module-core.html">ajaxcontroller.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-ajaxstate.html">ajaxstate</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/collection/module-core.html">collection.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-convert.html">convert</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/cookie/module-core.html">cookie.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-core.html">core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/core/module-meta.html">core.meta</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/date/module-core.html">date.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/debugger/module-core.html">debugger.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-class.html">dom.class</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-constants.html">dom.constants</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-core.html">dom.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-dimension.html">dom.dimension</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-form.html">dom.form</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-load.html">dom.load</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-modify.html">dom.modify</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-ready.html">dom.ready</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-scroll.html">dom.scroll</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-style.html">dom.style</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/module-traverse.html">dom.traverse</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-effect.html">effect</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/event/module-constants.html">event.constants</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/event/module-core.html">event.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/event/module-extend.html">event.extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-extend.html">extend</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/jsonp/module-core.html">jsonp.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/module-jsonpcontroller.html">jsonpcontroller</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-core.html">methodhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-event.html">methodhelper.event</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-inherit.html">methodhelper.inherit</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-repeat.html">methodhelper.repeat</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-timer.html">methodhelper.timer</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/methodhelper/module-transpose.html">methodhelper.transpose.</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/queryparser/module-core.html">queryparser.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/sortdelegate/module-core.html">sortdelegate.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-core.html">stringhelper.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-encode.html">stringhelper.encode</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-strip.html">stringhelper.strip</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/stringhelper/module-transform.html">stringhelper.transform</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/supports/module-core.html">supports.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/template/module-core.html">template.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/timer/module-core.html">timer.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/try/module-core.html">try.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/unit/module-core.html">unit.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-core.html">validator.core</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/validator/module-regexp.html">validator.regexp</a>
+                            </div>                              
+                                            </li>
+                </ul>
+            </div>
+        </li>       
+    </ul>
+</div>  
+    
+		</div>	
+	</body>
+    <script type="text/javascript">
+        jgdoc.Searcher.start();
+        jgdoc.NavTree.initialize("o2.Event");
+    </script>			
+	<script type="text/javascript" src="jsindex.js">
+    </script>
+</html>

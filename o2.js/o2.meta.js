@@ -235,9 +235,9 @@ this.o2 = this.o2 || {
      var kDomScroll             = 'dom.scroll';
      var kDomStyle              = 'dom.style';
      var kDomTraverse           = 'dom.traverse';
-     var kEventHandlerConstants = 'eventhandler.constants';
-     var kEventHandlerCore      = 'eventhandler.core';
-     var kEventHandlerExtend    = 'eventhandler.extend';
+     var kEventConstants        = 'event.constants';
+     var kEventCore             = 'event.core';
+     var kEventExtend           = 'event.extend';
      var kExtend                = 'extend';
      var kFormHelperCore        = 'formhelper.core';
      var kJsonpCore             = 'jsonp.core';
@@ -653,25 +653,25 @@ this.o2 = this.o2 || {
         },
         EventHandler : {
             items : {
-                keyCode : {MODULE : kEventHandlerConstants},
+                keyCode : {MODULE : kEventConstants},
 
-                addEventListener    : {MODULE : kEventHandlerCore},
-                addEventListeners   : {MODULE : kEventHandlerCore},
-                getEventObject      : {MODULE : kEventHandlerCore},
-                getKeyCode          : {MODULE : kEventHandlerCore},
-                getMouseCoordinates : {MODULE : kEventHandlerCore},
-                getTarget           : {MODULE : kEventHandlerCore},
-                preventDefault      : {MODULE : kEventHandlerCore},
-                removeEventListener : {MODULE : kEventHandlerCore},
-                stopPropagation     : {MODULE : kEventHandlerCore},
+                addEventListener    : {MODULE : kEventCore},
+                addEventListeners   : {MODULE : kEventCore},
+                getEventObject      : {MODULE : kEventCore},
+                getKeyCode          : {MODULE : kEventCore},
+                getMouseCoordinates : {MODULE : kEventCore},
+                getTarget           : {MODULE : kEventCore},
+                preventDefault      : {MODULE : kEventCore},
+                removeEventListener : {MODULE : kEventCore},
+                stopPropagation     : {MODULE : kEventCore},
 
-                isArrowKey               : {MODULE : kEventHandlerExtend},
-                isBackspaceKey           : {MODULE : kEventHandlerExtend},
-                isCharacterKeypressEvent : {MODULE : kEventHandlerExtend},
-                isEnterKey               : {MODULE : kEventHandlerExtend},
-                isEscapeKey              : {MODULE : kEventHandlerExtend},
-                isRightClick             : {MODULE : kEventHandlerExtend},
-                isTabKey                 : {MODULE : kEventHandlerExtend}
+                isArrowKey               : {MODULE : kEventExtend},
+                isBackspaceKey           : {MODULE : kEventExtend},
+                isCharacterKeypressEvent : {MODULE : kEventExtend},
+                isEnterKey               : {MODULE : kEventExtend},
+                isEscapeKey              : {MODULE : kEventExtend},
+                isRightClick             : {MODULE : kEventExtend},
+                isTabKey                 : {MODULE : kEventExtend}
             }
         },
         Jsonp : {
