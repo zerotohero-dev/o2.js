@@ -40,7 +40,7 @@
      * Aliases
      */
 
-    var kMethodHelper = 'MethodHelper';
+    var kMethodHelper = 'Method';
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 

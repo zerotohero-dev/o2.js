@@ -243,12 +243,12 @@ this.o2 = this.o2 || {
      var kJsonpCore             = 'jsonp.core';
      var kJsonpControllerCore   = 'jsonpcontroller.core';
      var kJsonpStateCore        = 'jsonpstate.core';
-     var kMethodHelperCore      = 'methodhelper.core';
-     var kMethodHelperEvent     = 'methodhelper.event';
-     var kMethodHelperInherit   = 'methodhelper.inherit';
-     var kMethodHelperRepeat    = 'methodhelper.repeat';
-     var kMethodHelperTimer     = 'methodhelper.timer';
-     var kMethodHelperTranspose = 'methodhelper.transpose';
+     var kMethodCore            = 'method.core';
+     var kMethodEvent           = 'method.event';
+     var kMethodInherit         = 'method.inherit';
+     var kMethodRepeat          = 'method.repeat';
+     var kMethodTimer           = 'method.timer';
+     var kMethodTranspose       = 'method.transpose';
      var kObjectHelperCore      = 'objecthelper.core';
      var kQueryParserCore       = 'queryparser.core';
      var kSortDelegateCore      = 'sortdelegate.core';
@@ -697,31 +697,31 @@ this.o2 = this.o2 || {
                 unregister : {MODULE : kJsonpStateCore}
             }
         },
-        MethodHelper : {
+        Method : {
             items : {
-                bind     : {MODULE : kMethodHelperCore},
-                curry    : {MODULE : kMethodHelperCore},
-                identity : {MODULE : kMethodHelperCore},
-                memoize  : {MODULE : kMethodHelperCore},
-                partial  : {MODULE : kMethodHelperCore},
+                bind     : {MODULE : kMethodCore},
+                curry    : {MODULE : kMethodCore},
+                identity : {MODULE : kMethodCore},
+                memoize  : {MODULE : kMethodCore},
+                partial  : {MODULE : kMethodCore},
 
-                bindAsEventListener : {MODULE : kMethodHelperEvent},
+                bindAsEventListener : {MODULE : kMethodEvent},
 
-                overload            : {MODULE : kMethodHelperInherit},
-                requireAllArguments : {MODULE : kMethodHelperInherit},
+                overload            : {MODULE : kMethodInherit},
+                requireAllArguments : {MODULE : kMethodInherit},
 
-                after : {MODULE : kMethodHelperRepeat},
-                once  : {MODULE : kMethodHelperRepeat},
-                times : {MODULE : kMethodHelperRepeat},
+                after : {MODULE : kMethodRepeat},
+                once  : {MODULE : kMethodRepeat},
+                times : {MODULE : kMethodRepeat},
 
-                debounce : {MODULE : kMethodHelperTimer},
-                defer    : {MODULE : kMethodHelperTimer},
-                delay    : {MODULE : kMethodHelperTimer},
-                throttle : {MODULE : kMethodHelperTimer},
+                debounce : {MODULE : kMethodTimer},
+                defer    : {MODULE : kMethodTimer},
+                delay    : {MODULE : kMethodTimer},
+                throttle : {MODULE : kMethodTimer},
 
-                compose : {MODULE : kMethodHelperTranspose},
-                flip    : {MODULE : kMethodHelperTranspose},
-                wrap    : {MODULE : kMethodHelperTranspose}
+                compose : {MODULE : kMethodTranspose},
+                flip    : {MODULE : kMethodTranspose},
+                wrap    : {MODULE : kMethodTranspose}
             }
         },
         ObjectHelper : {
