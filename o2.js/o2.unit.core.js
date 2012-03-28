@@ -2,7 +2,7 @@
  * @module   unit.core
  * @requires core
  * @requires debugger.core
- * @requires domhelper.scroll
+ * @requires dom.scroll
  * @requires stringhelper.core
  *
  * <!--
@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:22:24.227871
+ *  lastModified: 2012-03-28 18:50:20.581680
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -55,7 +55,7 @@
     var concat = require(kStringHelper, 'concat');
     var format = require(kStringHelper, 'format');
 
-    var scrollToBottom = require('DomHelper', 'scrollWindowToBottom');
+    var scrollToBottom = require('Dom', 'scrollWindowToBottom');
 
     var setTimeout = attr(window, 'setTimeout');
 

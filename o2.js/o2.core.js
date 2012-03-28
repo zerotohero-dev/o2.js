@@ -149,7 +149,7 @@
     /**
      * @function {static} o2.ready
      *
-     * <p>An alias for <code>DomHelper.ready</code>.</p>
+     * <p>An alias for <code>Dom.ready</code>.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -161,7 +161,7 @@
      * ready.
      */
     def(me, 'ready', function(callback) {
-        require('DomHelper', 'ready')(callback);
+        require('Dom', 'ready')(callback);
     });
 
     /**
@@ -252,7 +252,7 @@
         var len = 0;
         var result = [];
         var item = null;
-        var isParent = require('DomHelper', 'isParent');
+        var isParent = require('Dom', 'isParent');
 
         if (!parent) {
             return collection;
