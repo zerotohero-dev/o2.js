@@ -2,14 +2,14 @@
  * @module   jsonpstate.core
  * @requires ajaxstate.core
  * @requires core
- * @requires objecthelper.core
+ * @requires object.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:39:59.780020
+ *  lastModified: 2012-03-28 20:35:53.912964
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
@@ -43,7 +43,7 @@
      * Aliases
      */
 
-    var kObjectHelper = 'ObjectHelper';
+    var kObjectHelper = 'Object';
     var copyFn        = require(kObjectHelper, 'copyMethods');
     var copyAttr      = require(kObjectHelper, 'copy');
 

@@ -3,14 +3,14 @@
  * @requires core
  * @requires ajaxcontroller
  * @requires jsonpstate
- * @requires objecthelper
+ * @requires object
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:41:06.079591
+ *  lastModified: 2012-03-28 20:35:21.975087
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -38,7 +38,7 @@
 
     var state = require('JsonpState');
 
-    var copyMethods = require('ObjectHelper', 'copyMethods');
+    var copyMethods = require('Object', 'copyMethods');
 
     /**
      * @class o2.JsonpController

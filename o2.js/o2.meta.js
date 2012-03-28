@@ -249,7 +249,7 @@ this.o2 = this.o2 || {
      var kMethodRepeat          = 'method.repeat';
      var kMethodTimer           = 'method.timer';
      var kMethodTranspose       = 'method.transpose';
-     var kObjectHelperCore      = 'objecthelper.core';
+     var kObjectCore            = 'object.core';
      var kQueryParserCore       = 'queryparser.core';
      var kSortDelegateCore      = 'sortdelegate.core';
      var kStringHelperCore      = 'stringhelper.core';
@@ -724,15 +724,15 @@ this.o2 = this.o2 || {
                 wrap    : {MODULE : kMethodTranspose}
             }
         },
-        ObjectHelper : {
+        Object : {
             items : {
-                copy          : {MODULE : kObjectHelperCore},
-                copyMethods   : {MODULE : kObjectHelperCore},
-                copyPrototype : {MODULE : kObjectHelperCore},
-                extend        : {MODULE : kObjectHelperCore},
-                stringify     : {MODULE : kObjectHelperCore},
-                toArray       : {MODULE : kObjectHelperCore},
-                toJsonString  : {MODULE : kObjectHelperCore}
+                copy          : {MODULE : kObjectCore},
+                copyMethods   : {MODULE : kObjectCore},
+                copyPrototype : {MODULE : kObjectCore},
+                extend        : {MODULE : kObjectCore},
+                stringify     : {MODULE : kObjectCore},
+                toArray       : {MODULE : kObjectCore},
+                toJsonString  : {MODULE : kObjectCore}
             }
         },
         QueryParser : {

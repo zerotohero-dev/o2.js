@@ -1,5 +1,5 @@
 /**
- * @module   objecthelper.core
+ * @module   object.core
  * @requires collection.core
  * @requires core
  * @requires stringhelper.core
@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-26 23:41:19.189929
+ *  lastModified: 2012-03-28 20:35:21.975087
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -27,10 +27,10 @@
     /*
      * Module Name
      */
-    var kModuleName = 'ObjectHelper';
+    var kModuleName = 'Object';
 
     /**
-     * @class {static} o2.ObjectHelper
+     * @class {static} o2.Object
      *
      * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
      * inheritance.</p>
@@ -58,7 +58,7 @@
     var kFunction      = 'function';
 
     /**
-     * @function {static} o2.ObjectHelper.copy
+     * @function {static} o2.Object.copy
      *
      * <p>Copies members from <strong>base</strong> to
      * <strong>child</strong>.</p>
@@ -83,7 +83,7 @@
     });
 
     /**
-     * @function {static} o2.ObjectHelper.copyMethods
+     * @function {static} o2.Object.copyMethods
      * <p>Copies <strong>base</strong>'s methods, to
      * <strong>child</strong>.  </p>
      * <p>Note that the methods are copied by ref. Therefore any change in
@@ -102,7 +102,7 @@
      * methods from.
      */
     def(me, 'copyMethods', function(child, base) {
-        var key = null;
+        var key   = null;
         var value = null;
 
         for (key in base) {
@@ -116,7 +116,7 @@
     });
 
     /**
-     * @function {static} o2.ObjectHelper.copyPrototype
+     * @function {static} o2.Object.copyPrototype
      *
      * <p>Copies every propery in <strong>base.prototype</strong>, to
      * <strong>child.prototype</strong>.</p>
@@ -138,9 +138,17 @@
      * methods from.
      */
     def(me, 'copyPrototype', function(child, base) {
-        var key = null;
+        var baseProto  = base.prototype;
         var childProto = child.prototype;
-        var baseProto = base.prototype;
+        var key        = null;
+
+        if (!childProto) {
+            return;
+        }
+
+        if (!baseProto) {
+            return;
+        }
 
         for (key in baseProto) {
             if (baseProto.hasOwnProperty(key)) {
@@ -150,7 +158,7 @@
     });
 
     /**
-     * @function {static} o2.ObjectHelper.extend
+     * @function {static} o2.Object.extend
      *
      * <p>A simple way of extending objects.<p>
      * <p>Although the so called "object-oriented <strong>JavaScript</strong>"
@@ -167,7 +175,7 @@
      * function Apple() {}
      * Apple.prototype.name = 'Steve';
      *
-     * o2.ObjectHelper.inherit(Apple, Fruit, new Fruit());
+     * o2.Object.inherit(Apple, Fruit, new Fruit());
      *
      * var fruit = new Fruit();
      * var apple = new Apple();
@@ -194,7 +202,7 @@
     });
 
     /**
-     * @function {static} o2.ObjectHelper.toArray
+     * @function {static} o2.Object.toArray
      *
      * <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>
      *
@@ -216,7 +224,7 @@
     });
 
     /**
-     * o2.ObjectHelper.toJsonString
+     * o2.Object.toJsonString
      *
      * <p>Converts the <code>Object</code> to a <strong>JSON</strong>
      * <code>String</code>, if <strong>JSON</strong> is supported.
@@ -235,7 +243,7 @@
      * @return the converted <strong>JSON</strong> <code>String</code>.
      */
     def(me, 'toJsonString', function(obj) {
-        var kMethodName = 'ObjectHelper.toJsonString';
+        var kMethodName = 'Object.toJsonString';
 
         if (JSON) {
             return JSON.stringify(obj);
@@ -245,7 +253,7 @@
     });
 
     /**
-     * @function {static} o2.ObjectHelper.stringify
+     * @function {static} o2.Object.stringify
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -253,9 +261,9 @@
      * //TODO: add usage example.
      * </pre>
      *
-     * <p>An <strong>alias</strong> to {@link o2.ObjectHelper.toJsonString}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Object.toJsonString}.</p>
      *
-     * @see o2.ObjectHelper.toJsonString
+     * @see o2.Object.toJsonString
      */
     alias(me, 'stringify', 'toJsonString');
 }(this.o2, this));

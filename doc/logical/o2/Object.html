@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001332955673
+	                 version 0.25.a.0001332956204
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -58,7 +58,7 @@
 			                    <hr/>
 						        <div>
 						        						        		<H2>
-        <span class="objType">Class</span> o2.ObjectHelper
+        <span class="objType">Class</span> o2.Object
     </H2>
     
 
@@ -68,7 +68,7 @@
        <code>
             <span class="modifiers">static</span>
             <span class="objType">class</span> 
-            <b>o2.ObjectHelper</b>
+            <b>o2.Object</b>
        </code>
     </div>
                 <div class="comment"><p>A helper class for <strong>JavaScript</strong> <code>Object</code>
@@ -76,7 +76,7 @@
 
  </div>
                                             <span class="definedIn">Defined in </span>
-        <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+        <a href="physical/object/module-core.html">object.core</a>
         <hr/> 
     <p />
     
@@ -94,9 +94,9 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___copy"><span class="elementName">copy</span></a>
-                (<span class="type">Object</span>
- child, <span class="type">Object</span>
+                <a href="logical/o2/Object.html#___copy"><span class="elementName">copy</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
             </div>          
                 <div class="summaryItemDesc">
@@ -113,9 +113,9 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___copyMethods"><span class="elementName">copyMethods</span></a>
-                (<span class="type">Object</span>
- child, <span class="type">Object</span>
+                <a href="logical/o2/Object.html#___copyMethods"><span class="elementName">copyMethods</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
             </div>          
                 <div class="summaryItemDesc">
@@ -135,9 +135,9 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___copyPrototype"><span class="elementName">copyPrototype</span></a>
-                (<span class="type">Object</span>
- child, <span class="type">Object</span>
+                <a href="logical/o2/Object.html#___copyPrototype"><span class="elementName">copyPrototype</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
             </div>          
                 <div class="summaryItemDesc">
@@ -159,10 +159,10 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___extend"><span class="elementName">extend</span></a>
+                <a href="logical/o2/Object.html#___extend"><span class="elementName">extend</span></a>
                 (<span class="type">Function</span>
  childConstructor, <span class="type">Function</span>
- baseConstructor, <span class="type">Object</span>
+ baseConstructor, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  baseConstructed)
             </div>          
                 <div class="summaryItemDesc">
@@ -181,7 +181,7 @@
  function Apple() {}
  Apple.prototype.name = 'Steve';
 
- o2.ObjectHelper.inherit(Apple, Fruit, new Fruit());
+ o2.Object.inherit(Apple, Fruit, new Fruit());
 
  var fruit = new Fruit();
  var apple = new Apple();
@@ -197,7 +197,7 @@
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___stringify"><span class="elementName">stringify</span></a>()
+                <a href="logical/o2/Object.html#___stringify"><span class="elementName">stringify</span></a>()
             </div>
         <div class="summaryItemDesc">
         <p><strong>Usage example:</strong></p>
@@ -206,14 +206,14 @@
  //TODO: add usage example.
  </pre>
 
- <p>An <strong>alias</strong> to o2.ObjectHelper.toJsonString.</p>    </div>  
+ <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/ObjectHelper.html#___toArray"><span class="elementName">toArray</span></a>
-                (<span class="type">Object</span>
+                <a href="logical/o2/Object.html#___toArray"><span class="elementName">toArray</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj)
             </div>          
                 <div class="summaryItemDesc">
@@ -235,8 +235,8 @@
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    copy(<span class="type">Object</span>
- child, <span class="type">Object</span>
+                    copy(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
                 </code> 
             </div>          
@@ -278,8 +278,8 @@
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    copyMethods(<span class="type">Object</span>
- child, <span class="type">Object</span>
+                    copyMethods(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
                 </code> 
             </div>          
@@ -326,8 +326,8 @@
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    copyPrototype(<span class="type">Object</span>
- child, <span class="type">Object</span>
+                    copyPrototype(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ child, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  base)
                 </code> 
             </div>          
@@ -378,7 +378,7 @@
                     <span class="type"></span>
                     extend(<span class="type">Function</span>
  childConstructor, <span class="type">Function</span>
- baseConstructor, <span class="type">Object</span>
+ baseConstructor, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  baseConstructed)
                 </code> 
             </div>          
@@ -398,7 +398,7 @@
  function Apple() {}
  Apple.prototype.name = 'Steve';
 
- o2.ObjectHelper.inherit(Apple, Fruit, new Fruit());
+ o2.Object.inherit(Apple, Fruit, new Fruit());
 
  var fruit = new Fruit();
  var apple = new Apple();
@@ -453,12 +453,12 @@
  //TODO: add usage example.
  </pre>
 
- <p>An <strong>alias</strong> to o2.ObjectHelper.toJsonString.</p>
+ <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>
 
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.ObjectHelper.toJsonString</div>
+                            <div class="paddedDetails">o2.Object.toJsonString</div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -471,7 +471,7 @@
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    toArray(<span class="type">Object</span>
+                    toArray(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj)
                 </code> 
             </div>          
@@ -678,7 +678,7 @@
                                 <a href="physical/method/module-transpose.html">method.transpose.</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/objecthelper/module-core.html">objecthelper.core</a>
+                                <a href="physical/object/module-core.html">object.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/queryparser/module-core.html">queryparser.core</a>
@@ -730,7 +730,7 @@
 	</body>
     <script type="text/javascript">
         jgdoc.Searcher.start();
-        jgdoc.NavTree.initialize("o2.ObjectHelper");
+        jgdoc.NavTree.initialize("o2.Object");
     </script>			
 	<script type="text/javascript" src="jsindex.js">
     </script>
