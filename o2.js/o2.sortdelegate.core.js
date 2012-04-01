@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:32:24.544691
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

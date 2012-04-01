@@ -10,13 +10,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:02:26.684262
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

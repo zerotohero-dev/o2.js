@@ -10,14 +10,14 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:17:48.687380
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A utility package to
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
    'use strict';
 
     var _         = framework.protecteds;

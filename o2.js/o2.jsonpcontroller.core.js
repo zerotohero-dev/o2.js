@@ -10,13 +10,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:35:21.975087
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

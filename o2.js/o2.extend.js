@@ -13,7 +13,7 @@
  *
  * Extension functions.
  */
-(function(framework, document) {
+/*(function(framework, document) {
     'use strict';
 
-}(this.o2, this.document));
+}(this.o2, this.document));*/

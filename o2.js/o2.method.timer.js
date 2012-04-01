@@ -7,13 +7,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:21:24.998732
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
  * a <code>Function</code> call.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

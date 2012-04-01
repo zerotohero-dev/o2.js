@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:06:03.291217
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
  */
-(function(framework, document) {
+(function(framework, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

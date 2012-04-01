@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 09:11:14.837157
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Extension methods for the {@link Event} object.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

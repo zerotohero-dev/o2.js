@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:22:26.201790
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

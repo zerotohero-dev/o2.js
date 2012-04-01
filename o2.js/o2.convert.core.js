@@ -3,7 +3,8 @@
  *
  * <p>not implemented.</p>
  */
-(function(/*framework, window*/) {
+(function(/*framework, window, undefined*/) {
+    'use strict';
 
     // var _         = framework.protecteds;
     // var alias     = _.alias;

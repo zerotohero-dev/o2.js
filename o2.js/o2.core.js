@@ -9,13 +9,13 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001332960785
+ * @version     0.25.a.0001333281135
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
 /*
- *  lastModified: 2012-03-15 09:48:18.989469
+ *  lastModified: 2012-04-01 14:46:49.973159
  */
 
 /**
@@ -24,7 +24,7 @@
  *
  * <p>The core module.</p>
  */
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
     'use strict';
 
     var kFrameworkUndefined = 'Please include module "core.meta"!';
@@ -109,7 +109,7 @@
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001332960785');
+    def(me, 'build', '.0001333281135');
 
     /**
      * @function {static} o2.$

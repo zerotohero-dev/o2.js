@@ -9,13 +9,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:19:57.666976
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

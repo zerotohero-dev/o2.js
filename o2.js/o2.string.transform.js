@@ -7,13 +7,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:03:34.339861
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

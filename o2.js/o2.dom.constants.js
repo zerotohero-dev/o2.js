@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:39:58.139313
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Constant definitions for {@link o2.Dom}.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:24:04.038998
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

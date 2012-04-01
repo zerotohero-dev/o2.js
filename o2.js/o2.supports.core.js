@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:27:39.961032
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>An object support checker.</p>
  */
-(function(framework, document) {
+(function(framework, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

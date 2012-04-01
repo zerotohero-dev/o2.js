@@ -11,12 +11,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:14:43.031720
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-(function(framework, document) {
+(function(framework, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

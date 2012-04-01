@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:23:20.190518
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -15,7 +15,7 @@
  * <p>Even if an error occurs when calling a <code>Function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

@@ -7,13 +7,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 09:36:16.648952
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

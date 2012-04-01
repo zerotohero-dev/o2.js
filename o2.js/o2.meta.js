@@ -2,9 +2,7 @@
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
  */
-this.o2 = this.o2 || {
-    isProduction : false
-};
+this.o2 = this.o2 || {isProduction : false};
 
 /**
  * @module core.meta
@@ -14,7 +12,7 @@ this.o2 = this.o2 || {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:50:38.494901
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>Meta information.</p>
@@ -239,7 +237,6 @@ this.o2 = this.o2 || {
      var kEventCore             = 'event.core';
      var kEventExtend           = 'event.extend';
      var kExtend                = 'extend';
-     var kFormHelperCore        = 'formhelper.core';
      var kJsonpCore             = 'jsonp.core';
      var kJsonpControllerCore   = 'jsonpcontroller.core';
      var kJsonpStateCore        = 'jsonpstate.core';
@@ -682,9 +679,8 @@ this.o2 = this.o2 || {
         JsonpController : {
             base  : 'AjaxController',
             items : {
-                /*protecteds : {MODULE : kJsonpControllerCore},*/
-                update     : {MODULE : kAjaxControllerCore},
-                unregister : {MODULE : kJsonpStateCore}
+                update     : {MODULE : kJsonpControllerCore},
+                unregister : {MODULE : kJsonpControllerCore}
             }
         },
         JsonpState : {

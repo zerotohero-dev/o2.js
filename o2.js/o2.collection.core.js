@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-20 09:11:14.837157
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

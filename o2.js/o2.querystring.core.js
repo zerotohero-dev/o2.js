@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:32:14.783093
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

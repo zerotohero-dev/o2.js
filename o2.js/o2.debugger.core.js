@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-15 08:56:55.951496
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A debugging helper.</p>
  */
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
    'use strict';
 
     var _         = framework.protecteds;

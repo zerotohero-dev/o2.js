@@ -8,13 +8,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 18:58:01.502945
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
 
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

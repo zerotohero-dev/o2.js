@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:31:11.737130
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-(function(framework, window) {
+(function(framework, window, undefined) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -360,15 +360,18 @@
             return null;
         }
 
-        var ajaxCallbacks      = callbacks || {};
+        var ajaxCallbacks      = callbacks  || {};
         var ajaxParameters     = parameters || {};
-        var getQuery           = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
-        var index              = counter++;
-        var isAsync            = !!!isSync;
-        var isPost             = verb !== kGet;
+
         var parametrizedQuery  = generateParametrizeQueryString(ajaxParameters);
-        var postQuery          = isPost ? parametrizedQuery : kEmpty;
-        var xhr                = createXhr();
+
+        var isPost   = verb !== kGet;
+        var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
+
+        var index      = counter++;
+        var isAsync    = !!!isSync;
+        var postQuery  = isPost ? parametrizedQuery : kEmpty;
+        var xhr        = createXhr();
 
         // Add request to cache.
         requestCache[kKey+index] = xhr;

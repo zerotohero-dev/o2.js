@@ -7,14 +7,14 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 20:25:17.908593
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
  * <strong>memoization</strong>, <strong>partial functions</strong> and
  * <strong>currying</strong>.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

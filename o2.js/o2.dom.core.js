@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 19:39:04.658080
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-(function(framework, document) {
+(function(framework, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

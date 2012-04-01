@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:25:45.919029
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
  */
-(function(framework) {
+(function(framework, undefined) {
     'use strict';
 
     var _         = framework.protecteds;

@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-03-28 21:11:47.267768
+ *  lastModified: 2012-04-01 14:46:49.973159
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-(function(framework, window, document) {
+(function(framework, window, document, undefined) {
     'use strict';
 
     var _         = framework.protecteds;
