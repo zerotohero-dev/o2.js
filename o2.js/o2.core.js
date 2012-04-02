@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001333281135
+ * @version     0.25.a.0001333361267
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -39,6 +39,13 @@
     var obj       = attr(_, 'getObject');
     var require   = attr(_, 'require');
     var root      = attr(_, 'getRoot');
+
+    /*
+     * Guid (copied from String.core to remove dependency)
+     */
+    var kGuidRadix    = 36;
+    var kGuidShift    = 30;
+    var kDecimalPoint = '.';
 
     /*
      * o2 (Root Namespace)
@@ -109,7 +116,7 @@
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001333281135');
+    def(me, 'build', '.0001333361267');
 
     /**
      * @function {static} o2.$
@@ -215,18 +222,25 @@
      *     // Now "o2 v.0.21" can be accessed through o3 variable
      *     // (or window.o3).
      *     o2.noConflict('o3');
+     *
+     *     // Alternative usage without giving explicit namespace.
+     *     myApp.o2 = o2.noConflict();
      * [/script]
      * [script type="text/javascript" charset="UTF-8" src="o2.0.23.js"][/script]
      * </pre>
      *
-     * @param {String} newName - the name of the new namespace.
+     * @param {String} newName - (Optional; a random unique namespace will be
+     * created if not given) the name of the new namespace.
      *
      * @return the new <code>Object</code>.
      */
     def(me, 'noConflict', function(newName) {
-        window[newName] = myself;
+        var name = newName || [myName, ((new Date()).getTime() +
+            Math.random() * (1 << kGuidShift)).toString(kGuidRadix
+            ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
 
-        return window[newName];
+        window[name] = myself;
+        return window[name];
     });
 
     /**

@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001333281135
+	                 version 0.25.a.0001333361267
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -497,6 +497,9 @@
      // Now "o2 v.0.21" can be accessed through o3 variable
      // (or window.o3).
      o2.noConflict('o3');
+
+     // Alternative usage without giving explicit namespace.
+     myApp.o2 = o2.noConflict();
  [/script]
  [script type="text/javascript" charset="UTF-8" src="o2.0.23.js"][/script]
  </pre>    </div>  
@@ -880,6 +883,9 @@
      // Now "o2 v.0.21" can be accessed through o3 variable
      // (or window.o3).
      o2.noConflict('o3');
+
+     // Alternative usage without giving explicit namespace.
+     myApp.o2 = o2.noConflict();
  [/script]
  [script type="text/javascript" charset="UTF-8" src="o2.0.23.js"][/script]
  </pre>
@@ -893,7 +899,8 @@
                                                 <div class="param paddedDetails">
         <code>
             newName        </code>
-         - the name of the new namespace.            </div>   
+         - (Optional; a random unique namespace will be
+ created if not given) the name of the new namespace.            </div>   
                                         </div>
                 </div>
                     </div>
