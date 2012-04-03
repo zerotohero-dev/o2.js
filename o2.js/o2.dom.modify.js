@@ -60,7 +60,7 @@
      * @param elmToReplace - the replacement node or its <code>String</code> id.
      */
     def(me, 'replace', function(elmTarget, elmToReplace) {
-        var target = $(elmTarget);
+        var target  = $(elmTarget);
         var replace = $(elmToReplace);
 
         append(target, replace);
@@ -122,14 +122,10 @@
      * @return the wrapped node.
      */
     def(me, 'wrap', function(elmTarget, elmWrapper) {
-        var target = $(elmTarget);
+        var target  = $(elmTarget);
         var wrapper = $(elmWrapper);
 
-        if (!target) {
-            return;
-        }
-
-        if (!wrapper) {
+        if (!target || !wrapper) {
             return;
         }
 

@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001333361267
+	                 version 0.25.a.0001333435064
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -106,7 +106,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get(url, params, callbacks);
+
+ ...
+
+ if (someCondition) {
+      o2.Ajax.abort(request);
+ }
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -124,7 +130,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ // Creates a low-level cross-browser XmlHttpRequest object.
+ var request = o2.Ajax.createXhr();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -144,7 +151,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -188,7 +203,15 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.post('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>
 
  <p>Sends an <strong>AJAX POST</strong> request.</p>    </div>  
@@ -247,7 +270,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get(url, params, callbacks);
+
+ ...
+
+ if (someCondition) {
+      o2.Ajax.abort(request);
+ }
  </pre>
 
      </div>
@@ -287,7 +316,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ // Creates a low-level cross-browser XmlHttpRequest object.
+ var request = o2.Ajax.createXhr();
  </pre>
 
      </div>
@@ -321,7 +351,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>
 
      </div>
@@ -343,8 +381,8 @@
         <code>
             callbacks        </code>
          - An object of the form
- {oncomplete: fn(responseText, responseXml), onerror: fn(status,
- statusText), onaborted: fn(xhr),
+ {oncomplete: fn(responseText, responseXml, xhr, status),
+ onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
  onexception: fn(exception, originalXhr)}.
  Any of these callbacks are optional.            </div>   
                                                 <div class="param paddedDetails">
@@ -453,7 +491,15 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.post('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>
 
  <p>Sends an <strong>AJAX POST</strong> request.</p>
@@ -477,8 +523,8 @@
         <code>
             callbacks        </code>
          - An object of the form
- {oncomplete: fn(responseText, responseXml), onerror: fn(status,
- statusText), onaborted : fn(xhr),
+ {oncomplete: fn(responseText, responseXml, xhr, status),
+ onerror: fn(status, statusText, xhr), onaborted : fn(xhr),
  onexception: fn(exception, originalXhr)}.
  Any of these callbacks are optional.            </div>   
                                                 <div class="param paddedDetails">

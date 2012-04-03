@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-03 09:36:52.611789
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -131,8 +131,8 @@
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
      */
     var createXhr = function() {
+        var progId  = null;
         var request = null;
-        var progId = null;
 
         if (window.XMLHttpRequest) {
             createXhr = function() {
@@ -266,8 +266,8 @@
      *
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-     * statusText),
+     * {oncomplete: fn(responseText, responseXml, xhr, status),
+     * onerror: fn(status, statusText, xhr),
      * onexception: fn(originalXhr, exception)}. Any of these callbacks are
      * optional.
      */
@@ -407,7 +407,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var request = o2.Ajax.get(url, params, callbacks);
+     *
+     * ...
+     *
+     * if (someCondition) {
+     *      o2.Ajax.abort(request);
+     * }
      * </pre>
      *
      * @param {XMLHttpRequest} xhr - the original
@@ -437,7 +443,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * // Creates a low-level cross-browser XmlHttpRequest object.
+     * var request = o2.Ajax.createXhr();
      * </pre>
      * @return the created <code>XMLHttpRequest</code> object.
      */
@@ -453,15 +460,23 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var request = o2.Ajax.get('/api.php', {
+     *      name   : 'Volkan Özçelik',
+     *      action : 'add'
+     * }, {
+     *      oncomplete  : function(text, xml, xhr, status) {},
+     *      onerror     : function(statusCode, statusText, xhr) {},
+     *      onaborted   : function(xhr) {},
+     *      onexception : function(exception, xhr) {}
+     * });
      * </pre>
      *
      * @param {String} url - the URL to send the request.
      * @param {Object} parameters - parameters collection as a name/value
      * pair object ({}).
      * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-     * statusText), onaborted: fn(xhr),
+     * {oncomplete: fn(responseText, responseXml, xhr, status),
+     * onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
      * onexception: fn(exception, originalXhr)}.
      * Any of these callbacks are optional.
      * @param {Boolean} isSync - (optional defaults to <code>false</code>).
@@ -479,7 +494,15 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var request = o2.Ajax.post('/api.php', {
+     *      name   : 'Volkan Özçelik',
+     *      action : 'add'
+     * }, {
+     *      oncomplete  : function(text, xml, xhr, status) {},
+     *      onerror     : function(statusCode, statusText, xhr) {},
+     *      onaborted   : function(xhr) {},
+     *      onexception : function(exception, xhr) {}
+     * });
      * </pre>
      *
      * <p>Sends an <strong>AJAX POST</strong> request.</p>
@@ -488,8 +511,8 @@
      * @param {Object} parameters - parameters collection as a
      * <strong>name/value</strong> pair object ({}).
      * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-     * statusText), onaborted : fn(xhr),
+     * {oncomplete: fn(responseText, responseXml, xhr, status),
+     * onerror: fn(status, statusText, xhr), onaborted : fn(xhr),
      * onexception: fn(exception, originalXhr)}.
      * Any of these callbacks are optional.
      * @param {Boolean} isSync - (optional defaults to <code>false</code>).
