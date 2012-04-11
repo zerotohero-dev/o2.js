@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-11 15:29:15.234282
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -58,7 +58,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isEmail = o2.Validation.isEmail('volkan@o2js.com');
      * </pre>
      *
      * @param {String} mail - the <strong>e-mail</strong> address to test.
@@ -79,7 +79,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isUrl = o2.Validation.isUrl('http://o2js.com/');
      * </pre>
      *
      * @param {String} url - the address to check.
@@ -100,7 +100,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isWhitespace = o2.Validation.isWhitespace('  \t\r\n   \n  ');
      * </pre>
      *
      * @param {String} text - the text to check.

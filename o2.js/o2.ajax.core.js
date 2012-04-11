@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-03 09:36:52.611789
+ *  lastModified: 2012-04-11 15:41:30.171354
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -43,8 +43,8 @@
     var nill = require('nill');
 
     var kString       = 'String';
-    var generateGuid  = require(kString, 'generateGuid');
     var concat        = require(kString, 'concat');
+    var generateGuid  = require(kString, 'generateGuid');
 
     var listen = require('EventHandler', 'addEventListener');
 
@@ -214,9 +214,9 @@
      */
     function processCallbacks(xhr, callbacks) {
         var isSuccess    = false;
-        var onaborted    = callbacks.onaborted || nill;
-        var oncomplete   = callbacks.oncomplete || nill;
-        var onerror      = callbacks.onerror || nill;
+        var onaborted    = callbacks.onaborted   || nill;
+        var oncomplete   = callbacks.oncomplete  || nill;
+        var onerror      = callbacks.onerror     || nill;
         var onexception  = callbacks.onexception || nill;
         var responseText = kEmpty;
         var responseXml  = null;
@@ -234,8 +234,8 @@
         try {
             status = xhr.status;
             responseText = xhr.responseText;
-            responseXml = xhr.responseXML;
-            statusText = xhr.statusText;
+            responseXml  = xhr.responseXML;
+            statusText   = xhr.statusText;
         } catch (ignore) {
         }
 
@@ -262,7 +262,8 @@
     }
 
     /*
-     * <p>Registers the callbacks to the <code>XMLHttpRequest</code> instance.</p>
+     * <p>Registers the callbacks to the <code>XMLHttpRequest</code>
+     * instance.</p>
      *
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      * @param {Object} callbacks - An object of the form
@@ -491,6 +492,8 @@
     /**
      * @function {static} o2.Ajax.post
      *
+     * <p>Sends an <strong>AJAX POST</strong> request.</p>
+     *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
@@ -504,8 +507,6 @@
      *      onexception : function(exception, xhr) {}
      * });
      * </pre>
-     *
-     * <p>Sends an <strong>AJAX POST</strong> request.</p>
      *
      * @param {String} url - the <strong>URL</strong> to send the request.
      * @param {Object} parameters - parameters collection as a

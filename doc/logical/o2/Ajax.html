@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001333435064
+	                 version 0.25.a.0001334153609
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -185,7 +185,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.getSingle('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -200,7 +208,9 @@
  isSync)
             </div>          
                 <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
+        <p>Sends an <strong>AJAX POST</strong> request.</p>
+
+ <p><strong>Usage example:</strong></p>
 
  <pre>
  var request = o2.Ajax.post('/api.php', {
@@ -212,9 +222,7 @@
       onaborted   : function(xhr) {},
       onexception : function(exception, xhr) {}
  });
- </pre>
-
- <p>Sends an <strong>AJAX POST</strong> request.</p>    </div>  
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -233,13 +241,21 @@
 
  <p>Two requests that have identical <strong>URL</strong>s and parameter
  name-value pairs, are considered uniqe. This method, ensures that no two
- unique <strong>POST</strong> requests will be fired without waiting for the
- other.</p>
+ unique <strong>POST</strong> requests will be fired without waiting for
+ the other.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.postSingle('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>    </div>  
                             </div>
                 </div>
@@ -429,7 +445,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.getSingle('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>
 
      </div>
@@ -451,8 +475,8 @@
         <code>
             callbacks        </code>
          - An object of the form
- {oncomplete: fn(responseText, responseXml), onerror: fn(status,
- statusText), onaborted: fn(xhr),
+ {oncomplete: fn(responseText, responseXml, xhr, status),
+ onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
  onexception: fn(exception, originalXhr)}.
  Any of these callbacks are optional.            </div>   
                                         </div>
@@ -488,7 +512,9 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p><strong>Usage example:</strong></p>
+        <p>Sends an <strong>AJAX POST</strong> request.</p>
+
+ <p><strong>Usage example:</strong></p>
 
  <pre>
  var request = o2.Ajax.post('/api.php', {
@@ -501,8 +527,6 @@
       onexception : function(exception, xhr) {}
  });
  </pre>
-
- <p>Sends an <strong>AJAX POST</strong> request.</p>
 
      </div>
         	<div class="parameters">
@@ -566,13 +590,21 @@
 
  <p>Two requests that have identical <strong>URL</strong>s and parameter
  name-value pairs, are considered uniqe. This method, ensures that no two
- unique <strong>POST</strong> requests will be fired without waiting for the
- other.</p>
+ unique <strong>POST</strong> requests will be fired without waiting for
+ the other.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.postSingle('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
  </pre>
 
      </div>
@@ -594,8 +626,8 @@
         <code>
             callbacks        </code>
          - An object of the form
- {oncomplete: fn(responseText, responseXml), onerror: fn(status,
- statusText), onaborted: fn(xhr),
+ {oncomplete: fn(responseText, responseXml, xhr, status),
+ onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
  onexception: fn(exception, originalXhr)}.
  Any of these callbacks are optional.            </div>   
                                         </div>

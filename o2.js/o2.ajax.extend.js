@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-11 17:10:55.274015
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -84,15 +84,23 @@
     * <p><strong>Usage example:</strong></p>
     *
     * <pre>
-    * //TODO: add usage example.
+    * var request = o2.Ajax.getSingle('/api.php', {
+    *      name   : 'Volkan Özçelik',
+    *      action : 'add'
+    * }, {
+    *      oncomplete  : function(text, xml, xhr, status) {},
+    *      onerror     : function(statusCode, statusText, xhr) {},
+    *      onaborted   : function(xhr) {},
+    *      onexception : function(exception, xhr) {}
+    * });
     * </pre>
     *
     * @param {String} url - the URL to send the request.
     * @param {Object} parameters - parameters collection as a name/value
     * pair object ({}).
     * @param {Object} callbacks - An object of the form
-    * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-    * statusText), onaborted: fn(xhr),
+    * {oncomplete: fn(responseText, responseXml, xhr, status),
+    * onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
     * onexception: fn(exception, originalXhr)}.
     * Any of these callbacks are optional.
     *
@@ -125,21 +133,29 @@
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
     * name-value pairs, are considered uniqe. This method, ensures that no two
-    * unique <strong>POST</strong> requests will be fired without waiting for the
-    * other.</p>
+    * unique <strong>POST</strong> requests will be fired without waiting for
+    * the other.</p>
     *
     * <p><strong>Usage example:</strong></p>
     *
     * <pre>
-    * //TODO: add usage example.
+    * var request = o2.Ajax.postSingle('/api.php', {
+    *      name   : 'Volkan Özçelik',
+    *      action : 'add'
+    * }, {
+    *      oncomplete  : function(text, xml, xhr, status) {},
+    *      onerror     : function(statusCode, statusText, xhr) {},
+    *      onaborted   : function(xhr) {},
+    *      onexception : function(exception, xhr) {}
+    * });
     * </pre>
     *
     * @param {String} url - the URL to send the request.
     * @param {Object} parameters - parameters collection as a name/value
     * pair object ({}).
     * @param {Object} callbacks - An object of the form
-    * {oncomplete: fn(responseText, responseXml), onerror: fn(status,
-    * statusText), onaborted: fn(xhr),
+    * {oncomplete: fn(responseText, responseXml, xhr, status),
+    * onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
     * onexception: fn(exception, originalXhr)}.
     * Any of these callbacks are optional.
     *
