@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-12 14:53:52.573742
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -44,11 +44,11 @@
     var identity      = require(kMethodHelper, 'identity');
     var bind          = require(kMethodHelper, 'bind');
 
-    var kValidator = 'Validation';
-    var isArguments = require(kValidator, 'isArguments');
-    var isArray     = require(kValidator, 'isArray');
-    var isFunction  = require(kValidator, 'isFunction');
-    var isObject    = require(kValidator, 'isObject');
+    var kValidation = 'Validation';
+    var isArguments = require(kValidation, 'isArguments');
+    var isArray     = require(kValidation, 'isArray');
+    var isFunction  = require(kValidation, 'isFunction');
+    var isObject    = require(kValidation, 'isObject');
 
     var slice = attr(Array.prototype, 'slice');
 
@@ -71,7 +71,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {a:'b'};
+     * o2.Collection.clear(obj);
+     * // obj is now {}
+     * obj = [1,2,3];
+     * o2.CollectionHelper.clear(obj);
+     * // obj is now []
      * </pre>
      *
      * @param {Object} ar - the <code>Object</code> to clear.
@@ -113,7 +118,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj1 = {a:'b'};
+     * var obj2 = o2.Collection.copy(obj1);
      * </pre>
      *
      * @param {Object} ar - the object to clone.
@@ -152,10 +158,6 @@
      *
      * <p><strong>Usage example:</strong></p>
      *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.copy
      */
     alias(me, 'clone', 'copy');
@@ -170,7 +172,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [null, 1, 2, undefined, '', 3, 4];
+     * o2.Collection.compact(ar);
+     * // ar is now [1, 2, '', 3, 4]
      * </pre>
      *
      * @param {Object} ar - the <code>Object</code> to clean.
@@ -227,7 +231,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar [1, 2, 3, 4];
+     * var id = o2.Collection.indexOf(ar, 3);
+     * // id is 2
      * </pre>
      *
      * @param {Object} ar - the <code>Array</code> or <code>Object</code> to
@@ -292,7 +298,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 2, 3, 4];
+     * var isInAr = o2.Collection.contains(ar, 3);
+     * // isInAr is true
      * </pre>
      *
      * @param {Array} ar - the <code>Array</code> to search.
@@ -318,12 +326,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.contains}
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.contains
      */
     alias(me, 'includes', 'contains');
@@ -336,10 +338,6 @@
      * <p>An <strong>alias</strong> to {@link o2.Collection.contains}
      *
      * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see o2.Collection.contains
      */
@@ -354,13 +352,19 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 2, 3, 4];
+     *
+     * var res = o2.Collection.find(ar, function(value){
+     *      return value === 3;
+     * });
+     *
+     * // res will be 3
      * </pre>
      *
      * @param {Object} obj - the <code>Array</code> or an iterable
      * <code>Object</code>.
      * @param delegate - Iterator <code>Function</code> in the form
-     * <code>function(context, value, index, collection)</code>.
+     * <code>function(value, index, collection)</code>.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that acts as the <code>this</code>
      * reference in the <strong>iterator</strong>.
@@ -369,12 +373,12 @@
      * is found.
      */
     def(me,'find', function(obj, delegate, context) {
+        var i      = 0;
+        var index  = 0;
+        var key    = null;
+        var len    = 0;
         var result = null;
-        var index = 0;
-        var key = null;
-        var i = 0;
-        var value = null;
-        var len = 0;
+        var value  = null;
 
         if (!obj) {
             return null;
@@ -421,10 +425,6 @@
      *
      * <p><strong>Usage example:</strong></p>
      *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.find
      */
     alias(me, 'detect', 'find');
@@ -439,7 +439,16 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     *
+     * o2.Collection.forEach(collection, function(item, index, collection) {
+     *      log(item);
+     * });
+     * // will log:
+     * 1
+     * 2
+     * 3
+     * 4
      * </pre>
      *
      * @param {Object} obj - the <code>Array</code> or an iterable
@@ -448,9 +457,9 @@
      * <code>function(item, index, collection)</code>.
      */
     def(me, 'forEach', function(obj, delegate) {
-        var i = 0;
-        var len = 0;
+        var i   = 0;
         var key = null;
+        var len = 0;
 
         if (!obj) {
             return;
@@ -460,6 +469,7 @@
             return;
         }
 
+        // Array.prototype.forEach
         if (obj.forEach) {
             obj.forEach(delegate);
 
@@ -486,12 +496,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.forEach}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.forEach
      */
     alias(me, 'each', 'forEach');
@@ -506,7 +510,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar1 = [1, 2, 3, 4, 5];
+     * var ar2 = [2, 3, 4, 5, 6];
+     * var ar3 = o2.Collection.diff(ar1, ar2);
+     * // ar3 is [1, 5. 6]
      * </pre>
      *
      * @param {Arguments} ... - variable number of input arguments; each
@@ -514,14 +521,17 @@
      * <code>Object</code>.
      *
      * @return an <code>Array</code> of non-matching items.
+     *
+     * @see o2.Collection.intersect
+     * @see o2.Collection.union
      */
     def(me,'diff', function(collection) {
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
+        var rest   = null;
         var result = [];
-        var rest = null;
-        var value = null;
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var value  = null;
 
         if (!collection) {
             return result;
@@ -563,12 +573,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.diff}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.diff
      */
     alias(me, 'getDifference', 'diff');
@@ -581,7 +585,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     *
+     * var isAllNumeric = o2.Collection.every(collection, function(item) {
+     *      return !isNaN(item);
+     * });
+     * // isAllNumeric will be true
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable collection.
@@ -598,17 +607,17 @@
      * otherwise.
      */
     def(me,'every', function(obj, delegate, context) {
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
         var result = true;
-        var i = 0;
-        var len = 0;
-        var key = null;
 
         if (!obj) {
             return true;
         }
 
         if (!isObject(obj)) {
-            return;
+            return true;
         }
 
         // Array.prototype.every
@@ -654,7 +663,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     *
+     * var rest = o2.Collection.exclude(collection, function(item) {
+     *      return item % 2 === 0;
+     * });
+     *
+     * // rest will be [1, 3, 5]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -673,11 +688,11 @@
      * @see o2.Collection.grep
      */
     def(me,'exclude', function(obj, delegate, context) {
+         var i       = 0;
+         var key     = null;
+         var len     = 0;
          var results = [];
-         var key = null;
-         var i = 0;
-         var len = 0;
-         var value = null;
+         var value   = null;
 
          if (!obj) {
              return results;
@@ -719,12 +734,6 @@
      *
      * <p>An <strong>alıas</strong> to {@link o2.Collection.exclude}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.reject
      */
     alias(me, 'reject', 'exclude');
@@ -737,7 +746,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var base = {lorem: 'ipsum'};
+     * var child = {dolor: 'sit'};
+     *
+     * o2.Collection.extend(child, base);
+     *
+     * // child => {lorem : 'ipsum', dolor : 'sit'}
      * </pre>
      *
      * @param {Object} toObj - the <code>Object</code> to copy values to.
@@ -746,10 +760,10 @@
      * @return a <strong>reference</strong> to the modified <code>toObj</code>.
      */
     def(me,'extend', function(toObj, fromObj) {
+         var i     = 0;
+         var key   = null;
+         var len   = 0;
          var value = null;
-         var key = null;
-         var i = 0;
-         var len = 0;
 
         if (!toObj) {
             return {};
@@ -796,12 +810,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.extend}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.extend
      */
     alias(me, 'merge', 'extend');
@@ -814,7 +822,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -855,7 +863,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5, 6];
+     * var firstFew = o2.Collection.getFirstN(collection, 3);
+     * // firstFew will be [1, 2, 3]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -867,9 +877,9 @@
      * in the collection otherwise.
      */
     def(me,'getFirstN', function(obj, n) {
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
         var result = [];
 
         if (!obj) {
@@ -907,7 +917,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {fn1 : function(){}, fn2 : function() {}, lorem : 1};
+     * var methods = o2.Collection.getFunctions(obj);
+     * // methods now is [fn1, fn2]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -917,11 +929,11 @@
      * object.
      */
     def(me,'getFunctions', function(obj) {
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
         var result = [];
-        var key = null;
-        var value = null;
-        var i = 0;
-        var len = 0;
+        var value  = null;
 
         if (!obj) {
             return result;
@@ -959,12 +971,6 @@
     /**
      * @function {static} o2.Collection.getMethods
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * <p>An <strong>alias</strong> to
      * {@link o2.Collection.getFunctions}.</p>
      *
@@ -980,7 +986,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {lorem : 'ipsum', dolor : 'sit'};
+     * var keys = o2.Collection.getKeys(obj);
+     * // keys will be ['lorem', 'dolor']
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -989,10 +997,10 @@
      * @return an <code>Array</code> of the object's keys.
      */
     def(me,'getKeys', function(obj) {
-        var key = null;
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
         var result = [];
-        var i = 0;
-        var len = 0;
 
         if (!obj) {
             return result;
@@ -1027,7 +1035,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var last = o2.Collection.getLast(collection);
+     * // last will be 5
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1037,9 +1047,9 @@
      * otherwise.
      */
     def(me,'getLast', function(obj) {
+        var key  = null;
         var last = null;
-        var key = null;
-        var len = 0;
+        var len  = 0;
 
         if (!obj) {
             return last;
@@ -1072,7 +1082,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var lastFew = o2.Collection.getLastN(collection, 3);
+     * // lastFew will be [3, 4, 5]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1083,9 +1095,9 @@
      * <strong>n</strong> items; all the items of the collection otherwise.
      */
     def(me,'getLastN', function(obj, n) {
-        var len = 0;
-        var i = 0;
-        var key = null;
+        var i      = 0;
+        var key    = null;
+        var len    = 0;
         var result = [];
 
         if (!obj) {
@@ -1129,7 +1141,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * // This will return true:
+     * o2.Collection.isEmpty([]);
+     *
+     * // This will also return true:
+     * o2.Collection.isEmpty({});
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1171,7 +1187,14 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 3, 11, 42, 4, 5, 6];
+     * var meaningOfLife = o2.Collection.getMax(collection);
+     * // meaningOfLife will be 42
+     *
+     * var meaningOfUniverse = o2.Collection.getMax(collection, function(item) {
+     *      return item !== 42 ? Math.PI : 42;
+     * });
+     * // meaningOfUniverse will also be 42
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1188,11 +1211,11 @@
      * @return the maximum value in the collection.
      */
     def(me,'getMax', function(obj, delegate, context) {
-        var key = null;
-        var store = null;
-        var result = -Infinity;
         var calculated = null;
-        var index = 0;
+        var index      = 0;
+        var key        = null;
+        var result     = -Infinity;
+        var store      = null;
 
         if (!obj) {
             return result;
@@ -1255,7 +1278,14 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [111, 311, 1211, 42, 114, 235, 126];
+     * var meaningOfLife = o2.Collection.getMin(collection);
+     * // meaningOfLife will be 42
+     *
+     * var meaningOfUniverse = o2.Collection.getMin(collection, function(item) {
+     *      return item !== 42 ? 42 * Math.PI : 42;
+     * });
+     * // meaningOfUniverse will also be 42
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1272,11 +1302,11 @@
      * @return the minimum value in the collection.
      */
     def(me,'getMin', function(obj, delegate, context) {
-        var key = null;
-        var store = null;
-        var result = Infinity;
         var calculated = null;
-        var index = 0;
+        var index      = 0;
+        var key        = null;
+        var result     = Infinity;
+        var store      = null;
 
         if (!obj) {
             return result;
@@ -1334,7 +1364,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     *
+     * var rest = o2.Collection.getRest(collection);
+     * // rest will be [2, 3, 4, 5]
+     *
+     * rest = o2.Collection.getRest(collection, 2);
+     * // rest will be [3, 4, 5];
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1346,10 +1382,10 @@
      * item included)
      */
     def(me,'getRest', function(obj, n) {
+        var cutAt  = 0;
+        var index  = 0;
+        var key    = null;
         var result = [];
-        var key = null;
-        var index = 0;
-        var cutAt = 0;
 
         if (!obj) {
             return result;
@@ -1384,7 +1420,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var size = o2.Collection.getSize(collection);
+     * // size will be 5
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1394,7 +1432,7 @@
      */
     def(me,'getSize', function(obj) {
         var counter = 0;
-        var key = null;
+        var key     = null;
 
         if (!obj) {
             return 0;
@@ -1420,12 +1458,6 @@
     /**
      * @function {static} o2.Collection.getCount
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
      *
      * @see o2.Collection.getSize
@@ -1434,12 +1466,6 @@
 
     /**
      * @function {static} o2.Collection.getLength
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
      *
@@ -1450,14 +1476,16 @@
     /**
      * @function {static} o2.Collection.getSortedIndex
      *
+     * <p>Gets an index to insert the item at a sorted <code>Array</code>,
+     * so that is not needed to be resorted.</p>
+     *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 2, 24, 30, 44, 66, 100];
+     * var idx = o2.Collection.getSortedIndex(42);
+     * // idx will be 4
      * </pre>
-     *
-     * <p>Gets an index to insert the item at a sorted <code>Array</code>,
-     * so that is not needed to be resorted.</p>
      *
      * @param {Array} array - an <code>Array</code> to work on.
      * @param {Object} item - the item to insert.
@@ -1475,9 +1503,9 @@
 
         var iterator = delegate || identity;
 
-        var low = 0;
         var high = array.length;
-        var mid = 0;
+        var low  = 0;
+        var mid  = 0;
 
         // Binary search:
         while (low < high) {
@@ -1505,7 +1533,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = {lorem : 1, ipsum : 2, dolor : 3};
+     * var values = o2.Collection.getValues(collection);
+     * // values will be ['lorem', 'ipsum', 'dolor']
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1514,7 +1544,7 @@
      * @return the values in the collection.
      */
     def(me,'getValues', function(obj) {
-        var key = null;
+        var key    = null;
         var result = [];
 
         if (!obj) {
@@ -1547,7 +1577,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5, 6];
+     * var evens = o2.Collection.grep(collection, function(item) {
+     *      return item % 2 === 0;
+     * });
+     * // evens will be [2, 4, 6]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1558,12 +1592,11 @@
      * @return the filtered collection.
      */
     def(me,'grep', function(obj, delegate) {
+        var i      = 0;
+        var item   = null;
+        var key    = null;
+        var len    = 0;
         var result = [];
-
-        var item = null;
-        var key = null;
-        var len = 0;
-        var i = 0;
 
         if (!obj) {
             return result;
@@ -1599,12 +1632,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see @o2.Collection.grep
      */
     alias(me, 'select', 'grep');
@@ -1613,12 +1640,6 @@
      * @function {static} o2.Collection.filter
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see @o2.Collection.grep
      */
@@ -1633,7 +1654,25 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [
+     *      {lorem : 1},
+     *      {lorem : 2},
+     *      {lorem : 3},
+     *      {ipsum : 1},
+     *      {ipsum : 2}
+     * ];
+     *
+     * var lorems = o2.Collection.group(collection, 'lorem')
+     * //lorems will be {lorem : [1, 2, 3]}
+     *
+     * var grouped = o2.Collection.group(collection, function(item) {
+     *      for(key in item) {
+     *          if (item.hasOwnProperty(key)) {
+     *              return key;
+     *          }
+     *      }
+     * });
+     * // grouped will be {lorem : [1, 2, 3], ipsum : [1, 2]}
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1645,14 +1684,16 @@
      * index; and the return value is a key to group.
      *
      * @return an <code>Array</code> of grouped items.
+     *
+     * @see o2.Collection.pluck
      */
     def(me,'group', function(obj, delegate) {
+        var i      = 0;
+        var key    = null;
+        var ky     = null;
+        var len    = 0;
         var result = {};
-        var i = 0;
-        var len = 0;
-        var value = null;
-        var key = null;
-        var ky = null;
+        var value  = null;
 
         var iterator = isFunction(delegate) ? delegate :
             function(obj) { return obj[delegate]; };
@@ -1706,7 +1747,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {lorem : 1, ipsum : 2};
+     * var ar = o2.Collection.toArray(obj);
+     * // ar will be [1, 2]
      * </pre>
      *
      * @param {Object} obj - Any <code>Object</code> to convert to an
@@ -1717,7 +1760,7 @@
      * @return the generated <code>Array</code>.
      */
     def(me,'toArray', function(obj) {
-        var key = null;
+        var key    = null;
         var result = [];
 
         if (!obj) {
@@ -1760,7 +1803,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var squared = o2.Collection.map(collection, function(item) {
+     *      return item*item;
+     * });
+     * // squared will be [1, 4, 9, 25]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1775,13 +1822,15 @@
      * uses as the <code>this</code> reference.
      *
      * @return a mapped <code>Array</code>.
+     *
+     * @see o2.Collection.invoke
      */
     def(me,'map', function(obj, delegate, context) {
+        var i       = 0;
+        var key     = null;
+        var len     = 0;
         var results = [];
-        var i = 0;
-        var len = 0;
-        var value = null;
-        var key = null;
+        var value   = null;
 
         if (!obj) {
             return results;
@@ -1837,7 +1886,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 2, 3, 2, 4, 2, 42];
+     * var uniq = o2.Collection.unique(ar);
+     * // uniq will be [1, 2, 3, 4, 42]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -1852,12 +1903,12 @@
      * @return a copy of the collection containing unique items.
      */
     def(me,'unique', function(array, delegate) {
+        var ar     = null;
+        var cache  = [];
+        var elm    = null;
+        var i      = 0;
+        var len    = 0;
         var result = [];
-        var cache = [];
-        var ar = null;
-        var elm = null;
-        var i = 0;
-        var len = 0;
 
         if (!array) {
             return result;
@@ -1899,23 +1950,29 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar1 = [1, 2, 3, 4, 5];
+     * var ar2 = [2, 3, 4, 5, 6];
+     * var ar3 = o2.Collection.intersect(ar1, ar2);
+     * // ar3 is [2, 3, 4, 5]
      * </pre>
      *
      * @param {...} varargin - the objects to intersect as input arguments.
      *
      * @return an <code>Array</code> containing only the values that are common
      * in all of the collections given.
+     *
+     * @see o2.Collection.diff
+     * @see o2.Collection.union
      */
     def(me,'intersect', function(ar) {
+        var i      = 0;
+        var item   = null;
+        var j      = 0;
+        var jlen   = 0;
+        var len    = 0;
+        var peer   = null;
+        var peers  = slice.apply(arguments, [1]);
         var result = unique(ar);
-        var peers = slice.apply(arguments, [1]);
-        var peer = null;
-        var item = null;
-        var i = 0;
-        var len = 0;
-        var j = 0;
-        var jlen = 0;
 
         if (result.length === 0) {
             return [];
@@ -1953,20 +2010,32 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * function log(item) { console.log(item); }
+     * o2.Collection.invoke(collection, log);
+     * // will log:
+     * // 1
+     * // 2
+     * // 3
+     * // 4
+     * // 5
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate -
+     * @param {Object} delegate - the delegate to invoke in the form
+     * delegate(item, ...varargin). If it's a <code>String</code> then
+     * <code>item[delegate]</code> will be used instead.
      * @param {...} - A set of parameters to pass after the delegate.
+     *
+     * @see o2.Collection.map
      */
     def(me,'invoke', function(obj, delegate) {
-        var i = 0;
-        var len = 0;
-        var item = null;
+        var i       = 0;
         var invoker = null;
-        var key = null;
+        var item    = null;
+        var key     = null;
+        var len     = 0;
 
         if (arguments.length < 2) {
             return;
@@ -2009,7 +2078,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 4, 2, 42, 2, 4, 42, 21, 12, 1];
+     * var idx = o2.Collection.lastIndexOf(collection, 42);
+     * // idx will be 7
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2073,12 +2144,14 @@
      * @param {Object} key - the key to pluck.
      *
      * @return a plucked subset.
+     *
+     * @see o2.Collection.group
      */
     def(me,'pluck', function(obj, key) {
+        var i      = 0;
+        var k      = null;
+        var len    = 0;
         var result = [];
-        var i = 0;
-        var len = 0;
-        var k = null;
 
         if (!obj) {
             return result;
@@ -2126,12 +2199,16 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var reduced = o2.Collection.reduce(collection, function(store, value) {
+     *      return store + value;
+     * }, 0);
+     * // reduced will be 15
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Functon} delegate - the reducer <code>Functon</code>.
+     * @param {Functon} delegate - the reducer <code>Function</code>.
      * @param {Object} store - the initial seed.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that the <strong>delegate</strong>
@@ -2140,14 +2217,14 @@
      * @return a single reduced value.
      */
     def(me, 'reduce', function(obj, delegate, store, context) {
+        var cache    = store;
+        var i        = 0;
+        var index    = 0;
         var isSeeded = arguments.length > 2;
-        var value = null;
-        var key = null;
-        var cache = store;
         var iterator = delegate;
-        var index = 0;
-        var i = 0;
-        var len = 0;
+        var key      = null;
+        var len      = 0;
+        var value    = null;
 
         if (!obj) {
             return null;
@@ -2225,12 +2302,6 @@
      *
      * <p>An <strong>alias</strong> to {o2.Collection.reduce}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.reduce
      */
     alias(me, 'fold', 'reduce');
@@ -2244,7 +2315,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var reduced = o2.Collection.reduceRight(collection, function(
+     *              store, value) {
+     *      return store + value;
+     * }, 0);
+     * // reduced will be 15
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2294,12 +2370,6 @@
      * <p>An <strong>alias</strong> to
      * {@link o2.Collection.reduceRight}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.reduceRight
      */
     alias(me, 'foldR', 'reduceRight');
@@ -2312,7 +2382,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5]
+     * var result = o2.Collection.removeElement(collection, 3);
+     * // result will be [1, 2, 4, 5]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2320,10 +2392,10 @@
      * @param {Object} elm - the element to remove.
      */
     def(me, 'removeElement', function(obj, elm) {
+        var i    = 0;
         var item = null;
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var key  = null;
+        var len  = 0;
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -2356,22 +2428,28 @@
      * <p>Removes and element from the collection if it has a property named
      * <strong>name</strong> with a value <strong>value</strong>.</p>
      *
+     * <p>This method works by reference, and alters the given collection.</p>
+     *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = { lorem : 1, ipsum : 2, sit : 3}
+     * o2.Collection.removeElementByValue(collection, 'sit', 3);
+     * // collection will be {lorem : 1, ipsum : 2}
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {String} name - the name of the property.
      * @param {Object} value - the value to compare.
+     *
+     * @return a reference to <strong>obj</strong> itself.
      */
     me.removeElementByValue = function(obj, name, value) {
+        var i    = 0;
         var item = null;
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var key  = null;
+        var len  = 0;
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -2384,7 +2462,7 @@
                 }
             }
 
-            return;
+            return obj;
         }
 
         for (key in obj) {
@@ -2396,6 +2474,8 @@
                 }
             }
         }
+
+        return obj;
     };
 
     /**
@@ -2407,7 +2487,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 2, 3, 4, 5];
+     * var shuffled = o2.Collection.shuffle(ar);
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2417,12 +2498,12 @@
      * collection.
      */
     def(me,'shuffle', function(obj) {
-        var result = [];
-        var i = 0;
-        var len = 0;
-        var value = null;
-        var index = null;
         var collection = null;
+        var i          = 0;
+        var index      = null;
+        var len        = 0;
+        var result     = [];
+        var value      = null;
 
         if (!obj) {
             return result;
@@ -2465,12 +2546,17 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 5, 4, 7];
+     * var sorted = o2.Collection.sort(collection, function(item) {
+     *      return item;
+     * });
+     * // sorted will be [1, 2, 4, 5, 7]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Function} delegate - the sorter in the form
+     * @param {Function} delegate - (Optional, defaults to an identity function
+     * that returns the original item) the sorter in the form
      * <code>function(value, index, collection)</code> where
      * <strong>value</strong> is the current item, <strong>index</strong> is
      * that item's index; and <strong>collection</strong> is
@@ -2484,11 +2570,13 @@
      * @return a sorted copy of the initial collection.
      */
     def(me,'sort', function(obj, delegate, context) {
-        var meta = [];
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var i     = 0;
+        var key   = null;
+        var len   = 0;
+        var meta  = [];
         var value = null;
+
+        var iterator = delegate || identity;
 
         if (!obj) {
             return meta;
@@ -2502,7 +2590,7 @@
             for (i = 0, len = obj.length; i < len; i++) {
                 meta.push({
                     value : value,
-                    order : delegate.apply(context, value, i, obj)
+                    order : iterator.apply(context, value, i, obj)
                 });
             }
         } else {
@@ -2510,7 +2598,7 @@
                 if (obj.hasOwnProperty(key)) {
                     meta.push({
                         value : obj[key],
-                        order : delegate.apply(context, value, i, obj)
+                        order : iterator.apply(context, value, i, obj)
                     });
 
                     i++;
@@ -2558,13 +2646,17 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var collection = [1, 2, 3, 4, 5];
+     * var isSome = o2.Collection.some(collection, function(item) {
+     *      return item > 4;
+     * });
+     * // isSome will be true
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param delegate - Iterator <code>Function</code> in the form
-     * <code>function(context, value, index, collection)</code>.
+     * <code>function(value, index, collection)</code>.
      * @param {Object} - The context to regard as <code>this</code> reference.
      *
      * @return <code>true</code> if the <strong>iterator</strong> returns
@@ -2572,12 +2664,12 @@
      * otherwise.
      */
     def(me,'some', function(obj, delegate, context) {
+        var i        = 0;
+        var index    = 0;
         var iterator = delegate || identity;
-        var index = 0;
-        var key = null;
-        var result = false;
-        var i = 0;
-        var len = 0;
+        var key      = null;
+        var len      = 0;
+        var result   = false;
 
         if (!obj) {
             return false;
@@ -2621,59 +2713,23 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.some}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Collection.some
      */
     alias(me, 'any', 'some');
 
     /**
-     * @function {static} o2.Collection.touch
-     *
-     * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
-     * parameter, then returns the <strong>obj</strong>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
-     * @param {Object} obj - the <code>Object</code> to touch.
-     * @param {Function} delegate - the delegate to execute
-     * on <strong>obj</strong>.
-     *
-     * @return <code>null</code> if <strong>obj</strong> is falsy or it's a
-     * primitive type; returns the <strong>obj</strong> itself (after applying
-     * delagate to it) otherwise.
-     */
-    def(me,'touch', function(obj, delegate) {
-        if (!obj) {
-            return null;
-        }
-
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        delegate(obj);
-
-        return obj;
-    });
-
-    /**
      * @function {static} o2.Collection.flatten
      *
      * <p>Shallow flattens an <code>Array</code>.</p>
+     * <p>Does not alter the original object, returns a new flattened object
+     * instead.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [[1, 2], [3, 4], 5]
+     * var flattened = o2.Object.flatten(ar);
+     * // flattened is [1, 2, 3, 4, 5]
      * </pre>
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
@@ -2682,11 +2738,11 @@
      * @return the flattened collection.
      */
     def(me, 'flatten', function(obj) {
+        var i     = 0;
+        var key   = null;
+        var len   = 0;
         var store = [];
-        var i = 0;
-        var len = 0;
         var value = null;
-        var key = null;
 
         if (!obj) {
             return store;
@@ -2733,17 +2789,21 @@
     /**
      * @function {static} o2.Collection.union
      *
-     * <p>Merges several collections into a singl <code>Array</code></p>
+     * <p>Merges several collections into a single <code>Array</code></p>
      *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var union = o2.Collection.union([1, 2], [2, 3], [3, 4], [5]);
+     * // union will be [1, 2, 3, 4, 5]
      * </pre>
      *
      * @param {...} varargin - the collections to merge as input parameters.
      *
      * @return the merged <code>Array</code>.
+     *
+     * @see o2.Collection.diff
+     * @see o2.Collection.istersect
      */
     def(me,'union', function() {
         return unique(flatten(arguments));
@@ -2778,10 +2838,10 @@
      * @return a zipped <code>Array</<code>.
      */
     def(me,'zip', function() {
-        var args = slice.call(arguments);
-        var length = getMax(pluck(args, kLength));
+        var args    = slice.call(arguments);
+        var i       = 0;
+        var length  = getMax(pluck(args, kLength));
         var results = [];
-        var i = 0;
 
         for (i = 0; i < length; i++) {
             results[i] = pluck(args, [kEmpty, i].join(kEmpty));

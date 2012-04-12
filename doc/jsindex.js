@@ -166,7 +166,7 @@
        {
            localName : "addObserver",
            fullName : "o2.AjaxState.addObserver",
-           summary : "static function  addObserver(Object observer)",
+           summary : "protected static function  addObserver(Object observer)",
            ref : "logical/o2/AjaxState.html#___addObserver",
            parent : "o2.AjaxState",
            type : "function",
@@ -184,7 +184,7 @@
        {
            localName : "deleteObserver",
            fullName : "o2.AjaxState.deleteObserver",
-           summary : "static function  deleteObserver(Object observer)",
+           summary : "protected static function  deleteObserver(Object observer)",
            ref : "logical/o2/AjaxState.html#___deleteObserver",
            parent : "o2.AjaxState",
            type : "function",
@@ -256,7 +256,7 @@
        {
            localName : "timeoutObservers",
            fullName : "o2.AjaxState.timeoutObservers",
-           summary : "static function  timeoutObservers(Array observers)",
+           summary : "protected static function  timeoutObservers(Array observers)",
            ref : "logical/o2/AjaxState.html#___timeoutObservers",
            parent : "o2.AjaxState",
            type : "function",
@@ -634,7 +634,7 @@
        {
            localName : "invoke",
            fullName : "o2.Collection.invoke",
-           summary : "static function  invoke(Object obj, Function delegate, ... -)",
+           summary : "static function  invoke(Object obj, Object delegate, ... -)",
            ref : "logical/o2/Collection.html#___invoke",
            parent : "o2.Collection",
            type : "function",
@@ -762,15 +762,6 @@
            fullName : "o2.Collection.toArray",
            summary : "static function  toArray(Object obj)",
            ref : "logical/o2/Collection.html#___toArray",
-           parent : "o2.Collection",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "touch",
-           fullName : "o2.Collection.touch",
-           summary : "static function  touch(Object obj, Function delegate)",
-           ref : "logical/o2/Collection.html#___touch",
            parent : "o2.Collection",
            type : "function",
            elementType : "function"
@@ -3660,6 +3651,15 @@
            fullName : "o2.Object.toArray",
            summary : "static function  toArray(Object obj)",
            ref : "logical/o2/Object.html#___toArray",
+           parent : "o2.Object",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "touch",
+           fullName : "o2.Object.touch",
+           summary : "static function  touch(Object obj, Function delegate)",
+           ref : "logical/o2/Object.html#___touch",
            parent : "o2.Object",
            type : "function",
            elementType : "function"

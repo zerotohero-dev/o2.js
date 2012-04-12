@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334153609
+	                 version 0.25.a.0001334231731
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -117,7 +117,23 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
+
+ // The request will time out after 5 seconds and then ontimeout
+ // will be called.
+ var controller = new o2.AjaxController(requrest, {
+      timeout   : 5000,
+      ontimeout : function() {
+      }
+ });
  </pre>    </div>  
                             </div>
                 </div>
@@ -142,7 +158,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var controller = new o2.AjaxController(xhr, params);
+
+ ...
+
+ // The o2.AjaxState no longer listens to this Controller.
+ controller.unregister();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -160,7 +181,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var controller = new o2.AjaxController(xhr, params);
+
+ ...
+
+ // Timeout the AJAX request immediately.
+ controller.update({isTimedOut : true});
  </pre>
 
  <p><a href="logical/o2/JsonpController.html">o2.JsonpController</a> overrides this implementation.</p>    </div>  
@@ -194,7 +220,23 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var request = o2.Ajax.get('/api.php', {
+      name   : 'Volkan Özçelik',
+      action : 'add'
+ }, {
+      oncomplete  : function(text, xml, xhr, status) {},
+      onerror     : function(statusCode, statusText, xhr) {},
+      onaborted   : function(xhr) {},
+      onexception : function(exception, xhr) {}
+ });
+
+ // The request will time out after 5 seconds and then ontimeout
+ // will be called.
+ var controller = new o2.AjaxController(requrest, {
+      timeout   : 5000,
+      ontimeout : function() {
+      }
+ });
  </pre>
 
      </div>
@@ -242,7 +284,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var controller = new o2.AjaxController(xhr, params);
+
+ ...
+
+ // The o2.AjaxState no longer listens to this Controller.
+ controller.unregister();
  </pre>
 
      </div>
@@ -268,7 +315,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var controller = new o2.AjaxController(xhr, params);
+
+ ...
+
+ // Timeout the AJAX request immediately.
+ controller.update({isTimedOut : true});
  </pre>
 
  <p><a href="logical/o2/JsonpController.html">o2.JsonpController</a> overrides this implementation.</p>

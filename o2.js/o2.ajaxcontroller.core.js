@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-11 19:07:58.752154
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
@@ -56,7 +56,23 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var request = o2.Ajax.get('/api.php', {
+     *      name   : 'Volkan Özçelik',
+     *      action : 'add'
+     * }, {
+     *      oncomplete  : function(text, xml, xhr, status) {},
+     *      onerror     : function(statusCode, statusText, xhr) {},
+     *      onaborted   : function(xhr) {},
+     *      onexception : function(exception, xhr) {}
+     * });
+     *
+     * // The request will time out after 5 seconds and then ontimeout
+     * // will be called.
+     * var controller = new o2.AjaxController(requrest, {
+     *      timeout   : 5000,
+     *      ontimeout : function() {
+     *      }
+     * });
      * </pre>
      *
      * @param {XmlHttpRequest} xhr - the original XmlHttpRequest
@@ -83,7 +99,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var controller = new o2.AjaxController(xhr, params);
+     *
+     * ...
+     *
+     * // Timeout the AJAX request immediately.
+     * controller.update({isTimedOut : true});
      * </pre>
      *
      * <p>{@link o2.JsonpController} overrides this implementation.</p>
@@ -117,7 +138,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var controller = new o2.AjaxController(xhr, params);
+     *
+     * ...
+     *
+     * // The o2.AjaxState no longer listens to this Controller.
+     * controller.unregister();
      * </pre>
      *
      */

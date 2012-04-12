@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334153609
+	                 version 0.25.a.0001334231731
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -96,13 +96,7 @@
                 <a href="logical/o2/Collection.html#___any"><span class="elementName">any</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___some">o2.Collection.some</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___some">o2.Collection.some</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -118,7 +112,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {a:'b'};
+ o2.Collection.clear(obj);
+ // obj is now {}
+ obj = [1,2,3];
+ o2.CollectionHelper.clear(obj);
+ // obj is now []
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -130,11 +129,7 @@
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___copy">o2.Collection.copy</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <p><strong>Usage example:</strong></p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -152,7 +147,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [null, 1, 2, undefined, '', 3, 4];
+ o2.Collection.compact(ar);
+ // ar is now [1, 2, '', 3, 4]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -171,7 +168,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4];
+ var isInAr = o2.Collection.contains(ar, 3);
+ // isInAr is true
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -189,7 +188,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj1 = {a:'b'};
+ var obj2 = o2.Collection.copy(obj1);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -201,11 +201,7 @@
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___find">o2.Collection.find</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <p><strong>Usage example:</strong></p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -223,7 +219,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar1 = [1, 2, 3, 4, 5];
+ var ar2 = [2, 3, 4, 5, 6];
+ var ar3 = o2.Collection.diff(ar1, ar2);
+ // ar3 is [1, 5. 6]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -233,13 +232,7 @@
                 <a href="logical/o2/Collection.html#___each"><span class="elementName">each</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___forEach">o2.Collection.forEach</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___forEach">o2.Collection.forEach</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -257,7 +250,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var isAllNumeric = o2.Collection.every(collection, function(item) {
+      return !isNaN(item);
+ });
+ // isAllNumeric will be true
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -277,7 +275,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var rest = o2.Collection.exclude(collection, function(item) {
+      return item % 2 === 0;
+ });
+
+ // rest will be [1, 3, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -295,7 +299,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var base = {lorem: 'ipsum'};
+ var child = {dolor: 'sit'};
+
+ o2.Collection.extend(child, base);
+
+ // child => {lorem : 'ipsum', dolor : 'sit'}
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -305,13 +314,7 @@
                 <a href="logical/o2/Collection.html#___filter"><span class="elementName">filter</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -330,7 +333,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4];
+
+ var res = o2.Collection.find(ar, function(value){
+      return value === 3;
+ });
+
+ // res will be 3
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -343,11 +352,15 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Shallow flattens an <code>Array</code>.</p>
+ <p>Does not alter the original object, returns a new flattened object
+ instead.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [[1, 2], [3, 4], 5]
+ var flattened = o2.Object.flatten(ar);
+ // flattened is [1, 2, 3, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -357,13 +370,7 @@
                 <a href="logical/o2/Collection.html#___fold"><span class="elementName">fold</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to {o2.Collection.reduce}.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to {o2.Collection.reduce}.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -373,13 +380,7 @@
             </div>
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to
- o2.Collection.reduceRight.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ o2.Collection.reduceRight.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -398,7 +399,16 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ o2.Collection.forEach(collection, function(item, index, collection) {
+      log(item);
+ });
+ // will log:
+ 1
+ 2
+ 3
+ 4
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -408,13 +418,7 @@
                 <a href="logical/o2/Collection.html#___getCount"><span class="elementName">getCount</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>    </div>  
+        <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -423,13 +427,7 @@
                 <a href="logical/o2/Collection.html#___getDifference"><span class="elementName">getDifference</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___diff">o2.Collection.diff</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___diff">o2.Collection.diff</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -445,7 +443,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -463,7 +461,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5, 6];
+ var firstFew = o2.Collection.getFirstN(collection, 3);
+ // firstFew will be [1, 2, 3]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -480,7 +480,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {fn1 : function(){}, fn2 : function() {}, lorem : 1};
+ var methods = o2.Collection.getFunctions(obj);
+ // methods now is [fn1, fn2]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -497,7 +499,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {lorem : 'ipsum', dolor : 'sit'};
+ var keys = o2.Collection.getKeys(obj);
+ // keys will be ['lorem', 'dolor']
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -514,7 +518,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var last = o2.Collection.getLast(collection);
+ // last will be 5
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -532,7 +538,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var lastFew = o2.Collection.getLastN(collection, 3);
+ // lastFew will be [3, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -542,13 +550,7 @@
                 <a href="logical/o2/Collection.html#___getLength"><span class="elementName">getLength</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>    </div>  
+        <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -566,7 +568,14 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 3, 11, 42, 4, 5, 6];
+ var meaningOfLife = o2.Collection.getMax(collection);
+ // meaningOfLife will be 42
+
+ var meaningOfUniverse = o2.Collection.getMax(collection, function(item) {
+      return item !== 42 ? Math.PI : 42;
+ });
+ // meaningOfUniverse will also be 42
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -576,13 +585,7 @@
                 <a href="logical/o2/Collection.html#___getMethods"><span class="elementName">getMethods</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to
+        <p>An <strong>alias</strong> to
  <a href="logical/o2/Collection.html#___getFunctions">o2.Collection.getFunctions</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -601,7 +604,14 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [111, 311, 1211, 42, 114, 235, 126];
+ var meaningOfLife = o2.Collection.getMin(collection);
+ // meaningOfLife will be 42
+
+ var meaningOfUniverse = o2.Collection.getMin(collection, function(item) {
+      return item !== 42 ? 42 * Math.PI : 42;
+ });
+ // meaningOfUniverse will also be 42
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -619,7 +629,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var rest = o2.Collection.getRest(collection);
+ // rest will be [2, 3, 4, 5]
+
+ rest = o2.Collection.getRest(collection, 2);
+ // rest will be [3, 4, 5];
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -636,7 +652,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var size = o2.Collection.getSize(collection);
+ // size will be 5
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -650,14 +668,16 @@
  delegate)
             </div>          
                 <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
+        <p>Gets an index to insert the item at a sorted <code>Array</code>,
+ so that is not needed to be resorted.</p>
+
+ <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
- </pre>
-
- <p>Gets an index to insert the item at a sorted <code>Array</code>,
- so that is not needed to be resorted.</p>    </div>  
+ var ar = [1, 2, 24, 30, 44, 66, 100];
+ var idx = o2.Collection.getSortedIndex(42);
+ // idx will be 4
+ </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -677,7 +697,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = {lorem : 1, ipsum : 2, dolor : 3};
+ var values = o2.Collection.getValues(collection);
+ // values will be ['lorem', 'ipsum', 'dolor']
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -696,7 +718,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5, 6];
+ var evens = o2.Collection.grep(collection, function(item) {
+      return item % 2 === 0;
+ });
+ // evens will be [2, 4, 6]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -715,7 +741,25 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [
+      {lorem : 1},
+      {lorem : 2},
+      {lorem : 3},
+      {ipsum : 1},
+      {ipsum : 2}
+ ];
+
+ var lorems = o2.Collection.group(collection, 'lorem')
+ //lorems will be {lorem : [1, 2, 3]}
+
+ var grouped = o2.Collection.group(collection, function(item) {
+      for(key in item) {
+          if (item.hasOwnProperty(key)) {
+              return key;
+          }
+      }
+ });
+ // grouped will be {lorem : [1, 2, 3], ipsum : [1, 2]}
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -727,11 +771,7 @@
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___contains">o2.Collection.contains</a>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <p><strong>Usage example:</strong></p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -740,13 +780,7 @@
                 <a href="logical/o2/Collection.html#___includes"><span class="elementName">includes</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___contains">o2.Collection.contains</a>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___contains">o2.Collection.contains</a>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -763,7 +797,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar [1, 2, 3, 4];
+ var id = o2.Collection.indexOf(ar, 3);
+ // id is 2
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -781,7 +817,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar1 = [1, 2, 3, 4, 5];
+ var ar2 = [2, 3, 4, 5, 6];
+ var ar3 = o2.Collection.intersect(ar1, ar2);
+ // ar3 is [2, 3, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -790,7 +829,7 @@
                 <span class="type"></span>
                 <a href="logical/o2/Collection.html#___invoke"><span class="elementName">invoke</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type">Function</span>
+ obj, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  delegate, <span class="type">...</span>
  -)
             </div>          
@@ -801,7 +840,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ function log(item) { console.log(item); }
+ o2.Collection.invoke(collection, log);
+ // will log:
+ // 1
+ // 2
+ // 3
+ // 4
+ // 5
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -818,7 +865,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ // This will return true:
+ o2.Collection.isEmpty([]);
+
+ // This will also return true:
+ o2.Collection.isEmpty({});
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -836,7 +887,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 4, 2, 42, 2, 4, 42, 21, 12, 1];
+ var idx = o2.Collection.lastIndexOf(collection, 42);
+ // idx will be 7
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -857,7 +910,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var squared = o2.Collection.map(collection, function(item) {
+      return item*item;
+ });
+ // squared will be [1, 4, 9, 25]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -867,13 +924,7 @@
                 <a href="logical/o2/Collection.html#___merge"><span class="elementName">merge</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___extend">o2.Collection.extend</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___extend">o2.Collection.extend</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -923,7 +974,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var reduced = o2.Collection.reduceRight(collection, function(
+              store, value) {
+      return store + value;
+ }, 0);
+ // reduced will be 15
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -933,13 +989,7 @@
                 <a href="logical/o2/Collection.html#___reject"><span class="elementName">reject</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alıas</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alıas</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -956,7 +1006,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5]
+ var result = o2.Collection.removeElement(collection, 3);
+ // result will be [1, 2, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -973,10 +1025,14 @@
         <p>Removes and element from the collection if it has a property named
  <strong>name</strong> with a value <strong>value</strong>.</p>
 
+ <p>This method works by reference, and alters the given collection.</p>
+
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = { lorem : 1, ipsum : 2, sit : 3}
+ o2.Collection.removeElementByValue(collection, 'sit', 3);
+ // collection will be {lorem : 1, ipsum : 2}
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -986,13 +1042,7 @@
                 <a href="logical/o2/Collection.html#___select"><span class="elementName">select</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1009,7 +1059,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4, 5];
+ var shuffled = o2.Collection.shuffle(ar);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1036,7 +1087,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var isSome = o2.Collection.some(collection, function(item) {
+      return item > 4;
+ });
+ // isSome will be true
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1059,7 +1114,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 5, 4, 7];
+ var sorted = o2.Collection.sort(collection, function(item) {
+      return item;
+ });
+ // sorted will be [1, 2, 4, 5, 7]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1076,26 +1135,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
- </pre>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Collection.html#___touch"><span class="elementName">touch</span></a>
-                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type">Function</span>
- delegate)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Executes the delegate by passing the <strong>obj</strong> to it as a
- parameter, then returns the <strong>obj</strong>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
+ var obj = {lorem : 1, ipsum : 2};
+ var ar = o2.Collection.toArray(obj);
+ // ar will be [1, 2]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1107,12 +1149,13 @@
  varargin)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Merges several collections into a singl <code>Array</code></p>
+        <p>Merges several collections into a single <code>Array</code></p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var union = o2.Collection.union([1, 2], [2, 3], [3, 4], [5]);
+ // union will be [1, 2, 3, 4, 5]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1131,7 +1174,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 2, 4, 2, 42];
+ var uniq = o2.Collection.unique(ar);
+ // uniq will be [1, 2, 3, 4, 42]
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1185,12 +1230,6 @@
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___some">o2.Collection.some</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -1217,7 +1256,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {a:'b'};
+ o2.Collection.clear(obj);
+ // obj is now {}
+ obj = [1,2,3];
+ o2.CollectionHelper.clear(obj);
+ // obj is now []
  </pre>
 
      </div>
@@ -1258,10 +1302,6 @@
 
  <p><strong>Usage example:</strong></p>
 
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -1290,7 +1330,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [null, 1, 2, undefined, '', 3, 4];
+ o2.Collection.compact(ar);
+ // ar is now [1, 2, '', 3, 4]
  </pre>
 
      </div>
@@ -1335,7 +1377,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4];
+ var isInAr = o2.Collection.contains(ar, 3);
+ // isInAr is true
  </pre>
 
      </div>
@@ -1384,7 +1428,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj1 = {a:'b'};
+ var obj2 = o2.Collection.copy(obj1);
  </pre>
 
      </div>
@@ -1425,10 +1470,6 @@
 
  <p><strong>Usage example:</strong></p>
 
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -1457,7 +1498,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar1 = [1, 2, 3, 4, 5];
+ var ar2 = [2, 3, 4, 5, 6];
+ var ar3 = o2.Collection.diff(ar1, ar2);
+ // ar3 is [1, 5. 6]
  </pre>
 
      </div>
@@ -1479,9 +1523,15 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             an <code>Array</code> of non-matching items.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___intersect">o2.Collection.intersect</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___union">o2.Collection.union</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___each">
             <span class="objType">function</span>
@@ -1497,12 +1547,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___forEach">o2.Collection.forEach</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -1532,7 +1576,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var isAllNumeric = o2.Collection.every(collection, function(item) {
+      return !isNaN(item);
+ });
+ // isAllNumeric will be true
  </pre>
 
      </div>
@@ -1593,7 +1642,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var rest = o2.Collection.exclude(collection, function(item) {
+      return item % 2 === 0;
+ });
+
+ // rest will be [1, 3, 5]
  </pre>
 
      </div>
@@ -1657,7 +1712,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var base = {lorem: 'ipsum'};
+ var child = {dolor: 'sit'};
+
+ o2.Collection.extend(child, base);
+
+ // child => {lorem : 'ipsum', dolor : 'sit'}
  </pre>
 
      </div>
@@ -1700,12 +1760,6 @@
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -1735,7 +1789,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4];
+
+ var res = o2.Collection.find(ar, function(value){
+      return value === 3;
+ });
+
+ // res will be 3
  </pre>
 
      </div>
@@ -1753,7 +1813,7 @@
         <code>
             delegate        </code>
          - Iterator <code>Function</code> in the form
- <code>function(context, value, index, collection)</code>.            </div>   
+ <code>function(value, index, collection)</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             context        </code>
@@ -1787,11 +1847,15 @@
             </div>          
                 <div class="comment">
         <p>Shallow flattens an <code>Array</code>.</p>
+ <p>Does not alter the original object, returns a new flattened object
+ instead.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [[1, 2], [3, 4], 5]
+ var flattened = o2.Object.flatten(ar);
+ // flattened is [1, 2, 3, 4, 5]
  </pre>
 
      </div>
@@ -1831,12 +1895,6 @@
         <div class="comment">
         <p>An <strong>alias</strong> to {o2.Collection.reduce}.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -1859,12 +1917,6 @@
         <div class="comment">
         <p>An <strong>alias</strong> to
  o2.Collection.reduceRight.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -1895,7 +1947,16 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ o2.Collection.forEach(collection, function(item, index, collection) {
+      log(item);
+ });
+ // will log:
+ 1
+ 2
+ 3
+ 4
  </pre>
 
      </div>
@@ -1932,13 +1993,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
+        <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
 
      </div>
                                 <div class="seealso">
@@ -1961,12 +2016,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___diff">o2.Collection.diff</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -1994,7 +2043,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5]
  </pre>
 
      </div>
@@ -2040,7 +2089,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5, 6];
+ var firstFew = o2.Collection.getFirstN(collection, 3);
+ // firstFew will be [1, 2, 3]
  </pre>
 
      </div>
@@ -2090,7 +2141,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {fn1 : function(){}, fn2 : function() {}, lorem : 1};
+ var methods = o2.Collection.getFunctions(obj);
+ // methods now is [fn1, fn2]
  </pre>
 
      </div>
@@ -2135,7 +2188,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {lorem : 'ipsum', dolor : 'sit'};
+ var keys = o2.Collection.getKeys(obj);
+ // keys will be ['lorem', 'dolor']
  </pre>
 
      </div>
@@ -2179,7 +2234,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var last = o2.Collection.getLast(collection);
+ // last will be 5
  </pre>
 
      </div>
@@ -2225,7 +2282,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var lastFew = o2.Collection.getLastN(collection, 3);
+ // lastFew will be [3, 4, 5]
  </pre>
 
      </div>
@@ -2268,13 +2327,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
+        <p>An <strong>alias</strong> to {o2.Collection.getSize}</p>
 
      </div>
                                 <div class="seealso">
@@ -2304,7 +2357,14 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 3, 11, 42, 4, 5, 6];
+ var meaningOfLife = o2.Collection.getMax(collection);
+ // meaningOfLife will be 42
+
+ var meaningOfUniverse = o2.Collection.getMax(collection, function(item) {
+      return item !== 42 ? Math.PI : 42;
+ });
+ // meaningOfUniverse will also be 42
  </pre>
 
      </div>
@@ -2356,13 +2416,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to
+        <p>An <strong>alias</strong> to
  <a href="logical/o2/Collection.html#___getFunctions">o2.Collection.getFunctions</a>.</p>
 
      </div>
@@ -2393,7 +2447,14 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [111, 311, 1211, 42, 114, 235, 126];
+ var meaningOfLife = o2.Collection.getMin(collection);
+ // meaningOfLife will be 42
+
+ var meaningOfUniverse = o2.Collection.getMin(collection, function(item) {
+      return item !== 42 ? 42 * Math.PI : 42;
+ });
+ // meaningOfUniverse will also be 42
  </pre>
 
      </div>
@@ -2452,7 +2513,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+
+ var rest = o2.Collection.getRest(collection);
+ // rest will be [2, 3, 4, 5]
+
+ rest = o2.Collection.getRest(collection, 2);
+ // rest will be [3, 4, 5];
  </pre>
 
      </div>
@@ -2502,7 +2569,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var size = o2.Collection.getSize(collection);
+ // size will be 5
  </pre>
 
      </div>
@@ -2543,14 +2612,16 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p><strong>Usage example:</strong></p>
+        <p>Gets an index to insert the item at a sorted <code>Array</code>,
+ so that is not needed to be resorted.</p>
+
+ <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 24, 30, 44, 66, 100];
+ var idx = o2.Collection.getSortedIndex(42);
+ // idx will be 4
  </pre>
-
- <p>Gets an index to insert the item at a sorted <code>Array</code>,
- so that is not needed to be resorted.</p>
 
      </div>
         	<div class="parameters">
@@ -2607,7 +2678,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = {lorem : 1, ipsum : 2, dolor : 3};
+ var values = o2.Collection.getValues(collection);
+ // values will be ['lorem', 'ipsum', 'dolor']
  </pre>
 
      </div>
@@ -2653,7 +2726,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5, 6];
+ var evens = o2.Collection.grep(collection, function(item) {
+      return item % 2 === 0;
+ });
+ // evens will be [2, 4, 6]
  </pre>
 
      </div>
@@ -2704,7 +2781,25 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [
+      {lorem : 1},
+      {lorem : 2},
+      {lorem : 3},
+      {ipsum : 1},
+      {ipsum : 2}
+ ];
+
+ var lorems = o2.Collection.group(collection, 'lorem')
+ //lorems will be {lorem : [1, 2, 3]}
+
+ var grouped = o2.Collection.group(collection, function(item) {
+      for(key in item) {
+          if (item.hasOwnProperty(key)) {
+              return key;
+          }
+      }
+ });
+ // grouped will be {lorem : [1, 2, 3], ipsum : [1, 2]}
  </pre>
 
      </div>
@@ -2733,9 +2828,14 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             an <code>Array</code> of grouped items.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___pluck">o2.Collection.pluck</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___inArray">
             <span class="objType">function</span>
@@ -2753,10 +2853,6 @@
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___contains">o2.Collection.contains</a>
 
  <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -2779,12 +2875,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___contains">o2.Collection.contains</a>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -2813,7 +2903,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar [1, 2, 3, 4];
+ var id = o2.Collection.indexOf(ar, 3);
+ // id is 2
  </pre>
 
      </div>
@@ -2862,7 +2954,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar1 = [1, 2, 3, 4, 5];
+ var ar2 = [2, 3, 4, 5, 6];
+ var ar3 = o2.Collection.intersect(ar1, ar2);
+ // ar3 is [2, 3, 4, 5]
  </pre>
 
      </div>
@@ -2883,9 +2978,15 @@
 	        <div class="paddedDetails">
 	            	             an <code>Array</code> containing only the values that are common
  in all of the collections given.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___diff">o2.Collection.diff</a></div>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___union">o2.Collection.union</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___invoke">
             <span class="objType">function</span>
@@ -2897,7 +2998,7 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     invoke(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type">Function</span>
+ obj, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
  delegate, <span class="type">...</span>
  -)
                 </code> 
@@ -2909,7 +3010,15 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ function log(item) { console.log(item); }
+ o2.Collection.invoke(collection, log);
+ // will log:
+ // 1
+ // 2
+ // 3
+ // 4
+ // 5
  </pre>
 
      </div>
@@ -2926,7 +3035,9 @@
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
-         -            </div>   
+         - the delegate to invoke in the form
+ delegate(item, ...varargin). If it's a <code>String</code> then
+ <code>item[delegate]</code> will be used instead.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             -        </code>
@@ -2934,7 +3045,11 @@
                                         </div>
                 </div>
                     </div>
-                                                    <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___map">o2.Collection.map</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___isEmpty">
             <span class="objType">function</span>
@@ -2955,7 +3070,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ // This will return true:
+ o2.Collection.isEmpty([]);
+
+ // This will also return true:
+ o2.Collection.isEmpty({});
  </pre>
 
      </div>
@@ -3001,7 +3120,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 4, 2, 42, 2, 4, 42, 21, 12, 1];
+ var idx = o2.Collection.lastIndexOf(collection, 42);
+ // idx will be 7
  </pre>
 
      </div>
@@ -3053,7 +3174,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var squared = o2.Collection.map(collection, function(item) {
+      return item*item;
+ });
+ // squared will be [1, 4, 9, 25]
  </pre>
 
      </div>
@@ -3088,9 +3213,14 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             a mapped <code>Array</code>.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___invoke">o2.Collection.invoke</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___merge">
             <span class="objType">function</span>
@@ -3106,12 +3236,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___extend">o2.Collection.extend</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -3177,9 +3301,14 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             a plucked subset.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___group">o2.Collection.group</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___reduce">
             <span class="objType">function</span>
@@ -3204,7 +3333,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var reduced = o2.Collection.reduceRight(collection, function(
+              store, value) {
+      return store + value;
+ }, 0);
+ // reduced will be 15
  </pre>
 
      </div>
@@ -3263,12 +3397,6 @@
         <div class="comment">
         <p>An <strong>alıas</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -3296,7 +3424,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5]
+ var result = o2.Collection.removeElement(collection, 3);
+ // result will be [1, 2, 4, 5]
  </pre>
 
      </div>
@@ -3338,10 +3468,14 @@
         <p>Removes and element from the collection if it has a property named
  <strong>name</strong> with a value <strong>value</strong>.</p>
 
+ <p>This method works by reference, and alters the given collection.</p>
+
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = { lorem : 1, ipsum : 2, sit : 3}
+ o2.Collection.removeElementByValue(collection, 'sit', 3);
+ // collection will be {lorem : 1, ipsum : 2}
  </pre>
 
      </div>
@@ -3366,7 +3500,13 @@
                                         </div>
                 </div>
                     </div>
-                                                    <hr/>       
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a reference to <strong>obj</strong> itself.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                                                                     <h3>
         <a name="___select">
             <span class="objType">function</span>
@@ -3382,12 +3522,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -3416,7 +3550,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 4, 5];
+ var shuffled = o2.Collection.shuffle(ar);
  </pre>
 
      </div>
@@ -3471,7 +3606,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 3, 4, 5];
+ var isSome = o2.Collection.some(collection, function(item) {
+      return item > 4;
+ });
+ // isSome will be true
  </pre>
 
      </div>
@@ -3489,7 +3628,7 @@
         <code>
             delegate        </code>
          - Iterator <code>Function</code> in the form
- <code>function(context, value, index, collection)</code>.            </div>   
+ <code>function(value, index, collection)</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             -        </code>
@@ -3532,7 +3671,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var collection = [1, 2, 5, 4, 7];
+ var sorted = o2.Collection.sort(collection, function(item) {
+      return item;
+ });
+ // sorted will be [1, 2, 4, 5, 7]
  </pre>
 
      </div>
@@ -3549,7 +3692,8 @@
                                                 <div class="param paddedDetails">
         <code>
             delegate        </code>
-         - the sorter in the form
+         - (Optional, defaults to an identity function
+ that returns the original item) the sorter in the form
  <code>function(value, index, collection)</code> where
  <strong>value</strong> is the current item, <strong>index</strong> is
  that item's index; and <strong>collection</strong> is
@@ -3592,7 +3736,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {lorem : 1, ipsum : 2};
+ var ar = o2.Collection.toArray(obj);
+ // ar will be [1, 2]
  </pre>
 
      </div>
@@ -3619,58 +3765,6 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___touch">
-            <span class="objType">function</span>
-            <span class="objName">touch</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    touch(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type">Function</span>
- delegate)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Executes the delegate by passing the <strong>obj</strong> to it as a
- parameter, then returns the <strong>obj</strong>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the <code>Object</code> to touch.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            delegate        </code>
-         - the delegate to execute
- on <strong>obj</strong>.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             <code>null</code> if <strong>obj</strong> is falsy or it's a
- primitive type; returns the <strong>obj</strong> itself (after applying
- delagate to it) otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
         <a name="___union">
             <span class="objType">function</span>
             <span class="objName">union</span>            
@@ -3685,12 +3779,13 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Merges several collections into a singl <code>Array</code></p>
+        <p>Merges several collections into a single <code>Array</code></p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var union = o2.Collection.union([1, 2], [2, 3], [3, 4], [5]);
+ // union will be [1, 2, 3, 4, 5]
  </pre>
 
      </div>
@@ -3710,9 +3805,15 @@
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
 	            	             the merged <code>Array</code>.
-     	            	        </div>
+
+ 	            	        </div>
         </div>      
-                                                <hr/>       
+                            <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___diff">o2.Collection.diff</a></div>
+                            <div class="paddedDetails">o2.Collection.istersect</div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___unique">
             <span class="objType">function</span>
@@ -3735,7 +3836,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ar = [1, 2, 3, 2, 4, 2, 42];
+ var uniq = o2.Collection.unique(ar);
+ // uniq will be [1, 2, 3, 4, 42]
  </pre>
 
      </div>

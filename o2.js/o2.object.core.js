@@ -266,4 +266,42 @@
      * @see o2.Object.toJsonString
      */
     alias(me, 'stringify', 'toJsonString');
+
+    /**
+     * @function {static} o2.Object.touch
+     *
+     * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
+     * parameter, then returns the <strong>obj</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var obj = {lorem : '1'};
+     * o2.Object.touch(obj, function(o) {
+     *   o.lorem = '3';
+     * });
+     * // now obj is {lorem : '3'}
+     * </pre>
+     *
+     * @param {Object} obj - the <code>Object</code> to touch.
+     * @param {Function} delegate - the delegate to execute
+     * on <strong>obj</strong>.
+     *
+     * @return <code>null</code> if <strong>obj</strong> is falsy or it's a
+     * primitive type; returns the <strong>obj</strong> itself (after applying
+     * delagate to it) otherwise.
+     */
+    def(me,'touch', function(obj, delegate) {
+        if (!obj) {
+            return null;
+        }
+
+        if (!isObject(obj)) {
+            return null;
+        }
+
+        delegate(obj);
+
+        return obj;
+    });
 }(this.o2, this));

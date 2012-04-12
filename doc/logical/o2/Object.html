@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334153609
+	                 version 0.25.a.0001334231731
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -218,6 +218,29 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Object.html#___touch"><span class="elementName">touch</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ obj, <span class="type">Function</span>
+ delegate)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Executes the delegate by passing the <strong>obj</strong> to it as a
+ parameter, then returns the <strong>obj</strong>.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var obj = {lorem : '1'};
+ o2.Object.touch(obj, function(o) {
+   o.lorem = '3';
+ });
+ // now obj is {lorem : '3'}
+ </pre>    </div>  
                             </div>
                 </div>
         <p/>
@@ -510,6 +533,62 @@
                             <div class="paddedDetails"><a href="logical/o2/Collection.html#___toArray">o2.Collection.toArray</a></div>
                     </div>      
                                 <hr/>       
+                                                                                    <h3>
+        <a name="___touch">
+            <span class="objType">function</span>
+            <span class="objName">touch</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    touch(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ obj, <span class="type">Function</span>
+ delegate)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Executes the delegate by passing the <strong>obj</strong> to it as a
+ parameter, then returns the <strong>obj</strong>.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var obj = {lorem : '1'};
+ o2.Object.touch(obj, function(o) {
+   o.lorem = '3';
+ });
+ // now obj is {lorem : '3'}
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - the <code>Object</code> to touch.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the delegate to execute
+ on <strong>obj</strong>.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             <code>null</code> if <strong>obj</strong> is falsy or it's a
+ primitive type; returns the <strong>obj</strong> itself (after applying
+ delagate to it) otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
                                     </div>
     	    	                                    						        </div>
         		          </div>			                    

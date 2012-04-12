@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-11 19:25:22.330193
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -170,17 +170,15 @@
     }
 
     /**
-     * @function {static} o2.AjaxState.addObserver
+     * @function {protected static} o2.AjaxState.addObserver
      *
      * <p>An implementation of the <code>Observer.addObserver</code>
      * method.</p>
      * <p>Registers an <code>Observer</code>.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
+     * <p>This method is <strong>protected</strong>, in a sense that it's not
+     * meant to be called directly. {@link o2.AjaxController} and
+     * {@link o2.JsonpController} use it indirectly to register themselves.</p>
      *
      * @param {Object} observer - the <code>Observer</code> to register.
      */
@@ -213,7 +211,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var count = o2.AjaxState.countObservers();
      * </pre>
      *
      * @return the number of registered <code>Observer</code>s.
@@ -223,7 +221,7 @@
     });
 
     /**
-     * @function {static} o2.AjaxState.deleteObserver
+     * @function {protected static} o2.AjaxState.deleteObserver
      *
      * <p>An implementation of the <code>Observer.deleteObserver</code>
      * method.</p>
@@ -231,9 +229,10 @@
      *
      * <p><strong>Usage example:</strong></p>
      *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
+     * <p>This method is <strong>protected</strong>, in a sense that it's not
+     * meant to be called directly. {@link o2.AjaxController} and
+     * {@link o2.JsonpController} use it indirectly to unregister
+     * themselves.</p>
      *
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
@@ -269,7 +268,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.AjaxController.deleteObservers();
      * </pre>
      *
      */
@@ -286,7 +285,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.AjaxState.init();
      * </pre>
      *
      */
@@ -299,20 +298,18 @@
     });
 
     /**
-     * @function {static} o2.AjaxState.timeoutObservers
+     * @function {protected static} o2.AjaxState.timeoutObservers
      *
      * <p>Sends a timeout request and unregisters the given
      * <code>Observer</code>s.</p>
      *
+     * <p>This method is <strong>protected</strong>, in a sense that it's not
+     * meant to be called directly. {@link o2.AjaxController} and
+     * {@link o2.JsonpController} use it indirectly to timeout
+     * themselves.</p>
+     *
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      */
     def(me, 'timeoutObservers', function(observers) {
         timeoutObservers(this, observers);
@@ -327,7 +324,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.AjaxState.timeoutAllObservers();
      * </pre>
      *
      */

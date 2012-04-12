@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334153609
+	                 version 0.25.a.0001334231731
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -121,7 +121,7 @@
             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers">static</span>
+                <span class="modifiers">protected static</span>
                 <span class="type"></span>
                 <a href="logical/o2/AjaxState.html#___addObserver"><span class="elementName">addObserver</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
@@ -132,11 +132,9 @@
  method.</p>
  <p>Registers an <code>Observer</code>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to register themselves.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -152,12 +150,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var count = o2.AjaxState.countObservers();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers">static</span>
+                <span class="modifiers">protected static</span>
                 <span class="type"></span>
                 <a href="logical/o2/AjaxState.html#___deleteObserver"><span class="elementName">deleteObserver</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
@@ -170,9 +168,10 @@
 
  <p><strong>Usage example:</strong></p>
 
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to unregister
+ themselves.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -188,7 +187,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxController.deleteObservers();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -204,7 +203,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxState.init();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -220,12 +219,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxState.timeoutAllObservers();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
-                <span class="modifiers">static</span>
+                <span class="modifiers">protected static</span>
                 <span class="type"></span>
                 <a href="logical/o2/AjaxState.html#___timeoutObservers"><span class="elementName">timeoutObservers</span></a>
                 (<span class="type">Array</span>
@@ -233,7 +232,12 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>Sends a timeout request and unregisters the given
- <code>Observer</code>s.</p>    </div>  
+ <code>Observer</code>s.</p>
+
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to timeout
+ themselves.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -265,7 +269,7 @@
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">static</span>
+                    <span class="modifiers">protected static</span>
                     <span class="type"></span>
                     addObserver(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  observer)
@@ -276,11 +280,9 @@
  method.</p>
  <p>Registers an <code>Observer</code>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to register themselves.</p>
 
      </div>
         	<div class="parameters">
@@ -317,7 +319,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var count = o2.AjaxState.countObservers();
  </pre>
 
      </div>
@@ -336,7 +338,7 @@
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">static</span>
+                    <span class="modifiers">protected static</span>
                     <span class="type"></span>
                     deleteObserver(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  observer)
@@ -349,9 +351,10 @@
 
  <p><strong>Usage example:</strong></p>
 
- <pre>
- //TODO: add usage example.
- </pre>
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to unregister
+ themselves.</p>
 
      </div>
         	<div class="parameters">
@@ -388,7 +391,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxController.deleteObservers();
  </pre>
 
      </div>
@@ -413,7 +416,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxState.init();
  </pre>
 
      </div>
@@ -438,7 +441,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.AjaxState.timeoutAllObservers();
  </pre>
 
      </div>
@@ -451,7 +454,7 @@
     </h3>
                         <div>
                 <code>
-                    <span class="modifiers">static</span>
+                    <span class="modifiers">protected static</span>
                     <span class="type"></span>
                     timeoutObservers(<span class="type">Array</span>
  observers)
@@ -460,6 +463,11 @@
                 <div class="comment">
         <p>Sends a timeout request and unregisters the given
  <code>Observer</code>s.</p>
+
+ <p>This method is <strong>protected</strong>, in a sense that it's not
+ meant to be called directly. <a href="logical/o2/AjaxController.html">o2.AjaxController</a> and
+ <a href="logical/o2/JsonpController.html">o2.JsonpController</a> use it indirectly to timeout
+ themselves.</p>
 
      </div>
         	<div class="parameters">
@@ -471,13 +479,7 @@
         <code>
             observers        </code>
          - A collection of AjaxController
- objects.
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>            </div>   
+ objects.            </div>   
                                         </div>
                 </div>
                     </div>
