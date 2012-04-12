@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-12 15:41:57.048122
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
@@ -65,7 +65,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var value = o2.Cookie.read('cookieName');
      * </pre>
      *
      * @param {String} name - the name of the <strong>cookie</strong> to
@@ -102,7 +102,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Cookie.save('testCookie', 'testValue', 10);
      * </pre>
      *
      * @param {String} name - the name of the <strong>cookie</strong>.
@@ -158,7 +158,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Cookie.remove('testCookie');
      * </pre>
      *
      * @param {String} name - the name of the <strong>cookie</strong> to

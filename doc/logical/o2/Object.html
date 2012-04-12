@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334231731
+	                 version 0.25.a.0001334234806
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -106,7 +106,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var base = {lorem : 1};
+ var child = {ipsum : 2};
+ o2.Object.copy(child, base);
+ // child is now {lorem : 1, ipsum : 2}
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -128,7 +131,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = {lorem : 1};
+ var base = {ipsum : function() {}};
+ o2.Object.copyMethods(child, base);
+ // child is now {lorem : 1, ipsum : function() {}}
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -152,7 +158,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var Child = function() {};
+ Child.prototype.method1 = function() {};
+ var Base = function() {};
+ Base.prototype.method2 = function() {};
+ o2.Object.copyPrototype(Child, Base);
+ // Child.prototype has both method1 and method2 now.
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -200,13 +211,7 @@
                 <a href="logical/o2/Object.html#___stringify"><span class="elementName">stringify</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>    </div>  
+        <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -270,7 +275,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var base = {lorem : 1};
+ var child = {ipsum : 2};
+ o2.Object.copy(child, base);
+ // child is now {lorem : 1, ipsum : 2}
  </pre>
 
      </div>
@@ -290,7 +298,11 @@
                                         </div>
                 </div>
                     </div>
-                                                    <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___union">o2.Collection.union</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___copyMethods">
             <span class="objType">function</span>
@@ -316,7 +328,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = {lorem : 1};
+ var base = {ipsum : function() {}};
+ o2.Object.copyMethods(child, base);
+ // child is now {lorem : 1, ipsum : function() {}}
  </pre>
 
      </div>
@@ -366,7 +381,12 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var Child = function() {};
+ Child.prototype.method1 = function() {};
+ var Base = function() {};
+ Base.prototype.method2 = function() {};
+ o2.Object.copyPrototype(Child, Base);
+ // Child.prototype has both method1 and method2 now.
  </pre>
 
      </div>
@@ -470,13 +490,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>
+        <p>An <strong>alias</strong> to o2.Object.toJsonString.</p>
 
      </div>
                                 <div class="seealso">
@@ -516,7 +530,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var obj = {lorem : 1, ipsum : 2};
+ var ar = o2.Object.toArray(obj);
+ // ar will be [1, 2]
  </pre>            </div>   
                                         </div>
                 </div>

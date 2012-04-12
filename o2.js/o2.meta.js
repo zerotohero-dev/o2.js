@@ -728,7 +728,8 @@ this.o2 = this.o2 || {isProduction : false};
                 extend        : {MODULE : kObjectCore},
                 stringify     : {MODULE : kObjectCore},
                 toArray       : {MODULE : kObjectCore},
-                toJsonString  : {MODULE : kObjectCore}
+                toJsonString  : {MODULE : kObjectCore},
+                touch         : {MODULE : kObjectCore}
             }
         },
         QueryString : {

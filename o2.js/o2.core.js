@@ -9,13 +9,13 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001334231731
+ * @version     0.25.a.0001334234806
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
 /*
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-12 15:46:27.682451
  */
 
 /**
@@ -116,7 +116,7 @@
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001334231731');
+    def(me, 'build', '.0001334234806');
 
     /**
      * @function {static} o2.$
@@ -126,7 +126,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var domRef = o2.$('elementId');
      * </pre>
      *
      * @param {Object} obj - the id to check.
@@ -161,7 +161,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.ready(function() {
+     *      initializeWidget();
+     * });
      * </pre>
      *
      * @param {Function} callback - The callback to execute when DOM is
@@ -180,7 +182,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.load(function() {
+     *      initializeWidget();
+     * });
      * </pre>
      *
      * @param {Function} callback - The callback to execute when window is
@@ -199,7 +203,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var unixTimestamp = o2.now();
      * </pre>
      *
      * @return the current unix time.
@@ -251,7 +255,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var allTags = o2.n('username', 'testForm');
      * </pre>
      *
      * @param {String} tagName - the name of the form item to search.
@@ -300,7 +304,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var firstDiv = o2.nn('userprefs', 'testForm');
      * </pre>
      *
      * @param {String} name - the name of the element to search.
@@ -324,7 +328,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var allNodes = o2.t('*')
      * </pre>
      *
      * @param {String} tagName - the name of the tag to search.
@@ -358,7 +362,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var firstDiv = o2.tt('div', 'MasterContainer');
      * </pre>
      *
      * @param {String} tagName - the name of the tag to search.

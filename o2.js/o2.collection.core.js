@@ -1758,6 +1758,8 @@
      * altering the original <code>Object</code>.
      *
      * @return the generated <code>Array</code>.
+     *
+     * @see o2.Object.toArray
      */
     def(me,'toArray', function(obj) {
         var key    = null;

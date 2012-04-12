@@ -66,11 +66,16 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var base = {lorem : 1};
+     * var child = {ipsum : 2};
+     * o2.Object.copy(child, base);
+     * // child is now {lorem : 1, ipsum : 2}
      * </pre>
      *
      * @param {Object} child
      * @param {Object} base
+     *
+     * @see o2.Collection.union
      */
     def(me, 'copy', function(child, base) {
         var key = null;
@@ -93,7 +98,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var child = {lorem : 1};
+     * var base = {ipsum : function() {}};
+     * o2.Object.copyMethods(child, base);
+     * // child is now {lorem : 1, ipsum : function() {}}
      * </pre>
      *
      * @param {Object} child - the child <strong>object</strong> to copy
@@ -129,7 +137,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var Child = function() {};
+     * Child.prototype.method1 = function() {};
+     * var Base = function() {};
+     * Base.prototype.method2 = function() {};
+     * o2.Object.copyPrototype(Child, Base);
+     * // Child.prototype has both method1 and method2 now.
      * </pre>
      *
      * @param {Object} child - the child <strong>object</strong> to copy
@@ -212,7 +225,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {lorem : 1, ipsum : 2};
+     * var ar = o2.Object.toArray(obj);
+     * // ar will be [1, 2]
      * </pre>
      *
      * @return the converted <code>Array</code>.
@@ -234,7 +249,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {lorem : 1};
+     * var str = o2.Object.toJsonString(obj);
+     * // str will be '{"lorem":1}' (a serialized String literal)
      * </pre>
      *
      * @param {Object} obj - the <code>Object</code> to convert to a
@@ -254,12 +271,6 @@
 
     /**
      * @function {static} o2.Object.stringify
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * <p>An <strong>alias</strong> to {@link o2.Object.toJsonString}.</p>
      *
