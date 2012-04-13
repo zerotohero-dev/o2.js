@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 14:17:16.306133
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -83,10 +83,23 @@
      * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
      * not have to be in the same domain as the web page.</p>
      *
+     * <p>The success and failure callbacks is a somewhat hacky way of handling
+     * <strong>CSS</strong> load events. In deed, detecting <strong>CSS</strong>
+     * load is not an easy task, and it's not necessary most of the time.</p>
+     * <p>Though it may get handy to prevent the Flash of Unstyled Content
+     * (FOUC) issues.</p>
+     * <p>A more robust way of handling load callbacks is polling
+     * the property of a test element (such as the background color), that
+     * you know that the loaded <strong>CSS</strong> will change for sure.</p>
+     *
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+     *      handleSuccess();
+     * }, function() {
+     *      handleFailure();
+     * });
      * </pre>
      *
      * @param {String} src - the source <strong>URL</strong> of the
@@ -152,7 +165,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
+     *      handleSuccess();
+     * }, function() {
+     *      handleFailure();
+     * });
      * </pre>
      *
      * @param {String} url - the <strong>URL</strong> of the
@@ -186,7 +203,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.loadImage('http//asset.example.com/script.js', function() {
+     *      handleSuccess();
+     * });
      * </pre>
      *
      * @param {String} src - the source <strong>URL</strong> of the

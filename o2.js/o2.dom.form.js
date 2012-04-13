@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 14:05:03.280852
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -51,7 +51,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.compactField('txtInput');
      * </pre>
      *
      * @param {Object} field - the field to be compacted, or its
@@ -82,7 +82,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.trimField('txtInput');
      * </pre>
      *
      * @param {Object} field - the field to be trimmed, or its
@@ -114,7 +114,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.preventMultipleSubmit('actionForm');
      * </pre>
      *
      * @param {Object} form - A <strong>DOM</strong> reference to the form

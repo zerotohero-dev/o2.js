@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 14:03:41.963925
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
@@ -86,7 +86,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var dimensions = o2.Dom.getDimension('container');
      * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
@@ -124,7 +124,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var viewportInfo = o2.Dom.getDocumentDimension();
      * </pre>
      *
      * @return the dimension of the document in the form <code>{width: w,
@@ -164,7 +164,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var viewportHeight = o2.Dom.getDocumentHeight();
      * </pre>
      *
      * @return the document's height.
@@ -181,7 +181,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var viewportWidth = o2.Dom.getDocumentWidth();
      * </pre>
      *
      * @return the document's width.
@@ -198,7 +198,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var containerHeight = o2.Dom.getHeight('container');
      * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
@@ -219,7 +219,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var details = o2.Dom.getViewportInfo();
      * </pre>
      *
      * @return the viewport information.
@@ -255,7 +255,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var elementWidth = o2.Dom.getWidth('container');
      * </pre>
      *
      * @return the width of the element, in pixels.
@@ -265,6 +265,7 @@
     });
 
     if (window.innerWidth !== undefined) {
+
         /**
          * @function {static} o2.Dom.getWindowInnerDimension
          *
@@ -274,7 +275,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var windowDimensions = o2.Dom.getWindowInnerDimension();
          * </pre>
          *
          * @return the dimension of the visible area of the browser in the form
@@ -315,7 +316,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var innerHeight = o2.Dom.getWindow.innerHeight();
      * </pre>
      *
      * @return the inner height of the window in pixels.
@@ -332,7 +333,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var innerWidth = o2.Dom.getWindowInnerWidth();
      * </pre>
      *
      * @return the inner width of the window in pixels.
@@ -349,7 +350,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.setWidth('container', 500);
      * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
@@ -403,7 +404,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.setHeight('container', 300);
      * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
@@ -451,7 +452,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.setDimension('container', {width: 400, height: 200});
      * </pre>
      *
      * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension

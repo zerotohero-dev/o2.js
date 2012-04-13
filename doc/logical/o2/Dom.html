@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334311588
+	                 version 0.25.a.0001334315875
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -183,7 +183,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = o2.$('childNode');
+ var parent = o2.$('parentNode');
+ o2.Dom.append(child, parent);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -200,7 +202,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.compactField('txtInput');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -210,13 +212,7 @@
                 <a href="logical/o2/Dom.html#___create"><span class="elementName">create</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___createElement">o2.Dom.createElement</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___createElement">o2.Dom.createElement</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -251,7 +247,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var frag = o2.Dom.createDocumentFragment('<div>test</div>');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -269,7 +265,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var el = o2.Dom.createElement(
+      'div',
+      {className : 'active', style : 'font-weight : bold'}
+ );
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -281,13 +280,7 @@
  elm)
             </div>          
                 <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___removeChildren">o2.Dom.removeChildren</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___removeChildren">o2.Dom.removeChildren</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -324,7 +317,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var uid = o2.Dom.getAttribute('container', 'data-user-id');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -555,7 +548,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var dimensions = o2.Dom.getDimension('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -573,7 +566,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportInfo = o2.Dom.getDocumentDimension();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -588,7 +581,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportHeight = o2.Dom.getDocumentHeight();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -603,7 +596,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportWidth = o2.Dom.getDocumentWidth();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -971,7 +964,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var containerHeight = o2.Dom.getHeight('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -988,7 +981,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var html = o2.Dom.getHtml('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3267,7 +3260,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var txt = o2.Dom.getText('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3283,7 +3276,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var details = o2.Dom.getViewportInfo();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3310,7 +3303,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var windowDimensions = o2.Dom.getWindowInnerDimension();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3325,7 +3318,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var innerHeight = o2.Dom.getWindow.innerHeight();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3340,7 +3333,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var innerWidth = o2.Dom.getWindowInnerWidth();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3411,7 +3404,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ref = o2.$('ref');
+ var new = o2.$('new');
+ o2.Dom.insertAfter(new, ref);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3429,7 +3424,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ref = o2.$('ref');
+ var new = o2.$('new');
+ o2.Dom.insertBefore(new, ref);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3465,7 +3462,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isDocument = o2.Dom.isDocument(currentNode);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3482,7 +3479,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isElement = o2.Dom.isElement(currentNode);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3619,10 +3616,23 @@
  <p>Cross-domain loading is also okay: The <strong>css</strong> file does
  not have to be in the same domain as the web page.</p>
 
+ <p>The success and failure callbacks is a somewhat hacky way of handling
+ <strong>CSS</strong> load events. In deed, detecting <strong>CSS</strong>
+ load is not an easy task, and it's not necessary most of the time.</p>
+ <p>Though it may get handy to prevent the Flash of Unstyled Content
+ (FOUC) issues.</p>
+ <p>A more robust way of handling load callbacks is polling
+ the property of a test element (such as the background color), that
+ you know that the loaded <strong>CSS</strong> will change for sure.</p>
+
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+      handleSuccess();
+ }, function() {
+      handleFailure();
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3646,7 +3656,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
+      handleSuccess();
+ }, function() {
+      handleFailure();
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3667,7 +3681,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadImage('http//asset.example.com/script.js', function() {
+      handleSuccess();
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3685,7 +3701,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = o2.$('ChildContainer');
+ var parent = o2.$('MasterContainer');
+ o2.Dom.prepend(child, parent);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3703,7 +3721,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.preventMultipleSubmit('actionForm');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3737,7 +3755,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.remove('nagivation');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3754,7 +3772,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.removeChildren('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3783,13 +3801,7 @@
             </div>
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to
- <a href="logical/o2/Dom.html#___removeEmptyTextNodes">o2.Dom.removeEmptyTextNodes</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+ <a href="logical/o2/Dom.html#___removeEmptyTextNodes">o2.Dom.removeEmptyTextNodes</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -3807,7 +3819,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.removeEmptyTextNodes('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3817,13 +3829,7 @@
                 <a href="logical/o2/Dom.html#___removeNode"><span class="elementName">removeNode</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___remove">o2.Dom.remove</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___remove">o2.Dom.remove</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -3970,7 +3976,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setAttribute('container', 'data-user-id', '123');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4003,7 +4009,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setDimension('container', {width: 400, height: 200});
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4021,7 +4027,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setHeight('container', 300);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4038,7 +4044,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setHtml('container', '<h1>hello</h1>');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4071,7 +4077,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setWidth('container', 500);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4143,7 +4149,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.trimField('txtInput');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4370,7 +4376,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = o2.$('childNode');
+ var parent = o2.$('parentNode');
+ o2.Dom.append(child, parent);
  </pre>
 
      </div>
@@ -4413,7 +4421,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.compactField('txtInput');
  </pre>
 
      </div>
@@ -4458,12 +4466,6 @@
             </div>    
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___createElement">o2.Dom.createElement</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -4536,7 +4538,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var frag = o2.Dom.createDocumentFragment('<div>test</div>');
  </pre>
 
      </div>
@@ -4582,7 +4584,10 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var el = o2.Dom.createElement(
+      'div',
+      {className : 'active', style : 'font-weight : bold'}
+ );
  </pre>
 
      </div>
@@ -4626,12 +4631,6 @@
             </div>          
                 <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___removeChildren">o2.Dom.removeChildren</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
         	<div class="parameters">
@@ -4727,7 +4726,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var uid = o2.Dom.getAttribute('container', 'data-user-id');
  </pre>
 
      </div>
@@ -5397,7 +5396,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var dimensions = o2.Dom.getDimension('container');
  </pre>
 
      </div>
@@ -5444,7 +5443,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportInfo = o2.Dom.getDocumentDimension();
  </pre>
 
      </div>
@@ -5475,7 +5474,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportHeight = o2.Dom.getDocumentHeight();
  </pre>
 
      </div>
@@ -5505,7 +5504,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var viewportWidth = o2.Dom.getDocumentWidth();
  </pre>
 
      </div>
@@ -6547,7 +6546,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var containerHeight = o2.Dom.getHeight('container');
  </pre>
 
      </div>
@@ -6591,7 +6590,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var html = o2.Dom.getHtml('container');
  </pre>
 
      </div>
@@ -13190,7 +13189,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var txt = o2.Dom.getText('container');
  </pre>
 
      </div>
@@ -13234,7 +13233,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var details = o2.Dom.getViewportInfo();
  </pre>
 
      </div>
@@ -13277,7 +13276,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var elementWidth = o2.Dom.getWidth('container');
  </pre>            </div>   
                                         </div>
                 </div>
@@ -13309,7 +13308,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var windowDimensions = o2.Dom.getWindowInnerDimension();
  </pre>
 
      </div>
@@ -13340,7 +13339,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var innerHeight = o2.Dom.getWindow.innerHeight();
  </pre>
 
      </div>
@@ -13370,7 +13369,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var innerWidth = o2.Dom.getWindowInnerWidth();
  </pre>
 
      </div>
@@ -13524,7 +13523,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ref = o2.$('ref');
+ var new = o2.$('new');
+ o2.Dom.insertAfter(new, ref);
  </pre>
 
      </div>
@@ -13568,7 +13569,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var ref = o2.$('ref');
+ var new = o2.$('new');
+ o2.Dom.insertBefore(new, ref);
  </pre>
 
      </div>
@@ -13663,7 +13666,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isDocument = o2.Dom.isDocument(currentNode);
  </pre>
 
      </div>
@@ -13707,7 +13710,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isElement = o2.Dom.isElement(currentNode);
  </pre>
 
      </div>
@@ -14064,10 +14067,23 @@
  <p>Cross-domain loading is also okay: The <strong>css</strong> file does
  not have to be in the same domain as the web page.</p>
 
+ <p>The success and failure callbacks is a somewhat hacky way of handling
+ <strong>CSS</strong> load events. In deed, detecting <strong>CSS</strong>
+ load is not an easy task, and it's not necessary most of the time.</p>
+ <p>Though it may get handy to prevent the Flash of Unstyled Content
+ (FOUC) issues.</p>
+ <p>A more robust way of handling load callbacks is polling
+ the property of a test element (such as the background color), that
+ you know that the loaded <strong>CSS</strong> will change for sure.</p>
+
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+      handleSuccess();
+ }, function() {
+      handleFailure();
+ });
  </pre>
 
      </div>
@@ -14122,7 +14138,11 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
+      handleSuccess();
+ }, function() {
+      handleFailure();
+ });
  </pre>
 
      </div>
@@ -14174,7 +14194,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.loadImage('http//asset.example.com/script.js', function() {
+      handleSuccess();
+ });
  </pre>
 
      </div>
@@ -14218,7 +14240,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var child = o2.$('ChildContainer');
+ var parent = o2.$('MasterContainer');
+ o2.Dom.prepend(child, parent);
  </pre>
 
      </div>
@@ -14262,7 +14286,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.preventMultipleSubmit('actionForm');
  </pre>
 
      </div>
@@ -14338,7 +14362,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.remove('nagivation');
  </pre>
 
      </div>
@@ -14382,7 +14406,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.removeChildren('container');
  </pre>
 
      </div>
@@ -14460,12 +14484,6 @@
         <p>An <strong>alias</strong> to
  <a href="logical/o2/Dom.html#___removeEmptyTextNodes">o2.Dom.removeEmptyTextNodes</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -14494,7 +14512,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.removeEmptyTextNodes('container');
  </pre>
 
      </div>
@@ -14527,12 +14545,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___remove">o2.Dom.remove</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -14823,7 +14835,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setAttribute('container', 'data-user-id', '123');
  </pre>
 
      </div>
@@ -14897,7 +14909,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setDimension('container', {width: 400, height: 200});
  </pre>
 
      </div>
@@ -14941,7 +14953,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setHeight('container', 300);
  </pre>
 
      </div>
@@ -14983,7 +14995,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setHtml('container', '<h1>hello</h1>');
  </pre>
 
      </div>
@@ -15050,7 +15062,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.setWidth('container', 500);
  </pre>
 
      </div>
@@ -15230,7 +15242,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.trimField('txtInput');
  </pre>
 
      </div>

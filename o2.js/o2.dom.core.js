@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 13:54:48.113043
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
@@ -80,7 +80,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var child = o2.$('childNode');
+     * var parent = o2.$('parentNode');
+     * o2.Dom.append(child, parent);
      * </pre>
      *
      * @param {Object} elmChild - the child node, or the <strong>id</strong> of
@@ -115,7 +117,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var frag = o2.Dom.createDocumentFragment('<div>test</div>');
      * </pre>
      *
      * @param {String} html - the <strong>HTML</strong> to create a fragment
@@ -148,7 +150,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var el = o2.Dom.createElement(
+     *      'div',
+     *      {className : 'active', style : 'font-weight : bold'}
+     * );
      * </pre>
      *
      * @param {String} name - the node name of the element (i.e. 'div', 'a').
@@ -159,10 +164,10 @@
      */
     def(me, 'createElement', function(name, attributes) {
         var e       = createElement(name);
-        var value   = kEmpty;
-        var key     = null;
         var isClass = false;
         var isStyle = false;
+        var key     = null;
+        var value   = kEmpty;
 
         // Internet Explorer 7- (and some minor browsers) cannot set values
         // for style, class or event handlers, using setAttribute.
@@ -212,12 +217,6 @@
      *
      * <p>An alias to {@link o2.Dom.createElement}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.createElement
      */
     alias(me, 'create', 'createElement');
@@ -230,7 +229,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var uid = o2.Dom.getAttribute('container', 'data-user-id');
      * </pre>
      *
      * @param {Object} elm - the node, or the <strong>id</strong> of the
@@ -286,7 +285,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var html = o2.Dom.getHtml('container');
      * </pre>
      *
      * @param {Object} elm - the <strong>DOM</strong> node or its
@@ -317,7 +316,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var txt = o2.Dom.getText('container');
          * </pre>
          *
          * @param {Object} elm - the <strong>DOM</strong> node or its
@@ -382,7 +381,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ref = o2.$('ref');
+     * var new = o2.$('new');
+     * o2.Dom.insertAfter(new, ref);
      * </pre>
      *
      * @param {Object} elmNewNode - the DOM node, or the <strong>id</strong> of
@@ -417,7 +418,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ref = o2.$('ref');
+     * var new = o2.$('new');
+     * o2.Dom.insertBefore(new, ref);
      * </pre>
      *
      * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
@@ -446,7 +449,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isDocument = o2.Dom.isDocument(currentNode);
      * </pre>
      *
      * @param {DOMNode} obj - the <strong>node</strong> to test.
@@ -466,7 +469,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isElement = o2.Dom.isElement(currentNode);
      * </pre>
      *
      * @param {DOMNode} obj - the <strong>node</strong> to test.
@@ -486,7 +489,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var child = o2.$('ChildContainer');
+     * var parent = o2.$('MasterContainer');
+     * o2.Dom.prepend(child, parent);
      * </pre>
      *
      * @param {Object} elmChild - the child node, or the id of the node to
@@ -528,7 +533,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.remove('nagivation');
      * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
@@ -553,12 +558,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Dom.remove}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.remove
      */
     alias(me, 'removeNode', 'remove');
@@ -571,7 +570,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.removeChildren('container');
      * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
@@ -592,12 +591,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Dom.removeChildren}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @param {Object} elm - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
@@ -613,7 +606,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.removeEmptyTextNodes('container');
      * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
@@ -658,12 +651,6 @@
      * <p>An <strong>alias</strong> to
      * {@link o2.Dom.removeEmptyTextNodes}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.removeEmptyTextNodes
      */
     alias(me, 'removeEmpty', 'removeEmptyTextNodes');
@@ -676,7 +663,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.setAttribute('container', 'data-user-id', '123');
      * </pre>
      *
      * @param {Object} elm - the object or the <code>String</code> id of it.
@@ -713,7 +700,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.setHtml('container', '<h1>hello</h1>');
      * </pre>
      *
      * @param {Object} elm - The <strong>DOM</strong> element to set the
