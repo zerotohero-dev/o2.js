@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334315875
+	                 version 0.25.a.0001334337739
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -104,7 +104,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.activateAlternateStylesheet('alternateTheme');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -165,7 +165,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.addStyle('container', {color : '#bada55'})
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -338,7 +338,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByAttributeUntil('container',
+      'data-user-id', '42', o2.$('stopper'), 'li');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -357,7 +358,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByClass('container', 'active', 'li');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -378,7 +379,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByClassUntil('container', 'active',
+      o2.$('stopper'), 'li');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -398,7 +400,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenUntil('container', o2.$('stopper'), 'li');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -524,13 +526,7 @@
                 <a href="logical/o2/Dom.html#___getCss"><span class="elementName">getCss</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___getStyle">o2.Dom.getStyle</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___getStyle">o2.Dom.getStyle</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -2196,7 +2192,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var offsets = o2.Dom.getObjectScrollOfset('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3207,13 +3203,7 @@
                 <a href="logical/o2/Dom.html#___getStrollOffset"><span class="elementName">getStrollOffset</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to o2.Dom.getObjectStrollOffset.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to o2.Dom.getObjectStrollOffset.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -3228,20 +3218,21 @@
                 <div class="summaryItemDesc">
         <p>Gets the <strong>style</strong> of a given property of
  the element.</p>
- <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
- tries to calculate the style using <code>window.getComputedStyle</code>;
+ <p>Tries to parse the <code>currentStyle</code>, if available;
+ otherwise tries to calculate the style using
+ <code>window.getComputedStyle</code>;
  gets <code>obj.style</code> if everything else fails.
 
  <p>Note that adding and removing style attributes to a
- <strong>DOM</strong> not is considered "bad practice". Do not use inline
- styles to modify the view;
+ <strong>DOM</strong> not is considered "bad practice". Do not use
+ inline styles to modify the view;
  assign <strong>className</strong>'s instead of <strong>style</strong>
  values.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var color = o2.Dom.getStyle('container', 'color');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3348,7 +3339,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var offsets = o2.Dom.getWindowScrollOffset();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3386,7 +3377,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.hide('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3597,7 +3588,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isContainerVisible = o2.Dom.isVisible('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3738,7 +3729,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.ready(function() {
+      doInitializaton();
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3846,7 +3839,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.replace('firstContainer', 'secondContainer');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3863,7 +3856,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollObjectToBottom('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3880,7 +3873,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollObjectToTop('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3890,13 +3883,7 @@
                 <a href="logical/o2/Dom.html#___scrollTo"><span class="elementName">scrollTo</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -3905,13 +3892,7 @@
                 <a href="logical/o2/Dom.html#___scrollToObject"><span class="elementName">scrollToObject</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -3923,27 +3904,19 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollWindowToBottom();
  </pre>
 
  <p>Scrolls window to bottom.</p>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
+                                                           <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Dom.html#___scrollWindowToObject"><span class="elementName">scrollWindowToObject</span></a>
-                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Scrolls the window to the object's offset position..</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+                <a href="logical/o2/Dom.html#___scrollWindowToObject"><span class="elementName">scrollWindowToObject</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -3955,7 +3928,7 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollWindowToTop();
  </pre>
 
  <p>Scrolls window to top.</p>    </div>  
@@ -3986,13 +3959,7 @@
                 <a href="logical/o2/Dom.html#___setCss"><span class="elementName">setCss</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -4054,13 +4021,7 @@
                 <a href="logical/o2/Dom.html#___setStyle"><span class="elementName">setStyle</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -4094,7 +4055,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.show('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4132,7 +4093,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.toggleVisibility('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4168,7 +4129,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.unwrap('container');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4186,7 +4147,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var wrapper = o2.$('wrapper');
+ var target = o2.$('content');
+ o2.Dom.wrap(target, wrapper);
  </pre>    </div>  
                             </div>
                 </div>
@@ -4216,7 +4179,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.activateAlternateStylesheet('alternateTheme');
  </pre>
 
      </div>
@@ -4332,7 +4295,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.addStyle('container', {color : '#bada55'})
  </pre>
 
      </div>
@@ -4779,7 +4742,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByAttributeUntil('container',
+      'data-user-id', '42', o2.$('stopper'), 'li');
  </pre>
 
      </div>
@@ -4845,7 +4809,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByClass('container', 'active', 'li');
  </pre>
 
      </div>
@@ -4866,7 +4830,8 @@
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
-         - (Optional; defaults to <code>undefined</code>),
+         - (Optional; defaults to
+ <code>undefined</code>),
  if true, only the results with that <strong>node name</strong> (i.e.
  <strong>HTML</strong> <strong>Tag Name</strong>) are selected.            </div>   
                                         </div>
@@ -4904,7 +4869,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenByClassUntil('container', 'active',
+      o2.$('stopper'), 'li');
  </pre>
 
      </div>
@@ -4967,7 +4933,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var items = o2.Dom.getChildrenUntil('container', o2.$('stopper'), 'li');
  </pre>
 
      </div>
@@ -5361,12 +5327,6 @@
             </div>    
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___getStyle">o2.Dom.getStyle</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -10153,7 +10113,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var offsets = o2.Dom.getObjectScrollOfset('container');
  </pre>
 
      </div>
@@ -13087,12 +13047,6 @@
         <div class="comment">
         <p>An alias to o2.Dom.getObjectStrollOffset.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -13118,20 +13072,21 @@
                 <div class="comment">
         <p>Gets the <strong>style</strong> of a given property of
  the element.</p>
- <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
- tries to calculate the style using <code>window.getComputedStyle</code>;
+ <p>Tries to parse the <code>currentStyle</code>, if available;
+ otherwise tries to calculate the style using
+ <code>window.getComputedStyle</code>;
  gets <code>obj.style</code> if everything else fails.
 
  <p>Note that adding and removing style attributes to a
- <strong>DOM</strong> not is considered "bad practice". Do not use inline
- styles to modify the view;
+ <strong>DOM</strong> not is considered "bad practice". Do not use
+ inline styles to modify the view;
  assign <strong>className</strong>'s instead of <strong>style</strong>
  values.</p>
 
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var color = o2.Dom.getStyle('container', 'color');
  </pre>
 
      </div>
@@ -13143,19 +13098,20 @@
                                                 <div class="param paddedDetails">
         <code>
             obj        </code>
-         - the element, or the <strong>id</strong> of it, to
- check.            </div>   
+         - the element, or the <strong>id</strong> of it,
+ to check.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             cssProperty        </code>
          - the css property either
  <strong>dash-separated</strong>
- or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')            </div>   
+ or <strong>camelCased</strong> (i.e.: 'border-color' or
+ 'borderColor')            </div>   
                                                 <div class="param paddedDetails">
         <code>
             noForce        </code>
-         - (optional; defaults to <code>false</code>) if
- <code>true</code> inherited values from the CSS files will also be
+         - (optional; defaults to <code>false</code>)
+ if <code>true</code> inherited values from the CSS files will also be
  parsed, otherwise, only inline styles will be parsed.            </div>   
                                         </div>
                 </div>
@@ -13399,7 +13355,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var offsets = o2.Dom.getWindowScrollOffset();
  </pre>
 
      </div>
@@ -13484,7 +13440,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.hide('container');
  </pre>
 
      </div>
@@ -14020,7 +13976,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isContainerVisible = o2.Dom.isVisible('container');
  </pre>
 
      </div>
@@ -14324,7 +14280,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.ready(function() {
+      doInitializaton();
+ });
  </pre>
 
      </div>
@@ -14573,7 +14531,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.replace('firstContainer', 'secondContainer');
  </pre>
 
      </div>
@@ -14614,7 +14572,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollObjectToBottom('container');
  </pre>
 
      </div>
@@ -14652,7 +14610,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollObjectToTop('container');
  </pre>
 
      </div>
@@ -14686,12 +14644,6 @@
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -14713,12 +14665,6 @@
             </div>    
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -14743,7 +14689,7 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollWindowToBottom();
  </pre>
 
  <p>Scrolls window to bottom.</p>
@@ -14756,39 +14702,22 @@
             <span class="objName">scrollWindowToObject</span>            
         </a> 
     </h3>
-                        <div>
+                <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    scrollWindowToObject(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Scrolls the window to the object's offset position..</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
+                    scrollWindowToObject()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to <a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a>.</p>
 
      </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            obj        </code>
-         - the element, or the <strong>id</strong> of it, to
- scroll, or an <code>Object</code> in the form
- <code>{left : leftPx, top : topPx}</code>.            </div>   
-                                        </div>
-                </div>
-                    </div>
-                                                    <hr/>       
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Dom.html#___scrollWindowToObject">o2.Dom.scrollWindowToObject</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___scrollWindowToTop">
             <span class="objType">function</span>
@@ -14806,7 +14735,7 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.scrollWindowToTop();
  </pre>
 
  <p>Scrolls window to top.</p>
@@ -14875,12 +14804,6 @@
             </div>    
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -15029,12 +14952,6 @@
         <div class="comment">
         <p>An alias to <a href="logical/o2/Dom.html#___addStyle">o2.Dom.addStyle</a>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
@@ -15104,7 +15021,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.show('container');
  </pre>
 
      </div>
@@ -15197,7 +15114,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.toggleVisibility('container');
  </pre>
 
      </div>
@@ -15294,7 +15211,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Dom.unwrap('container');
  </pre>
 
      </div>
@@ -15333,7 +15250,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var wrapper = o2.$('wrapper');
+ var target = o2.$('content');
+ o2.Dom.wrap(target, wrapper);
  </pre>
 
      </div>

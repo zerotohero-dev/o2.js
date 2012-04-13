@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 20:13:35.975675
  * -->
  *
  * <p>A window/div scroll helper.</p>
@@ -52,7 +52,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var offsets = o2.Dom.getWindowScrollOffset();
          * </pre>
          *
          * @return the the <strong>window</strong>'s scroll offset in the form
@@ -62,21 +62,21 @@
             var db = document.body;
 
             var left = 0;
-            var top = 0;
+            var top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
             if (db) {
                 left = Math.max(db.scrollLeft, de.scrollLeft);
-                top = Math.max(db.scrollTop, de.scrollTop);
+                top  = Math.max(db.scrollTop, de.scrollTop);
             } else {
                 left = de.scrollLeft;
-                top = de.scrollTop;
+                top  = de.scrollTop;
             }
 
             return {
                 left : left,
-                top : top
+                top  : top
             };
         });
     } else {
@@ -84,18 +84,18 @@
             var db = document.body;
 
             var left = 0;
-            var top = 0;
+            var top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
             if (db) {
                 left = db.scrollLeft;
-                top = db.scrollTop;
+                top  = db.scrollTop;
             }
 
             return {
                 left : left,
-                top : top
+                top  : top
             };
         });
     }
@@ -113,7 +113,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var offsets = o2.Dom.getObjectScrollOfset('container');
      * </pre>
      *
      * @param {Object} obj - the <strong>DOM</strong> node to check, or its
@@ -131,7 +131,7 @@
 
         return {
             left : item.scrollLeft,
-            top : item.scrollTop
+            top  : item.scrollTop
         };
     });
 
@@ -139,12 +139,6 @@
      * @function {static} o2.Dom.getStrollOffset
      *
      * <p>An alias to {@link o2.Dom.getObjectStrollOffset}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see {o2.Dom.getObjectScrollOffset}
      */
@@ -158,7 +152,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Dom.scrollWindowToBottom();
          * </pre>
          *
          * <p>Scrolls window to bottom.</p>
@@ -198,7 +192,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Dom.scrollWindowToTop();
          * </pre>
          *
          * <p>Scrolls window to top.</p>
@@ -238,7 +232,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.scrollObjectToTop('container');
      * </pre>
      *
      * @param {Object} obj - the element, or the <strong>id</strong> of the
@@ -266,7 +260,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.scrollObjectToBottom('container');
      * </pre>
      *
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
@@ -291,12 +285,6 @@
      *
      * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.scrollWindowToObject
      */
     def(me, 'scrollTo', function(obj) {
@@ -318,17 +306,9 @@
     /**
      * @function {static} o2.Dom.scrollWindowToObject
      *
-     * <p>Scrolls the window to the object's offset position..</p>
+     * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
-     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-     * scroll, or an <code>Object</code> in the form
-     * <code>{left : leftPx, top : topPx}</code>.
+     * @see o2.Dom.scrollWindowToObject
      */
     alias(me, 'scrollWindowToObject', 'scrollTo');
 
@@ -336,12 +316,6 @@
      * @function {static} o2.Dom.scrollToObject
      *
      * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see o2.Dom.scrollWindowToObject
      */

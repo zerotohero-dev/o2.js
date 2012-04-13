@@ -490,7 +490,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildren('container', 'li');
      * </pre>
      * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of that node.
@@ -517,8 +517,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenByAttribute('container',
+     *      'data-user-id', '42');
      * </pre>
+     *
      * @param {Object} elm - the <strong>DOM</strong> njode, or the
      * <strong>id</strong> of that node.
      * @param {String} attribute - the name of the attribute to filter.
@@ -555,8 +557,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenByAttributeUntil('container',
+     *      'data-user-id', '42', o2.$('stopper'), 'li');
      * </pre>
+     *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
@@ -592,13 +596,14 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var items = o2.Dom.getChildrenByClass('container', 'active', 'li');
          * </pre>
          *
          * @param {Object} elm - the element reference, or a <code>String</code>
          * id of it.
          * @param {String} className - the <strong>CSS</strong> class name.
-         * @param {String} name - (Optional; defaults to <code>undefined</code>),
+         * @param {String} name - (Optional; defaults to
+         * <code>undefined</code>),
          * if true, only the results with that <strong>node name</strong> (i.e.
          * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
          *
@@ -630,10 +635,6 @@
             );
         });
     } else {
-
-        /**
-         *
-         */
         def(me, 'getChildrenByClass', function(elm, className, name) {
             return execFilter(elm, getChildNodes, [name],
                 hasClassName, [className]);
@@ -654,7 +655,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenByClassUntil('container', 'active',
+     *      o2.$('stopper'), 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -689,7 +691,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenUntil('container', o2.$('stopper'), 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>

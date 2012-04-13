@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 20:07:45.717660
  * -->
  *
  * <p>A utility package to
@@ -93,19 +93,19 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.activateAlternateStylesheet('alternateTheme');
      * </pre>
      *
      * @param {String} title - the <code>title</code> of the <strong>alternate
      * stylesheet</strong> to activate.
      */
     def(me, 'activateAlternateStylesheet', function(title) {
-        var link = null;
-        var links = t(kLink);
+        var i             = 0;
+        var len           = 0;
+        var link          = null;
+        var links         = t(kLink);
+        var linkTitle     = kEmpty;
         var shouldDisable = false;
-        var linkTitle = kEmpty;
-        var i = 0;
-        var len = 0;
 
         for (i = 0, len = links.length; i < len; i++) {
             link = links[i];
@@ -174,7 +174,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.addStyle('container', {color : '#bada55'})
      * </pre>
      *
      * @param {Object} obj - the current <code>DOM</code> node, or the
@@ -189,8 +189,8 @@
             return;
         }
 
+        var key               = null;
         var toCamelCaseCached = toCamelCase;
-        var key = null;
 
         var objStyle = obj.style;
 
@@ -211,12 +211,6 @@
      *
      * <p>An alias to {@link o2.Dom.addStyle}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.addStyle
      */
     alias(me, 'setCss', 'addStyle');
@@ -225,12 +219,6 @@
      * @function {static} o2.Dom.setStyle
      *
      * <p>An alias to {@link o2.Dom.addStyle}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see o2.Dom.addStyle
      */
@@ -244,29 +232,31 @@
          *
          * <p>Gets the <strong>style</strong> of a given property of
          * the element.</p>
-         * <p>Tries to parse the <code>currentStyle</code>, if available; otherwise
-         * tries to calculate the style using <code>window.getComputedStyle</code>;
+         * <p>Tries to parse the <code>currentStyle</code>, if available;
+         * otherwise tries to calculate the style using
+         * <code>window.getComputedStyle</code>;
          * gets <code>obj.style</code> if everything else fails.
          *
          * <p>Note that adding and removing style attributes to a
-         * <strong>DOM</strong> not is considered "bad practice". Do not use inline
-         * styles to modify the view;
+         * <strong>DOM</strong> not is considered "bad practice". Do not use
+         * inline styles to modify the view;
          * assign <strong>className</strong>'s instead of <strong>style</strong>
          * values.</p>
          *
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var color = o2.Dom.getStyle('container', 'color');
          * </pre>
          *
-         * @param {Object} obj - the element, or the <strong>id</strong> of it, to
-         * check.
+         * @param {Object} obj - the element, or the <strong>id</strong> of it,
+         * to check.
          * @param {String} cssProperty - the css property either
          * <strong>dash-separated</strong>
-         * or <strong>camelCased</strong> (i.e.: 'border-color' or 'borderColor')
-         * @param {Boolean} noForce - (optional; defaults to <code>false</code>) if
-         * <code>true</code> inherited values from the CSS files will also be
+         * or <strong>camelCased</strong> (i.e.: 'border-color' or
+         * 'borderColor')
+         * @param {Boolean} noForce - (optional; defaults to <code>false</code>)
+         * if <code>true</code> inherited values from the CSS files will also be
          * parsed, otherwise, only inline styles will be parsed.
          *
          * @return the calculated <strong>style</strong> value.
@@ -391,12 +381,6 @@
      *
      * <p>An alias to {@link o2.Dom.getStyle}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.Dom.getStyle
      */
     alias(me, 'getCss', 'getStyle');
@@ -409,7 +393,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.hide('container');
      * </pre>
      *
      * @param {Object} obj - the <strong>DOM</strong> node, or the
@@ -442,7 +426,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.show('container');
      * </pre>
      *
      * @param {Object} elm - the <strong>DOM</strong> node, or the
@@ -479,7 +463,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isContainerVisible = o2.Dom.isVisible('container');
      * </pre>
      *
      * @param {Object} obj - the <strong>DOM</strong> element, or the
@@ -538,7 +522,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.toggleVisibility('container');
      * </pre>
      *
      * @param {Object} elm - a <strong>DOM</strong> reference or its

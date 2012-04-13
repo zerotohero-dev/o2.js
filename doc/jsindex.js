@@ -2857,7 +2857,7 @@
        {
            localName : "scrollWindowToObject",
            fullName : "o2.Dom.scrollWindowToObject",
-           summary : "static function  scrollWindowToObject(Object obj)",
+           summary : "static function  scrollWindowToObject()",
            ref : "logical/o2/Dom.html#___scrollWindowToObject",
            parent : "o2.Dom",
            type : "function",

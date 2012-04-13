@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 18:07:16.712860
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
@@ -223,7 +223,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.ready(function() {
+     *      doInitializaton();
+     * });
      * </pre>
      *
      * @param {Function} delegate - the callback that's called when the DOM is

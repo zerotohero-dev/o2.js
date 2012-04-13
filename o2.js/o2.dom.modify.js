@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 18:02:17.260575
  * -->
  *
  * <p>A utility package for additional <strong>DOM</strong> modifications.</p>
@@ -53,7 +53,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.replace('firstContainer', 'secondContainer');
      * </pre>
      *
      * @param elmTarget - the target node or its <code>String</code> id.
@@ -77,7 +77,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.unwrap('container');
      * </pre>
      *
      * @param {Object} elmTarget - the target node or its <code>String</code> id
@@ -111,7 +111,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var wrapper = o2.$('wrapper');
+     * var target = o2.$('content');
+     * o2.Dom.wrap(target, wrapper);
      * </pre>
      *
      * @param {Object} elmTarget - the node to wrap or its <code>String</code>
