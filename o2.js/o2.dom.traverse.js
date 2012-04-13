@@ -723,7 +723,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithAttribute('container', 'data-user-id',
+     * 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -756,7 +757,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithAttributeUntil('content',
+     *      'data-user-id', o2.$('stopper'), 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -791,7 +793,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
