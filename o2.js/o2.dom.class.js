@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 13:05:30.314830
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
@@ -56,7 +56,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var reg = o2.Dom.createClassNameRegExp('testClass');
      * </pre>
      *
      * @param {String} c - The name of the class.
@@ -81,7 +81,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * if (o2.Dom.hasClass('container', 'active')) {
+     *      doStuff();
+     * }
      * </pre>
      *
      * @param {DomNode} el - either the <strong>element</strong>, or the
@@ -114,7 +116,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.addClass('container', 'active');
      * </pre>
      *
      * @param {DomNode} el - either the <strong>element</strong>, or the
@@ -148,7 +150,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.removeClass('container', 'active');
      * </pre>
      *
      * @param {DomNode} el - either the <strong>element</strong>, or the
@@ -183,7 +185,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Dom.toggleClass('container', 'active');
      * </pre>
      *
      * @param {Object} el - the <strong>DOM</strong> element to toggle or its

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 10:26:58.892350
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -114,7 +114,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var timeString = o2.Date.getPrettyDate((new Date()).getTime());
+     * // timeString is 'just now'
      * </pre>
      *
      * @param {Integer} time - the offset time in milliseconds.
@@ -167,7 +168,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var linuxTime = o2.Date.getTime();
      * </pre>
      *
      * @see o2.now
@@ -179,15 +180,9 @@
     /**
      * @function {static} o2.Date.now
      *
-     * <p>An alias to {@link o2.now}.</p>
+     * <p>An alias to {@link o2.Date.getTime}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
-     * @see o2.now
+     * @see o2.Date.getTime
      */
     alias(me, 'now', 'getTime');
 }(this.o2));

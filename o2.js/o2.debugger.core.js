@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-13 12:58:51.488235
  * -->
  *
  * <p>A debugging helper.</p>
@@ -258,7 +258,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Debugger.init('divConsole', true);
      * </pre>
      *
      * @param {Object} outputElement - Either the <strong>id</strong> of the
@@ -325,7 +325,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Debugger.println('Hello world.');
      * </pre>
      *
      * @param {String} value - the value to print.
