@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 18:31:34.343016
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
@@ -175,11 +175,11 @@
             return;
         }
 
-        var isAllSuccess = unitTest.failureCount <= 0;
-        var description = unitTest.description;
-        var successCount = unitTest.successCount;
+        var description  = unitTest.description;
         var failureCount = unitTest.failureCount;
-        var message = format(kUpdateTestCompletion, description,
+        var isAllSuccess = unitTest.failureCount <= 0;
+        var successCount = unitTest.successCount;
+        var message      = format(kUpdateTestCompletion, description,
             successCount, failureCount);
 
         assert(isAllSuccess, message);
@@ -289,12 +289,6 @@
      *
      * <p>Creates a new <code>UnitTest</code>.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @param {String} description - the description of the unit test.
      * @param {String} totalAssertionCount - the overall number of assertions
      * that the <code>UnitTest</code>'s <strong>testCase</strong> will run.
@@ -309,11 +303,11 @@
      * @see o2.Unit.add
      */
     function UnitTest(description, totalAssertionCount, testCase) {
-        this.description = description;
+        this.description    = description;
+        this.failureCount   = 0;
         this.remainingCount = totalAssertionCount;
-        this.successCount = 0;
-        this.failureCount = 0;
-        this.testCase = testCase;
+        this.successCount   = 0;
+        this.testCase       = testCase;
     }
 
     var p = UnitTest.prototype;
@@ -324,7 +318,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * test.terminate();
      * </pre>
      *
      * <p>Terminates the unit test by setting remaining assertion count to
@@ -374,7 +368,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.add('some method SHOULD meet a requirement', {
+     *      count: 1,
+     *      test : function() {
+     *          var me = this;
+     *          o2.Unit.assert(me, false, 'I pass.');
+     *      }
+     * });
      * </pre>
      *
      * @param {String} description - the description of the test.
@@ -406,7 +406,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.assert(me, condition, 'condition is true');
      * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -414,10 +414,10 @@
      * @param {String} message - the associated message.
      */
     def(me, 'assert', function(unitTest, expression, message) {
+        var kArgumentsLength             = arguments.length;
+        var kMethodName                  = 'assert';
         var kRequiredLocalParameterCount = 3;
-        var kMethodName = 'assert';
-        var kArgumentsLength = arguments.length;
-        var result = !!expression;
+        var result                       = !!expression;
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -432,7 +432,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.assertEqual(me, 10, '10', '10 is 10');
      * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -442,9 +442,9 @@
      */
     def(me, 'assertEqual', function(unitTest, currentValue, expectedValue,
                 message) {
+        var kArgumentsLength             = arguments.length;
+        var kMethodName                  = 'assertEqual';
         var kRequiredLocalParameterCount = 4;
-        var kMethodName = 'assertEqual';
-        var kArgumentsLength = arguments.length;
 
         // JSLint valitation error on purpose.
         var result = (currentValue == expectedValue);
@@ -462,7 +462,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.assertNotEqual(me, 10, '11', '10 is not 11');
      * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -472,9 +472,9 @@
      */
     def(me, 'assertNotEqual', function(unitTest, currentValue, expectedValue,
                 message) {
+        var kArgumentsLength             = arguments.length;
+        var kMethodName                  = 'assertNotEqual';
         var kRequiredLocalParameterCount = 4;
-        var kMethodName = 'assertNotEqual';
-        var kArgumentsLength = arguments.length;
 
         // JSLint validation error on purpose:
         var result = (currentValue != expectedValue);
@@ -494,7 +494,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.assertStrictEqual(me, 10, 10, '10 is 10');
      * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -504,9 +504,9 @@
      */
     def(me, 'assertStrictEqual', function(unitTest, currentValue, expectedValue,
                 message) {
+        var kArgumentsLength             = arguments.length;
+        var kMethodName                  = 'assertStrictEqual';
         var kRequiredLocalParameterCount = 4;
-        var kMethodName = 'assertStrictEqual';
-        var kArgumentsLength = arguments.length;
 
         var result = (currentValue === expectedValue);
 
@@ -525,7 +525,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.assertStrictNotEqual(me, 10, '10', '10 is not 10');
      * </pre>
      *
      * @param {o2.UnitTest} unitTest - the current active unit test.
@@ -535,9 +535,9 @@
      */
     def(me, 'assertStrictNotEqual', function(unitTest, currentValue,
                 expectedValue, message) {
+        var kArgumentsLength             = arguments.length;
+        var kMethodName                  = 'assertStrictNotEqual';
         var kRequiredLocalParameterCount = 4;
-        var kMethodName = 'assertStrictNotEqual';
-        var kArgumentsLength = arguments.length;
 
         var result = (currentValue !== expectedValue);
 
@@ -555,7 +555,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var totalFail = o2.Unit.getGlobalFailureCount();
      * </pre>
      *
      * @return the total number of failed assertions.
@@ -572,7 +572,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var totalSuccess = o2.Unit.getGlobalSuccessCount();
      * </pre>
      *
      * @return the total number of successful assertions.
@@ -590,7 +590,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isActive = o2.Unit.isRunning();
      * </pre>
      *
      * @return <code>true</code> if the current <strong>test suite</strong>
@@ -606,7 +606,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.log('hello world');
      * </pre>
      *
      * <p>Logs the <strong>message</strong>.</p>
@@ -627,7 +627,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Unit.run(function() {
+     *      // Completed.
+     * });
      * </pre>
      *
      * @param {Function} globalCompletionCallback - (Optional) this callback

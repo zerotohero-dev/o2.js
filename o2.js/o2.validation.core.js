@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 18:13:29.097751
  * -->
  *
  * <p>A validation helper.</p>
@@ -87,7 +87,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var obj = {lorem : 'dolor'};
+     * var isObject = o2.Validation.is(obj, 'Object');
      * </pre>
      *
      * @param {Object} obj - the object to check type against.
@@ -113,7 +114,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isArguments = o2.Validation.isArguments(arguments);
      * </pre>
      *
      * @param {Object} obj - the object to test.
@@ -133,7 +134,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isArray = o2.Validation.isArray([]);
      * </pre>
      *
      * @param {Object} obj - the object to test.
@@ -154,7 +155,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isBoolean = o2.Validation.isBoolean(false);
      * </pre>
      *
      * @param {Object} obj - the object to test.
@@ -174,7 +175,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isDate = o2.Validation.isDate((ew Date());
      * </pre>
      *
      * @param {Arguments} varargin - if a single argument is given it checks
@@ -186,10 +187,10 @@
      * <code>false</code> otherwise.
      */
     def(me, 'isDate', function(objYear, objMonth, objDay) {
+        var day    = objDay;
         var maxDay = 0;
-        var year = objYear;
-        var month = objMonth;
-        var day = objDay;
+        var month  = objMonth;
+        var year   = objYear;
 
         if (arguments.length === kYmdArgLen) {
             if (!year || !month || !day) {
@@ -197,8 +198,8 @@
             }
 
             month = parseInt(month, kDecimalBase);
-            year = parseInt(year, kDecimalBase);
-            day = parseInt(day, kDecimalBase);
+            year  = parseInt(year, kDecimalBase);
+            day   = parseInt(day, kDecimalBase);
 
             if (month < 0 || month > months.length) {
                 return false;
@@ -222,7 +223,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isFunction = o2.Validation.isFunction(fnTest);
      * </pre>
      *
      * <p>Checks whether the object is a <code>Function</code>.</p>
@@ -242,7 +243,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isNaN = o2.Validation.isNaN('lorem');
      * </pre>
      *
      * <p>Checks whether the given parameter is <code>NaN</code>.</p>
@@ -265,7 +266,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isNull = o2.Validation.isNull(null);
      * </pre>
      *
      * <p>Checks whether the given parameter is <code>null</code>.</p>
@@ -285,7 +286,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isNumber = o2.Validation.isNumber(42);
      * </pre>
      *
      * <p>Checks whether the object is a <code>Number</code>.</p>
@@ -305,7 +306,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isNumeric = o2.Validation.isNumeric('4.2');
      * </pre>
      *
      * <p>Checks whether the given parameter is a numeric entity.</p>
@@ -325,7 +326,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isObject = o2.Validation.isObject({});
      * </pre>
      *
      * <p>Checks whether the object is an <code>Object</code>({}).</p>
@@ -345,7 +346,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isRegExp = o2.Validation.isRegExp(/test/ig);
      * </pre>
      *
      * <p>Checks whether the object is a <code>RegExp</code>.</p>
@@ -365,7 +366,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isString = o2.Validation.isString('lorem');
      * </pre>
      *
      * <p>Checks whether the object is a <code>String</code>.</p>
@@ -384,7 +385,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isUndefined = o2.Validation.isUndefined(undefined);
      * </pre>
      *
      * <p>Checks whether the given parameter is <code>undefined</code>.</p>
@@ -404,7 +405,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isWindow = o2.Validation.isWindow(window);
      * </pre>
      *
      * <p>Checks whether the given parameter is a <code>window</code>

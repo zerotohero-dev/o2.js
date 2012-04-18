@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334337739
+	                 version 0.25.a.0001334763215
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -106,7 +106,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.add('some method SHOULD meet a requirement', {
+      count: 1,
+      test : function() {
+          var me = this;
+          o2.Unit.assert(me, false, 'I pass.');
+      }
+ });
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -126,7 +132,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assert(me, condition, 'condition is true');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -146,7 +152,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertEqual(me, 10, '10', '10 is 10');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -166,7 +172,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertNotEqual(me, 10, '11', '10 is not 11');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -187,7 +193,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertStrictEqual(me, 10, 10, '10 is 10');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -208,7 +214,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertStrictNotEqual(me, 10, '10', '10 is not 10');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -223,7 +229,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var totalFail = o2.Unit.getGlobalFailureCount();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -238,7 +244,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var totalSuccess = o2.Unit.getGlobalSuccessCount();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -254,7 +260,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isActive = o2.Unit.isRunning();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -267,7 +273,7 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.log('hello world');
  </pre>
 
  <p>Logs the <strong>message</strong>.</p>
@@ -288,7 +294,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.run(function() {
+      // Completed.
+ });
  </pre>    </div>  
                             </div>
                 </div>
@@ -319,7 +327,13 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.add('some method SHOULD meet a requirement', {
+      count: 1,
+      test : function() {
+          var me = this;
+          o2.Unit.assert(me, false, 'I pass.');
+      }
+ });
  </pre>
 
      </div>
@@ -366,7 +380,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assert(me, condition, 'condition is true');
  </pre>
 
      </div>
@@ -414,7 +428,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertEqual(me, 10, '10', '10 is 10');
  </pre>
 
      </div>
@@ -466,7 +480,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertNotEqual(me, 10, '11', '10 is not 11');
  </pre>
 
      </div>
@@ -519,7 +533,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertStrictEqual(me, 10, 10, '10 is 10');
  </pre>
 
      </div>
@@ -572,7 +586,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.assertStrictNotEqual(me, 10, '10', '10 is not 10');
  </pre>
 
      </div>
@@ -620,7 +634,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var totalFail = o2.Unit.getGlobalFailureCount();
  </pre>
 
      </div>
@@ -650,7 +664,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var totalSuccess = o2.Unit.getGlobalSuccessCount();
  </pre>
 
      </div>
@@ -681,7 +695,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var isActive = o2.Unit.isRunning();
  </pre>
 
      </div>
@@ -710,7 +724,7 @@
         <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.log('hello world');
  </pre>
 
  <p>Logs the <strong>message</strong>.</p>
@@ -743,7 +757,9 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ o2.Unit.run(function() {
+      // Completed.
+ });
  </pre>
 
      </div>
