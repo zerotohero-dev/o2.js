@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 21:21:05.055560
  * -->
  *
  * <p>Extension methods for the {@link Event} object.</p>
@@ -75,7 +75,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var isArrowKey = o2.Event.isArrowKey(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -98,7 +100,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var isBackspaceKey = o2.Event.isBackspaceKey(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -128,7 +132,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'keypress', function(evt) {
+         *      var isCharKeypress = o2.Event.isCharacterKeypressEvent(evt);
+         * });
          * </pre>
          *
          * @return <code>true</code> if the pressed key is a printable
@@ -171,7 +177,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isEnterKey = o2.Event.isEnterKey(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -188,6 +196,14 @@
      * @function {static} o2.Event.isEscapeKey
      *
      * <p>Checks whether the pressed key is the escape (ESC) key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isEscapeKey = o2.Event.isEscapeKey(evt);
+     * });
+     * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
      * internally in {@link o2.Event.addEventListener}
@@ -209,7 +225,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var isRightClick = o2.Event.isRightClick(evt);
+         * });
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -247,7 +265,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isTabKey = o2.Event.isTabKey(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used

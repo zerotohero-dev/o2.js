@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 21:15:14.277191
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -19,6 +19,7 @@
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
+    var alias     = attr(_, 'alias');
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
@@ -68,7 +69,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      doClickHandling();
+         * });
          * </pre>
          *
          * @param {DomNode} node - the <strong>DOM</strong> object (or its
@@ -108,7 +111,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.removeEventListener('container', 'click', container_click);
          * </pre>
          *
          * @param {DomNode} node - the DOM object (or its <code>String</code>
@@ -190,6 +193,12 @@
         });
     }
 
+    //TODO: add documentation, add to meta defs:
+    alias(me, 'on', 'addEventListener');
+
+    //TODO: add documentation, add to meta defs:
+    alias(me, 'off', 'removeEventListener');
+
     /*
      *
      */
@@ -204,7 +213,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListeners(['elm1', 'elm2'], 'click', function(evt) {
+     *      handleClickEvent();
+     * });
      * </pre>
      *
      * @param {Object} collection - an <code>Object</code> or an
@@ -243,7 +254,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var e = o2.Event.getEventObject(evt);
+         * });
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -263,7 +276,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var src = o2.Event.getTarget(evt);
+         * });
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -298,7 +313,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var code = o2.Event.getKeyCode(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -387,7 +404,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Event.addEventListener('container', 'mousemove', function(evt) {
+     *      var dimensions = o2.Event.getMouseCoordinates(evt);
+     * });
      * </pre>
      *
      * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -416,7 +435,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      o2.Event.preventDefault(evt);
+         * });
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used
@@ -466,7 +487,9 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      o2.Event.stopPropagation(evt);
+         * });
          * </pre>
          *
          * @param {Event} evt - the actual <code>DOM Event</code> object used

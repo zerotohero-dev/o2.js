@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 22:08:18.912299
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -59,7 +59,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var jsonp = o2.Jsonp.get('http://example.com/api.php', handleResponse);
+     * var controller = new o2.JsonpController(jsonp, {timeout: 5000});
      * </pre>
      *
      * @param {String} jsonp - the current jsonp unique identifier.
@@ -68,9 +69,9 @@
      * both attributes are optional.
      */
     var me = construct(kModuleName, function(jsonp, args) {
-        this.jsonp = jsonp;
-        this.timeout = (args && args.timeout) || null;
+        this.jsonp     = jsonp;
         this.ontimeout = (args && args.ontimeout) || nill;
+        this.timeout   = (args && args.timeout) || null;
 
         // Register self.
         state.addObserver(this);
@@ -96,7 +97,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * controller.update({isTimedOut : true});
      * </pre>
      *
      * @param {JsonpState} observable - the <code>Observable</code> state
@@ -140,7 +141,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * controller.unregister();
      * </pre>
      *
      */

@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 20:07:45.717660
+ *  lastModified: 2012-04-18 20:57:21.047073
  * -->
  *
  * <p>A utility package to
@@ -262,8 +262,8 @@
          * @return the calculated <strong>style</strong> value.
          */
         def(me, 'getStyle', function(obj, cssProperty, noForce) {
-            obj = $(obj);
             noForce = !!noForce;
+            obj     = $(obj);
 
             if (!obj) {
                 return null;
@@ -302,8 +302,8 @@
         });
     } else {
         def(me, 'getStyle', function(obj, cssProperty, noForce) {
-            obj = $(obj);
             noForce = !!noForce;
+            obj     = $(obj);
 
             if (!obj) {
                 return;

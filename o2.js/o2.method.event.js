@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 22:12:55.082461
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
@@ -87,6 +87,7 @@
 
         return function(e) {
             args.unshift(e);
+
             return fn.apply(context, args);
         };
     });

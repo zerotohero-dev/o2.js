@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 10:26:58.892350
+ *  lastModified: 2012-04-18 19:37:13.262625
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
@@ -124,9 +124,9 @@
      */
     def(me, 'getPrettyDate', function(time, currTime) {
         var currentTime = currTime || $.now();
-        var seconds = (new Date(currentTime) - new Date(time)) / 1000;
-        var token = kAgo;
-        var  listChoice = 1;
+        var listChoice  = 1;
+        var seconds     = (new Date(currentTime) - new Date(time)) / 1000;
+        var token       = kAgo;
 
         if (seconds < 0) {
             seconds = abs(seconds);

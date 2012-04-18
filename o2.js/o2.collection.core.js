@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-12 14:53:52.573742
+ *  lastModified: 2012-04-18 19:32:51.051317
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
@@ -243,10 +243,10 @@
      * @return the index of the element if found, <code>-1</code> otherwise.
      */
     def(me, 'indexOf', function(ar, elm) {
-        var i = 0;
-        var len = 0;
-        var key = null;
         var counter = 0;
+        var i       = 0;
+        var key     = null;
+        var len     = 0;
 
         if (!ar) {
             return -1;

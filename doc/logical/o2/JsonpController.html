@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334763215
+	                 version 0.25.a.0001334776932
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -110,7 +110,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var jsonp = o2.Jsonp.get('http://example.com/api.php', handleResponse);
+ var controller = new o2.JsonpController(jsonp, {timeout: 5000});
  </pre>    </div>  
                             </div>
                 </div>
@@ -136,7 +137,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ controller.unregister();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -154,7 +155,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ controller.update({isTimedOut : true});
  </pre>    </div>  
                             </div>
                 </div>
@@ -185,7 +186,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var jsonp = o2.Jsonp.get('http://example.com/api.php', handleResponse);
+ var controller = new o2.JsonpController(jsonp, {timeout: 5000});
  </pre>
 
      </div>
@@ -234,7 +236,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ controller.unregister();
  </pre>
 
      </div>
@@ -260,7 +262,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ controller.update({isTimedOut : true});
  </pre>
 
      </div>

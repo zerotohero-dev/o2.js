@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-11 19:25:22.330193
+ *  lastModified: 2012-04-18 19:28:26.696598
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
@@ -54,9 +54,9 @@
      *
      */
     function timeoutObservers(self, observers) {
+        var i        = 0;
+        var len      = 0;
         var observer = null;
-        var i = 0;
-        var len = 0;
 
         for (i = 0, len = observers.length; i < len; i++) {
             observer = observers[i].object;
@@ -97,9 +97,9 @@
      *
      */
     function hasObserver(self, observer) {
+        var i         = 0;
+        var len       = 0;
         var observers = getObservers(self);
-        var i = 0;
-        var len = 0;
 
         for (i = 0, len = observers.length; i < len; i++) {
             if (observer.object === observers[i]) {
@@ -114,21 +114,20 @@
      *
      */
     function listen(stateObject) {
-        var observer = null;
-        var meta = null;
-        var timeout = null;
-        var registrationTime = null;
-        var shouldNotifyObserver = false;
-        var unregisterQueue = [];
-
-        var observers = getObservers(stateObject);
         var config = getConfig(stateObject);
-        var state = getState(stateObject);
+        var meta   = null;
+        var now    = (new Date()).getTime();
 
-        var now = (new Date()).getTime();
+        var observer  = null;
+        var observers = getObservers(stateObject);
+        var i         = 0;
+        var len       = observers.length;
 
-        var i = 0;
-        var len = observers.length;
+        var registrationTime     = null;
+        var shouldNotifyObserver = false;
+        var state                = getState(stateObject);
+        var timeout              = null;
+        var unregisterQueue      = [];
 
         if (!len) {
             clearTimeout(state.listenTimeoutId);
@@ -237,9 +236,9 @@
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
     def(me, 'deleteObserver', function(observer) {
+        var i         = 0;
+        var len       = 0;
         var observers = getObservers(this);
-        var i = 0;
-        var len = 0;
 
         // This is an already-deleted zombie object.
         // No need for further processing.

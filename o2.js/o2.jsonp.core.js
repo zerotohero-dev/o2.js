@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 21:25:19.235275
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -55,6 +55,7 @@
      */
     var kAnd      = '&';
     var kCallback = 'callback';
+    var kEmpty    = '';
     var kEquals   = '=';
     var kHead     = 'head';
     var kJson     = concat(myName, '_json_');
@@ -66,12 +67,12 @@
      *
      */
     function load(url) {
+        var done   = false;
+        var head   = getElementsByTagName(kHead)[0];
         var script = createElement(kScript);
-        var head = getElementsByTagName(kHead)[0];
-        var done = false;
 
         script.async = true;
-        script.src = url;
+        script.src   = url;
 
         script.onload = script.onreadystatechange = function() {
             if (!done && (!this.readyState || this.readyState === kLoaded)) {
@@ -92,8 +93,8 @@
      *
      */
     function createQuery(params) {
-        var query = '';
-        var key = null;
+        var key   = null;
+        var query = kEmpty;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -114,7 +115,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Jsonp.get('http://example.com/api.php', {param: 'value'},
+     *      function(data) {
+     *
+     *      }
+     *);
      * </pre>
      *
      * @param {String} url - the <strong>URL</strong> of the

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 22:11:49.324231
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
@@ -135,7 +135,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var result = o2.identity(4);
+     * // result will be 4
      * </pre>
      *
      * @param {Object} value - input.
@@ -204,7 +205,9 @@
      * <p>Defines a partial <code>Function</code>.</p>
      * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
      * detailed discussion.</p>
+     *
      * <p><strong>Usage example:</strong></p>
+     *
      * <pre>
      * function test(a,b,c){ return a*b+c; }
      * var partial = o2.Method.partial(this, test, 10, undefined, 20);

@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 22:20:22.255189
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>
@@ -56,7 +56,22 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var Context = {};
+     *
+     * o2.Method.overload(Context, 'test', function(a) {
+     *      console.log(a);
+     * });
+     *
+     * o2.Method.overload(Context, 'test', function(a, b) {
+     *      console.log(a + b);
+     * });
+     *
+     * Context.test(1);
+     * Context.test(1, 2);
+     *
+     * // will output:
+     * // 1
+     * // 3
      * </pre>
      *
      * @param {Object} object - the <code>Object</code> to add methods to.
@@ -92,7 +107,14 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * function test(a, b) {
+     *
+     * }
+     *
+     * var testEnsure = o2.Method.requireAllArguments(test);
+     *
+     * testEnsure(1);    // will throw an exception.
+     * testEnsure(1, 2); // will NOT throw an exception.
      * </pre>
      *
      * @param {Function} fn - the <code>Function</code> to check.

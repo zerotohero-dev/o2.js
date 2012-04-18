@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-18 20:54:40.973895
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -55,7 +55,7 @@
      * @param {Arguments} ... - each argument as a function.
      */
     def(me, 'all', function() {
-        var i = 0;
+        var i   = 0;
         var len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
@@ -85,7 +85,7 @@
      * @param {Arguments} ... - each argument as a function.
      */
     def(me, 'these', function() {
-        var i = 0;
+        var i   = 0;
         var len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
