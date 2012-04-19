@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334776932
+	                 version 0.25.a.0001334852646
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -103,7 +103,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.br2nl('hello<br />world.');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -121,7 +121,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var compacted = o2.String.compact('   lorem      ipsum     ');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -138,7 +138,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var joined = o2.String.concat('lorem', ipsum);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -230,7 +230,7 @@
  <p>Usage example:<p>
 
  <pre>
- o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+ o2.String.format("Hello {0}. What's going on in {1}?", 'Ninja',
  'California');
  //will return "Hello Ninja. What's going on in California"
  </pre>    </div>  
@@ -248,7 +248,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var guid = o2.String.generateGuid();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -265,7 +265,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var rnd = o2.String.generateRandom();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -297,7 +297,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.nl2br('hello\nworld.');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -341,7 +341,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var removed = o2.String.remove('lorem', /e/ig);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -359,7 +359,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.removeTags('<p>hello.</p>');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -481,7 +481,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var camelized = o2.String.toCamelCase('font-family');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -499,7 +499,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var dashed = o2.String.toDashedFromCamelCase('fontFamily');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -517,7 +517,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var parsed = o2.String.toJson('{"name" : "value"}');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -535,7 +535,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.toUnderscoreFromCamelCase('fontFamily');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -554,7 +554,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var trimmed = o2.String.trim('    lorem     ');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -573,7 +573,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var truncated = o2.String.truncate('This ... is a very long String.');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -641,7 +641,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.br2nl('hello<br />world.');
  </pre>
 
      </div>
@@ -685,7 +685,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var compacted = o2.String.compact('   lorem      ipsum     ');
  </pre>
 
      </div>
@@ -734,7 +734,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var joined = o2.String.concat('lorem', ipsum);
  </pre>
 
      </div>
@@ -950,7 +950,7 @@
  <p>Usage example:<p>
 
  <pre>
- o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+ o2.String.format("Hello {0}. What's going on in {1}?", 'Ninja',
  'California');
  //will return "Hello Ninja. What's going on in California"
  </pre>
@@ -983,7 +983,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var guid = o2.String.generateGuid();
  </pre>
 
      </div>
@@ -1014,7 +1014,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var rnd = o2.String.generateRandom();
  </pre>
 
      </div>
@@ -1086,7 +1086,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.nl2br('hello\nworld.');
  </pre>
 
      </div>
@@ -1182,7 +1182,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var removed = o2.String.remove('lorem', /e/ig);
  </pre>
 
      </div>
@@ -1198,7 +1198,7 @@
                                                 <div class="param paddedDetails">
         <code>
             regExp        </code>
-         - the <code>RegExp</code> to process agains.            </div>   
+         - the <code>RegExp</code> to process against.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -1230,7 +1230,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.removeTags('<p>hello.</p>');
  </pre>
 
      </div>
@@ -1522,7 +1522,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var camelized = o2.String.toCamelCase('font-family');
  </pre>
 
      </div>
@@ -1566,7 +1566,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var dashed = o2.String.toDashedFromCamelCase('fontFamily');
  </pre>
 
      </div>
@@ -1610,7 +1610,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var parsed = o2.String.toJson('{"name" : "value"}');
  </pre>
 
      </div>
@@ -1660,7 +1660,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var replaced = o2.String.toUnderscoreFromCamelCase('fontFamily');
  </pre>
 
      </div>
@@ -1705,7 +1705,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var trimmed = o2.String.trim('    lorem     ');
  </pre>
 
      </div>
@@ -1757,7 +1757,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var truncated = o2.String.truncate('This ... is a very long String.');
  </pre>
 
      </div>

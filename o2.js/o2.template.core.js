@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 19:02:41.525774
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -69,14 +69,14 @@
                 return line[0];
         }
 
-        var directive = line[0].split(kSeparatorRegExp);
-        var subTpl = line[1];
-        var directiveKey = kEmpty;
         var collectionKey = kEmpty;
+        var directive     = line[0].split(kSeparatorRegExp);
+        var directiveKey  = kEmpty;
+        var subTpl        = line[1];
 
         var buffer = [];
-        var i = 0;
-        var clen = 0;
+        var clen   = 0;
+        var i      = 0;
 
         if (directive.length > 1) {
             collectionKey = directive[1];
@@ -123,7 +123,22 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var data = {
+     *      users : [
+     *          {name : 'Joe' },
+     *          {name : 'Jill'},
+     *          {name : 'Jack'}
+     *      ]
+     * };
+     *
+     * var tpl = [
+     *      '<ul id="Products">',
+     *          ['each users',
+     *              '<li>{{name}}</li>'],
+     *      '</ul>'
+     * ];
+     *
+     * var html = o2.Template.parse(data, tpl);
      * </pre>
      *
      * @param {Object} data - the source data as a <strong>JSON</strong> object.
@@ -132,14 +147,13 @@
      * @return {String} the parsed template.
      */
      def(me, 'parse', function(data, tpl){
-        var buffer = [];
-        var i = 0;
-        var len = 0;
-
-        data = data || {};
+        var buffer  = [];
+        var tplData = data || {};
+        var i       = 0;
+        var len     = 0;
 
         for (i = 0, len = tpl.length; i < len; i++) {
-            buffer.push(parse(tpl[i], data));
+            buffer.push(parse(tpl[i], tplData));
         }
 
         return buffer.join(kEmpty);

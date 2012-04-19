@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 16:50:53.746042
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
@@ -56,6 +56,7 @@
      */
     var kNoJsonSupport = concat(myName, ': {0}: No JSON support. quitting');
     var kFunction      = 'function';
+    var kObject        = 'object';
 
     /**
      * @function {static} o2.Object.copy
@@ -307,7 +308,7 @@
             return null;
         }
 
-        if (!isObject(obj)) {
+        if (typeof obj !== kObject) {
             return null;
         }
 

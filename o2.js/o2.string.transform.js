@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 19:23:02.982526
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -65,7 +65,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var replaced = o2.String.br2nl('hello<br />world.');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -84,7 +84,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var replaced = o2.String.nl2br('hello\nworld.');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -104,7 +104,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var replaced = o2.String.removeTags('<p>hello.</p>');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
@@ -126,7 +126,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var camelized = o2.String.toCamelCase('font-family');
      * </pre>
      *
      * @param {String} input - the <code>String</code> to convert.
@@ -148,7 +148,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var dashed = o2.String.toDashedFromCamelCase('fontFamily');
      * </pre>
      *
      * @param {String} input - the <code>String</code> to convert.
@@ -170,7 +170,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var parsed = o2.String.toJson('{"name" : "value"}');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to convert.
@@ -197,7 +197,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var replaced = o2.String.toUnderscoreFromCamelCase('fontFamily');
      * </pre>
      *
      * @param {String} input - the <code>String</code> to convert.
@@ -219,7 +219,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var truncated = o2.String.truncate('This ... is a very long String.');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.

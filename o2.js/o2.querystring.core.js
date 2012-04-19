@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 16:48:06.696714
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
@@ -59,12 +59,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var query = {lorem : 'ipsum', dolor : sit};
+     * var qs = o2.QueryString.encode(query);
      * </pre>
      *
      */
     def(me, 'encode', function(collection) {
-        var key = null;
+        var key    = null;
         var buffer = [];
 
         for (key in collection) {
@@ -88,7 +89,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var params = o2.QueryString.parse(window.location.href);
      * </pre>
      *
      * @param {String} url - (Optional) if given, parses the
@@ -99,18 +100,19 @@
      * name2:value2} <code>Object</code>.
      */
     def(me, 'parse', function(url) {
-        var args = {};
-        var href = url || location.href;
+        var args  = {};
+        var href  = url || location.href;
         var index = href.indexOf(kQuery);
 
         if (index === -1) {
             return args;
         }
 
-        var query = href.substring(index + 1);
+        var i              = 0;
+        var nameValuePair  = null;
+
+        var query          = href.substring(index + 1);
         var nameValuePairs = query.split(kAnd);
-        var nameValuePair = null;
-        var i = 0;
 
         for (i = 0; i < nameValuePairs.length; i++) {
             nameValuePair = nameValuePairs[i].split(kEquals);

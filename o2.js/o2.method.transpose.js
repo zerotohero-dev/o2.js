@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 16:44:38.221515
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose
@@ -48,7 +48,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * function double(a) { return a*2; }
+     * var min = Math.min;
+     * var doubleMin = o2.Method.compose(double, min);
+     * var res = doubleMin(3, 5);
+     * // res will be 6
      * </pre>
      *
      * @param {Function} invoker - the invoker.
@@ -56,9 +60,10 @@
      *
      * @return the created <code>Function</code>.
      */
+    //TODO: pass an optional context parameter.
     def(me, 'compose', function(invoker, delegate) {
         return function() {
-            return invoker.call(this, delegate.apply(this, arguments));
+            return invoker.apply(this, [delegate.apply(this, arguments)]);
         };
     });
 
@@ -71,7 +76,10 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * function factor(a, b) { return a / b; }
+     * var flipped = o2.Method.flip(factor, 0, 1);
+     * var result = factor(5, 2) == flipped(2, 5);
+     * // result will be true
      * </pre>
      *
      * @param {Function} fn - the delegate to flip arguments of.
@@ -82,7 +90,7 @@
      */
     def(me, 'flip', function(fn, index1, index2) {
         return function() {
-            var args = slice.call(arguments);
+            var args      = slice.call(arguments);
             var temporary = args[index1];
 
             args[index1] = args[index2];
@@ -102,7 +110,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * function wrapper(fn, a, b) { return fn(a, b) + a + b; }
+     * function delegate { return a * b; }
+     * var wrapped = o2.Method.wrap(delegate, wrapper);
+     *
+     * var result = wrapped(3, 5);
+     * // result will be 23
      * </pre>
      *
      * @param {Function} delegate - the first <code>Function</code> to pass
@@ -111,11 +124,11 @@
      *
      * @return the wrapped <code>Function</code>.
      */
+    //TODO: pass an optional context parameter.
     def(me, 'wrap', function(delegate, wrapper) {
         return function() {
-            var args = [delegate].concat(slice.call(arguments));
-
-            return wrapper.apply(this, args);
+            return wrapper.apply(this,
+                [delegate].concat(slice.call(arguments)));
         };
     });
 }(this.o2));

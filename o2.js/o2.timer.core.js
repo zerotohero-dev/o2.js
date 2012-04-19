@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 19:06:29.669942
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -81,14 +81,14 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Timer.start('myTimer');
      * </pre>
      *
      * @param {String} id - the id of the timer to start.
      */
     def(me, 'start', function(id) {
         var timerId = concat(kPrefix, id);
-        var meta = timers[timerId];
+        var meta    = timers[timerId];
 
         if (!meta) {
             return;
@@ -124,14 +124,14 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Timer.stop('myTimer');
      * </pre>
      *
      * @param {String} id - the id of the timer to stop.
      */
     def(me, 'stop', function(id) {
         var timerId = concat(kPrefix, id);
-        var meta = timers[timerId];
+        var meta    = timers[timerId];
 
         if (!meta) {
             return;
@@ -159,7 +159,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Timer.set('myTimer', function() {
+     *      console.log('hello');
+     * }, 1000, {repeat : true});
      * </pre>
      *
      * @param {String} id - a unique identifier for the timer.

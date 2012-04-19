@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 16:56:06.895165
  * -->
  *
  * <p>A <code>String</code> helper.</p>
@@ -36,9 +36,8 @@
     /*
      * Aliases
      */
-    var math   = Math;
-    var floor  = attr(math, 'floor');
-    var random = attr(math, 'random');
+    var floor  = attr(Math, 'floor');
+    var random = attr(Math, 'random');
     var slice  = attr(Array.prototype, 'slice');
 
     var trim   = String.prototype.trim;
@@ -90,7 +89,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var joined = o2.String.concat('lorem', ipsum);
      * </pre>
      *
      * @return the concataneted <code>String</code>.
@@ -113,7 +112,7 @@
      * <p>Usage example:<p>
      *
      * <pre>
-     * o2.StrinHelper.format("Hello {0}. What's going on in {1}?", 'Ninja',
+     * o2.String.format("Hello {0}. What's going on in {1}?", 'Ninja',
      * 'California');
      * //will return "Hello Ninja. What's going on in California"
      * </pre>
@@ -151,7 +150,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var guid = o2.String.generateGuid();
      * </pre>
      *
      * @return a <strong>GUID</strong>.
@@ -170,7 +169,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var rnd = o2.String.generateRandom();
      * </pre>
      *
      * @param {Integer} length - (optional - default: {@link
@@ -257,11 +256,11 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var removed = o2.String.remove('lorem', /e/ig);
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
-     * @param {RegExp} regExp - the <code>RegExp</code> to process agains.
+     * @param {RegExp} regExp - the <code>RegExp</code> to process against.
      *
      * @return the processed <code>String</code>.
      */
@@ -280,7 +279,7 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * //TODO: add usage example.
+         * var trimmed = o2.String.trim('    lorem     ');
          * </pre>
          *
          * @param {String} str - the <code>String</code> to process.
@@ -322,7 +321,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var compacted = o2.String.compact('   lorem      ipsum     ');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
@@ -334,5 +333,4 @@
     def(me, 'compact', function(str) {
         return strim(concat(kEmpty, str), true);
     });
-
 }(this.o2));

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 16:57:55.616509
  * -->
  *
  * <p>An object support checker.</p>
@@ -61,7 +61,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isAjaxSupported = o2.Supports.ajax();
      * </pre>
      *
      * @return <code>true</code> if <strong>AJAX</strong> is supported,
@@ -81,7 +81,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isCookieSupported = o2.Supports.cookie();
      * </pre>
      *
      * @return <code>true</code> if <strong>cookie</strong>s are supported,
@@ -122,7 +122,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isDomSupported = o2.Supports.dom();
      * </pre>
      *
      * @return <code>true</code> if <strong>DOM</strong> is supported,
