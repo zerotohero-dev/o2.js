@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 06:50:55.175973
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
@@ -67,7 +67,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 7, '12', 8, 'lorem', 'c', 42, 7];
+     * a.sort(o2.SortDelegatae.sort);
      * </pre>
      */
     def(me, 'sort', function(a, b) {
@@ -82,12 +83,6 @@
      * @function {static} o2.SortDelegate.sortAsc
      *
      * <p>An <strong>alias</strong> to {@link o2.SortDelegate.sort}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @see o2.SortDelegate.sort
      */
@@ -105,7 +100,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var ar = [1, 7, '12', 8, 'lorem', 'c', 42, 7];
+     * a.sort(o2.SortDelegatae.sortDesc);
      * </pre>
      *
      */

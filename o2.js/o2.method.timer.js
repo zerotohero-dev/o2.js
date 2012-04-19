@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 07:03:04.044868
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
@@ -101,7 +101,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var debounceAction = o2.Method.debuonce(function() {
+     *      console('if you call me within a second, I will skip.');
+     * }, 1000);
      * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to debounce.
@@ -133,7 +135,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var deferAction = o2.Method.defer(function() {
+     *      console.log('I will be delayed for 1 second');
+     * }, 1000);
      * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to defer.
@@ -170,7 +174,9 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Method.throttle(function() {
+     *      console.log('You can call me at max once within a second');
+     * }, 1000);
      * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to throttle.

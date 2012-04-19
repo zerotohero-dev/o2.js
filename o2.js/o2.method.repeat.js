@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 06:56:30.932819
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
@@ -39,7 +39,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var bump = o2.Method.after(3, function() {
+     *      console.log('bump');
+     * });
+     *
+     * bump();bump();bump();bump();
+     * // Will log 'bump' only once.
      * </pre>
      *
      * @param {Integer} count - the numer of calls required to the
@@ -76,7 +81,12 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var init = o2.Method.once(function() {
+     *      console.log('done');
+     * });
+     *
+     * init();init();
+     * // Will log 'done' only once.
      * </pre>
      *
      * @param {Function} delegate - the <code>Function</code> to execute.
@@ -112,7 +122,13 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * o2.Method.times(3, function(i) {
+     *   console.log(i);
+     * });
+     * // Will log:
+     * // 0
+     * // 1
+     * // 2
      * </pre>
      *
      * @param {Integer} count - number of times to execute.
