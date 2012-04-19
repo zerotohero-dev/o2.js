@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 20:48:18.034161
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
@@ -129,7 +129,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var decoded = o2.String.decode(encodedString);
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
@@ -152,7 +152,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var encoded = o2.String.decode(inputString);
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
@@ -168,12 +168,6 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.String.encode}.</p>
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * @see o2.String.encode
      */
     alias(me, 'htmlEncode', 'encode');
@@ -188,7 +182,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var encoded = o2.String.encodeSafeHtml(inputString);
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
@@ -211,12 +205,6 @@
     /**
      * @function {static} o2.String.safeHtmlEncode
      *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
-     *
      * <p>An <strong>alias</strong> to
      * {@link o2.String.encodeSafeHtml}.</p>
      *
@@ -226,12 +214,6 @@
 
     /**
      * @function {static} o2.String.escape
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
      *
@@ -247,12 +229,6 @@
      * @function {static} o2.String.unescape
      *
      * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * //TODO: add usage example.
-     * </pre>
      *
      * @param {String} str - the <code>String</code> to process.
      *
@@ -274,7 +250,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var encoded = o2.String.xssEncode(inputString);
      * </pre>
      *
      * @param {String} str - the <code>String</code> to process

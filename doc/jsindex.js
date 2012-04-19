@@ -3863,15 +3863,6 @@
            elementType : "function"
        } ,         
        {
-           localName : "removeTags",
-           fullName : "o2.String.removeTags",
-           summary : "static function  removeTags(String str)",
-           ref : "logical/o2/String.html#___removeTags",
-           parent : "o2.String",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
            localName : "safeHtmlEncode",
            fullName : "o2.String.safeHtmlEncode",
            summary : "static function  safeHtmlEncode()",

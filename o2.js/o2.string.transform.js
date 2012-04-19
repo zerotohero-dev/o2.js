@@ -96,26 +96,6 @@
     });
 
     /**
-     * @function {static} o2.String.removeTags
-     *
-     * <p>Removes all the <strong>HTML</strong> tags in the
-     * <code>String</code>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var replaced = o2.String.removeTags('<p>hello.</p>');
-     * </pre>
-     *
-     * @param {String} str - the <code>String</code> to process.
-     *
-     * @return the cleaned output.
-     */
-    def(me, 'removeTags', function(str) {
-        return str.replace(kRemoveTagsRegExp, kEmpty);
-    });
-
-    /**
      * @function {static} o2.String.toCamelCase
      *
      * <p>Converts the input to camel case.</p>

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 20:37:13.572222
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
@@ -54,7 +54,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var stripped = o2.String.stripNonAlpha('abc123.!');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -73,7 +73,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var stripped = o2.String.stripNonAlphanumeric('abc123.!');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -92,7 +92,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var stripped = o2.String.stripTags('<p>abc123.!</p>');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -111,7 +111,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var stripped = o2.String.stripNonNumeric('abc123.!');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -130,7 +130,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var stripped = o2.String.stripNumeric('abc123.!');
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.

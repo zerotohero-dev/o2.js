@@ -11,7 +11,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-04-19 22:48:52.462259
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
@@ -823,7 +823,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithClassUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -856,7 +856,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -886,7 +886,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getChildrenWithIdUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -918,7 +918,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElements('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -954,7 +954,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElementsByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -982,7 +982,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElementsByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1008,7 +1008,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElementsWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1035,7 +1035,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElementsWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1061,7 +1061,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getElementsWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1085,7 +1085,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblings('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1115,7 +1115,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1143,7 +1143,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsByAttributeUntil('content', 'data-id',
+     *      '42', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1173,7 +1174,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1198,7 +1199,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsByClassUntil('content', 'selected',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1226,7 +1228,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1253,7 +1255,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithAttribute('content', 'dada-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1280,7 +1282,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithAttributeUntil('content', 'data-id',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1310,7 +1313,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1335,7 +1338,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithClassUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1363,7 +1366,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1385,7 +1388,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getSiblingsWithIdUntil('content', 'stopper', 'li');
      * </pre>
      *
      * <p>Gets the siblings of the element, having an "id" attribute
@@ -1414,7 +1417,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirst('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1444,7 +1447,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1477,7 +1480,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1509,7 +1512,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1541,7 +1544,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1572,7 +1575,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1602,7 +1605,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChild('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1631,7 +1634,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChildByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1662,7 +1665,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChildByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1692,7 +1695,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChildWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1722,7 +1725,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChildWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1751,7 +1754,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getFirstChildWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1779,7 +1782,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLast('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1810,7 +1813,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1843,7 +1846,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1875,7 +1878,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1906,7 +1909,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1938,7 +1941,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastWithClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1969,7 +1972,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChild('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -1998,7 +2001,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChildByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2029,7 +2032,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChildByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2059,7 +2062,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChildWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2089,7 +2092,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChildWithClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2119,7 +2122,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getLastChildWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2147,7 +2150,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNext('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2172,7 +2175,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextByAttribute('content', 'data-id', '42', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2197,7 +2200,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextByClass('content', 'selected', 'li');
      * </pre>
      *
      * <p>Gets the next sibling of the element, that's not a text node, and
@@ -2227,7 +2230,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2254,7 +2257,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2280,7 +2283,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2306,7 +2309,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAll('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2336,7 +2339,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2365,7 +2368,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllByAttributeUntil('content', 'data-id', '42',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2396,7 +2400,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2423,7 +2427,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllByClassUntil('content', 'selected',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2452,7 +2457,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2479,7 +2484,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2506,7 +2511,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithAttributeUntil('content', 'data-id',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2536,7 +2542,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2562,7 +2568,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithClassUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2590,7 +2596,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2616,7 +2622,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNextAllWithIdUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2644,7 +2650,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNth('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2672,7 +2678,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthByAttribute('content', 'data-id', '42', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2707,7 +2713,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthByAttribute('content', 'selected', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2737,7 +2743,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthWithAttribute('content', 'data-id', 42, 'li');
      * </pre>
      *
      * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
@@ -2773,7 +2779,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthWithClass('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2802,7 +2808,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthWithId('content', 42, 'li');
      * </pre>
      *
      * <p>Gets n<sup>th</sup> non-text-node sibling of an element, starting
@@ -2836,7 +2842,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChild('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2866,7 +2872,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChildByAttribute('content', 'data-id', '42', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2898,7 +2904,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChildByClass('content', 'selected', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2929,7 +2935,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChildWithAttribute('content', 'data-id', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2960,7 +2966,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChildWithClass('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -2990,7 +2996,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthChildWithId('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3019,7 +3025,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNext('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3045,7 +3051,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNextByAttribute('content', 'data-id', '42', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3074,7 +3080,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNextByClass('content', 'selected', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3102,7 +3108,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNextWithAttribute('content', 'data-id', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3130,7 +3136,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNextWithClass('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3154,7 +3160,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthNextWithId('content', 42, 'li');
      * </pre>
      *
      * <p>Gets n<sup>th</sup> non-text-node next sibling of an element,
@@ -3183,7 +3189,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParent('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3206,7 +3212,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParentByAttribute('content', 'data-id', '42',
+     *      42, 'li');
      * </pre>
      *
      * <p>Gets n<sup>th</sup> parent node of an element, having a given
@@ -3239,7 +3246,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParentByClass('content', 'selected', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3267,7 +3274,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParentWithAttribute('content', 'data-id', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3295,7 +3302,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParentWithClass('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3322,7 +3329,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthParentWithId('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3349,7 +3356,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrev('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3376,7 +3383,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrevByAttribute('content', 'data-id', '42',
+     *      42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3405,7 +3413,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrevByClass('content', 'selected', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3433,7 +3441,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrevWithAttribute('content', 'data-id', 42);
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3461,7 +3469,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrevWithClass('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3488,7 +3496,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getNthPrevWithId('content', 42, 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3514,7 +3522,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParent('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3539,7 +3547,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParentByAttribute('content', 'data-id', '42', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3567,7 +3575,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParentByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3594,7 +3602,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParentWithAttribute('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3621,7 +3629,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParentWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3647,7 +3655,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getParentWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3671,7 +3679,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParents('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3696,7 +3704,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3724,7 +3732,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsByAttributeUntil('content', 'data-id', '42',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3754,7 +3763,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3781,7 +3790,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsByClassUntil('content', 'selected',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3809,7 +3819,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3835,7 +3845,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3862,7 +3872,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithAttributeUntil('content', 'data-id',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3891,7 +3902,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3917,7 +3928,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithClass('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3944,7 +3955,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3970,7 +3981,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getParentsWithIdUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -3996,7 +4007,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrev('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4022,7 +4033,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrevByAttribute('content', 'data-id', '42', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4050,7 +4061,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrevByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4077,7 +4088,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrevWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4104,7 +4115,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrevWithClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4130,7 +4141,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var item = o2.Dom.getPrevWithId('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4155,7 +4166,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAll('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4186,7 +4197,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllByAttribute('content', 'data-id', '42');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4215,7 +4226,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllByAttributeUntil('content', 'data-id',
+     *      '42', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4246,7 +4258,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllByClass('content', 'selected', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4274,7 +4286,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllByClassUntil('content', 'selected',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4302,7 +4315,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4329,7 +4342,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithAttribute('content', 'data-id', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4357,7 +4370,8 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithAttributeUntil('content', 'data-id',
+     *      'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4387,7 +4401,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithClass('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4414,7 +4428,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithClassUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4442,7 +4456,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithId('content', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4469,7 +4483,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var items = o2.Dom.getPrevAllWithIdUntil('content', 'stopper', 'li');
      * </pre>
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
@@ -4497,7 +4511,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isChild = o2.Dom.isChild('child', 'parent');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
@@ -4525,7 +4539,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isNext = o2.Dom.isNext('itemId', 'refId');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
@@ -4553,7 +4567,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isParent = o2.Dom.isParent('itemId', 'refId');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
@@ -4586,7 +4600,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isParent = o2.Dom.isParentOrSelf('itemId', 'refId');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
@@ -4618,7 +4632,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isParent = o2.Dom.isPrev('itemId', 'refId');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>
@@ -4646,7 +4660,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * //TODO: add usage example.
+     * var isSibling = o2.Dom.isSibling('itemId', 'refId');
      * </pre>
      *
      * @param {Object} elm - the source element, or a <code>String</code>

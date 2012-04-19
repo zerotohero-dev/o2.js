@@ -773,7 +773,6 @@ this.o2 = this.o2 || {isProduction : false};
 
                 br2nl                     : {MODULE : kStringTransform},
                 nl2br                     : {MODULE : kStringTransform},
-                removeTags                : {MODULE : kStringTransform},
                 toCamelCase               : {MODULE : kStringTransform},
                 toDashedFromCamelCase     : {MODULE : kStringTransform},
                 toJson                    : {MODULE : kStringTransform},

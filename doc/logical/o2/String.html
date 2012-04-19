@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334852646
+	                 version 0.25.a.0001334864983
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -157,7 +157,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var decoded = o2.String.decode(encodedString);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -178,7 +178,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.decode(inputString);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -197,7 +197,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.encodeSafeHtml(inputString);
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -209,13 +209,7 @@
  str)
             </div>          
                 <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>    </div>  
+        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                            <div class="summaryItemDef">
@@ -275,13 +269,7 @@
                 <a href="logical/o2/String.html#___htmlEncode"><span class="elementName">htmlEncode</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <a href="logical/o2/String.html#___encode">o2.String.encode</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <a href="logical/o2/String.html#___encode">o2.String.encode</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -345,37 +333,13 @@
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/String.html#___removeTags"><span class="elementName">removeTags</span></a>
-                (<span class="type"><a href="logical/o2/String.html">String</a></span>
- str)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Removes all the <strong>HTML</strong> tags in the
- <code>String</code>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- var replaced = o2.String.removeTags('<p>hello.</p>');
- </pre>    </div>  
-                            </div>
-                    <div class="summaryItem">
                                                            <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
                 <a href="logical/o2/String.html#___safeHtmlEncode"><span class="elementName">safeHtmlEncode</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to
+        <p>An <strong>alias</strong> to
  <a href="logical/o2/String.html#___encodeSafeHtml">o2.String.encodeSafeHtml</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -393,7 +357,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonAlpha('abc123.!');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -410,7 +374,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonAlphanumeric('abc123.!');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -427,7 +391,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonNumeric('abc123.!');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -444,7 +408,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNumeric('abc123.!');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -461,7 +425,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripTags('<p>abc123.!</p>');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -585,13 +549,7 @@
  str)
             </div>          
                 <div class="summaryItemDesc">
-        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>    </div>  
+        <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -612,7 +570,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.xssEncode(inputString);
  </pre>    </div>  
                             </div>
                 </div>
@@ -767,7 +725,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var decoded = o2.String.decode(encodedString);
  </pre>
 
      </div>
@@ -814,7 +772,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.decode(inputString);
  </pre>
 
      </div>
@@ -859,7 +817,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.encodeSafeHtml(inputString);
  </pre>
 
      </div>
@@ -902,13 +860,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
+        <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
 
      </div>
         	<div class="parameters">
@@ -1053,12 +1005,6 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to <a href="logical/o2/String.html#___encode">o2.String.encode</a>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
 
      </div>
                                 <div class="seealso">
@@ -1210,50 +1156,6 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___removeTags">
-            <span class="objType">function</span>
-            <span class="objName">removeTags</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    removeTags(<span class="type"><a href="logical/o2/String.html">String</a></span>
- str)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Removes all the <strong>HTML</strong> tags in the
- <code>String</code>.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- var replaced = o2.String.removeTags('<p>hello.</p>');
- </pre>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            str        </code>
-         - the <code>String</code> to process.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the cleaned output.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
-                                                                                    <h3>
         <a name="___safeHtmlEncode">
             <span class="objType">function</span>
             <span class="objName">safeHtmlEncode</span>            
@@ -1267,13 +1169,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
- <p>An <strong>alias</strong> to
+        <p>An <strong>alias</strong> to
  <a href="logical/o2/String.html#___encodeSafeHtml">o2.String.encodeSafeHtml</a>.</p>
 
      </div>
@@ -1303,7 +1199,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonAlpha('abc123.!');
  </pre>
 
      </div>
@@ -1346,7 +1242,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonAlphanumeric('abc123.!');
  </pre>
 
      </div>
@@ -1389,7 +1285,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNonNumeric('abc123.!');
  </pre>
 
      </div>
@@ -1433,7 +1329,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripNumeric('abc123.!');
  </pre>
 
      </div>
@@ -1476,7 +1372,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var stripped = o2.String.stripTags('<p>abc123.!</p>');
  </pre>
 
      </div>
@@ -1802,12 +1698,6 @@
                 <div class="comment">
         <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
 
- <p><strong>Usage example:</strong></p>
-
- <pre>
- //TODO: add usage example.
- </pre>
-
      </div>
         	<div class="parameters">
         <span class="descSection">Parameters:</span><br/>
@@ -1853,7 +1743,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- //TODO: add usage example.
+ var encoded = o2.String.xssEncode(inputString);
  </pre>
 
      </div>
