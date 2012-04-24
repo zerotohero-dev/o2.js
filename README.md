@@ -29,8 +29,14 @@ I have three main goals for **[o2.js][2]**:
 
 ## Yet Another JavaScript Framework?! Seriously?
 
-Well, **[o2.js][2]** is not and end-result. It is a **"by-product"**.
-Let me explain:
+We have to admit, **JavaScript**, in its native form is far from being perfect.
+That's why there are so many frameworks around. Some of these frameworks provide
+an **API** or **[Façade][4]** to query, manipulate and animate **DOM**, while
+some of these frameworks extend the native **JavaScript** objects with a bunch
+of useful functions and methods.
+
+**[o2.js][2]** is somewhere in the middle. Actually, **[o2.js][2]** is not
+and end-result. It is a **"by-product"**. Let me explain:
 
 Up till now, I've used various **JavaScript** techniques, analyzed and used
 almost all of the popular **JavaScript** frameworks, and have built a dozen
@@ -106,6 +112,8 @@ I also share [worth-following bits an pieces][3] on **[twitter][3]**
 [1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
 [3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
+
+[4]: http://en.wikipedia.org/wiki/Facade_pattern "Façade Pattern"
 
 --------------------------------------------------------------------------------
             ___       _

@@ -135,7 +135,7 @@
 
         return args[0].replace(pattern, function(match, index) {
             var dummy = null;
-            dummy = match;
+            dummy     = match;
 
             return args[(+index) + 1];
         });
@@ -206,12 +206,16 @@
      * <pre>
      * var test1 = 'lorem %s %s sit amet';
      * var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+     * var test3 = 'lorem %id:s ipsum';
      *
      * //This will return 'lorem ipsum dolor sit amet''
      * o2.String.printf(test1, 'ipsum', 'dolor');
      *
      * //This will return 'lorem ipsum dolor sit dolor amet ipsum'
      * o2.String.printf(test1, 'ipsum', 'dolor');
+     *
+     * //This will return 'lorem test ipsum'.
+     * o2.String.printf(test3, {id : 'test'});
      * </pre>
      *
      * @param {String} str - the <code>String</code> to format.
@@ -223,16 +227,21 @@
         var index     = kReplaceParameterStartIndex;
         var lastMatch = 0;
         var result    = kPrintfRegExp.exec(str);
+        var rep       = null;
+        var par       = null;
 
         while (result) {
             buffer.push(str.substring(lastMatch, result.index));
 
-            if (!result[kParametrizedMatchIndex]) {
+            rep = arguments[kReplaceParameterStartIndex];
+            par = result[kParametrizedMatchIndex];
+
+            if (!par) {
                 buffer.push(arguments[index++]);
-            } else if (
-                arguments.hasOwnProperty(result[kParametrizedMatchIndex])
-            ) {
-                buffer.push(arguments[result[kParametrizedMatchIndex]]);
+            } else if (rep && rep.hasOwnProperty(par)) {
+                buffer.push(rep[par]);
+            } else if (arguments.hasOwnProperty(par)) {
+                buffer.push(arguments[par]);
             } else {
                 buffer.push(result[kAllIndex]);
             }

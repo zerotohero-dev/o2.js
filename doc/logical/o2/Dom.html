@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334864983
+	                 version 0.25.a.0001335264938
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -3614,8 +3614,7 @@
                 <a href="logical/o2/Dom.html#___loadCss"><span class="elementName">loadCss</span></a>
                 (<span class="type"><a href="logical/o2/String.html">String</a></span>
  src, <span class="type">Function</span>
- successCallback, <span class="type">Function</span>
- failureCallback)
+ successCallback)
             </div>          
                 <div class="summaryItemDesc">
         <p>Asynchronously loads a <strong>css</strong> file with a given
@@ -3637,8 +3636,6 @@
  <pre>
  o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
       handleSuccess();
- }, function() {
-      handleFailure();
  });
  </pre>    </div>  
                             </div>
@@ -3649,8 +3646,7 @@
                 <a href="logical/o2/Dom.html#___loadImage"><span class="elementName">loadImage</span></a>
                 (<span class="type"><a href="logical/o2/String.html">String</a></span>
  url, <span class="type">Function</span>
- successCallback, <span class="type">Function</span>
- failureCallback)
+ successCallback)
             </div>          
                 <div class="summaryItemDesc">
         <p>Tries to load the image into a <strong>JavaScript</strong>
@@ -3665,8 +3661,6 @@
  <pre>
  o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
       handleSuccess();
- }, function() {
-      handleFailure();
  });
  </pre>    </div>  
                             </div>
@@ -14045,8 +14039,7 @@
                     <span class="type"></span>
                     loadCss(<span class="type"><a href="logical/o2/String.html">String</a></span>
  src, <span class="type">Function</span>
- successCallback, <span class="type">Function</span>
- failureCallback)
+ successCallback)
                 </code> 
             </div>          
                 <div class="comment">
@@ -14069,8 +14062,6 @@
  <pre>
  o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
       handleSuccess();
- }, function() {
-      handleFailure();
  });
  </pre>
 
@@ -14090,11 +14081,6 @@
             successCallback        </code>
          - the callback to execute when the load
  operation completes.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            failureCallback        </code>
-         - the callback to execute when the load
- operation times out or fails.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -14111,8 +14097,7 @@
                     <span class="type"></span>
                     loadImage(<span class="type"><a href="logical/o2/String.html">String</a></span>
  url, <span class="type">Function</span>
- successCallback, <span class="type">Function</span>
- failureCallback)
+ successCallback)
                 </code> 
             </div>          
                 <div class="comment">
@@ -14128,8 +14113,6 @@
  <pre>
  o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
       handleSuccess();
- }, function() {
-      handleFailure();
  });
  </pre>
 
@@ -14149,11 +14132,6 @@
             successCallback        </code>
          - gets called when the
  <strong>image</strong> is loaded successfully.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            failureCallback        </code>
-         - gets called when the
- <strong>image</strong> can <strong>not</strong> be loaded successfully.            </div>   
                                         </div>
                 </div>
                     </div>

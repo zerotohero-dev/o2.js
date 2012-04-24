@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001334864983
+	                 version 0.25.a.0001335264938
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -305,12 +305,16 @@
  <pre>
  var test1 = 'lorem %s %s sit amet';
  var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+ var test3 = 'lorem %id:s ipsum';
 
  //This will return 'lorem ipsum dolor sit amet''
  o2.String.printf(test1, 'ipsum', 'dolor');
 
  //This will return 'lorem ipsum dolor sit dolor amet ipsum'
  o2.String.printf(test1, 'ipsum', 'dolor');
+
+ //This will return 'lorem test ipsum'.
+ o2.String.printf(test3, {id : 'test'});
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -1078,12 +1082,16 @@
  <pre>
  var test1 = 'lorem %s %s sit amet';
  var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+ var test3 = 'lorem %id:s ipsum';
 
  //This will return 'lorem ipsum dolor sit amet''
  o2.String.printf(test1, 'ipsum', 'dolor');
 
  //This will return 'lorem ipsum dolor sit dolor amet ipsum'
  o2.String.printf(test1, 'ipsum', 'dolor');
+
+ //This will return 'lorem test ipsum'.
+ o2.String.printf(test3, {id : 'test'});
  </pre>
 
      </div>

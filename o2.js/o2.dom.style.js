@@ -269,16 +269,17 @@
             }
 
             var defaultView = document.defaultView;
+            var cssProp = cssProperty;
 
             if (cssProperty === kFloat) {
-                cssProperty = kCssFloat;
+                cssProp = kCssFloat;
             } else {
-                cssProperty = toCamelCase(cssProperty);
+                cssProp = toCamelCase(cssProperty);
             }
 
             if (noForce) {
                 //return the property if set inline.
-                var val = obj.style[cssProperty];
+                var val = obj.style[cssProp];
 
                 if (val) {
                     return val;
@@ -288,10 +289,10 @@
             }
 
             var d = defaultView.getComputedStyle(obj, kEmpty
-                ).getPropertyValue(toDashedFromCamelCase(cssProperty));
+                ).getPropertyValue(toDashedFromCamelCase(cssProp));
 
-            if (cssProperty === kBackgroundPositionY ||
-                        cssProperty === kBackgroundPositionX) {
+            if (cssProp === kBackgroundPositionY ||
+                        cssProp === kBackgroundPositionX) {
                 if(d === kTop || d === kLeft) {
                     d = kZeroPx;
                 }
@@ -308,16 +309,18 @@
                 return;
             }
 
+            var cssProp = cssProperty;
+
             if (cssProperty === kFloat) {
-                cssProperty = kCssFloat;
+                cssProp = kCssFloat;
             } else {
-                cssProperty = toCamelCase(cssProperty);
+                cssProp = toCamelCase(cssProperty);
             }
 
-            var camelizedCss = toCamelCase(cssProperty);
+            var camelizedCss = toCamelCase(cssProp);
 
             if(noForce) {
-                var val = obj.style[cssProperty];
+                var val = obj.style[cssProp];
 
                 if (val) {
                     return val;
@@ -327,7 +330,7 @@
             }
 
             if (obj.currentStyle) {
-                var value = obj.currentStyle[camelizedCss];
+                var value      = obj.currentStyle[camelizedCss];
                 var isImproper = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
 

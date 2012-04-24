@@ -2578,7 +2578,7 @@
        {
            localName : "loadCss",
            fullName : "o2.Dom.loadCss",
-           summary : "static function  loadCss(String src, Function successCallback, Function failureCallback)",
+           summary : "static function  loadCss(String src, Function successCallback)",
            ref : "logical/o2/Dom.html#___loadCss",
            parent : "o2.Dom",
            type : "function",
@@ -2587,7 +2587,7 @@
        {
            localName : "loadImage",
            fullName : "o2.Dom.loadImage",
-           summary : "static function  loadImage(String url, Function successCallback, Function failureCallback)",
+           summary : "static function  loadImage(String url, Function successCallback)",
            ref : "logical/o2/Dom.html#___loadImage",
            parent : "o2.Dom",
            type : "function",

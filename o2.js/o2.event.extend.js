@@ -160,12 +160,16 @@
 
             // In other browsers evt.which is > 0 if and only if
             // the key pressed is a printable key.
-            if (typeof e.which !== kNumber || e.which <= 0) {
+            var which = e.which;
+
+            if (typeof which !== kNumber || which <= 0) {
                 return false;
             }
 
+            //TODO: test for ctrl+backspace shift+backspace alt+backspace etc.
+
             // The only exception for this is the backspace key.
-            return e.which !== kBackspace;
+            return which !== kBackspace;
         });
     }
 
