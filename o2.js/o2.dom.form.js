@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 14:05:03.280852
+ *  lastModified: 2012-04-24 18:18:15.724271
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
@@ -42,6 +42,12 @@
     var kString = 'String';
     var compact = require(kString, 'compact');
     var trim    = require(kString, 'trim');
+
+    /*
+     * Common Constants
+     */
+    var kPlaceholder = 'placeholder';
+    var kEmpty       = '';
 
     /**
      * @function {static} o2.Dom.compactField
@@ -134,5 +140,44 @@
 
             return true;
         };
+    });
+
+    //TODO: add documentation.
+    def(me, 'removePlaceholder', function(elm) {
+        var target = $(elm);
+
+        if (!target) {
+            return;
+        }
+
+        if(target.getAttribute(kPlaceholder) === target.value) {
+            target.value = kEmpty;
+        }
+    });
+
+    //TODO: add documentation.
+    def(me, 'resetField', function(elm) {
+        var item = $(elm);
+
+        if (!item) {
+            return;
+        }
+
+        item.value = kEmpty;
+    });
+
+    //TODO: add documentation.
+    def(me, 'disable', function() {
+        var i    = 0;
+        var item = null;
+        var len  = 0;
+
+        for(i = 0, len = arguments.length; i < len; i++) {
+            item = $(arguments[i]);
+
+            if(item) {
+                item.disabled = true;
+            }
+        }
     });
 }(this.o2));

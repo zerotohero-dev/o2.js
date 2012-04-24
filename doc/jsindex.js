@@ -2389,7 +2389,7 @@
        {
            localName : "getStyle",
            fullName : "o2.Dom.getStyle",
-           summary : "static function  getStyle(Object obj, String cssProperty, Boolean noForce)",
+           summary : "static function  getStyle(Object elm, String cssProperty, Boolean isNoForce)",
            ref : "logical/o2/Dom.html#___getStyle",
            parent : "o2.Dom",
            type : "function",

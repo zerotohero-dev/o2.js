@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001335264938
+	                 version 0.25.a.0001335281263
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -3227,9 +3227,9 @@
                 <span class="type"></span>
                 <a href="logical/o2/Dom.html#___getStyle"><span class="elementName">getStyle</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  cssProperty, <span class="type">Boolean</span>
- noForce)
+ isNoForce)
             </div>          
                 <div class="summaryItemDesc">
         <p>Gets the <strong>style</strong> of a given property of
@@ -13090,9 +13090,9 @@
                     <span class="modifiers">static</span>
                     <span class="type"></span>
                     getStyle(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- obj, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  cssProperty, <span class="type">Boolean</span>
- noForce)
+ isNoForce)
                 </code> 
             </div>          
                 <div class="comment">
@@ -13123,7 +13123,7 @@
                     <div>
                                                 <div class="param paddedDetails">
         <code>
-            obj        </code>
+            elm        </code>
          - the element, or the <strong>id</strong> of it,
  to check.            </div>   
                                                 <div class="param paddedDetails">
@@ -13135,8 +13135,9 @@
  'borderColor')            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            noForce        </code>
-         - (optional; defaults to <code>false</code>)
+            isNoForce        </code>
+         - (optional; defaults to
+ <code>false</code>)
  if <code>true</code> inherited values from the CSS files will also be
  parsed, otherwise, only inline styles will be parsed.            </div>   
                                         </div>

@@ -12,7 +12,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 17:54:02.299591
+ *  lastModified: 2012-04-24 18:18:15.724271
  * -->
  *
  * <p>Meta information.</p>
@@ -448,7 +448,10 @@ this.o2 = this.o2 || {isProduction : false};
                 setWidth                : {MODULE : kDomDimension},
 
                 compactField          : {MODULE : kDomForm},
+                disable               : {MODULE : kDomForm},
                 preventMultipleSubmit : {MODULE : kDomForm},
+                removePlaceholder     : {MODULE : kDomForm},
+                resetField            : {MODULE : kDomForm},
                 trimField             : {MODULE : kDomForm},
 
                 loadCss    : {MODULE : kDomLoad},

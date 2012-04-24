@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-24 09:46:03.289550
+ *  lastModified: 2012-04-24 16:59:36.581799
  * -->
  *
  * <p>A utility package to
@@ -158,6 +158,8 @@
         });
     }
 
+    var kCssText = 'cssText';
+
     /**
      * @function {static} o2.Dom.addStyle
      *
@@ -193,6 +195,17 @@
 
         var objStyle = obj.style;
 
+        if (typeof style === kString) {
+            if(objStyle.setAttribute) {
+                objStyle.setAttribute(kCssText, style);
+
+                return;
+            }
+
+            obj.setAttribute(kStyle, style);
+
+            return;
+        }
 
         for (key in style) {
             if (style.hasOwnProperty(key)) {
@@ -248,24 +261,40 @@
          * var color = o2.Dom.getStyle('container', 'color');
          * </pre>
          *
-         * @param {Object} obj - the element, or the <strong>id</strong> of it,
+         * @param {Object} elm - the element, or the <strong>id</strong> of it,
          * to check.
          * @param {String} cssProperty - the css property either
          * <strong>dash-separated</strong>
          * or <strong>camelCased</strong> (i.e.: 'border-color' or
          * 'borderColor')
-         * @param {Boolean} noForce - (optional; defaults to <code>false</code>)
+         * @param {Boolean} isNoForce - (optional; defaults to
+         * <code>false</code>)
          * if <code>true</code> inherited values from the CSS files will also be
          * parsed, otherwise, only inline styles will be parsed.
          *
          * @return the calculated <strong>style</strong> value.
          */
-        def(me, 'getStyle', function(obj, cssProperty, noForce) {
-            noForce = !!noForce;
-            obj     = $(obj);
+        def(me, 'getStyle', function(elm, cssProperty, isNoForce) {
+            var noForce   = !!isNoForce;
+            var obj       = $(elm);
+            var styleText = kEmpty;
 
             if (!obj) {
                 return null;
+            }
+
+            if (!cssProperty) {
+                styleText = obj.getAttribute(kStyle);
+
+                if(!styleText) {
+                    return kEmpty;
+                }
+
+                if (typeof styleText === kString) {
+                    return styleText;
+                }
+
+                return styleText.cssText;
             }
 
             var defaultView = document.defaultView;
@@ -301,15 +330,30 @@
             return d;
         });
     } else {
-        def(me, 'getStyle', function(obj, cssProperty, noForce) {
-            noForce = !!noForce;
-            obj     = $(obj);
+        def(me, 'getStyle', function(elm, cssProperty, isNoForce) {
+            var noForce   = !!isNoForce;
+            var obj       = $(elm);
+            var styleText = kEmpty;
 
             if (!obj) {
                 return;
             }
 
             var cssProp = cssProperty;
+
+            if (!cssProperty) {
+                styleText = obj.getAttribute(kStyle);
+
+                if(!styleText) {
+                    return kEmpty;
+                }
+
+                if (typeof styleText === kString) {
+                    return styleText;
+                }
+
+                return styleText.cssText;
+            }
 
             if (cssProperty === kFloat) {
                 cssProp = kCssFloat;
