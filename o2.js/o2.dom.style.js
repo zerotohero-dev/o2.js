@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 20:57:21.047073
+ *  lastModified: 2012-04-24 09:46:03.289550
  * -->
  *
  * <p>A utility package to
@@ -150,9 +150,8 @@
         });
     } else {
         def(me, 'addCssRules', function(cssText) {
-            var d = createElement(kStyle);
-
-            d.type = kTextCss;
+            var d         = createElement(kStyle);
+            d.type        = kTextCss;
             d.textContent = cssText;
 
             getElementsByTagName(kHead)[0].appendChild(d);

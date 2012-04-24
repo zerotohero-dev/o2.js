@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 14:17:16.306133
+ *  lastModified: 2012-04-24 09:46:03.289550
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -75,6 +75,10 @@
      */
     var kCompleteRegExp = /loaded|complete/;
 
+    var kM$     = 'MSIE';
+    var isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
+    var isOpera = !!window.opera;
+
     /**
      * @function {static} o2.Dom.loadCss
      *
@@ -97,8 +101,6 @@
      * <pre>
      * o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
      *      handleSuccess();
-     * }, function() {
-     *      handleFailure();
      * });
      * </pre>
      *
@@ -106,31 +108,55 @@
      * <strong>css</strong> file.
      * @param {Function} successCallback - the callback to execute when the load
      * operation completes.
-     * @param {Function} failureCallback - the callback to execute when the load
-     * operation times out or fails.
      */
-    def(me, 'loadCss', function(src, successCallback, failureCallback) {
+    def(me, 'loadCss', function(src, successCallback) {
         var s = createElement(kLink);
         var x = getElementsByTagName(kHead)[0];
 
-        var id = format(kCssId, generateGuid());
+        var id      = format(kCssId, generateGuid());
         var counter = 0;
 
         var onsuccess = successCallback || nill;
-        var onfailure = failureCallback || nill;
 
         s.setAttribute(kRel, kSheet);
 
-        s.id = id;
+        s.id   = id;
         s.type = kSheetType;
         s.href = src;
 
         x.appendChild(s);
 
+        // for MSIE
+        if (isCrap) {
+            s.onreadystatechange = function() {
+                if(kCompleteRegExp.test(s.readyState)) {
+                    onsuccess();
+                    onsuccess = nill;
+                }
+            };
+
+            return;
+        }
+
+        // for Opera
+        if (isOpera) {
+            s.onload = function() {
+                onsuccess();
+                onsuccess = nill;
+            };
+
+            return;
+        }
+
+        // worst-case fallback
         setTimeout(function check() {
-            var i = 0;
-            var len = 0;
+            var i     = 0;
+            var len   = 0;
             var sheet = null;
+
+            if (onsuccess === nill) {
+                return;
+            }
 
             for (i = 0, len = sheets.length; i < len; i++) {
                 sheet = sheets[i];
@@ -138,6 +164,8 @@
 
                 if (sheet && sheet.id === id) {
                     onsuccess();
+                    onsuccess = nill;
+
                     break;
                 }
             }
@@ -147,7 +175,8 @@
             if(counter <= kMaxCssCheckAttempt) {
                 setTimeout(check, kCssCheckInterval);
             } else {
-                onfailure();
+                onsuccess();
+                onsuccess = nill;
             }
         }, kCssCheckInterval);
     });
@@ -167,8 +196,6 @@
      * <pre>
      * o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
      *      handleSuccess();
-     * }, function() {
-     *      handleFailure();
      * });
      * </pre>
      *
@@ -176,18 +203,21 @@
      * <strong>image</strong>.
      * @param {Function} successCallback - gets called when the
      * <strong>image</strong> is loaded successfully.
-     * @param {Function} failureCallback - gets called when the
-     * <strong>image</strong> can <strong>not</strong> be loaded successfully.
      */
-    def(me, 'loadImage', function(url, succesCallback, failureCallback) {
+    def(me, 'loadImage', function(url, succesCallback) {
         var succesCallbackCached = succesCallback || nill;
-        var failureCallbackCached = failureCallback || nill;
+
+        function done() {
+            succesCallbackCached();
+            succesCallbackCached = nill;
+        }
+
         var testImg = new Image();
 
-        testImg.onload = succesCallbackCached;
-        testImg.onerror = failureCallbackCached;
-        testImg.onabort = failureCallbackCached;
-        testImg.src = url;
+        testImg.onload  = done;
+        testImg.onerror = done;
+        testImg.onabort = done;
+        testImg.src     = url;
 
         return testImg;
     });
