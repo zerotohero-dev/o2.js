@@ -58,6 +58,8 @@
     var kDiv       = 'div';
     var kEmpty     = '';
     var kFunction  = 'function';
+    var kNumber    = 'number';
+    var kObject    = 'object';
     var kString    = 'string';
     var kStyle     = 'style';
 
@@ -479,6 +481,19 @@
      */
     def(me, 'isElement', function(obj) {
         return !!(obj && obj.nodeType === kElementNode);
+    });
+
+    /**
+     *
+     */
+    //TODO: add documentation.
+    dev(me, 'isNode', function(obj) {
+        return (
+            typeof window.Node === 'object' ? obj instanceof window.Node : //DOM2
+                obj && typeof obj === kObject &&
+                typeof obj.nodeType === kNumber &&
+                typeof obj.nodeName === kString
+        );
     });
 
     /**

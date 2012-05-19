@@ -418,6 +418,7 @@ this.o2 = this.o2 || {isProduction : false};
                 insertBefore            : {MODULE : kDomCore},
                 isDocument              : {MODULE : kDomCore},
                 isElement               : {MODULE : kDomCore},
+                isNode                  : {MODILE : kDomCore},
                 prepend                 : {MODULE : kDomCore},
                 remove                  : {MODULE : kDomCore},
                 removeChildren          : {MODULE : kDomCore},
@@ -864,6 +865,10 @@ this.o2 = this.o2 || {isProduction : false};
     // The methods below are <em>internal</em> methods that are used
     // to ensure consistency within the framework.
     // They are not meant for external use.
+
+//TODO: override this file from o2.meta.production.js in production
+//since you do not have any MODULE check for production, that's the
+//most viable option.
 
     if (isProduction) {
 
