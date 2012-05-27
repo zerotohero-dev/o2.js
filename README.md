@@ -73,7 +73,8 @@ to a good-old for loop otherwise.
 mind. Before each major release, **[o2.js][2]** will be unit-tested in
 **at least** the following browsers/platforms:
 
-* **IE6 Windows** (and above)
+* **IE7 Windows** (and above -- o2.js also works on IE6,
+but it will not be tested)
 * **Firefox/Linux** (the Most Recent Stable Version)
 * **Opera/Linux** (the Most Recent Stable Version)
 * **Google Chrome/Linux** (the Most Recent Stable Version)
@@ -85,17 +86,91 @@ mind. Before each major release, **[o2.js][2]** will be unit-tested in
 How to Install
 --------------------------------------------------------------------------------
 
-//TODO: update me. (read install.md)
+> Currently there are no distributable files. But
+> [there is an open ticket](https://github.com/v0lkan/o2.js/issues/78) for those
+> who are interested to create one.
+>
+> See also [How Do I Contribute][5]
+> section if you are looking for other ways to add value to the project.
+
+You can [directly download the zipball](https://github.com/v0lkan/o2.js/zipball/master)
+of the recent version, but [if you want to contribute][5]
+
+* Opening a **github** account;
+* **[Forking us](http://help.github.com/fork-a-repo/)**;
+* Reading [**o2.js** Conventions](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
+(which is an *excellent read** even if you do not plan to contribute, so we
+higly recommend you read it **;)**)
+* Then reading "[How Do I Contribute][5]" section
+
+is the way to go.
 
 A Quick Example
 --------------------------------------------------------------------------------
 
 // TODO: update me. (a few lines of code to give an idea.)
 
-Configuration Instructions
+Installation and Configuration Instructions
 --------------------------------------------------------------------------------
 
-//TODO: update me.
+To view and build the **o2.js** examples locally you need the following set up:
+
+* **Java(TM) SE Runtime Environment** <http://www.java.com/en/>
+* **Apache Server** <http://httpd.apache.org/> (you can also use
+[MAMP](http://mamp.info/en/index.html) for **Mac OSx**,
+[WAMP](http://www.wampserver.com/en/) for **Windows**, and
+[it is really easy](https://help.ubuntu.com/community/ApacheMySQLPHP) to insall
+a **LAMP** stack on linux)
+* [**Node.js**](http://nodejs.org/) (not required right now, but it's
+**cool** to have NodeJS on your machine)
+
+After having all those set up, the following things should be done:
+
+* Test that **PHP** works.
+    * Go to `http://localhost/`;
+    * You should see a welcome page depending on which server you are using.
+    for **MAMP** it will look something like the following:
+
+    //TODO: insert image here.
+
+* Configure **o2.js/batch/publish.sh**
+
+        ...
+        rm -rf {YOUR_PATH_TO_WWW_ROOT}/o2.js
+        ...
+        rsync -rv --exclude=.git ../ {YOUR_PATH_TO_WWW_ROOT}/o2.js/
+
+Simply replace `YOUR_PATH_TO_WWW_ROOT` with the **physical**
+path where `http://localhost` points to.
+
+* Run **publish.sh**
+
+        cd {PATH_TO_YOUR_PROJECTS}/o2.js/batch/
+        sh publish.sh
+
+* If everything is okay, you should see something similar when you
+browse `http://localhost/o2.js/`:
+
+        //TODO: insert image here.
+
+> We do not have a **Windows** alternative for **publish.sh**,
+> Would you like to
+> [help us create one](https://github.com/v0lkan/o2.js/issues/80)?
+
+* Enable **URL Rewrite**
+
+How to do this depends on your server environment. Most of the **\*AMP**
+stacks already install an url-rewrite-enabled environment. In **Ubuntu/Linux**
+it's as easy as `sudo a2enmod rewrite;sudo /etc/init.d/apache2 restart`.
+
+* Check that **URL Rewrite** engine actually works:
+
+Go to `http://localhost/o2.js/examples/vcardapp/people/volkan`.
+You should see something like this:
+
+//TODO: insert image.
+
+That's it. You're ready to test **o2.js** locally.
 
 Directory Structure
 --------------------------------------------------------------------------------
@@ -122,10 +197,11 @@ Contribution Guidelines
 Contributor List
 --------------------------------------------------------------------------------
 
-* **Volkan Özçelik** 
+* **Volkan Özçelik**
 ([geeklist](http://geekli.st/volkan) /
 [twitter](http://twitter.com/linkibol) /
 [blog](http://o2js.com/))
+* **Jose Capablanca** ([github](https://github.com/josecapablanca))
 * (who else wants to contribute and be in this list?)
 
 Change Log
@@ -155,3 +231,4 @@ Contact Information
 [2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
 [3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
 [4]: http://en.wikipedia.org/wiki/Facade_pattern "Façade Pattern"
+[5]: https://github.com/v0lkan/o2.js/blob/master/WE_LOVE_YOU.md "How Do I Contribute"
