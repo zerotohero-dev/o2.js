@@ -5,8 +5,6 @@
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
 
---------------------------------------------------------------------------------
-
 About **[o2.js][2]**
 --------------------------------------------------------------------------------
 
@@ -22,9 +20,7 @@ three main goals:
 
 **[o2.js][2]** is in still in its growth phase with a pretty stable code base.
 
---------------------------------------------------------------------------------
-
-## Yet Another JavaScript Framework?! Seriously?
+Yet Another JavaScript Framework?! Seriously?
 --------------------------------------------------------------------------------
 
 We have to admit, **JavaScript**, in its native form is far from being perfect.
@@ -60,9 +56,7 @@ and end-result. It is a **"by-product"**:
 
 Hope you like the outcome **;)**.
 
---------------------------------------------------------------------------------
-
-## Supported Platforms & User Agents
+Supported Platforms & User Agents
 --------------------------------------------------------------------------------
 
 **[o2.js][2]** is being designed to run pretty smoothly in almost any
@@ -87,124 +81,74 @@ mind. Before each major release, **[o2.js][2]** will be unit-tested in
 * **Google Chrome/Windows** (the Most Recent Stable Version)
 * **Safari/Windows** (the Most Recent Stable Version)
 
---------------------------------------------------------------------------------
-
-## How to Install
+How to Install
 --------------------------------------------------------------------------------
 
 //TODO: update me. (read install.md)
 
---------------------------------------------------------------------------------
-
-## A Quick Example
+A Quick Example
 --------------------------------------------------------------------------------
 
 // TODO: update me. (a few lines of code to give an idea.)
 
---------------------------------------------------------------------------------
-
-## Configuration Instructions
---------------------------------------------------------------------------------
-
-//TODO: update me.
-
-## Directory Structure
+Configuration Instructions
 --------------------------------------------------------------------------------
 
 //TODO: update me.
 
---------------------------------------------------------------------------------
-
-## Where Can I Get Help?
---------------------------------------------------------------------------------
-
-//TODO: update me.
-
---------------------------------------------------------------------------------
-
-## Where is the Documentation?
+Directory Structure
 --------------------------------------------------------------------------------
 
 //TODO: update me.
 
+Where Can I Get Help?
 --------------------------------------------------------------------------------
 
-## Contribution Guidelines
+//TODO: update me.
+
+Where is the Documentation?
+--------------------------------------------------------------------------------
+
+//TODO: update me.
+
+Contribution Guidelines
 --------------------------------------------------------------------------------
 
 //TODO: add contribution guidelines.
 //instructions to submit bugs, feature requests, submit patches,
 //get announcements
 
+Contributor List
 --------------------------------------------------------------------------------
 
-## Contributor List
---------------------------------------------------------------------------------
+* **Volkan Özçelik** --
+[geeklist](http://geekli.st/volkan) | [blog][http://o2js.com/]
+* (who else wants to contribute and be in this list?)
 
-//TODO: who wants to be the first on this list?
-
---------------------------------------------------------------------------------
-
-## Change Log
---------------------------------------------------------------------------------
-
-//TODO: link to changelog, maintain changelog.
-
---------------------------------------------------------------------------------
-
-## License
+Change Log
 --------------------------------------------------------------------------------
 
 //TODO: link to changelog, maintain changelog.
 
+License
 --------------------------------------------------------------------------------
 
-## Contact Information
+//TODO: link to changelog, maintain changelog.
+
+Contact Information
 --------------------------------------------------------------------------------
 
 //TODO: update me.
 //(email address, website, company name, address, etc)
 
---------------------------------------------------------------------------------
-
-## About the Author
-
-It's me: **[Volkan Özçelik][1]**!
-Jack of all Trades, Samurai of **JavaScript** **;)**.
-
-Front-end development and performance optimization has always been my passion.
-With **[o2.js][2]**, I aim to reflect this passion.
-
-Since 2003, I've been doing front-end development on client-heavy **AJAX** web
-applications.
-
-Currently, I'm a **JavaScript Hacker** (or more formally, a *Front-End Engineer*)
-at **<http://socialwire.com/>.
-
-Before that, I was a **VP of Technology** at **<http://grou.ps/>**, a well-known
-do-it-yourself social networking platform that allows people to come together
-and form interactive communities around a shared interest or affiliation.
-
-Before that, I was a **JavaScript Engineer** at **<http://www.livego.com/>**,
-a social mash-up.
-
-Before that, I was the **Chief Technology Officer** of a business network
-(**cember.net**), which was acquired by Xing AG for around 4.2M Euros.
-
-See my **[linkedin profile][1]** to find more about me.
-
-I also share [worth-following bits an pieces][3] on **[twitter][3]**
-([@linkibol][3]).
-
-[1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
-[2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
-[3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
-[4]: http://en.wikipedia.org/wiki/Facade_pattern "Façade Pattern"
-
---------------------------------------------------------------------------------
             ___       _
       ____ |__ \     (_)____
      / __ \__/ /    / / ___/
     / /_/ / __/_   / (__  )    A Coherent Solution
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
+
+[1]: http://linkedin.com/in/volkanozcelik "Volkan Özçelik (LinkedIn)"
+[2]: http://o2js.com/ "o2js.com - A Coherent Solution to Your JavaScript Dilemma"
+[3]: http://twitter.com/linkibol "linkibol.com - Web2.0 Social Bookmarking"
+[4]: http://en.wikipedia.org/wiki/Facade_pattern "Façade Pattern"
