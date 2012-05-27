@@ -652,19 +652,21 @@ this.o2 = this.o2 || {isProduction : false};
                 isSibling      : {MODULE : kDomTraverse}
             }
         },
-        EventHandler : {
+        Event : {
             items : {
                 keyCode : {MODULE : kEventConstants},
 
-                addEventListener    : {MODULE : kEventCore},
-                addEventListeners   : {MODULE : kEventCore},
-                getEventObject      : {MODULE : kEventCore},
-                getKeyCode          : {MODULE : kEventCore},
-                getMouseCoordinates : {MODULE : kEventCore},
-                getTarget           : {MODULE : kEventCore},
-                preventDefault      : {MODULE : kEventCore},
-                removeEventListener : {MODULE : kEventCore},
-                stopPropagation     : {MODULE : kEventCore},
+                addEventListener   : {MODULE : kEventCore},
+                addEventListeners  : {MODULE : kEventCore},
+                getEventObject     : {MODULE : kEventCore},
+                getKeyCode         : {MODULE : kEventCore},
+                getMouseCoordinates: {MODULE : kEventCore},
+                getTarget          : {MODULE : kEventCore},
+                off                : {MODULE : kEventCore},
+                on                 : {MODULE : kEventCore},
+                preventDefault     : {MODULE : kEventCore},
+                removeEventListener: {MODULE : kEventCore},
+                stopPropagation    : {MODULE : kEventCore},
 
                 isArrowKey               : {MODULE : kEventExtend},
                 isBackspaceKey           : {MODULE : kEventExtend},

@@ -42,9 +42,9 @@
     var myName = require('name');
     var nill   = require('nill');
 
-    var kStringHelper = 'String';
-    var concat        = require(kStringHelper, 'concat');
-    var format        = require(kStringHelper, 'format');
+    var kString = 'String';
+    var concat  = require(kString, 'concat');
+    var format  = require(kString, 'format');
 
     /*
      * Common Constants

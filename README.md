@@ -112,7 +112,35 @@ local development.
 A Quick Example
 --------------------------------------------------------------------------------
 
-// TODO: update me. (a few lines of code to give an idea.)
+Here is a quick code sample to give you a feeling of **o2.js** :
+
+        (function(o2, window, document, undefined) {
+            'use strict';
+
+            /*
+             * Aliases:
+             */
+            var alert = window.alert;
+            var on    = o2.Event.addEventListener;
+            var ready = o2.ready;
+
+            /*
+             * Will be executed when DOM is ready.
+             */
+            ready(function() {
+                on(document, 'click', function() {
+                    alert('Hello World; Hello Stars; Hello Universe!');
+                });
+            });
+        }(this.o2, this, this.document));
+
+The above code will show you an alert when you click anywhere on the page.
+
+You can [have a look at the **examples/hello-world** folder](https://github.com/v0lkan/o2.js/blob/master/examples/hello-world)
+to see the whole code.
+
+You can also [test it on your local environment](http://localhost/o2.js/examples/hello-world/index.html)
+if you have completed the installation instructions in the previous section.
 
 Directory Structure
 --------------------------------------------------------------------------------
