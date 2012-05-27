@@ -420,7 +420,7 @@
      * @param {XMLHttpRequest} xhr - the original
      * <strong>XMLHttpRequest</strong> being sent.
      */
-    def(me, 'abort', function(xhr) {
+    var abort = def(me, 'abort', function(xhr) {
         if (!xhr || xhr.isAborted) {
             return;
         }
