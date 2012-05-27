@@ -52,6 +52,7 @@ and end-result. It is a **"by-product"**:
 > a solid and re-usable **JavaScript** *framework*.
 >
 > May the source be with you,
+>
 > Volkan.
 
 Hope you like the outcome **;)**.
@@ -122,7 +123,7 @@ Contributor List
 --------------------------------------------------------------------------------
 
 * **Volkan Özçelik** --
-[geeklist](http://geekli.st/volkan) | [blog][http://o2js.com/]
+[geeklist](http://geekli.st/volkan) | [blog](http://o2js.com/)
 * (who else wants to contribute and be in this list?)
 
 Change Log
