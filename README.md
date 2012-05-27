@@ -122,8 +122,10 @@ Contribution Guidelines
 Contributor List
 --------------------------------------------------------------------------------
 
-* **Volkan Özçelik** --
-[geeklist](http://geekli.st/volkan) | [blog](http://o2js.com/)
+* **Volkan Özçelik** [
+[geeklist](http://geekli.st/volkan) /
+[twitter](http://twitter.com/linkibol) /
+[blog](http://o2js.com/) ]
 * (who else wants to contribute and be in this list?)
 
 Change Log
