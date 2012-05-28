@@ -25,7 +25,8 @@ But first let us start with addressing the usual excuses:
 
 * You do not need to be a rock-star programmer to contribute;
 * You do not need to have plenty of time to contribute;
-* You do not need to to read the entire code base to contribute.
+* You do not need to to read the entire code base to contribute;
+* You do not even have to write code to contribute.
 
 Per contra:
 
