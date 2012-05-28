@@ -61,11 +61,13 @@ Supported Platforms & User Agents
 --------------------------------------------------------------------------------
 
 **[o2.js][2]** is being designed to run pretty smoothly in almost any
-device/useragent. What makes this possible is the fact that **[o2.js][2]**
+device/useragent.
+
+What makes this possible is the fact that **[o2.js][2]**
 utilizes modern features whenever possible, while gracefully degrading to slower
 alternatives for the less capable browsers.
 
-For instance, **[o2.js][2]** **DomHelper** selectors will try to use
+For instance, **[o2.js][2]** **Dom** selectors will try to use
 *DOM Level 2* *native* **querySelector** method if available, and will fall back
 to a good-old for loop otherwise.
 
@@ -103,13 +105,19 @@ of the recent version, but [if you want to contribute][5]:
 * Reading [**o2.js** Conventions](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
 (which is an *excellent read** even if you do not plan to contribute, so we
 higly recommend you read it **;)**)
-* Then reading "[How Do I Contribute][5]" section
+* Then reading "**[How Do I Contribute][5]**" section
 
 is the way to go.
 
 See [Installation and Configuration Instructions][6]
-for a more in-depth information on how to set up *[o2.js][2]** for
+for a more in-depth information on how to set up **[o2.js][2]** for
 local development.
+
+Older Versions
+--------------------------------------------------------------------------------
+
+Older versions of **[o2.js][2]** are maintained as
+[tagged snapshots for each version](https://github.com/v0lkan/o2.js/tags).
 
 A Quick Example
 --------------------------------------------------------------------------------
@@ -155,8 +163,8 @@ The directory structure of the project is as follows:
 * **examples**: Sample projects and usage examples (*work in progress*).
 * **o2.js**: The **[o2.js][2]** Framework source files.
 * **tests**: Unit tests (*they are being rewritten*).
-* **[CHANGELOG.md][9]**: What's new in the current version. What development has
-been done so far.
+* **[CHANGELOG.md][9]**: What's new in the current version? What development has
+been done so far?
 * **[CONTRIBUTORS.md][11]**: List of people adding value to **[o2.js][2]**.
  **[Who else wants to be one of them?][5]**
 * **[CONVENTIONS.md][7]**: Code conventions and best practices for those who
@@ -173,13 +181,14 @@ Where Can I Get Help?
 Here a the places you can get help:
 
 * If you are experiencing a problem,
-* or if you have found a bug, or if you want some cool sh\*t to be implemented,
+* or if you have found a bug, or if you want some cool sh\*t to be implemented:
     * [you can open an issue for it](https://github.com/v0lkan/o2.js/issues/new).
-* If you want to figure out how a function works,
+* If you want to figure out how a function works:
     * you can look at the [**o2.js** API documentation][10].
 * If you want learn the history of **[o2.js][2]**, and want to keep an eye on
-what cool things will be added to it in the future,
-    * [you can follow **o2.js** blog][2].
+what cool things will be added to it in the future:
+    * [you can follow **o2.js** blog][2],
+    * [You can view the **o2.js** *Change Log*][9].
 
 Where is the Documentation?
 --------------------------------------------------------------------------------
