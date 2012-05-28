@@ -73,8 +73,8 @@ to a good-old for loop otherwise.
 mind. Before each major release, **[o2.js][2]** will be unit-tested in
 **at least** the following browsers/platforms:
 
-* **IE7 Windows** (and above -- o2.js also works on IE6,
-but it will not be tested)
+* **IE7 Windows** (and above – o2.js also works on IE6,
+but it will **not** be tested)
 * **Firefox/Linux** (the Most Recent Stable Version)
 * **Opera/Linux** (the Most Recent Stable Version)
 * **Google Chrome/Linux** (the Most Recent Stable Version)
@@ -93,8 +93,10 @@ How to Install
 > See also [How Do I Contribute][5]
 > section if you are looking for other ways to add value to the project.
 
+...
+
 You can [directly download the zipball](https://github.com/v0lkan/o2.js/zipball/master)
-of the recent version, but [if you want to contribute][5]
+of the recent version, but [if you want to contribute][5]:
 
 * Opening a **github** account;
 * **[Forking us](http://help.github.com/fork-a-repo/)**;
@@ -112,7 +114,7 @@ local development.
 A Quick Example
 --------------------------------------------------------------------------------
 
-Here is a quick code sample to give you a feeling of *[o2.js][2]** :
+Here is a quick code sample to give you a feeling of **[o2.js][2]** :
 
         (function(o2, window, document, undefined) {
             'use strict';
@@ -151,12 +153,12 @@ The directory structure of the project is as follows:
 * **batch**: Documentation, deployment, and configuration scripts.
 * **doc**: Generated documentation.
 * **examples**: Sample projects and usage examples (*work in progress*).
-* **o2.js**: The *[o2.js][2]** Framework source files.
+* **o2.js**: The **[o2.js][2]** Framework source files.
 * **tests**: Unit tests (*they are being rewritten*).
-* **[CHANGELOG.md][9]: What's new in the current version. What development has
+* **[CHANGELOG.md][9]**: What's new in the current version. What development has
 been done so far.
-* **[CONTRIBUTORS.md][11]: List of people adding value to **[o2.js][2]**.
-[Who else wants to be one of them?][5]
+* **[CONTRIBUTORS.md][11]**: List of people adding value to **[o2.js][2]**.
+ **[Who else wants to be one of them?][5]**
 * **[CONVENTIONS.md][7]**: Code conventions and best practices for those who
 want to contribute.
 * **[INSTALL.md][6]**: Installation and configuration instructions for the
@@ -170,48 +172,48 @@ Where Can I Get Help?
 
 Here a the places you can get help:
 
-* If you are experiencing a problem, or if you have found a bug, or if you
-want some cool sh\*t to be implemented
-[you can open an issue for it](https://github.com/v0lkan/o2.js/issues/new).
-* If you want to figure out how a function works, you can look at the
-[**o2.js** API documentation][10].
+* If you are experiencing a problem,
+* or if you have found a bug, or if you want some cool sh\*t to be implemented,
+    * [you can open an issue for it](https://github.com/v0lkan/o2.js/issues/new).
+* If you want to figure out how a function works,
+    * you can look at the [**o2.js** API documentation][10].
 * If you want learn the history of **[o2.js][2]**, and want to keep an eye on
-what cool things will be added to it in the future
-[you can follow **o2.js** blog][2].
+what cool things will be added to it in the future,
+    * [you can follow **o2.js** blog][2].
 
 Where is the Documentation?
 --------------------------------------------------------------------------------
 
 The most up-to-date documentation is under the **doc** folder of this
 repository. Other than that you can find a "mostly" recen **API** documentation
-at [**o2js.com**/documentation][10]
+at [**o2js.com**/documentation][10].
 
 Contribution Guidelines
 --------------------------------------------------------------------------------
 
-**Bottom Line Up Front**:
+> **Bottom Line Up Front**:
+>
+> **[o2.js][2]** is an **open source** project, and **anyone** can contribute.
+> You do not to be a guru, or a ninja, to add value. Heck, you don't even need
+> to know how to code (there are other ways that you can contribute **;)**).
 
-**[o2.js][2]** is an **open source** project, and **anyone** can contribute.
-You do not to be a guru, or a ninja, to add value. Heck, you don't even need
-to know how to code (there are other ways that you can contribute **;)**).
+...
 
 Having said that; make sure you **carefully** read
 [**o2.js** Contribution Guidelines][5] before you start.
 
-Contributor List
+Contributors List
 --------------------------------------------------------------------------------
 
-You can look at the [contributors list][11] to see the people adding value to
-**o2.js**.
+You can look at the **[contributors list][11]** to see the people adding value
+to **[o2.js][2]**.
 
-**Anyone** can be a contributor.
-
-[Who else wants to learn how to?][5]
+**Anyone** can be a contributor. **[Who else wants to learn how to?][5]**
 
 Change Log
 --------------------------------------------------------------------------------
 
-[You can view the **o2.js** Change Log here][9].
+[You can view the **o2.js** *Change Log* here][9].
 
 
 License
@@ -226,6 +228,7 @@ Contact Information
 --------------------------------------------------------------------------------
 
 **Project Owner**: *Volkan Özçelik* <volkan@o2js.com>
+
 **Project Website**: <http://o2js.com>
 
 
