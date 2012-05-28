@@ -26,9 +26,7 @@ After having all those set up, the following things should be done:
     * You should see a welcome page depending on which server you are using.
     for **MAMP** it will look something like the following:
 
-<div style="text-align:center">
 ![MAMP Example](http://o2js.com/assets/mamp.png)
-</div>
 
 * Configure **o2.js/batch/publish.sh**
 
@@ -48,9 +46,7 @@ path where `http://localhost` points to.
 * If everything is okay, you should see something similar when you
 browse `http://localhost/o2.js/`:
 
-<div style="text-align:center">
 ![Localhost Example](http://o2js.com/assets/localhost.png)
-</div>
 
 > We do not have a **Windows** alternative for **publish.sh**,
 > Would you like to
@@ -68,9 +64,7 @@ Go to `http://localhost/o2.js/examples/vcardapp/people/volkan`.
 
 You should see something like this:
 
-<div style="text-align:center">
 ![VCard Example](http://o2js.com/assets/vcard.png)
-</div>
 
 * You are redy to go!
 
