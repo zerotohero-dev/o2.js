@@ -174,6 +174,9 @@ development environment.
 * **[LICENSE.md][8]**: The usual *copyright* yadda yadda. **o2.j2** is
 is distributed under **MIT** license, so feel free to **fork it**.
 * **README.md**: This file that you are currently viewing.
+* **[WE_LOVE_YOU.md][12]**: The file explaining how to contribute. 
+Please keep in mind that **anyone** can contribute! And when we say
+**anyone**, we mean it **;)**.
 
 Where Can I Get Help?
 --------------------------------------------------------------------------------
@@ -252,3 +255,4 @@ Contact Information
 [9]: https://github.com/v0lkan/o2.js/blob/master/CHANGELOG.md "Change Log"
 [10]: http://o2js.com/documentation "o2.js API Documentation"
 [11]: https://github.com/v0lkan/o2.js/blob/master/CONTRIBUTORS.md "Contributors"
+[12]: https://github.com/v0lkan/o2.js/blob/master/WE_LOVE_YOU.md "How to Contribute"
