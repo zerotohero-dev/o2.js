@@ -5,10 +5,10 @@
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
 
-[o2.js](http://o2js.com/)** Contributors
+**[o2.js](http://o2js.com/)** Contributors
 --------------------------------------------------------------------------------
 
-In alphabethical order:
+*(names in alphabethical order)*
 
 * **Jose Capablanca** ([github](https://github.com/josecapablanca))
 * **Volkan Özçelik**

@@ -6,8 +6,11 @@
                /___/
 
 Copyright © by [**Volkan Özçelik**](http://o2js.com/volkan), and community.
+
 You can look at the [contributors list](https://github.com/v0lkan/o2.js/blob/master/CONTRIBUTORS.md)
 to see the people adding value to [**o2.js**](http://o2js.com/).
+
+--------------------------------------------------------------------------------
 
 **LICENSE**
 

@@ -103,8 +103,8 @@ of the recent version, but [if you want to contribute][5]:
 * Opening a **github** account;
 * **[Forking us](http://help.github.com/fork-a-repo/)**;
 * Reading [**o2.js** Conventions](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
-(which is an *excellent read** even if you do not plan to contribute, so we
-higly recommend you read it **;)**)
+(which is an **excellent read** even if you do not plan to contribute, so we
+**higly recommend** you read it **;)**)
 * Then reading "**[How Do I Contribute][5]**" section
 
 is the way to go.
@@ -182,12 +182,12 @@ Here a the places you can get help:
 
 * If you are experiencing a problem,
 * or if you have found a bug, or if you want some cool sh\*t to be implemented:
-    * [you can open an issue for it](https://github.com/v0lkan/o2.js/issues/new).
+    * [You can open an issue for it](https://github.com/v0lkan/o2.js/issues/new).
 * If you want to figure out how a function works:
     * you can look at the [**o2.js** API documentation][10].
 * If you want learn the history of **[o2.js][2]**, and want to keep an eye on
 what cool things will be added to it in the future:
-    * [you can follow **o2.js** blog][2],
+    * [You can follow **o2.js** blog][2],
     * [You can view the **o2.js** *Change Log*][9].
 
 Where is the Documentation?
