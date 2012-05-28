@@ -78,7 +78,7 @@ Issues are generally poorly reported. When you diagnose a bug and come up
 with additional findings, sharing them as **comments** under the issue will
 help people save time. So try to figure out the specifics of the problem:
 
-* Is it reproducable, or is it ad-hoc?
+* Is it reproducible, or is it ad-hoc?
 * What are the steps to reproduce the problem?
 * What's the OS/User Agent that the problem occurs?
 * Can you narrow the problem down? (i.e. work in one user agent, but
