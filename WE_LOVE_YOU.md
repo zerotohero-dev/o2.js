@@ -177,7 +177,7 @@ If that's the case, here's a brief guideline for you:
 1. Before starting anything **carefully** read the
 [o2.js **JavaScript** Conventions & Best Practices](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
 document.
-2. Read the Source Code to get a feeling of the practical application of those
+2. Read the **Source Code** to get a feeling of the practical application of those
 conventions, variable namings, indentation, and the like.
 3. Fork **o2.js**.
 4. Clone your fork into your local repository.
@@ -249,12 +249,12 @@ Forking **[o2.js][1]** is easy:
 * Send a **pull request** on github by clicking on the **pull** button
 in your repository:
 
-![Read the Source Luke](http://o2js.com/assets/pull.png)
+![Pull](http://o2js.com/assets/pull.png)
 
 * Make sure that you are doing the pull request from the **dev branch** on
 your local repo, to the **dev branch** on the remote repo.
 
-![Read the Source Luke](http://o2js.com/assets/devbranch.png)
+![Dev Branch](http://o2js.com/assets/devbranch.png)
 
 * We will do our best to merge your change into **[o2.js][1]** code base
 if the change is useful, addresses and issue, or enhances the library,
