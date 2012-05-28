@@ -1,6 +1,8 @@
 Installation and Configuration Instructions
 --------------------------------------------------------------------------------
 
+# o2.js Development Environment Setup
+
 To view and build the **o2.js** examples locally you need the following set up:
 
 * **Java(TM) SE Runtime Environment** <http://www.java.com/en/>

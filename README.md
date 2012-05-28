@@ -118,7 +118,7 @@ Here is a quick code sample to give you a feeling of **o2.js** :
             'use strict';
 
             /*
-             * Aliases:
+             * Aliases
              */
             var alert = window.alert;
             var on    = o2.Event.addEventListener;
@@ -145,7 +145,23 @@ if you have completed the installation instructions in the previous section.
 Directory Structure
 --------------------------------------------------------------------------------
 
-//TODO: update me.
+The directory structure of the project is as follows:
+
+* **3rdparty**: 3rd party components and plugins that are utilized.
+* **batch**: Documentation, deployment, and configuration scripts.
+* **doc**: Generated documentation.
+* **examples**: Sample projects and usage examples (*work in progress*).
+* **o2.js**: The **o2.js** Framework source files.
+* **tests**: Unit tests (*they are being rewritten*).
+* **[CHANGELOG.md][9]: What's new in the current version. What development has
+been done so far.
+* **[CONVENTIONS.md][7]**: Code conventions and best practices for those who
+want to contribute.
+* **[INSTALL.md][6]**: Installation and configuration instructions for the
+development environment.
+* **[LICENSE.md][8]**: The usual *copyright* yadda yadda. **o2.j2** is
+is distributed under **MIT** license, so feel free to **fork it**.
+* **README.md**: This file that you are currently viewing.
 
 Where Can I Get Help?
 --------------------------------------------------------------------------------
@@ -172,7 +188,7 @@ Contributor List
 [twitter](http://twitter.com/linkibol) /
 [blog](http://o2js.com/))
 * **Jose Capablanca** ([github](https://github.com/josecapablanca))
-* (who else wants to contribute and be in this list?)
+* ([who else wants to contribute and be in this list?][5])
 
 Change Log
 --------------------------------------------------------------------------------
@@ -203,3 +219,6 @@ Contact Information
 [4]: http://en.wikipedia.org/wiki/Facade_pattern "Façade Pattern"
 [5]: https://github.com/v0lkan/o2.js/blob/master/WE_LOVE_YOU.md "How Do I Contribute"
 [6]: https://github.com/v0lkan/o2.js/blob/master/INSTALL.md "Installation and Configuration Instructions"
+[7]: https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md "Code Conventions and Best Practices"
+[8]: https://github.com/v0lkan/o2.js/blob/master/LICENSE.md "Boring Copyright Stuff"
+[8]: https://github.com/v0lkan/o2.js/blob/master/CHANGELOG.md "Change Log"
