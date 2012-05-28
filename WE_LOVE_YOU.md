@@ -147,8 +147,8 @@ you create a usage example and put it there.
 You can also write a blog post about your particular use case, and share the
 link as an **issue** so that we can add it to a **links** section.
 
-No project can have too many examples. And a solid example explaining the
-proper usage of the project is worth a thousand pages of documentation.
+No project can have too many examples. And a solid example that explains 
+the proper usage of the project is worth a thousand pages of documentation.
 
 ### Add Unit Tests
 
