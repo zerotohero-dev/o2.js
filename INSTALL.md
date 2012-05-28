@@ -46,7 +46,7 @@ path where `http://localhost` points to.
 * If everything is okay, you should see something similar when you
 browse `http://localhost/o2.js/`:
 
-        //TODO: insert image here.
+![Localhost Example](http://o2js.com/assets/localhost.png)
 
 > We do not have a **Windows** alternative for **publish.sh**,
 > Would you like to
@@ -63,6 +63,6 @@ it's as easy as `sudo a2enmod rewrite;sudo /etc/init.d/apache2 restart`.
 Go to `http://localhost/o2.js/examples/vcardapp/people/volkan`.
 You should see something like this:
 
-//TODO: insert image.
+![VCard Example](http://o2js.com/assets/vcard.png)
 
 That's it. You're ready to test **[o2.js](http://o2js.com/)** locally.
