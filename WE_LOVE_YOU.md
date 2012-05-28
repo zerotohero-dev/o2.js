@@ -46,7 +46,7 @@ framework but also
 There are several ways you can add value, and actively coding is just one of
 them. Here are several ways to contribute:
 
-### Use **o2.js** in Your Projects
+### Use **[o2.js][1]** in Your Projects
 
 We'd love to have your feedback if you use **[o2.js][1]** in your projects.
 
@@ -100,8 +100,8 @@ for granted may not be so apparent when you are not familiar with the project.
 
 #### Documentation Syntax
 
-**o2.js** uses [jgrousedoc syntax](http://code.google.com/p/jgrousedoc/) for
-documentation. You can get used to it by simply reading the source code.
+**[o2.js][1]** uses [jgrousedoc syntax](http://code.google.com/p/jgrousedoc/)
+for documentation. You can get used to it by simply reading the source code.
 
 Here is a sample function documentation:
 
