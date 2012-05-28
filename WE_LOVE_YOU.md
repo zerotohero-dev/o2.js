@@ -67,8 +67,8 @@ Then [open an issue][2].
 
 ### Suggest a Feature
 
-Related to the above, you can be helpful and suggest an interesting or
-innovative feature for **[o2.js][1]**.
+Related to the above, you can help by suggesting an interesting or
+innovative feature to **[o2.js][1]**.
 
 Bonus points if you start actually implementing it **;)**,
 
