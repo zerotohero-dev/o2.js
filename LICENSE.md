@@ -1,4 +1,15 @@
-Copyright © by **Volkan Özçelik** - <http://o2js.com/>
+            ___       _
+      ____ |__ \     (_)____
+     / __ \__/ /    / / ___/
+    / /_/ / __/_   / (__  )    A Coherent Solution
+    \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
+               /___/
+
+Copyright © by [**Volkan Özçelik**](http://o2js.com/volkan), and community.
+You can look at the [contributors list](https://github.com/v0lkan/o2.js/blob/master/CONTRIBUTORS.md)
+to see the people adding value to [**o2.js**](http://o2js.com/).
+
+**LICENSE**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

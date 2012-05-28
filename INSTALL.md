@@ -1,17 +1,22 @@
-Installation and Configuration Instructions
---------------------------------------------------------------------------------
+            ___       _
+      ____ |__ \     (_)____
+     / __ \__/ /    / / ___/
+    / /_/ / __/_   / (__  )    A Coherent Solution
+    \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
+               /___/
 
-# o2.js Development Environment Setup
+**[o2.js](http://o2js.com/)** Installation and Configuration Instructions
+--------------------------------------------------------------------------------
 
 To view and build the **o2.js** examples locally you need the following set up:
 
-* **Java(TM) SE Runtime Environment** <http://www.java.com/en/>
+* **Java™ SE Runtime Environment** <http://www.java.com/en/>
 * **Apache Server** <http://httpd.apache.org/> (you can also use
 [MAMP](http://mamp.info/en/index.html) for **Mac OSx**,
 [WAMP](http://www.wampserver.com/en/) for **Windows**, and
 [it is really easy](https://help.ubuntu.com/community/ApacheMySQLPHP) to insall
 a **LAMP** stack on linux)
-* [**Node.js**](http://nodejs.org/) (not required right now, but it's
+* [**node.js**](http://nodejs.org/) (not required right now, but it's
 **cool** to have NodeJS on your machine)
 
 After having all those set up, the following things should be done:
@@ -60,4 +65,4 @@ You should see something like this:
 
 //TODO: insert image.
 
-That's it. You're ready to test **o2.js** locally.
+That's it. You're ready to test **[o2.js](http://o2js.com/)** locally.

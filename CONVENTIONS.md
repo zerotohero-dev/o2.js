@@ -1,5 +1,15 @@
+            ___       _
+      ____ |__ \     (_)____
+     / __ \__/ /    / / ___/
+    / /_/ / __/_   / (__  )    A Coherent Solution
+    \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
+               /___/
+
 # o2.js **JavaScript** Conventions & Best Practices
+
 ## An **All-in-One** Guide to Writing Efficient **JavaScript** *;)*
+
+**Last Updated**: *2012-05-27 19:52:29.609752*
 
 --------------------------------------------------------------------------------
 
