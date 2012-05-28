@@ -8,6 +8,9 @@
 **[o2.js](http://o2js.com/)** Installation and Configuration Instructions
 --------------------------------------------------------------------------------
 
+### Prerequisites
+
+
 To view and build the **o2.js** examples locally you need the following set up:
 
 * **Java™ SE Runtime Environment** <http://www.java.com/en/>
@@ -18,6 +21,8 @@ To view and build the **o2.js** examples locally you need the following set up:
 a **LAMP** stack on linux)
 * [**node.js**](http://nodejs.org/) (not required right now, but it's
 **cool** to have NodeJS on your machine)
+
+### Installation
 
 After having all those set up, the following things should be done:
 
