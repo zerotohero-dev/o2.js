@@ -171,7 +171,7 @@ get stuff done.
 
 If that's the case, here's a brief guideline for you:
 
-![Read the Source Luke](http://o2js.com/assets/localhost.png)
+![Read the Source Luke](http://o2js.com/assets/luke.png)
 
 1. Before starting anything **carefully** read the
 [o2.js **JavaScript** Conventions & Best Practices](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
