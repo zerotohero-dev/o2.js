@@ -26,7 +26,7 @@ After having all those set up, the following things should be done:
     * You should see a welcome page depending on which server you are using.
     for **MAMP** it will look something like the following:
 
-    //TODO: insert image here.
+![MAMP Example](http://o2js.com/assets/mamp.png)
 
 * Configure **o2.js/batch/publish.sh**
 
