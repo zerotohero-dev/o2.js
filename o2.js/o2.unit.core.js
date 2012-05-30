@@ -383,7 +383,7 @@
      * total number of assertions in the test suite, and
      * <strong>test</strong> is the actual test suite <code>Function</code>.
      */
-    def(me, 'add', function(description, testMeta) {
+    var add = def(me, 'add', function(description, testMeta) {
         var kRequiredLocalParameterCount = 2;
         var kMethodName = 'add';
         var kArgumentsLength = arguments.length;
@@ -413,7 +413,7 @@
      * @param {Expression} expression - the expression to evaluate.
      * @param {String} message - the associated message.
      */
-    def(me, 'assert', function(unitTest, expression, message) {
+    var assert = def(me, 'assert', function(unitTest, expression, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assert';
         var kRequiredLocalParameterCount = 3;
@@ -440,7 +440,7 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    def(me, 'assertEqual', function(unitTest, currentValue, expectedValue,
+    var assertEqual = def(me, 'assertEqual', function(unitTest, currentValue, expectedValue,
                 message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertEqual';
@@ -470,7 +470,7 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    def(me, 'assertNotEqual', function(unitTest, currentValue, expectedValue,
+    var assertNotEqual = def(me, 'assertNotEqual', function(unitTest, currentValue, expectedValue,
                 message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertNotEqual';
@@ -502,7 +502,7 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    def(me, 'assertStrictEqual', function(unitTest, currentValue, expectedValue,
+    var assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest, currentValue, expectedValue,
                 message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertStrictEqual';
@@ -533,7 +533,7 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    def(me, 'assertStrictNotEqual', function(unitTest, currentValue,
+    var assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(unitTest, currentValue,
                 expectedValue, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertStrictNotEqual';
@@ -560,7 +560,7 @@
      *
      * @return the total number of failed assertions.
      */
-    def(me, 'getGlobalFailureCount', function() {
+    var getGlobalFailureCount = def(me, 'getGlobalFailureCount', function() {
         return globalFailureCount;
     });
 
@@ -577,7 +577,7 @@
      *
      * @return the total number of successful assertions.
      */
-    def(me, 'getGlobalSuccessCount', function() {
+    var getGlobalSuccessCount = def(me, 'getGlobalSuccessCount', function() {
         return globalSuccessCount;
     });
 
@@ -596,7 +596,7 @@
      * @return <code>true</code> if the current <strong>test suite</strong>
      * is still runing; <code>false</code> otherwise.
      */
-    def(me, 'isRunning', function() {
+    var isRunning = def(me, 'isRunning', function() {
         return isRunning;
     });
 
@@ -614,7 +614,7 @@
      *
      * @see o2.Debugger.log
      */
-    def(me, 'log', function(message) {
+    var log = def(me, 'log', function(message) {
         log(message);
     });
 
@@ -635,7 +635,7 @@
      * @param {Function} globalCompletionCallback - (Optional) this callback
      * will be run with <code>o2.Unit</code> as a parameter passed to it.
      */
-    def(me, 'run', function(globalCompletionCallback) {
+    var run = def(me, 'run', function(globalCompletionCallback) {
         if (isRunning) {
             return;
         }

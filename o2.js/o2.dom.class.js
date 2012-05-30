@@ -63,14 +63,9 @@
      *
      * @returns a <code>RegExp</code> that matches the given class name.
      */
-    def(me, 'createClassNameRegExp', function(c) {
+    var createClassNameRegExp = def(me, 'createClassNameRegExp', function(c) {
         return new RegExp(concat(kBeginOrBlank, c, kEndOrBlank));
     });
-
-    /*
-     *
-     */
-    var createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.Dom.hasClass
@@ -93,7 +88,7 @@
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
-    def(me, 'hasClass', function(el, c) {
+    var hasClass = def(me, 'hasClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -102,11 +97,6 @@
 
         return createClassNameRegExp(c).test(el.className);
     });
-
-    /*
-     *
-     */
-    var hasClass = require(kModuleName, 'hasClass');
 
     /**
      * @function {static} o2.Dom.addClass
@@ -123,7 +113,7 @@
      * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to add.
      */
-    def(me, 'addClass', function(el, c) {
+    var addClass = def(me, 'addClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -136,11 +126,6 @@
 
         el.className += concat(kBlank, c);
     });
-
-    /*
-     *
-     */
-    var addClass = require(kModuleName, 'addClass');
 
     /**
      * @function {static} o2.Dom.removeClass
@@ -157,7 +142,7 @@
      * <strong>id</strong> of it.
      * @param {String} c - the className to remove.
      */
-    def(me, 'removeClass', function(el, c) {
+    var removeClass = def(me, 'removeClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -170,11 +155,6 @@
 
         el.className = el.className.replace(createClassNameRegExp(c), kBlank);
     });
-
-    /*
-     *
-     */
-    var removeClass = require(kModuleName, 'removeClass');
 
     /**
      * @function {static} o2.Dom.toggleClass
@@ -198,7 +178,7 @@
      * given, the class is toggled (i.e. added if the class does not exist,
      * and removed if the class exists).
      */
-    def(me, 'toggleClass', function(el, c, state) {
+    var toggleClass = def(me, 'toggleClass', function(el, c, state) {
         if (state !== undefined) {
             if (state) {
                 addClass(el, c);

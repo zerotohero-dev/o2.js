@@ -109,7 +109,7 @@
      * @param {Function} successCallback - the callback to execute when the load
      * operation completes.
      */
-    def(me, 'loadCss', function(src, successCallback) {
+    var loadCss = def(me, 'loadCss', function(src, successCallback) {
         var s = createElement(kLink);
         var x = getElementsByTagName(kHead)[0];
 
@@ -204,7 +204,7 @@
      * @param {Function} successCallback - gets called when the
      * <strong>image</strong> is loaded successfully.
      */
-    def(me, 'loadImage', function(url, succesCallback) {
+    var loadImage = def(me, 'loadImage', function(url, succesCallback) {
         var succesCallbackCached = succesCallback || nill;
 
         function done() {
@@ -243,7 +243,7 @@
      * @param {Function} callback - the callback to execute when the load
      * operation completes.
      */
-    def(me, 'loadScript', function(src, callback) {
+    var loadScript = def(me, 'loadScript', function(src, callback) {
         var s = createElement(kScript);
         var x = getElementsByTagName(kScript)[0] ||
             getElementsByTagName(kHead)[0];

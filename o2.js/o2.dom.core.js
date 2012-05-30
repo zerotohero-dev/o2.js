@@ -92,7 +92,7 @@
      * @param {Object} elmParent - the parent container, or the
      * <strong>id</strong> of the container.
      */
-    def(me, 'append', function(elmChild, elmParent) {
+    var append = def(me, 'append', function(elmChild, elmParent) {
         var child  = $(elmChild);
         var parent = $(elmParent);
         var temp   = null;
@@ -128,7 +128,7 @@
      * @return {HTMLDocumentFragment} - the generated <code>document</code>
      * fragment.
      */
-    def(me, 'createDocumentFragment', function(html) {
+    var createDocumentFragment = def(me, 'createDocumentFragment', function(html) {
         var result = createDocumentFragment();
 
         tempFragmentDiv = tempFragmentDiv || createElement(kDiv);
@@ -164,7 +164,7 @@
      *
      * @return the created element.
      */
-    def(me, 'createElement', function(name, attributes) {
+    var createElement = def(me, 'createElement', function(name, attributes) {
         var e       = createElement(name);
         var isClass = false;
         var isStyle = false;
@@ -221,7 +221,7 @@
      *
      * @see o2.Dom.createElement
      */
-    alias(me, 'create', 'createElement');
+    var create = alias(me, 'create', 'createElement');
 
     /**
      * @function {static} o2.Dom.getAttribute
@@ -241,7 +241,7 @@
      * @return the value of the attribute if found; <code>null</code>
      * otherwise.
      */
-    def(me, 'getAttribute', function(elm, attribute) {
+    var getAttribute = def(me, 'getAttribute', function(elm, attribute) {
         var obj = $(elm);
 
         if (!obj || !attribute) {
@@ -296,7 +296,7 @@
      * @return the <code>innerHTML</code> of the given node, if it exists;
      * <code>null</code> otherwise.
      */
-    def(me, 'getHtml', function(elm) {
+    var getHtml = def(me, 'getHtml', function(elm) {
         var obj = $(elm);
 
         if (!obj) {
@@ -305,6 +305,8 @@
 
         return obj.innerHTML;
     });
+
+    var getText = null;
 
     if (document.innerText !== undefined) {
 
@@ -326,7 +328,7 @@
          *
          * @return the textual content of the given node.
          */
-        def(me, 'getText', function(elm) {
+        getText = def(me, 'getText', function(elm) {
             var obj = $(elm);
 
             if (!obj) {
@@ -350,7 +352,7 @@
             return obj.innerText.replace(kReturnRegExp, '');
         });
     } else {
-        def(me, 'getText', function(elm) {
+        getText = def(me, 'getText', function(elm) {
             var obj = $(elm);
 
             if (!obj) {
@@ -393,7 +395,7 @@
      * @param {Object} elmRefNode - the reference node, or the
      * <strong>id</strong> of the node.
      */
-    def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
+    var insertAfter = def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
         var newNode = $(elmNewNode);
         var refNode = $(elmRefNode);
 
@@ -430,7 +432,7 @@
      * @param {Object} elmRefNode - the reference, or the <strong>id</strong> of
      * the node.
      */
-    def(me, 'insertBefore', function(elmNewNode, elmRefNode) {
+    var insertBefore = def(me, 'insertBefore', function(elmNewNode, elmRefNode) {
         var newNode = $(elmNewNode);
         var refNode = $(elmRefNode);
 
@@ -459,7 +461,7 @@
      * @return <code>true</code> if the <strong>node</strong> is the
      * <code>document</code> element; <code>false</code> otherwise.
      */
-    def(me, 'isDocument', function(obj) {
+    var isDocument = def(me, 'isDocument', function(obj) {
         return !!(obj && obj.nodeType === kElementNode);
     });
 
@@ -479,7 +481,7 @@
      * @return <code>true</code> if the <strong>node</strong> is an
      * <strong>element</strong> node; <code>false</code> otherwise.
      */
-    def(me, 'isElement', function(obj) {
+    var isElement = def(me, 'isElement', function(obj) {
         return !!(obj && obj.nodeType === kElementNode);
     });
 
@@ -487,7 +489,7 @@
      *
      */
     //TODO: add documentation.
-    dev(me, 'isNode', function(obj) {
+    var isNode = dev(me, 'isNode', function(obj) {
         return (
             typeof window.Node === 'object' ? obj instanceof window.Node : //DOM2
                 obj && typeof obj === kObject &&
@@ -514,7 +516,7 @@
      * @param {Object} elmParent - the parent container, or the id of the
      * container.
      */
-    def(me, 'prepend', function(elmChild, elmParent) {
+    var prepend = def(me, 'prepend', function(elmChild, elmParent) {
         var child  = $(elmChild);
         var parent = $(elmParent);
 
@@ -556,7 +558,7 @@
      *
      * @return the removed node.
      */
-    def(me, 'remove', function(e) {
+    var remove = def(me, 'remove', function(e) {
         var elm = $(e);
 
         if (!elm) {
@@ -575,7 +577,7 @@
      *
      * @see o2.Dom.remove
      */
-    alias(me, 'removeNode', 'remove');
+    var removeNode = alias(me, 'removeNode', 'remove');
 
     /**
      * @function {static} o2.Dom.removeChildren
@@ -591,7 +593,7 @@
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
-    def(me, 'removeChildren', function(elm) {
+    var removeChildren = def(me, 'removeChildren', function(elm) {
         var node = $(elm);
 
         if (!node) {
@@ -609,7 +611,7 @@
      * @param {Object} elm - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
-    alias(me, 'empty', 'removeChildren');
+    var empty = alias(me, 'empty', 'removeChildren');
 
     /**
      * @function {static} o2.Dom.removeEmptyTextNodes
@@ -627,7 +629,7 @@
      * @param {Object} e - either the <strong>element</strong>, or the
      * <strong>id</strong> of it to process.
      */
-    def(me, 'removeEmptyTextNodes', function(e) {
+    var removeEmptyTextNodes = def(me, 'removeEmptyTextNodes', function(e) {
         var arRemove     = [];
         var child        = null;
         var elm          = $(e);
@@ -668,7 +670,7 @@
      *
      * @see o2.Dom.removeEmptyTextNodes
      */
-    alias(me, 'removeEmpty', 'removeEmptyTextNodes');
+    var removeEmpty = alias(me, 'removeEmpty', 'removeEmptyTextNodes');
 
     /**
      * @function {static} o2.Dom.setAttribute
@@ -685,7 +687,7 @@
      * @param {String} attribute - the name of the attribute.
      * @param {String} value - the value of the attribute.
      */
-    def(me, 'setAttribute', function(elm, attribute, value) {
+    var setAttribute = def(me, 'setAttribute', function(elm, attribute, value) {
         var obj = $(elm);
 
         if (!obj || !attribute) {
@@ -721,7 +723,7 @@
      * @param {Object} elm - The <strong>DOM</strong> element to set the
      * <strong>HTML</strong> of, or its <code>String</code> id.
      */
-    def(me, 'setHtml', function(elm, html) {
+    var setHtml = def(me, 'setHtml', function(elm, html) {
         var obj = $(elm);
 
         if (!obj) {

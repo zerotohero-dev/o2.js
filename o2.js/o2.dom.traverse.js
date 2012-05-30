@@ -498,14 +498,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildren', function(elm, name) {
+    var getChildren = def(me, 'getChildren', function(elm, name) {
         return execFilter(elm, getChildNodes, [name]);
     });
-
-    /*
-     *
-     */
-    var getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.Dom.getChildrenByAttribute
@@ -532,7 +527,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenByAttribute', function(elm, attribute, value, name) {
+    var getChildrenByAttribute = def(me, 'getChildrenByAttribute', function(elm, attribute, value, name) {
         // TODO: this comment will be irrelevant after fixing
         // https://github.com/v0lkan/o2.js/issues/58
         //
@@ -543,11 +538,6 @@
         return execFilter(elm, getChildNodes, [name],
             isAttributeEquals, [attribute, value]);
     });
-
-    /*
-     *
-     */
-    var getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
@@ -574,17 +564,13 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenByAttributeUntil', function(elm, attribute, value,
+    var getChildrenByAttributeUntil = def(me, 'getChildrenByAttributeUntil', function(elm, attribute, value,
             until, name) {
         return execFilter(elm, getChildNodes, [name],
             isAttributeEquals, [attribute, value], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    var getChildrenByAttributeUntil = require(kModuleName,
-        'getChildrenByAttributeUntil');
+    var getChildrenByClass = null; 
 
     if (isNativeQuerySupported) {
 
@@ -610,7 +596,7 @@
          * @return an <code>Array</code> of nodes, if found; and empty
          * <code>Array</code> if nothing is found.
          */
-        def(me, 'getChildrenByClass', function(elm, className, name) {
+        getChildrenByClass = def(me, 'getChildrenByClass', function(elm, className, name) {
             var el = $(elm);
 
             // NOTE: IE7+ supports child selector ( > ),
@@ -635,16 +621,11 @@
             );
         });
     } else {
-        def(me, 'getChildrenByClass', function(elm, className, name) {
+        getChildrenByClass = def(me, 'getChildrenByClass', function(elm, className, name) {
             return execFilter(elm, getChildNodes, [name],
                 hasClassName, [className]);
         });
     }
-
-    /*
-     *
-     */
-    var getChildrenByClass = require(kModuleName, 'getChildrenByClass');
 
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
@@ -671,16 +652,10 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenByClassUntil', function(elm, className, until, name) {
+    var getChildrenByClassUntil = def(me, 'getChildrenByClassUntil', function(elm, className, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasClassName, [className], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    var getChildrenByClassUntil = require(kModuleName,
-        'getChildrenByClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenUntil
@@ -705,15 +680,10 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenUntil', function(elm, until, name) {
+    var getChildrenUntil = def(me, 'getChildrenUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
             null, [], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    var getChildrenUntil = require(kModuleName, 'getChildrenUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
@@ -737,16 +707,10 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithAttribute', function(elm, attribute, name) {
+    var getChildrenWithAttribute = def(me, 'getChildrenWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute]);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithAttribute = require(kModuleName,
-        'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -773,17 +737,11 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
+    var getChildrenWithAttributeUntil = def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
                 name) {
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithAttributeUntil = require(kModuleName,
-        'getChildrenWithAttributeUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClass
@@ -805,14 +763,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithClass', function(elm, name) {
+    var getChildrenWithClass = def(me, 'getChildrenWithClass', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -837,16 +790,10 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithClassUntil', function(elm, until, name) {
+    var getChildrenWithClassUntil = def(me, 'getChildrenWithClassUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasClassAttribute, [], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithClassUntil = require(kModuleName,
-        'getChildrenWithClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithId
@@ -868,14 +815,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithId', function(elm, name) {
+    var getChildrenWithId = def(me, 'getChildrenWithId', function(elm, name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -900,15 +842,10 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getChildrenWithIdUntil', function(elm, until, name) {
+    var getChildrenWithIdUntil = def(me, 'getChildrenWithIdUntil', function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasIdAttribute, [], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    var getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
 
     /**
      * @function {static} o2.Dom.getElements
@@ -930,7 +867,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-     def(me, 'getElements', function(elm, name) {
+    var getElements = def(me, 'getElements', function(elm, name) {
         var target = $(elm);
 
         if (!target) {
@@ -938,12 +875,7 @@
         }
 
         return target.getElementsByTagName(name || kAll);
-     });
-
-    /*
-     *
-     */
-    var getElements = require(kModuleName, 'getElements');
+    });
 
     /**
      * @function {static} o2.Dom.getElementsByAttribute
@@ -968,7 +900,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
+    var getElementsByAttribute = def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
         return execFilter(elm, getElements, [name],
             isAttributeEquals, [attribute, value]);
     });
@@ -995,7 +927,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getElementsByClass', function(elm, className, name) {
+    var getElementsByClass = def(me, 'getElementsByClass', function(elm, className, name) {
         return execFilter(elm, getElements, [name], hasClassName, [className]);
     });
 
@@ -1021,7 +953,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getElementsWithAttribute', function(elm, attribute, name) {
+    var getElementsWithAttribute = def(me, 'getElementsWithAttribute', function(elm, attribute, name) {
         return execFilter(elm, getElements, [name],
             hasAttribute, [attribute], null, []);
     });
@@ -1047,7 +979,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getElementsWithClass', function(elm, name) {
+    var getElementsWithClass = def(me, 'getElementsWithClass', function(elm, name) {
         return execFilter(elm, getElements, [name],
             hasClassAttribute, [], null, []);
     });
@@ -1073,7 +1005,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getElementsWithId', function(elm, name) {
+    var getElementsWithId = def(me, 'getElementsWithId', function(elm, name) {
         return execFilter(elm, getElements, [name], hasIdAttribute, []);
     });
 
@@ -1097,14 +1029,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblings', function(elm, name) {
+    var getSiblings = def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
     });
-
-    /*
-     *
-     */
-    var getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -1129,7 +1056,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsByAttribute', function(elm, attribute, value, name) {
+    var getSiblingsByAttribute = def(me, 'getSiblingsByAttribute', function(elm, attribute, value, name) {
         return !elm ? [] : getChildrenByAttribute(elm.parentNode,
             attribute, value, name);
     });
@@ -1160,7 +1087,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsByAttributeUntil', function(elm, attribute, value,
+    var getSiblingsByAttributeUntil = def(me, 'getSiblingsByAttributeUntil', function(elm, attribute, value,
             until, name) {
         return !elm ? [] : getChildrenByAttributeUntil(elm.parentNode,
             attribute, value, until, name);
@@ -1186,7 +1113,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsByClass', function(elm, name) {
+    var getSiblingsByClass = def(me, 'getSiblingsByClass', function(elm, name) {
         return !elm ? [] : getChildrenByClass(elm.parentNode, name);
     });
 
@@ -1214,7 +1141,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsByClassUntil', function(elm, until, name) {
+    var getSiblingsByClassUntil = def(me, 'getSiblingsByClassUntil', function(elm, until, name) {
         return !elm ? [] : getChildrenByClassUntil(elm.parentNode, until,
             name);
     });
@@ -1242,7 +1169,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsUntil',  function(elm, until, name) {
+    var getSiblingsUntil = def(me, 'getSiblingsUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenUntil(elm.parentNode, until, name);
     });
 
@@ -1268,7 +1195,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithAttribute',  function(elm, attribute, name) {
+    var getSiblingsWithAttribute = def(me, 'getSiblingsWithAttribute',  function(elm, attribute, name) {
         return !elm ? [] : getChildrenWithAttribute(elm.parentNode,
             attribute, name);
     });
@@ -1298,7 +1225,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
+    var getSiblingsWithAttributeUntil = def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
                 name) {
         return !elm ? [] : getChildrenWithAttributeUntil(elm.parentNode,
             attribute, until, name);
@@ -1325,7 +1252,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithClass',  function(elm, name) {
+    var getSiblingsWithClass = def(me, 'getSiblingsWithClass',  function(elm, name) {
         return !elm ? [] : getChildrenWithClass(elm.parentNode, name);
     });
 
@@ -1352,7 +1279,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithClassUntil',  function(elm, until, name) {
+    var getSiblingsWithClassUntil = def(me, 'getSiblingsWithClassUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithClassUntil(elm.parentNode, until,
             name);
     });
@@ -1378,7 +1305,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithId',  function(elm, name) {
+    var getSiblingsWithId = def(me, 'getSiblingsWithId',  function(elm, name) {
         return !elm ? [] : getChildrenWithId(elm.parentNode, name);
     });
 
@@ -1405,7 +1332,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getSiblingsWithIdUntil',  function(elm, until, name) {
+    var getSiblingsWithIdUntil = def(me, 'getSiblingsWithIdUntil',  function(elm, until, name) {
         return !elm ? [] : getChildrenWithIdUntil(elm.parentNode, until, name);
     });
 
@@ -1429,14 +1356,9 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirst', function(elm, name) {
+    var getFirst = def(me, 'getFirst', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
     });
-
-    /*
-     *
-     */
-    var getFirst = require(kModuleName, 'getFirst');
 
     /**
      * @function {static} o2.Dom.getFirstByAttribute
@@ -1461,15 +1383,15 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstByAttribute', function(elm, attribute, value, name) {
+    var getFirstByAttribute = def(me, 'getFirstByAttribute', function(elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true);
     });
 
-    /*
-     *
-     */
-    var getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
+
+..................................................................
+..................................................................
+..................................................................
 
     /**
      * @function {static} o2.Dom.getFirstByClass

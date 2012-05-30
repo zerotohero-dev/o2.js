@@ -68,7 +68,7 @@
      *
      * @see o2.String.compact
      */
-    def(me, 'compactField', function(field) {
+    var compactField = def(me, 'compactField', function(field) {
         field = $(field);
 
         if (!field) {
@@ -99,7 +99,7 @@
      *
      * @see o2.String.trim
      */
-    def(me, 'trimField', function(field) {
+    var trimField = def(me, 'trimField', function(field) {
         field = $(field);
 
         if (!field) {
@@ -126,7 +126,7 @@
      * @param {Object} form - A <strong>DOM</strong> reference to the form
      * object or its <code>String</code> id.
      */
-    def(me, 'preventMultipleSubmit', function(form) {
+    var preventMultipleSubmit = def(me, 'preventMultipleSubmit', function(form) {
         form = $(form);
 
         if (!form) {
@@ -143,7 +143,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'removePlaceholder', function(elm) {
+    var removePlaceholder = def(me, 'removePlaceholder', function(elm) {
         var target = $(elm);
 
         if (!target) {
@@ -156,7 +156,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'resetField', function(elm) {
+    var resetField = def(me, 'resetField', function(elm) {
         var item = $(elm);
 
         if (!item) {
@@ -167,7 +167,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'disable', function() {
+    var disable = def(me, 'disable', function() {
         var i    = 0;
         var item = null;
         var len  = 0;

@@ -231,7 +231,7 @@
      * @param {Function} delegate - the callback that's called when the DOM is
      * ready.
      */
-    def(me, 'ready', function(delegate) {
+    var ready = def(me, 'ready', function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
         if (isApplicationReady) {

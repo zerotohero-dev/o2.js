@@ -191,7 +191,7 @@
      *
      * @see o2.Unit.assert
      */
-    def(me, 'assert', function(pass, message) {
+    var assert = def(me, 'assert', function(pass, message) {
         if (!isInitialized) {
             return;
         }
@@ -218,7 +218,7 @@
      *
      * @param {String} message - the error message to display.
      */
-    def(me, 'error', function(message) {
+    var error = def(me, 'error', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -239,7 +239,7 @@
      *
      * @param {String} message - the info message to display.
      */
-    def(me, 'info', function(message) {
+    var info = def(me, 'info', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -266,7 +266,7 @@
      * @param {Boolean} shouldUseConsole - should browser's built-in console
      * be used, if available.
      */
-    def(me, 'init', function(outputElement, shouldUseConsole) {
+    var init = def(me, 'init', function(outputElement, shouldUseConsole) {
         var outputNode = $(outputElement);
 
         // Can I use the browser's built-in console?
@@ -309,7 +309,7 @@
      *
      * @see o2.Unit.log
      */
-    def(me, 'log', function(message) {
+    var log = def(me, 'log', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -332,7 +332,7 @@
      * @param {String} className - the CSS class name that is associated with
      * the line.
      */
-    def(me, 'println', function(value, className) {
+    var println = def(me, 'println', function(value, className) {
 
         // If not initialized, then we cannot use any of
         // Debugger's public methods.
@@ -365,7 +365,7 @@
      *
      * @param {String} message - the warning message to display.
      */
-    def(me, 'warn', function(message) {
+    var warn = def(me, 'warn', function(message) {
         if (!isInitialized) {
             return;
         }

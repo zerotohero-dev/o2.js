@@ -66,7 +66,7 @@
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
      * potentially valid e-mail, <code>false</code> otherwise.
      */
-    def(me, 'isEmail', function(mail) {
+    var isEmail = def(me, 'isEmail', function(mail) {
         return kEmailRegExp.test(mail);
     });
 
@@ -87,7 +87,7 @@
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isUrl', function(url) {
+    var isUrl = def(me, 'isUrl', function(url) {
         return kUrlRegExp.test(url);
     });
 
@@ -108,7 +108,7 @@
      * @return <code>true</code> if the argument consists of only whitespace
      * characters, <code>false</code> otherwise.
      */
-    def(me, 'isWhitespace', function(text) {
+    var isWhiteSpace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
 }(this.o2));

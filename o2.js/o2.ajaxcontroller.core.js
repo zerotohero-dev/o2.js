@@ -112,7 +112,7 @@
      * @param {Object} data - parameters passed from the <code>Observable</code>
      * to this <code>Observer</code>.
      */
-    proto(me, 'update', function(data) {
+    var update = proto(me, 'update', function(data) {
         if (!data.isTimedOut) {
             return;
         }
@@ -147,7 +147,7 @@
      * </pre>
      *
      */
-    proto(me, 'unregister', function() {
+    var unregister = proto(me, 'unregister', function() {
         if (this.isDeleted) {
             return;
         }

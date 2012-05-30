@@ -181,7 +181,7 @@
      *
      * @param {Object} observer - the <code>Observer</code> to register.
      */
-    def(me, 'addObserver', function(observer) {
+    var addObserver = def(me, 'addObserver', function(observer) {
 
         //!
         // acquire(me, this, 'observer');
@@ -215,7 +215,7 @@
      *
      * @return the number of registered <code>Observer</code>s.
      */
-    def(me, 'countObservers', function() {
+    var countObservers = def(me, 'countObservers', function() {
         return getObservers(this).length;
     });
 
@@ -235,7 +235,7 @@
      *
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
-    def(me, 'deleteObserver', function(observer) {
+    var deleteObserver = def(me, 'deleteObserver', function(observer) {
         var i         = 0;
         var len       = 0;
         var observers = getObservers(this);
@@ -271,7 +271,7 @@
      * </pre>
      *
      */
-    def(me, 'deleteObservers', function() {
+    var deleteObservers = def(me, 'deleteObservers', function() {
         getObservers(this).length = 0;
     });
 
@@ -288,7 +288,7 @@
      * </pre>
      *
      */
-    def(me, 'init', function() {
+    var init = def(me, 'init', function() {
 
         // We use implicit this, instead of explicity using
         // o2.AjaxState.protecteds.listen, because o2.JsonpState inherits
@@ -310,7 +310,7 @@
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      */
-    def(me, 'timeoutObservers', function(observers) {
+    var timeoutObservers = def(me, 'timeoutObservers', function(observers) {
         timeoutObservers(this, observers);
     });
 
@@ -327,7 +327,7 @@
      * </pre>
      *
      */
-    def(me, 'timeoutAllObservers', function() {
+    var timeoutAllObservers = def(me, 'timeoutAllObservers', function() {
         timeoutObservers(this, getObservers(this));
     });
 

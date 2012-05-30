@@ -449,7 +449,7 @@
      * </pre>
      * @return the created <code>XMLHttpRequest</code> object.
      */
-    def(me, 'createXhr', function() {
+    var createXhr = def(me, 'createXhr', function() {
         return createXhr();
     });
 
@@ -485,7 +485,7 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    def(me, 'get', function(url, parameters, callbacks, isSync) {
+    var get = def(me, 'get', function(url, parameters, callbacks, isSync) {
         return send(url, kGet, parameters, callbacks, isSync);
     });
 
@@ -522,7 +522,7 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    def(me, 'post', function(url, parameters, callbacks, isSync) {
+    var post = def(me, 'post', function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
     });
 

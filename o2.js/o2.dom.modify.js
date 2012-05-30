@@ -59,7 +59,7 @@
      * @param elmTarget - the target node or its <code>String</code> id.
      * @param elmToReplace - the replacement node or its <code>String</code> id.
      */
-    def(me, 'replace', function(elmTarget, elmToReplace) {
+    var replace = def(me, 'replace', function(elmTarget, elmToReplace) {
         var target  = $(elmTarget);
         var replace = $(elmToReplace);
 
@@ -83,7 +83,7 @@
      * @param {Object} elmTarget - the target node or its <code>String</code> id
      * to unwrap.
      */
-    def(me, 'unwrap', function(elmTarget) {
+    var unwrap = def(me, 'unwrap', function(elmTarget) {
         var target = $(elmTarget);
 
         if (!target) {
@@ -123,7 +123,7 @@
      *
      * @return the wrapped node.
      */
-    def(me, 'wrap', function(elmTarget, elmWrapper) {
+    var wrap = def(me, 'wrap', function(elmTarget, elmWrapper) {
         var target  = $(elmTarget);
         var wrapper = $(elmWrapper);
 

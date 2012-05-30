@@ -95,7 +95,7 @@
      * @return the dimension of the <strong>DOMNode</strong> in the form
      * <code>{width: w, height: h}</code>.
      */
-    def(me, 'getDimension', function(obj) {
+    var getDimension = def(me, 'getDimension', function(obj) {
         obj = $(obj);
 
         if (!obj || obj.offsetWidth === undefined) {
@@ -107,11 +107,6 @@
             height : obj.offsetHeight
         };
     });
-
-    /*
-     *
-     */
-    var getDimension = require(kModuleName, 'getDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentDimension
@@ -130,7 +125,7 @@
      * @return the dimension of the document in the form <code>{width: w,
      * height: h}</code>.
      */
-    def(me, 'getDocumentDimension', function() {
+    var getDocumentDimension = def(me, 'getDocumentDimension', function() {
         var doc = getDocumentElement();
 
         if(!doc) {
@@ -151,11 +146,6 @@
         };
     });
 
-    /*
-     *
-     */
-    var getDocumentDimension = require(kModuleName, 'getDocumentDimension');
-
     /**
      * @function {static} o2.Dom.getDocumentHeight
      *
@@ -169,7 +159,7 @@
      *
      * @return the document's height.
      */
-    def(me, 'getDocumentHeight', function() {
+    var getDocumentHeight = def(me, 'getDocumentHeight', function() {
         return getDocumentDimension().height;
     });
 
@@ -186,7 +176,7 @@
      *
      * @return the document's width.
      */
-    def(me, 'getDocumentWidth', function() {
+    var getDocumentWidth = def(me, 'getDocumentWidth', function() {
         return getDocumentDimension().width;
     });
 
@@ -206,7 +196,7 @@
      *
      * @return the height of the element, in pixels.
      */
-    def(me, 'getHeight', function(obj) {
+    var getHeight = def(me, 'getHeight', function(obj) {
         return getDimension(obj).height;
     });
 
@@ -224,7 +214,7 @@
      *
      * @return the viewport information.
      */
-    def(me, 'getViewportInfo', function() {
+    var getViewportInfo = def(me, 'getViewportInfo', function() {
         var d  = getDocumentElement();
 
         if (!d) {
@@ -260,9 +250,11 @@
      *
      * @return the width of the element, in pixels.
      */
-    def(me, 'getWidth', function(obj) {
+    var getWidth = def(me, 'getWidth', function(obj) {
         return getDimension(obj).width;
     });
+
+    var getWindowInnerDimension = null;
 
     if (window.innerWidth !== undefined) {
 
@@ -281,14 +273,14 @@
          * @return the dimension of the visible area of the browser in the form
          * <code>{width: w, height: h}</code>.
          */
-        def(me, 'getWindowInnerDimension', function() {
+        getWindowInnerDimension = def(me, 'getWindowInnerDimension', function() {
             return {
                 width  : window.innerWidth  || 0,
                 height : window.innerHeight || 0
             };
         });
     } else {
-        def(me, 'getWindowInnerDimension', function() {
+        getWindowInnerDimension = def(me, 'getWindowInnerDimension', function() {
             var doc = getDocumentElement();
 
             if (!doc) {
@@ -301,12 +293,6 @@
             };
         });
     }
-
-    /*
-     *
-     */
-    var getWindowInnerDimension = require(kModuleName,
-        'getWindowInnerDimension');
 
     /**
      * @function {static} o2.Dom.getWindowInnerHeight
@@ -321,7 +307,7 @@
      *
      * @return the inner height of the window in pixels.
      */
-    def(me, 'getWindowInnerHeight', function() {
+    getWindowInnerHeight = def(me, 'getWindowInnerHeight', function() {
         return getWindowInnerDimension().height;
     });
 
@@ -338,7 +324,7 @@
      *
      * @return the inner width of the window in pixels.
      */
-    def(me, 'getWindowInnerWidth', function() {
+    getWindowInnerWidth = def(me, 'getWindowInnerWidth', function() {
         return getWindowInnerDimension().width;
     });
 
@@ -357,7 +343,7 @@
      * of, or the <code>String</code> <strong>id</strong> of it.
      * @param {Integer} width - the new width in pixels.
      */
-    def(me, 'setWidth', function(obj, width) {
+    var setWidth = def(me, 'setWidth', function(obj, width) {
         obj = $(obj);
 
         if (!obj) {
@@ -391,11 +377,6 @@
         setStyle(obj, kWidth, concat(width, kPixel));
     });
 
-    /*
-     *
-     */
-    var setWidth = require(kModuleName, 'setWidth');
-
     /**
      * @function {static} o2.Dom.setHeight
      *
@@ -411,7 +392,7 @@
      * of, or the <code>String</code> <strong>id</strong> of it.
      * @param {Integer} height - the new height in pixels.
      */
-    def(me, 'setHeight', function(obj, height) {
+    var setHeight = def(me, 'setHeight', function(obj, height) {
         obj = $(obj);
 
         if (!obj) {
@@ -439,11 +420,6 @@
         setStyle(obj, kHeight, concat(height, kPixel));
     });
 
-    /*
-     *
-     */
-    var setHeight = require(kModuleName, 'setHeight');
-
     /**
      * @function {static} o2.Dom.setDimension
      *
@@ -460,7 +436,7 @@
      * @param {Object} dimension - the new dimension in the form
      * <code>{width: w, height: h}</code>.
      */
-    def(me, 'setDimension', function(obj, dimension) {
+    var setDimension = def(me, 'setDimension', function(obj, dimension) {
         obj = $(obj);
 
         if (!obj) {

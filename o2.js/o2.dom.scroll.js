@@ -42,6 +42,8 @@
     var de       = document.documentElement;
     var scrollTo = attr(window, 'scrollTo');
 
+    var getWindowScrollOffset = null;
+
     if(de) {
 
         /**
@@ -58,7 +60,7 @@
          * @return the the <strong>window</strong>'s scroll offset in the form
          * <code>{left: l, top: t}</code>.
          */
-        def(me, 'getWindowScrollOffset', function() {
+        getWindowScrollOffset = def(me, 'getWindowScrollOffset', function() {
             var db = document.body;
 
             var left = 0;
@@ -80,7 +82,7 @@
             };
         });
     } else {
-        def(me, 'getWindowScrollOffset', function() {
+        getWindowScrollOffset = def(me, 'getWindowScrollOffset', function() {
             var db = document.body;
 
             var left = 0;
@@ -100,11 +102,6 @@
         });
     }
 
-    /*
-     *
-     */
-    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
-
     /**
      * @function {static} o2.Dom.getObjectScrollOfset
      *
@@ -122,11 +119,11 @@
      * @return the the <strong>DOM</strong> object's scroll offset in the form
      * <code>{left: l, top: t}</code>.
      */
-    def(me, 'getObjectScrollOfset', function(obj) {
+    var getObjectScrollOffset = def(me, 'getObjectScrollOfset', function(obj) {
         var item = $(obj);
 
         if (obj === window) {
-            return getWindowScrollOffset(item);
+            return getWindowScrollOffset();
         }
 
         return {
@@ -142,7 +139,9 @@
      *
      * @see {o2.Dom.getObjectScrollOffset}
      */
-    alias(me, 'getScrollOffset', 'getObjectScrollOfset');
+    var getScrollOffset = alias(me, 'getScrollOffset', 'getObjectScrollOfset');
+
+    var scrollWindowToBottom = null;
 
     if (de) {
 
@@ -157,7 +156,7 @@
          *
          * <p>Scrolls window to bottom.</p>
          */
-        def(me, 'scrollWindowToBottom', function() {
+        scrollWindowToBottom = def(me, 'scrollWindowToBottom', function() {
             var db = document.body;
 
             if (!db) {
@@ -168,7 +167,7 @@
             de.scrollTop = de.scrollHeight;
         });
     } else {
-        def(me, 'scrollWindowToBottom', function() {
+        scrollWindowToBottom = def(me, 'scrollWindowToBottom', function() {
             var db = document.body;
 
             if (!db) {
@@ -179,10 +178,7 @@
         });
     }
 
-    /*
-     *
-     */
-    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
+    var scrollWindowToTop = null;
 
     if (de) {
 
@@ -197,7 +193,7 @@
          *
          * <p>Scrolls window to top.</p>
          */
-        def(me, 'scrollWindowToTop', function() {
+        scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
             if (!db) {
@@ -208,7 +204,7 @@
             de.scrollTop = 0;
         });
     } else {
-        def(me, 'scrollWindowToTop', function() {
+        scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
             if (!db) {
@@ -218,11 +214,6 @@
             db.scrollTop = 0;
         });
     }
-
-    /*
-     *
-     */
-    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.Dom.scrollObjectToTop
@@ -238,7 +229,7 @@
      * @param {Object} obj - the element, or the <strong>id</strong> of the
      * element, to scroll.
      */
-    def(me, 'scrollObjectToTop', function(obj) {
+    var scrollObjectToTop = def(me, 'scrollObjectToTop', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -266,7 +257,7 @@
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
      * scroll.
      */
-    def(me, 'scrollObjectToBottom', function(obj) {
+    var scrollObjectToBottom = def(me, 'scrollObjectToBottom', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -287,7 +278,7 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    def(me, 'scrollTo', function(obj) {
+    var scrollTo = def(me, 'scrollTo', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -310,7 +301,7 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    alias(me, 'scrollWindowToObject', 'scrollTo');
+    var scrollWindowToObject = alias(me, 'scrollWindowToObject', 'scrollTo');
 
     /**
      * @function {static} o2.Dom.scrollToObject
@@ -319,5 +310,5 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    alias(me, 'scrollToObject', 'scrollTo');
+    var scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this, this.document));

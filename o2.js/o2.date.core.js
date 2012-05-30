@@ -122,7 +122,7 @@
      * @param {Integer} currTime - (Optional, default to NOW) the base time
      * in milliseconds.
      */
-    def(me, 'getPrettyDate', function(time, currTime) {
+    var getPrettyDate = def(me, 'getPrettyDate', function(time, currTime) {
         var currentTime = currTime || $.now();
         var listChoice  = 1;
         var seconds     = (new Date(currentTime) - new Date(time)) / 1000;
@@ -173,7 +173,7 @@
      *
      * @see o2.now
      */
-    def(me, 'getTime', function() {
+    var getTime = def(me, 'getTime', function() {
         return now();
     });
 
@@ -184,5 +184,5 @@
      *
      * @see o2.Date.getTime
      */
-    alias(me, 'now', 'getTime');
+    var now = alias(me, 'now', 'getTime');
 }(this.o2));

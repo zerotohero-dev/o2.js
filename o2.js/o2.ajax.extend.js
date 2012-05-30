@@ -108,7 +108,7 @@
     *
     * @see o2.Ajax.get
     */
-    def(me, 'getSingle', function(url, parameters, callbacks) {
+    var getSingle = def(me, 'getSingle', function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = getCache[token];
@@ -163,7 +163,7 @@
     *
     * @see o2.Ajax.post
     */
-    def(me, 'postSingle', function(url, parameters, callbacks) {
+    var postSingle = def(me, 'postSingle', function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = postCache[token];

@@ -74,7 +74,7 @@
      * @return the value of the <strong>cookie</strong>; or <code>null</code>
      * if the <strong>cookie</strong> is not found.
      */
-    def(me, 'read', function(name) {
+    var read = def(me, 'read', function(name) {
         var ca = document.cookie.split(kDelimeter);
         var eq = concat(decodeURIComponent(name), kEmpty);
         var i  = 0;
@@ -114,7 +114,7 @@
      * @param {Boolean} isSecure - (optional) will the cookie be used for a
      * secure connection.
      */
-    def(me, 'save', function(name, value, days, path, domain, isSecure) {
+    var save = def(me, 'save', function(name, value, days, path, domain, isSecure) {
         var d  = new Date();
         var ex = kEmpty;
 
@@ -145,11 +145,6 @@
         document.cookie = cookieString;
     });
 
-    /*
-     *
-     */
-    var save = require(kModuleName, 'save');
-
     /**
      * @function {static} o2.Cookie.remove
      *
@@ -168,7 +163,7 @@
      * @param {Boolean} isSecure - (optional) will the cookie be used for a
      * secure connection.
      */
-    def(me, 'remove', function(name, path, domain) {
+    var remove = def(me, 'remove', function(name, path, domain) {
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     });
 
