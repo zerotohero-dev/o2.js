@@ -13,7 +13,7 @@
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
  */
-(function(framework, document, undefined) {
+(function(framework, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var alias     = attr(_, 'alias');
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -136,9 +138,12 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'decode', function(str) {
+    exports.decode = def(me, 'decode', function(str) {
         return processMap([kEmpty, str].join(kEmpty), decodeMap);
     });
+
+...............................
+...............................
 
     /**
      * @function {static} o2.String.encode

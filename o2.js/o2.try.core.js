@@ -15,13 +15,15 @@
  * <p>Even if an error occurs when calling a <code>Function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -54,7 +56,7 @@
      *
      * @param {Arguments} ... - each argument as a function.
      */
-    def(me, 'all', function() {
+    exports.all = def(me, 'all', function() {
         var i   = 0;
         var len = 0;
 
@@ -84,7 +86,7 @@
      *
      * @param {Arguments} ... - each argument as a function.
      */
-    def(me, 'these', function() {
+    exports.these = def(me, 'these', function() {
         var i   = 0;
         var len = 0;
 
@@ -97,4 +99,6 @@
             }
         }
     });
+
+    return exports;
 }(this.o2));

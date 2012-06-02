@@ -16,7 +16,7 @@
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -25,6 +25,8 @@
     var def       = attr(_, 'define');
     var obj       = attr(_, 'getObject');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -383,7 +385,7 @@
      * total number of assertions in the test suite, and
      * <strong>test</strong> is the actual test suite <code>Function</code>.
      */
-    var add = def(me, 'add', function(description, testMeta) {
+    exports.add = def(me, 'add', function(description, testMeta) {
         var kRequiredLocalParameterCount = 2;
         var kMethodName = 'add';
         var kArgumentsLength = arguments.length;
@@ -413,7 +415,7 @@
      * @param {Expression} expression - the expression to evaluate.
      * @param {String} message - the associated message.
      */
-    var assert = def(me, 'assert', function(unitTest, expression, message) {
+    exports.assert = def(me, 'assert', function(unitTest, expression, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assert';
         var kRequiredLocalParameterCount = 3;
@@ -440,8 +442,8 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    var assertEqual = def(me, 'assertEqual', function(unitTest, currentValue, expectedValue,
-                message) {
+    exports.assertEqual = def(me, 'assertEqual', function(unitTest,
+                currentValue, expectedValue, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertEqual';
         var kRequiredLocalParameterCount = 4;
@@ -470,8 +472,8 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    var assertNotEqual = def(me, 'assertNotEqual', function(unitTest, currentValue, expectedValue,
-                message) {
+    exports.assertNotEqual = def(me, 'assertNotEqual', function(unitTest,
+                currentValue, expectedValue, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertNotEqual';
         var kRequiredLocalParameterCount = 4;
@@ -502,8 +504,8 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    var assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest, currentValue, expectedValue,
-                message) {
+    exports.assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest,
+                currentValue, expectedValue, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertStrictEqual';
         var kRequiredLocalParameterCount = 4;
@@ -533,8 +535,8 @@
      * @param {Object} expectedValue - the expected value to check against.
      * @param {String} message - the associated message.
      */
-    var assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(unitTest, currentValue,
-                expectedValue, message) {
+    exports.assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(
+                unitTest, currentValue, expectedValue, message) {
         var kArgumentsLength             = arguments.length;
         var kMethodName                  = 'assertStrictNotEqual';
         var kRequiredLocalParameterCount = 4;
@@ -560,7 +562,8 @@
      *
      * @return the total number of failed assertions.
      */
-    var getGlobalFailureCount = def(me, 'getGlobalFailureCount', function() {
+    exports.getGlobalFailureCount = def(me, 'getGlobalFailureCount',
+                function() {
         return globalFailureCount;
     });
 
@@ -577,7 +580,8 @@
      *
      * @return the total number of successful assertions.
      */
-    var getGlobalSuccessCount = def(me, 'getGlobalSuccessCount', function() {
+    exports.getGlobalSuccessCount = def(me, 'getGlobalSuccessCount',
+                function() {
         return globalSuccessCount;
     });
 
@@ -596,7 +600,7 @@
      * @return <code>true</code> if the current <strong>test suite</strong>
      * is still runing; <code>false</code> otherwise.
      */
-    var isRunning = def(me, 'isRunning', function() {
+    exports.isRunning = def(me, 'isRunning', function() {
         return isRunning;
     });
 
@@ -614,7 +618,7 @@
      *
      * @see o2.Debugger.log
      */
-    var log = def(me, 'log', function(message) {
+    exports.log = def(me, 'log', function(message) {
         log(message);
     });
 
@@ -635,7 +639,7 @@
      * @param {Function} globalCompletionCallback - (Optional) this callback
      * will be run with <code>o2.Unit</code> as a parameter passed to it.
      */
-    var run = def(me, 'run', function(globalCompletionCallback) {
+    exports.run = def(me, 'run', function(globalCompletionCallback) {
         if (isRunning) {
             return;
         }

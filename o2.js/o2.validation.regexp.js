@@ -13,13 +13,15 @@
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -66,7 +68,7 @@
      * @return <code>true</code> if the <strong>e-mail</strong> address is a
      * potentially valid e-mail, <code>false</code> otherwise.
      */
-    var isEmail = def(me, 'isEmail', function(mail) {
+    exports.isEmail = def(me, 'isEmail', function(mail) {
         return kEmailRegExp.test(mail);
     });
 
@@ -87,7 +89,7 @@
      * @return <code>true</code> if the address is a valid <strong>URL</strong>,
      * <code>false</code> otherwise.
      */
-    var isUrl = def(me, 'isUrl', function(url) {
+    exports.isUrl = def(me, 'isUrl', function(url) {
         return kUrlRegExp.test(url);
     });
 
@@ -108,7 +110,9 @@
      * @return <code>true</code> if the argument consists of only whitespace
      * characters, <code>false</code> otherwise.
      */
-    var isWhiteSpace = def(me, 'isWhitespace', function(text) {
+    exports.isWhiteSpace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
+
+    return exports;
 }(this.o2));

@@ -25,6 +25,8 @@
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
 
+    var exports = {};
+
     /*
      * Class Name
      */
@@ -498,7 +500,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildren = def(me, 'getChildren', function(elm, name) {
+    exports.getChildren = def(me, 'getChildren', function(elm, name) {
         return execFilter(elm, getChildNodes, [name]);
     });
 
@@ -900,7 +902,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElementsByAttribute = def(me, 'getElementsByAttribute', function(elm, attribute, value, name) {
+    exports.getElementsByAttribute = def(me, 'getElementsByAttribute',
+                function(elm, attribute, value, name) {
         return execFilter(elm, getElements, [name],
             isAttributeEquals, [attribute, value]);
     });
@@ -1387,11 +1390,6 @@
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true);
     });
-
-
-..................................................................
-..................................................................
-..................................................................
 
     /**
      * @function {static} o2.Dom.getFirstByClass
@@ -4600,4 +4598,6 @@
 
         return contains(getSiblings(ref), elm);
     });
+
+    return exports;
 }(this.o2, this.document));

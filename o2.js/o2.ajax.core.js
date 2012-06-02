@@ -14,7 +14,7 @@
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -420,7 +422,7 @@
      * @param {XMLHttpRequest} xhr - the original
      * <strong>XMLHttpRequest</strong> being sent.
      */
-    var abort = def(me, 'abort', function(xhr) {
+    exports.abort = def(me, 'abort', function(xhr) {
         if (!xhr || xhr.isAborted) {
             return;
         }
@@ -449,7 +451,7 @@
      * </pre>
      * @return the created <code>XMLHttpRequest</code> object.
      */
-    var createXhr = def(me, 'createXhr', function() {
+    exports.createXhr = def(me, 'createXhr', function() {
         return createXhr();
     });
 
@@ -485,7 +487,7 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    var get = def(me, 'get', function(url, parameters, callbacks, isSync) {
+    exports.get = def(me, 'get', function(url, parameters, callbacks, isSync) {
         return send(url, kGet, parameters, callbacks, isSync);
     });
 
@@ -522,7 +524,7 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    var post = def(me, 'post', function(url, parameters, callbacks, isSync) {
+    exports.post = def(me, 'post', function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
     });
 
@@ -546,4 +548,6 @@
         } catch(ignore) {
         }
     });
+
+    return exports;
 }(this.o2, this));

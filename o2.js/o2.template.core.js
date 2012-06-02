@@ -12,7 +12,7 @@
  *
  * <p>A "very" fast templating engine.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -111,7 +113,7 @@
 
         return line.replace(kTemplateRegExp, function(str, p1
                     /*, offset, total*/) {
-            return data[p1] !== undefined ? data[p1] : str;
+            return data[p1] !== UNDEFINED ? data[p1] : str;
         });
     }
 
@@ -146,7 +148,7 @@
      *
      * @return {String} the parsed template.
      */
-     def(me, 'parse', function(data, tpl){
+     exports.parse = def(me, 'parse', function(data, tpl){
         var buffer  = [];
         var tplData = data || {};
         var i       = 0;
@@ -163,4 +165,6 @@
       *
       */
      doParse = require(kModuleName, 'parse');
+
+     return exports;
 }(this.o2));
