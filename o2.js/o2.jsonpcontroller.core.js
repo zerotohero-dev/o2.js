@@ -16,7 +16,7 @@
  * <p>A <code>JSONP</code> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;

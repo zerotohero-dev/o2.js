@@ -12,13 +12,15 @@
  *
  * <p>Event-handling-related helper methods.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -80,7 +82,7 @@
     *
     * @see o2.EventHandler.addEventListener
     */
-    def(me, 'bindAsEventListener', function() {
+    exports.bindAsEventListener = def(me, 'bindAsEventListener', function() {
         var args    = slice.call(arguments);
         var context = args.shift();
         var fn      = args.shift();
@@ -91,4 +93,6 @@
             return fn.apply(context, args);
         };
     });
+
+    return exports;
 }(this.o2));

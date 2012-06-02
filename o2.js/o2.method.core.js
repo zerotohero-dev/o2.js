@@ -14,13 +14,15 @@
  * <strong>memoization</strong>, <strong>partial functions</strong> and
  * <strong>currying</strong>.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -74,7 +76,7 @@
          *
          * @return the modified <code>Function</code>.
          */
-        def(me, 'bind', function() {
+        exports.bind = def(me, 'bind', function() {
             var args = slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
@@ -82,7 +84,7 @@
             return fn.bind(context, args);
         });
     } else {
-        def(me, 'bind', function() {
+        exports.bind = def(me, 'bind', function() {
             var args = slice.call(arguments);
             var context = args.shift();
             var fn = args.shift();
@@ -112,7 +114,7 @@
      *
      * @return the modified <code>Function</code>.
      */
-    def(me, 'curry', function() {
+    exports.curry = def(me, 'curry', function() {
         var args = slice.call(arguments);
         var context = args.shift();
         var fn = args.shift();
@@ -142,7 +144,7 @@
      * @param {Object} value - input.
      * @return the <strong>value</strong> itself.
      */
-    def(me, 'identity', function(value) {
+    exports.identity = def(me, 'identity', function(value) {
         return value;
     });
 
@@ -170,7 +172,7 @@
      *
      * @return a reference to the memoized <code>Function</code>.
      */
-    def(me, 'memoize', function() {
+    exports.memoize = def(me, 'memoize', function() {
         var pad = {};
         var args = slice.call(arguments);
         var self = args.shift();
@@ -222,7 +224,7 @@
      *
      * @return the modified <code>Function</code>.
      */
-    def(me, 'partial', function() {
+    exports.partial = def(me, 'partial', function() {
         var args = slice.call(arguments);
         var context = args.shift();
         var fn = args.shift();
@@ -232,7 +234,7 @@
             var i = 0;
 
             for (i = 0; i < args.length && arg < arguments.length; i++) {
-                if (args[i] === undefined) {
+                if (args[i] === UNDEFINED) {
                     args[i] = arguments[arg++];
                 }
             }
@@ -240,4 +242,6 @@
             return fn.apply(context, args);
         };
     });
+
+    return exports;
 }(this.o2));

@@ -13,13 +13,15 @@
  * <p>flip/fold/merge kind of method helper that ammend/transpose
  * <code>Function</code>s.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -61,7 +63,7 @@
      * @return the created <code>Function</code>.
      */
     //TODO: pass an optional context parameter.
-    def(me, 'compose', function(invoker, delegate) {
+    exports.compose = def(me, 'compose', function(invoker, delegate) {
         return function() {
             return invoker.apply(this, [delegate.apply(this, arguments)]);
         };
@@ -88,7 +90,7 @@
      *
      * @return the created <code>Function</code>.
      */
-    def(me, 'flip', function(fn, index1, index2) {
+    exports.flip = def(me, 'flip', function(fn, index1, index2) {
         return function() {
             var args      = slice.call(arguments);
             var temporary = args[index1];
@@ -125,10 +127,12 @@
      * @return the wrapped <code>Function</code>.
      */
     //TODO: pass an optional context parameter.
-    def(me, 'wrap', function(delegate, wrapper) {
+    exports.wrap = def(me, 'wrap', function(delegate, wrapper) {
         return function() {
             return wrapper.apply(this,
                 [delegate].concat(slice.call(arguments)));
         };
     });
+
+    return exports;
 }(this.o2));

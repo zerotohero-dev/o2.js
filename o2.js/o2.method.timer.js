@@ -13,7 +13,7 @@
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
  * a <code>Function</code> call.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -112,7 +114,7 @@
      *
      * @return the debounced <code>Function</code>.
      */
-    def(me, 'debounce', function(delegate, waitMs) {
+    exports.debounce = def(me, 'debounce', function(delegate, waitMs) {
         var timers = {};
 
         timers[kTimerId] = null;
@@ -145,7 +147,8 @@
      * @param {Object} context - the context (this reference) to bind.
      * @param {Array} args - arguments to pass to the function.
      */
-    def(me, 'defer', function(delegate, interval, context, args) {
+    exports.defer = def(me, 'defer', function(delegate, interval, context,
+                args) {
         setTimeout(function() {
             return delegate.apply(context, args);
         }, interval);
@@ -158,7 +161,7 @@
      *
      * @see o2.Method.defer
      */
-    alias(me, 'delay', 'defer');
+    exports.delay = alias(me, 'delay', 'defer');
 
     /**
      * @function {static} o2.Method.throttle
@@ -185,7 +188,7 @@
      *
      * @return the throttled <code>Function</code>.
      */
-    def(me, 'throttle', function(delegate, waitMs) {
+    exports.throttle = def(me, 'throttle', function(delegate, waitMs) {
         var timers = {
             lastCallTime : null
         };
@@ -210,4 +213,6 @@
             loop();
         };
     });
+
+    return exports;
 }(this.o2, this));

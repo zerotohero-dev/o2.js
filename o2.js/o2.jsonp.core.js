@@ -13,7 +13,7 @@
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -119,7 +121,7 @@
      *      function(data) {
      *
      *      }
-     *);
+     * );
      * </pre>
      *
      * @param {String} url - the <strong>URL</strong> of the
@@ -128,7 +130,7 @@
      * @param {Function} callback - callback to execute after
      * <strong>JSONP</strong> arrives.
      */
-    def(me, 'get', function(url, params, callback) {
+    exports.get = def(me, 'get', function(url, params, callback) {
         var query = createQuery(params);
         var jsonp = concat(kJson, (++counter));
 
@@ -145,4 +147,6 @@
 
         return jsonp;
     });
+
+    return exports;
 }(this.o2, this, this.document));

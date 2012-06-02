@@ -12,7 +12,7 @@
  *
  * <p>A <code>String</code> helper.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -94,7 +96,7 @@
      *
      * @return the concataneted <code>String</code>.
      */
-    def(me, 'concat', function() {
+    exports.concat = def(me, 'concat', function() {
         return slice.call(arguments).join(kEmpty);
     });
 
@@ -119,7 +121,7 @@
      *
      * @return the formated <code>String</code>.
      */
-    def(me, 'format', function() {
+    exports.format = def(me, 'format', function() {
         var args = arguments;
 
         if (args.length === 0) {
@@ -155,7 +157,7 @@
      *
      * @return a <strong>GUID</strong>.
      */
-    def(me, 'generateGuid', function() {
+    exports.generateGuid = def(me, 'generateGuid', function() {
         return (
             (new Date()).getTime() + Math.random() * (1 << kGuidShift)
         ).toString(kGuidRadix).replace(kDecimalPoint, kEmpty);
@@ -178,7 +180,7 @@
      *
      * @return the generated <code>String</code>.
      */
-    def(me, 'generateRandom', function(length) {
+    exports.generateRandom = def(me, 'generateRandom', function(length) {
         var buffer       = [];
         var chars        = kRandomCharFeed;
         var charsLength  = chars.length;
@@ -222,7 +224,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'printf', function(str) {
+    exports.printf = def(me, 'printf', function(str) {
         var buffer    = [];
         var index     = kReplaceParameterStartIndex;
         var lastMatch = 0;
@@ -273,7 +275,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'remove', function(str, regExp) {
+    exports.remove = def(me, 'remove', function(str, regExp) {
         return concat(kEmpty, str).replace(regExp, kEmpty);
     });
 
@@ -299,7 +301,7 @@
          *
          * @return the processed <code>String</code>.
          */
-        def(me, 'trim', function(str, shouldCompact) {
+        exports.trim = def(me, 'trim', function(str, shouldCompact) {
             var s           = concat(kEmpty, str);
             var willCompact = shouldCompact || false;
 
@@ -308,7 +310,7 @@
                 s.trim();
         });
     } else {
-        def(me, 'trim', function(str, shouldCompact) {
+        exports.trim = def(me, 'trim', function(str, shouldCompact) {
             var s           = concat(kEmpty, str);
             var willCompact = shouldCompact || false;
 
@@ -339,7 +341,7 @@
      *
      * @see String.trim
      */
-    def(me, 'compact', function(str) {
+    exports.compact = def(me, 'compact', function(str) {
         return strim(concat(kEmpty, str), true);
     });
 }(this.o2));

@@ -142,9 +142,6 @@
         return processMap([kEmpty, str].join(kEmpty), decodeMap);
     });
 
-...............................
-...............................
-
     /**
      * @function {static} o2.String.encode
      *
@@ -164,7 +161,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'encode', function(str) {
+    exports.encode = def(me, 'encode', function(str) {
         return processMap([kEmpty, str].join(kEmpty), encodeMap);
     });
 
@@ -175,7 +172,7 @@
      *
      * @see o2.String.encode
      */
-    alias(me, 'htmlEncode', 'encode');
+    exports.htmlEncoce = alias(me, 'htmlEncode', 'encode');
 
     /**
      * @function {static} o2.String.encodeSafeHtml
@@ -196,7 +193,7 @@
      *
      * @see o2.String.encode
      */
-    def(me, 'encodeSafeHtml', function(str) {
+    exports.safeHtml = def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
             tempDiv = createElement(kContainer);
         }
@@ -215,7 +212,7 @@
      *
      * @see o2.String.encodeSafeHtml
      */
-    alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
+    exports.safeHtmlEncode = alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
 
     /**
      * @function {static} o2.String.escape
@@ -226,7 +223,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'escape', function(str) {
+    exports.escape = def(me, 'escape', function(str) {
         return encodeURIComponent([kEmpty, str].join(kEmpty));
     });
 
@@ -239,7 +236,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'unescape', function(str) {
+    exports.unescape = def(me, 'unescape', function(str) {
         return decodeURIComponent([kEmpty, str].join(kEmpty));
     });
 
@@ -265,7 +262,8 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'xssEncode', function(str, isAmpersandsPreserved) {
+    exports.xssEncoce = def(me, 'xssEncode', function(str,
+                isAmpersandsPreserved) {
         return processMap([kEmpty, str].join(kEmpty),
             !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
         );

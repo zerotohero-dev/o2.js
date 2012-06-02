@@ -16,7 +16,7 @@
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;

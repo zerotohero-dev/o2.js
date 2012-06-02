@@ -12,13 +12,15 @@
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -35,7 +37,7 @@
     /**
     * @struct {static} o2.Event.keyCode
     */
-    def(me, 'keyCode', {
+    exports.keyCode = def(me, 'keyCode', {
 
         /**
          * @property {static const Integer}
@@ -175,4 +177,6 @@
          */
         COMMA : 188
     });
+
+    return exports;
 }(this.o2));

@@ -12,13 +12,15 @@
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -64,7 +66,7 @@
      * </pre>
      *
      */
-    def(me, 'encode', function(collection) {
+    exports.encode = def(me, 'encode', function(collection) {
         var key    = null;
         var buffer = [];
 
@@ -99,7 +101,7 @@
      * @return the parsed <strong>query string</strong> as a {name1:value1,
      * name2:value2} <code>Object</code>.
      */
-    def(me, 'parse', function(url) {
+    exports.parse = def(me, 'parse', function(url) {
         var args  = {};
         var href  = url || location.href;
         var index = href.indexOf(kQuery);
@@ -122,4 +124,6 @@
 
         return args;
     });
+
+    return exports;
 }(this.o2, this));

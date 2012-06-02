@@ -529,7 +529,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenByAttribute = def(me, 'getChildrenByAttribute', function(elm, attribute, value, name) {
+    exports.getChildrenByAttribute = def(me, 'getChildrenByAttribute', function(
+                elm, attribute, value, name) {
         // TODO: this comment will be irrelevant after fixing
         // https://github.com/v0lkan/o2.js/issues/58
         //
@@ -566,13 +567,11 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenByAttributeUntil = def(me, 'getChildrenByAttributeUntil', function(elm, attribute, value,
-            until, name) {
+    exports.getChildrenByAttributeUntil = def(me, 'getChildrenByAttributeUntil',
+            function(elm, attribute, value, until, name) {
         return execFilter(elm, getChildNodes, [name],
             isAttributeEquals, [attribute, value], isNodeEquals, [until]);
     });
-
-    var getChildrenByClass = null; 
 
     if (isNativeQuerySupported) {
 
@@ -598,7 +597,8 @@
          * @return an <code>Array</code> of nodes, if found; and empty
          * <code>Array</code> if nothing is found.
          */
-        getChildrenByClass = def(me, 'getChildrenByClass', function(elm, className, name) {
+        exports.getChildrenByClass = def(me, 'getChildrenByClass', function(
+                    elm, className, name) {
             var el = $(elm);
 
             // NOTE: IE7+ supports child selector ( > ),
@@ -623,7 +623,8 @@
             );
         });
     } else {
-        getChildrenByClass = def(me, 'getChildrenByClass', function(elm, className, name) {
+        exports.getChildrenByClass = def(me, 'getChildrenByClass', function(elm,
+                    className, name) {
             return execFilter(elm, getChildNodes, [name],
                 hasClassName, [className]);
         });
@@ -654,7 +655,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenByClassUntil = def(me, 'getChildrenByClassUntil', function(elm, className, until, name) {
+    exports.getChildrenByClassUntil = def(me, 'getChildrenByClassUntil',
+                function(elm, className, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasClassName, [className], isNodeEquals, [until]);
     });
@@ -682,7 +684,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenUntil = def(me, 'getChildrenUntil', function(elm, until, name) {
+    exports.getChildrenUntil = def(me, 'getChildrenUntil', function(elm, until,
+                name) {
         return execFilter(elm, getChildNodes, [name],
             null, [], isNodeEquals, [until]);
     });
@@ -709,7 +712,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithAttribute = def(me, 'getChildrenWithAttribute', function(elm, attribute, name) {
+    exports.getChildrenWithAttribute = def(me, 'getChildrenWithAttribute',
+                function(elm, attribute, name) {
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute]);
     });
@@ -739,7 +743,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithAttributeUntil = def(me, 'getChildrenWithAttributeUntil', function(elm, attribute, until,
+    exports.getChildrenWithAttributeUntil = def(me,
+                'getChildrenWithAttributeUntil', function(elm, attribute, until,
                 name) {
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute], isNodeEquals, [until]);
@@ -765,7 +770,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithClass = def(me, 'getChildrenWithClass', function(elm, name) {
+    exports.getChildrenWithClass = def(me, 'getChildrenWithClass', function(elm,
+                name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
     });
 
@@ -792,7 +798,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithClassUntil = def(me, 'getChildrenWithClassUntil', function(elm, until, name) {
+    exports.getChildrenWithClassUntil = def(me, 'getChildrenWithClassUntil',
+                function(elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasClassAttribute, [], isNodeEquals, [until]);
     });
@@ -817,7 +824,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithId = def(me, 'getChildrenWithId', function(elm, name) {
+    exports.getChildrenWithId = def(me, 'getChildrenWithId', function(elm,
+                name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
     });
 
@@ -844,7 +852,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getChildrenWithIdUntil = def(me, 'getChildrenWithIdUntil', function(elm, until, name) {
+    exports.getChildrenWithIdUntil = def(me, 'getChildrenWithIdUntil', function(
+                elm, until, name) {
         return execFilter(elm, getChildNodes, [name],
             hasIdAttribute, [], isNodeEquals, [until]);
     });
@@ -869,7 +878,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElements = def(me, 'getElements', function(elm, name) {
+    exports.getElements = def(me, 'getElements', function(elm, name) {
         var target = $(elm);
 
         if (!target) {
@@ -930,7 +939,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElementsByClass = def(me, 'getElementsByClass', function(elm, className, name) {
+    exports.getElementsByClass = def(me, 'getElementsByClass', function(elm,
+                className, name) {
         return execFilter(elm, getElements, [name], hasClassName, [className]);
     });
 
@@ -956,7 +966,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElementsWithAttribute = def(me, 'getElementsWithAttribute', function(elm, attribute, name) {
+    exports.getElementsWithAttribute = def(me, 'getElementsWithAttribute',
+                function(elm, attribute, name) {
         return execFilter(elm, getElements, [name],
             hasAttribute, [attribute], null, []);
     });
@@ -982,7 +993,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElementsWithClass = def(me, 'getElementsWithClass', function(elm, name) {
+    exports.getElementsWithClass = def(me, 'getElementsWithClass', function(
+                elm, name) {
         return execFilter(elm, getElements, [name],
             hasClassAttribute, [], null, []);
     });
@@ -1008,7 +1020,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getElementsWithId = def(me, 'getElementsWithId', function(elm, name) {
+    exports.getElementsWithId = def(me, 'getElementsWithId', function(elm,
+                name) {
         return execFilter(elm, getElements, [name], hasIdAttribute, []);
     });
 
@@ -1032,7 +1045,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblings = def(me, 'getSiblings', function(elm, name) {
+    exports.getSiblings = def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
     });
 
@@ -1059,7 +1072,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsByAttribute = def(me, 'getSiblingsByAttribute', function(elm, attribute, value, name) {
+    exports.getSiblingsByAttribute = def(me, 'getSiblingsByAttribute', function(
+                elm, attribute, value, name) {
         return !elm ? [] : getChildrenByAttribute(elm.parentNode,
             attribute, value, name);
     });
@@ -1090,8 +1104,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsByAttributeUntil = def(me, 'getSiblingsByAttributeUntil', function(elm, attribute, value,
-            until, name) {
+    exports.getSiblingsByAttributeUntil = def(me, 'getSiblingsByAttributeUntil',
+                function(elm, attribute, value, until, name) {
         return !elm ? [] : getChildrenByAttributeUntil(elm.parentNode,
             attribute, value, until, name);
     });
@@ -1116,7 +1130,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsByClass = def(me, 'getSiblingsByClass', function(elm, name) {
+    exports.getSiblingsByClass = def(me, 'getSiblingsByClass', function(elm,
+                name) {
         return !elm ? [] : getChildrenByClass(elm.parentNode, name);
     });
 
@@ -1144,7 +1159,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsByClassUntil = def(me, 'getSiblingsByClassUntil', function(elm, until, name) {
+    exports.getSiblingsByClassUntil = def(me, 'getSiblingsByClassUntil',
+                function(elm, until, name) {
         return !elm ? [] : getChildrenByClassUntil(elm.parentNode, until,
             name);
     });
@@ -1172,7 +1188,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsUntil = def(me, 'getSiblingsUntil',  function(elm, until, name) {
+    exports.getSiblingsUntil = def(me, 'getSiblingsUntil',  function(elm,
+                until, name) {
         return !elm ? [] : getChildrenUntil(elm.parentNode, until, name);
     });
 
@@ -1198,7 +1215,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithAttribute = def(me, 'getSiblingsWithAttribute',  function(elm, attribute, name) {
+    exports.getSiblingsWithAttribute = def(me, 'getSiblingsWithAttribute',
+                function(elm, attribute, name) {
         return !elm ? [] : getChildrenWithAttribute(elm.parentNode,
             attribute, name);
     });
@@ -1228,8 +1246,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithAttributeUntil = def(me, 'getSiblingsWithAttributeUntil',  function(elm, attribute, until,
-                name) {
+    exports.getSiblingsWithAttributeUntil = def(me,
+                'getSiblingsWithAttributeUntil',  function(elm, attribute,
+                until, name) {
         return !elm ? [] : getChildrenWithAttributeUntil(elm.parentNode,
             attribute, until, name);
     });
@@ -1255,7 +1274,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithClass = def(me, 'getSiblingsWithClass',  function(elm, name) {
+    exports.getSiblingsWithClass = def(me, 'getSiblingsWithClass',  function(
+                elm, name) {
         return !elm ? [] : getChildrenWithClass(elm.parentNode, name);
     });
 
@@ -1282,7 +1302,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithClassUntil = def(me, 'getSiblingsWithClassUntil',  function(elm, until, name) {
+    exports.getSiblingsWithClassUntil = def(me, 'getSiblingsWithClassUntil',
+                function(elm, until, name) {
         return !elm ? [] : getChildrenWithClassUntil(elm.parentNode, until,
             name);
     });
@@ -1308,7 +1329,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithId = def(me, 'getSiblingsWithId',  function(elm, name) {
+    exports.getSiblingsWithId = def(me, 'getSiblingsWithId',  function(elm,
+                name) {
         return !elm ? [] : getChildrenWithId(elm.parentNode, name);
     });
 
@@ -1335,7 +1357,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    var getSiblingsWithIdUntil = def(me, 'getSiblingsWithIdUntil',  function(elm, until, name) {
+    exports.getSiblingsWithIdUntil = def(me, 'getSiblingsWithIdUntil',
+                function(elm, until, name) {
         return !elm ? [] : getChildrenWithIdUntil(elm.parentNode, until, name);
     });
 
@@ -1359,7 +1382,7 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    var getFirst = def(me, 'getFirst', function(elm, name) {
+    exports.getFirst = def(me, 'getFirst', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
     });
 
@@ -1386,7 +1409,8 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    var getFirstByAttribute = def(me, 'getFirstByAttribute', function(elm, attribute, value, name) {
+    exports.getFirstByAttribute = def(me, 'getFirstByAttribute', function(elm,
+                attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true);
     });
@@ -1413,7 +1437,8 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstByClass', function(elm, className, name) {
+    exports.getFirstByClass = def(me, 'getFirstByClass', function(elm,
+                className, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, true);
     });
@@ -1445,7 +1470,8 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstWithAttribute', function(elm, attribute, name) {
+    exports.getFirstWithAttribute = def(me, 'getFirstWithAttribute', function(
+                elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, 0, true);
     });
@@ -1476,7 +1502,8 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstWithClass', function(elm, name) {
+    exports.getFirstWithClass = def(me, 'getFirstWithClass', function(elm,
+                name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             null, [], name, null, 0, true);
     });
@@ -1507,7 +1534,7 @@
      * @return the first sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstWithId', function(elm, name) {
+    exports.getFirstWithId = def(me, 'getFirstWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, true);
     });
@@ -1537,7 +1564,7 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChild', function(elm, name) {
+    exports.getFirstChild = def(me, 'getFirstChild', function(elm, name) {
         if (!elm) {
             return null;
         }
@@ -1568,7 +1595,8 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChildByAttribute', function(elm, attribute, value, name) {
+    exports.getFirstChildByAttribute = def(me, 'getFirstChildByAttribute',
+                function(elm, attribute, value, name) {
         if (!elm) {
             return null;
         }
@@ -1598,7 +1626,8 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChildByClass', function(elm, className, name) {
+    exports.getFirstChildByClass = def(me, 'getFirstChildByClass', function(elm,
+                className, name) {
         if (!elm) {
             return null;
         }
@@ -1628,7 +1657,8 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChildWithAttribute', function(elm, attribute, name) {
+    exports.getFirstChildWithAttribute = def(me, 'getFirstChildWithAttribute',
+                function(elm, attribute, name) {
         if (!elm) {
             return null;
         }
@@ -1657,7 +1687,8 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChildWithClass', function(elm, name) {
+    exports.getFirstChildWithClass = def(me, 'getFirstChildWithClass', function(
+                elm, name) {
         if (!elm) {
             return null;
         }
@@ -1686,7 +1717,8 @@
      * @return the first child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getFirstChildWithId', function(elm, name) {
+    exports.getFirstChildWithId = def(me, 'getFirstChildWithId', function(elm,
+                name) {
         if (!elm) {
             return null;
         }
@@ -1714,7 +1746,7 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLast', function(elm, name) {
+    exports.getLast = def(me, 'getLast', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name,
             null, 0, true, true);
     });
@@ -1747,7 +1779,8 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastByAttribute', function(elm, attribute, value, name) {
+    exports.getLastByAttribute = def(me, 'getLastByAttribute', function(elm,
+                attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true, true);
     });
@@ -1779,7 +1812,8 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastByClass', function(elm, className, name) {
+    exports.getLastByClass = def(me, 'getLastByClass', function(elm, className,
+                name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, true, true);
     });
@@ -1810,7 +1844,7 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastWithId', function(elm, name) {
+    exports.getLastWithId = def(me, 'getLastWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, true, true);
     });
@@ -1842,7 +1876,8 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastWithAttribute', function(elm, attribute, name) {
+    exports.getLastWithAttribute = def(me, 'getLastWithAttribute', function(
+                elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, 0, true, true);
     });
@@ -1874,7 +1909,8 @@
      * @return the last sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastWithClass', function(elm, className, name) {
+    exports.getLastWithClass = def(me, 'getLastWithClass', function(elm,
+                className, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, true, true);
     });
@@ -1904,7 +1940,7 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChild', function(elm, name) {
+    exports.getLastChild = def(me, 'getLastChild', function(elm, name) {
         if (!elm) {
             return null;
         }
@@ -1935,7 +1971,8 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChildByAttribute', function(elm, attribute, value, name) {
+    exports.getLastChildByAttribute = def(me, 'getLastChildByAttribute',
+                function(elm, attribute, value, name) {
         if (!elm) {
             return null;
         }
@@ -1965,7 +2002,8 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChildByClass', function(elm, className, name) {
+    exports.getLastChildByClass = def(me, 'getLastChildByClass', function(elm,
+                className, name) {
         if (!elm) {
             return null;
         }
@@ -1995,7 +2033,8 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChildWithAttribute', function(elm, attribute, name) {
+    exports.getLastChildWithAttribute = def(me, 'getLastChildWithAttribute',
+                function(elm, attribute, name) {
         if (!elm) {
             return null;
         }
@@ -2025,7 +2064,8 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChildWithClass', function(elm, className, name) {
+    exports.getLastChildWithClass = def(me, 'getLastChildWithClass', function(
+                elm, className, name) {
         if (!elm) {
             return null;
         }
@@ -2054,7 +2094,8 @@
      * @return the last child available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getLastChildWithId', function(elm, name) {
+    exports.getLastChildWithId = def(me, 'getLastChildWithId', function(elm,
+                name) {
         if (!elm) {
             return null;
         }
@@ -2082,7 +2123,7 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNext', function(elm, name) {
+    exports.getNext = def(me, 'getNext', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, 0);
     });
 
@@ -2109,7 +2150,8 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNextByAttribute', function(elm, attribute, value, name) {
+    exports.getNextByAttribute = def(me, 'getNextByAttribute', function(elm,
+                attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0);
     });
@@ -2136,7 +2178,8 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNextByClass', function(elm, className, name) {
+    exports.getNextByClass = def(me, 'getNextByClass', function(elm, className,
+                name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0);
     });
@@ -2163,7 +2206,8 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNextWithAttribute', function(elm, attribute, name) {
+    exports.getNextWithAttribute = def(me, 'getNextWithAttribute', function(
+                elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, 0);
     });
@@ -2189,7 +2233,7 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNextWithClass', function(elm, name) {
+    exports.getNextWithClass = def(me, 'getNextWithClass', function(elm, name) {
         return getNextSiblings(elm,hasClassAttribute, [],
             null, [], name, null, 0);
     });
@@ -2215,7 +2259,7 @@
      * @return the next sibling available with the given criteria, if found;
      * <code>null</code> otherwise.
      */
-    def(me, 'getNextWithId', function(elm, name) {
+    exports.getNextWithId = def(me, 'getNextWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0);
     });
@@ -2241,7 +2285,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAll', function(elm, name) {
+    exports.getNextAll = def(me, 'getNextAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name);
     });
 
@@ -2273,7 +2317,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllByAttribute', function(elm, attribute, value, name) {
+    exports.getNextAllByAttribute = def(me, 'getNextAllByAttribute', function(
+                elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name);
     });
@@ -2305,8 +2350,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllByAttributeUntil', function(elm, attribute, value, until,
-                name) {
+    exports.getNextAllByAttributeUntile = def(me, 'getNextAllByAttributeUntil',
+                function(elm, attribute, value, until, name) {
         return getNextSiblings(elm,
             isAttributeEquals, [attribute, value], isNodeEquals, [until], name);
     });
@@ -2333,7 +2378,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllByClass', function(elm, className, name) {
+    exports.getNextAllByClass = def(me, 'getNextAllByClass', function(elm,
+                className, name) {
         return getNextSiblings(elm, hasClassName, [className], null, [], name);
     });
 
@@ -2363,7 +2409,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllByClassUntil', function(elm, className, until, name) {
+    exports.getNextAllByClassUntil = def(me, 'getNextAllByClassUntil', function(
+                elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
             isNodeEquals, [until], name);
     });
@@ -2391,7 +2438,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllUntil', function(elm, until, name) {
+    exports.getNextAllUntil = def(me, 'getNextAllUntil', function(elm, until,
+                name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until], name);
     });
 
@@ -2417,7 +2465,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithAttribute', function(elm, attribute, name) {
+    exports.getNextAllWithAttribute = def(me, 'getNextAllWithAttribute',
+                function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [], name);
     });
 
@@ -2447,8 +2496,9 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithAttributeUntil', function(elm, attribute, until,
-                name) {
+    exports.getNextAllWithAttributeUntil = def(me,
+                'getNextAllWithAttributeUntil',
+                function(elm, attribute, until, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             isNodeEquals, [until], name);
     });
@@ -2474,7 +2524,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithClass', function(elm, name) {
+    exports.getNextAllWithClass = def(me, 'getNextAllWithClass', function(elm,
+                name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [], name);
     });
 
@@ -2502,7 +2553,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithClassUntil', function(elm, until, name) {
+    exports.getNextAllWithClassUntil = def(me, 'getNextAllWithClassUntil',
+                function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             isNodeEquals, [until], name);
     });
@@ -2528,7 +2580,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithId', function(elm, name) {
+    exports.getNextAllWithId = def(me, 'getNextAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [], null, [], name);
     });
 
@@ -2556,7 +2608,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getNextAllWithIdUntil', function(elm, until, name) {
+    exports.getNextAllWithIdUntil = def(me, 'getNextAllWithIdUntil', function(
+                elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [], isNodeEquals, [until],
             name);
     });
@@ -2583,7 +2636,7 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNth', function(elm, n, name) {
+    exports.getNth = def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
     });
 
@@ -2613,7 +2666,8 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthByAttribute', function(elm, attribute, value, n, name) {
+    exports.getNthByAttribute = def(me, 'getNthByAttribute', function(elm,
+                attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, n, true);
     });
@@ -2647,7 +2701,8 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthByClass', function(elm, className, n, name) {
+    exports.getNthByClass = def(me, 'getNthByClass', function(elm, className,
+                n, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, n, true);
     });
@@ -2680,7 +2735,8 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthWithAttribute', function(elm, attribute, n, name) {
+    exports.getNthWithAttribute = def(me, 'getNthWithAttribute', function(elm,
+                attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, n, true);
     });
@@ -2712,7 +2768,8 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthWithClass', function(elm, n, name) {
+    exports.getNthWithClass = def(me, 'getNthWithClass', function(elm, n,
+                name) {
         return getNextSiblings(elm, hasClassAttribute, [], null, [],
             name, null, n, true);
     });
@@ -2744,7 +2801,7 @@
      * @return the n<sup>th</sup> sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthWithId', function(elm, n, name) {
+    exports.getNthWithId = def(me, 'getNthWithId', function(elm, n, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n, true);
     });
@@ -2775,7 +2832,7 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChild', function(elm, n, name) {
+    exports.getNthChild = def(me, 'getNthChild', function(elm, n, name) {
         if (!elm) {
             return null;
         }
@@ -2807,7 +2864,8 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChildByAttribute', function(elm, attribute, value, n, name) {
+    exports.getNthChildByAttribute = def(me, 'getNthChildByAttribute', function(
+                elm, attribute, value, n, name) {
         if (!elm) {
             return null;
         }
@@ -2838,7 +2896,8 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChildByClass', function(elm, className, n, name) {
+    exports.getNthChildByClass = def(me, 'getNthChildByClass', function(elm,
+                className, n, name) {
         if (!elm) {
             return null;
         }
@@ -2869,7 +2928,8 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChildWithAttribute', function(elm, attribute, n, name) {
+    exports.getNthChildWithAttribute = def(me, 'getNthChildWithAttribute',
+                function(elm, attribute, n, name) {
         if (!elm) {
             return null;
         }
@@ -2899,7 +2959,8 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChildWithClass', function(elm, n, name) {
+    exports.getNthChildWithClass = def(me, 'getNthChildWithClass', function(
+                elm, n, name) {
         if (!elm) {
             return null;
         }
@@ -2929,7 +2990,8 @@
      * @return the n<sup>th</sup> child available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthChildWithId', function(elm, n, name) {
+    exports.getNthChildWithId = def(me, 'getNthChildWithId', function(elm, n,
+                name) {
         if (!elm) {
             return null;
         }
@@ -2958,7 +3020,7 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNext', function(elm, n, name) {
+    exports.getNthNext = def(me, 'getNthNext', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n);
     });
 
@@ -2986,7 +3048,8 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNextByAttribute', function(elm, attribute, value, n, name) {
+    exports.getNthNextByAttribute = def(me, 'getNthNextByAttribute', function(
+                elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, n);
     });
@@ -3014,7 +3077,8 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNextByClass', function(elm, className, n, name) {
+    exports.getNthNextByClass = def(me, 'getNthNextByClass', function(elm,
+                className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, n);
     });
@@ -3042,7 +3106,8 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNextWithAttribute', function(elm, attribute, n, name) {
+    exports.getNthNextWithAttribute = def(me, 'getNthNextWithAttribute',
+                function(elm, attribute, n, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, n);
     });

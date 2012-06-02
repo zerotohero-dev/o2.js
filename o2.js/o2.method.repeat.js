@@ -12,13 +12,15 @@
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -54,7 +56,7 @@
      * @return a <code>Function</code> that will only execute after being
      * called <strong>count</strong> times.
      */
-    def(me, 'after', function(count, delegate) {
+    exports.after = def(me, 'after', function(count, delegate) {
         if (count <= 0) {
             return;
         }
@@ -93,7 +95,7 @@
      *
      * @return a <code>Function</code> that will execute only once.
      */
-    def(me, 'once', function(delegate) {
+    exports.once = def(me, 'once', function(delegate) {
         var did = false;
         var cache = null;
 
@@ -139,11 +141,14 @@
      * @param {Object} payload - the <code>Object</code> to pass to the
      * <strong>delegate</strong> as a second argument.
      */
-    def(me, 'times', function(count, delegate, context, payload) {
+    exports.times = def(me, 'times', function(count, delegate, context,
+                payload) {
         var i = 0;
 
         for (i = 0; i < count; i++) {
             delegate.apply(context, [i, payload]);
         }
     });
+
+    return exports;
 }(this.o2));
