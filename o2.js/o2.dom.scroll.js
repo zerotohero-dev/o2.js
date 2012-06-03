@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 20:13:35.975675
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A window/div scroll helper.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -58,7 +60,8 @@
          * @return the the <strong>window</strong>'s scroll offset in the form
          * <code>{left: l, top: t}</code>.
          */
-        def(me, 'getWindowScrollOffset', function() {
+        exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
+                    function() {
             var db = document.body;
 
             var left = 0;
@@ -80,7 +83,8 @@
             };
         });
     } else {
-        def(me, 'getWindowScrollOffset', function() {
+        exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
+                    function() {
             var db = document.body;
 
             var left = 0;
@@ -103,10 +107,10 @@
     /*
      *
      */
-    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
+    var getWindowScrollOffset = require(me, 'getWindowScrollOffset');
 
     /**
-     * @function {static} o2.Dom.getObjectScrollOfset
+     * @function {static} o2.Dom.getObjectScrollOffset
      *
      * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
      *
@@ -122,11 +126,12 @@
      * @return the the <strong>DOM</strong> object's scroll offset in the form
      * <code>{left: l, top: t}</code>.
      */
-    def(me, 'getObjectScrollOfset', function(obj) {
+    exports.getObjectScrollOffset = def(me, 'getObjectScrollOffset',
+                function(obj) {
         var item = $(obj);
 
         if (obj === window) {
-            return getWindowScrollOffset(item);
+            return getWindowScrollOffset();
         }
 
         return {
@@ -136,13 +141,14 @@
     });
 
     /**
-     * @function {static} o2.Dom.getStrollOffset
+     * @function {static} o2.Dom.getScrollOffset
      *
      * <p>An alias to {@link o2.Dom.getObjectStrollOffset}.</p>
      *
-     * @see {o2.Dom.getObjectScrollOffset}
+     * @see o2.Dom.getObjectScrollOffset
      */
-    alias(me, 'getScrollOffset', 'getObjectScrollOfset');
+    exports.getScrollOffset = alias(me, 'getScrollOffset',
+        'getObjectScrollOfset');
 
     if (de) {
 
@@ -157,7 +163,8 @@
          *
          * <p>Scrolls window to bottom.</p>
          */
-        def(me, 'scrollWindowToBottom', function() {
+        exports.scrollWindowToBottom = def(me, 'scrollWindowToBottom',
+                    function() {
             var db = document.body;
 
             if (!db) {
@@ -168,7 +175,8 @@
             de.scrollTop = de.scrollHeight;
         });
     } else {
-        def(me, 'scrollWindowToBottom', function() {
+        exports.scrollWindowToBottom = def(me, 'scrollWindowToBottom',
+                    function() {
             var db = document.body;
 
             if (!db) {
@@ -182,7 +190,7 @@
     /*
      *
      */
-    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
+    var scrollWindowToBottom = require(me, 'scrollWindowToBottom');
 
     if (de) {
 
@@ -197,7 +205,7 @@
          *
          * <p>Scrolls window to top.</p>
          */
-        def(me, 'scrollWindowToTop', function() {
+        exports.scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
             if (!db) {
@@ -208,7 +216,7 @@
             de.scrollTop = 0;
         });
     } else {
-        def(me, 'scrollWindowToTop', function() {
+        exports.scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
             if (!db) {
@@ -222,7 +230,7 @@
     /*
      *
      */
-    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
+    var scrollWindowToTop = require(me, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.Dom.scrollObjectToTop
@@ -238,7 +246,7 @@
      * @param {Object} obj - the element, or the <strong>id</strong> of the
      * element, to scroll.
      */
-    def(me, 'scrollObjectToTop', function(obj) {
+    exports.scrollObjectToTop = def(me, 'scrollObjectToTop', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -266,7 +274,8 @@
      * @param {Object} obj - the element, or the <strong>id</strong> of it, to
      * scroll.
      */
-    def(me, 'scrollObjectToBottom', function(obj) {
+    exports.scrollObjectToBottom = def(me, 'scrollObjectToBottom',
+                function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -287,7 +296,7 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    def(me, 'scrollTo', function(obj) {
+    exports.scrollTo = def(me, 'scrollTo', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -310,7 +319,7 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    alias(me, 'scrollWindowToObject', 'scrollTo');
+    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject', 'scrollTo');
 
     /**
      * @function {static} o2.Dom.scrollToObject
@@ -319,5 +328,5 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    alias(me, 'scrollToObject', 'scrollTo');
+    exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this, this.document));

@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 21:15:14.277191
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -23,6 +23,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -82,7 +84,8 @@
          *
          * @throws exception - if <strong>fn</strong> callback is not defined.
          */
-        def(me, 'addEventListener', function(node, evt, fn) {
+        exports.addEventListener = def(me, 'addEventListener', function(node,
+                    evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -122,7 +125,8 @@
          *
          * @throws Exception - if <strong>fn</strong> callback is not defined.
          */
-        def(me, 'removeEventListener', function(node, evt, fn) {
+        exports.removeEventListener = def(me, 'removeEventListener', function(
+                    node, evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -136,7 +140,8 @@
             obj.removeEventListener(evt, fn, false);
         });
     } else if (isAttachEvent) {
-        def(me, 'addEventListener', function(node, evt, fn) {
+        exports.addEventListener = def(me, 'addEventListener', function(node,
+                    evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -150,7 +155,8 @@
             obj.attachEvent(concat(kOn, evt), fn);
         });
 
-        def(me, 'removeEventListener', function(node, evt, fn) {
+        exports.removeEventListener = def(me, 'removeEventListener', function(
+                    node, evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -164,7 +170,8 @@
             obj.detachEvent(concat(kOn, evt), fn);
         });
     } else {
-        def(me, 'addEventListener', function(node, evt, fn) {
+        exports.addEventListener = def(me, 'addEventListener', function(node,
+                    evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -178,7 +185,8 @@
             obj[concat(kOn, evt)] = fn;
         });
 
-        def(me, 'removeEventListener', function(node, evt, fn) {
+        exports.removeEventListener = def(me, 'removeEventListener', function(
+                    node, evt, fn) {
             var obj = $(node);
 
             if (!obj) {
@@ -194,10 +202,10 @@
     }
 
     //TODO: add documentation, add to meta defs:
-    alias(me, 'on', 'addEventListener');
+    exports.on = alias(me, 'on', 'addEventListener');
 
     //TODO: add documentation, add to meta defs:
-    alias(me, 'off', 'removeEventListener');
+    exports.off = alias(me, 'off', 'removeEventListener');
 
     /*
      *
@@ -229,7 +237,8 @@
      * @throws Exception - if the <strong>handler</strong> callback is not
      * defined.
      */
-    def(me, 'addEventListeners', function(collection, eventName, handler) {
+    exports.addEventListeners = def(me, 'addEventListeners', function(collection,
+                eventName, handler) {
         if (!collection) {
             return;
         }
@@ -264,7 +273,7 @@
          *
          * @return the actual <code>DOM Event</code> object.
          */
-        def(me, 'getEventObject', function() {
+        exports.getEventObject = def(me, 'getEventObject', function() {
            return windowEventHandle;
         });
 
@@ -286,15 +295,15 @@
          *
          * @return the actual <strong>DOM</strong> target of the event object.
          */
-        def(me, 'getTarget', function() {
+        exports.getTarget = def(me, 'getTarget', function() {
             return windowEventHandle.srcElement;
         });
     } else {
-        def(me, 'getEventObject', function(evt) {
+        exports.getEventObject = def(me, 'getEventObject', function(evt) {
            return evt;
         });
 
-        def(me, 'getTarget', function(evt) {
+        exports.getTarget = def(me, 'getTarget', function(evt) {
             return evt ? evt.target : null;
         });
     }
@@ -325,7 +334,7 @@
      * with the event as an <code>Integer</code>, if found; <code>0</code>
      * otherwise.
      */
-    def(me, 'getKeyCode', function(evt) {
+    exports.getKeyCode = def(me, 'getKeyCode', function(evt) {
         var e = getEventObject(evt);
 
         if (!e) {
@@ -417,7 +426,7 @@
      * where <code>x</code> is the distance from the top of the screen, and
      * <code>y</code> is the distance from the left of the screen.
      */
-    def(me, 'getMouseCoordinates', function(evt) {
+    exports.getMouseCoordinates = def(me, 'getMouseCoordinates', function(evt) {
         return getMouseCoordinates(evt);
     });
 
@@ -443,13 +452,13 @@
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link Event.addEventListener}
          */
-        def(me, 'preventDefault', function() {
+        exports.preventDefault = def(me, 'preventDefault', function() {
             windowEventHandle.returnValue = false;
 
             return false;
         });
     } else {
-        def(me, 'preventDefault', function(evt) {
+        exports.preventDefault = def(me, 'preventDefault', function(evt) {
             if (!evt) {
                 return false;
             }
@@ -495,11 +504,11 @@
          * @param {Event} evt - the actual <code>DOM Event</code> object used
          * internally in {@link Event.addEventListener}
          */
-        def(me, 'stopPropagation', function() {
+        exports.stopPropagation = def(me, 'stopPropagation', function() {
             windowEventHandle.cancelBubble = true;
         });
     } else {
-        def(me, 'stopPropagation', function(evt) {
+        exports.stopPropagation = def(me, 'stopPropagation', function(evt) {
             if (!evt) {
                 return;
             }

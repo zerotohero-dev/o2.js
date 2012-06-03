@@ -8,13 +8,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-11 17:10:55.274015
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -108,7 +110,8 @@
     *
     * @see o2.Ajax.get
     */
-    def(me, 'getSingle', function(url, parameters, callbacks) {
+    exports.getSingle = def(me, 'getSingle', function(url, parameters,
+                callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = getCache[token];
@@ -163,7 +166,8 @@
     *
     * @see o2.Ajax.post
     */
-    def(me, 'postSingle', function(url, parameters, callbacks) {
+    exports.postSingle = def(me, 'postSingle', function(url, parameters,
+                callbacks) {
         var token = prepareToken(url, parameters);
 
         var request = postCache[token];

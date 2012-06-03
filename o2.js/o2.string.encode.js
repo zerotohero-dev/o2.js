@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 20:48:18.034161
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
  */
-(function(framework, document, undefined) {
+(function(framework, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var alias     = attr(_, 'alias');
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -136,7 +138,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'decode', function(str) {
+    exports.decode = def(me, 'decode', function(str) {
         return processMap([kEmpty, str].join(kEmpty), decodeMap);
     });
 
@@ -159,7 +161,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'encode', function(str) {
+    exports.encode = def(me, 'encode', function(str) {
         return processMap([kEmpty, str].join(kEmpty), encodeMap);
     });
 
@@ -170,7 +172,7 @@
      *
      * @see o2.String.encode
      */
-    alias(me, 'htmlEncode', 'encode');
+    exports.htmlEncode = alias(me, 'htmlEncode', 'encode');
 
     /**
      * @function {static} o2.String.encodeSafeHtml
@@ -191,7 +193,7 @@
      *
      * @see o2.String.encode
      */
-    def(me, 'encodeSafeHtml', function(str) {
+    exports.encodeSafeHtml = def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
             tempDiv = createElement(kContainer);
         }
@@ -210,7 +212,7 @@
      *
      * @see o2.String.encodeSafeHtml
      */
-    alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
+    exports.safeHtmlEncode = alias(me, 'safeHtmlEncode', 'encodeSafeHtml');
 
     /**
      * @function {static} o2.String.escape
@@ -221,7 +223,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'escape', function(str) {
+    exports.escape = def(me, 'escape', function(str) {
         return encodeURIComponent([kEmpty, str].join(kEmpty));
     });
 
@@ -234,7 +236,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'unescape', function(str) {
+    exports.unescape = def(me, 'unescape', function(str) {
         return decodeURIComponent([kEmpty, str].join(kEmpty));
     });
 
@@ -260,7 +262,8 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'xssEncode', function(str, isAmpersandsPreserved) {
+    exports.xssEncode = def(me, 'xssEncode', function(str,
+                isAmpersandsPreserved) {
         return processMap([kEmpty, str].join(kEmpty),
             !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
         );

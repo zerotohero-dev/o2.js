@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 16:57:55.616509
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object support checker.</p>
  */
-(function(framework, document, undefined) {
+(function(framework, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -69,7 +71,7 @@
      *
      * @throws Exception - if <code>o2.Ajax</code> does not exist.
      */
-    def(me, 'ajax', function() {
+    exports.ajax = def(me, 'ajax', function() {
         return !!require('Ajax', 'createXhr')();
     });
 
@@ -89,7 +91,7 @@
      *
      * @throws Exception - if <code>o2.Cookie</code> does not exist.
      */
-    def(me, 'cookie', function() {
+    exports.cookie = def(me, 'cookie', function() {
         var testCookieName = [myName, kTestCookiePrefix].join(kEmpty);
         var value = null;
 
@@ -128,7 +130,7 @@
      * @return <code>true</code> if <strong>DOM</strong> is supported,
      * <code>false</code> otherwise.
      */
-    def(me, 'dom', function() {
+    exports.dom = def(me, 'dom', function() {
         return isDomSupported;
     });
 }(this.o2, this.document));

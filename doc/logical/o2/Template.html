@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001338144770
+	                 version 0.25.a.0001338707672
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -113,10 +113,10 @@
  };
 
  var tpl = [
-      '<ul id="Products">',
+      'ul id="Products"',
           ['each users',
-              '<li>{{name}}</li>'],
-      '</ul>'
+              'li {{name}} /li'],
+      '/ul'
  ];
 
  var html = o2.Template.parse(data, tpl);
@@ -158,10 +158,10 @@
  };
 
  var tpl = [
-      '<ul id="Products">',
+      'ul id="Products"',
           ['each users',
-              '<li>{{name}}</li>'],
-      '</ul>'
+              'li {{name}} /li'],
+      '/ul'
  ];
 
  var html = o2.Template.parse(data, tpl);

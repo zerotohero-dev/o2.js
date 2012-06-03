@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 18:13:29.097751
+ *  lastModified: 2012-06-03 00:12:56.2888371
  * -->
  *
  * <p>A validation helper.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var obj       = attr(_, 'getObject');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -97,11 +99,11 @@
      * @return <code>true</code> if the <strong>object</strong>'s type matches
      * the <strong>type</strong> parameter, <code>false</code> otherwise.
      */
-    def(me, 'is', function(obj, type) {
+    exports.is = def(me, 'is', function(obj, type) {
         var klass = toString.call(obj).slice(
             kObjectNameStartIndex, kTrimLastBraceIndex);
 
-        return obj !== undefined && obj !== null && klass === type;
+        return obj !== UNDEFINED && obj !== null && klass === type;
     });
 
     var is = obj(me).is;
@@ -122,7 +124,7 @@
      * @return <code>true</code> if obj is an <code>arguments</code> object,
      * <code>false</code> otherwise.
      */
-    def(me, 'isArguments', function(obj) {
+    exports.isArguments = def(me, 'isArguments', function(obj) {
         return is(obj, kArguments);
     });
 
@@ -142,7 +144,7 @@
      * @return <code>true</code> if obj is an <code>Array</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isArray', function(obj) {
+    exports.isArray = def(me, 'isArray', function(obj) {
         return is(obj, kArray);
     });
 
@@ -163,7 +165,7 @@
      * @return <code>true</code> if obj is a <code>Boolean</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isBoolean', function(obj) {
+    exports.isBoolean = def(me, 'isBoolean', function(obj) {
         return obj === true || obj === false || is(obj, kBoolean);
     });
 
@@ -186,7 +188,7 @@
      * @return <code>true</code> if obj is a <code>Date</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isDate', function(objYear, objMonth, objDay) {
+    exports.isDate = def(me, 'isDate', function(objYear, objMonth, objDay) {
         var day    = objDay;
         var maxDay = 0;
         var month  = objMonth;
@@ -233,12 +235,12 @@
      * @return <code>true</code> if obj is a <code>Function</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isFunction', function(obj) {
+    exports.isFunction = def(me, 'isFunction', function(obj) {
         return is(obj, kFunction);
     });
 
     /**
-     * @function {static} o2.Validation.isNan
+     * @function {static} o2.Validation.isNaN
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -253,7 +255,7 @@
      * @return <code>true</code> if the item is <code>NaN</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isNaN', function(obj) {
+    exports.isNaN = def(me, 'isNaN', function(obj) {
 
         // NaN is the only value for which === is not reflexive.
         // JSLint whines about this, but it's normal.
@@ -276,7 +278,7 @@
      * @return <code>true</code> if the item is <code>null</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isNull', function(obj) {
+    exports.isNull = def(me, 'isNull', function(obj) {
         return obj === null;
     });
 
@@ -296,7 +298,7 @@
      * @return <code>true</code> if obj is a <code>Number</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isNumber', function(obj) {
+    exports.isNumber = def(me, 'isNumber', function(obj) {
         return is(obj, kNumber);
     });
 
@@ -316,7 +318,7 @@
      * @return <code>true</code> if the item is a numeric entity,
      * <code>false</code> otherwise.
      */
-    def(me, 'isNumeric', function(obj) {
+    exports.isNumeric = def(me, 'isNumeric', function(obj) {
         return !isNaN(parseFloat(obj)) && isFinite(obj);
     });
 
@@ -336,7 +338,7 @@
      * @return <code>true</code> if obj is an <code>Object</code> ({}),
      * <code>false</code> otherwise.
      */
-    def(me, 'isObject', function(obj) {
+    exports.isObject = def(me, 'isObject', function(obj) {
         return is(obj, kObject);
     });
 
@@ -356,7 +358,7 @@
      * @return <code>true</code> if obj is a <code>RegExp</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isRegExp', function(obj) {
+    exports.isRegExp = def(me, 'isRegExp', function(obj) {
         return is(obj, kRegExp);
     });
 
@@ -375,7 +377,7 @@
      *
      * @return true if obj is a String, false otherwise.
      */
-    def(me, 'isString', function(obj) {
+    exports.isString = def(me, 'isString', function(obj) {
         return is(obj, kString);
     });
 
@@ -395,7 +397,7 @@
      * @return <code>true</code> if the item is <code>undefined</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isUndefined', function(obj) {
+    exports.isUndefined = def(me, 'isUndefined', function(obj) {
         return obj === void 0;
     });
 
@@ -416,7 +418,7 @@
      * @return <code>true</code> if the item is a <code>window</code>,
      * <code>false</code> otherwise.
      */
-    def(me, 'isWindow', function(obj) {
+    exports.isWindow = def(me, 'isWindow', function(obj) {
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
 }(this.o2));

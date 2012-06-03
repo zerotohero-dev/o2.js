@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-12 15:41:57.048122
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -74,7 +76,7 @@
      * @return the value of the <strong>cookie</strong>; or <code>null</code>
      * if the <strong>cookie</strong> is not found.
      */
-    def(me, 'read', function(name) {
+    exports.read = def(me, 'read', function(name) {
         var ca = document.cookie.split(kDelimeter);
         var eq = concat(decodeURIComponent(name), kEmpty);
         var i  = 0;
@@ -114,7 +116,8 @@
      * @param {Boolean} isSecure - (optional) will the cookie be used for a
      * secure connection.
      */
-    def(me, 'save', function(name, value, days, path, domain, isSecure) {
+    exports.save = def(me, 'save', function(name, value, days, path, domain,
+                isSecure) {
         var d  = new Date();
         var ex = kEmpty;
 
@@ -148,7 +151,7 @@
     /*
      *
      */
-    var save = require(kModuleName, 'save');
+    var save = require(me, 'save');
 
     /**
      * @function {static} o2.Cookie.remove
@@ -168,7 +171,7 @@
      * @param {Boolean} isSecure - (optional) will the cookie be used for a
      * secure connection.
      */
-    def(me, 'remove', function(name, path, domain) {
+    exports.remove = def(me, 'remove', function(name, path, domain) {
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     });
 

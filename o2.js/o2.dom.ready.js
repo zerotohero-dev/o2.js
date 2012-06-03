@@ -8,13 +8,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 18:07:16.712860
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
 
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -231,7 +233,7 @@
      * @param {Function} delegate - the callback that's called when the DOM is
      * ready.
      */
-    def(me, 'ready', function(delegate) {
+    exports.ready = def(me, 'ready', function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
         if (isApplicationReady) {

@@ -183,8 +183,10 @@ conventions, variable namings, indentation, and the like.
 5. Make sure you are working on the **dev** branch.
 6. Create a thoughtfully-named topic branch containing your change.
 7. Implement your change.
-7. Push your branch.
-9. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
+8. [JSLint your code](http://jslint.com/).
+9. Run the **publish** script at `batch/publish.sh`.
+9. Push your branch.
+10. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
 
 #### A Step by Step Introduction
 
@@ -235,6 +237,34 @@ Forking **[o2.js][1]** is easy:
         $ git checkout dev
         $ git merge DocumentationReminder
         $ git branch -D DocumentationReminder
+
+* **[JSLint](http://jslint.com/)** your code and make sure that you haven't missed anything.
+There are also automated tools for most of the editors around, so that you will not need to
+copy and paste your code to <http://jslint.com> every time you want to **JSLint** it.
+
+The **JSLint** validation preferences that **[o2.js][1]** uses are as follows:
+
+        var JSLINT_PREFS = {
+            browser : true,
+            evil    : false,
+            laxbreak: true,
+            maxerr  : 1000,
+            newcap  : true,
+            nomen   : true,
+            passfail: false,
+            plusplus: true,
+            rhino   : true,
+            undef   : true,
+            vars    : true,
+            white   : true,
+            regexp  : true,
+            bitwise : true
+        };
+
+* Run the publish script.
+
+        cd {PATH_TO_YOUR_PROJECTS}/o2.js/batch/
+        sh publish.sh
 
 * Push your changes to the remote repository:
 

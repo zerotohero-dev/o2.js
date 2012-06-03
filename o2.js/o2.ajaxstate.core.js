@@ -7,19 +7,21 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 19:28:26.696598
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -181,7 +183,7 @@
      *
      * @param {Object} observer - the <code>Observer</code> to register.
      */
-    def(me, 'addObserver', function(observer) {
+    exports.addObserver = def(me, 'addObserver', function(observer) {
 
         //!
         // acquire(me, this, 'observer');
@@ -215,7 +217,7 @@
      *
      * @return the number of registered <code>Observer</code>s.
      */
-    def(me, 'countObservers', function() {
+    exports.countObservers = def(me, 'countObservers', function() {
         return getObservers(this).length;
     });
 
@@ -235,7 +237,7 @@
      *
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
-    def(me, 'deleteObserver', function(observer) {
+    exports.deleteObserver = def(me, 'deleteObserver', function(observer) {
         var i         = 0;
         var len       = 0;
         var observers = getObservers(this);
@@ -271,7 +273,7 @@
      * </pre>
      *
      */
-    def(me, 'deleteObservers', function() {
+    exports.deleteObservers = def(me, 'deleteObservers', function() {
         getObservers(this).length = 0;
     });
 
@@ -288,7 +290,7 @@
      * </pre>
      *
      */
-    def(me, 'init', function() {
+    exports.init = def(me, 'init', function() {
 
         // We use implicit this, instead of explicity using
         // o2.AjaxState.protecteds.listen, because o2.JsonpState inherits
@@ -310,7 +312,7 @@
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      */
-    def(me, 'timeoutObservers', function(observers) {
+    exports.timeoutObservers = def(me, 'timeoutObservers', function(observers) {
         timeoutObservers(this, observers);
     });
 
@@ -327,7 +329,7 @@
      * </pre>
      *
      */
-    def(me, 'timeoutAllObservers', function() {
+    exports.timeoutAllObservers = def(me, 'timeoutAllObservers', function() {
         timeoutObservers(this, getObservers(this));
     });
 

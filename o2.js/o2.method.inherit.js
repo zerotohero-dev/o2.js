@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 22:20:22.255189
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -80,7 +82,7 @@
      *
      * @return the overloaded <code>Function</code>.
      */
-    def(me, 'overload', function(object, name, fn) {
+    exports.overload = def(me, 'overload', function(object, name, fn) {
         var old = object[name];
 
         object[name] = function() {
@@ -124,7 +126,7 @@
      * @throws Excpetion if all of the arguments is not provided to the
      * <code>Function</code>.
      */
-    def(me, 'requireAllArguments', function(fn) {
+    exports.requireAllArguments = def(me, 'requireAllArguments', function(fn) {
         return function() {
 
             // throw an error if the arguments' length do not match.

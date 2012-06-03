@@ -7,18 +7,20 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Constant definitions for {@link o2.Dom}.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -37,7 +39,7 @@
      *
      * <code>DOM</code> node types.
      */
-    def(me, 'nodeType', {
+    exports.nodeType = def(me, 'nodeType', {
 
         /**
          * @property {static const Integer}

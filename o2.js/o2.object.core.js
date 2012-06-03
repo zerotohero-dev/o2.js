@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 16:50:53.746042
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -23,6 +23,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -78,7 +80,7 @@
      *
      * @see o2.Collection.union
      */
-    def(me, 'copy', function(child, base) {
+    exports.copy = def(me, 'copy', function(child, base) {
         var key = null;
 
         for (key in base) {
@@ -110,7 +112,7 @@
      * @param {Object} base - the base <strong>object</strong> to copy
      * methods from.
      */
-    def(me, 'copyMethods', function(child, base) {
+    exports.copyMethods = def(me, 'copyMethods', function(child, base) {
         var key   = null;
         var value = null;
 
@@ -151,7 +153,7 @@
      * @param {Object} base - the base <strong>object</strong> to copy
      * methods from.
      */
-    def(me, 'copyPrototype', function(child, base) {
+    exports.copyPrototype = def(me, 'copyPrototype', function(child, base) {
         var baseProto  = base.prototype;
         var childProto = child.prototype;
         var key        = null;
@@ -206,8 +208,8 @@
      * @param {Object} baseConstructed - base object initialized to a default
      * state.
      */
-    def(me, 'extend', function(childConstructor, baseConstructor,
-                baseConstructed) {
+    exports.extend = def(me, 'extend', function(childConstructor,
+                baseConstructor, baseConstructed) {
         var Junction = function(){};
         childConstructor.prototype = new Junction();
         Junction.prototype = baseConstructed;
@@ -235,7 +237,7 @@
      *
      * @see o2.Collection.toArray
      */
-    def(me, 'toArray', function(obj) {
+    exports.toArray = def(me, 'toArray', function(obj) {
         return toArray(obj);
     });
 
@@ -260,7 +262,7 @@
      *
      * @return the converted <strong>JSON</strong> <code>String</code>.
      */
-    def(me, 'toJsonString', function(obj) {
+    exports.toJsonString = def(me, 'toJsonString', function(obj) {
         var kMethodName = 'Object.toJsonString';
 
         if (JSON) {
@@ -277,7 +279,7 @@
      *
      * @see o2.Object.toJsonString
      */
-    alias(me, 'stringify', 'toJsonString');
+    exports.stringify = alias(me, 'stringify', 'toJsonString');
 
     /**
      * @function {static} o2.Object.touch
@@ -303,7 +305,7 @@
      * primitive type; returns the <strong>obj</strong> itself (after applying
      * delagate to it) otherwise.
      */
-    def(me,'touch', function(obj, delegate) {
+    exports.touch = def(me,'touch', function(obj, delegate) {
         if (!obj) {
             return null;
         }
