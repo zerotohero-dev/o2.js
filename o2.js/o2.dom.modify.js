@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 18:02:17.260575
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package for additional <strong>DOM</strong> modifications.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -59,7 +61,7 @@
      * @param elmTarget - the target node or its <code>String</code> id.
      * @param elmToReplace - the replacement node or its <code>String</code> id.
      */
-    def(me, 'replace', function(elmTarget, elmToReplace) {
+    exports.replace = def(me, 'replace', function(elmTarget, elmToReplace) {
         var target  = $(elmTarget);
         var replace = $(elmToReplace);
 
@@ -83,7 +85,7 @@
      * @param {Object} elmTarget - the target node or its <code>String</code> id
      * to unwrap.
      */
-    def(me, 'unwrap', function(elmTarget) {
+    exports.unwrap = def(me, 'unwrap', function(elmTarget) {
         var target = $(elmTarget);
 
         if (!target) {
@@ -123,7 +125,7 @@
      *
      * @return the wrapped node.
      */
-    def(me, 'wrap', function(elmTarget, elmWrapper) {
+    exports.wrap = def(me, 'wrap', function(elmTarget, elmWrapper) {
         var target  = $(elmTarget);
         var wrapper = $(elmWrapper);
 

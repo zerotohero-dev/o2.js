@@ -9,13 +9,13 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001338144770
+ * @version     0.25.a.0001338707672
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
 /*
- *  lastModified: 2012-04-12 15:46:27.682451
+ *  lastModified: 2012-06-02 22:47:21.699341
  */
 
 /**
@@ -24,12 +24,12 @@
  *
  * <p>The core module.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document, UNDEFINED) {
     'use strict';
 
     var kFrameworkUndefined = 'Please include module "core.meta"!';
 
-    if (framework === undefined) {
+    if (framework === UNDEFINED) {
         throw kFrameworkUndefined;
     }
 
@@ -39,6 +39,8 @@
     var obj       = attr(_, 'getObject');
     var require   = attr(_, 'require');
     var root      = attr(_, 'getRoot');
+
+    var exports = {};
 
     /*
      * Guid (copied from String.core to remove dependency)
@@ -71,7 +73,7 @@
      *
      * <p>An empty function.</p>
      */
-    def(me, 'nill', function() {});
+    exports.nill = def(me, 'nill', function() {});
 
     /**
      * @property {readonly String} o2.name
@@ -79,7 +81,7 @@
      * <p>Short name of the framework, to be used in
      * prefixes, class names etc.</p>
      */
-    def(me, 'name', 'o2js');
+    exports.name = def(me, 'name', 'o2js');
 
     /*
      *
@@ -91,14 +93,14 @@
      *
      * <p>URL of the project.</p>
      */
-    def(me, 'url', 'http://o2js.com');
+    exports.url = def(me, 'url', 'http://o2js.com');
 
     /**
      * @property {readonly String} o2.longName
      *
      * <p>Full name of the project.</p>
      */
-    def(
+    exports.longName = def(
         me,
         'longName',
         'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)'
@@ -109,14 +111,14 @@
      *
      * <p>Project version.</p>
      */
-    def(me, 'version', '0.25.a');
+    exports.version = def(me, 'version', '0.25.a');
 
     /**
      * @property {readonly String} o2.build
      *
      * <p>Project build number.</p>
      */
-    def(me, 'build', '.0001338144770');
+    exports.build = def(me, 'build', '.0001338707672');
 
     /**
      * @function {static} o2.$
@@ -136,8 +138,8 @@
      *
      * @throws Exception - if obj is <code>undefined</code>.
      */
-    def(me, '$', function(obj) {
-        if (obj === undefined) {
+    exports.$ = def(me, '$', function(obj) {
+        if (obj === UNDEFINED) {
             throw [myName, kObjectNotDefined].join(kEmpty);
         }
 
@@ -151,7 +153,7 @@
     /*
      *
      */
-    var $ = require('$');
+    var $ = require(me, '$');
 
     /**
      * @function {static} o2.ready
@@ -169,7 +171,7 @@
      * @param {Function} callback - The callback to execute when DOM is
      * ready.
      */
-    def(me, 'ready', function(callback) {
+    exports.ready = def(me, 'ready', function(callback) {
         require('Dom', 'ready')(callback);
     });
 
@@ -190,7 +192,7 @@
      * @param {Function} callback - The callback to execute when window is
      * loaded.
      */
-    def(me, 'load', function(callback) {
+    exports.load = def(me, 'load', function(callback) {
         require('EventHandler', 'addEventListener')(window, kLoad, callback);
     });
 
@@ -208,7 +210,7 @@
      *
      * @return the current unix time.
      */
-    def(me, 'now', function() {
+    exports.now = def(me, 'now', function() {
         return (new Date()).getTime();
     });
 
@@ -238,7 +240,7 @@
      *
      * @return the new <code>Object</code>.
      */
-    def(me, 'noConflict', function(newName) {
+    exports.noConflict = def(me, 'noConflict', function(newName) {
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
             ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
@@ -264,13 +266,13 @@
      *
      * @return a collection of matching elements.
      */
-    def(me, 'n', function(name, parent) {
+    exports.n = def(me, 'n', function(name, parent) {
         var collection = getElementsByName(name);
-        var i = 0;
-        var len = 0;
-        var result = [];
-        var item = null;
-        var isParent = require('Dom', 'isParent');
+        var i          = 0;
+        var isParent   = require('Dom', 'isParent');
+        var item       = null;
+        var len        = 0;
+        var result     = [];
 
         if (!parent) {
             return collection;
@@ -292,7 +294,7 @@
     /*
      *
      */
-    var n = require('n');
+    var n = require(me, 'n');
 
     /**
      * @function {static} o2.nn
@@ -314,7 +316,7 @@
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    def(me, 'nn', function(name, parent) {
+    exports.nn = def(me, 'nn', function(name, parent) {
         var result = n(name, parent);
 
         return result ? result[0] : null;
@@ -337,7 +339,7 @@
      *
      * @return a collection of matching elements.
      */
-    def(me, 't', function(tagName, parent) {
+    exports.t = def(me, 't', function(tagName, parent) {
         var p = $(parent || document);
 
         if (!p) {
@@ -350,7 +352,7 @@
     /*
      *
      */
-    var t = require('t');
+    var t = require(me, 't');
 
     /**
      * @function {static} o2.tt
@@ -372,7 +374,7 @@
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    def(me, 'tt', function(tagName, parent) {
+    exports.tt = def(me, 'tt', function(tagName, parent) {
         var p = $(parent);
 
         var result = t(tagName, p);

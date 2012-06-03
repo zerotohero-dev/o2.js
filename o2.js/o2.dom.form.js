@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-24 18:18:15.724271
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -68,7 +70,7 @@
      *
      * @see o2.String.compact
      */
-    def(me, 'compactField', function(field) {
+    exports.compactField = def(me, 'compactField', function(field) {
         field = $(field);
 
         if (!field) {
@@ -99,7 +101,7 @@
      *
      * @see o2.String.trim
      */
-    def(me, 'trimField', function(field) {
+    exports.trimField = def(me, 'trimField', function(field) {
         field = $(field);
 
         if (!field) {
@@ -126,7 +128,8 @@
      * @param {Object} form - A <strong>DOM</strong> reference to the form
      * object or its <code>String</code> id.
      */
-    def(me, 'preventMultipleSubmit', function(form) {
+    exports.preventMultipleSubmit = def(me, 'preventMultipleSubmit',
+                function(form) {
         form = $(form);
 
         if (!form) {
@@ -143,7 +146,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'removePlaceholder', function(elm) {
+    exports.removePlaceholder = def(me, 'removePlaceholder', function(elm) {
         var target = $(elm);
 
         if (!target) {
@@ -156,7 +159,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'resetField', function(elm) {
+    exports.resetField = def(me, 'resetField', function(elm) {
         var item = $(elm);
 
         if (!item) {
@@ -167,7 +170,7 @@
     });
 
     //TODO: add documentation.
-    def(me, 'disable', function() {
+    exports.disable = def(me, 'disable', function() {
         var i    = 0;
         var item = null;
         var len  = 0;

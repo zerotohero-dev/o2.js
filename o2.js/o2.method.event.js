@@ -7,18 +7,20 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 22:12:55.082461
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -80,7 +82,7 @@
     *
     * @see o2.EventHandler.addEventListener
     */
-    def(me, 'bindAsEventListener', function() {
+    exports.bindAsEventListener = def(me, 'bindAsEventListener', function() {
         var args    = slice.call(arguments);
         var context = args.shift();
         var fn      = args.shift();

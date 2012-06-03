@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:06:29.669942
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A static class for timeout related operations.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -86,7 +88,7 @@
      *
      * @param {String} id - the id of the timer to start.
      */
-    def(me, 'start', function(id) {
+    exports.start = def(me, 'start', function(id) {
         var timerId = concat(kPrefix, id);
         var meta    = timers[timerId];
 
@@ -129,7 +131,7 @@
      *
      * @param {String} id - the id of the timer to stop.
      */
-    def(me, 'stop', function(id) {
+    exports.stop = def(me, 'stop', function(id) {
         var timerId = concat(kPrefix, id);
         var meta    = timers[timerId];
 
@@ -176,7 +178,7 @@
      * it will be executed at each interval until {@link o2.Timer.stop}
      * is called.
      */
-    def(me, 'set', function(id, delegate, timeout, options) {
+    exports.set = def(me, 'set', function(id, delegate, timeout, options) {
         var timerId = concat(kPrefix, id);
 
         if (timers[timerId]) {
@@ -187,7 +189,7 @@
 
         options = options || {};
 
-        if (options.start === undefined) {
+        if (options.start === UNDEFINED) {
             options.start = true;
         }
 

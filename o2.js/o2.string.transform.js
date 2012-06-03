@@ -7,19 +7,21 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:23:02.982526
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -38,7 +40,7 @@
     var kCamelCaseRegExp          = /(\-[a-z])/g;
     var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
     var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
-    var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
+    //var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
 
     /*
      * Common Text
@@ -72,7 +74,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'br2nl', function(str) {
+    exports.br2nl = def(me, 'br2nl', function(str) {
         return str.replace(kLineBreakToNewLineRegExp, kNewLine);
     });
 
@@ -91,7 +93,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'nl2br', function(str) {
+    exports.nl2br = def(me, 'nl2br', function(str) {
         return str.replace(kNewLineToLineBreakRegExp, kBr);
     });
 
@@ -113,7 +115,7 @@
      *
      * @return the formatted String.
      */
-    def(me, 'toCamelCase', function(input) {
+    exports.toCamelCase = def(me, 'toCamelCase', function(input) {
         return input.replace(kCamelCaseRegExp, function(match) {
             return match.toUpperCase().replace(kDash, kEmpty);
         });
@@ -135,7 +137,8 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'toDashedFromCamelCase', function(input) {
+    exports.toDashedFromCamelCase = def(me, 'toDashedFromCamelCase',
+                function(input) {
         return input.replace(kAllCapsRegExp, function(match) {
             return [kDash, match.toLowerCase()].join(kEmpty);
         });
@@ -160,7 +163,7 @@
      * @throws Exception - if <strong>str</strong> is not a well-formed
      * <strong>JSON</strong> <code>String</code>.
      */
-    def(me, 'toJson', function(str) {
+    exports.toJson = def(me, 'toJson', function(str) {
         if (!JSON) {
             throw kJsonNotSupported;
         }
@@ -184,7 +187,8 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'toUnderscoreFromCamelCase', function(input) {
+    exports.toUnderscoreFromCamelCase = def(me, 'toUnderscoreFromCamelCase',
+                function(input) {
         return input.replace(kAllCapsRegExp, function(match) {
             return [kUnderscore, match.toLowerCase()].join(kEmpty);
         });
@@ -208,7 +212,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    def(me, 'truncate', function(str, maxLen) {
+    exports.truncate = def(me, 'truncate', function(str, maxLen) {
         var eLen      = kEllipsis.length;
         var maxLength = maxLen || kTruncationLength;
 

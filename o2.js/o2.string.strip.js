@@ -7,19 +7,21 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 20:37:13.572222
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -61,7 +63,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'stripNonAlpha', function(str) {
+    exports.stripNonAlpha = def(me, 'stripNonAlpha', function(str) {
         return str.replace(kNonAlphaRegExp, kEmpty);
     });
 
@@ -80,7 +82,8 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'stripNonAlphanumeric', function(str) {
+    exports.stripNonAlphanumeric = def(me, 'stripNonAlphanumeric',
+                function(str) {
         return str.replace(kNonAlphaNumericRegExp, kEmpty);
     });
 
@@ -99,7 +102,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'stripTags', function(str) {
+    exports.stripTags = def(me, 'stripTags', function(str) {
         return str.replace(kTagRegExp, kEmpty);
     });
 
@@ -118,7 +121,7 @@
      -
      * @return the formatted <code>String</code>.
      */
-    def(me, 'stripNonNumeric', function(str) {
+    exports.stripNonNumeric = def(me, 'stripNonNumeric', function(str) {
         return str.replace(kNonNumericRegExp, kEmpty);
     });
 
@@ -137,7 +140,7 @@
      *
      * @return the formatted <code>String</code>.
      */
-    def(me, 'stripNumeric', function(str) {
+    exports.stripNumeric = def(me, 'stripNumeric', function(str) {
         return str.replace(kNumericRegExp, kEmpty);
     });
 }(this.o2));

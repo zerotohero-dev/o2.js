@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 06:50:55.175973
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -71,7 +73,7 @@
      * a.sort(o2.SortDelegatae.sort);
      * </pre>
      */
-    def(me, 'sort', function(a, b) {
+    exports.sort = def(me, 'sort', function(a, b) {
         if (isNaN(a) && isNaN(b)) {
             return getSortOrder(a, b);
         }
@@ -86,7 +88,7 @@
      *
      * @see o2.SortDelegate.sort
      */
-    alias(me, 'sortAsc', 'sort');
+    exports.sortAsc = alias(me, 'sortAsc', 'sort');
 
     var sort = require(kModuleName, 'sort');
 
@@ -105,7 +107,7 @@
      * </pre>
      *
      */
-    def(me, 'sortDesc', function(a, b) {
+    exports.sortDesc = def(me, 'sortDesc', function(a, b) {
         return sort(b, a);
     });
 }(this.o2, this));

@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 20:54:40.973895
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -15,13 +15,15 @@
  * <p>Even if an error occurs when calling a <code>Function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -54,7 +56,7 @@
      *
      * @param {Arguments} ... - each argument as a function.
      */
-    def(me, 'all', function() {
+    exports.all = def(me, 'all', function() {
         var i   = 0;
         var len = 0;
 
@@ -84,7 +86,7 @@
      *
      * @param {Arguments} ... - each argument as a function.
      */
-    def(me, 'these', function() {
+    exports.these = def(me, 'these', function() {
         var i   = 0;
         var len = 0;
 

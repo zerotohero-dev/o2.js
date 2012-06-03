@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 21:21:05.055560
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Extension methods for the {@link Event} object.</p>
  */
-(function(framework, window, undefined) {
+(function(framework, window) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -86,7 +88,7 @@
      * @return the <code>true</code> if the pressed key is an arrow key,
      * <code>false</code> otherwise.
      */
-    def(me, 'isArrowKey', function(evt) {
+    exports.isArrowKey = def(me, 'isArrowKey', function(evt) {
         var code = getKeyCode(evt);
 
         return code >= kLeft && code <= kBottom;
@@ -111,7 +113,7 @@
      * @return the <code>true</code> if the pressed key is the backspace key,
      * <code>false</code> otherwise.
      */
-    def(me, 'isBackspaceKey', function(evt) {
+    exports.isBackspaceKey = def(me, 'isBackspaceKey', function(evt) {
         return getKeyCode(evt) === kBackspace;
     });
 
@@ -140,7 +142,8 @@
          * @return <code>true</code> if the pressed key is a printable
          * character; <code>false</code> otherwise.
          */
-        def(me, 'isCharacterKeypressEvent', function(evt) {
+        exports.isCharacterKeypressEvent = def(me, 'isCharacterKeypressEvent',
+                    function(evt) {
             var e = getEventObject(evt);
 
             if (!e) {
@@ -151,7 +154,8 @@
             return true;
         });
     } else {
-        def(me, 'isCharacterKeypressEvent', function(evt) {
+        exports.isCharacterKeypressEvent = def(me, 'isCharacterKeypressEvent',
+                    function(evt) {
             var e = getEventObject(evt);
 
             if (!e) {
@@ -192,7 +196,7 @@
      * @return the <code>true</code> if the pressed key is the enter key,
      * <code>false</code> otherwise.
      */
-    def(me, 'isEnterKey', function(evt) {
+    exports.isEnterKey = def(me, 'isEnterKey', function(evt) {
         return getKeyCode(evt) === kEnter;
     });
 
@@ -215,7 +219,7 @@
      * @return the <code>true</code> if the pressed key is the escape key,
      * <code>false</code> otherwise.
      */
-    def(me, 'isEscapeKey', function(evt) {
+    exports.isEscapeKey = def(me, 'isEscapeKey', function(evt) {
         return getKeyCode(evt) === kEscape;
     });
 
@@ -240,7 +244,7 @@
          * @return <code>true</code> if the event is a right click event,
          * <code>false</code> otherwise.
          */
-        def(me, 'isRightClick', function(evt) {
+        exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
             if (!e) {
@@ -250,7 +254,7 @@
             return e.which === kRightButton;
         });
     } else {
-        def(me, 'isRightClick', function(evt) {
+        exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
             if (!e) {
@@ -280,7 +284,7 @@
      * @return the <code>true</code> if the pressed key is the tab key,
      * <code>false</code> otherwise.
      */
-    def(me, 'isTabKey', function(evt) {
+    exports.isTabKey = def(me, 'isTabKey', function(evt) {
         return getKeyCode(evt) === kTab;
     });
 }(this.o2, this));

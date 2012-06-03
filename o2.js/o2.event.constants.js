@@ -7,18 +7,20 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
     var attr      = _.getAttr;
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -35,7 +37,7 @@
     /**
     * @struct {static} o2.Event.keyCode
     */
-    def(me, 'keyCode', {
+    exports.keyCode = def(me, 'keyCode', {
 
         /**
          * @property {static const Integer}

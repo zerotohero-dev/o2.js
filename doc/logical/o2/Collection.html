@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001338144770
+	                 version 0.25.a.0001338707672
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -380,7 +380,7 @@
             </div>
         <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to
- o2.Collection.reduceRight.</p>    </div>  
+ <a href="logical/o2/Collection.html#___reduceRight">o2.Collection.reduceRight</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -692,7 +692,7 @@
  <code>{key1 : value1, key2 : value2 ... }</code> kind of layout.</p>
 
  <p>If an <code>Array</code> is passed, it makes a shallow copy of that
- array and returns it.</code></p>
+ array and returns it.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -830,8 +830,8 @@
                 <a href="logical/o2/Collection.html#___invoke"><span class="elementName">invoke</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- delegate, <span class="type">...</span>
- -)
+ delegate, <span class="type">varargin</span>
+ ...)
             </div>          
                 <div class="summaryItemDesc">
         <p>Calls the delegate <code>Function</code> with an optional set
@@ -968,6 +968,38 @@
  context)
             </div>          
                 <div class="summaryItemDesc">
+        <p>Works similar to the <strong>reduce</strong> part of the
+ <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
+ algorithm.</p>
+ <p>Reduces a <strong>collection</strong> into a single value by
+ applying a <strong>delegate</strong> of the form
+ <code>function(cache, value, index, collection)</code> where
+ <strong>cache</strong> is the accumulator, <strong>value</strong>
+ is the iterated item, <strong>index</strong> is the item's index,
+ and <strong>collection</strong> is the collection we are working on.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var collection = [1, 2, 3, 4, 5];
+ var reduced = o2.Collection.reduce(collection, function(store, value) {
+      return store + value;
+ }, 0);
+ // reduced will be 15
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Collection.html#___reduceRight"><span class="elementName">reduceRight</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ obj, <span class="type">Functon</span>
+ delegate, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ store, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ context)
+            </div>          
+                <div class="summaryItemDesc">
         <p>Works similar to <a href="logical/o2/Collection.html#___fold">o2.Collection.fold</a>, but goes from
  the end of the collection to the beginning of the collection.</p>
 
@@ -989,7 +1021,7 @@
                 <a href="logical/o2/Collection.html#___reject"><span class="elementName">reject</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An <strong>alƒ±as</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>    </div>  
+        <p>An <strong>alıas</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1071,7 +1103,7 @@
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj, <span class="type"></span>
  delegate, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- -)
+ context)
             </div>          
                 <div class="summaryItemDesc">
         <p>Checks whether at least one element of the given
@@ -1763,7 +1795,7 @@
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails">@o2.Collection.grep</div>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a></div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -1916,12 +1948,12 @@
             </div>    
         <div class="comment">
         <p>An <strong>alias</strong> to
- o2.Collection.reduceRight.</p>
+ <a href="logical/o2/Collection.html#___reduceRight">o2.Collection.reduceRight</a>.</p>
 
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails">o2.Collection.reduceRight</div>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___reduceRight">o2.Collection.reduceRight</a></div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -2673,7 +2705,7 @@
  <code>{key1 : value1, key2 : value2 ... }</code> kind of layout.</p>
 
  <p>If an <code>Array</code> is passed, it makes a shallow copy of that
- array and returns it.</code></p>
+ array and returns it.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -2748,7 +2780,7 @@
         <code>
             delegate        </code>
          - the filter <code>Function</code> in the form
- <code><Boolean> function(item)</code>.            </div>   
+ <code>[Boolean] function(item)</code>.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -2818,7 +2850,7 @@
             delegate        </code>
          - A <code>String</code> key that the items
  in the collection share, or a <code>Function</code> in the form
- <code><key> function(item, index)</code> where <strong>item</strong>
+ <code>[key] function(item, index)</code> where <strong>item</strong>
  is the current collection item, <strong>index</strong> if that item's
  index; and the return value is a key to group.            </div>   
                                         </div>
@@ -2999,8 +3031,8 @@
                     <span class="type"></span>
                     invoke(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- delegate, <span class="type">...</span>
- -)
+ delegate, <span class="type">varargin</span>
+ ...)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3040,8 +3072,8 @@
  <code>item[delegate]</code> will be used instead.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            -        </code>
-         A set of parameters to pass after the delegate.            </div>   
+            ...        </code>
+         - A set of parameters to pass after the delegate.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3327,6 +3359,79 @@
                 </code> 
             </div>          
                 <div class="comment">
+        <p>Works similar to the <strong>reduce</strong> part of the
+ <a href="http://www.mongodb.org/display/DOCS/MapReduce">Map Reduce</a>
+ algorithm.</p>
+ <p>Reduces a <strong>collection</strong> into a single value by
+ applying a <strong>delegate</strong> of the form
+ <code>function(cache, value, index, collection)</code> where
+ <strong>cache</strong> is the accumulator, <strong>value</strong>
+ is the iterated item, <strong>index</strong> is the item's index,
+ and <strong>collection</strong> is the collection we are working on.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var collection = [1, 2, 3, 4, 5];
+ var reduced = o2.Collection.reduce(collection, function(store, value) {
+      return store + value;
+ }, 0);
+ // reduced will be 15
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            obj        </code>
+         - an <code>Array</code> or an iterable
+ <code>Object</code> to work on.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            delegate        </code>
+         - the reducer <code>Function</code>.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            store        </code>
+         - the initial seed.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            context        </code>
+         - (optional, defaults to <code>undefined</code>)
+ the context that the <strong>delegate</strong>
+ uses as the <code>this</code> reference.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             a single reduced value.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___reduceRight">
+            <span class="objType">function</span>
+            <span class="objName">reduceRight</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    reduceRight(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ obj, <span class="type">Functon</span>
+ delegate, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ store, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ context)
+                </code> 
+            </div>          
+                <div class="comment">
         <p>Works similar to <a href="logical/o2/Collection.html#___fold">o2.Collection.fold</a>, but goes from
  the end of the collection to the beginning of the collection.</p>
 
@@ -3395,7 +3500,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An <strong>alƒ±as</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>
+        <p>An <strong>alıas</strong> to <a href="logical/o2/Collection.html#___exclude">o2.Collection.exclude</a>.</p>
 
      </div>
                                 <div class="seealso">
@@ -3526,7 +3631,7 @@
      </div>
                                 <div class="seealso">
             <span class="descSection">See also:</span>
-                            <div class="paddedDetails">@o2.Collection.grep</div>
+                            <div class="paddedDetails"><a href="logical/o2/Collection.html#___grep">o2.Collection.grep</a></div>
                     </div>      
                                 <hr/>       
                                                                                     <h3>
@@ -3589,7 +3694,7 @@
                     some(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj, <span class="type"></span>
  delegate, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- -)
+ context)
                 </code> 
             </div>          
                 <div class="comment">
@@ -3631,8 +3736,9 @@
  <code>function(value, index, collection)</code>.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            -        </code>
-         The context to regard as <code>this</code> reference.            </div>   
+            context        </code>
+         - The context to regard as <code>this</code>
+ reference.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -3928,7 +4034,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             a zipped <code>Array</<code>.
+	            	             a zipped <code>Array</code>.
      	            	        </div>
         </div>      
                                                 <hr/>       

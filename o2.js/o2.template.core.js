@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:02:41.525774
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A "very" fast templating engine.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -111,7 +113,7 @@
 
         return line.replace(kTemplateRegExp, function(str, p1
                     /*, offset, total*/) {
-            return data[p1] !== undefined ? data[p1] : str;
+            return data[p1] !== UNDEFINED ? data[p1] : str;
         });
     }
 
@@ -132,10 +134,10 @@
      * };
      *
      * var tpl = [
-     *      '<ul id="Products">',
+     *      'ul id="Products"',
      *          ['each users',
-     *              '<li>{{name}}</li>'],
-     *      '</ul>'
+     *              'li {{name}} /li'],
+     *      '/ul'
      * ];
      *
      * var html = o2.Template.parse(data, tpl);
@@ -146,7 +148,7 @@
      *
      * @return {String} the parsed template.
      */
-     def(me, 'parse', function(data, tpl){
+     exports.parse = def(me, 'parse', function(data, tpl){
         var buffer  = [];
         var tplData = data || {};
         var i       = 0;

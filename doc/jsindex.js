@@ -634,7 +634,7 @@
        {
            localName : "invoke",
            fullName : "o2.Collection.invoke",
-           summary : "static function  invoke(Object obj, Object delegate, ... -)",
+           summary : "static function  invoke(Object obj, Object delegate, varargin ...)",
            ref : "logical/o2/Collection.html#___invoke",
            parent : "o2.Collection",
            type : "function",
@@ -695,6 +695,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "reduceRight",
+           fullName : "o2.Collection.reduceRight",
+           summary : "static function  reduceRight(Object obj, Functon delegate, Object store, Object context)",
+           ref : "logical/o2/Collection.html#___reduceRight",
+           parent : "o2.Collection",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
            localName : "reject",
            fullName : "o2.Collection.reject",
            summary : "static function  reject()",
@@ -742,7 +751,7 @@
        {
            localName : "some",
            fullName : "o2.Collection.some",
-           summary : "static function  some(Object obj, delegate, Object -)",
+           summary : "static function  some(Object obj, delegate, Object context)",
            ref : "logical/o2/Collection.html#___some",
            parent : "o2.Collection",
            type : "function",
@@ -1041,15 +1050,6 @@
            fullName : "o2.Dom.empty",
            summary : "static function  empty(Object elm)",
            ref : "logical/o2/Dom.html#___empty",
-           parent : "o2.Dom",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "ge0tLastChildWithAttribute",
-           fullName : "o2.Dom.ge0tLastChildWithAttribute",
-           summary : "static function  ge0tLastChildWithAttribute(Object elm, String attribute, String name)",
-           ref : "logical/o2/Dom.html#___ge0tLastChildWithAttribute",
            parent : "o2.Dom",
            type : "function",
            elementType : "function"
@@ -1428,6 +1428,15 @@
            fullName : "o2.Dom.getLastChildByClass",
            summary : "static function  getLastChildByClass(Object elm, String className, String name)",
            ref : "logical/o2/Dom.html#___getLastChildByClass",
+           parent : "o2.Dom",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getLastChildWithAttribute",
+           fullName : "o2.Dom.getLastChildWithAttribute",
+           summary : "static function  getLastChildWithAttribute(Object elm, String attribute, String name)",
+           ref : "logical/o2/Dom.html#___getLastChildWithAttribute",
            parent : "o2.Dom",
            type : "function",
            elementType : "function"
@@ -1910,10 +1919,10 @@
            elementType : "function"
        } ,         
        {
-           localName : "getObjectScrollOfset",
-           fullName : "o2.Dom.getObjectScrollOfset",
-           summary : "static function  getObjectScrollOfset(Object obj)",
-           ref : "logical/o2/Dom.html#___getObjectScrollOfset",
+           localName : "getObjectScrollOffset",
+           fullName : "o2.Dom.getObjectScrollOffset",
+           summary : "static function  getObjectScrollOffset(Object obj)",
+           ref : "logical/o2/Dom.html#___getObjectScrollOffset",
            parent : "o2.Dom",
            type : "function",
            elementType : "function"
@@ -2020,7 +2029,7 @@
        {
            localName : "getParentsByAttributeUntil",
            fullName : "o2.Dom.getParentsByAttributeUntil",
-           summary : "static function  getParentsByAttributeUntil(Object elm, String attribute, String value, Object until-, String name)",
+           summary : "static function  getParentsByAttributeUntil(Object elm, String attribute, String value, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsByAttributeUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2038,7 +2047,7 @@
        {
            localName : "getParentsByClassUntil",
            fullName : "o2.Dom.getParentsByClassUntil",
-           summary : "static function  getParentsByClassUntil(Object elm, String className, Object until-, String name)",
+           summary : "static function  getParentsByClassUntil(Object elm, String className, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsByClassUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2047,7 +2056,7 @@
        {
            localName : "getParentsUntil",
            fullName : "o2.Dom.getParentsUntil",
-           summary : "static function  getParentsUntil(Object elm, Object until-, String name)",
+           summary : "static function  getParentsUntil(Object elm, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2065,7 +2074,7 @@
        {
            localName : "getParentsWithAttributeUntil",
            fullName : "o2.Dom.getParentsWithAttributeUntil",
-           summary : "static function  getParentsWithAttributeUntil(Object elm, String attribute, Object until-, String name)",
+           summary : "static function  getParentsWithAttributeUntil(Object elm, String attribute, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsWithAttributeUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2083,7 +2092,7 @@
        {
            localName : "getParentsWithClassUntil",
            fullName : "o2.Dom.getParentsWithClassUntil",
-           summary : "static function  getParentsWithClassUntil(Object elm, Object until-, String name)",
+           summary : "static function  getParentsWithClassUntil(Object elm, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsWithClassUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2101,7 +2110,7 @@
        {
            localName : "getParentsWithIdUntil",
            fullName : "o2.Dom.getParentsWithIdUntil",
-           summary : "static function  getParentsWithIdUntil(Object elm, Object until-, String name)",
+           summary : "static function  getParentsWithIdUntil(Object elm, Object until, String name)",
            ref : "logical/o2/Dom.html#___getParentsWithIdUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2155,7 +2164,7 @@
        {
            localName : "getPrevAllByClassUntil",
            fullName : "o2.Dom.getPrevAllByClassUntil",
-           summary : "static function  getPrevAllByClassUntil(Object elm, String className, Object until-, String name)",
+           summary : "static function  getPrevAllByClassUntil(Object elm, String className, Object until, String name)",
            ref : "logical/o2/Dom.html#___getPrevAllByClassUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2164,7 +2173,7 @@
        {
            localName : "getPrevAllUntil",
            fullName : "o2.Dom.getPrevAllUntil",
-           summary : "static function  getPrevAllUntil(Object elm, Object until-, String name)",
+           summary : "static function  getPrevAllUntil(Object elm, Object until, String name)",
            ref : "logical/o2/Dom.html#___getPrevAllUntil",
            parent : "o2.Dom",
            type : "function",
@@ -2227,7 +2236,7 @@
        {
            localName : "getPrevByAttribute",
            fullName : "o2.Dom.getPrevByAttribute",
-           summary : "static function  getPrevByAttribute(Object elm, String attribute, String value-, String name)",
+           summary : "static function  getPrevByAttribute(Object elm, String attribute, String value, String name)",
            ref : "logical/o2/Dom.html#___getPrevByAttribute",
            parent : "o2.Dom",
            type : "function",
@@ -2265,6 +2274,15 @@
            fullName : "o2.Dom.getPrevWithId",
            summary : "static function  getPrevWithId(Object elm, String name)",
            ref : "logical/o2/Dom.html#___getPrevWithId",
+           parent : "o2.Dom",
+           type : "function",
+           elementType : "function"
+       } ,         
+       {
+           localName : "getScrollOffset",
+           fullName : "o2.Dom.getScrollOffset",
+           summary : "static function  getScrollOffset()",
+           ref : "logical/o2/Dom.html#___getScrollOffset",
            parent : "o2.Dom",
            type : "function",
            elementType : "function"
@@ -2373,15 +2391,6 @@
            fullName : "o2.Dom.getSiblingsWithIdUntil",
            summary : "static function  getSiblingsWithIdUntil(Object elm, Object until, String name)",
            ref : "logical/o2/Dom.html#___getSiblingsWithIdUntil",
-           parent : "o2.Dom",
-           type : "function",
-           elementType : "function"
-       } ,         
-       {
-           localName : "getStrollOffset",
-           fullName : "o2.Dom.getStrollOffset",
-           summary : "static function  getStrollOffset()",
-           ref : "logical/o2/Dom.html#___getStrollOffset",
            parent : "o2.Dom",
            type : "function",
            elementType : "function"
@@ -4304,10 +4313,10 @@
            elementType : "function"
        } ,         
        {
-           localName : "isNan",
-           fullName : "o2.Validation.isNan",
-           summary : "static function  isNan(Object obj)",
-           ref : "logical/o2/Validation.html#___isNan",
+           localName : "isNaN",
+           fullName : "o2.Validation.isNaN",
+           summary : "static function  isNaN(Object obj)",
+           ref : "logical/o2/Validation.html#___isNaN",
            parent : "o2.Validation",
            type : "function",
            elementType : "function"
