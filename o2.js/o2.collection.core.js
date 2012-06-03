@@ -274,6 +274,10 @@
             return -1;
         }
 
+        if (!isObject(ar)) {
+            return -1;
+        }
+
         for (key in ar) {
             if (ar.hasOwnProperty(key)) {
                 if (ar[key] === elm) {

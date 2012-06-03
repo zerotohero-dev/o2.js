@@ -239,6 +239,49 @@
      */
     exports.setStyle = alias(me, 'setStyle', 'addStyle');
 
+    /*
+     *
+     */
+    function getStyleTextFromAttribute(obj) {
+        var styleText = obj.getAttribute(kStyle);
+
+        if(!styleText) {
+            return kEmpty;
+        }
+
+        if (typeof styleText === kString) {
+            return styleText;
+        }
+
+        return kEmpty;
+    }
+
+    /*
+     *
+     */
+    function getInlineStyle(obj, cssProp) {
+
+        //return the property if set inline.
+        var val = obj.style[cssProp];
+
+        if (val) {
+            return val;
+        }
+
+        return null;
+    }
+
+    /*
+     *
+     */
+    function prepareCssProperty(cssProperty) {
+        if (cssProperty === kFloat) {
+            return kCssFloat;
+        }
+
+        return toCamelCase(cssProperty);
+    }
+
     if (document.defaultView && document.defaultView.getComputedStyle) {
 
         /**
@@ -280,44 +323,20 @@
                     isNoForce) {
             var noForce   = !!isNoForce;
             var obj       = $(elm);
-            var styleText = kEmpty;
 
             if (!obj) {
                 return null;
             }
 
             if (!cssProperty) {
-                styleText = obj.getAttribute(kStyle);
-
-                if(!styleText) {
-                    return kEmpty;
-                }
-
-                if (typeof styleText === kString) {
-                    return styleText;
-                }
-
-                return styleText.cssText;
+                return getStyleTextFromAttribute(obj);
             }
 
             var defaultView = document.defaultView;
-            var cssProp = cssProperty;
-
-            if (cssProperty === kFloat) {
-                cssProp = kCssFloat;
-            } else {
-                cssProp = toCamelCase(cssProperty);
-            }
+            var cssProp = prepareCssProperty(cssProperty);
 
             if (noForce) {
-                //return the property if set inline.
-                var val = obj.style[cssProp];
-
-                if (val) {
-                    return val;
-                }
-
-                return null;
+                return getInlineStyle(obj, cssProp);
             }
 
             var d = defaultView.getComputedStyle(obj, kEmpty
@@ -337,47 +356,24 @@
                     isNoForce) {
             var noForce   = !!isNoForce;
             var obj       = $(elm);
-            var styleText = kEmpty;
 
             if (!obj) {
                 return;
             }
 
-            var cssProp = cssProperty;
-
             if (!cssProperty) {
-                styleText = obj.getAttribute(kStyle);
-
-                if(!styleText) {
-                    return kEmpty;
-                }
-
-                if (typeof styleText === kString) {
-                    return styleText;
-                }
-
-                return styleText.cssText;
+                return getStyleTextFromAttribute(obj);
             }
 
-            if (cssProperty === kFloat) {
-                cssProp = kCssFloat;
-            } else {
-                cssProp = toCamelCase(cssProperty);
-            }
-
-            var camelizedCss = toCamelCase(cssProp);
+            var cssProp = prepareCssProperty(cssProperty);
 
             if(noForce) {
-                var val = obj.style[cssProp];
-
-                if (val) {
-                    return val;
-                }
-
-                return null;
+                return getInlineStyle(obj, cssProp);
             }
 
+            //TODO: factor out.
             if (obj.currentStyle) {
+                var camelizedCss = toCamelCase(cssProp);
                 var value      = obj.currentStyle[camelizedCss];
                 var isImproper = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
