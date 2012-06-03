@@ -25,7 +25,8 @@ But first let us start with addressing the usual excuses:
 
 * You do not need to be a rock-star programmer to contribute;
 * You do not need to have plenty of time to contribute;
-* You do not need to to read the entire code base to contribute.
+* You do not need to to read the entire code base to contribute;
+* You do not even have to write code to contribute.
 
 Per contra:
 
@@ -66,8 +67,8 @@ Then [open an issue][2].
 
 ### Suggest a Feature
 
-Related to the above, you can be helpful and suggest an interesting or
-innovative feature for **[o2.js][1].
+Related to the above, you can help by suggesting an interesting or
+innovative feature to **[o2.js][1]**.
 
 Bonus points if you start actually implementing it **;)**,
 
@@ -77,7 +78,7 @@ Issues are generally poorly reported. When you diagnose a bug and come up
 with additional findings, sharing them as **comments** under the issue will
 help people save time. So try to figure out the specifics of the problem:
 
-* Is it reproducable, or is it ad-hoc?
+* Is it reproducible, or is it ad-hoc?
 * What are the steps to reproduce the problem?
 * What's the OS/User Agent that the problem occurs?
 * Can you narrow the problem down? (i.e. work in one user agent, but
@@ -146,8 +147,8 @@ you create a usage example and put it there.
 You can also write a blog post about your particular use case, and share the
 link as an **issue** so that we can add it to a **links** section.
 
-No project can have too many examples. And a solid example explaining the
-proper usage of the project is worth a thousand pages of documentation.
+No project can have too many examples. And a solid example that explains 
+the proper usage of the project is worth a thousand pages of documentation.
 
 ### Add Unit Tests
 
@@ -176,12 +177,13 @@ If that's the case, here's a brief guideline for you:
 1. Before starting anything **carefully** read the
 [o2.js **JavaScript** Conventions & Best Practices](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)
 document.
-2. Read the Source Code to get a feeling of the practical application of those
+2. Read the **Source Code** to get a feeling of the practical application of those
 conventions, variable namings, indentation, and the like.
 3. Fork **o2.js**.
 4. Clone your fork into your local repository.
 5. Make sure you are working on the **dev** branch.
-6. Create a thoughtfully-named topic branch containing your change.
+6. **Branching out from the dev branch**, 
+create a thoughtfully named topic branch containing your change.
 7. Implement your change.
 8. [JSLint your code](http://jslint.com/).
 9. Run the **publish** script at `batch/publish.sh`.
@@ -277,12 +279,12 @@ The **JSLint** validation preferences that **[o2.js][1]** uses are as follows:
 * Send a **pull request** on github by clicking on the **pull** button
 in your repository:
 
-![Read the Source Luke](http://o2js.com/assets/pull.png)
+![Pull](http://o2js.com/assets/pull.png)
 
 * Make sure that you are doing the pull request from the **dev branch** on
 your local repo, to the **dev branch** on the remote repo.
 
-![Read the Source Luke](http://o2js.com/assets/devbranch.png)
+![Dev Branch](http://o2js.com/assets/devbranch.png)
 
 * We will do our best to merge your change into **[o2.js][1]** code base
 if the change is useful, addresses and issue, or enhances the library,
