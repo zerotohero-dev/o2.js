@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:06:29.669942
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A static class for timeout related operations.</p>
@@ -207,6 +207,4 @@
             start(id);
         }
     });
-
-    return exports;
 }(this.o2, this));

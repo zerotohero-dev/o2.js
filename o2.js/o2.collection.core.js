@@ -9,12 +9,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 19:32:51.051317
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -23,6 +23,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -83,7 +85,7 @@
      *
      * @return a <strong>reference</strong> to the object itself.
      */
-    var clear = def(me, 'clear', function(ar) {
+    exports.clear = def(me, 'clear', function(ar) {
         var key = null;
 
         if (!ar) {
@@ -126,7 +128,7 @@
      *
      * @return the copied <code>Object</code>.
      */
-    var copy = def(me,'copy', function(ar) {
+    exports.copy = def(me,'copy', function(ar) {
         if (!ar) {
             return [];
         }
@@ -160,7 +162,7 @@
      *
      * @see o2.Collection.copy
      */
-    var clone = alias(me, 'clone', 'copy');
+    exports.clone = alias(me, 'clone', 'copy');
 
     /**
      * @function {static} o2.Collection.compact
@@ -181,7 +183,7 @@
      *
      * @return a reference to the <code>Object</code> itself.
      */
-    var compact = def(me,'compact', function(ar) {
+    exports.compact = def(me,'compact', function(ar) {
         var value = null;
         var i = 0;
         var len = 0;
@@ -199,7 +201,7 @@
             for (i = 0, len = ar.length; i < len; i++) {
                 value = ar[i];
 
-                if (value === null || value === undefined) {
+                if (value === null || value === UNDEFINED) {
                     ar.splice(i, 1);
 
                     i = i - 1;
@@ -214,7 +216,7 @@
             if (ar.hasOwnProperty(key)) {
                 value = ar[key];
 
-                if (value === null || value === undefined) {
+                if (value === null || value === UNDEFINED) {
                     delete ar[key];
                 }
             }
@@ -243,7 +245,7 @@
      * @return the index of the element if found, <code>-1</code> otherwise.
      */
     //TODO: check whether "def" actually returns the function.
-    var indexOf = def(me, 'indexOf', function(ar, elm) {
+    exports.indexOf = def(me, 'indexOf', function(ar, elm) {
         var counter = 0;
         var i       = 0;
         var key     = null;
@@ -285,6 +287,11 @@
         return -1;
     });
 
+    /*
+     *
+     */
+    var indexOf = require(me, 'indexOf');
+
     /**
      * @function {static} o2.Collection.contains
      *
@@ -305,7 +312,7 @@
      * @return <code>true</code> if the <code>Array</code> contains the item,
      * <code>false</code> otherwise.
      */
-    var contains = def(me,'contains', function(ar, elm) {
+    exports.contains = def(me,'contains', function(ar, elm) {
         if (!ar) {
             return -1;
         }
@@ -317,6 +324,11 @@
         return indexOf(ar, elm) > -1;
     });
 
+    /*
+     *
+     */
+    var contains = require(me, 'contains');
+
     /**
      * @function {static} o2.Collection.includes
      *
@@ -324,7 +336,7 @@
      *
      * @see o2.Collection.contains
      */
-    var includes = alias(me, 'includes', 'contains');
+    exports.includes = alias(me, 'includes', 'contains');
 
     /**
      * @function {static} o2.Collection.inArray
@@ -335,7 +347,7 @@
      *
      * @see o2.Collection.contains
      */
-    var inArray = alias(me, 'inArray', 'contains');
+    exports.inArray = alias(me, 'inArray', 'contains');
 
     /**
      * @function {static} o2.Collection.find
@@ -366,7 +378,7 @@
      * @return the first truthy evaluated item; <code>null</code> if nothing
      * is found.
      */
-    var find = def(me,'find', function(obj, delegate, context) {
+    exports.find = def(me,'find', function(obj, delegate, context) {
         var i      = 0;
         var index  = 0;
         var key    = null;
@@ -421,7 +433,7 @@
      *
      * @see o2.Collection.find
      */
-    var detect = alias(me, 'detect', 'find');
+    exports.detect = alias(me, 'detect', 'find');
 
     /**
      * @function {static} o2.Collection.forEach
@@ -450,7 +462,7 @@
      * @param {Function} delegate - the iterator in the form
      * <code>function(item, index, collection)</code>.
      */
-    var forEach = def(me, 'forEach', function(obj, delegate) {
+    exports.forEach = def(me, 'forEach', function(obj, delegate) {
         var i   = 0;
         var key = null;
         var len = 0;
@@ -492,7 +504,7 @@
      *
      * @see o2.Collection.forEach
      */
-    var each = alias(me, 'each', 'forEach');
+    exports.each = alias(me, 'each', 'forEach');
 
     /**
      * @function {static} o2.Collection.diff
@@ -519,7 +531,7 @@
      * @see o2.Collection.intersect
      * @see o2.Collection.union
      */
-    var diff = def(me,'diff', function(collection) {
+    exports.diff = def(me,'diff', function(collection) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -569,7 +581,7 @@
      *
      * @see o2.Collection.diff
      */
-    var getDifference = alias(me, 'getDifference', 'diff');
+    exports.getDifference = alias(me, 'getDifference', 'diff');
 
     /**
      * @function {static} o2.Collection.every
@@ -600,7 +612,7 @@
      * <code>true</code> for every element of the collection; <code>false</code>
      * otherwise.
      */
-    var every = def(me,'every', function(obj, delegate, context) {
+    exports.every = def(me,'every', function(obj, delegate, context) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -681,7 +693,7 @@
      *
      * @see o2.Collection.grep
      */
-    var exclude = def(me,'exclude', function(obj, delegate, context) {
+    exports.exclude = def(me,'exclude', function(obj, delegate, context) {
          var i       = 0;
          var key     = null;
          var len     = 0;
@@ -730,7 +742,7 @@
      *
      * @see o2.Collection.reject
      */
-    var reject = alias(me, 'reject', 'exclude');
+    exports.reject = alias(me, 'reject', 'exclude');
 
     /**
      * @function {static} o2.Collection.extend
@@ -753,7 +765,7 @@
      *
      * @return a <strong>reference</strong> to the modified <code>toObj</code>.
      */
-    var extend = def(me,'extend', function(toObj, fromObj) {
+    exports.extend = def(me,'extend', function(toObj, fromObj) {
          var i     = 0;
          var key   = null;
          var len   = 0;
@@ -806,7 +818,7 @@
      *
      * @see o2.Collection.extend
      */
-    var merge = alias(me, 'merge', 'extend');
+    exports.merge = alias(me, 'merge', 'extend');
 
     /**
      * @function {static} o2.Collection.getFirst
@@ -825,7 +837,7 @@
      * @return the first item in the collection if exists; <code>null</code>
      * otherwise.
      */
-    var getFirst = def(me,'getFirst', function(obj) {
+    exports.getFirst = def(me,'getFirst', function(obj) {
         var key = null;
 
         if (!obj) {
@@ -870,7 +882,7 @@
      * the collection has more than <strong>n</strong> items; all of the items
      * in the collection otherwise.
      */
-    var getFirstN = def(me,'getFirstN', function(obj, n) {
+    exports.getFirstN = def(me,'getFirstN', function(obj, n) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -922,7 +934,7 @@
      * @return gets all the member <code>Function</code>s in the current
      * object.
      */
-    var getFunctions = def(me,'getFunctions', function(obj) {
+    exports.getFunctions = def(me,'getFunctions', function(obj) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -970,7 +982,7 @@
      *
      * @see o2.Collection.getFunctions
      */
-    var getMethods = alias(me, 'getMethods', 'getFunctions');
+    exports.getMethods = alias(me, 'getMethods', 'getFunctions');
 
     /**
      * @function {static} o2.Collection.getKeys
@@ -990,7 +1002,7 @@
      *
      * @return an <code>Array</code> of the object's keys.
      */
-    var getKeys = def(me,'getKeys', function(obj) {
+    exports.getKeys = def(me,'getKeys', function(obj) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -1040,7 +1052,7 @@
      * @return the last item in the collection if any; <code>null</code>
      * otherwise.
      */
-    var getLast = def(me,'getLast', function(obj) {
+    exports.getLast = def(me,'getLast', function(obj) {
         var key  = null;
         var last = null;
         var len  = 0;
@@ -1088,7 +1100,7 @@
      * @return the last <strong>n</strong> items if the collection has at least
      * <strong>n</strong> items; all the items of the collection otherwise.
      */
-    var getLastN = def(me,'getLastN', function(obj, n) {
+    exports.getLastN = def(me,'getLastN', function(obj, n) {
         var i      = 0;
         var key    = null;
         var len    = 0;
@@ -1148,7 +1160,7 @@
      * @return <code>true</code> if the collection is empty; <code>false</code>
      * otherwise.
      */
-    var isEmpty = def(me,'isEmpty', function (obj) {
+    exports.isEmpty = def(me,'isEmpty', function (obj) {
          if (!obj) {
              return true;
          }
@@ -1167,6 +1179,11 @@
 
          return true;
     });
+
+    /*
+     *
+     */
+    var isEmpty = require(me, 'isEmpty');
 
     /**
      * @function {static} o2.Collection.getMax
@@ -1199,7 +1216,7 @@
      *
      * @return the maximum value in the collection.
      */
-    var getMax = def(me,'getMax', function(obj, delegate, context) {
+    exports.getMax = def(me,'getMax', function(obj, delegate, context) {
         var calculated = null;
         var index      = 0;
         var key        = null;
@@ -1254,6 +1271,11 @@
         return result;
     });
 
+    /*
+     *
+     */
+    var getMax = require(me, 'getMax');
+
     /**
      * @function {static} o2.Collection.getMin
      *
@@ -1285,7 +1307,7 @@
      *
      * @return the minimum value in the collection.
      */
-    var getMin = def(me,'getMin', function(obj, delegate, context) {
+    exports.getMin = def(me,'getMin', function(obj, delegate, context) {
         var calculated = null;
         var index      = 0;
         var key        = null;
@@ -1365,7 +1387,7 @@
      * @return the items after the index <strong>n</strong> (n<sup>th</sup>
      * item included)
      */
-    var getRest = def(me,'getRest', function(obj, n) {
+    exports.getRest = def(me,'getRest', function(obj, n) {
         var cutAt  = 0;
         var index  = 0;
         var key    = null;
@@ -1379,7 +1401,7 @@
             return result;
         }
 
-        cutAt = n === undefined ? 1 : n;
+        cutAt = n === UNDEFINED ? 1 : n;
 
         if (isArray(obj)) {
             return slice.apply(obj, [cutAt]);
@@ -1414,7 +1436,7 @@
      *
      * @return the number of items in the collection.
      */
-    var getSize = def(me,'getSize', function(obj) {
+    exports.getSize = def(me,'getSize', function(obj) {
         var counter = 0;
         var key     = null;
 
@@ -1426,7 +1448,7 @@
             return 0;
         }
 
-        if (obj.length !== undefined) {
+        if (obj.length !== UNDEFINED) {
             return obj.length;
         }
 
@@ -1446,7 +1468,7 @@
      *
      * @see o2.Collection.getSize
      */
-    var getCount = alias(me, 'getCount', 'getSize');
+    exports.getCount = alias(me, 'getCount', 'getSize');
 
     /**
      * @function {static} o2.Collection.getLength
@@ -1455,7 +1477,7 @@
      *
      * @see o2.Collection.getSize
      */
-    var getLength = alias(me, 'getLength', 'getSize');
+    exports.getLength = alias(me, 'getLength', 'getSize');
 
     /**
      * @function {static} o2.Collection.getSortedIndex
@@ -1480,7 +1502,8 @@
      * @return <code>-1</code> if the collection is not an <code>Array</code>;
      * the computed sorted index otherwise.
      */
-    var getSortedIndex = def(me,'getSortedIndex', function(array, item, delegate) {
+    exports.getSortedIndex = def(me,'getSortedIndex', function(array, item,
+                delegate) {
         if (!isArray(array)) {
             return -1;
         }
@@ -1512,7 +1535,7 @@
      * <code>{key1 : value1, key2 : value2 ... }</code> kind of layout.</p>
      *
      * <p>If an <code>Array</code> is passed, it makes a shallow copy of that
-     * array and returns it.</code></p>
+     * array and returns it.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1527,7 +1550,7 @@
      *
      * @return the values in the collection.
      */
-    var getValues = def(me,'getValues', function(obj) {
+    exports.getValues = def(me,'getValues', function(obj) {
         var key    = null;
         var result = [];
 
@@ -1571,11 +1594,11 @@
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
      * @param {Function} delegate - the filter <code>Function</code> in the form
-     * <code><Boolean> function(item)</code>.
+     * <code>[Boolean] function(item)</code>.
      *
      * @return the filtered collection.
      */
-    var grep = def(me,'grep', function(obj, delegate) {
+    exports.grep = def(me,'grep', function(obj, delegate) {
         var i      = 0;
         var item   = null;
         var key    = null;
@@ -1616,18 +1639,18 @@
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
      *
-     * @see @o2.Collection.grep
+     * @see o2.Collection.grep
      */
-    var select = alias(me, 'select', 'grep');
+    exports.select = alias(me, 'select', 'grep');
 
     /**
      * @function {static} o2.Collection.filter
      *
      * <p>An <strong>alias</strong> to {@link o2.Collection.grep}.</p>
      *
-     * @see @o2.Collection.grep
+     * @see o2.Collection.grep
      */
-    var filter = alias(me, 'filter', 'grep');
+    exports.filter = alias(me, 'filter', 'grep');
 
     /**
      * @function {static} o2.Collection.group
@@ -1663,7 +1686,7 @@
      * <code>Object</code> to work on.
      * @param {Function} delegate - A <code>String</code> key that the items
      * in the collection share, or a <code>Function</code> in the form
-     * <code><key> function(item, index)</code> where <strong>item</strong>
+     * <code>[key] function(item, index)</code> where <strong>item</strong>
      * is the current collection item, <strong>index</strong> if that item's
      * index; and the return value is a key to group.
      *
@@ -1671,7 +1694,7 @@
      *
      * @see o2.Collection.pluck
      */
-    var group = def(me,'group', function(obj, delegate) {
+    exports.group = def(me,'group', function(obj, delegate) {
         var i      = 0;
         var key    = null;
         var ky     = null;
@@ -1745,7 +1768,7 @@
      *
      * @see o2.Object.toArray
      */
-    var toArray = def(me,'toArray', function(obj) {
+    exports.toArray = def(me,'toArray', function(obj) {
         var key    = null;
         var result = [];
 
@@ -1773,6 +1796,11 @@
 
         return result;
     });
+
+    /*
+     *
+     */
+    var toArray = require(me, 'toArray');
 
     /**
      * @function {static} o2.Collection.map
@@ -1806,7 +1834,7 @@
      *
      * @see o2.Collection.invoke
      */
-    var map = def(me,'map', function(obj, delegate, context) {
+    exports.map = def(me,'map', function(obj, delegate, context) {
         var i       = 0;
         var key     = null;
         var len     = 0;
@@ -1853,6 +1881,11 @@
         return results;
     });
 
+    /*
+     *
+     */
+    var map = require(me, 'map');
+
     /**
      * @function {static} o2.Collection.unique
      *
@@ -1878,7 +1911,7 @@
      *
      * @return a copy of the collection containing unique items.
      */
-    var unique = def(me,'unique', function(array, delegate) {
+    exports.unique = def(me,'unique', function(array, delegate) {
         var ar     = null;
         var cache  = [];
         var elm    = null;
@@ -1912,6 +1945,11 @@
         return result;
     });
 
+    /*
+     *
+     */
+    var unique = require(me, 'unique');
+
     /**
      * @function {static} o2.Collection.intersect
      *
@@ -1935,7 +1973,7 @@
      * @see o2.Collection.diff
      * @see o2.Collection.union
      */
-    var intersect = def(me,'intersect', function(ar) {
+    exports.intersect = def(me,'intersect', function(ar) {
         var i      = 0;
         var item   = null;
         var j      = 0;
@@ -1972,6 +2010,11 @@
         return result;
     });
 
+
+    /*
+     * @param {varargin} -
+     */
+
     /**
      * @function {static} o2.Collection.invoke
      *
@@ -1997,11 +2040,11 @@
      * @param {Object} delegate - the delegate to invoke in the form
      * delegate(item, ...varargin). If it's a <code>String</code> then
      * <code>item[delegate]</code> will be used instead.
-     * @param {...} - A set of parameters to pass after the delegate.
+     * @param {varargin} ... - A set of parameters to pass after the delegate.
      *
      * @see o2.Collection.map
      */
-    var invoke = def(me,'invoke', function(obj, delegate) {
+    exports.invoke = def(me,'invoke', function(obj, delegate) {
         var i       = 0;
         var invoker = null;
         var item    = null;
@@ -2060,7 +2103,7 @@
      *
      * @return the last index of the item if exists, <code>-1</code> otherwise.
      */
-    var lastIndexOf = def(me,'lastIndexOf', function(obj, item) {
+    exports.lastIndexOf = def(me,'lastIndexOf', function(obj, item) {
         var i = 0;
 
         if (!obj) {
@@ -2118,7 +2161,7 @@
      *
      * @see o2.Collection.group
      */
-    var pluck = def(me,'pluck', function(obj, key) {
+    exports.pluck = def(me,'pluck', function(obj, key) {
         var i      = 0;
         var k      = null;
         var len    = 0;
@@ -2148,6 +2191,11 @@
 
         return result;
     });
+
+    /*
+     *
+     */
+    var pluck = require(me, 'pluck');
 
     /**
      * @function {static} o2.Collection.reduce
@@ -2182,7 +2230,7 @@
      *
      * @return a single reduced value.
      */
-    var reduce = def(me, 'reduce', function(obj, delegate, store, context) {
+    exports.reduce = def(me, 'reduce', function(obj, delegate, store, context) {
         var cache    = store;
         var i        = 0;
         var index    = 0;
@@ -2258,6 +2306,11 @@
         return cache;
     });
 
+    /*
+     *
+     */
+    var reduce = require(me, 'reduce');
+
     /**
      * @function {static} o2.Collection.fold
      *
@@ -2266,10 +2319,10 @@
      * @see o2.Collection.reduce
      */
     //TODO: check that "alias" actually returns a function instance.
-    var fold = alias(me, 'fold', 'reduce');
+    exports.fold = alias(me, 'fold', 'reduce');
 
     /**
-     * @function {static} o2.Collection.reduce
+     * @function {static} o2.Collection.reduceRight
      *
      * <p>Works similar to {@link o2.Collection.fold}, but goes from
      * the end of the collection to the beginning of the collection.</p>
@@ -2297,7 +2350,8 @@
      *
      * @see o2.Collection.reduce
      */
-    var reduceRight = def(me,'reduceRight', function(obj, delegate, store, context) {
+    exports.reduceRight = def(me,'reduceRight', function(obj, delegate, store,
+                context) {
         var isSeeded = arguments.length > 2;
         var iterator = delegate;
 
@@ -2334,7 +2388,7 @@
      *
      * @see o2.Collection.reduceRight
      */
-    var foldR = alias(me, 'foldR', 'reduceRight');
+    exports.foldR = alias(me, 'foldR', 'reduceRight');
 
     /**
      * @function {static} o2.Collection.removeElement
@@ -2353,7 +2407,7 @@
      * <code>Object</code> to work on.
      * @param {Object} elm - the element to remove.
      */
-    var removeElement = def(me, 'removeElement', function(obj, elm) {
+    exports.removeElement = def(me, 'removeElement', function(obj, elm) {
         var i    = 0;
         var item = null;
         var key  = null;
@@ -2407,7 +2461,8 @@
      *
      * @return a reference to <strong>obj</strong> itself.
      */
-    var removeElementByValue = def(me, 'removeElementByValue', function(obj, name, value) {
+    exports.removeElementByValue = def(me, 'removeElementByValue', function(obj,
+                name, value) {
         var i    = 0;
         var item = null;
         var key  = null;
@@ -2438,7 +2493,7 @@
         }
 
         return obj;
-    };
+    });
 
     /**
      * @function {static} o2.Collection.shuffle
@@ -2459,7 +2514,7 @@
      * @return an <code>Array</code> that's a shuffled copy of the initial
      * collection.
      */
-    var shuffle = def(me,'shuffle', function(obj) {
+    exports.shuffle = def(me,'shuffle', function(obj) {
         var collection = null;
         var i          = 0;
         var index      = null;
@@ -2531,7 +2586,7 @@
      *
      * @return a sorted copy of the initial collection.
      */
-    var sort = def(me,'sort', function(obj, delegate, context) {
+    exports.sort = def(me,'sort', function(obj, delegate, context) {
         var i     = 0;
         var key   = null;
         var len   = 0;
@@ -2619,13 +2674,14 @@
      * <code>Object</code> to work on.
      * @param delegate - Iterator <code>Function</code> in the form
      * <code>function(value, index, collection)</code>.
-     * @param {Object} - The context to regard as <code>this</code> reference.
+     * @param {Object} context - The context to regard as <code>this</code>
+     * reference.
      *
      * @return <code>true</code> if the <strong>iterator</strong> returns
      * <code>true</code> for at least one element; returns <code>false</code>
      * otherwise.
      */
-    var some = def(me,'some', function(obj, delegate, context) {
+    exports.some = def(me,'some', function(obj, delegate, context) {
         var i        = 0;
         var index    = 0;
         var iterator = delegate || identity;
@@ -2677,7 +2733,7 @@
      *
      * @see o2.Collection.some
      */
-    var any = alias(me, 'any', 'some');
+    exports.any = alias(me, 'any', 'some');
 
     /**
      * @function {static} o2.Collection.flatten
@@ -2699,7 +2755,7 @@
      *
      * @return the flattened collection.
      */
-    var flatten = def(me, 'flatten', function(obj) {
+    exports.flatten = def(me, 'flatten', function(obj) {
         var i     = 0;
         var key   = null;
         var len   = 0;
@@ -2743,6 +2799,11 @@
         return store;
     });
 
+    /*
+     *
+     */
+    var flatten = require(me, 'flatten');
+
     /**
      * @function {static} o2.Collection.union
      *
@@ -2762,7 +2823,7 @@
      * @see o2.Collection.diff
      * @see o2.Collection.istersect
      */
-    var union = def(me,'union', function() {
+    exports.union = def(me,'union', function() {
         return unique(flatten(arguments));
     });
 
@@ -2792,9 +2853,9 @@
      * @param {...} varargin - the <code>Array</code>s to zip as a variable
      * number of input arguments.
      *
-     * @return a zipped <code>Array</<code>.
+     * @return a zipped <code>Array</code>.
      */
-    var zip = def(me,'zip', function() {
+    exports.zip = def(me,'zip', function() {
         var args    = slice.call(arguments);
         var i       = 0;
         var length  = getMax(pluck(args, kLength));

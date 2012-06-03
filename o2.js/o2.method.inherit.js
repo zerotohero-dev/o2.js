@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 22:20:22.255189
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>OOP/Inheritance related method helpers.</p>
@@ -138,6 +138,4 @@
             return fn.apply(this, arguments);
         };
     });
-
-    return exports;
 }(this.o2));

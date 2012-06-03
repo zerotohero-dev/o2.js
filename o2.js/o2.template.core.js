@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:02:41.525774
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A "very" fast templating engine.</p>
@@ -134,10 +134,10 @@
      * };
      *
      * var tpl = [
-     *      '<ul id="Products">',
+     *      'ul id="Products"',
      *          ['each users',
-     *              '<li>{{name}}</li>'],
-     *      '</ul>'
+     *              'li {{name}} /li'],
+     *      '/ul'
      * ];
      *
      * var html = o2.Template.parse(data, tpl);
@@ -165,6 +165,4 @@
       *
       */
      doParse = require(kModuleName, 'parse');
-
-     return exports;
 }(this.o2));

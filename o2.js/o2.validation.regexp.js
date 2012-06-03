@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-11 15:29:15.234282
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
@@ -110,9 +110,7 @@
      * @return <code>true</code> if the argument consists of only whitespace
      * characters, <code>false</code> otherwise.
      */
-    exports.isWhiteSpace = def(me, 'isWhitespace', function(text) {
+    exports.isWhitespace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
-
-    return exports;
 }(this.o2));

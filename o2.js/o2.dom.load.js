@@ -9,13 +9,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-24 09:46:03.289550
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -23,6 +23,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -109,7 +111,7 @@
      * @param {Function} successCallback - the callback to execute when the load
      * operation completes.
      */
-    var loadCss = def(me, 'loadCss', function(src, successCallback) {
+    exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
         var s = createElement(kLink);
         var x = getElementsByTagName(kHead)[0];
 
@@ -204,7 +206,7 @@
      * @param {Function} successCallback - gets called when the
      * <strong>image</strong> is loaded successfully.
      */
-    var loadImage = def(me, 'loadImage', function(url, succesCallback) {
+    exports.loadImage = def(me, 'loadImage', function(url, succesCallback) {
         var succesCallbackCached = succesCallback || nill;
 
         function done() {
@@ -243,7 +245,7 @@
      * @param {Function} callback - the callback to execute when the load
      * operation completes.
      */
-    var loadScript = def(me, 'loadScript', function(src, callback) {
+    exports.loadScript = def(me, 'loadScript', function(src, callback) {
         var s = createElement(kScript);
         var x = getElementsByTagName(kScript)[0] ||
             getElementsByTagName(kHead)[0];

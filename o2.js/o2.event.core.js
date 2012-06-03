@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 21:15:14.277191
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
@@ -140,7 +140,7 @@
             obj.removeEventListener(evt, fn, false);
         });
     } else if (isAttachEvent) {
-        exports.addEventListener = def(me, 'addEventListener', function(node, 
+        exports.addEventListener = def(me, 'addEventListener', function(node,
                     evt, fn) {
             var obj = $(node);
 
@@ -516,6 +516,4 @@
             evt.stopPropagation();
         });
     }
-
-    return exports;
 }(this.o2, this, this.document));

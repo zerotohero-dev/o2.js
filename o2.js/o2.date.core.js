@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 19:37:13.262625
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -122,7 +124,7 @@
      * @param {Integer} currTime - (Optional, default to NOW) the base time
      * in milliseconds.
      */
-    var getPrettyDate = def(me, 'getPrettyDate', function(time, currTime) {
+    exports.getPrettyDate = def(me, 'getPrettyDate', function(time, currTime) {
         var currentTime = currTime || $.now();
         var listChoice  = 1;
         var seconds     = (new Date(currentTime) - new Date(time)) / 1000;
@@ -173,7 +175,7 @@
      *
      * @see o2.now
      */
-    var getTime = def(me, 'getTime', function() {
+    exports.getTime = def(me, 'getTime', function() {
         return now();
     });
 
@@ -184,5 +186,5 @@
      *
      * @see o2.Date.getTime
      */
-    var now = alias(me, 'now', 'getTime');
+    exports.now = alias(me, 'now', 'getTime');
 }(this.o2));

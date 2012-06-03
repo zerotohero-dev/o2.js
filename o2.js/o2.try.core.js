@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 20:54:40.973895
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -99,6 +99,4 @@
             }
         }
     });
-
-    return exports;
 }(this.o2));

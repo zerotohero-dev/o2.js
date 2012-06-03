@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 20:48:18.034161
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>Responsible for encoding and decoding <code>String</code>s.</p>
@@ -172,7 +172,7 @@
      *
      * @see o2.String.encode
      */
-    exports.htmlEncoce = alias(me, 'htmlEncode', 'encode');
+    exports.htmlEncode = alias(me, 'htmlEncode', 'encode');
 
     /**
      * @function {static} o2.String.encodeSafeHtml
@@ -193,7 +193,7 @@
      *
      * @see o2.String.encode
      */
-    exports.safeHtml = def(me, 'encodeSafeHtml', function(str) {
+    exports.encodeSafeHtml = def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
             tempDiv = createElement(kContainer);
         }
@@ -262,7 +262,7 @@
      *
      * @return the processed <code>String</code>.
      */
-    exports.xssEncoce = def(me, 'xssEncode', function(str,
+    exports.xssEncode = def(me, 'xssEncode', function(str,
                 isAmpersandsPreserved) {
         return processMap([kEmpty, str].join(kEmpty),
             !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap

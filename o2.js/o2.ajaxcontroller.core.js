@@ -8,13 +8,13 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-11 19:07:58.752154
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework, undefined) {
+(function(framework) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -22,6 +22,8 @@
     var construct = attr(_, 'construct');
     var proto     = attr(_, 'proto');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -80,7 +82,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    var me = construct(kModuleName, function(xhr, args) {
+    exports.AjaxController = me = construct(kModuleName, function(xhr, args) {
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -112,7 +114,7 @@
      * @param {Object} data - parameters passed from the <code>Observable</code>
      * to this <code>Observer</code>.
      */
-    var update = proto(me, 'update', function(data) {
+    exports.update = proto(me, 'update', function(data) {
         if (!data.isTimedOut) {
             return;
         }
@@ -147,7 +149,7 @@
      * </pre>
      *
      */
-    var unregister = proto(me, 'unregister', function() {
+    exports.unregister = proto(me, 'unregister', function() {
         if (this.isDeleted) {
             return;
         }

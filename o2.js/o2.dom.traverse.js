@@ -11,12 +11,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 22:48:52.462259
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-(function(framework, document, undefined) {
+(function(framework, document, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -108,7 +108,7 @@
      * Does the node have a given attribute.
      */
     function hasAttribute(node, attribute) {
-        return getAttribute(node, attribute) !== undefined;
+        return getAttribute(node, attribute) !== UNDEFINED;
     }
 
     /*
@@ -321,7 +321,7 @@
             }
         }
 
-        if (returnSingleItemAt !== undefined) {
+        if (returnSingleItemAt !== UNDEFINED) {
             return null;
         }
 
@@ -504,6 +504,11 @@
         return execFilter(elm, getChildNodes, [name]);
     });
 
+    /*
+     *
+     */
+    var getChildren = require(me, 'getChildren');
+
     /**
      * function {static} o2.Dom.getChildrenByAttribute
      *
@@ -542,6 +547,11 @@
             isAttributeEquals, [attribute, value]);
     });
 
+    /*
+     *
+     */
+    var getChildrenByAttribute = require(me, 'getChildrenByAttribute');
+
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
      *
@@ -572,6 +582,12 @@
         return execFilter(elm, getChildNodes, [name],
             isAttributeEquals, [attribute, value], isNodeEquals, [until]);
     });
+
+    /*
+     *
+     */
+    var getChildrenByAttributeUntil = require(me,
+        'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
 
@@ -630,6 +646,11 @@
         });
     }
 
+    /*
+     *
+     */
+    var getChildrenByClass = require(me, 'getChildrenByClass');
+
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
      *
@@ -661,6 +682,11 @@
             hasClassName, [className], isNodeEquals, [until]);
     });
 
+    /*
+     *
+     */
+    var getChildrenByClassUntil = require(me, 'getChildrenByClassUntil');
+
     /**
      * @function {static} o2.Dom.getChildrenUntil
      *
@@ -690,6 +716,11 @@
             null, [], isNodeEquals, [until]);
     });
 
+    /*
+     *
+     */
+    var getChildrenUntil = require(me, 'getChildrenUntil');
+
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
      *
@@ -717,6 +748,11 @@
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute]);
     });
+
+    /*
+     *
+     */
+    var getChildrenWithAttribute = require(me, 'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -750,6 +786,9 @@
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
 
+    var getChildrenWithAttributeUntil = require(me,
+        'getChildrenWithAttributeUntil');
+
     /**
      * @function {static} o2.Dom.getChildrenWithClass
      *
@@ -774,6 +813,11 @@
                 name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
     });
+
+    /*
+     *
+     */
+    var getChildrenWithClass = require(me, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -804,6 +848,11 @@
             hasClassAttribute, [], isNodeEquals, [until]);
     });
 
+    /*
+     *
+     */
+    var getChildrenWithClassUntil = require(me, 'getChildrenWithClassUntil');
+
     /**
      * @function {static} o2.Dom.getChildrenWithId
      *
@@ -828,6 +877,11 @@
                 name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
     });
+
+    /*
+     *
+     */
+    var getChildrenWithId = require(me, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -858,6 +912,11 @@
             hasIdAttribute, [], isNodeEquals, [until]);
     });
 
+    /*
+     *
+     */
+    var getChildrenWithIdUntil = require(me, 'getCHildrenWithIdUntil');
+
     /**
      * @function {static} o2.Dom.getElements
      *
@@ -887,6 +946,11 @@
 
         return target.getElementsByTagName(name || kAll);
     });
+
+    /*
+     *
+     */
+    var getElements = require(me, 'getElements');
 
     /**
      * @function {static} o2.Dom.getElementsByAttribute
@@ -1048,6 +1112,11 @@
     exports.getSiblings = def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
     });
+
+    /*
+     *
+     */
+    var getSiblings = require(me, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -1386,6 +1455,11 @@
         return getNextSiblings(elm, null, [], null, [], name, null, 0, true);
     });
 
+    /*
+     *
+     */
+    var getFirst = require(me, 'getFirst');
+
     /**
      * @function {static} o2.Dom.getFirstByAttribute
      *
@@ -1414,6 +1488,11 @@
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, true);
     });
+
+    /*
+     *
+     */
+    var getFirstByAttribute = require(me, 'getFirstByAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstByClass
@@ -2012,7 +2091,7 @@
     });
 
     /**
-     * @function {static} o2.Dom.ge0tLastChildWithAttribute
+     * @function {static} o2.Dom.getLastChildWithAttribute
      *
      * <p>Gets the last child of the element that's not a text node, and
      * having a given attribute defined.</p>
@@ -2350,7 +2429,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    exports.getNextAllByAttributeUntile = def(me, 'getNextAllByAttributeUntil',
+    exports.getNextAllByAttributeUntil = def(me, 'getNextAllByAttributeUntil',
                 function(elm, attribute, value, until, name) {
         return getNextSiblings(elm,
             isAttributeEquals, [attribute, value], isNodeEquals, [until], name);
@@ -3134,7 +3213,8 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNextWithClass', function(elm, n, name) {
+    exports.getNthNextWithClass = def(me, 'getNthNextWithClass', function(elm,
+                n, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             null, [], name, null, n);
     });
@@ -3161,7 +3241,8 @@
      * @return the n<sup>th</sup> next sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthNextWithId', function(elm, n, name) {
+    exports.getNthNextWithId = def(me, 'getNthNextWithId', function(elm, n,
+                name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n);
     });
@@ -3187,7 +3268,7 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParent', function(elm, n, name) {
+    exports.getNthParent = def(me, 'getNthParent', function(elm, n, name) {
         return getParents(elm, null, [], null, [], name, null, n);
     });
 
@@ -3216,8 +3297,8 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParentByAttribute', function(elm, attribute, value, n,
-                name) {
+    exports.getNthParentByAttribute = def(me, 'getNthParentByAttribute',
+                function(elm, attribute, value, n, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, n);
     });
@@ -3245,7 +3326,8 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParentByClass', function(elm, className, n, name) {
+    exports.getNthParentByClass = def(me, 'getNthParentByClass', function(elm,
+                className, n, name) {
         return getParents(elm, hasClassName, [className],
             null, [], name, null, n);
     });
@@ -3273,7 +3355,8 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParentWithAttribute', function(elm, attribute, n, name) {
+    exports.getNthParentWithAttribute = def(me, 'getNthParentWithAttribute',
+                function(elm, attribute, n, name) {
         return getParents(elm, hasAttribute, [attribute],
             null, [], name, null, n);
     });
@@ -3300,7 +3383,8 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParentWithClass', function(elm, n, name) {
+    exports.getNthParentWithClass = def(me, 'getNthParentWithClass',
+                function(elm, n, name) {
         return getParents(elm, hasClassAttribute, [],
             null, [], name, null, n);
     });
@@ -3327,7 +3411,8 @@
      * @return the n<sup>th</sup> parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthParentWithId', function(elm, n, name) {
+    exports.getNthParentWithId = def(me, 'getNthParentWithId', function(elm,
+                n, name) {
        return getParents(elm, hasIdAttribute, [],
             null, [], name, null, n);
     });
@@ -3354,7 +3439,7 @@
      * @return the n<sup>th</sup> previous sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrev', function(elm, n, name) {
+    exports.getNthPrev = def(me, 'getNthPrev', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [],
             name, null, n, false, true);
     });
@@ -3384,7 +3469,8 @@
      * @return the n<sup>th</sup> previous sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrevByAttribute', function(elm, attribute, value, n, name) {
+    exports.getNthPrevByAttribute = def(me, 'getNthPrevByAttribute', function(
+                elm, attribute, value, n, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, n, false, true);
     });
@@ -3412,7 +3498,8 @@
      * @return the n<sup>th</sup> previous sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrevByClass', function(elm, className, n, name) {
+    exports.getNthPrevByClass = def(me, 'getNthPrevByClass', function(elm,
+                className, n, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, n, false, true);
     });
@@ -3440,7 +3527,8 @@
      * @return the n<sup>th</sup> previous sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrevWithAttribute', function(elm, attribute, n, name) {
+    exports.getNthPrevWithAttribute = def(me, 'getNthPrevWithAttribute',
+                function(elm, attribute, n, name) {
        return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, n, false, true);
     });
@@ -3467,7 +3555,8 @@
      * @return the n<sup>th</sup> previous sibling available with the given
      * criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrevWithClass', function(elm, n, name) {
+    exports.getNthPrevWithClass = def(me, 'getNthPrevWithClass', function(elm,
+                n, name) {
        return getNextSiblings(elm, hasClassAttribute, [],
             null, [], name, null, n, false, true);
     });
@@ -3494,7 +3583,8 @@
      * @return the n<sup>th</sup> previous sibling available with the
      * given criteria, if found; <code>null</code> otherwise.
      */
-    def(me, 'getNthPrevWithId', function(elm, n, name) {
+    exports.getNthPrevWithId = def(me, 'getNthPrevWithId', function(elm, n,
+                name) {
        return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n, false, true);
     });
@@ -3519,7 +3609,10 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParent', function(elm, name) {
+    //TODO: getParent, getParents, getPrev, getPrevAll, getNext, getNextAll,
+    //getParentOrSelf, should also be able to get a filter delegate
+    //instead of a String `name` argument.
+    exports.getParent = def(me, 'getParent', function(elm, name) {
         return getParents(elm, null, [], null, [], name, null, 0);
     });
 
@@ -3546,7 +3639,8 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParentByAttribute', function(elm, attribute, value, name) {
+    exports.getParentByAttribute = def(me, 'getParentByAttribute', function(elm,
+                attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0);
     });
@@ -3573,7 +3667,8 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParentByClass', function(elm, className, name) {
+    exports.getParentByClass = def(me, 'getParentByClass', function(elm,
+                className, name) {
         return getParents(elm, hasClassName, [className],
             null, [], name, null, 0);
     });
@@ -3600,7 +3695,8 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParentWithAttribute', function(elm, attribute, name) {
+    exports.getParentWithAttribute = def(me, 'getParentWithAttribute',
+                function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute],
             null, [], name, null, 0);
     });
@@ -3626,7 +3722,8 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParentWithClass', function(elm, name) {
+    exports.getParentWithClass = def(me, 'getParentWithClass', function(elm,
+                name) {
         return getParents(elm, hasClassAttribute, [],
             null, [], name, null, 0);
     });
@@ -3652,7 +3749,7 @@
      * @return the first parent available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getParentWithId', function(elm, name) {
+    exports.getParentWithId = def(me, 'getParentWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name, null, 0);
     });
 
@@ -3676,7 +3773,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParents', function(elm, name) {
+    exports.getParents = def(me, 'getParents', function(elm, name) {
         return getParents(elm, null, [], null, [], name);
     });
 
@@ -3703,7 +3800,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsByAttribute', function(elm, attribute, value, name) {
+    exports.getParentsByAttribute = def(me, 'getParentsByAttribute', function(
+                elm, attribute, value, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
             null, [], name);
     });
@@ -3725,7 +3823,8 @@
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
      * @param {String} value - the value of the attribute.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> node that the traversal
+     * will be made until, or its <code>String</code> id,
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3733,8 +3832,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsByAttributeUntil', function(elm, attribute, value,
-                until, name) {
+    exports.getParentsByAttributeUntil = def(me, 'getParentsByAttributeUntil',
+                function(elm, attribute, value, until, name) {
         return getParents(elm, isAttributeEquals, [attribute, value],
             isNodeEquals, [until], name);
     });
@@ -3761,7 +3860,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsByClass', function(elm, className, name) {
+    exports.getParentsByClass = def(me, 'getParentsByClass', function(elm,
+                className, name) {
         return getParents(elm, hasClassName, [className], null, [], name);
     });
 
@@ -3782,7 +3882,8 @@
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3790,7 +3891,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsByClassUntil', function(elm, className, until, name) {
+    exports.getParentsByClassUntil = def(me, 'getParentsByClassUntil',
+                function(elm, className, until, name) {
         return getParents(elm, hasClassName, [className],
             isNodeEquals, [until], name);
     });
@@ -3809,7 +3911,8 @@
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3817,7 +3920,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsUntil', function(elm, until, name) {
+    exports.getParentsUntil = def(me, 'getParentsUntil', function(elm, until,
+                name) {
         return getParents(elm, null, [], isNodeEquals, [until], name);
     });
 
@@ -3843,7 +3947,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithAttribute', function(elm, attribute, name) {
+    exports.getParentsWithAttribute = def(me, 'getParentsWithAttribute',
+                function(elm, attribute, name) {
         return getParents(elm, hasAttribute, [attribute], null, [], name);
     });
 
@@ -3864,7 +3969,8 @@
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3872,7 +3978,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithAttributeUntil', function(elm, attribute, until,
+    exports.getParentsWithAttributeUntil = def(me,
+                'getParentsWithAttributeUntil', function(elm, attribute, until,
                 name) {
         return getParents(elm, hasAttribute, [attribute],
             isNodeEquals, [until], name);
@@ -3899,7 +4006,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithClass', function(elm, name) {
+    exports.getParentsWithClass = def(me, 'getParentsWithClass', function(elm,
+                name) {
         return getParents(elm, hasClassAttribute, [], null, [], name);
     });
 
@@ -3918,7 +4026,8 @@
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3926,7 +4035,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithClassUntil', function(elm, until, name) {
+    exports.getParentsWithClassUntil = def(me, 'getParentsWithClassUntil',
+                function(elm, until, name) {
         return getParents(elm, hasClassAttribute, [],
             isNodeEquals, [until], name);
     });
@@ -3952,7 +4062,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithId', function(elm, name) {
+    exports.getParentsWithId = def(me, 'getParentsWithId', function(elm, name) {
         return getParents(elm, hasIdAttribute, [], null, [], name);
     });
 
@@ -3971,7 +4081,8 @@
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -3979,7 +4090,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getParentsWithIdUntil', function(elm, until, name) {
+    exports.getParentsWithIdUntil = def(me, 'getParentsWithIdUntil', function(
+                elm, until, name) {
         return getParents(elm, hasIdAttribute, [],
             isNodeEquals, [until], name);
     });
@@ -4004,7 +4116,7 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrev', function(elm, name) {
+    exports.getPrev = def(me, 'getPrev', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
             name, null, 0, false, true);
     });
@@ -4024,7 +4136,7 @@
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} attribute - the name of the attribute to filter.
-     * @param {String} value-
+     * @param {String} value - i the value of the attribute to filter.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -4032,7 +4144,8 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrevByAttribute', function(elm, attribute, value, name) {
+    exports.getPrevByAttribute = def(me, 'getPrevByAttribute', function(elm,
+                attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, 0, false, true);
     });
@@ -4059,7 +4172,8 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrevByClass', function(elm, className, name) {
+    exports.getPrevByClass = def(me, 'getPrevByClass', function(elm, className,
+                name) {
        return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, false, true);
     });
@@ -4086,7 +4200,8 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrevWithAttribute', function(elm, attribute, name) {
+    exports.getPrevWithAttribute = def(me, 'getPrevWithAttribute', function(elm,
+                attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             null, [], name, null, 0, false, true);
     });
@@ -4112,7 +4227,7 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrevWithClass', function(elm, name) {
+    exports.getPrevWithClass = def(me, 'getPrevWithClass', function(elm, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             null, [], name, null, 0, false, true);
     });
@@ -4138,7 +4253,7 @@
      * @return the first previous sibling available with the given criteria,
      * if found; <code>null</code> otherwise.
      */
-    def(me, 'getPrevWithId', function(elm, name) {
+    exports.getPrevWithId = def(me, 'getPrevWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, false, true);
     });
@@ -4163,7 +4278,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAll', function(elm, name) {
+    exports.getPrevAll = def(me, 'getPrevAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [],
             name, null, null, false, true);
     });
@@ -4196,7 +4311,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllByAttribute', function(elm, attribute, value, name) {
+    exports.getPrevAllByAttribute = def(me, 'getPrevAllByAttribute', function(
+                elm, attribute, value, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             null, [], name, null, null, false, true);
     });
@@ -4228,8 +4344,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllByAttributeUntil', function(elm, attribute, value,
-                until, name) {
+    exports.getPrevAllByAttributeUntil = def(me, 'getPrevAllByAttributeUntil',
+                function(elm, attribute, value, until, name) {
         return getNextSiblings(elm, isAttributeEquals, [attribute, value],
             isNodeEquals, [until], name, null, null, false, true);
     });
@@ -4256,7 +4372,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllByClass', function(elm, className, name) {
+    exports.getPrevAllByClass = def(me, 'getPrevAllByClass', function(elm,
+                className, name) {
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, null, false, true);
     });
@@ -4278,7 +4395,8 @@
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
      * @param {String} className - the <strong>CSS</strong> class name.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -4286,7 +4404,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllByClassUntil', function(elm, className, until, name) {
+    exports.getPrevAllByClassUntil = def(me, 'getPrevAllByClassUntil',
+                function(elm, className, until, name) {
         return getNextSiblings(elm, hasClassName, [className],
             isNodeEquals, [until], name, null, null, false, true);
     });
@@ -4305,7 +4424,8 @@
      *
      * @param {Object} elm - the element reference, or a <code>String</code>
      * id of it.
-     * @param {Object} until-
+     * @param {Object} until - the <strong>DOM</strong> to search until (but
+     * not included to), or its <code>String</code> id.
      * @param {String} name - (Optional; defaults to <code>undefined</code>),
      * if true, only the results with that <strong>node name</strong> (i.e.
      * <strong>HTML</strong> <strong>Tag Name</strong>) are selected.
@@ -4313,7 +4433,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllUntil', function(elm, until, name) {
+    exports.getPrevAllUntil = def(me, 'getPrevAllUntil', function(elm, until,
+                name) {
         return getNextSiblings(elm, null, [], isNodeEquals, [until],
             name, null, null, false, true);
     });
@@ -4340,7 +4461,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithAttribute', function(elm, attribute, name) {
+    exports.getPrevAllWithAttribute = def(me, 'getPrevAllWithAttribute',
+                function(elm, attribute, name) {
         return getNextSiblings(elm, hasAttribute, [attribute], null, [],
             name, null, null, false, true);
     });
@@ -4371,7 +4493,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithAttributeUntil', function(elm, attribute, until,
+    exports.getPrevAllWithAttributeUntil = def(me,
+                'getPrevAllWithAttributeUntil', function(elm, attribute, until,
                 name) {
         return getNextSiblings(elm, hasAttribute, [attribute],
             isNodeEquals, [until], name, null, null, false, true);
@@ -4398,7 +4521,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithClass', function(elm, name) {
+    exports.getPrevAllWithClass = def(me, 'getPrevAllWithClass', function(elm,
+                name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             null, [], name, null, null, false, true);
     });
@@ -4427,7 +4551,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithClassUntil', function(elm, until, name) {
+    exports.getPrevAllWithClassUntil = def(me, 'getPrevAllWithClassUntil',
+                function(elm, until, name) {
         return getNextSiblings(elm, hasClassAttribute, [],
             isNodeEquals, [until], name, null, null, false, true);
     });
@@ -4453,7 +4578,7 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithId', function(elm, name) {
+    exports.getPrevAllWithId = def(me, 'getPrevAllWithId', function(elm, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, null, false, true);
     });
@@ -4482,7 +4607,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    def(me, 'getPrevAllWithIdUntil', function(elm, until, name) {
+    exports.getPrevAllWithIdUntil = def(me, 'getPrevAllWithIdUntil', function(
+                elm, until, name) {
         return getNextSiblings(elm, hasIdAttribute, [],
             isNodeEquals, [until], name, null, null, false, true);
     });
@@ -4507,7 +4633,7 @@
      * @return <code>true</code> if <strong>elm</strong> is a child of
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
-    def(me, 'isChild', function(elm, ref) {
+    exports.isChild = def(me, 'isChild', function(elm, ref) {
         if (!ref) {
             return false;
         }
@@ -4535,7 +4661,7 @@
      * @return <code>true</code> if <strong>elm</strong> is a sibling after
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
-    def(me, 'isNext', function(elm, ref) {
+    exports.isNext = def(me, 'isNext', function(elm, ref) {
         if (!ref) {
             return false;
         }
@@ -4563,7 +4689,7 @@
      * @return <code>true</code> if <strong>elm</strong> is a parent of
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
-    def(me, 'isParent', function(elm, ref) {
+    exports.isParent = def(me, 'isParent', function(elm, ref) {
         if (!ref) {
             return false;
         }
@@ -4596,7 +4722,7 @@
      * @return <code>true</code> if <strong>elm</strong> is a parent of
      * <strong>ref</strong>, or the node itself; <code>false</code> otherwise.
      */
-    def(me, 'isParentOrSelf', function(elm, ref) {
+    exports.isParentOrSelf = def(me, 'isParentOrSelf', function(elm, ref) {
         if (!ref) {
             return false;
         }
@@ -4628,7 +4754,7 @@
      * @return <code>true</code> if <strong>elm</strong> is a sibling before
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
-    def(me, 'isPrev', function(elm, ref) {
+    exports.isPrev = def(me, 'isPrev', function(elm, ref) {
         if (!ref) {
             return false;
         }
@@ -4656,13 +4782,11 @@
      * @return <code>true</code> if <strong>elm</strong> is a sibling of
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
-    def(me, 'isSibling', function(elm, ref) {
+    exports.isSibling = def(me, 'isSibling', function(elm, ref) {
         if (!ref) {
             return false;
         }
 
         return contains(getSiblings(ref), elm);
     });
-
-    return exports;
 }(this.o2, this.document));

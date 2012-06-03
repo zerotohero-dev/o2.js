@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 18:13:29.097751
+ *  lastModified: 2012-06-03 00:12:56.2888371
  * -->
  *
  * <p>A validation helper.</p>
@@ -240,7 +240,7 @@
     });
 
     /**
-     * @function {static} o2.Validation.isNan
+     * @function {static} o2.Validation.isNaN
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -421,6 +421,4 @@
     exports.isWindow = def(me, 'isWindow', function(obj) {
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
-
-    return exports;
 }(this.o2));

@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-18 22:08:18.912299
+ *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A <code>JSONP</code> controller that implements the
@@ -68,7 +68,8 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    var me = construct(kModuleName, function(jsonp, args) {
+    exports.JsonpController = me = construct(kModuleName, function(jsonp,
+                args) {
         this.jsonp     = jsonp;
         this.ontimeout = (args && args.ontimeout) || nill;
         this.timeout   = (args && args.timeout) || null;
@@ -107,7 +108,7 @@
      *
      * @see o2.AjaxController.update
      */
-    override(me, 'update', function(data) {
+    exports.update = override(me, 'update', function(data) {
         if (!data.isTimedOut) {
             return;
         }
@@ -145,7 +146,7 @@
      * </pre>
      *
      */
-    override(me, 'unregister', function() {
+    exports.unregister = override(me, 'unregister', function() {
         if (this.isDeleted) {
             return;
         }

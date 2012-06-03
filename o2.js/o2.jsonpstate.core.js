@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-01 14:46:49.973159
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts

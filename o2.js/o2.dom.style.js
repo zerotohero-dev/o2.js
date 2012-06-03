@@ -10,14 +10,14 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-24 16:59:36.581799
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package to
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document, UNDEFINED) {
    'use strict';
 
     var _         = framework.protecteds;
@@ -26,6 +26,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -99,7 +101,8 @@
      * @param {String} title - the <code>title</code> of the <strong>alternate
      * stylesheet</strong> to activate.
      */
-    var activateAlternateStylesheet = def(me, 'activateAlternateStylesheet', function(title) {
+    exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
+                function(title) {
         var i             = 0;
         var len           = 0;
         var link          = null;
@@ -121,8 +124,6 @@
      */
     var isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
 
-    var addCssRules;
-
     if(isCrap) {
 
         /**
@@ -139,7 +140,7 @@
          * );
          * </pre>
          */
-        addCssRules = def(me, 'addCssRules', function(cssText) {
+        exports.addCssRules = def(me, 'addCssRules', function(cssText) {
             try {
                 document.createStyleSheet().cssText = cssText;
             } catch(e) {
@@ -151,7 +152,7 @@
             }
         });
     } else {
-        addCssRules = def(me, 'addCssRules', function(cssText) {
+        exports.addCssRules = def(me, 'addCssRules', function(cssText) {
             var d         = createElement(kStyle);
             d.type        = kTextCss;
             d.textContent = cssText;
@@ -185,7 +186,7 @@
      * @param {Object} style - styles in the form <code>{style1:value1,
      * style2:value2}</code>.
      */
-    var addStyle = def(me, 'addStyle', function(obj, style) {
+    exports.addStyle = def(me, 'addStyle', function(obj, style) {
         obj = $(obj);
 
         if (!obj) {
@@ -227,7 +228,7 @@
      *
      * @see o2.Dom.addStyle
      */
-    var setCss = alias(me, 'setCss', 'addStyle');
+    exports.setCss = alias(me, 'setCss', 'addStyle');
 
     /**
      * @function {static} o2.Dom.setStyle
@@ -236,9 +237,7 @@
      *
      * @see o2.Dom.addStyle
      */
-    var setStyle = alias(me, 'setStyle', 'addStyle');
-
-    var getStyle = null;
+    exports.setStyle = alias(me, 'setStyle', 'addStyle');
 
     if (document.defaultView && document.defaultView.getComputedStyle) {
 
@@ -277,7 +276,8 @@
          *
          * @return the calculated <strong>style</strong> value.
          */
-        getStyle = def(me, 'getStyle', function(elm, cssProperty, isNoForce) {
+        exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
+                    isNoForce) {
             var noForce   = !!isNoForce;
             var obj       = $(elm);
             var styleText = kEmpty;
@@ -333,7 +333,8 @@
             return d;
         });
     } else {
-        getStyle = def(me, 'getStyle', function(elm, cssProperty, isNoForce) {
+        exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
+                    isNoForce) {
             var noForce   = !!isNoForce;
             var obj       = $(elm);
             var styleText = kEmpty;
@@ -432,7 +433,7 @@
      *
      * @see o2.Dom.getStyle
      */
-    var getCss = alias(me, 'getCss', 'getStyle');
+    exports.getCss = alias(me, 'getCss', 'getStyle');
 
     /**
      * @function {static} o2.Dom.hide
@@ -448,7 +449,7 @@
      * @param {Object} obj - the <strong>DOM</strong> node, or the
      * <strong>id</strong> to hide.
      */
-    var hide = def(me, 'hide', function(elm) {
+    exports.hide = def(me, 'hide', function(elm) {
         var obj = $(elm);
 
         if (!obj) {
@@ -461,6 +462,11 @@
 
         obj.style.display = kNone;
     });
+
+    /*
+     *
+     */
+    var hide = require(me, 'hide');
 
     /**
      * @function {static} o2.Dom.show
@@ -476,7 +482,7 @@
      * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of it, to show.
      */
-    var show = def(me, 'show', function(elm) {
+    exports.show = def(me, 'show', function(elm) {
         var obj = $(elm);
 
         if (!obj) {
@@ -487,6 +493,11 @@
 
         delete obj[[myName, kOldDisplay].join(kEmpty)];
     });
+
+    /*
+     *
+     */
+    var show = require(me, 'show');
 
     /**
      * @function {static} o2.Dom.isVisible
@@ -511,7 +522,7 @@
      * @return <code>true</code> if the element is visible, <code>false</code>
      * otherwise.
      */
-    var isVisible = def(me, 'isVisible', function(obj) {
+    exports.isVisible = def(me, 'isVisible', function(obj) {
         obj = $(obj);
 
         if (!obj) {
@@ -548,6 +559,11 @@
                ((display    !== kNone  ) && (visibility !== kHidden));
     });
 
+    /*
+     *
+     */
+    var isVisible = require(me, 'isVisible');
+
     /**
      * @function {static} o2.Dom.toggleVisibility
      *
@@ -566,14 +582,15 @@
      * item; if <code>undefined</code> simply toggles the visibility of the
      * item.
      */
-    var toggleVisibility = def(me, 'toggleVisibility', function(elm, state) {
+    exports.toggleVisibility = def(me, 'toggleVisibility', function(elm,
+                state) {
         var obj = $(elm);
 
         if (!obj) {
             return;
         }
 
-        if (state !== undefined) {
+        if (state !== UNDEFINED) {
             if (state) {
                 show(elm);
 

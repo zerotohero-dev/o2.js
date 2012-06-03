@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 19:23:02.982526
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
@@ -222,6 +222,4 @@
 
         return str;
     });
-
-    return exports;
 }(this.o2));

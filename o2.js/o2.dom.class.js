@@ -8,12 +8,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 13:05:30.314830
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-(function(framework, undefined) {
+(function(framework, UNDEFINED) {
     'use strict';
 
     var _         = framework.protecteds;
@@ -21,6 +21,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -63,9 +65,15 @@
      *
      * @returns a <code>RegExp</code> that matches the given class name.
      */
-    var createClassNameRegExp = def(me, 'createClassNameRegExp', function(c) {
+    exports.createClassNameRegExp = def(me, 'createClassNameRegExp',
+                function(c) {
         return new RegExp(concat(kBeginOrBlank, c, kEndOrBlank));
     });
+
+    /*
+     *
+     */
+    var createClassNameRegExp = require(me, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.Dom.hasClass
@@ -88,7 +96,7 @@
      * @return <code>true</code> if <strong>el</strong> has the
      * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
      */
-    var hasClass = def(me, 'hasClass', function(el, c) {
+    exports.hasClass = def(me, 'hasClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -97,6 +105,11 @@
 
         return createClassNameRegExp(c).test(el.className);
     });
+
+    /*
+     *
+     */
+    var hasClass = require(me, 'hasClass');
 
     /**
      * @function {static} o2.Dom.addClass
@@ -113,7 +126,7 @@
      * <strong>id</strong> of it.
      * @param {String} c - the <strong>className</strong> to add.
      */
-    var addClass = def(me, 'addClass', function(el, c) {
+    exports.addClass = def(me, 'addClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -126,6 +139,11 @@
 
         el.className += concat(kBlank, c);
     });
+
+    /*
+     *
+     */
+    var addClass = require(me, 'addClass');
 
     /**
      * @function {static} o2.Dom.removeClass
@@ -142,7 +160,7 @@
      * <strong>id</strong> of it.
      * @param {String} c - the className to remove.
      */
-    var removeClass = def(me, 'removeClass', function(el, c) {
+    exports.removeClass = def(me, 'removeClass', function(el, c) {
         el = $(el);
 
         if (!el) {
@@ -155,6 +173,11 @@
 
         el.className = el.className.replace(createClassNameRegExp(c), kBlank);
     });
+
+    /*
+     *
+     */
+    var removeClass = require(me, 'removeClass');
 
     /**
      * @function {static} o2.Dom.toggleClass
@@ -178,8 +201,8 @@
      * given, the class is toggled (i.e. added if the class does not exist,
      * and removed if the class exists).
      */
-    var toggleClass = def(me, 'toggleClass', function(el, c, state) {
-        if (state !== undefined) {
+    exports.toggleClass = def(me, 'toggleClass', function(el, c, state) {
+        if (state !== UNDEFINED) {
             if (state) {
                 addClass(el, c);
 

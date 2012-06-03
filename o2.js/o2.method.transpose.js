@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 16:44:38.221515
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose
@@ -133,6 +133,4 @@
                 [delegate].concat(slice.call(arguments)));
         };
     });
-
-    return exports;
 }(this.o2));

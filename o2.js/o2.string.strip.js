@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 20:37:13.572222
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
@@ -143,6 +143,4 @@
     exports.stripNumeric = def(me, 'stripNumeric', function(str) {
         return str.replace(kNumericRegExp, kEmpty);
     });
-
-    return exports;
 }(this.o2));

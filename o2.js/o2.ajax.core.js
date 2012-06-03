@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-11 15:41:30.171354
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
@@ -548,6 +548,4 @@
         } catch(ignore) {
         }
     });
-
-    return exports;
 }(this.o2, this));

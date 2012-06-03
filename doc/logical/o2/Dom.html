@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001338144770
+	                 version 0.25.a.0001338707672
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -247,7 +247,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- var frag = o2.Dom.createDocumentFragment('<div>test</div>');
+ var frag = o2.Dom.createDocumentFragment('[div]test[/div]');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -281,26 +281,6 @@
             </div>          
                 <div class="summaryItemDesc">
         <p>An <strong>alias</strong> to <a href="logical/o2/Dom.html#___removeChildren">o2.Dom.removeChildren</a>.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                                    <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Dom.html#___ge0tLastChildWithAttribute"><span class="elementName">ge0tLastChildWithAttribute</span></a>
-                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
- attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
- name)
-            </div>          
-                <div class="summaryItemDesc">
-        <p>Gets the last child of the element that's not a text node, and
- having a given attribute defined.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- var item = o2.Dom.getLastChildWithAttribute('content', 'data-id', 'li');
- </pre>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -1098,6 +1078,26 @@
 
  <pre>
  var item = o2.Dom.getLastChildByClass('content', 'selected', 'li');
+ </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                                    <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Dom.html#___getLastChildWithAttribute"><span class="elementName">getLastChildWithAttribute</span></a>
+                (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ name)
+            </div>          
+                <div class="summaryItemDesc">
+        <p>Gets the last child of the element that's not a text node, and
+ having a given attribute defined.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var item = o2.Dom.getLastChildWithAttribute('content', 'data-id', 'li');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -2189,7 +2189,7 @@
                                                                     <div class="summaryItemDef">
                 <span class="modifiers">static</span>
                 <span class="type"></span>
-                <a href="logical/o2/Dom.html#___getObjectScrollOfset"><span class="elementName">getObjectScrollOfset</span></a>
+                <a href="logical/o2/Dom.html#___getObjectScrollOffset"><span class="elementName">getObjectScrollOffset</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj)
             </div>          
@@ -2405,7 +2405,7 @@
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
  value, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2447,7 +2447,7 @@
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  className, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2469,7 +2469,7 @@
                 <a href="logical/o2/Dom.html#___getParentsUntil"><span class="elementName">getParentsUntil</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2510,7 +2510,7 @@
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2551,7 +2551,7 @@
                 <a href="logical/o2/Dom.html#___getParentsWithClassUntil"><span class="elementName">getParentsWithClassUntil</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2591,7 +2591,7 @@
                 <a href="logical/o2/Dom.html#___getParentsWithIdUntil"><span class="elementName">getParentsWithIdUntil</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2714,7 +2714,7 @@
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  className, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2736,7 +2736,7 @@
                 <a href="logical/o2/Dom.html#___getPrevAllUntil"><span class="elementName">getPrevAllUntil</span></a>
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2880,7 +2880,7 @@
                 (<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
- value-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ value, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
             </div>          
                 <div class="summaryItemDesc">
@@ -2970,6 +2970,15 @@
  <pre>
  var item = o2.Dom.getPrevWithId('content', 'selected', 'li');
  </pre>    </div>  
+                            </div>
+                    <div class="summaryItem">
+                                                           <div class="summaryItemDef">
+                <span class="modifiers">static</span>
+                <span class="type"></span>
+                <a href="logical/o2/Dom.html#___getScrollOffset"><span class="elementName">getScrollOffset</span></a>()
+            </div>
+        <div class="summaryItemDesc">
+        <p>An alias to o2.Dom.getObjectStrollOffset.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -3211,15 +3220,6 @@
 
  <p>Gets the siblings of the element, having an "id" attribute
  defined, until (but not included to) a specific node.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                           <div class="summaryItemDef">
-                <span class="modifiers">static</span>
-                <span class="type"></span>
-                <a href="logical/o2/Dom.html#___getStrollOffset"><span class="elementName">getStrollOffset</span></a>()
-            </div>
-        <div class="summaryItemDesc">
-        <p>An alias to o2.Dom.getObjectStrollOffset.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -4021,7 +4021,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.setHtml('container', '<h1>hello</h1>');
+ o2.Dom.setHtml('container', '[h1]hello[/h1]');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4511,7 +4511,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- var frag = o2.Dom.createDocumentFragment('<div>test</div>');
+ var frag = o2.Dom.createDocumentFragment('[div]test[/div]');
  </pre>
 
      </div>
@@ -4620,64 +4620,6 @@
                 </div>
                     </div>
                                                     <hr/>       
-                                                                                    <h3>
-        <a name="___ge0tLastChildWithAttribute">
-            <span class="objType">function</span>
-            <span class="objName">ge0tLastChildWithAttribute</span>            
-        </a> 
-    </h3>
-                        <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    ge0tLastChildWithAttribute(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
- elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
- attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
- name)
-                </code> 
-            </div>          
-                <div class="comment">
-        <p>Gets the last child of the element that's not a text node, and
- having a given attribute defined.</p>
-
- <p><strong>Usage example:</strong></p>
-
- <pre>
- var item = o2.Dom.getLastChildWithAttribute('content', 'data-id', 'li');
- </pre>
-
-     </div>
-        	<div class="parameters">
-        <span class="descSection">Parameters:</span><br/>
-                            <div>
-                    <div class="paramset"></div>
-                    <div>
-                                                <div class="param paddedDetails">
-        <code>
-            elm        </code>
-         - the element reference, or a <code>String</code>
- id of it.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            attribute        </code>
-         - the name of the attribute to filter.            </div>   
-                                                <div class="param paddedDetails">
-        <code>
-            name        </code>
-         - (Optional; defaults to <code>undefined</code>),
- if true, only the results with that <strong>node name</strong> (i.e.
- <strong>HTML</strong> <strong>Tag Name</strong>) are selected.            </div>   
-                                        </div>
-                </div>
-                    </div>
-            	<div class="returns">
-	        <span class="descSection">Returns:</span><br/>
-	        <div class="paddedDetails">
-	            	             the last child available with the given criteria, if found;
- <code>null</code> otherwise.
-     	            	        </div>
-        </div>      
-                                                <hr/>       
                                                                                     <h3>
         <a name="___getAttribute">
             <span class="objType">function</span>
@@ -6916,6 +6858,64 @@
         <code>
             className        </code>
          - the <strong>CSS</strong> class name.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            name        </code>
+         - (Optional; defaults to <code>undefined</code>),
+ if true, only the results with that <strong>node name</strong> (i.e.
+ <strong>HTML</strong> <strong>Tag Name</strong>) are selected.            </div>   
+                                        </div>
+                </div>
+                    </div>
+            	<div class="returns">
+	        <span class="descSection">Returns:</span><br/>
+	        <div class="paddedDetails">
+	            	             the last child available with the given criteria, if found;
+ <code>null</code> otherwise.
+     	            	        </div>
+        </div>      
+                                                <hr/>       
+                                                                                    <h3>
+        <a name="___getLastChildWithAttribute">
+            <span class="objType">function</span>
+            <span class="objName">getLastChildWithAttribute</span>            
+        </a> 
+    </h3>
+                        <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getLastChildWithAttribute(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+ elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ name)
+                </code> 
+            </div>          
+                <div class="comment">
+        <p>Gets the last child of the element that's not a text node, and
+ having a given attribute defined.</p>
+
+ <p><strong>Usage example:</strong></p>
+
+ <pre>
+ var item = o2.Dom.getLastChildWithAttribute('content', 'data-id', 'li');
+ </pre>
+
+     </div>
+        	<div class="parameters">
+        <span class="descSection">Parameters:</span><br/>
+                            <div>
+                    <div class="paramset"></div>
+                    <div>
+                                                <div class="param paddedDetails">
+        <code>
+            elm        </code>
+         - the element reference, or a <code>String</code>
+ id of it.            </div>   
+                                                <div class="param paddedDetails">
+        <code>
+            attribute        </code>
+         - the name of the attribute to filter.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -10111,16 +10111,16 @@
         </div>      
                                                 <hr/>       
                                                                                     <h3>
-        <a name="___getObjectScrollOfset">
+        <a name="___getObjectScrollOffset">
             <span class="objType">function</span>
-            <span class="objName">getObjectScrollOfset</span>            
+            <span class="objName">getObjectScrollOffset</span>            
         </a> 
     </h3>
                         <div>
                 <code>
                     <span class="modifiers">static</span>
                     <span class="type"></span>
-                    getObjectScrollOfset(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
+                    getObjectScrollOffset(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  obj)
                 </code> 
             </div>          
@@ -10717,7 +10717,7 @@
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
  value, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -10753,8 +10753,9 @@
          - the value of the attribute.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> node that the traversal
+ will be made until, or its <code>String</code> id,            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -10843,7 +10844,7 @@
                     getParentsByClassUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  className, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -10876,8 +10877,9 @@
          - the <strong>CSS</strong> class name.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -10907,7 +10909,7 @@
                     <span class="type"></span>
                     getParentsUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -10934,8 +10936,9 @@
  id of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -11024,7 +11027,7 @@
                     getParentsWithAttributeUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -11057,8 +11060,9 @@
          - the name of the attribute to filter.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -11141,7 +11145,7 @@
                     <span class="type"></span>
                     getParentsWithClassUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -11169,8 +11173,9 @@
  id of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -11253,7 +11258,7 @@
                     <span class="type"></span>
                     getParentsWithIdUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -11281,8 +11286,9 @@
  id of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -11609,7 +11615,7 @@
                     getPrevAllByClassUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  className, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -11642,8 +11648,9 @@
          - the <strong>CSS</strong> class name.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -11673,7 +11680,7 @@
                     <span class="type"></span>
                     getPrevAllUntil(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/Object.html">Object</a></span>
- until-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ until, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -11700,8 +11707,9 @@
  id of it.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            until-        </code>
-                    </div>   
+            until        </code>
+         - the <strong>DOM</strong> to search until (but
+ not included to), or its <code>String</code> id.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -12082,7 +12090,7 @@
                     getPrevByAttribute(<span class="type"><a href="logical/o2/Object.html">Object</a></span>
  elm, <span class="type"><a href="logical/o2/String.html">String</a></span>
  attribute, <span class="type"><a href="logical/o2/String.html">String</a></span>
- value-, <span class="type"><a href="logical/o2/String.html">String</a></span>
+ value, <span class="type"><a href="logical/o2/String.html">String</a></span>
  name)
                 </code> 
             </div>          
@@ -12113,8 +12121,8 @@
          - the name of the attribute to filter.            </div>   
                                                 <div class="param paddedDetails">
         <code>
-            value-        </code>
-                    </div>   
+            value        </code>
+         - i the value of the attribute to filter.            </div>   
                                                 <div class="param paddedDetails">
         <code>
             name        </code>
@@ -12354,6 +12362,28 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
+                                                                                    <h3>
+        <a name="___getScrollOffset">
+            <span class="objType">function</span>
+            <span class="objName">getScrollOffset</span>            
+        </a> 
+    </h3>
+                <div>
+                <code>
+                    <span class="modifiers">static</span>
+                    <span class="type"></span>
+                    getScrollOffset()
+                </code>
+            </div>    
+        <div class="comment">
+        <p>An alias to o2.Dom.getObjectStrollOffset.</p>
+
+     </div>
+                                <div class="seealso">
+            <span class="descSection">See also:</span>
+                            <div class="paddedDetails"><a href="logical/o2/Dom.html#___getObjectScrollOffset">o2.Dom.getObjectScrollOffset</a></div>
+                    </div>      
+                                <hr/>       
                                                                                     <h3>
         <a name="___getSiblings">
             <span class="objType">function</span>
@@ -13057,28 +13087,6 @@
      	            	        </div>
         </div>      
                                                 <hr/>       
-                                                                                    <h3>
-        <a name="___getStrollOffset">
-            <span class="objType">function</span>
-            <span class="objName">getStrollOffset</span>            
-        </a> 
-    </h3>
-                <div>
-                <code>
-                    <span class="modifiers">static</span>
-                    <span class="type"></span>
-                    getStrollOffset()
-                </code>
-            </div>    
-        <div class="comment">
-        <p>An alias to o2.Dom.getObjectStrollOffset.</p>
-
-     </div>
-                                <div class="seealso">
-            <span class="descSection">See also:</span>
-                            <div class="paddedDetails">{o2.Dom.getObjectScrollOffset}</div>
-                    </div>      
-                                <hr/>       
                                                                                     <h3>
         <a name="___getStyle">
             <span class="objType">function</span>
@@ -14929,7 +14937,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.setHtml('container', '<h1>hello</h1>');
+ o2.Dom.setHtml('container', '[h1]hello[/h1]');
  </pre>
 
      </div>

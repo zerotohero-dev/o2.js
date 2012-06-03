@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 16:57:55.616509
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object support checker.</p>
@@ -133,6 +133,4 @@
     exports.dom = def(me, 'dom', function() {
         return isDomSupported;
     });
-
-    return exports;
 }(this.o2, this.document));

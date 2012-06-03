@@ -7,7 +7,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-19 06:50:55.175973
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * Custom delegates for <code>Array.sort</code> method.
@@ -110,6 +110,4 @@
     exports.sortDesc = def(me, 'sortDesc', function(a, b) {
         return sort(b, a);
     });
-
-    return exports;
 }(this.o2, this));

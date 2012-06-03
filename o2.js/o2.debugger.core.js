@@ -7,12 +7,12 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-04-13 12:58:51.488235
+ *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A debugging helper.</p>
  */
-(function(framework, window, document, undefined) {
+(function(framework, window, document, UNDEFINED) {
    'use strict';
 
     var _         = framework.protecteds;
@@ -20,6 +20,8 @@
     var create    = attr(_, 'create');
     var def       = attr(_, 'define');
     var require   = attr(_, 'require');
+
+    var exports = {};
 
     /*
      * Module Name
@@ -191,7 +193,7 @@
      *
      * @see o2.Unit.assert
      */
-    var assert = def(me, 'assert', function(pass, message) {
+    exports.assert = def(me, 'assert', function(pass, message) {
         if (!isInitialized) {
             return;
         }
@@ -218,7 +220,7 @@
      *
      * @param {String} message - the error message to display.
      */
-    var error = def(me, 'error', function(message) {
+    exports.error = def(me, 'error', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -239,7 +241,7 @@
      *
      * @param {String} message - the info message to display.
      */
-    var info = def(me, 'info', function(message) {
+    exports.info = def(me, 'info', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -266,13 +268,13 @@
      * @param {Boolean} shouldUseConsole - should browser's built-in console
      * be used, if available.
      */
-    var init = def(me, 'init', function(outputElement, shouldUseConsole) {
+    exports.init = def(me, 'init', function(outputElement, shouldUseConsole) {
         var outputNode = $(outputElement);
 
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
         // boolean.)
-        isUsingConsole = (console !== undefined && !!shouldUseConsole);
+        isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
         // Is everything ok? -- I should either use the output element, or
         // the console.
@@ -309,7 +311,7 @@
      *
      * @see o2.Unit.log
      */
-    var log = def(me, 'log', function(message) {
+    exports.log = def(me, 'log', function(message) {
         if (!isInitialized) {
             return;
         }
@@ -332,7 +334,7 @@
      * @param {String} className - the CSS class name that is associated with
      * the line.
      */
-    var println = def(me, 'println', function(value, className) {
+    exports.println = def(me, 'println', function(value, className) {
 
         // If not initialized, then we cannot use any of
         // Debugger's public methods.
@@ -365,7 +367,7 @@
      *
      * @param {String} message - the warning message to display.
      */
-    var warn = def(me, 'warn', function(message) {
+    exports.warn = def(me, 'warn', function(message) {
         if (!isInitialized) {
             return;
         }
