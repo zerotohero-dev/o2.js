@@ -696,6 +696,42 @@ there is almost always a more correct way to accomplish what you are doing.
 Note that using `Function` constructor is also a form of `eval` and should be
 avoided.
 
+### Do not use `undefined`
+
+In **JavaScript**, it is possible to override the `undefined` variable
+unintentionally.
+
+Consider the following case where the writer of the code loves
+[Yoda][23] conditions, but mistypes `=` instead of using `===`
+
+    if (undefined = getStuff()) {
+        doStuff
+    }
+
+If `getStuff()` return some object (like `{success : true}`), all of a sudden
+the `undefined` object gets a new definition.
+
+    // this will log `true`.
+    console.log( undefined.success )
+
+to avoid this, **o2.j2** modules use an `UNDEFINED` parameter at the beginning
+of the module decleration, and use `UNDEFINED` instead of `undefined` inside
+the module. Here's an example:
+
+    (function(framework, UNDEFINED) {
+        'use strict';
+
+        // module code goes here.
+
+        if (foo === UNDEFINED) {
+            bar();
+        } else {
+            baz();
+        }
+    }(this.o2);
+
+This aliasing gives a slight minification advantage as well.
+
 ### **Object** and **Array** Creation
 
 Use literal notation. It takes less space and it's sligthly faster:
@@ -1156,6 +1192,21 @@ do this
     if (result.status === CONNECTED) {
         ...
     }
+
+### Avoid **Stringly Typed** Code
+
+Your code should not needlessly rely on **String**s, when there are programmer
+and refactor friendly options are available:
+
+For examples, pass numeric literals, or enums as method parameters, rather than
+strings.
+
+> Excessively **stringly typed** code is usually a pain to understand
+> and detonates at production with errors that [JSLint][2] would normally find.
+
+It is also darn hard to refactor a **stringly typed** codebase.
+A starting point may be creating constants for commonly used string literals
+and use those constants instead of the strings themselves.
 
 ### Always Use Strict Comparison
 
