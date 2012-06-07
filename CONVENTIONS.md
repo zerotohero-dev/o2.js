@@ -720,7 +720,7 @@ Consider the following case where the author of the code loves
     }
 
 If `getStuff()` return some object (like `{success : true}`), all of a sudden
-the `undefined` object gets a new definition.
+the `undefined` object gets a new definition:
 
     // this will log `true`.
     console.log( undefined.success )
