@@ -712,8 +712,8 @@ avoided.
 In **JavaScript**, it is possible to override the `undefined` variable
 unintentionally.
 
-Consider the following case where the writer of the code loves
-[Yoda][23] conditions, but mistypes `=` instead of using `===`
+Consider the following case where the author of the code loves
+[Yoda][23] conditions, but mistypes `=` instead of using `===`:
 
     if (undefined = getStuff()) {
         doStuff
