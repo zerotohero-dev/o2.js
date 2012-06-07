@@ -9,7 +9,16 @@
 
 ## An **All-in-One** Guide to Writing Efficient **JavaScript** *;)*
 
-**Last Updated**: *2012-05-27 19:52:29.609752*
+**Last Updated**: *2012-06-07 08:17:03.197113*
+
+--------------------------------------------------------------------------------
+
+## Bottom Line Up Front
+
+Just carve this into your mind if you forget everything else you read in this
+document:
+
+> You should write your code that it can be read as good book.
 
 --------------------------------------------------------------------------------
 
@@ -262,6 +271,9 @@ line length limit.
         ...
 
 ### Blank Lines
+
+Blank lines may be used for separating  code lines or line groups semantically
+for readability.
 
 Leave **at most** one blank line.
 
@@ -939,6 +951,16 @@ every-day lingo.
         // WTF?!
         var b001 = (lo == l0) ? (I1 == 11) : (lOl != 101);
 
+* Use short enough and long enough variable names in each scope of code.
+
+As a rule of thumb, length may be 1 char for loop counters, 1 word for
+condition/loop variables, 1-2 words for methods, 2-3 words for classes,
+3-4 words for globals.
+
+* A variable name must define the exact explanation of its content.
+
+* Don't use non-ASCII chars in variable names.
+
 * **Do not use Hungarian Notation**:
 
         // Incorrect:
@@ -950,7 +972,9 @@ every-day lingo.
 
     **Exception**:
 
-    It's okay to prefix form elements with txt, btn and the like.
+    It's okay to prefix DOM elements with txt, btn and the like.
+    But **be consistent** in your prefixes. (i.e. do not use
+    *btnAction* and *lnkAction* for the same link button in different places)
 
         // These are all OK:
         var txtLogin = document.getElementById('loginInput');
@@ -958,6 +982,15 @@ every-day lingo.
         var optCountry = document.getElementById('countrySelection');
 
 * Use **verbs** for **function names**.
+
+Use meaningful names for methods. The name must specify the exact action of
+the method and must start with a verb. (e.g. *createPasswordHash*)
+
+* Use meaningful names for method parameters.
+
+You should be able to understand what the parameter is for without
+documentation. And this should **NOT** be an excuse for not having properly
+documented code.
 
 * Use **nouns** for **members**, **constants** and **variables**.
 
@@ -1005,7 +1038,6 @@ every-day lingo.
     and **enums**, in order to differentiate them from *constant* and *enum*
     keywords.
 
-
 * Use **plural** names for **collections**:
 
         var members = getOnlineMembers(); // "members", not "member".
@@ -1028,7 +1060,6 @@ every-day lingo.
                 }
             }
         };
-
 
     **Exception**:
 
@@ -1160,6 +1191,61 @@ may decrease readability.
 
     // Correct:
     return (obj !== undefined) && (obj !== null) && (klass === type);
+
+### Sort Variables and Methods in Alphabethical Order
+
+Keep your variable declerations in alphabethical order:
+
+    /*
+     * EcmaScript Types
+     */
+    var kArguments = 'Arguments';
+    var kArray     = 'Array';
+    var kBoolean   = 'Boolean';
+    var kDate      = 'Date';
+    var kFunction  = 'Function';
+    var kNumber    = 'Number';
+    var kObject    = 'Object';
+    var kRegExp    = 'RegExp';
+    var kString    = 'String';
+
+Also note that it's okay to align the `=` signs for better readability.
+
+Method declerations are also ordered alphabethically inside the code.
+Here's a section of **o2.Dom.traverse.js**. Note that the methods are declared
+in alphabethical order from top to bottom:
+
+    exports.getChildren = def(me, 'getChildren', function(elm, name) {
+        return execFilter(elm, getChildNodes, [name]);
+    })
+
+    ...
+
+    exports.getParentsByAttribute = def(me, 'getParentsByAttribute', function(
+                elm, attribute, value, name) {
+        return getParents(elm, isAttributeEquals, [attribute, value],
+            null, [], name);
+    });
+
+    ...
+
+    exports.isSibling = def(me, 'isSibling', function(elm, ref) {
+        if (!ref) {
+            return false;
+        }
+
+        return contains(getSiblings(ref), elm);
+    });
+
+Same is true for module definition **[JSDoc][1]** headers:
+
+    /**
+     * @module   unit.core
+     * @requires core
+     * @requires debugger.core
+     * @requires domhelper.scroll
+     * @requires stringhelper.core
+     */
 
 ### Avoid "Yoda Conditions"
 
@@ -1295,6 +1381,74 @@ Use curly braces, even when they are not strictly necessary.
         }
     }
 
+### Function Headers
+
+Each function decleration should have a documentation header. If the function
+is publicly accessible it should have a [JSDoc][1] header; if the function is
+private to the module it should also have a header.
+
+Example:
+
+    // private function:
+
+    /*
+     * Checks whether two nodes are equal to one another.
+     */
+    function isNodeEquals(node, until) {
+        if (!node) {
+            return false;
+        }
+
+        if (!until) {
+            return false;
+        }
+
+        return $(node) === $(until);
+    }
+
+    // public function:
+
+    /**
+     * @function {protected static} o2.AjaxState.addObserver
+     *
+     * <p>An implementation of the <code>Observer.addObserver</code>
+     * method.</p>
+     * <p>Registers an <code>Observer</code>.</p>
+     *
+     * <p>This method is <strong>protected</strong>, in a sense that it's not
+     * meant to be called directly. {@link o2.AjaxController} and
+     * {@link o2.JsonpController} use it indirectly to register themselves.</p>
+     *
+     * @param {Object} observer - the <code>Observer</code> to register.
+     */
+    exports.addObserver = def(me, 'addObserver', function(observer) {
+
+        //!
+        // acquire(me, this, 'observer');
+        if (hasObserver(this, observer)) {
+            return;
+        }
+
+        var observers = getObservers(this);
+
+        observers.push({
+            object : observer,
+            meta : {
+                registrationTime : (new Date()).getTime(),
+                timeout : (observer.timeout || null)
+            }
+        });
+    });
+
+> As seen from the above example, the general way of defining a method in an
+> **o2.js** module is like:
+>
+> `exports.methodName = def(me, 'methodName, delegate);`
+>
+> The reason this structure was chosen instead of the usual
+> `o2.ObjectName.methodName = function() {}` deserves a blog post of its own
+> (will update this one one writing the blog post)
+
 ### Default Fallbacks
 
 All switch-case's should have a `default:` exit point.
@@ -1427,18 +1581,17 @@ The **JSLint** validation preferences used are as follows:
         bitwise : true
     };
 
-### Event-Handler Naming Convention
+### **Event Handler** Naming Convention
 
-User elementName_eventname format for event handlers.
+User **elementName_eventname** format for event handlers.
 
     function confirmButton_click(evt) {
 
     }
 
-    functions tester_readystatechange(evt) {
+    functions masterContainer_readystatechange(evt) {
 
     }
-
 
     o2.EventHandler.addEventListener(
         tester,
@@ -1452,18 +1605,28 @@ User elementName_eventname format for event handlers.
         confirmButton_click
     );
 
-Event handlers, when used as a function pointers start
-with "on", and they are camelCased.
+The same convention is true for custom events:
 
-    var onDocumentMouseDown = callback.document_mousedown;
+    DemoWidget.oninit = demoWidget_init;
+
+or
+
+    DemoWidget.oninit = WidgetCallback.demoWidget_init;
+
+When used as function pointers event handlers start with **on**,
+and they are **all lowercase**.
+
+    var ondocumentmousedown = EventCallback.document_mousedown;
+    // or
+    // var ondocumentmousedown = document_mousedown;
 
     ...
 
-    onDocumentMouseDown.apply(this, [evt]);
+    ondocumentmousedown.apply(this, [evt]);
 
-Any custom events are defined all lowercase.
+Any custom event also starts with **on** on and is **all lowercase**:
 
-    var Selectable = function(params){
+    var Selectable = function(params) {
         ... stuff ...
 
         // We register the handler on constructor.
@@ -1473,11 +1636,33 @@ Any custom events are defined all lowercase.
         this.onselectionchange = params.onselectionchange;
     };
 
-    Selectable.prototype.someAction = function() {
+    Selectable.prototype.doSomeAction = function() {
         ...
 
+        // Also note that we send the even source and additional event
+        // arguments to the event handling delegate as parameters.
+        // This is also a nice convention to stick with.
         this.onselectionchange.apply(this, [source, eventArgs]);
     };
+
+    // Note that we still use **componentName_eventname** when we attach the
+    // event handler to an **instance** of this object:
+    var venueSelection = new Selectable({container : 'venueListDiv'});
+    venueSelection.onselectionchange =
+        WidgetCallback.venueSelection_selectionchange;
+
+**Exception**:
+
+Callbacks that cannot be correlated with a unique DOM node
+or with a unique custom object (like **AJAX/JSONP/CORS...** async response
+handlers), AND callbacks that are correlated with an **action** (verb)
+(and not with an *object* (noun)) are **camelCased** and start with **handle**.
+
+An example is better than a thousand words:
+
+    // "user deletion" is an "action", not an "object", so its callback is
+    // handleUserDeleteSuccess and NOT userDelete_success
+    o2.Jsonp.get('api.php', {params}, ApiCallback.handleUserDeleteSuccess);
 
 ### Store Your Code in Meaningful Folder Structures
 
@@ -1612,6 +1797,9 @@ Variables should be understandable by their behavior (*semantics*),
         var kAddBuddy = eventType.ADD_BUDDY;
 
         var items = new ArrayList();
+
+Similarly don't start variables with o_, obj_, m_ etc. A variable does not
+need tags which states it is a... well... "variable".
 
 **Exception**:
 
@@ -1780,7 +1968,6 @@ relation should be **explicitly indicated**:
 
 ### Use Event Constants
 
-
 Related to the above item, instead of using string literals for registering
 events like
 
@@ -1860,6 +2047,22 @@ against this:
     } else {
         return getBasePrice() * 0.98;
     }
+
+### Keep it **DRY**
+
+> Every piece of knowledge must have a single, unambiguous, authoritative
+> representation within a system.
+
+Don't Repeat Yourself (DRY) is a principle of software development aimed at
+reducing repetition of information of all kinds.
+
+The principle has been formulated by Andy Hunt and Dave Thomas in their book
+[The Pragmatic Programmer][25].
+
+When the DRY principle is applied successfully, a modification of any single
+element of a system does not require a change in other logically-unrelated
+elements. Additionally, elements that are logically related all change
+predictably and uniformly, and are thus kept in sync.
 
 ### Program Defensively
 
@@ -2355,6 +2558,31 @@ them in one way or another. [Robert Martin][23] expresses his opionion in
 Robert Martin had previous described comments as **apologies** for
 **making the code unmaintainable**.
 
+* Any comment is better than no comment at all
+
+None the less comments **are** an integral part of the code, so they are really
+important.
+
+A commentless code library will be useless in a short time with
+high probability. Even though there are approaches that suggest
+self-explanatory code over documentation, you should use both
+(self-explanatory code AND documentation).
+
+* Use comments "as required".
+
+Unnecessary over-commenting in each line will reduce readability.
+Whereas lack of commenting will increase maintenance time.
+
+* Writie comments (e.g. **[JsDoc][1]** declaration) for all public methods.
+
+* Comment HACKS and TODO's while you are writing the code.
+
+Document "gotcha"s and "todo"s instantly when detected. These items may be
+remembered for that instant but may not for tomorrow when not documented.
+
+Heck, do you remember what you ate for lunch 3 days ago? So don't be lazy
+and write those inline comments.
+
 ### Excessively Long Method Names
 
 Explanatory method names are good.
@@ -2441,6 +2669,18 @@ If a method has a misleading name, **rename it**.
 Have a standard terminology in naming your methods and adhere to it.
 
 Do not give different names to similar-behaving functions.
+
+Here are a few examples:
+
+* **createFoo** : deterministic outcome.
+* **generateFoo** : Probabilistic outcome.
+* **renderFoo** : A complex visual change, usually involving some extra logic
+to decide what to render.
+* **showFoo/hideFoo** : a simpler visual change
+* **processFoo/doFoo** : a batch (Façade) method that does several sub-tasks
+together.
+* **getFoo** : gets a (usually primitive) value
+* **setFoo** : sets a (usually primitive) value
 
 ### Dead Code
 
@@ -2583,6 +2823,7 @@ for situations that are not covered in this document.
 * ["Clean Code, A Handbook of Agile Software Craftsmanship"][22]
 * ["Robert C. Martin"][23]
 * ["Replace Temp With Query"][24]
+* ["The Pragmatic Programmer"][25]
 
 --------------------------------------------------------------------------------
 
@@ -2614,3 +2855,4 @@ Feel free to contribute.
 [22]: http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882 "Clean Code, A Handbook of Agile Software Craftsmanship"
 [23]: http://www.objectmentor.com/omTeam/martin_r.html "Robert C. Martin"
 [24]: http://martinfowler.com/refactoring/catalog/replaceTempWithQuery.html "Replace Temp With Query"
+[25]: http://pragprog.com/the-pragmatic-programmer "The Pragmatic Programmer"
