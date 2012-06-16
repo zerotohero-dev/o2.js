@@ -183,12 +183,13 @@ conventions, variable namings, indentation, and the like.
 4. Clone your fork into your local repository.
 5. Make sure you are working on the **dev** branch.
 6. **Branching out from the dev branch**, 
-create a thoughtfully named topic branch containing your change.
+create a thoughtfully named **topic branch** containing your change.
 7. Implement your change.
 8. [JSLint your code](http://jslint.com/).
 9. Run the **publish** script at `batch/publish.sh`.
-9. Push your branch.
-10. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
+10. **merge** the **topic branch** into the **dev** branch.
+11. Push the **dev** branch.
+12. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
 
 #### A Step by Step Introduction
 
