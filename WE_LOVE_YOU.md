@@ -263,10 +263,10 @@ The **JSLint** validation preferences that **[o2.js][1]** uses are as follows:
         cd {PATH_TO_YOUR_PROJECTS}/o2.js/batch/
         sh publish.sh
 
-* Merge with the **dev** branch:
+* merge with **dev** branch:
 
-If **JSLint** tests pass, and there are no errors after running the publish script,
-then it's time to merge our changes into our **dev** branch.
+   If **JSLint** tests pass, and there are no errors after running the publish script,
+   then it's time to merge our changes into our **dev** branch.
 
         $ git checkout dev
         $ git merge DocumentationReminder
