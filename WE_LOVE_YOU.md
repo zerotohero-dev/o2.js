@@ -235,12 +235,6 @@ Forking **[o2.js][1]** is easy:
 
 * Hack around, do your code changes.
 
-* Merge with the **dev** branch":
-
-        $ git checkout dev
-        $ git merge DocumentationReminder
-        $ git branch -D DocumentationReminder
-
 * **[JSLint](http://jslint.com/)** your code and make sure that you haven't missed anything.
 There are also automated tools for most of the editors around, so that you will not need to
 copy and paste your code to <http://jslint.com> every time you want to **JSLint** it.
@@ -268,6 +262,15 @@ The **JSLint** validation preferences that **[o2.js][1]** uses are as follows:
 
         cd {PATH_TO_YOUR_PROJECTS}/o2.js/batch/
         sh publish.sh
+
+* Merge with the **dev** branch:
+
+If **JSLint** tests pass, and there are no errors after running the publish script,
+then it's time to merge our changes into our **dev** branch.
+
+        $ git checkout dev
+        $ git merge DocumentationReminder
+        $ git branch -D DocumentationReminder
 
 * Push your changes to the remote repository:
 
