@@ -44,14 +44,14 @@
     * the first parameter is always the event object.</p>
     *
     * <p>This method is generally used in conjunction with
-    * {@link o2.EventHandler.addEventListener}.</p>
+    * {@link o2.Event.addEventListener}.</p>
     *
     * <p><strong>Usage example:</strong></p>
     *
     * <pre>
     * var $ = o2.$;
-    * var listen = o2.EventHandler.addEventListener;
-    * var getTarget = o2.EventHandler.getTarget;
+    * var listen = o2.Event.addEventListener;
+    * var getTarget = o2.Event.getTarget;
     * var bind = o2.Method.bindAsEventListener;
     *
     * var context = {id : 1, description : 'hello world.'};
@@ -80,7 +80,7 @@
     *
     * @return the bound <code>Function</code>.
     *
-    * @see o2.EventHandler.addEventListener
+    * @see o2.Event.addEventListener
     */
     exports.bindAsEventListener = def(me, 'bindAsEventListener', function() {
         var args    = slice.call(arguments);

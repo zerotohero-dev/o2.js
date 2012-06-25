@@ -113,7 +113,7 @@
     /*
      *
      */
-    var getDimension = require(me, 'getDimension');
+    var getDimension = require(kModuleName, 'getDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentDimension
@@ -156,7 +156,7 @@
     /*
      *
      */
-    var getDocumentDimension = require(me, 'getDocumentDimension');
+    var getDocumentDimension = require(kModuleName, 'getDocumentDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentHeight
@@ -309,7 +309,7 @@
     /*
      *
      */
-    var getWindowInnerDimension = require(me, 'getWindowInnerDimension');
+    var getWindowInnerDimension = require(kModuleName, 'getWindowInnerDimension');
 
     /**
      * @function {static} o2.Dom.getWindowInnerHeight
@@ -397,7 +397,7 @@
     /*
      *
      */
-    var setWidth = require(me, 'setWidth');
+    var setWidth = require(kModuleName, 'setWidth');
 
     /**
      * @function {static} o2.Dom.setHeight
@@ -446,7 +446,7 @@
     /*
      *
      */
-    var setHeight = require(me, 'setHeight');
+    var setHeight = require(kModuleName, 'setHeight');
 
     /**
      * @function {static} o2.Dom.setDimension

@@ -294,7 +294,7 @@
     /*
      *
      */
-    var indexOf = require(me, 'indexOf');
+    var indexOf = require(kModuleName, 'indexOf');
 
     /**
      * @function {static} o2.Collection.contains
@@ -331,7 +331,7 @@
     /*
      *
      */
-    var contains = require(me, 'contains');
+    var contains = require(kModuleName, 'contains');
 
     /**
      * @function {static} o2.Collection.includes
@@ -1187,7 +1187,7 @@
     /*
      *
      */
-    var isEmpty = require(me, 'isEmpty');
+    var isEmpty = require(kModuleName, 'isEmpty');
 
     /**
      * @function {static} o2.Collection.getMax
@@ -1278,7 +1278,7 @@
     /*
      *
      */
-    var getMax = require(me, 'getMax');
+    var getMax = require(kModuleName, 'getMax');
 
     /**
      * @function {static} o2.Collection.getMin
@@ -1804,7 +1804,7 @@
     /*
      *
      */
-    var toArray = require(me, 'toArray');
+    var toArray = require(kModuleName, 'toArray');
 
     /**
      * @function {static} o2.Collection.map
@@ -1888,7 +1888,7 @@
     /*
      *
      */
-    var map = require(me, 'map');
+    var map = require(kModuleName, 'map');
 
     /**
      * @function {static} o2.Collection.unique
@@ -1952,7 +1952,7 @@
     /*
      *
      */
-    var unique = require(me, 'unique');
+    var unique = require(kModuleName, 'unique');
 
     /**
      * @function {static} o2.Collection.intersect
@@ -2199,7 +2199,7 @@
     /*
      *
      */
-    var pluck = require(me, 'pluck');
+    var pluck = require(kModuleName, 'pluck');
 
     /**
      * @function {static} o2.Collection.reduce
@@ -2313,7 +2313,7 @@
     /*
      *
      */
-    var reduce = require(me, 'reduce');
+    var reduce = require(kModuleName, 'reduce');
 
     /**
      * @function {static} o2.Collection.fold
@@ -2806,7 +2806,7 @@
     /*
      *
      */
-    var flatten = require(me, 'flatten');
+    var flatten = require(kModuleName, 'flatten');
 
     /**
      * @function {static} o2.Collection.union

@@ -38,9 +38,9 @@
      * Aliases
      */
 
-    var kEventHandler  = kModuleName;
-    var getKeyCode     = require(kEventHandler, 'getKeyCode');
-    var getEventObject = require(kEventHandler, 'getEventObject');
+    var kEvent         = kModuleName;
+    var getKeyCode     = require(kEvent, 'getKeyCode');
+    var getEventObject = require(kEvent, 'getEventObject');
 
     var keyCode    = require(kModuleName, 'keyCode');
     var kBackspace = attr(keyCode, 'BACKSPACE');

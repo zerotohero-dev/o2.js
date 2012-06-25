@@ -462,7 +462,7 @@
     /*
      *
      */
-    var hide = require(me, 'hide');
+    var hide = require(kModuleName, 'hide');
 
     /**
      * @function {static} o2.Dom.show
@@ -493,7 +493,7 @@
     /*
      *
      */
-    var show = require(me, 'show');
+    var show = require(kModuleName, 'show');
 
     /**
      * @function {static} o2.Dom.isVisible
@@ -558,7 +558,7 @@
     /*
      *
      */
-    var isVisible = require(me, 'isVisible');
+    var isVisible = require(kModuleName, 'isVisible');
 
     /**
      * @function {static} o2.Dom.toggleVisibility
