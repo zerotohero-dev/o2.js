@@ -151,7 +151,7 @@
     /*
      *
      */
-    var save = require(me, 'save');
+    var save = require(kModuleName, 'save');
 
     /**
      * @function {static} o2.Cookie.remove

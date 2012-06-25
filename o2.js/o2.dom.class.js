@@ -73,7 +73,7 @@
     /*
      *
      */
-    var createClassNameRegExp = require(me, 'createClassNameRegExp');
+    var createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.Dom.hasClass
@@ -109,7 +109,7 @@
     /*
      *
      */
-    var hasClass = require(me, 'hasClass');
+    var hasClass = require(kModuleName, 'hasClass');
 
     /**
      * @function {static} o2.Dom.addClass
@@ -143,7 +143,7 @@
     /*
      *
      */
-    var addClass = require(me, 'addClass');
+    var addClass = require(kModuleName, 'addClass');
 
     /**
      * @function {static} o2.Dom.removeClass
@@ -177,7 +177,7 @@
     /*
      *
      */
-    var removeClass = require(me, 'removeClass');
+    var removeClass = require(kModuleName, 'removeClass');
 
     /**
      * @function {static} o2.Dom.toggleClass

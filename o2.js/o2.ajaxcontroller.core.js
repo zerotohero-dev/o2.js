@@ -82,7 +82,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    exports.AjaxController = me = construct(kModuleName, function(xhr, args) {
+    exports.AjaxController = construct(kModuleName, function(xhr, args) {
         this.xhr = xhr;
         this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -91,6 +91,11 @@
         // Register self.
         state.addObserver(this);
     });
+
+    /*
+     *
+     */
+    var me = exports.AjaxController;
 
     /**
      * @function {virtual} o2.AjaxController.update

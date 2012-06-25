@@ -25,6 +25,8 @@
     var override  = attr(_, 'override');
     var require   = attr(_, 'require');
 
+    var exports = {};
+
     /*
      * Module Name
      */
@@ -34,10 +36,8 @@
      * Aliases
      */
 
-    var nill = require('nill');
-
-    var state = require('JsonpState');
-
+    var nill        = require('nill');
+    var state       = require('JsonpState');
     var copyMethods = require('Object', 'copyMethods');
 
     /**
@@ -68,7 +68,7 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    exports.JsonpController = me = construct(kModuleName, function(jsonp,
+    exports.JsonpController = construct(kModuleName, function(jsonp,
                 args) {
         this.jsonp     = jsonp;
         this.ontimeout = (args && args.ontimeout) || nill;
@@ -77,6 +77,11 @@
         // Register self.
         state.addObserver(this);
     });
+
+    /*
+     *
+     */
+    var me = exports.JsonpController;
 
     /*
      * State
