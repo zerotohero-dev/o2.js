@@ -107,7 +107,7 @@
     /*
      *
      */
-    var getWindowScrollOffset = require(me, 'getWindowScrollOffset');
+    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
 
     /**
      * @function {static} o2.Dom.getObjectScrollOffset
@@ -190,7 +190,7 @@
     /*
      *
      */
-    var scrollWindowToBottom = require(me, 'scrollWindowToBottom');
+    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
 
     if (de) {
 
@@ -230,7 +230,7 @@
     /*
      *
      */
-    var scrollWindowToTop = require(me, 'scrollWindowToTop');
+    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.Dom.scrollObjectToTop

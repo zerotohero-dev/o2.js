@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001338767805
+ * @version     0.25.a.0001340646052
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -118,7 +118,7 @@
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001338767805');
+    exports.build = def(me, 'build', '.0001340646052');
 
     /**
      * @function {static} o2.$
@@ -153,7 +153,7 @@
     /*
      *
      */
-    var $ = require(me, '$');
+    var $ = require('$');
 
     /**
      * @function {static} o2.ready
@@ -178,7 +178,7 @@
     /**
      * @function {static} o2.load
      *
-     * <p>An alias for <code>EventHandler.addEventListener(window, 'load',
+     * <p>An alias for <code>Event.addEventListener(window, 'load',
      * callback)</code>.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -193,7 +193,7 @@
      * loaded.
      */
     exports.load = def(me, 'load', function(callback) {
-        require('EventHandler', 'addEventListener')(window, kLoad, callback);
+        require('Event', 'addEventListener')(window, kLoad, callback);
     });
 
     /**
@@ -294,7 +294,7 @@
     /*
      *
      */
-    var n = require(me, 'n');
+    var n = require('n');
 
     /**
      * @function {static} o2.nn
@@ -352,7 +352,7 @@
     /*
      *
      */
-    var t = require(me, 't');
+    var t = require('t');
 
     /**
      * @function {static} o2.tt

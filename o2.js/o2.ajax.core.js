@@ -48,7 +48,7 @@
     var concat        = require(kString, 'concat');
     var generateGuid  = require(kString, 'generateGuid');
 
-    var listen = require('EventHandler', 'addEventListener');
+    var listen = require('Event', 'addEventListener');
 
     var ActiveXObject  = window.ActiveXObject;
     var XMLHttpRequest = window.XMLHttpRequest;

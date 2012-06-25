@@ -507,7 +507,7 @@
     /*
      *
      */
-    var getChildren = require(me, 'getChildren');
+    var getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.Dom.getChildrenByAttribute
@@ -550,7 +550,7 @@
     /*
      *
      */
-    var getChildrenByAttribute = require(me, 'getChildrenByAttribute');
+    var getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
@@ -586,7 +586,7 @@
     /*
      *
      */
-    var getChildrenByAttributeUntil = require(me,
+    var getChildrenByAttributeUntil = require(kModuleName,
         'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
@@ -649,7 +649,7 @@
     /*
      *
      */
-    var getChildrenByClass = require(me, 'getChildrenByClass');
+    var getChildrenByClass = require(kModuleName, 'getChildrenByClass');
 
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
@@ -685,7 +685,7 @@
     /*
      *
      */
-    var getChildrenByClassUntil = require(me, 'getChildrenByClassUntil');
+    var getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenUntil
@@ -719,7 +719,7 @@
     /*
      *
      */
-    var getChildrenUntil = require(me, 'getChildrenUntil');
+    var getChildrenUntil = require(kModuleName, 'getChildrenUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
@@ -752,7 +752,7 @@
     /*
      *
      */
-    var getChildrenWithAttribute = require(me, 'getChildrenWithAttribute');
+    var getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -786,7 +786,7 @@
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
 
-    var getChildrenWithAttributeUntil = require(me,
+    var getChildrenWithAttributeUntil = require(kModuleName,
         'getChildrenWithAttributeUntil');
 
     /**
@@ -817,7 +817,7 @@
     /*
      *
      */
-    var getChildrenWithClass = require(me, 'getChildrenWithClass');
+    var getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -851,7 +851,7 @@
     /*
      *
      */
-    var getChildrenWithClassUntil = require(me, 'getChildrenWithClassUntil');
+    var getChildrenWithClassUntil = require(kModuleName, 'getChildrenWithClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithId
@@ -881,7 +881,7 @@
     /*
      *
      */
-    var getChildrenWithId = require(me, 'getChildrenWithId');
+    var getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -915,7 +915,7 @@
     /*
      *
      */
-    var getChildrenWithIdUntil = require(me, 'getCHildrenWithIdUntil');
+    var getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
 
     /**
      * @function {static} o2.Dom.getElements
@@ -950,7 +950,7 @@
     /*
      *
      */
-    var getElements = require(me, 'getElements');
+    var getElements = require(kModuleName, 'getElements');
 
     /**
      * @function {static} o2.Dom.getElementsByAttribute
@@ -1116,7 +1116,7 @@
     /*
      *
      */
-    var getSiblings = require(me, 'getSiblings');
+    var getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -1458,7 +1458,7 @@
     /*
      *
      */
-    var getFirst = require(me, 'getFirst');
+    var getFirst = require(kModuleName, 'getFirst');
 
     /**
      * @function {static} o2.Dom.getFirstByAttribute
@@ -1492,7 +1492,7 @@
     /*
      *
      */
-    var getFirstByAttribute = require(me, 'getFirstByAttribute');
+    var getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstByClass
