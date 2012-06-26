@@ -1,14 +1,25 @@
 {
-    "name": "o2",
-    "version": "0.25.1",
-    "description": "Node.js module export for o2.js JavaScript Framework",
-    "preferGlobal": "true",
-    "main": "o2.js/index.js",
-    "keywords": ["o2.js", "collection", "array", "functional", "string",
-        "unit test"],
+    "name"         : "o2",
+    "version"      : "0.25.1",
+    "author"       : "Volkan Özçelik <volkan@o2js.com>",
+    "description"  : "Node.js module export for o2.js JavaScript Framework",
+    "preferGlobal" : "true",
+    "main"         : "./o2.js/index.js",
+    "keywords" : [
+        "o2.js",
+        "collection",
+        "array",
+        "ajax",
+        "functional",
+        "string",
+        "unit test",
+        "validation",
+        "helper"
+    ],
     "repository" : {
-        "type": "git",
-        "url": ""
+        "type" : "git",
+        "url"  : "https://github.com/v0lkan/o2.js.git"
     },
-    "engines": { "node": "*" }
+    "license" : "MIT",
+    "engines" : { "node": "*" }
 }
