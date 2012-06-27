@@ -1,18 +1,18 @@
  /**
- * <b>o2.js</b>
- *
- *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
- *  This program is distributed under the terms of the MIT license.<br />
- *  Please see the <strong><a
- *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
- *  >LICENSE</a></strong> file for details.<br /><br />
- *  <p>
- *
- * @project     o2.js
- * @version     0.25.a.0001340809387
- * @author      Volkan Özçelik
- * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
- */
+  * <b>o2.js</b>
+  *
+  *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
+  *  This program is distributed under the terms of the MIT license.<br />
+  *  Please see the <strong><a
+  *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
+  *  >LICENSE</a></strong> file for details.<br /><br />
+  *  <p>
+  *
+  * @project     o2.js
+  * @version     0.25.a.0001340825638
+  * @author      Volkan Özçelik
+  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+  */
 
 /*
  *  lastModified: 2012-06-02 22:47:21.699341
@@ -118,7 +118,7 @@
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001340809387');
+    exports.build = def(me, 'build', '.0001340825638');
 
     /**
      * @function {static} o2.$

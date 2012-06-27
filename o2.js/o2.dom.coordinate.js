@@ -1,3 +1,4 @@
+
 //     var _         = framework.protecteds;
 //     var alias     = _.alias;
 //     var attr      = _.getAttr;
@@ -168,11 +169,5 @@
 //                 parseFloat(getStyle(offsetParent, 'borderLeftWidth'))
 //         }
 //     }
-
-
-
-
-
-
 
 // };

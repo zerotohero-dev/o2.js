@@ -1,6 +1,6 @@
 {
     "name"         : "o2",
-    "version"      : "0.25.3",
+    "version"      : "0.25.8",
     "author"       : "Volkan Özçelik <volkan@o2js.com>",
     "description"  : "Node.js module export for o2.js JavaScript Framework",
     "preferGlobal" : "true",

@@ -110,7 +110,7 @@ this.o2 = this.o2 || {isProduction : false};
     var kNoMetaDefinition     = 'framework.protecteds: no meta definition.';
     var kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection';
     var kObjNameNotString     = 'framework.protecteds: "name" should be  a String.';
-    var kRootNotFound         = 'framework.protecteds: root not found';
+    var kRootNotFound         = 'framework.protecteds: root not found for';
 
     /*
      *
@@ -1114,7 +1114,7 @@ this.o2 = this.o2 || {isProduction : false};
             if (!root) {
                 dbg();
 
-                throw kRootNotFound;
+                throw [kRootNotFound, ' "', name, '"'].join(kEmpty);
             }
 
             if (!name) {
