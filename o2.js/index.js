@@ -1323,7 +1323,7 @@ this.o2 = this.o2 || {isProduction : false};
         });
     }
 }(this.o2));
-/**
+ /**
  * <b>o2.js</b>
  *
  *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
@@ -1334,7 +1334,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001340690414
+ * @version     0.25.a.0001340808472
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1443,7 +1443,7 @@ this.o2 = this.o2 || {isProduction : false};
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001340690414');
+    exports.build = def(me, 'build', '.0001340808472');
 
     /**
      * @function {static} o2.$
@@ -10349,7 +10349,8 @@ this.o2 = this.o2 || {isProduction : false};
         addClass(el, c);
     });
 }(this.o2, this));
-////////////////////////////**
+/************/
+/**
  * @module   dom.constants
  * @requires core
  *
