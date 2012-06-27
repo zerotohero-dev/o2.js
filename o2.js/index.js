@@ -1334,7 +1334,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001340808472
+ * @version     0.25.a.0001340809387
  * @author      Volkan Özçelik
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1443,7 +1443,7 @@ this.o2 = this.o2 || {isProduction : false};
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001340808472');
+    exports.build = def(me, 'build', '.0001340809387');
 
     /**
      * @function {static} o2.$
