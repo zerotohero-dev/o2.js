@@ -1,0 +1,2 @@
+api.widget.www 127.0.0.1
+provider.www   127.0.0.1

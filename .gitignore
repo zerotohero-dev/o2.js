@@ -8,6 +8,10 @@
 *.so
 *.pyc
 
+# Node.js            #
+######################
+node_modules
+
 # Logs and databases #
 ######################
 *.log
