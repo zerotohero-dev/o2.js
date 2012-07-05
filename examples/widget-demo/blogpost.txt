@@ -1,0 +1,90 @@
+# This is the draft of the blog post associated with this demo.
+# after publishing the post, this file will be deleted.
+# ------------------------------------------------------------------------------
+
+How to Create JavaScript Widgets for External Sites
+===================================================
+
+What is a JavaScript Widget?
+----------------------------
+
+A JavaScript Widget can be defined as any type of functionality that can be
+loaded from an external site (publisher), to different sites (subscribers) that
+include the widget code via a simple JavaScript include.
+
+A JavaScript Widget may or may not include a GUI counterpart. An exmaple of
+a JavaScript Widget that does not contain a GUI counterpart is google analytics
+code that most of us is familiar with.
+
+Also a JavaScript widget can have state information (persist session state
+on the publisher servers), it can send data to the publisher website, and it
+can receive data from the publisher website.
+
+There are many challenges one can face when developing a JavaScript Widget.
+To name a few:
+
+<insert challenges here>
+
+
+
+> When you don't own the DOM, really careful you should be.
+
+
+--- supporting text ---
+
+first (ideal case)
+    authenticate user,
+    remember the user.
+
+
+a node.js application that
+1. asks for credentials of the user.
+2. displays logged in gui
+3. resdisplays the logged in gui after refresh
+4. the gui will have name surname and details of the user and an editable
+text area
+5. the text will update after user tpyes stuff
+6. refreshing will retrieve the updated text from server.
+
+
+- ideal case: 3rd party cookies are enabled
+- detect whether they are enabled
+- if disabled
+    use cross frame messaging api if supported
+    otherwise use klein bottle.
+
+    mention that these should be enough and cross frame messaging api appears
+    to be more widely supported in the future.
+
+    mention easyxdm as well.
+
+
+my next blog post will be about JS widgets for external sites.
+
+
+TODO: look at notational data links as well.
+
+
+1. What is a JavaScript Widget
+
+2. Typical Use Cases for JavaScript Widgets
+
+3. Challenges
+- unknown context
+- shared enviroment (override undefined)
+- shared DOM
+- cross domain restrictions
+- third party cookie restrictions
+- async script include
+- cross-domain messaging alternatives (klein bottle)
+- (at any phase mention all approaches and use the simplest one)
+
+Minification
+
+split into logical pieces,
+use modules
+-- give examples
+
+
+do use namespaces --
+-- give examples
