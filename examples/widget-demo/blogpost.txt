@@ -2,101 +2,15 @@
 # after publishing the post, this file will be deleted.
 # ------------------------------------------------------------------------------
 
-How to Create JavaScript Widgets for External Sites
-===================================================
+Part 1:
+    JavaScript Widget Development Best Practices (Part 1: Overview)
+    http://o2js.com/2012/07/05/javascript-widgets-overview/
 
-What is a JavaScript Widget?
-----------------------------
-
-A JavaScript Widget can be defined as any type of functionality that can be
-loaded from an external site (widget source), to different sites (publishers)
-that include the widget code via a simple JavaScript include.
-
-A JavaScript Widget may or may not include a GUI counterpart. An exmaple of
-a JavaScript Widget that does not contain a GUI counterpart is google analytics
-code that most of us is familiar with.
-
-Also a JavaScript widget can have state information (persist session state
-on the publisher servers), it can send data to the publisher website, and it
-can receive data from the publisher website.
-
-There are many challenges one can face when developing a JavaScript Widget.
-To name a few:
-
-* Context is Unknown:
-
-The context that the widget will run is totally unknown to us. It will be
-a mobile device, a tablet, an old browser. The script has to run equally well
-in a wide spectrum of doctypes, platforms, and configurations (where some of
-these configurations can even be overridden by the user).
-
-> When you don't own the DOM, really careful you should be.
-
-Moreover the publish may include your script inside <head>...</head>, or at the
-middle of <body>, or just before </body>.
-
-The publisher may include the widget script multiple times by mistake.
-
-* Common Environment:
-
-Our beloved widget has to coexist with other external widgets, user-defined
-scripts, and copy/pasted JavaScript snippets. Some of these script may either
-purposefully, or by mistake override standard JavaScript objects and methods
-that we rely on.
-
-Our widget has to do its best to
-1. not to pollute global namespace and be a self-contained piece of code.
-2. and try its best to protect itself from badly-written scripts that coexist
-with it. If not taken proper precautions, these scripts may adversley affect
-the behavior and performance of our widget.
-
-* Passing the Cross Domain Boundary
-
-Since our widget is hosted on an external site, cross domain restrictions apply.
-We need to find ways to create a two-way communication channel between the
-provider (www.provider.com) site and the widget source site (api.mywidget.com).
-
-* Non-Blocking Script Includes
-
-The less our widget changes how provider site behaves, the better. There are
-several things we can do to decrease the effect of our widget script on the
-provider site:
-
-* use a single namespace
-* prefix common classes, ids, and attributes
-* async script includes (mention soulders)
-
-One thing we can do to decrease the effect of our script to the overall
-responsiveness of publisher's site is to
-
-* use async script includes,
-* and lazy-loading patterns.
-
-* Problems With Persisting and Retieving State
-
-In a good old web application the application state is persisted in the Session
-object, and genrally "cookies" are used to pass a session ID around to persists
-session state even if the client browses different pages.
-
-Since our widget code lives in a different domain than the publisher site,
-the client may impose restictions on saving cookies as well.
-
-For our widget to share and persist state information with the server we need to
-use third party cookies. But since we have no control over the context our
-widget script executes (see above), our widget script may be executing in an
-environment where third-party cookie reading or writing may not be allowed.
-<give some reference links on what may go wrong>
-
-There are ways to bypass this restriction, which we'll cover in the upcoming
-articles.
+Part 2:
+    <start drafting here...>
 
 
-... having seen all these challenges we'll start doing <define what to do> in the
-followup article.
-
-until then, goodbye.
-
------------
+---- supporting text -------
 
 - cross-domain messaging alternatives (klein bottle)
 - (at any phase mention all approaches and use the simplest one)
