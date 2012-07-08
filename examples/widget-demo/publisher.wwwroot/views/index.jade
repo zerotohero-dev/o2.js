@@ -1,0 +1,27 @@
+//-
+//- This program is distributed under
+//- the terms of the MIT license.
+//- Please see the LICENSE file for details.
+//-
+//- lastModified: 2012-07-09 00:48:16.229892
+//-
+!!! 5
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title= 'Publisher Website'
+        link(rel='stylesheet', media='all', href='/css/main.css');
+
+        script
+            (function() {
+                var script = document.createElement('script');
+                script.type  = 'text/javascript';
+                script.async = true;
+                script.src   = 'http://api.widget.www/api.v.0.1.js'
+                var node = document.getElementsByTagName('script')[0];
+                node.parentNode.insertBefore(script, node);
+            }());
+
+    body(lang='en')
+        section#Main
+            h2 Welcome to Publisher Website

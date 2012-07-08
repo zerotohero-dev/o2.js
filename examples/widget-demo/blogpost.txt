@@ -7,7 +7,134 @@ Part 1:
     http://o2js.com/2012/07/05/javascript-widgets-overview/
 
 Part 2:
-    <start drafting here...>
+    The next thing we are going to do is to create development environments.
+    We'll have two server instances.
+
+    api.widget.www will be our widget provider
+    publisher.www will be our publisher website.
+
+    first install node.js
+
+    then install express
+
+    npm install express
+
+    then add these to hosts file:
+
+        127.0.0.1 api.widget.www
+        127.0.0.1 publisher.www
+
+    Here's the initial folder structure of our api widget provider wwwroot:
+
+        {insert image}
+
+    And here's the initial folder structure of our demo publisher website:
+
+        {insert image}
+
+    For the initial index page of the widget api:
+
+        var express = require('express');
+
+        console.log('hello');
+
+        var app = express.createServer();
+
+        app.use(express.static(__dirname + '/static'));
+
+        app.get('/api/v.0.1/login', function(req, res) {
+            res.send('hello authentication');
+        });
+
+        app.listen(80);
+
+    And here's the publisher index
+
+        var express = require('express');
+
+        console.log('hello');
+
+        var app = express.createServer();
+
+        app.use(express.static(__dirname + '/static'));
+
+        app.get('/', function(req, res) {
+            res.send([
+
+                '<!doctype html>',
+                '<html>',
+                '<head>',
+                '</head>',
+                '<body>',
+                '<h2>Welcome to Publisher Website</h2>',
+                '</body>',
+                '</html>'
+
+            ].join(''));
+        });
+
+        app.listen(8080);
+
+    When we run
+
+        sudo node index.js
+
+    And then browser http://api.widget.www/api.v.0.1.js
+
+    We'll see the static JavaScript file.
+
+    After that let's run another
+
+        sudo node index.js on publisher www root
+
+    and browse http://publisher.www:8080/
+
+    we'll get a very basic welcome page.
+
+    Note that we are listening to port 8080 for the publisher website because
+    our api server is already listening to port 80. In a production environment
+    we won't need to do this.
+
+    Now let's create a very basic jade template for the publisher index page
+    so that we won't need to inject HTML inside JavaScript.
+
+    Let's install jade template engine first.
+
+    npm install jade
+
+    and create the following files:
+
+    views/index.jade
+        !!! 5
+        html(lang='en')
+            head
+                meta(charset='utf-8')
+                title= 'Publisher Website'
+                link(rel='stylesheet', media='all', href='/css/main.css');
+
+                script
+                    (function() {
+                        var script = document.createElement('script');
+                        script.type  = 'text/javascript';
+                        script.async = true;
+                        script.src   = 'http://api.widget.www/api.v.0.1.js'
+                        var node = document.getElementsByTagName('script')[0];
+                        node.parentNode.insertBefore(script, node);
+                    }());
+
+            body(lang='en')
+                section#Main
+                    h2 Welcome to Publisher Website
+
+    views/layout.jade
+        != body
+
+    If this were a real publisher site the template folder structure would have
+    been more complicated possibly with a handful of partial templates.
+
+    We use async script include.
+    Explain why this is better than sync include
+
 
 
 ---- supporting text -------

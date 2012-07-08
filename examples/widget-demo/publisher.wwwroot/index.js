@@ -1,3 +1,13 @@
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-07-09 00:48:16.229892
+ * -->
+ */
+
 var express = require('express');
 
 console.log('hello');
@@ -6,19 +16,11 @@ var app = express.createServer();
 
 app.use(express.static(__dirname + '/static'));
 
+// Set path to the views (template) directory
+app.set('views', './views');
+
 app.get('/', function(req, res) {
-    res.send([
-
-        '<!doctype html>',
-        '<html>',
-        '<head>',
-        '</head>',
-        '<body>',
-        '<h2>Welcome to Publisher Website</h2>',
-        '</body>',
-        '</html>'
-
-    ].join(''));
+    res.render('index.jade');
 });
 
 app.listen(8080);
