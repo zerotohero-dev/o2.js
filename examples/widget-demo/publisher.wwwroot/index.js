@@ -6,7 +6,7 @@ var app = express.createServer();
 
 app.use(express.static(__dirname + '/static'));
 
-app.get('/publisher/home', function(req, res) {
+app.get('/', function(req, res) {
     res.send([
 
         '<!doctype html>',
@@ -21,4 +21,4 @@ app.get('/publisher/home', function(req, res) {
     ].join(''));
 });
 
-app.listen(80);
+app.listen(8080);
