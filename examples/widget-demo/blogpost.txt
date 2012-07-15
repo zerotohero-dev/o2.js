@@ -122,6 +122,9 @@ Part 2:
                         node.parentNode.insertBefore(script, node);
                     }());
 
+                    var _wdq = window._wdq || [];
+                    _wdq.push({action : 'render', params : []});
+
             body(lang='en')
                 section#Main
                     h2 Welcome to Publisher Website
@@ -134,6 +137,18 @@ Part 2:
 
     We use async script include.
     Explain why this is better than sync include
+
+    Now let us work on the widget:
+
+    ... widget code here.
+
+
+caching issues:
+A bootstrap script is defined as a 3rd party script with a hardwired URL that can’t be changed. We want to give these scripts long cache times so they don’t slow down the page, but we also want the cached version to get updated when there’s a change. There are two main problems to solve: notifying the browser when there’s an update, and replacing the cached bootstrap script with the new version.
+via: http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
+
+
+Conclusion and what's next.
 
 
 

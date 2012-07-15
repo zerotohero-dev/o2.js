@@ -620,8 +620,8 @@
             // NOTE: IE7+ supports child selector ( > ),
             // IE8+ supports querySelectorAll
             // So it's safe to use the child selector with querySelectorAll:
-            // It'll work as expected in IE8+ and it'll degrade gracefully
-            // in IE7-
+            // It'll work as expected in IE8+ (when document mode is 8)
+            // and it'll degrade gracefully in IE7-
 
             if (!el.id) {
                 el.id = [myName, generateGuid()].join(kEmpty);
