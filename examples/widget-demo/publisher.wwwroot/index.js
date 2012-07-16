@@ -10,8 +10,6 @@
 
 var express = require('express');
 
-console.log('hello');
-
 var app = express.createServer();
 
 app.use(express.static(__dirname + '/static'));

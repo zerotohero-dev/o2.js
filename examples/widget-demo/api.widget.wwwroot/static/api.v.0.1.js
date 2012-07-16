@@ -83,7 +83,7 @@
     /*
      *
      */
-    function processQueue() {
+    var processQueue = function() {
         log('o->processQueue()');
 
         var q = null;
@@ -96,7 +96,7 @@
             }
         }
 
-        window._wdq = queue;
+        processQueue = window._wd_o2.nill;
     }
 
     /*
@@ -108,6 +108,8 @@
         render(state);
 
         processQueue();
+
+        window._wdq = queue;
     }
 
     /*

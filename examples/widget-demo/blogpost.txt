@@ -7,149 +7,37 @@ Part 1:
     http://o2js.com/2012/07/05/javascript-widgets-overview/
 
 Part 2:
-    The next thing we are going to do is to create development environments.
-    We'll have two server instances.
+    JavaScript Widget Development Best Practices (Part 2: the Setup)
+    http://o2js.com/2012/07/16/javascript-widgets-setup/
 
-    api.widget.www will be our widget provider
-    publisher.www will be our publisher website.
+Part 3:
 
-    first install node.js
+    {{implement cache validation}}
 
-    then install express
+Part 4:
 
-    npm install express
+    {{ways to store and retrieve widget paremeters}}
+    {{get widget state/model from the server
+        corollary: create a communication channel.
+            different sorts of channels.
+    }}
+    {{render widget}}
 
-    then add these to hosts file:
+Part 5:
 
-        127.0.0.1 api.widget.www
-        127.0.0.1 publisher.www
+    {{handling sessions}}
+    {{how to authenticate user}}
+    {{third party cookies}}
 
-    Here's the initial folder structure of our api widget provider wwwroot:
+Part 6:
 
-        {insert image}
+    {{retrieving data from server, modifying it, persisting it to server}}
+    {{modern ways of cross-domain cross-frame communication}}
+    {{fallback methods}}
 
-    And here's the initial folder structure of our demo publisher website:
-
-        {insert image}
-
-    For the initial index page of the widget api:
-
-        var express = require('express');
-
-        console.log('hello');
-
-        var app = express.createServer();
-
-        app.use(express.static(__dirname + '/static'));
-
-        app.get('/api/v.0.1/login', function(req, res) {
-            res.send('hello authentication');
-        });
-
-        app.listen(80);
-
-    And here's the publisher index
-
-        var express = require('express');
-
-        console.log('hello');
-
-        var app = express.createServer();
-
-        app.use(express.static(__dirname + '/static'));
-
-        app.get('/', function(req, res) {
-            res.send([
-
-                '<!doctype html>',
-                '<html>',
-                '<head>',
-                '</head>',
-                '<body>',
-                '<h2>Welcome to Publisher Website</h2>',
-                '</body>',
-                '</html>'
-
-            ].join(''));
-        });
-
-        app.listen(8080);
-
-    When we run
-
-        sudo node index.js
-
-    And then browser http://api.widget.www/api.v.0.1.js
-
-    We'll see the static JavaScript file.
-
-    After that let's run another
-
-        sudo node index.js on publisher www root
-
-    and browse http://publisher.www:8080/
-
-    we'll get a very basic welcome page.
-
-    Note that we are listening to port 8080 for the publisher website because
-    our api server is already listening to port 80. In a production environment
-    we won't need to do this.
-
-    Now let's create a very basic jade template for the publisher index page
-    so that we won't need to inject HTML inside JavaScript.
-
-    Let's install jade template engine first.
-
-    npm install jade
-
-    and create the following files:
-
-    views/index.jade
-        !!! 5
-        html(lang='en')
-            head
-                meta(charset='utf-8')
-                title= 'Publisher Website'
-                link(rel='stylesheet', media='all', href='/css/main.css');
-
-                script
-                    (function() {
-                        var script = document.createElement('script');
-                        script.type  = 'text/javascript';
-                        script.async = true;
-                        script.src   = 'http://api.widget.www/api.v.0.1.js'
-                        var node = document.getElementsByTagName('script')[0];
-                        node.parentNode.insertBefore(script, node);
-                    }());
-
-                    var _wdq = window._wdq || [];
-                    _wdq.push({action : 'render', params : []});
-
-            body(lang='en')
-                section#Main
-                    h2 Welcome to Publisher Website
-
-    views/layout.jade
-        != body
-
-    If this were a real publisher site the template folder structure would have
-    been more complicated possibly with a handful of partial templates.
-
-    We use async script include.
-    Explain why this is better than sync include
-
-    Now let us work on the widget:
-
-    ... widget code here.
-
-
-caching issues:
-A bootstrap script is defined as a 3rd party script with a hardwired URL that can’t be changed. We want to give these scripts long cache times so they don’t slow down the page, but we also want the cached version to get updated when there’s a change. There are two main problems to solve: notifying the browser when there’s an update, and replacing the cached bootstrap script with the new version.
-via: http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
-
-
-Conclusion and what's next.
-
+Part 7:
+    {{Deployment and Minification}}
+    {{Versioning}}
 
 
 ---- supporting text -------
@@ -157,6 +45,11 @@ Conclusion and what's next.
 - cross-domain messaging alternatives (klein bottle)
 - (at any phase mention all approaches and use the simplest one)
 
+http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
+
+caching issues:
+A bootstrap script is defined as a 3rd party script with a hardwired URL that can’t be changed. We want to give these scripts long cache times so they don’t slow down the page, but we also want the cached version to get updated when there’s a change. There are two main problems to solve: notifying the browser when there’s an update, and replacing the cached bootstrap script with the new version.
+via:
 
 --- supporting text ---
 
