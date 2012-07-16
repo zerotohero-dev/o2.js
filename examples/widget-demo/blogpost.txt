@@ -13,6 +13,8 @@ Part 2:
 Part 3:
 
     {{implement cache validation}}
+    {{test for edge cases: what if publisher includes scripts more than once
+    what if there is no HEAD element, what if whatever...?}}
 
 Part 4:
 
