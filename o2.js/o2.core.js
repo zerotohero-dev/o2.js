@@ -241,11 +241,15 @@
      * @return the new <code>Object</code>.
      */
     exports.noConflict = def(me, 'noConflict', function(newName) {
+
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
             ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
 
         window[name] = myself;
+
+        window[myName] = window._o2_cached;
+
         return window[name];
     });
 

@@ -12,6 +12,42 @@ Part 2:
 
 Part 3:
 
+    First start with setting a very long expires header for our static API
+    bootloader.
+
+    //index.js
+        var ONE_YEAR = 31536000000;
+
+        app.use(express.static(__dirname + '/static', {maxAge : ONE_YEAR}));
+
+        http://www.mnot.net/cache_docs/
+        http://www.checkupdown.com/status/E304.html
+        http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+        Accept  text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+        Accept-Encoding gzip, deflate
+        Accept-Language en-us,en;q=0.5
+        Cache-Control   max-age=0
+        Connection  keep-alive
+        Host    api.widget.www
+        If-Modified-Since   Tue, 17 Jul 2012 16:40:09 GMT
+        If-None-Match   "2810-1342543209000"
+        User-Agent  Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) Gecko/20100101 Firefox/13.0.1
+
+
+        Response Headersview source
+        Accept-Ranges   bytes
+        Cache-Control   public, max-age=31536000
+        Connection  keep-alive
+        Date    Tue, 17 Jul 2012 16:42:44 GMT
+        Etag    "2810-1342543209000"
+        Last-Modified   Tue, 17 Jul 2012 16:40:09 GMT
+        X-Powered-By    Express
+
+        304 Not Modified
+
+
+
     {{implement cache validation}}
     {{test for edge cases: what if publisher includes scripts more than once
     what if there is no HEAD element, what if whatever...?}}

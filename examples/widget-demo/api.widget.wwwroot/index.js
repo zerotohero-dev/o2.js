@@ -12,7 +12,9 @@ var express = require('express');
 
 var app = express.createServer();
 
-app.use(express.static(__dirname + '/static'));
+var ONE_YEAR = 31536000000;
+
+app.use(express.static(__dirname + '/static', {maxAge : ONE_YEAR}));
 
 app.get('/api/v.0.1/login', function(req, res) {
     res.send('hello authentication');

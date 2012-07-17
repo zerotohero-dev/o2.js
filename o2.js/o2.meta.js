@@ -2,7 +2,13 @@
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
  */
-this.o2 = this.o2 || {isProduction : false};
+
+if (this.o2) {
+    this._o2_cached = this.o2;
+} else {
+    this.o2 = {isProduction : false};
+}
+
 
 /**
  * @module core.meta
