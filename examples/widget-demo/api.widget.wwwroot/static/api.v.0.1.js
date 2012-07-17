@@ -143,6 +143,42 @@
         loadInitialState(config, initialState_ready);
     }
 
+    var scriptQueue = [];
+
+    var createElement = document.createElement;
+    var getElementsByTagName = document.getElementsByTagName;
+    var kScript = 'script';
+    var kHead = 'head';
+    var kScriptType = 'text/javascript';
+
+    function loadScript(src) {
+        var s = createElement(kScript);
+        var x = getElementsByTagName(kScript)[0] ||
+            getElementsByTagName(kHead)[0];
+
+        s.type = kScriptType;
+        s.async = true;
+        s.src = src;
+
+        x.parentNode.insertBefore(s, x);
+
+        s.onreadystatechange = function() {
+            if(kCompleteRegExp.test(s.readyState)) {
+                callback();
+            }
+        };
+
+        s.onload = function() {
+            callback();
+        };
+    }
+
+    function loadScripts(ar) {
+        scriptQueue = ar;
+
+        loadScript(scriptQueue.pop());
+    }
+
     /*
      * Load necessary o2.js components in noConflict mode.
      */
