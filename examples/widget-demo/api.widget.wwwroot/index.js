@@ -4,71 +4,166 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-20 16:21:28.592534
+ *  lastModified: 2012-07-20 19:26:00.290912
  * -->
  */
 
-var express = require('express');
+/*global require, __dirname*/
+(function() {
+    'use strict';
 
-var app = express.createServer();
+    var express = require('express');
+    var app     = express.createServer();
 
-var kOneYear = 31536000000;
+    var kOneYear = 31536000000;
 
-/*
- * Make sure that the static assets have a far future expiration date.
- */
-app.use(express.static(__dirname + '/static', {maxAge : kOneYear}));
+    /*
+     *
+     */
+    var config = {
+        farFutureExpiration : {maxAge : kOneYear},
 
-/*
- * Set path to the views (template) directory
- */
-app.set('views', './views');
+        api_v_0_1 : {
+            VERSION_TIMESTAMP : '20120720135547909116'
+        }
+    };
 
-/**
- *
- */
-app.get('/api/v.0.1/login', function(req, res) {
-    res.send('hello authentication');
-});
+    /*
+     *
+     */
+    var route = {
+        api_v_0_1 : {
+            LOGIN     : '/api/v.0.1/login',
+            UPDATE    : '/api/v.0.1/update',
+            BEACON    : '/api/v.0.1/beacon'
+        }
+    };
 
-/**
- *
- */
-app.get('/api/v.0.1/update', function(req, res) {
-    res.header('Content-Type', 'text/html');
-    res.header('Cache-Control', 'public, max-age=0');
-    res.header('Expires', new Date(Date.now()).toUTCString());
+    /*
+     *
+     */
+    var url = {
+        api_v_0_1 : {
+            BOOTSTRAP    : 'http://api.widget.www/api.v.0.1.js',
+            UPDATE_IFRAME: 'http://api.widget.www/api/v.0.1/update'
+        }
+    };
 
-    res.render('update.jade', {
-        apiBootstrapUrl : 'http://api.widget.www/api.v.0.1.js'
-    });
-});
+    /*
+     *
+     */
+    var template = {
+        UPDATE       : 'update.jade',
+        UPDATE_SCRIPT: 'js/update.jade'
+    };
 
-/**
- * Beacon to validate the cache of the JS API.
- */
-app.get('/api/v.0.1/beacon', function(req, res) {
-    res.header('Content-Type', 'text/javascript');
+    /*
+     *
+     */
+    var path = {
+        STATIC_FILE : __dirname + '/static',
+        VIEWS       : __dirname + '/views'
+    };
 
-    var kOneMinute = 60;
+    /*
+     *
+     */
+    var parameter = {
+        VERSION : 'v'
+    };
 
-    res.header('Cache-Control', 'public, max-age=' + kOneMinute);
-    res.header('Expires',
-        new Date(Date.now() + kOneMinute * 1000).toUTCString()
+    /*
+     * Make sure that the static assets have a far future expiration date.
+     */
+    app.use(
+        express['static'](
+            path.STATIC_FILE,
+            config.farFutureExpiration
+        )
     );
 
-    var versionTimestamp   = '20120720135547909116';
-    var requestedVersion = req.param('v', versionTimestamp);
+    /*
+     * Set path to the views (template) directory
+     */
+    app.set('views', path.VIEWS);
 
-    if (requestedVersion !== versionTimestamp) {
-        res.render('js/update.jade', {
-            iframeUrl : 'http://api.widget.www/api/v.0.1/update'
-        });
-
-        return;
+    /**
+     *
+     */
+    function setImmediateExpiresHeader(res) {
+        res.header('Cache-Control', 'public, max-age=0, must-revalidate');
+        res.header('Expires', new Date(Date.now()).toUTCString());
     }
 
-    res.send(204);
-});
+    /**
+     *
+     */
+    function setFarFutureExpiresHeader(res) {
+        var kOneMinute = 60;
 
-app.listen(80);
+        res.header('Cache-Control', 'public, max-age=' + kOneMinute);
+        res.header('Expires',
+            new Date(Date.now() + kOneMinute * 1000).toUTCString()
+        );
+    }
+
+    /* #region API v.0.1 */
+
+        /**
+         *
+         */
+        function v_0_1(stuff) {
+            return stuff.api_v_0_1;
+        }
+
+        /**
+         *
+         */
+        app.get(v_0_1(route).LOGIN, function(req, res) {
+            req = null;
+
+            res.send('hello authentication');
+        });
+
+        /**
+         * Updates the
+         */
+        app.get(v_0_1(route).UPDATE, function(req, res) {
+            req = null;
+
+            res.header('Content-Type', 'text/html');
+
+            setImmediateExpiresHeader(res);
+
+            res.render(template.UPDATE, {
+                apiBootstrapUrl : v_0_1(url).BOOTSTRAP
+            });
+        });
+
+        /**
+         * Beacon to validate the cache of the JS API.
+         */
+        app.get(v_0_1(route).BEACON, function(req, res) {
+            res.header('Content-Type', 'text/javascript');
+
+            setFarFutureExpiresHeader(res);
+
+            var versionTimestamp = v_0_1(config).VERSION_TIMESTAMP;
+
+            var requestedVersion = req.param(parameter.VERSION, versionTimestamp);
+
+            if (requestedVersion !== versionTimestamp) {
+                res.render(template.UPDATE_SCRIPT, {
+                    iframeUrl : v_0_1(url).UPDATE_IFRAME
+                });
+
+                return;
+            }
+
+            res.send(204);
+        });
+
+    /* #endregion */
+
+    app.listen(80);
+}());

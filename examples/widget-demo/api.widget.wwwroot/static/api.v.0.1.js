@@ -4,12 +4,14 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-20 16:22:20.527709
+ *  lastModified: 2012-07-20 19:28:43.469664
  * -->
  */
 (function(window, document, isDebugMode) {
     'use strict';
 
+    // To avoid re-defining everything if the bootloader is included in
+    // more than one place in the publisher's website.
     if (window._wd) {
         return;
     }
@@ -18,11 +20,13 @@
 
     /*
      * Should match beacon version timestamp.
+     * See the <insert-link-here> for details.
      */
     var versionTimestamp = '20120720135547909116';
 
-    //window._wd.versionTimestamp = versionTimestamp;
-
+    /*
+     * Resources to be loaded asynchronously.
+     */
     var scriptQueue = [];
 
     /*
@@ -42,13 +46,13 @@
     var kScriptType     = 'text/javascript';
     var kVersion        = 'v';
 
+    var kO2Alias          = '_wd_o2';
+    var kWidgetQueueAlias = '_wdq';
+
     /*
-     *
+     * This will be set after resource initialization.
      */
-    //TODO: move this to an API module.
-    function isArray(item) {
-        return window._wd_o2.isArray(item);
-    }
+    var o2 = null;
 
     /*
      * Does nothing, and that's the point.
@@ -74,53 +78,16 @@
     };
 
     /*
-     *
+     * Executes the job queue asyncronously.
      */
-    function insertScript(root, src) {
-        var s = document.createElement(kScript);
-        var x = document.getElementsByTagName(kScript)[0] ||
-            document.getElementsByTagName(kHead)[0];
-
-        s.type = kScriptType;
-        s.async = true;
-        s.src = [root, src].join(kEmpty);
-
-        x.parentNode.insertBefore(s, x);
-
-        return s;
-    }
-
-    /*
-     *
-     */
-    function checkForUpdates() {
-        log('o->checkForUpdates()');
-
-window.alert('before load');
-        insertScript(kApiRoot, [kBeacon, kQuery,
-            kVersion,  kEquals, versionTimestamp , kAnd,
-            kRevision, kEquals, (new Date()).getTime()
-        ].join(kEmpty), noop);
-window.alert('after load');
-    }
-
-    /*
-     *
-     */
-    function render() {
-        log('o->render()');
-        window.console.warn('IMPLEMENT render()');
-    }
-
-    /*
-     *
-     */
+    //TODO: implement me.
     function execute() {
         log('o->execute()');
+        window.console.warn('IMPLEMENT execute()');
     }
 
     /*
-     *
+     * An overridden version of the async job queue.
      */
     var queue = {
         items : [],
@@ -133,15 +100,57 @@ window.alert('after load');
     };
 
     /*
-     *
+     * Asynchronously inserts a script element to the head
+     * of the document.
+     */
+    function insertScript(root, src) {
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
+
+        s.type  = kScriptType;
+        s.async = true;
+        s.src   = [root, src].join(kEmpty);
+
+        x.parentNode.insertBefore(s, x);
+
+        return s;
+    }
+
+    /*
+     * Revalidates cache for this bootloader script, if there's a newver
+     * version available. The changes will take effect only AFTER the user
+     * refreshes the page.
+     */
+    function checkForUpdates() {
+        log('o->checkForUpdates()');
+
+        insertScript(kApiRoot, [kBeacon, kQuery,
+            kVersion,  kEquals, versionTimestamp , kAnd,
+            kRevision, kEquals, (new Date()).getTime()
+        ].join(kEmpty), noop);
+    }
+
+    /*
+     * Renders the widget
+     */
+    //TODO: implement me.
+    function render() {
+        log('o->render()');
+        window.console.warn('IMPLEMENT render()');
+    }
+
+    /*
+     * Processes the job queue item by item.
      */
     var processQueue = function() {
         log('o->processQueue()');
 
         var q = null;
 
-        if (window._wdq && isArray(window._wdq)) {
-            q = window._wdq;
+        if (window[kWidgetQueueAlias] &&
+                    o2.isArray(window[kWidgetQueueAlias])) {
+            q = window[kWidgetQueueAlias];
 
             while (q.length) {
                 execute(q.pop());
@@ -182,6 +191,7 @@ window.alert('after load');
     /*
      * Get widget configuration from DOM.
      */
+    //TODO: implement me.
     function getConfiguration() {
         log('o->getConfiguration()');
 
@@ -196,13 +206,16 @@ window.alert('after load');
     function initialize() {
         log('o->initialize()');
 
+        o2 = window[kO2Alias];
+
         var config = getConfiguration();
 
         loadInitialState(config, processPostInitialization);
     }
 
     /*
-     *
+     * Loads the next resource after the former one
+     * has loaded successfully.
      */
     function loadNext(root, loader, callback) {
         log('o->loadNext(');
@@ -221,7 +234,9 @@ window.alert('after load');
     }
 
     /*
-     *
+     * Loads the given script.
+     * <strong>callback</strong> is the function to be executed after
+     * there's no resource left to be loeded next.
      */
     var loadScript = function(root, src, callback) {
         log('o->loadScript(');
@@ -248,7 +263,7 @@ window.alert('after load');
     };
 
     /*
-     *
+     * Loads an array of scripts one after another.
      */
     function loadScripts(root, ar, callback) {
         log('o->loadScripts(');

@@ -49,6 +49,22 @@ Part 3:
 
         304 Not Modified
 
+caching tutorial for web authors:
+http://www.mnot.net/cache_docs/
+
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+http header field definitions
+
+http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+status code definitions
+
+http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
+204 No Content
+
+304 not modified
+http://www.checkupdown.com/status/E304.html
+
+
 samples:
     ga.js has a 2 hour cache time
     Facebook's all.js has a 15 minute cache time
