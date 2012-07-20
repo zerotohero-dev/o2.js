@@ -15,6 +15,9 @@ Part 3:
     First start with setting a very long expires header for our static API
     bootloader.
 
+    Now let's first ensure that our static scripts has a long expires header
+    (explain the reasons why)
+
     //index.js
         var ONE_YEAR = 31536000000;
 
@@ -45,6 +48,22 @@ Part 3:
         X-Powered-By    Express
 
         304 Not Modified
+
+samples:
+    ga.js has a 2 hour cache time
+    Facebook's all.js has a 15 minute cache time
+    Twitter's widgets.js has a 30 minute cache time
+
+our widget should have a far future cache time (explain why.)
+
+    Now let's implement cache validation:
+
+
+
+
+    // TODO:
+    //     async request to a beacon.js (will have nocache,must-revalidate
+    //     cache control headers)
 
 
 
@@ -95,6 +114,10 @@ first (ideal case)
     authenticate user,
     remember the user.
 
+seamless iframes:
+    http://benvinegar.github.com/seamless-talk/#/39
+    for those who want consistent styling and a stricter control in a
+    well-defined sandbox environment.
 
 a node.js application that
 1. asks for credentials of the user.

@@ -114,7 +114,6 @@
     /**
      * @function {static} o2.Collection.copy
      *
-     //TODO: shallow copy. add to docs.
      * <p>Creates a clone of the given <code>Object</code>, and returns it;
      * leaving the original intact.</p>
      *
@@ -134,7 +133,6 @@
             return [];
         }
 
-        //TODO: fixme
         if (!isObject(ar)) {
             return ar;
         }

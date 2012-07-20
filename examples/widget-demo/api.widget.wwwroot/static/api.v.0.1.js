@@ -7,13 +7,25 @@
  *  lastModified: 2012-07-15 15:16:36.626954
  * -->
  */
-(function(window, isDebugMode) {
+(function(window, document, isDebugMode) {
     'use strict';
 
     /*
      * Should match beacon version.
      */
     var version = 'v.0.1';
+
+    var scriptQueue = [];
+
+    /*
+     * Common Constants
+     */
+    var kCompleteRegExp = /loaded|complete/;
+    var kEmpty          = '';
+    var kHead           = 'head';
+    var kO2Root         = 'http://api.widget.www/lib/o2.js/';
+    var kScript         = 'script';
+    var kScriptType     = 'text/javascript';
 
     /*
      *
@@ -24,7 +36,13 @@
     }
 
     /*
-     *
+     * Does nothing, and that's the point.
+     */
+    function noop() {}
+
+    /*
+     * Logs to console for debug mode.
+     * Does nothing in release mode.
      */
     var log = function(stuff) {
         if (!!isDebugMode && !!window.console) {
@@ -37,20 +55,15 @@
             return;
         }
 
-        log = function() {};
+        log = noop;
     };
-
-    // TODO: ensure that this should have a long expires header.
-
-    // TODO:
-    //     async request to a beacon.js (will have nocache,must-revalidate
-    //     cache control headers)
 
     /*
      *
      */
     function checkForUpdates() {
         log('o->checkForUpdates()');
+        window.console.warn('IMPLEMENT checkForUpdates()');
     }
 
     /*
@@ -58,6 +71,7 @@
      */
     function render() {
         log('o->render()');
+        window.console.warn('IMPLEMENT render()');
     }
 
     /*
@@ -96,14 +110,16 @@
             }
         }
 
-        processQueue = window._wd_o2.nill;
-    }
+        processQueue = noop;
+    };
 
     /*
      * Fired when initial widget state is ready.
      */
-    function initialState_ready(state) {
-        log('o->initialState_ready()');
+    function processPostInitialization(state) {
+        log('o->processPostInitialization(');
+        log(state);
+        log(')');
 
         render(state);
 
@@ -116,10 +132,12 @@
      * Loads initial widget state from the server.
      */
     function loadInitialState(config, callback) {
+        log('o->loadInitialState(');
+        log(config);
+        log(callback);
+        log(')');
+
         config = null;
-
-        log('o->loadInitialState()');
-
         callback({});
     }
 
@@ -129,6 +147,8 @@
     function getConfiguration() {
         log('o->getConfiguration()');
 
+        window.console.warn('get widget configuration from DOM');
+
         return {};
     }
 
@@ -136,58 +156,96 @@
      * Initialize after loading prerequisites.
      */
     function initialize() {
-        log('o->loadInitialState()');
+        log('o->initialize()');
 
         var config = getConfiguration();
 
-        loadInitialState(config, initialState_ready);
+        loadInitialState(config, processPostInitialization);
     }
 
-    var scriptQueue = [];
+    /*
+     *
+     */
+    function loadNext(root, loader, callback) {
+        log('o->loadNext(');
+        log(root);
+        log(loader);
+        log(callback);
+        log(')');
 
-    var createElement = document.createElement;
-    var getElementsByTagName = document.getElementsByTagName;
-    var kScript = 'script';
-    var kHead = 'head';
-    var kScriptType = 'text/javascript';
+        if (scriptQueue.length) {
+            loader(root, scriptQueue.shift(), callback);
 
-    function loadScript(src) {
-        var s = createElement(kScript);
-        var x = getElementsByTagName(kScript)[0] ||
-            getElementsByTagName(kHead)[0];
+            return;
+        }
+
+        callback();
+    }
+
+    /*
+     *
+     */
+    var loadScript = function(root, src, callback) {
+        log('o->loadScript(');
+        log(root);
+        log(src);
+        log(callback);
+        log(')');
+
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
 
         s.type = kScriptType;
         s.async = true;
-        s.src = src;
+        s.src = [root, src].join(kEmpty);
 
         x.parentNode.insertBefore(s, x);
 
+        function processNext() {
+            loadNext(root, loadScript, callback);
+        }
+
         s.onreadystatechange = function() {
             if(kCompleteRegExp.test(s.readyState)) {
-                callback();
+                processNext();
             }
         };
 
         s.onload = function() {
-            callback();
+            processNext();
         };
-    }
+    };
 
-    function loadScripts(ar) {
+    /*
+     *
+     */
+    function loadScripts(root, ar, callback) {
+        log('o->loadScripts(');
+        log(root);
+        log(ar);
+        log(callback);
+        log(')');
+
         scriptQueue = ar;
 
-        loadScript(scriptQueue.pop());
+        loadScript(root, scriptQueue.shift(), callback);
     }
 
     /*
      * Load necessary o2.js components in noConflict mode.
      */
     function getPrerequisites(callback) {
-        log('o->getPrerequisites()');
+        log('o->getPrerequisites(');
+        log(callback);
+        log(')');
 
-        callback();
+        loadScripts(kO2Root, [
+            'o2.meta.js',
+            'o2.core.js'
+        ], callback);
     }
 
     checkForUpdates(version);
     getPrerequisites(initialize);
-}(this, true));
+}(this, this.document, true));
