@@ -4,28 +4,43 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-15 15:16:36.626954
+ *  lastModified: 2012-07-20 16:22:20.527709
  * -->
  */
 (function(window, document, isDebugMode) {
     'use strict';
 
+    if (window._wd) {
+        return;
+    }
+
+    window._wd = {};
+
     /*
-     * Should match beacon version.
+     * Should match beacon version timestamp.
      */
-    var version = 'v.0.1';
+    var versionTimestamp = '20120720135547909116';
+
+    //window._wd.versionTimestamp = versionTimestamp;
 
     var scriptQueue = [];
 
     /*
      * Common Constants
      */
+    var kAnd            = '&';
+    var kApiRoot        = 'http://api.widget.www/';
+    var kBeacon         = 'api/v.0.1/beacon';
     var kCompleteRegExp = /loaded|complete/;
     var kEmpty          = '';
+    var kEquals         = '=';
     var kHead           = 'head';
     var kO2Root         = 'http://api.widget.www/lib/o2.js/';
+    var kQuery          = '?';
+    var kRevision       = 'r';
     var kScript         = 'script';
     var kScriptType     = 'text/javascript';
+    var kVersion        = 'v';
 
     /*
      *
@@ -61,9 +76,32 @@
     /*
      *
      */
+    function insertScript(root, src) {
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
+
+        s.type = kScriptType;
+        s.async = true;
+        s.src = [root, src].join(kEmpty);
+
+        x.parentNode.insertBefore(s, x);
+
+        return s;
+    }
+
+    /*
+     *
+     */
     function checkForUpdates() {
         log('o->checkForUpdates()');
-        window.console.warn('IMPLEMENT checkForUpdates()');
+
+window.alert('before load');
+        insertScript(kApiRoot, [kBeacon, kQuery,
+            kVersion,  kEquals, versionTimestamp , kAnd,
+            kRevision, kEquals, (new Date()).getTime()
+        ].join(kEmpty), noop);
+window.alert('after load');
     }
 
     /*
@@ -192,15 +230,7 @@
         log(callback);
         log(')');
 
-        var s = document.createElement(kScript);
-        var x = document.getElementsByTagName(kScript)[0] ||
-            document.getElementsByTagName(kHead)[0];
-
-        s.type = kScriptType;
-        s.async = true;
-        s.src = [root, src].join(kEmpty);
-
-        x.parentNode.insertBefore(s, x);
+        var s = insertScript(root, src);
 
         function processNext() {
             loadNext(root, loadScript, callback);

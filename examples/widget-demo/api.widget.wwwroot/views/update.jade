@@ -3,9 +3,15 @@
 //- the terms of the MIT license.
 //- Please see the LICENSE file for details.
 //-
-//- lastModified: 2012-07-18 18:00:10.598132
+//- lastModified: 2012-07-20 16:22:20.527709
 //-
-|function test() {
-|alert('baa')
-|}
-|alert('hello world');
+!!! 5
+html(lang='en')
+    head
+        script(src= apiBootstrapUrl)
+    body(lang='en')
+        script
+            if (!window.location.hash) {
+                window.location.hash = 'checked';
+                window.location.reload(true);
+            }
