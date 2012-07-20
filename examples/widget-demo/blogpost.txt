@@ -11,54 +11,143 @@ Part 2:
     http://o2js.com/2012/07/16/javascript-widgets-setup/
 
 Part 3:
+    In the former post we've outline a broad brushstrokes initialization flow
+    of our external JavaScript widget. We've created a basic bootloader script
+    that first loads required resources asynchronously and then continues with
+    the initialization and rendering of the widget (which are yet to be
+    implemented)
+
+    Now it's time to tackle a common problem
+    for any script that you want to constantly upgrade an develop: Versioning
+    and Caching.
+
+    For our external widget script to be responsive, and load faster it's a good
+    practice to serve the widget script with a far future expires header.
+
+    http://developer.yahoo.com/performance/rules.html/
+
+    "
+    For static components: implement "Never expire" policy by setting far future
+    Expires header
+
+    A first-time visitor to your page may have to make several HTTP requests,
+    but by using the Expires header you make those components cacheable.
+    This avoids unnecessary HTTP requests on subsequent page views.
+
+    Expires headers are most often used with images, but they should be used
+    on all components including scripts, stylesheets, and Flash components.
+
+    Browsers (and proxies) use a cache to reduce the number and size of HTTP
+    requests, making web pages load faster
+    "
+    However there's one complication with setting a far future expires header:
+    If you change your widget code, the users may still be using older versions
+    of your bootloader.
+
+    One approach is to change the version of the widget after every change and
+    to ask publishers to update their widget loader script to reflect the
+    change accordingly.
+
+    //add sample code.
+
+    Assume that it's a critical security update. You cannot take it as a given
+    that all the publishers will increment the API version that they are loading
+    in their initialization scripts. From former experience, I can say that
+    some of the publishers do not bother changing the API version and use older
+    version of the API regardless of the missing features.
+
+    We'll approach the problem as follows:
+
+    - We'll create a cache revalidation mechanism to push hotfixes, bugfixes,
+    improvements and non-breaking changes to the current version of the API.
+
+    - And we'll increment the version number of the bootloader script
+    for major improvements, and breaking changes.
 
     First start with setting a very long expires header for our static API
     bootloader.
 
-    Now let's first ensure that our static scripts has a long expires header
-    (explain the reasons why)
-
     //index.js
-        var ONE_YEAR = 31536000000;
+    /*
+     * Make sure that the static assets have a far future expiration date.
+     */
+    app.use(
+        express['static'](
+            path.STATIC_FILE,
+            config.farFutureExpiration
+        )
+    )
 
-        app.use(express.static(__dirname + '/static', {maxAge : ONE_YEAR}));
+    //where config is:
+    var config = {
+        farFutureExpiration : {maxAge : kOneYear},
 
-        http://www.mnot.net/cache_docs/
+        api_v_0_1 : {
+            VERSION_TIMESTAMP : '20120720135547909116'
+        }
+    };
+
+    We'll com to what VERSION_TIMESTAMP is in a minute.
+
+    And when we request the api.v.0.1.js Here's the response headers we get:
+
+    Accept-Ranges   bytes
+    Cache-Control   public, max-age=31536000
+    Connection      keep-alive
+    Content-Length  6672
+    Content-Type    application/javascript
+    Date            Fri, 20 Jul 2012 20:41:55 GMT
+    Etag            "6672-1342801807000"
+    Last-Modified   Fri, 20 Jul 2012 16:30:07 GMT
+    X-Powered-By    Express
+
+    Where the
+
+    Cache-Control   public, max-age=31536000
+
+    indicates that our bootloader script will be cached for 1 year.
+
+    If we refresh the webpage and analyze the browser cache, we'll see
+    that it's in deed true.
+
+    Cache:
+    Data Size       6672
+    Device          disk
+    Expires         Sat Jul 20 2013 23:43:10 GMT+0300 (EEST)
+    Fetch Count     4
+    Last Fetched    Fri Jul 20 2012 23:43:11 GMT+0300 (EEST)
+    Last Modified   Fri Jul 20 2012 23:43:10 GMT+0300 (EEST)
+
+    We'll get a 304 Not Modified response from the server.
         http://www.checkupdown.com/status/E304.html
-        http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
 
-        Accept  text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-        Accept-Encoding gzip, deflate
-        Accept-Language en-us,en;q=0.5
-        Cache-Control   max-age=0
-        Connection  keep-alive
-        Host    api.widget.www
-        If-Modified-Since   Tue, 17 Jul 2012 16:40:09 GMT
-        If-None-Match   "2810-1342543209000"
-        User-Agent  Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) Gecko/20100101 Firefox/13.0.1
+    You can read http://www.mnot.net/cache_docs/ for caching best practices
+    and read http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html for
+    HTTP status codes.
 
+    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+    http header field definitions
 
-        Response Headersview source
-        Accept-Ranges   bytes
-        Cache-Control   public, max-age=31536000
-        Connection  keep-alive
-        Date    Tue, 17 Jul 2012 16:42:44 GMT
-        Etag    "2810-1342543209000"
-        Last-Modified   Tue, 17 Jul 2012 16:40:09 GMT
-        X-Powered-By    Express
+    http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+    status code definitions
 
-        304 Not Modified
+    Now it's time to implement a self updating bootloader script
+    <link to soulders>
+    http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
 
-caching tutorial for web authors:
-http://www.mnot.net/cache_docs/
+    Let's add a version timestamp to the API first:
 
-http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
-http header field definitions
+    (function(window, document, isDebugMode) {
+        ...
 
-http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
-status code definitions
+        /*
+         * Should match beacon version timestamp.
+         * See the <insert-link-here> for details.
+         */
+        var versionTimestamp = '20120720135547909116';
 
-http://www.stevesouders.com/blog/2012/05/22/self-updating-scripts/
+////////////////// CONTINUE FROM HERE ///////////////////////////
+
 204 No Content
 
 304 not modified

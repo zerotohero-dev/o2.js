@@ -98,7 +98,7 @@
     /**
      *
      */
-    function setFarFutureExpiresHeader(res) {
+    function setShortExpiresHeader(res) {
         var kOneMinute = 60;
 
         res.header('Cache-Control', 'public, max-age=' + kOneMinute);
@@ -146,7 +146,7 @@
         app.get(v_0_1(route).BEACON, function(req, res) {
             res.header('Content-Type', 'text/javascript');
 
-            setFarFutureExpiresHeader(res);
+            setShortExpiresHeader(res);
 
             var versionTimestamp = v_0_1(config).VERSION_TIMESTAMP;
 
