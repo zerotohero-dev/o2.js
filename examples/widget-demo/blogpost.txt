@@ -279,11 +279,83 @@ Part 3:
     to the end user once she reloads the publisher's website, or navigates
     to another page.
 
-//// I AM HERE !!!!!!!!!!
+    ...
+
+    // To avoid re-defining everything if the bootloader is included in
+    // more than one place in the publisher's website.
+    if (window._wd) {
+        return;
+    }
+
+    window._wd = {};
 
 
+    Load Resources:
 
-    //mention other enhancements in the widget.
+    /*
+     * Load necessary o2.js components in noConflict mode.
+     */
+    function getPrerequisites(callback) {
+        log('o->getPrerequisites(');
+        log(callback);
+        log(')');
+
+        loadScripts(kO2Root, [
+            'o2.meta.js',
+            'o2.core.js'
+        ], callback);
+    }
+
+    /*
+     * Loads an array of scripts one after another.
+     */
+    function loadScripts(root, ar, callback) {
+        log('o->loadScripts(');
+        log(root);
+        log(ar);
+        log(callback);
+        log(')');
+
+        scriptQueue = ar;
+
+        loadScript(root, scriptQueue.shift(), callback);
+    }
+
+    /*
+     * Loads the given script.
+     * <strong>callback</strong> is the function to be executed after
+     * there's no resource left to be loeded next.
+     */
+    var loadScript = function(root, src, callback) {
+        log('o->loadScript(');
+        log(root);
+        log(src);
+        log(callback);
+        log(')');
+
+        var s = insertScript(root, src);
+
+        function processNext() {
+            loadNext(root, loadScript, callback);
+        }
+
+        s.onreadystatechange = function() {
+            if(kCompleteRegExp.test(s.readyState)) {
+                processNext();
+            }
+        };
+
+        s.onload = function() {
+            processNext();
+        };
+    };
+
+    Next up?
+
+        - get widget parameters
+        - implement a job queue
+        - render initial widget state
+
 
 204 No Content
 
