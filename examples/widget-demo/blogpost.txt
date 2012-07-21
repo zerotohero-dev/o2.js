@@ -146,7 +146,144 @@ Part 3:
          */
         var versionTimestamp = '20120720135547909116';
 
-////////////////// CONTINUE FROM HERE ///////////////////////////
+    And then pass along that version timestamp to load a cache validator beacon:
+
+    /*
+     * Revalidates cache for this bootloader script, if there's a newer
+     * version available. The changes will take effect only AFTER the user
+     * refreshes the page.
+     */
+    function checkForUpdates() {
+        log('o->checkForUpdates()');
+
+        insertScript(kApiRoot, [kBeacon, kQuery,
+            kVersion,  kEquals, versionTimestamp , kAnd,
+            kRandom,   kEquals, (new Date()).getTime()
+        ].join(kEmpty), noop);
+    }
+
+    Where the constants above (and some more) are defined as follows:
+
+    var kAnd            = '&';
+    var kApiRoot        = 'http://api.widget.www/';
+    var kBeacon         = 'api/v.0.1/beacon';
+    var kCompleteRegExp = /loaded|complete/;
+    var kEmpty          = '';
+    var kEquals         = '=';
+    var kHead           = 'head';
+    var kO2Root         = 'http://api.widget.www/lib/o2.js/';
+    var kQuery          = '?';
+    var kRandom         = 'r';
+    var kScript         = 'script';
+    var kScriptType     = 'text/javascript';
+    var kVersion        = 'v';
+
+    So we basically call
+
+    insertScript(
+        'http://api.widget.www/api/v.0.1/beacon?v=20120720135547909116&r={#}'
+    );
+
+    Where insertScript simply does what its name implies:
+
+    /*
+     * Asynchronously inserts a script element to the head
+     * of the document.
+     */
+    function insertScript(root, src) {
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
+
+        s.type  = kScriptType;
+        s.async = true;
+        s.src   = [root, src].join(kEmpty);
+
+        x.parentNode.insertBefore(s, x);
+
+        return s;
+    }
+
+    So what we do is to request a beacon script at each widget load.
+
+    Now let's look at what the beacon script does:
+
+    /**
+     * Beacon to validate the cache of the JS API.
+     */
+    app.get(v_0_1(route).BEACON, function(req, res) {
+        res.header('Content-Type', 'text/javascript');
+
+        setShortExpiresHeader(res);
+
+        var versionTimestamp = v_0_1(config).VERSION_TIMESTAMP;
+
+        var requestedVersion = req.param(
+            parameter.VERSION,
+            versionTimestamp
+        );
+
+        if (requestedVersion !== versionTimestamp) {
+            res.render(template.UPDATE_SCRIPT, {
+                iframeUrl : v_0_1(url).UPDATE_IFRAME
+            });
+
+            return;
+        }
+
+        res.send(204);
+    });
+
+    So if the requested version timestamp is identical to the what we sent,
+    then it means that we are using the most up-to-date bootloader script
+    adn we don't need to update the cache.
+    So the beacon simply sends a HTTP 204 (no content) response.
+
+    Otherwise (i.e. if the versions don't match) then we conclude that the
+    cache is stale and we inject a simple javascript as follows:
+
+    (function() {
+        var update = function() {
+            if (!document.body) {
+                setTimeout(update, 500);
+                return;
+            }
+
+            var loader = document.createElement('iframe');
+
+            loader.style.display = 'none';
+            loader.src = '#{iframeUrl}';
+
+            document.body.appendChild(loader);
+        };
+
+        update();
+    })();
+
+    Where we append a hidden IFRAME to the document.
+    And the contents of the IFRAME would be (in Jade syntax):
+
+    !!! 5
+    html(lang='en')
+        head
+            script(src= apiBootstrapUrl)
+        body(lang='en')
+            script
+                if (!window.location.hash) {
+                    window.location.hash = 'checked';
+                    window.location.reload(true);
+                }
+
+    So the iframe simply reloads the api bootloader script once more to
+    update the browser's cache. So a newer version of the script will be served
+    to the end user once she reloads the publisher's website, or navigates
+    to another page.
+
+//// I AM HERE !!!!!!!!!!
+
+
+
+    //mention other enhancements in the widget.
 
 204 No Content
 

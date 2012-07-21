@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-20 19:28:43.469664
+ *  lastModified: 2012-07-21 22:00:06.001876
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -41,7 +41,7 @@
     var kHead           = 'head';
     var kO2Root         = 'http://api.widget.www/lib/o2.js/';
     var kQuery          = '?';
-    var kRevision       = 'r';
+    var kRandom         = 'r';
     var kScript         = 'script';
     var kScriptType     = 'text/javascript';
     var kVersion        = 'v';
@@ -118,7 +118,7 @@
     }
 
     /*
-     * Revalidates cache for this bootloader script, if there's a newver
+     * Revalidates cache for this bootloader script, if there's a newer
      * version available. The changes will take effect only AFTER the user
      * refreshes the page.
      */
@@ -127,7 +127,7 @@
 
         insertScript(kApiRoot, [kBeacon, kQuery,
             kVersion,  kEquals, versionTimestamp , kAnd,
-            kRevision, kEquals, (new Date()).getTime()
+            kRandom, kEquals, (new Date()).getTime()
         ].join(kEmpty), noop);
     }
 

@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-20 19:26:00.290912
+ *  lastModified: 2012-07-21 22:00:06.001876
  * -->
  */
 
@@ -150,7 +150,10 @@
 
             var versionTimestamp = v_0_1(config).VERSION_TIMESTAMP;
 
-            var requestedVersion = req.param(parameter.VERSION, versionTimestamp);
+            var requestedVersion = req.param(
+                parameter.VERSION,
+                versionTimestamp
+            );
 
             if (requestedVersion !== versionTimestamp) {
                 res.render(template.UPDATE_SCRIPT, {
