@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-21 22:00:06.001876
+ *  lastModified: 2012-07-23 14:44:03.960037
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -20,7 +20,6 @@
 
     /*
      * Should match beacon version timestamp.
-     * See the <insert-link-here> for details.
      */
     var versionTimestamp = '20120720135547909116';
 
@@ -280,8 +279,9 @@
     /*
      * Load necessary o2.js components in noConflict mode.
      */
-    function getPrerequisites(callback) {
-        log('o->getPrerequisites(');
+    //TODO: loadDependencies is a beter name for this!
+    function loadPrerequisites(callback) {
+        log('o->loadPrerequisites(');
         log(callback);
         log(')');
 
@@ -292,5 +292,5 @@
     }
 
     checkForUpdates(version);
-    getPrerequisites(initialize);
+    loadPrerequisites(initialize);
 }(this, this.document, true));
