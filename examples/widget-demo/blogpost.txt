@@ -16,6 +16,116 @@ Part 3:
 
 Part 4:
 
+    In the former part of the series we've seen how to revalidate the cache
+    and load our widget code using a self updating bootloader script.
+
+    Now it's time to pass widget parameters from DOM to our initialization flow.
+
+    Let's recap:
+    Our lovely publisher is including a async loading snippet to their pages
+    which causes our wiget's initialization flow to start.
+    Once the script loads, any additional supporting stuff is loaded too.
+
+    To give flexibility each script can have certain initialization and
+    configuration parameters. And there are different ways to pass those
+    parameters to the initialization code.
+
+    <script>
+    (function() {
+        var script = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = 'http://api.widget.www/api.v.0.1.js?pubId=123456'
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    }());
+    </script>
+
+    <script>
+    (function() {
+        var script = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = 'http://api.widget.www/api.v.0.1.js?#pubId=123456'
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    }());
+    </script>
+
+    since the base url is the same caching of the widget will be easier
+    fragment identifiers are not sent to the server.
+
+    <script data-pub-id="123456">
+    (function() {
+        var script = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = 'http://api.widget.www/api.v.0.1.js'
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    }());
+    </script>
+
+        window._wdAsyncInit = function() {
+            // push stuff
+        };
+
+
+    <script>
+    var _wd_pubId = 1234;
+
+    (function() {
+        var script = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = 'http://api.widget.www/api.v.0.1.js'
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    }());
+    </script>
+
+    <script>
+    if (!window._wd) { window._wd = {readyState : 0}; }
+
+    window._wd.pubId = '123456';
+
+    (function() {
+        var script = document.createElement('script');
+        script.type  = 'text/javascript';
+        script.async = true;
+        script.src   = 'http://api.widget.www/api.v.0.1.js'
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(script, node);
+    }());
+    </script>
+
+
+    var kBeforeLoad = 0;
+    var kLoaded     = 1;
+
+    // To avoid re-defining everything if the bootloader is included in
+    // more than one place in the publisher's website.
+    if (window._wd) {
+        if (window._wd.readyState && window._wd.readyState !== kBeforeLoad) {
+            return;
+        }
+    } else {
+        window._wd = {};
+    }
+
+    window._wd.readyState = kLoaded;
+
+
+
+
+    TODO:
+    mention different ways to render the widget.
+    one option is to decouple the render targets by making the publisher
+    specify the render targets separately.
+    This will enable us render multiple widgets with just a single bootloader
+    script.
+
+
     {{ways to store and retrieve widget paremeters}}
     {{get widget state/model from the server
         corollary: create a communication channel.

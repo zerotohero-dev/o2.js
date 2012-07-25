@@ -7,16 +7,23 @@
  *  lastModified: 2012-07-23 14:44:03.960037
  * -->
  */
-(function(window, document, isDebugMode) {
+(function(window, document, isDebugMode, UNDEFINED) {
     'use strict';
+
+    var kBeforeLoad = 0;
+    var kLoaded     = 1;
 
     // To avoid re-defining everything if the bootloader is included in
     // more than one place in the publisher's website.
     if (window._wd) {
-        return;
+        if (window._wd.readyState && window._wd.readyState !== kBeforeLoad) {
+            return;
+        }
+    } else {
+        window._wd = {};
     }
 
-    window._wd = {};
+    window._wd.readyState = kLoaded;
 
     /*
      * Should match beacon version timestamp.
