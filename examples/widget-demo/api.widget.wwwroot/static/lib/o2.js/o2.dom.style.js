@@ -10,7 +10,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>A utility package to
@@ -51,9 +51,6 @@
     var concat                = require(kString, 'concat');
     var toCamelCase           = require(kString, 'toCamelCase');
     var toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase');
-
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
 
     /*
      * Common Constants
@@ -153,11 +150,11 @@
         });
     } else {
         exports.addCssRules = def(me, 'addCssRules', function(cssText) {
-            var d         = createElement(kStyle);
+            var d         = document.createElement(kStyle);
             d.type        = kTextCss;
             d.textContent = cssText;
 
-            getElementsByTagName(kHead)[0].appendChild(d);
+            document.getElementsByTagName(kHead)[0].appendChild(d);
         });
     }
 

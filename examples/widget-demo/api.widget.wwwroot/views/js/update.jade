@@ -11,14 +11,10 @@
 |            setTimeout(update, 500);
 |            return;
 |        }
-|
 |        var loader = document.createElement('iframe');
-|
 |        loader.style.display = 'none';
 |        loader.src = '#{iframeUrl}';
-|
 |        document.body.appendChild(loader);
 |    };
-|
 |    update();
 |})();

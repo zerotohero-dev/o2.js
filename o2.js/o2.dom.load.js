@@ -9,7 +9,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -50,8 +50,6 @@
 
     var Image                = attr(window,   'Image');
     var setTimeout           = attr(window,   'setTimeout');
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
     var sheets               = attr(document, 'styleSheets');
 
     /*
@@ -112,8 +110,8 @@
      * operation completes.
      */
     exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
-        var s = createElement(kLink);
-        var x = getElementsByTagName(kHead)[0];
+        var s = document.createElement(kLink);
+        var x = document.getElementsByTagName(kHead)[0];
 
         var id      = format(kCssId, generateGuid());
         var counter = 0;
@@ -246,13 +244,13 @@
      * operation completes.
      */
     exports.loadScript = def(me, 'loadScript', function(src, callback) {
-        var s = createElement(kScript);
-        var x = getElementsByTagName(kScript)[0] ||
-            getElementsByTagName(kHead)[0];
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
 
-        s.type = kScriptType;
+        s.type  = kScriptType;
         s.async = true;
-        s.src = src;
+        s.src   = src;
 
         x.parentNode.insertBefore(s, x);
 

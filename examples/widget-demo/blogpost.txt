@@ -85,20 +85,21 @@ Part 4:
     </script>
 
     <script>
-    if (!window._wd) { window._wd = {readyState : 0}; }
+    if (!window._wd) {
+        window._wd = {
+            pubId      : '123456'
+        };
 
-    window._wd.pubId = '123456';
-
-    (function() {
-        var script = document.createElement('script');
-        script.type  = 'text/javascript';
-        script.async = true;
-        script.src   = 'http://api.widget.www/api.v.0.1.js'
-        var node = document.getElementsByTagName('script')[0];
-        node.parentNode.insertBefore(script, node);
-    }());
+        (function() {
+            var script = document.createElement('script');
+            script.type  = 'text/javascript';
+            script.async = true;
+            script.src   = 'http://api.widget.www/api.v.0.1.js'
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(script, node);
+        }());
+    }
     </script>
-
 
     var kBeforeLoad = 0;
     var kLoaded     = 1;
@@ -115,6 +116,12 @@ Part 4:
 
     window._wd.readyState = kLoaded;
 
+
+    ... discuss pros and cons and continue with window._wd.pubId = 'blah'
+    construct.
+
+    the next thing is to get widget configuration.
+    And that's easy in our case since it's a variable already.
 
 
 

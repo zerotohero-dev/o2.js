@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-21 22:00:06.001876
+ *  lastModified: 2012-07-26 18:37:04.462574
  * -->
  */
 
@@ -35,7 +35,8 @@
         api_v_0_1 : {
             LOGIN     : '/api/v.0.1/login',
             UPDATE    : '/api/v.0.1/update',
-            BEACON    : '/api/v.0.1/beacon'
+            BEACON    : '/api/v.0.1/beacon',
+            PARAMS    : '/api/v.0.1/params'
         }
     };
 
@@ -123,6 +124,17 @@
             req = null;
 
             res.send('hello authentication');
+        });
+
+        /**
+         *
+         */
+        app.get(v_0_1(route).PARAMS, function(req, res) {
+            req = null;
+
+            var result = {"hello" : "world"};
+
+            res.send(JSON.stringify(result));
         });
 
         /**

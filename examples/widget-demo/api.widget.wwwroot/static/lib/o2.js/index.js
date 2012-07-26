@@ -32,7 +32,13 @@ if (!document) {
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
  */
-this.o2 = this.o2 || {isProduction : false};
+
+if (this.o2) {
+    this._o2_cached = this.o2;
+} else {
+    this.o2 = {isProduction : false};
+}
+
 
 /**
  * @module core.meta
@@ -1358,7 +1364,7 @@ this.o2 = this.o2 || {isProduction : false};
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001340825638
+  * @version     0.25.a.0001343319179
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
@@ -1467,7 +1473,7 @@ this.o2 = this.o2 || {isProduction : false};
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001340825638');
+    exports.build = def(me, 'build', '.0001343319179');
 
     /**
      * @function {static} o2.$
@@ -1590,11 +1596,15 @@ this.o2 = this.o2 || {isProduction : false};
      * @return the new <code>Object</code>.
      */
     exports.noConflict = def(me, 'noConflict', function(newName) {
+
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
             ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
 
         window[name] = myself;
+
+        window[myName] = window._o2_cached;
+
         return window[name];
     });
 
@@ -6616,6 +6626,7 @@ this.o2 = this.o2 || {isProduction : false};
     /**
      * @function {static} o2.Collection.copy
      *
+     //TODO: shallow copy. add to docs.
      * <p>Creates a clone of the given <code>Object</code>, and returns it;
      * leaving the original intact.</p>
      *
@@ -6635,6 +6646,7 @@ this.o2 = this.o2 || {isProduction : false};
             return [];
         }
 
+        //TODO: fixme
         if (!isObject(ar)) {
             return ar;
         }
@@ -11417,7 +11429,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>A utility package to
@@ -11458,9 +11470,6 @@ this.o2 = this.o2 || {isProduction : false};
     var concat                = require(kString, 'concat');
     var toCamelCase           = require(kString, 'toCamelCase');
     var toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase');
-
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
 
     /*
      * Common Constants
@@ -11560,11 +11569,11 @@ this.o2 = this.o2 || {isProduction : false};
         });
     } else {
         exports.addCssRules = def(me, 'addCssRules', function(cssText) {
-            var d         = createElement(kStyle);
+            var d         = document.createElement(kStyle);
             d.type        = kTextCss;
             d.textContent = cssText;
 
-            getElementsByTagName(kHead)[0].appendChild(d);
+            document.getElementsByTagName(kHead)[0].appendChild(d);
         });
     }
 
@@ -12688,7 +12697,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
@@ -12729,8 +12738,6 @@ this.o2 = this.o2 || {isProduction : false};
 
     var Image                = attr(window,   'Image');
     var setTimeout           = attr(window,   'setTimeout');
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
     var sheets               = attr(document, 'styleSheets');
 
     /*
@@ -12791,8 +12798,8 @@ this.o2 = this.o2 || {isProduction : false};
      * operation completes.
      */
     exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
-        var s = createElement(kLink);
-        var x = getElementsByTagName(kHead)[0];
+        var s = document.createElement(kLink);
+        var x = document.getElementsByTagName(kHead)[0];
 
         var id      = format(kCssId, generateGuid());
         var counter = 0;
@@ -12925,13 +12932,13 @@ this.o2 = this.o2 || {isProduction : false};
      * operation completes.
      */
     exports.loadScript = def(me, 'loadScript', function(src, callback) {
-        var s = createElement(kScript);
-        var x = getElementsByTagName(kScript)[0] ||
-            getElementsByTagName(kHead)[0];
+        var s = document.createElement(kScript);
+        var x = document.getElementsByTagName(kScript)[0] ||
+            document.getElementsByTagName(kHead)[0];
 
-        s.type = kScriptType;
+        s.type  = kScriptType;
         s.async = true;
-        s.src = src;
+        s.src   = src;
 
         x.parentNode.insertBefore(s, x);
 
@@ -14296,8 +14303,8 @@ this.o2 = this.o2 || {isProduction : false};
             // NOTE: IE7+ supports child selector ( > ),
             // IE8+ supports querySelectorAll
             // So it's safe to use the child selector with querySelectorAll:
-            // It'll work as expected in IE8+ and it'll degrade gracefully
-            // in IE7-
+            // It'll work as expected in IE8+ (when document mode is 8)
+            // and it'll degrade gracefully in IE7-
 
             if (!el.id) {
                 el.id = [myName, generateGuid()].join(kEmpty);
@@ -19036,7 +19043,7 @@ this.o2 = this.o2 || {isProduction : false};
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -19072,9 +19079,6 @@ this.o2 = this.o2 || {isProduction : false};
 
     var concat = require('String', 'concat');
 
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
-
     /*
      * State
      */
@@ -19098,8 +19102,8 @@ this.o2 = this.o2 || {isProduction : false};
      */
     function load(url) {
         var done   = false;
-        var head   = getElementsByTagName(kHead)[0];
-        var script = createElement(kScript);
+        var head   = document.getElementsByTagName(kHead)[0];
+        var script = document.createElement(kScript);
 
         script.async = true;
         script.src   = url;

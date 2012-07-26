@@ -8,7 +8,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
@@ -44,9 +44,6 @@
 
     var concat = require('String', 'concat');
 
-    var createElement        = attr(document, 'createElement');
-    var getElementsByTagName = attr(document, 'getElementsByTagName');
-
     /*
      * State
      */
@@ -70,8 +67,8 @@
      */
     function load(url) {
         var done   = false;
-        var head   = getElementsByTagName(kHead)[0];
-        var script = createElement(kScript);
+        var head   = document.getElementsByTagName(kHead)[0];
+        var script = document.createElement(kScript);
 
         script.async = true;
         script.src   = url;

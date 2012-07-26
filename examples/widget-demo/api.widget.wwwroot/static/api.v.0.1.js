@@ -4,61 +4,42 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-23 14:44:03.960037
+ *  lastModified: 2012-07-26 18:43:32.987558
  * -->
  */
-(function(window, document, isDebugMode, UNDEFINED) {
+(function(window, document, isDebugMode) {
     'use strict';
 
-    var kBeforeLoad = 0;
-    var kLoaded     = 1;
-
-    // To avoid re-defining everything if the bootloader is included in
-    // more than one place in the publisher's website.
-    if (window._wd) {
-        if (window._wd.readyState && window._wd.readyState !== kBeforeLoad) {
-            return;
-        }
-    } else {
-        window._wd = {};
-    }
-
-    window._wd.readyState = kLoaded;
-
     /*
-     * Should match beacon version timestamp.
+     * Ready States
      */
-    var versionTimestamp = '20120720135547909116';
-
-    /*
-     * Resources to be loaded asynchronously.
-     */
-    var scriptQueue = [];
+    var kLoaded              = 1;
+    var kLoadingDependencies = 2;
+    var kLoadedDependencies  = 3;
+    var kBeginProcessQueue   = 4;
+    var kBeginRender         = 5;
+    var kComplete            = 6;
 
     /*
      * Common Constants
      */
-    var kAnd            = '&';
-    var kApiRoot        = 'http://api.widget.www/';
-    var kBeacon         = 'api/v.0.1/beacon';
-    var kCompleteRegExp = /loaded|complete/;
-    var kEmpty          = '';
-    var kEquals         = '=';
-    var kHead           = 'head';
-    var kO2Root         = 'http://api.widget.www/lib/o2.js/';
-    var kQuery          = '?';
-    var kRandom         = 'r';
-    var kScript         = 'script';
-    var kScriptType     = 'text/javascript';
-    var kVersion        = 'v';
-
+    var kAnd              = '&';
+    var kApiRoot          = 'http://api.widget.www/';
+    var kBeacon           = 'api/v.0.1/beacon';
+    var kCompleteRegExp   = /loaded|complete/;
+    var kEmpty            = '';
+    var kEquals           = '=';
+    var kHead             = 'head';
     var kO2Alias          = '_wd_o2';
+    var kO2Root           = 'http://api.widget.www/lib/o2.js/';
+    var kQuery            = '?';
+    var kRandom           = 'r';
+    var kReadyState       = 'readyState';
+    var kScript           = 'script';
+    var kScriptType       = 'text/javascript';
+    var kVersion          = 'v';
+    var kWidgetAlias      = '_wd';
     var kWidgetQueueAlias = '_wdq';
-
-    /*
-     * This will be set after resource initialization.
-     */
-    var o2 = null;
 
     /*
      * Does nothing, and that's the point.
@@ -82,6 +63,44 @@
 
         log = noop;
     };
+
+    // To avoid re-defining everything if the bootloader is included in
+    // more than one place in the publisher's website.
+    if (window[kWidgetAlias] && window[kWidgetAlias][kReadyState]) {
+        log('Widget has already been loaded; exiting.');
+
+        return;
+    }
+
+    if (!window[kWidgetAlias]) {
+        log('Widget namespace cannot be found; exiting.');
+
+        return;
+    }
+
+    /*
+     * Should match beacon version timestamp.
+     */
+    var versionTimestamp = '20120720135547909116';
+
+    /*
+     * Resources to be loaded asynchronously.
+     */
+    var scriptQueue = [];
+
+    /*
+     * This will be set after resource initialization.
+     */
+    var o2 = null;
+
+    /*
+     * Sets the internal ready state.
+     */
+    function setReadyState(state) {
+        window[kWidgetAlias][kReadyState] = state;
+    }
+
+    setReadyState(kLoaded);
 
     /*
      * Executes the job queue asyncronously.
@@ -152,6 +171,8 @@
     var processQueue = function() {
         log('o->processQueue()');
 
+        setReadyState(kBeginProcessQueue);
+
         var q = null;
 
         if (window[kWidgetQueueAlias] &&
@@ -174,11 +195,15 @@
         log(state);
         log(')');
 
+        setReadyState(kBeginRender);
+
         render(state);
 
         processQueue();
 
-        window._wdq = queue;
+        window[kWidgetQueueAlias] = queue;
+
+        setReadyState(kComplete);
     }
 
     /*
@@ -190,20 +215,26 @@
         log(callback);
         log(')');
 
-        config = null;
-        callback({});
+        o2.Jsonp.get(
+            o2.String.concat(kApiRoot, 'api/v.0.1/params'),
+            config,
+            callback
+        );
     }
+
+    var kPublisherId = 'pubId';
 
     /*
      * Get widget configuration from DOM.
      */
-    //TODO: implement me.
     function getConfiguration() {
         log('o->getConfiguration()');
 
-        window.console.warn('get widget configuration from DOM');
+        var result = {};
 
-        return {};
+        result[kPublisherId] = window[kWidgetAlias][kPublisherId];
+
+        return result;
     }
 
     /*
@@ -211,6 +242,12 @@
      */
     function initialize() {
         log('o->initialize()');
+
+        setReadyState(kLoadedDependencies);
+
+        if (!window.o2) {return;}
+
+        window.o2.noConflict(kO2Alias);
 
         o2 = window[kO2Alias];
 
@@ -286,18 +323,21 @@
     /*
      * Load necessary o2.js components in noConflict mode.
      */
-    //TODO: loadDependencies is a beter name for this!
-    function loadPrerequisites(callback) {
-        log('o->loadPrerequisites(');
+    function loadDependencies(callback) {
+        log('o->loadDependencies(');
         log(callback);
         log(')');
 
+        setReadyState(kLoadingDependencies);
+
         loadScripts(kO2Root, [
             'o2.meta.js',
-            'o2.core.js'
+            'o2.core.js',
+            'o2.string.core.js',
+            'o2.jsonp.core.js'
         ], callback);
     }
 
-    checkForUpdates(version);
-    loadPrerequisites(initialize);
+    checkForUpdates(versionTimestamp);
+    loadDependencies(initialize);
 }(this, this.document, true));
