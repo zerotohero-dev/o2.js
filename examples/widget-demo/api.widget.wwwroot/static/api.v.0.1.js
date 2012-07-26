@@ -159,10 +159,12 @@
     /*
      * Renders the widget
      */
-    //TODO: implement me.
-    function render() {
-        log('o->render()');
-        window.console.warn('IMPLEMENT render()');
+    function render(state) {
+        log('o->render(');
+        log(state);
+        log(')');
+
+        window.console.warn('Where will I render this widget?!');
     }
 
     /*

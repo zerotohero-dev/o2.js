@@ -70,8 +70,14 @@
      *
      */
     var parameter = {
-        VERSION : 'v'
+        VERSION      : 'v',
+        CALLBACK     : 'callback',
+        PUBLISHER_ID : 'pubId'
     };
+
+    var statusCode = {
+        NO_DATA : 204
+    }
 
     /*
      * Make sure that the static assets have a far future expiration date.
@@ -130,11 +136,23 @@
          *
          */
         app.get(v_0_1(route).PARAMS, function(req, res) {
-            req = null;
+            var callback    = req.param(parameter.CALLBACK);
+            var publisherId = req.param(parameter.PUBLISHER_ID);
 
-            var result = {"hello" : "world"};
+            // very primitive access control.
+            if (publisherId !== '123456') {
+                res.send(statusCode.NO_DATA);
 
-            res.send(JSON.stringify(result));
+                return;
+            }
+
+            var result = {
+                data : 'Hello World. Hello Stars. Hello Universe!'
+            };
+
+            res.send(
+                callback + '(' + JSON.stringify(result) + ');'
+            );
         });
 
         /**
@@ -175,7 +193,7 @@
                 return;
             }
 
-            res.send(204);
+            res.send(statusCode.NO_DATA);
         });
 
     /* #endregion */

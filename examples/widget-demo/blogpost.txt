@@ -123,7 +123,17 @@ Part 4:
     the next thing is to get widget configuration.
     And that's easy in our case since it's a variable already.
 
+    Discuss: alternatives to JSONP.
+    We are using JSONP for the sake of simplicity.
 
+    if there's a large amount of data to post, then cross-domain iframe
+    messaging with a klein bottle fallback would be a solution that'd work
+    in a wide spectrum of user agents.
+
+    next up, we'll render an initial login screen.
+
+Part 5:
+    {{How to render?}}
 
     TODO:
     mention different ways to render the widget.
@@ -133,7 +143,7 @@ Part 4:
     script.
 
 
-    {{ways to store and retrieve widget paremeters}}
+
     {{get widget state/model from the server
         corollary: create a communication channel.
             different sorts of channels.
@@ -143,19 +153,19 @@ Part 4:
         corollary: ways to include that style information.
         }}
 
-Part 5:
+Part 6:
 
     {{handling sessions}}
     {{how to authenticate user}}
     {{third party cookies}}
 
-Part 6:
+Part 7:
 
     {{retrieving data from server, modifying it, persisting it to server}}
     {{modern ways of cross-domain cross-frame communication}}
     {{fallback methods}}
 
-Part 7:
+Part 8:
     {{Deployment and Minification}}
     {{Versioning}}
 
