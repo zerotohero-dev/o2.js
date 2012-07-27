@@ -13,7 +13,10 @@
     'use strict';
 
     var express = require('express');
-    var app     = express.createServer();
+    var fs      = require('fs');
+    var jade    = require('jade');
+
+    var app = express.createServer();
 
     var kOneYear = 31536000000;
 
@@ -55,7 +58,8 @@
      */
     var template = {
         UPDATE       : 'update.jade',
-        UPDATE_SCRIPT: 'js/update.jade'
+        UPDATE_SCRIPT: 'js/update.jade',
+        LOGIN_FORM   : 'login_form.jade'
     };
 
     /*
@@ -78,6 +82,15 @@
     var statusCode = {
         NO_DATA : 204
     }
+
+    /*
+     *
+     */
+    var createLoginForm = jade.compile(
+        fs.readFileSync(path.VIEWS + '/' + template.LOGIN_FORM, 'utf8')
+    );
+
+    console.log (createLoginForm());
 
     /*
      * Make sure that the static assets have a far future expiration date.
@@ -145,6 +158,8 @@
 
                 return;
             }
+
+
 
             var result = {
                 data : 'Hello World. Hello Stars. Hello Universe!'
