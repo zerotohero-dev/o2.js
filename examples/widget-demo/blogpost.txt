@@ -15,11 +15,35 @@ Part 3:
     http://o2js.com/2012/07/22/javascript-widgets-cache/
 
 Part 4:
-
-
+    JavaScript Widget Development Best Practices (Part 4: Cross-Domain Communication)
+    http://o2js.com/2012/07/27/javascript-widgets-cross-frame/
 
 Part 5:
     {{How to render?}}
+
+    A simple login form:
+
+    <form class="wd-box wd-login">
+        <p>Hello Lovely Publisher!</p>
+        <fieldset class="wd-boxBody">
+          <label>Username</label>
+          <input type="text" tabindex="1" placeholder="Volkan Özçelik" required>
+          <label><a href="/" class="wd-rLink" tabindex="5">Forget your password?</a>Password</label>
+          <input type="password" tabindex="2" required>
+        </fieldset>
+        <footer>
+          <label><input type="checkbox" tabindex="3">Keep me logged in</label>
+          <input type="submit" class="wd-btnLogin" value="Login" tabindex="4">
+        </footer>
+    </form>
+
+    make this a jade template and test.
+
+    then request and cache
+
+    Since this is a demo app, we will implement only basic functionality and
+    leave further improvements as an excercise to the reader.
+
 
     TODO:
     mention different ways to render the widget.
