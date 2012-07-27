@@ -11,6 +11,10 @@
     'use strict';
 
     /*
+     * Common Constants
+     */
+
+    /*
      * Ready States
      */
     var kLoaded              = 1;
@@ -21,25 +25,59 @@
     var kComplete            = 6;
 
     /*
-     * Common Constants
+     * Query Formation
      */
-    var kAnd              = '&';
-    var kApiRoot          = 'http://api.widget.www/';
-    var kBeacon           = 'api/v.0.1/beacon';
+    var kAnd    = '&';
+    var kEmpty  = '';
+    var kEquals = '=';
+    var kQuery  = '?';
+
+    /*
+     * Parameter Names
+     */
+    var kPublisherId = 'pubId';
+    var kRandom      = 'r';
+    var kVersion     = 'v';
+
+    /*
+     * URL
+     */
+    var kApiRoot = 'http://api.widget.www/';
+    var kO2Root  = 'http://api.widget.www/lib/o2.js/';
+
+    /*
+     * Path
+     */
+    var kBeaconPath = 'api/v.0.1/beacon';
+    var kParamsPath = 'api/v.0.1/params';
+
+    /*
+     * Regular Expression
+     */
     var kCompleteRegExp   = /loaded|complete/;
-    var kEmpty            = '';
-    var kEquals           = '=';
-    var kHead             = 'head';
+
+    /*
+     * Tags
+     */
+    var kHead   = 'head';
+    var kScript = 'script';
+
+    /*
+     * Mime Types
+     */
+    var kScriptType = 'text/javascript';
+
+    /*
+     * Globals
+     */
     var kO2Alias          = '_wd_o2';
-    var kO2Root           = 'http://api.widget.www/lib/o2.js/';
-    var kQuery            = '?';
-    var kRandom           = 'r';
-    var kReadyState       = 'readyState';
-    var kScript           = 'script';
-    var kScriptType       = 'text/javascript';
-    var kVersion          = 'v';
     var kWidgetAlias      = '_wd';
     var kWidgetQueueAlias = '_wdq';
+
+    /*
+     * Common Widget Keys
+     */
+    var kReadyState = 'readyState';
 
     /*
      * Does nothing, and that's the point.
@@ -64,19 +102,21 @@
         log = noop;
     };
 
-    // To avoid re-defining everything if the bootloader is included in
-    // more than one place in the publisher's website.
-    if (window[kWidgetAlias] && window[kWidgetAlias][kReadyState]) {
-        log('Widget has already been loaded; exiting.');
-
-        return;
-    }
-
+    // Publisher has forgotten to provide initialization data.
     if (!window[kWidgetAlias]) {
         log('Widget namespace cannot be found; exiting.');
 
         return;
     }
+
+    // To avoid re-defining everything if the bootloader is included in
+    // more than one place in the publisher's website.
+    if (window[kWidgetAlias][kReadyState]) {
+        log('Widget has already been loaded; exiting.');
+
+        return;
+    }
+
 
     /*
      * Should match beacon version timestamp.
@@ -150,7 +190,7 @@
     function checkForUpdates() {
         log('o->checkForUpdates()');
 
-        insertScript(kApiRoot, [kBeacon, kQuery,
+        insertScript(kApiRoot, [kBeaconPath, kQuery,
             kVersion,  kEquals, versionTimestamp , kAnd,
             kRandom, kEquals, (new Date()).getTime()
         ].join(kEmpty), noop);
@@ -206,6 +246,10 @@
         window[kWidgetQueueAlias] = queue;
 
         setReadyState(kComplete);
+
+        if(window._wdAsyncInit) {
+            window._wdAsyncInit();
+        }
     }
 
     /*
@@ -218,13 +262,11 @@
         log(')');
 
         o2.Jsonp.get(
-            o2.String.concat(kApiRoot, 'api/v.0.1/params'),
+            o2.String.concat(kApiRoot, kParamsPath),
             config,
             callback
         );
     }
-
-    var kPublisherId = 'pubId';
 
     /*
      * Get widget configuration from DOM.
