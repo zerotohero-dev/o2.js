@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-26 18:37:04.462574
+ *  lastModified: 2012-07-28 00:58:14.070066
  * -->
  */
 
@@ -79,18 +79,28 @@
         PUBLISHER_ID : 'pubId'
     };
 
+    /*
+     *
+     */
     var statusCode = {
         NO_DATA : 204
-    }
+    };
 
     /*
      *
      */
-    var createLoginForm = jade.compile(
-        fs.readFileSync(path.VIEWS + '/' + template.LOGIN_FORM, 'utf8')
-    );
+    var encoding = {
+        DEFAULT : 'utf8'
+    };
 
-    console.log (createLoginForm());
+    /*
+     * A compiled Jade template function for the login form.
+     */
+    var createLoginForm = jade.compile(
+        fs.readFileSync(
+            path.VIEWS + '/' + template.LOGIN_FORM, encoding.DEFAULT
+        )
+    );
 
     /*
      * Make sure that the static assets have a far future expiration date.
@@ -159,10 +169,8 @@
                 return;
             }
 
-
-
             var result = {
-                data : 'Hello World. Hello Stars. Hello Universe!'
+                data : createLoginForm()
             };
 
             res.send(

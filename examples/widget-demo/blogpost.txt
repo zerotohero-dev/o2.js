@@ -19,23 +19,56 @@ Part 4:
     http://o2js.com/2012/07/27/javascript-widgets-cross-frame/
 
 Part 5:
-    {{How to render?}}
+    In the former article we have seen different ways to send initialization
+    parameters to our widget, and we have also listed several techniques on
+    how to establish cross-domain communication between the publisher's site
+    and the widget API server. In this article we will try to render the user
+    interface of our widget.
+
+    There are various ways to render a widget. The most common two are
+
+    * to render the widget's UI by appending HTML before the widget's script
+    tag.
+    * to render the widget's UI by explicityl specifying a target location.
+
+    The former technique involves traversing the publisher's DOM, locating the
+    instance or instances of widget bootloader scripts, and injecting HTML before
+    each script.
+
+    While in the latter, we explicity specify placeholder HTML tags as an anchor
+    position to render the widget.
+
+    We'll continue our example with the second implementation, since it gives
+    more flexibility, less prone to errors and race conditions (in the case
+    of having more than one script on the page), requires less lines of code
+    to implement, is a better demonstration of separation of concerns
+    (script does what it should: initialization,
+    and placeholder tags better represent their purpose: a place that the wiget
+    bootloader (controller) will initialize the presentation (view) elements)
+
+
+    Styling?
+
+    - inline styles (won't conflict with publisher's styles)
+
+    - loading CSS file.
+
+    - embedding CSS in JavaScript
+
+    look and feel?
+    shall it look the same at every platform?
+    shall it inherit some of the publisher's styles?
+    to what extent?
+
+    overspecify CSS
+    overusing !important
+
+
+
 
     A simple login form:
 
-    <form class="wd-box wd-login">
-        <p>Hello Lovely Publisher!</p>
-        <fieldset class="wd-boxBody">
-          <label>Username</label>
-          <input type="text" tabindex="1" placeholder="Volkan Özçelik" required>
-          <label><a href="/" class="wd-rLink" tabindex="5">Forget your password?</a>Password</label>
-          <input type="password" tabindex="2" required>
-        </fieldset>
-        <footer>
-          <label><input type="checkbox" tabindex="3">Keep me logged in</label>
-          <input type="submit" class="wd-btnLogin" value="Login" tabindex="4">
-        </footer>
-    </form>
+
 
     make this a jade template and test.
 
@@ -72,8 +105,6 @@ Part 6:
 Part 7:
 
     {{retrieving data from server, modifying it, persisting it to server}}
-    {{modern ways of cross-domain cross-frame communication}}
-    {{fallback methods}}
 
 Part 8:
     {{Deployment and Minification}}

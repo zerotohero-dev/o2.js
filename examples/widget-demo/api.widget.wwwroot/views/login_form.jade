@@ -1,19 +1,19 @@
+//-
+//- This program is distributed under
+//- the terms of the MIT license.
+//- Please see the LICENSE file for details.
+//-
+//- lastModified: 2012-07-28 00:59:28.060744
+//-
 form.wd-box.wd-login
     p Hello Lovely Publisher
     fieldset.wd-boxBody
         label Username
         input(type='text', tabindex='1', placeholder='Volkan Özçelik', required)
-
-//-#    <form class="wd-box wd-login">
-//-#        <p>Hello Lovely Publisher!</p>
-//-#        <fieldset class="wd-boxBody">
-//-#          <label>Username</label>
-//-#          <input type="text" tabindex="1" placeholder="" required>
-//-#          <label><a href="/" class="wd-rLink" tabindex="5">Forget your password?</a>Password</label>
-//-#          <input type="password" tabindex="2" required>
-//-#        </fieldset>
-//-#        <footer>
-//-#          <label><input type="checkbox" tabindex="3">Keep me logged in</label>
-//-#          <input type="submit" class="wd-btnLogin" value="Login" tabindex="4">
-//-#        </footer>
-//-#    </form>
+        label
+            a(href='/', class='wd-rLink', tabindex='5') Forgot password?
+        input(type='password', tabindex='2', required)
+    footer
+        label
+            input(type='checkbox', tabindex='3') Keep me logged in
+            input(type='submit', class='wd-btnLogin', value='Login', tabindex='4')

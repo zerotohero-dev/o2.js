@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-18 16:47:38.571880
+ *  lastModified: 2012-07-28 00:58:14.070066
  * -->
  */
 
@@ -26,4 +26,11 @@ h2 {
     margin        :0.2em;
     padding       :0.2em;
     text-align    :center;
+}
+
+p {
+    font-size : 120%;
+    margin    : 1em;
+    padding   : 1em;
+    text-align: center;
 }
