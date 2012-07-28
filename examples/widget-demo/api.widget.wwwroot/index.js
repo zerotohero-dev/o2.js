@@ -201,7 +201,6 @@
         send(res, callback, result);
     }
 
-
     /* #region API v.0.1 */
 
         /**
@@ -212,7 +211,7 @@
         }
 
         /**
-         *
+         * Authenticates user.
          */
         app.get(v_0_1(route).LOGIN, function(req, res) {
             var username = req.param(parameter.USERNAME);
@@ -241,7 +240,7 @@
         });
 
         /**
-         *
+         * Gets initial widget data.
          */
         app.get(v_0_1(route).PARAMS, function(req, res) {
             var callback    = req.param(parameter.CALLBACK);

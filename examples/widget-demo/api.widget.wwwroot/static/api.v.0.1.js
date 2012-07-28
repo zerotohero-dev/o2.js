@@ -85,9 +85,10 @@
     /*
      * Globals
      */
-    var kO2Alias          = '_wd_o2';
-    var kWidgetAlias      = '_wd';
-    var kWidgetQueueAlias = '_wdq';
+    var kAsyncInitDelegate = '_wdAsyncInit';
+    var kO2Alias           = '_wd_o2';
+    var kWidgetAlias       = '_wd';
+    var kWidgetQueueAlias  = '_wdq';
 
     /*
      * Common Widget Keys
@@ -233,19 +234,21 @@
         log('o->getWidgetAnchor()');
 
         var div = null;
+
+        // divs is a "live" node list
+        var divs = document.getElementsByTagName(kDiv);
+        var len = divs.length;
         var i   = 0;
 
-        div = document.getElementsByTagName(kDiv)[i];
+        for (i = 0; i < len; i++) {
+            div = divs[i];
 
-        while (div) {
             if (div.hasAttribute(kWidgetAnchor)) {
                 log(':');
                 log(div);
 
                 return div;
             }
-
-            div = document.getElementsByTagName(kDiv)[++i];
         }
 
         log(':');
@@ -275,8 +278,8 @@
      * by the publisher.
      */
     var fireAsyncInit = function() {
-        if(window._wdAsyncInit) {
-            window._wdAsyncInit();
+        if(window[kAsyncInitDelegate]) {
+            window[kAsyncInitDelegate]();
         }
 
         fireAsyncInit = noop;
@@ -350,6 +353,21 @@
     }
 
     /*
+     * Things done after the initial view is rendered.
+     */
+    function processPostRenderActions() {
+        delegateEvents();
+
+        processQueue();
+
+        window[kWidgetQueueAlias] = queue;
+
+        setReadyState(kComplete);
+
+        fireAsyncInit();
+    }
+
+    /*
      * Renders the widget
      */
     function render(state) {
@@ -368,15 +386,7 @@
             function() {
                 renderWidget(div, state.data);
 
-                delegateEvents();
-
-                processQueue();
-
-                window[kWidgetQueueAlias] = queue;
-
-                setReadyState(kComplete);
-
-                fireAsyncInit();
+                processPostRenderActions();
             }
         );
     }
