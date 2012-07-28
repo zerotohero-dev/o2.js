@@ -323,6 +323,13 @@ will require some additional coordination, since you need to render the
         corollary: ways to include that style information.
         }}
 
+
+    how the queue is processed?
+        - before widget is initialized
+        - after widget is initialized.
+
+    asyncinit.
+
 Part 6:
 
     {{handling sessions}}

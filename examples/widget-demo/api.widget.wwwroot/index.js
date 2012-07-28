@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-28 11:00:34.918699
+ *  lastModified: 2012-07-28 16:22:04.292820
  * -->
  */
 
@@ -21,7 +21,16 @@
     var kOneYear = 31536000000;
 
     /*
+     * kSessionSecret will be use to compute the session hash.
+     * Make sure you keep it random and "secret".
      *
+     * A public github repository is not the ideal way to store a private
+     * session "secret" ;) -- Change it if you plan to use it in production.
+     */
+    var kSessionSecret = 'Lorem Ipsum Dolar sit Ahmet!';
+
+    /*
+     * Basic Configuration
      */
     var config = {
         farFutureExpiration : {maxAge : kOneYear},
@@ -32,76 +41,94 @@
     };
 
     /*
-     *
+     * Routes
      */
     var route = {
         api_v_0_1 : {
-            LOGIN     : '/api/v.0.1/login',
-            UPDATE    : '/api/v.0.1/update',
-            BEACON    : '/api/v.0.1/beacon',
-            PARAMS    : '/api/v.0.1/params'
+            LOGIN  : '/api/v.0.1/login',
+            UPDATE : '/api/v.0.1/update',
+            BEACON : '/api/v.0.1/beacon',
+            PARAMS : '/api/v.0.1/params'
         }
     };
 
     /*
-     *
+     * Urls
      */
     var url = {
         api_v_0_1 : {
-            BOOTSTRAP    : 'http://api.widget.www/api.v.0.1.js',
-            UPDATE_IFRAME: 'http://api.widget.www/api/v.0.1/update'
+            BOOTSTRAP     : 'http://api.widget.www/api.v.0.1.js',
+            UPDATE_IFRAME : 'http://api.widget.www/api/v.0.1/update'
         }
     };
 
     /*
-     *
+     * Templates
      */
     var template = {
-        UPDATE       : 'update.jade',
-        UPDATE_SCRIPT: 'js/update.jade',
-        LOGIN_FORM   : 'login_form.jade'
+        UPDATE        : 'update.jade',
+        UPDATE_SCRIPT : 'js/update.jade',
+        LOGIN_FORM    : 'login_form.jade',
+        DASHBOARD     : 'dashboard.jade'
     };
 
     /*
-     *
+     * Paths
      */
     var path = {
         STATIC_FILE : __dirname + '/static',
-        VIEWS       : __dirname + '/views'
+        VIEWS       : __dirname + '/views',
+        SEPARATOR   : '/'
     };
 
     /*
-     *
+     * Request Parameters
      */
     var parameter = {
-        VERSION      : 'v',
-        CALLBACK     : 'callback',
-        PUBLISHER_ID : 'pubId',
-        GUID         : 'guid'
+        VERSION        : 'v',
+        CALLBACK       : 'callback',
+        PUBLISHER_ID   : 'pubId',
+        PUBLISHER_NAME : 'publisherName',
+        GUID           : 'guid',
+        USERNAME       : 'u',
+        PASSWORD       : 'p'
     };
 
     /*
-     *
+     * HTTP Status Codes
      */
     var statusCode = {
         NO_DATA : 204
     };
 
     /*
-     *
+     * Encodings
      */
     var encoding = {
         DEFAULT : 'utf8'
     };
 
     /*
+     * Compiles a Jade template from the given template name.
+     */
+    function compileSync(templateName) {
+        return jade.compile(
+            fs.readFileSync(
+                path.VIEWS + path.SEPARATOR + templateName,
+                encoding.DEFAULT
+            )
+        );
+    }
+
+    /*
      * A compiled Jade template function for the login form.
      */
-    var createLoginForm = jade.compile(
-        fs.readFileSync(
-            path.VIEWS + '/' + template.LOGIN_FORM, encoding.DEFAULT
-        )
-    );
+    var createLoginForm = compileSync(template.LOGIN_FORM);
+
+    /*
+     * A compiled Jade template function for the dashboard.
+     */
+    var createDashboard = compileSync(template.DASHBOARD);
 
     /*
      * Make sure that the static assets have a far future expiration date.
@@ -114,9 +141,10 @@
     );
 
     /*
-     *
+     * Session Support
      */
-    var kNoData = statusCode.NO_DATA;
+    app.use(express.cookieParser());
+    app.use(express.session({secret : kSessionSecret}));
 
     /*
      * Set path to the views (template) directory
@@ -143,6 +171,37 @@
         );
     }
 
+    /*
+     *
+     */
+    function isUserLoggedIn(req) {
+        return !!req.session[parameter.USERNAME];
+    }
+
+    /*
+     *
+     */
+    function send(res, callback, result) {
+        res.send(
+            callback + '(' + JSON.stringify(result) + ');'
+        );
+    }
+
+    /*
+     *
+     */
+    function sendJsonp(req, res, params, callback) {
+        var result = {
+            data :
+                isUserLoggedIn(req) ?
+                createDashboard(params) :
+                createLoginForm(params)
+        };
+
+        send(res, callback, result);
+    }
+
+
     /* #region API v.0.1 */
 
         /**
@@ -156,9 +215,29 @@
          *
          */
         app.get(v_0_1(route).LOGIN, function(req, res) {
-            req = null;
+            var username = req.param(parameter.USERNAME);
+            var password = req.param(parameter.PASSWORD);
+            var callback = req.param(parameter.CALLBACK);
 
-            res.send('hello authentication');
+            if (!username) {
+                res.send(statusCode.NO_DATA);
+            }
+
+            if (!password) {
+                res.send(statusCode.NO_DATA);
+            }
+
+            if (!callback) {
+                res.send(statusCode.NO_DATA);
+            }
+
+            var session = req.session;
+
+            session[parameter.USERNAME] = username;
+
+            var params = {};
+
+            sendJsonp(req, res, params, callback);
         });
 
         /**
@@ -170,31 +249,30 @@
             var guid        = req.param(parameter.GUID);
 
             if (!callback) {
-                res.send(kNoData);
+                res.send(statusCode.NO_DATA);
             }
 
             if (!publisherId) {
-                res.send(kNoData);
+                res.send(statusCode.NO_DATA);
             }
 
             if (!guid) {
-                res.send(kNoData);
+                res.send(statusCode.NO_DATA);
             }
 
             // very primitive access control.
             if (publisherId !== '123456') {
-                res.send(kNoData);
+                res.send(statusCode.NO_DATA);
 
                 return;
             }
 
-            var result = {
-                data : createLoginForm({guid : guid})
-            };
+            var params = {};
 
-            res.send(
-                callback + '(' + JSON.stringify(result) + ');'
-            );
+            params[parameter.GUID]           = guid;
+            params[parameter.PUBLISHER_NAME] = 'Cool Publisher';
+
+            sendJsonp(req, res, params, callback);
         });
 
         /**
@@ -235,7 +313,7 @@
                 return;
             }
 
-            res.send(kNoData);
+            res.send(statusCode.NO_DATA);
         });
 
     /* #endregion */

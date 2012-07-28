@@ -3,7 +3,7 @@
 //- the terms of the MIT license.
 //- Please see the LICENSE file for details.
 //-
-//- lastModified: 2012-07-28 10:52:25.244358
+//- lastModified: 2012-07-28 16:15:05.157091
 //-
 !!! 5
 html(lang='en')
@@ -27,6 +27,27 @@ html(lang='en')
                     node.parentNode.insertBefore(script, node);
                 }());
             }
+
+            function trace(data) {
+                try {
+                    console.warn(data);
+                } catch(ignore) {
+
+                }
+            }
+
+            window._wdq = [];
+
+            window._wdq.push({action : 'echo', payload : {'hello' : 'world'}});
+            window._wdq.push({action : 'echo', payload : {'hello' : 'stars'}});
+            window._wdq.push({action : 'echo', payload : {'hello' : 'universe'}});
+
+            window._wdAsyncInit = function() {
+                trace('publisher: _wdAsyncInit called');
+                window._wdq.push({action: 'echo', payload : {'Do'       : ', or do not'}});
+                window._wdq.push({action: 'echo', payload : {'There is' : 'no try.'}});
+                window._wdq.push({action: 'echo', payload : {'Master'   : 'Yoda'}});
+            };
     body(lang='en')
         section#Main
             h2 Welcome to Publisher Website

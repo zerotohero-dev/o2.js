@@ -4,18 +4,14 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-28 10:57:47.553068
+ *  lastModified: 2012-07-28 16:22:04.2928201
  * -->
  */
 (function(window, document, isDebugMode) {
     'use strict';
 
     /*
-     * Common Constants
-     */
-
-    /*
-     * Ready States
+     * Widget Ready States
      */
     var kLoaded              = 1;
     var kLoadingDependencies = 2;
@@ -35,11 +31,25 @@
     /*
      * Parameter Names
      */
+    var kAction       = 'action';
+    var kGuid         = 'guid';
+    var kPassword     = 'p';
+    var kPayload      = 'payload';
     var kPublisherId  = 'pubId';
     var kRandom       = 'r';
+    var kUsername     = 'u';
     var kVersion      = 'v';
     var kWidgetAnchor = 'data-wd-anchor';
-    var kGuid         = 'guid';
+
+    /*
+     * Element IDs.
+     */
+    var kLoginButtonId = 'wd_btnLogin';
+
+    /*
+     * Event Types
+     */
+    var kClick = 'click';
 
     /*
      * URL
@@ -51,8 +61,9 @@
      * Path
      */
     var kBeaconPath = 'api/v.0.1/beacon';
-    var kParamsPath = 'api/v.0.1/params';
     var kCssPath    = 'css/v.0.1/widget.css';
+    var kLoginPath  = 'api/v.0.1/login';
+    var kParamsPath = 'api/v.0.1/params';
 
     /*
      * Regular Expression
@@ -82,6 +93,11 @@
      * Common Widget Keys
      */
     var kReadyState = 'readyState';
+
+    /*
+     * Action Enums
+     */
+    var kEcho = 'echo';
 
     /*
      * Does nothing, and that's the point.
@@ -149,10 +165,20 @@
     /*
      * Executes the job queue asyncronously.
      */
-    //TODO: implement me.
-    function execute() {
+    function execute(item) {
         log('o->execute()');
-        window.console.warn('IMPLEMENT execute()');
+
+        var action = item[kAction];
+
+        switch (action) {
+            case kEcho:
+                log('ECHO: ');
+                log(item[kPayload]);
+
+                break;
+            default:
+                log('ERROR: no mapping for action "' + action + '"');
+        }
     }
 
     /*
@@ -245,6 +271,85 @@
     }
 
     /*
+     * Fires _wdAsyncInit if there's such a function defined
+     * by the publisher.
+     */
+    var fireAsyncInit = function() {
+        if(window._wdAsyncInit) {
+            window._wdAsyncInit();
+        }
+
+        fireAsyncInit = noop;
+    };
+
+    /*
+     * Processes the job queue item by item.
+     */
+    var processQueue = function() {
+        log('o->processQueue()');
+
+        setReadyState(kBeginProcessQueue);
+
+        var q = null;
+
+        if (window[kWidgetQueueAlias] &&
+                    o2.Validation.isArray(window[kWidgetQueueAlias])) {
+            q = window[kWidgetQueueAlias];
+
+            while (q.length) {
+                execute(q.pop());
+            }
+        }
+
+        processQueue = noop;
+    };
+
+    /*
+     * User login JSONP callback.
+     */
+    function processUserLogin(response) {
+        var div = getWidgetAnchor();
+        div.innerHTML = response.data;
+    }
+
+    /*
+     * Global event handler on document's click event.
+     */
+    function document_click(evt) {
+        log('document_click()');
+
+        var target = o2.Event.getTarget(evt);
+
+        var id = target.id;
+
+        if (!id) {
+            return;
+        }
+
+        // Just for demonstration.
+        var params = {};
+        params[kUsername] = 'dummy';
+        params[kPassword] = 'dummy';
+
+        if (id.indexOf(kLoginButtonId) > -1) {
+            o2.Jsonp.get(
+                o2.String.concat(kApiRoot, kLoginPath),
+                params,
+                processUserLogin
+            );
+        }
+    }
+
+    /*
+     * Use event delegation to bind widget events.
+     */
+    function delegateEvents() {
+        log('o->delegateEvents()');
+
+        o2.Event.addEventListener(document, kClick, document_click);
+    }
+
+    /*
      * Renders the widget
      */
     function render(state) {
@@ -262,31 +367,19 @@
             o2.String.concat(kApiRoot, kCssPath),
             function() {
                 renderWidget(div, state.data);
+
+                delegateEvents();
+
+                processQueue();
+
+                window[kWidgetQueueAlias] = queue;
+
+                setReadyState(kComplete);
+
+                fireAsyncInit();
             }
         );
     }
-
-    /*
-     * Processes the job queue item by item.
-     */
-    var processQueue = function() {
-        log('o->processQueue()');
-
-        setReadyState(kBeginProcessQueue);
-
-        var q = null;
-
-        if (window[kWidgetQueueAlias] &&
-                    o2.isArray(window[kWidgetQueueAlias])) {
-            q = window[kWidgetQueueAlias];
-
-            while (q.length) {
-                execute(q.pop());
-            }
-        }
-
-        processQueue = noop;
-    };
 
     /*
      * Fired when initial widget state is ready.
@@ -299,16 +392,6 @@
         setReadyState(kBeginRender);
 
         render(state);
-
-        processQueue();
-
-        window[kWidgetQueueAlias] = queue;
-
-        setReadyState(kComplete);
-
-        if(window._wdAsyncInit) {
-            window._wdAsyncInit();
-        }
     }
 
     /*
@@ -442,9 +525,18 @@
             'o2.jsonp.core.js',
             'o2.dom.constants.js',
             'o2.dom.core.js',
-            'o2.dom.load.js'
+            'o2.dom.load.js',
+            'o2.event.constants.js',
+            'o2.event.core.js',
+            'o2.validation.core.js',
+            'o2.method.core.js',
+            'o2.collection.core.js'
         ], callback);
     }
+
+    //
+    // "Widget Initialization Flow" starts down below:
+    //
 
     checkForUpdates(versionTimestamp);
     loadDependencies(initialize);
