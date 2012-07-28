@@ -47,13 +47,189 @@ Part 5:
     bootloader (controller) will initialize the presentation (view) elements)
 
 
-    Styling?
+    Let's start by adding a div with a special attribute on the publisher
+    for our script to reckognize.
 
-    - inline styles (won't conflict with publisher's styles)
+    body(lang='en')
+        section#Main
+            h2 Welcome to Publisher Website
 
-    - loading CSS file.
+            p Hello World.
 
-    - embedding CSS in JavaScript
+            div(data-wd-anchor)
+
+            p Hello Stars.
+
+            p Hello Universe.
+
+    The div with the attribute data-wd-anchor will be the place to put our
+    widget's HTML.
+
+    //getElementsByTagName returns a "live" nodelist, discuss it's
+    //characteristics.
+
+    /*
+     * Renders the widget
+     */
+    function render(state) {
+        log('o->render(');
+        log(state);
+        log(')');
+
+        var div = getWidgetAnchor();
+
+        if (!div) {
+            return;
+        }
+
+        div.innerHTML = state.data;
+    }
+
+    Where getWidgetAnchor is:
+
+    /*
+     * Find a place to append the widget UI.
+     */
+    function getWidgetAnchor() {
+        log('o->getWidgetAnchor()');
+
+        var div = null;
+        var i   = 0;
+
+        div = document.getElementsByTagName(kDiv)[i];
+
+        while (div) {
+            if (div.hasAttribute(kWidgetAnchor)) {
+                log(':');
+                log(div);
+
+                return div;
+            }
+
+            div = document.getElementsByTagName(kDiv)[++i];
+        }
+
+        log(':');
+        log(null);
+
+        return null;
+    }
+
+Note:
+If you have followed all the tutorials this far, you migh have seen that
+the size of our bootloader is growing as we add more and more feature.
+Currently this size is manageable, however after a certain limit, you may
+want to submodules for each logical group, and either lazy-load them
+or load it while loading the initial dependencies.
+I'm trying to bring this tutorial series to a somewhat complete state
+before my seminar in jstanbul 2012, so I won't have time for this refactoring
+right now. However we'll be doing this refactoring, along with certain
+security enhancements, deplyoyment scripts, compression and minification
+in the upcomin tutorials.
+
+    When you run the server at this point and visit http://publisher.www:8080/
+    you'll see a very unstyled login box. To bring some aesthetics and
+    functionality we need to include style declerations to our widget.
+
+    There are different ways of doing this:
+
+    We can use inline styles
+
+    <div style="background:#aaccff;border:1px solid">...</div>
+
+    Loading our CSS file as a dependency,
+
+    Lazy-loading our CSS file before rendering the widget
+
+    Embedding CSS in JavaScript and directly appending them to a newly-created
+    style element.
+
+    Again, each of these approaches has their own pros and cons. In this
+    tutorial we'll take the "lazy load" approach:
+
+    add a couple of more files to the dependencies.
+    Note that these will need minimization, since they are growin in
+    number and each dependency is a HTTP request in an of itself.
+
+    /*
+     * Load necessary o2.js components in noConflict mode.
+     */
+    function loadDependencies(callback) {
+        log('o->loadDependencies(');
+        log(callback);
+        log(')');
+
+        setReadyState(kLoadingDependencies);
+
+        loadScripts(kO2Root, [
+            'o2.meta.js',
+            'o2.core.js',
+            'o2.string.core.js',
+            'o2.jsonp.core.js',
+            'o2.dom.constants.js',
+            'o2.dom.core.js',
+            'o2.dom.load.js'
+        ], callback);
+    }
+
+    Here's our widget.css just to test things:
+
+body {background: red;}
+
+and
+
+    /*
+     * Renders the widget
+     */
+    function render(state) {
+        log('o->render(');
+        log(state);
+        log(')');
+
+        var div = getWidgetAnchor();
+
+        if (!div) {
+            return;
+        }
+
+        o2.Dom.loadCss(
+            o2.String.concat(kApiRoot, kCssPath),
+            function() {
+                renderWidget(div, state.data);
+            }
+        );
+    }
+
+and
+
+    /*
+     * Does the actual rendering.
+     */
+    function renderWidget(container, html) {
+        log('o->renderWidget(');
+        log(container);
+        log(html);
+        log(')');
+
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = html;
+    }
+
+when we do this we'll see that the background of the publisher's website will
+becom red. Remember? We don't own publisher's DOM, so we have to constraint
+our changes to our widget only.
+
+Styling requires a lot of testing since unless you're injecting your widget
+with an Iframe (and there are very good reasons to do so one of which is
+preserving the look and feel), the publisher styles has a possibility to
+override yours.
+One drawback of Iframes is to adjust the height of them,
+plus you cannot render outside the iframe boundary, so using a modal overlay
+will require some additional coordination, since you need to render the
+ overlay outside the iframe.
 
     look and feel?
     shall it look the same at every platform?
@@ -62,6 +238,57 @@ Part 5:
 
     overspecify CSS
     overusing !important
+
+
+    var config = getConfiguration();
+
+    config[kGuid] = o2.String.generateGuid();
+
+    loadInitialState(config, processPostInitialization);
+
+
+///
+
+        /**
+         *
+         */
+        app.get(v_0_1(route).PARAMS, function(req, res) {
+            var callback    = req.param(parameter.CALLBACK);
+            var publisherId = req.param(parameter.PUBLISHER_ID);
+            var guid        = req.param(parameter.GUID);
+
+            if (!callback) {
+                res.send(kNoData);
+            }
+
+            if (!publisherId) {
+                res.send(kNoData);
+            }
+
+            if (!guid) {
+                res.send(kNoData);
+            }
+
+            // very primitive access control.
+            if (publisherId !== '123456') {
+                res.send(kNoData);
+
+                return;
+            }
+
+            var result = {
+                data : createLoginForm({guid : guid})
+            };
+
+            res.send(
+                callback + '(' + JSON.stringify(result) + ');'
+            );
+        });
+
+    which will render this html:
+
+    //html.
+
 
 
 

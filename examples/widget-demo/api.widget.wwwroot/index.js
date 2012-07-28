@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-28 00:58:14.070066
+ *  lastModified: 2012-07-28 11:00:34.918699
  * -->
  */
 
@@ -76,7 +76,8 @@
     var parameter = {
         VERSION      : 'v',
         CALLBACK     : 'callback',
-        PUBLISHER_ID : 'pubId'
+        PUBLISHER_ID : 'pubId',
+        GUID         : 'guid'
     };
 
     /*
@@ -111,6 +112,11 @@
             config.farFutureExpiration
         )
     );
+
+    /*
+     *
+     */
+    var kNoData = statusCode.NO_DATA;
 
     /*
      * Set path to the views (template) directory
@@ -161,16 +167,29 @@
         app.get(v_0_1(route).PARAMS, function(req, res) {
             var callback    = req.param(parameter.CALLBACK);
             var publisherId = req.param(parameter.PUBLISHER_ID);
+            var guid        = req.param(parameter.GUID);
+
+            if (!callback) {
+                res.send(kNoData);
+            }
+
+            if (!publisherId) {
+                res.send(kNoData);
+            }
+
+            if (!guid) {
+                res.send(kNoData);
+            }
 
             // very primitive access control.
             if (publisherId !== '123456') {
-                res.send(statusCode.NO_DATA);
+                res.send(kNoData);
 
                 return;
             }
 
             var result = {
-                data : createLoginForm()
+                data : createLoginForm({guid : guid})
             };
 
             res.send(
@@ -216,7 +235,7 @@
                 return;
             }
 
-            res.send(statusCode.NO_DATA);
+            res.send(kNoData);
         });
 
     /* #endregion */

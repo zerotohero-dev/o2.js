@@ -3,17 +3,18 @@
 //- the terms of the MIT license.
 //- Please see the LICENSE file for details.
 //-
-//- lastModified: 2012-07-28 00:59:28.060744
+//- lastModified: 2012-07-28 10:57:47.553068
 //-
-form.wd-box.wd-login
-    p Hello Lovely Publisher
+form.wd-box.wd-login(id='wd_'+guid)
     fieldset.wd-boxBody
         label Username
         input(type='text', tabindex='1', placeholder='Volkan Özçelik', required)
         label
             a(href='/', class='wd-rLink', tabindex='5') Forgot password?
+            span Password
         input(type='password', tabindex='2', required)
     footer
         label
-            input(type='checkbox', tabindex='3') Keep me logged in
-            input(type='submit', class='wd-btnLogin', value='Login', tabindex='4')
+            input(type='checkbox', tabindex='3')
+            span Keep me logged in
+        input(type='button', class='wd-btnLogin', value='Login', tabindex='4')

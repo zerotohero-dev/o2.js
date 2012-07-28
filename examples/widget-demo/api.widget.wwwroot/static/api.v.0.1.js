@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-28 00:59:28.060744
+ *  lastModified: 2012-07-28 10:57:47.553068
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -35,9 +35,11 @@
     /*
      * Parameter Names
      */
-    var kPublisherId = 'pubId';
-    var kRandom      = 'r';
-    var kVersion     = 'v';
+    var kPublisherId  = 'pubId';
+    var kRandom       = 'r';
+    var kVersion      = 'v';
+    var kWidgetAnchor = 'data-wd-anchor';
+    var kGuid         = 'guid';
 
     /*
      * URL
@@ -50,6 +52,7 @@
      */
     var kBeaconPath = 'api/v.0.1/beacon';
     var kParamsPath = 'api/v.0.1/params';
+    var kCssPath    = 'css/v.0.1/widget.css';
 
     /*
      * Regular Expression
@@ -61,6 +64,7 @@
      */
     var kHead   = 'head';
     var kScript = 'script';
+    var kDiv    = 'div';
 
     /*
      * Mime Types
@@ -197,6 +201,50 @@
     }
 
     /*
+     * Find a place to append the widget UI.
+     */
+    function getWidgetAnchor() {
+        log('o->getWidgetAnchor()');
+
+        var div = null;
+        var i   = 0;
+
+        div = document.getElementsByTagName(kDiv)[i];
+
+        while (div) {
+            if (div.hasAttribute(kWidgetAnchor)) {
+                log(':');
+                log(div);
+
+                return div;
+            }
+
+            div = document.getElementsByTagName(kDiv)[++i];
+        }
+
+        log(':');
+        log(null);
+
+        return null;
+    }
+
+    /*
+     * Does the actual rendering.
+     */
+    function renderWidget(container, html) {
+        log('o->renderWidget(');
+        log(container);
+        log(html);
+        log(')');
+
+        if (!container) {
+            return;
+        }
+
+        container.innerHTML = html;
+    }
+
+    /*
      * Renders the widget
      */
     function render(state) {
@@ -204,7 +252,18 @@
         log(state);
         log(')');
 
-        window.console.warn('Where will I render this widget?!');
+        var div = getWidgetAnchor();
+
+        if (!div) {
+            return;
+        }
+
+        o2.Dom.loadCss(
+            o2.String.concat(kApiRoot, kCssPath),
+            function() {
+                renderWidget(div, state.data);
+            }
+        );
     }
 
     /*
@@ -297,6 +356,8 @@
 
         var config = getConfiguration();
 
+        config[kGuid] = o2.String.generateGuid();
+
         loadInitialState(config, processPostInitialization);
     }
 
@@ -378,7 +439,10 @@
             'o2.meta.js',
             'o2.core.js',
             'o2.string.core.js',
-            'o2.jsonp.core.js'
+            'o2.jsonp.core.js',
+            'o2.dom.constants.js',
+            'o2.dom.core.js',
+            'o2.dom.load.js'
         ], callback);
     }
 
