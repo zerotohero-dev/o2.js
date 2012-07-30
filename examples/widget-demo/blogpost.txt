@@ -19,9 +19,12 @@ Part 4:
     http://o2js.com/2012/07/27/javascript-widgets-cross-frame/
 
 Part 5:
-
+    JavaScript Widget Development Best Practices (Part 5: Getting Your Hands Dirty)
+    http://o2js.com/2012/07/28/javascript-widgets-user-interface/
 
 Part 6:
+    First some refactoring...
+
 
     {{handling sessions}}
     {{how to authenticate user}}

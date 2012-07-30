@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-28 16:22:04.2928201
+ *  lastModified: 2012-07-30 22:35:29.425704
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -13,12 +13,14 @@
     /*
      * Widget Ready States
      */
-    var kLoaded              = 1;
-    var kLoadingDependencies = 2;
-    var kLoadedDependencies  = 3;
-    var kBeginProcessQueue   = 4;
-    var kBeginRender         = 5;
-    var kComplete            = 6;
+    var readyState = {
+        LOADED               : 1,
+        LOADING_DEPENDENCIES : 2,
+        LOADED_DEPENDENCIES  : 3,
+        BEGIN_PROCESS_QUEUE  : 4,
+        BEGIN_RENDER         : 5,
+        COMPLETE             : 6
+    };
 
     /*
      * Query Formation
@@ -35,7 +37,6 @@
     var kGuid         = 'guid';
     var kPassword     = 'p';
     var kPayload      = 'payload';
-    var kPublisherId  = 'pubId';
     var kRandom       = 'r';
     var kUsername     = 'u';
     var kVersion      = 'v';
@@ -54,16 +55,21 @@
     /*
      * URL
      */
-    var kApiRoot = 'http://api.widget.www/';
-    var kO2Root  = 'http://api.widget.www/lib/o2.js/';
+    var url = {
+        API_ROOT        : 'http://api.widget.www/',
+        O2_ROOT         : 'http://api.widget.www/lib/o2.js/',
+        WIDGET_LIB_ROOT : 'http://api.widget.www/lib/wd/v.0.1/'
+    };
 
     /*
      * Path
      */
-    var kBeaconPath = 'api/v.0.1/beacon';
-    var kCssPath    = 'css/v.0.1/widget.css';
-    var kLoginPath  = 'api/v.0.1/login';
-    var kParamsPath = 'api/v.0.1/params';
+    var path = {
+        BEACON : 'api/v.0.1/beacon',
+        CSS    : 'css/v.0.1/widget.css',
+        LOGIN  : 'api/v.0.1/login',
+        PARAMS : 'api/v.0.1/params'
+    };
 
     /*
      * Regular Expression
@@ -138,6 +144,7 @@
         return;
     }
 
+    window[kWidgetAlias].protecteds = {};
 
     /*
      * Should match beacon version timestamp.
@@ -161,7 +168,7 @@
         window[kWidgetAlias][kReadyState] = state;
     }
 
-    setReadyState(kLoaded);
+    setReadyState(readyState.LOADED);
 
     /*
      * Executes the job queue asyncronously.
@@ -221,7 +228,7 @@
     function checkForUpdates() {
         log('o->checkForUpdates()');
 
-        insertScript(kApiRoot, [kBeaconPath, kQuery,
+        insertScript(url.API_ROOT, [path.BEACON, kQuery,
             kVersion,  kEquals, versionTimestamp , kAnd,
             kRandom, kEquals, (new Date()).getTime()
         ].join(kEmpty), noop);
@@ -291,7 +298,7 @@
     var processQueue = function() {
         log('o->processQueue()');
 
-        setReadyState(kBeginProcessQueue);
+        setReadyState(readyState.BEGIN_PROCESS_QUEUE);
 
         var q = null;
 
@@ -336,7 +343,7 @@
 
         if (id.indexOf(kLoginButtonId) > -1) {
             o2.Jsonp.get(
-                o2.String.concat(kApiRoot, kLoginPath),
+                o2.String.concat(url.API_ROOT, path.LOGIN),
                 params,
                 processUserLogin
             );
@@ -362,7 +369,7 @@
 
         window[kWidgetQueueAlias] = queue;
 
-        setReadyState(kComplete);
+        setReadyState(readyState.COMPLETE);
 
         fireAsyncInit();
     }
@@ -382,7 +389,7 @@
         }
 
         o2.Dom.loadCss(
-            o2.String.concat(kApiRoot, kCssPath),
+            o2.String.concat(url.API_ROOT, path.CSS),
             function() {
                 renderWidget(div, state.data);
 
@@ -392,54 +399,12 @@
     }
 
     /*
-     * Fired when initial widget state is ready.
-     */
-    function processPostInitialization(state) {
-        log('o->processPostInitialization(');
-        log(state);
-        log(')');
-
-        setReadyState(kBeginRender);
-
-        render(state);
-    }
-
-    /*
-     * Loads initial widget state from the server.
-     */
-    function loadInitialState(config, callback) {
-        log('o->loadInitialState(');
-        log(config);
-        log(callback);
-        log(')');
-
-        o2.Jsonp.get(
-            o2.String.concat(kApiRoot, kParamsPath),
-            config,
-            callback
-        );
-    }
-
-    /*
-     * Get widget configuration from DOM.
-     */
-    function getConfiguration() {
-        log('o->getConfiguration()');
-
-        var result = {};
-
-        result[kPublisherId] = window[kWidgetAlias][kPublisherId];
-
-        return result;
-    }
-
-    /*
      * Initialize after loading prerequisites.
      */
     function initialize() {
         log('o->initialize()');
 
-        setReadyState(kLoadedDependencies);
+        var wp = window[kWidgetAlias].protecteds;
 
         if (!window.o2) {return;}
 
@@ -447,11 +412,21 @@
 
         o2 = window[kO2Alias];
 
-        var config = getConfiguration();
+        // TODO:
+        wp.log           = log;
+        wp.setReadyState = setReadyState;
+        wp.o2            = o2;
+        wp.readyState    = readyState;
+        wp.url           = url;
+        wp.path          = path;
+
+        setReadyState(readyState.LOADED_DEPENDENCIES);
+
+        var config = wp.Config.get();
 
         config[kGuid] = o2.String.generateGuid();
 
-        loadInitialState(config, processPostInitialization);
+        wp.Init.loadState(config);
     }
 
     /*
@@ -526,9 +501,9 @@
         log(callback);
         log(')');
 
-        setReadyState(kLoadingDependencies);
+        setReadyState(readyState.LOADING_DEPENDENCIES);
 
-        loadScripts(kO2Root, [
+        loadScripts(url.O2_ROOT, [
             'o2.meta.js',
             'o2.core.js',
             'o2.string.core.js',
@@ -541,7 +516,11 @@
             'o2.validation.core.js',
             'o2.method.core.js',
             'o2.collection.core.js'
-        ], callback);
+        ], function() {
+        loadScripts(url.WIDGET_LIB_ROOT, [
+            'config.js',
+            'init.js'
+        ], callback);});
     }
 
     //
