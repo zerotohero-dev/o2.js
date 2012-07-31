@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-31 14:34:02.527566
+ *  lastModified: 2012-07-31 22:56:57.638192
  * -->
  */
 (function(window, document) {
@@ -27,58 +27,27 @@
      */
     var kClick = 'click';
 
-    /*
-     * Parameter Names
-     */
-    var kUsername = 'u';
-    var kPassword = 'p';
+    var kBeginRender  = 'wd-begin-render';
 
     /*
-     * Element IDs
+     *
      */
-    var kLoginButtonId = 'wd_btnLogin';
+    me.subscribe = function() {
+        var o2  = p.o2;
+        var sub = o2.Event.subscribe;
 
-    /*
-     * User login JSONP callback.
-     */
-    function processUserLogin(response) {
-        var div = p.Dom.getWidgetAnchor();
-        div.innerHTML = response.data;
-    }
+        sub(p.event.USER_LOGGED_IN, function(response) {
+            //TODO: rendering.
+            var div = p.Dom.getWidgetAnchor();
+            div.innerHTML = response.data;
+        });
 
-    /*
-     * Global event handler on document's click event.
-     */
-    //TODO:
-    function document_click(evt) {
-        log('document_click()');
-
-        var o2   = p.o2;
-        var url  = p.url;
-        var path = p.path;
-
-        var target = o2.Event.getTarget(evt);
-
-        var id = target.id;
-
-        if (!id) {
-            return;
-        }
-
-        // Just for demonstration.
-        var params = {};
-        params[kUsername] = 'dummy';
-        params[kPassword] = 'dummy';
-
-        if (id.indexOf(kLoginButtonId) > -1) {
-            o2.Jsonp.get(
-                o2.String.concat(url.API_ROOT, path.LOGIN),
-                params,
-                //TODO:
-                processUserLogin
-            );
-        }
-    }
+        //TODO:
+        sub(kBeginRender, function(state) {
+            p.setReadyState('BEGIN_RENDER');
+            p.Rendering.render(state);
+        });
+    };
 
     /*
      * Use event delegation to bind widget events.
@@ -86,8 +55,8 @@
     me.delegate = function() {
         log('o->delegateEvents()');
 
-        var o2 = p.o2;
-
-        o2.Event.addEventListener(document, kClick, document_click);
+        p.o2.Event.addEventListener(
+            document, kClick, p.Callback.event.document_click
+        );
     };
 }(this, this.document));

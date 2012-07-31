@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-31 14:37:31.343400
+ *  lastModified: 2012-07-31 22:56:57.638192
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -96,6 +96,13 @@
         CSS    : 'css/v.0.1/widget.css',
         LOGIN  : 'api/v.0.1/login',
         PARAMS : 'api/v.0.1/params'
+    };
+
+    /*
+     * Custom Events
+     */
+    var event = {
+        USER_LOGGED_IN : 'wd-user-logged-in'
     };
 
     /*
@@ -202,6 +209,7 @@
         wp.readyState    = readyState;
         wp.url           = url;
         wp.path          = path;
+        wp.event         = event;
         wp.noop          = noop;
     }
 
@@ -226,6 +234,8 @@
         var config = wp.Config.get();
 
         config[kGuid] = o2.String.generateGuid();
+
+        wp.Event.subscribe();
 
         wp.Init.loadState(config);
     }
@@ -325,7 +335,8 @@
             'event.js',
             'init.js',
             'queue.js',
-            'rendering.js'
+            'rendering.js',
+            'callback.js'
         ], callback);});
     }
 

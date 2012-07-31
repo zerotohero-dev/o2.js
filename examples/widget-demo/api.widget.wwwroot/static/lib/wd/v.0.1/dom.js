@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-31 14:34:59.075931
+ *  lastModified: 2012-07-31 22:56:57.638192
  * -->
  */
 (function(window, document) {
@@ -25,17 +25,6 @@
      */
     var kDiv          = 'div';
     var kWidgetAnchor = 'data-wd-anchor';
-
-    var kVersion = 'v';
-
-    /*
-     * Query Formation
-     */
-    var kAnd    = '&';
-    var kEmpty  = '';
-    var kEquals = '=';
-    var kQuery  = '?';
-    var kRandom = 'r';
 
     /*
      *
@@ -70,18 +59,5 @@
         log(null);
 
         return null;
-    };
-
-    /*
-     * Inserts beacon script.
-     */
-    me.insertBeaconScript = function() {
-        var url  = p.url;
-        var path = p.path;
-
-        p.insertScript(url.API_ROOT, [path.BEACON, kQuery,
-            kVersion,  kEquals, p.timestamp , kAnd,
-            kRandom, kEquals, (new Date()).getTime()
-        ].join(kEmpty), p.noop);
     };
 }(this, this.document));

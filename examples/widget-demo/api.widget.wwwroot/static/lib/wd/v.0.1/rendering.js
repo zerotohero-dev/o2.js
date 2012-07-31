@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-31 14:32:45.318637
+ *  lastModified: 2012-07-31 22:56:57.638192
  * -->
  */
 (function(window) {
@@ -24,6 +24,17 @@
      *
      */
     var me = p.Rendering = {};
+
+    var kVersion = 'v';
+
+    /*
+     * Query Formation
+     */
+    var kAnd    = '&';
+    var kEmpty  = '';
+    var kEquals = '=';
+    var kQuery  = '?';
+    var kRandom = 'r';
 
     /*
      * Things done after the initial view is rendered.
@@ -84,5 +95,18 @@
                 processPostRenderActions();
             }
         );
+    };
+
+    /*
+     * Inserts beacon script.
+     */
+    me.insertBeaconScript = function() {
+        var url  = p.url;
+        var path = p.path;
+
+        p.insertScript(url.API_ROOT, [path.BEACON, kQuery,
+            kVersion,  kEquals, p.timestamp , kAnd,
+            kRandom, kEquals, (new Date()).getTime()
+        ].join(kEmpty), p.noop);
     };
 }(this));
