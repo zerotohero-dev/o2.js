@@ -10,28 +10,27 @@
 (function(window) {
     'use strict';
 
-    if (!window._wd) {
-        return;
-    }
+    if (!window._wd) { return; }
 
     var wd = window._wd;
-
-    var p = wd.protecteds;
-
-    var kWidgetQueueAlias  = '_wdq';
-
-    var kAction       = 'action';
-    var kPayload      = 'payload';
-
-    /*
-     * Action Enums
-     */
-    var kEcho = 'echo';
+    var p  = wd.protecteds;
 
     /*
      * Aliases
      */
     function log(stuff) { p.log(stuff); }
+
+    /*
+     * Common Constants
+     */
+    var kWidgetQueueAlias = '_wdq';
+    var kAction           = 'action';
+    var kPayload          = 'payload';
+
+    /*
+     * Action Enums
+     */
+    var kEcho = 'echo';
 
     /*
      *

@@ -10,19 +10,19 @@
 (function(window) {
     'use strict';
 
-    if (!window._wd) {
-        return;
-    }
+    if (!window._wd) { return; }
 
     var wd = window._wd;
-
-    var p = wd.protecteds;
+    var p  = wd.protecteds;
 
     /*
      * Aliases
      */
     function log(stuff) { p.log(stuff); }
 
+    /*
+     * Common Constants
+     */
     var kAsyncInitDelegate = '_wdAsyncInit';
 
     /*
@@ -38,10 +38,9 @@
         log(state);
         log(')');
 
-        p.setReadyState(p.readyState.BEGIN_RENDER);
+        p.setReadyState('BEGIN_RENDER');
 
-        window.alert('render');
-        //render(state);
+        p.Rendering.render(state);
     }
 
     /*

@@ -10,23 +10,10 @@
 (function(window, document) {
     'use strict';
 
-    if (!window._wd) {
-        return;
-    }
+    if (!window._wd) { return; }
 
     var wd = window._wd;
-
-    var p = wd.protecteds;
-
-    var kClick = 'click';
-
-    var kUsername = 'u';
-    var kPassword = 'p';
-
-    /*
-     * Element IDs.
-     */
-    var kLoginButtonId = 'wd_btnLogin';
+    var p  = wd.protecteds;
 
     /*
      * Aliases
@@ -34,6 +21,22 @@
     function log(stuff) { p.log(stuff); }
 
     var me = p.Event = {};
+
+    /*
+     * Events
+     */
+    var kClick = 'click';
+
+    /*
+     * Parameter Names
+     */
+    var kUsername = 'u';
+    var kPassword = 'p';
+
+    /*
+     * Element IDs
+     */
+    var kLoginButtonId = 'wd_btnLogin';
 
     /*
      * User login JSONP callback.

@@ -30,6 +30,11 @@ Part 6:
     {{how to authenticate user}}
     {{third party cookies}}
 
+    TODO: add a references section
+        - Ben and Anthon's book was helpul
+        - So as Steve's articles
+        - list a bunch of links that may be good for further reading.
+
 Part 7:
 
     {{retrieving data from server, modifying it, persisting it to server}}

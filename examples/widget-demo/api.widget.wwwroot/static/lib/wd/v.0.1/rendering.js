@@ -10,13 +10,10 @@
 (function(window) {
     'use strict';
 
-    if (!window._wd) {
-        return;
-    }
+    if (!window._wd) { return; }
 
     var wd = window._wd;
-
-    var p = wd.protecteds;
+    var p  = wd.protecteds;
 
     /*
      * Aliases
@@ -38,8 +35,7 @@
 
         p.Queue.override();
 
-        //TODO: p.setReadyState('COMPLETE');
-        p.setReadyState(p.readyState.COMPLETE);
+        p.setReadyState('COMPLETE');
 
         p.Init.fireAsyncInit();
     }

@@ -48,7 +48,7 @@ if (this.o2) {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-31 21:21:58.177362
  * -->
  *
  * <p>Meta information.</p>
@@ -271,6 +271,7 @@ if (this.o2) {
      var kDomTraverse           = 'dom.traverse';
      var kEventConstants        = 'event.constants';
      var kEventCore             = 'event.core';
+     var kEventCustom           = 'event.custom';
      var kEventExtend           = 'event.extend';
      var kExtend                = 'extend';
      var kJsonpCore             = 'jsonp.core';
@@ -710,7 +711,11 @@ if (this.o2) {
                 isEnterKey               : {MODULE : kEventExtend},
                 isEscapeKey              : {MODULE : kEventExtend},
                 isRightClick             : {MODULE : kEventExtend},
-                isTabKey                 : {MODULE : kEventExtend}
+                isTabKey                 : {MODULE : kEventExtend},
+
+                publish     : {MODULE : kEventCustom},
+                subscribe   : {MODULE : kEventCustom},
+                unsubscribe : {MODULE : kEventCustom}
             }
         },
         Jsonp : {
@@ -1364,7 +1369,7 @@ if (this.o2) {
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001343319179
+  * @version     0.25.a.0001343759096
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
@@ -1473,7 +1478,7 @@ if (this.o2) {
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001343319179');
+    exports.build = def(me, 'build', '.0001343759096');
 
     /**
      * @function {static} o2.$
@@ -1596,7 +1601,6 @@ if (this.o2) {
      * @return the new <code>Object</code>.
      */
     exports.noConflict = def(me, 'noConflict', function(newName) {
-
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
             ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
@@ -12697,7 +12701,7 @@ if (this.o2) {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-26 19:10:32.635045
+ *  lastModified: 2012-07-28 00:58:14.070066
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and

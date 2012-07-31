@@ -18,7 +18,7 @@ if (this.o2) {
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  lastModified: 2012-07-31 21:21:58.177362
  * -->
  *
  * <p>Meta information.</p>
@@ -241,6 +241,7 @@ if (this.o2) {
      var kDomTraverse           = 'dom.traverse';
      var kEventConstants        = 'event.constants';
      var kEventCore             = 'event.core';
+     var kEventCustom           = 'event.custom';
      var kEventExtend           = 'event.extend';
      var kExtend                = 'extend';
      var kJsonpCore             = 'jsonp.core';
@@ -680,7 +681,11 @@ if (this.o2) {
                 isEnterKey               : {MODULE : kEventExtend},
                 isEscapeKey              : {MODULE : kEventExtend},
                 isRightClick             : {MODULE : kEventExtend},
-                isTabKey                 : {MODULE : kEventExtend}
+                isTabKey                 : {MODULE : kEventExtend},
+
+                publish     : {MODULE : kEventCustom},
+                subscribe   : {MODULE : kEventCustom},
+                unsubscribe : {MODULE : kEventCustom}
             }
         },
         Jsonp : {

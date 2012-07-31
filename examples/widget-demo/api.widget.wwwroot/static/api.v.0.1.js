@@ -11,6 +11,21 @@
     'use strict';
 
     /*
+     * Should match beacon version timestamp.
+     */
+    var versionTimestamp = '20120720135547909116';
+
+    /*
+     * Resources to be loaded asynchronously.
+     */
+    var scriptQueue = [];
+
+    /*
+     * This will be set after resource initialization.
+     */
+    var o2 = null;
+
+    /*
      * Query Formation
      */
     var kAnd    = '&';
@@ -21,29 +36,20 @@
     /*
      * Parameter Names
      */
-    var kGuid         = 'guid';
-//    var kPassword     = 'p';
-    var kRandom       = 'r';
-//    var kUsername     = 'u';
-    var kVersion      = 'v';
-
-//    /*
-//     * Event Types
-//     */
-//    var kClick = 'click';
+    var kGuid    = 'guid';
+    var kRandom  = 'r';
+    var kVersion = 'v';
 
     /*
      * Regular Expression
      */
-    var kCompleteRegExp   = /loaded|complete/;
+    var kCompleteRegExp = /loaded|complete/;
 
     /*
      * Tags
      */
-//TOOD:
     var kHead   = 'head';
     var kScript = 'script';
-//    var kDiv    = 'div';
 
     /*
      * Mime Types
@@ -53,8 +59,8 @@
     /*
      * Globals
      */
-    var kO2Alias           = '_wd_o2';
-    var kWidgetAlias       = '_wd';
+    var kO2Alias     = '_wd_o2';
+    var kWidgetAlias = '_wd';
 
     /*
      * Common Widget Keys
@@ -130,31 +136,27 @@
         return;
     }
 
+    /*
+     * The "protected" methods are shared across modules, but they
+     * are not intended for public use.
+     */
     window[kWidgetAlias].protecteds = {};
-
-    /*
-     * Should match beacon version timestamp.
-     */
-    var versionTimestamp = '20120720135547909116';
-
-    /*
-     * Resources to be loaded asynchronously.
-     */
-    var scriptQueue = [];
-
-    /*
-     * This will be set after resource initialization.
-     */
-    var o2 = null;
 
     /*
      * Sets the internal ready state.
      */
     function setReadyState(state) {
-        window[kWidgetAlias][kReadyState] = state;
+        window[kWidgetAlias][kReadyState] = readyState[state];
     }
 
-    setReadyState(readyState.LOADED);
+    // When the script is "loaded" readyState is LOADED.
+    //
+    // At the end of the initialization flow, readyState will be finally
+    // set to COMPLETE. When the readyState is COMPLETE, it means that
+    // the widget UI has been rendered, the events have been bound,
+    // widget job queue has been processed, and the widget is completely
+    // ready and responsive.
+    setReadyState('LOADED');
 
     /*
      * Asynchronously inserts a script element to the head
@@ -188,11 +190,20 @@
         ].join(kEmpty), noop);
     }
 
-    //TODO: move above methods to apropriate modules.
+    /*
+     * Exports protected methods for intra-module use.
+     */
+    function exportProtecteds() {
+        var wp = window[kWidgetAlias].protecteds;
 
-    //
-    // Bootloader logic below
-    //
+        wp.log           = log;
+        wp.setReadyState = setReadyState;
+        wp.o2            = o2;
+        wp.readyState    = readyState;
+        wp.url           = url;
+        wp.path          = path;
+        wp.noop          = noop;
+    }
 
     /*
      * Initialize after loading prerequisites.
@@ -204,20 +215,13 @@
 
         if (!window.o2) {return;}
 
+        setReadyState('LOADED_DEPENDENCIES');
+
         window.o2.noConflict(kO2Alias);
 
         o2 = window[kO2Alias];
 
-        // TODO:
-        wp.log           = log;
-        wp.setReadyState = setReadyState;
-        wp.o2            = o2;
-        wp.readyState    = readyState;
-        wp.url           = url;
-        wp.path          = path;
-        wp.noop          = noop;
-
-        setReadyState(readyState.LOADED_DEPENDENCIES);
+        exportProtecteds();
 
         var config = wp.Config.get();
 
@@ -298,7 +302,7 @@
         log(callback);
         log(')');
 
-        setReadyState(readyState.LOADING_DEPENDENCIES);
+        setReadyState('LOADING_DEPENDENCIES');
 
         loadScripts(url.O2_ROOT, [
             'o2.meta.js',
@@ -309,8 +313,9 @@
             'o2.dom.core.js',
             'o2.dom.load.js',
             'o2.event.constants.js',
-            'o2.event.core.js',
             'o2.validation.core.js',
+            'o2.event.core.js',
+            'o2.event.custom.js',
             'o2.method.core.js',
             'o2.collection.core.js'
         ], function() {

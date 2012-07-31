@@ -21,27 +21,18 @@
     function log(stuff) { p.log(stuff); }
 
     /*
-     * Common Constants
-     */
-    var kPublisherId  = 'pubId';
-    var kWidgetAlias  = '_wd';
-
-    /*
      *
      */
-    var me = p.Config = {};
+    var me = p.Beacon = {};
 
     /*
-     * Get widget configuration from DOM.
+     * Revalidates cache for this bootloader script, if there's a newer
+     * version available. The changes will take effect only AFTER the user
+     * refreshes the page.
      */
-    me.get = function() {
-        log('o->getConfiguration()');
+    me.check = function() {
+        log('o->checkForUpdates()');
 
-        var result = {};
-
-        result[kPublisherId] = window[kWidgetAlias][kPublisherId];
-
-        return result;
+        p.Dom.insertBeaconScript();
     };
-
 }(this));
