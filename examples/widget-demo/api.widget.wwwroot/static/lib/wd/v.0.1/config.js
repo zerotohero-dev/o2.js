@@ -1,7 +1,14 @@
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-07-30 22:35:29.425704
+ * -->
+ */
 (function(window) {
     'use strict';
-
-//2012-07-30 22:35:29.425704
 
     var kPublisherId  = 'pubId';
     var kWidgetAlias  = '_wd';
@@ -13,8 +20,6 @@
     var wd = window._wd;
 
     var p = wd.protecteds;
-
-//    alert(p);
 
     /*
      * Aliases

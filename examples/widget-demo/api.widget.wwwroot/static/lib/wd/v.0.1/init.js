@@ -1,3 +1,12 @@
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-07-30 22:35:29.425704
+ * -->
+ */
 (function(window) {
     'use strict';
 
@@ -5,24 +14,21 @@
         return;
     }
 
-// 2012-07-30 22:35:29.425704
-
     var wd = window._wd;
 
     var p = wd.protecteds;
-
-//    alert(p);
 
     /*
      * Aliases
      */
     function log(stuff) { p.log(stuff); }
 
+    var kAsyncInitDelegate = '_wdAsyncInit';
+
     /*
      *
      */
     var me = p.Init = {};
-
 
     /*
      * Fired when initial widget state is ready.
@@ -55,5 +61,17 @@
             //TODO: raise events for decoupling.
             processPostInitialization
         );
+    };
+
+    /*
+     * Fires _wdAsyncInit if there's such a function defined
+     * by the publisher.
+     */
+    me.fireAsyncInit = function() {
+        if(window[kAsyncInitDelegate]) {
+            window[kAsyncInitDelegate]();
+        }
+
+        me.fireAsyncInit = p.noop;
     };
 }(this));
