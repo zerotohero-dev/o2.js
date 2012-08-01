@@ -40,6 +40,7 @@ Part 7:
     {{retrieving data from server, modifying it, persisting it to server}}
 
 Part 8:
+    preparing for production.
     {{Deployment and Minification}}
     {{Versioning}}
 

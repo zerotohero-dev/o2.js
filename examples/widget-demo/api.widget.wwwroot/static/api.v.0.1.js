@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-07-31 22:56:57.638192
+ *  lastModified: 2012-08-01 04:42:44.568276
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -85,7 +85,8 @@
     var url = {
         API_ROOT        : 'http://api.widget.www/',
         O2_ROOT         : 'http://api.widget.www/lib/o2.js/',
-        WIDGET_LIB_ROOT : 'http://api.widget.www/lib/wd/v.0.1/'
+        WIDGET_LIB_ROOT : 'http://api.widget.www/lib/wd/v.0.1/',
+        LIB_ROOT        : 'http://api.widget.www/lib/'
     };
 
     /*
@@ -170,6 +171,11 @@
      * of the document.
      */
     function insertScript(root, src) {
+        log('o->insertScript(');
+        log(root);
+        log(src);
+        log(')');
+
         var s = document.createElement(kScript);
         var x = document.getElementsByTagName(kScript)[0] ||
             document.getElementsByTagName(kHead)[0];
@@ -201,16 +207,18 @@
      * Exports protected methods for intra-module use.
      */
     function exportProtecteds() {
+        log('o->exportProtecteds()');
+
         var wp = window[kWidgetAlias].protecteds;
 
-        wp.log           = log;
-        wp.setReadyState = setReadyState;
-        wp.o2            = o2;
-        wp.readyState    = readyState;
-        wp.url           = url;
-        wp.path          = path;
         wp.event         = event;
+        wp.log           = log;
         wp.noop          = noop;
+        wp.o2            = o2;
+        wp.path          = path;
+        wp.readyState    = readyState;
+        wp.setReadyState = setReadyState;
+        wp.url           = url;
     }
 
     /*
@@ -314,30 +322,29 @@
 
         setReadyState('LOADING_DEPENDENCIES');
 
-        loadScripts(url.O2_ROOT, [
-            'o2.meta.js',
-            'o2.core.js',
-            'o2.string.core.js',
-            'o2.jsonp.core.js',
-            'o2.dom.constants.js',
-            'o2.dom.core.js',
-            'o2.dom.load.js',
-            'o2.event.constants.js',
-            'o2.validation.core.js',
-            'o2.event.core.js',
-            'o2.event.custom.js',
-            'o2.method.core.js',
-            'o2.collection.core.js'
-        ], function() {
-        loadScripts(url.WIDGET_LIB_ROOT, [
-            'config.js',
-            'dom.js',
-            'event.js',
-            'init.js',
-            'queue.js',
-            'rendering.js',
-            'callback.js'
-        ], callback);});
+        loadScripts(url.LIB_ROOT, [
+            'o2.js/o2.meta.js',
+            'o2.js/o2.core.js',
+            'o2.js/o2.string.core.js',
+            'o2.js/o2.jsonp.core.js',
+            'o2.js/o2.dom.constants.js',
+            'o2.js/o2.dom.core.js',
+            'o2.js/o2.dom.load.js',
+            'o2.js/o2.event.constants.js',
+            'o2.js/o2.validation.core.js',
+            'o2.js/o2.event.core.js',
+            'o2.js/o2.event.custom.js',
+            'o2.js/o2.method.core.js',
+            'o2.js/o2.collection.core.js',
+            'wd/v.0.1/protecteds/behavior/beacon.js',
+            'wd/v.0.1/protecteds/behavior/init.js',
+            'wd/v.0.1/protecteds/behavior/queue.js',
+            'wd/v.0.1/protecteds/delegation/callback.js',
+            'wd/v.0.1/protecteds/delegation/event.js',
+            'wd/v.0.1/protecteds/persistence/config.js',
+            'wd/v.0.1/protecteds/presentation/dom.js',
+            'wd/v.0.1/protecteds/presentation/rendering.js'
+        ], callback);
     }
 
     //
