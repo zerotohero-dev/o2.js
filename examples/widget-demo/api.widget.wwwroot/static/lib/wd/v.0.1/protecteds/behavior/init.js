@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:49:19.430516
+ *  lastModified: 2012-08-01 22:55:58.645517
  * -->
  */
 (function(window) {
@@ -25,56 +25,48 @@
      */
     var kAsyncInitDelegate = '_wdAsyncInit';
 
-    /*
+    /**
+     * @class {protected} Init
      *
+     * State and initialization controller.
      */
     var me = p.Init = {};
-
-    /*
-     * Fired when initial widget state is ready.
-     */
-    function processPostInitialization(state) {
-        log('Init.processPostInitialization(');
-        log(state);
-        log(')');
-
-        var o2 = p.o2;
-
-        //TODO: consolidate all these event names to a common place.
-        o2.Event.publish('wd-begin-render', [state]);
-    }
-
-    /*
-     * Load initial widget state data from the server.
-     */
-    me.loadState = function(config) {
-        log('Init.loadState(');
-        log(config);
-        log(')');
-
-        var o2 = p.o2;
-
-        // B -> C
-        //TODO: to communication
-        o2.Jsonp.get(
-            o2.String.concat(p.url.API_ROOT, p.path.PARAMS),
-            config,
-
-            //TODO: raise events for decoupling.
-            processPostInitialization
-        );
-    };
 
     /*
      * Fires _wdAsyncInit if there's such a function defined
      * by the publisher.
      */
-    me.fireAsyncInit = function() {
+    var fireAsyncInit = function() {
         log('Init.fireAsyncInit()');
 
-        // B -> D
+        // Behavior -> Delegation
         (window[kAsyncInitDelegate] || p.noop)();
+        fireAsyncInit = p.noop;
+    };
 
-        me.fireAsyncInit = p.noop;
+    /*
+     * Load initial widget state data from the server.
+     */
+    function loadState(config) {
+        log('Init.loadState(');
+        log(config);
+        log(')');
+
+        // Behavior -> Communication
+        p.pub('GET_PARAMS', [config]);
+    }
+
+    /**
+     * @function {static} subscribe
+     *
+     * Subscribes to relevant events.
+     */
+    me.subscribe = function() {
+        log('Init.subscribe()');
+
+        var sub = p.sub;
+
+        sub('FIRE_ASYNC_INIT', fireAsyncInit);
+        sub('LOAD_STATE'     , loadState);
     };
 }(this));

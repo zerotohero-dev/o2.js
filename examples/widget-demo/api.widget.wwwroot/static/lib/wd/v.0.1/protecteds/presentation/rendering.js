@@ -20,37 +20,12 @@
      */
     function log(stuff) { p.log(stuff); }
 
-    /*
+    /**
+     * @class {protected} Rendering
      *
+     * UI Controller.
      */
     var me = p.Rendering = {};
-
-    var kVersion = 'v';
-
-    /*
-     * Query Formation
-     */
-    var kAnd    = '&';
-    var kEmpty  = '';
-    var kEquals = '=';
-    var kQuery  = '?';
-    var kRandom = 'r';
-
-    /*
-     * Things done after the initial view is rendered.
-     */
-    function processPostRenderActions() {
-        log('Rendering.processPostRenderActions()')
-        p.Event.delegate();
-
-        p.Queue.process();
-
-        p.Queue.override();
-
-        p.setReadyState('COMPLETE');
-
-        p.Init.fireAsyncInit();
-    }
 
     /*
      * Does the actual rendering.
@@ -70,46 +45,39 @@
     }
 
     /*
-     * Renders the widget
+     * Renders the widget.
      */
-    me.render = function(state) {
+    function render(state) {
         log('Rendering.render(');
         log(state);
         log(')');
 
         var div  = p.Dom.getWidgetAnchor();
-        var o2   = p.o2;
-        var url  = p.url;
-        var path = p.path;
 
         if (!div) {
             return;
         }
 
-        //TODO: to p.dom
-        o2.Dom.loadCss(
-            o2.String.concat(url.API_ROOT, path.CSS),
-            function() {
-                renderWidget(div, state.data);
-
-                //TODO: use events.
-                processPostRenderActions();
-            }
-        );
-    };
+        renderWidget(div, state.data);
+    }
 
     /*
-     * Inserts beacon script.
+     * Renders logged in UI.
      */
-    me.insertBeaconScript = function() {
-        log('Rendering.insertBeaconScript()');
+    function renderLoggedIn(response) {
+        var div = p.Dom.getWidgetAnchor();
+        div.innerHTML = response.data;
+    }
 
-        var url  = p.url;
-        var path = p.path;
+    /**
+     * @function {static} subscribe
+     *
+     * Subscribes to render-related custom event handers.
+     */
+    me.subscribe = function() {
+        log('Rendering.subscribe()');
 
-        p.insertScript(url.API_ROOT, [path.BEACON, kQuery,
-            kVersion,  kEquals, p.timestamp , kAnd,
-            kRandom, kEquals, (new Date()).getTime()
-        ].join(kEmpty), p.noop);
+        p.sub('RENDER_WIDGET'   , render);
+        p.sub('RENDER_LOGGED_IN', renderLoggedIn);
     };
 }(this));

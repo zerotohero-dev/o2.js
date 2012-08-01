@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:45:07.437431
+ *  lastModified: 2012-08-01 23:49:58.091716
  * -->
  */
 (function(window) {
@@ -26,13 +26,17 @@
     var kPublisherId  = 'pubId';
     var kWidgetAlias  = '_wd';
 
-    /*
+    /**
+     * @class {protected} Config
      *
+     * Gets widget configuration from DOM.
      */
     var me = p.Config = {};
 
-    /*
-     * Get widget configuration from DOM.
+    /**
+     * @function {static} get
+     *
+     * Gets widget configuration from DOM.
      */
     me.get = function() {
         log('Config.getConfiguration()');

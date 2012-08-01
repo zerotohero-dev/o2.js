@@ -25,6 +25,12 @@ Part 5:
 Part 6:
     First some refactoring...
 
+publish/subscribe is a bit like explosives. In the hands of thoughtful experts, you can expect to have a sky scraper demolished safely and in a reasonable time frame. In the hands of amateurs, working with explosives, you’ll end up with some very noisy and messy situations when you least expect it. And sure, every once in a while, even experts make mistakes.
+
+two things, helper libs and wd modules
+= raise events for cross-module messaging
+= use helper libraries
+
 
     {{handling sessions}}
     {{how to authenticate user}}

@@ -26,13 +26,17 @@
     var kDiv          = 'div';
     var kWidgetAnchor = 'data-wd-anchor';
 
-    /*
+    /**
+     * @class {protected} Dom
      *
+     * DOM Helpers.
      */
     var me = p.Dom = {};
 
-    /*
-     * Find a place to append the widget UI.
+    /**
+     * @function {static} getWidgetAnchor
+     *
+     * Finds a place to append the widget UI.
      */
     me.getWidgetAnchor = function() {
         log('Dom.getWidgetAnchor()');

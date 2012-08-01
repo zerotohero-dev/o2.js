@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:48:22.263210
+ *  lastModified: 2012-08-01 22:58:30.545663
  * -->
  */
 (function(window) {
@@ -32,8 +32,10 @@
      */
     var kEcho = 'echo';
 
-    /*
+    /**
+     * @class {protected} Queue
      *
+     * Used as an event queue.
      */
     var me = p.Queue = {};
 
@@ -69,11 +71,11 @@
     /*
      * Processes the initial job queue.
      */
-    me.process = function() {
+    function process() {
         log('Queue.process()');
 
-        // B -> Pe
-        p.setReadyState(p.readyState.BEGIN_PROCESS_QUEUE);
+        // Behavior -> Persistence
+        p.setReadyState('BEGIN_PROCESS_QUEUE');
 
         var o2 = p.o2;
 
@@ -86,15 +88,29 @@
         }
 
         me.process = p.noop;
-    };
+    }
 
     /*
      * Overrides <code>window._wdq</code> implementation.
      */
-    me.override = function() {
+    function override() {
         log('Queue.override()');
 
-        // B -> Pe
+        // Behavior -> Persistence
         window[kWidgetQueueAlias] = queue;
+    }
+
+    /**
+     * @function {static} subscribe
+     *
+     * Subscribes to relevant events.
+     */
+    me.subscribe = function() {
+        log('Queue.subscribe()');
+
+        var sub = p.sub;
+
+        sub('PROCESS_QUEUE' , process);
+        sub('OVERRIDE_QUEUE', override);
     };
 }(this));

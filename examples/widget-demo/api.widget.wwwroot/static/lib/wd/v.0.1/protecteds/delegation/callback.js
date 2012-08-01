@@ -1,6 +1,15 @@
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-08-01 23:41:46.995047
+ * -->
+ */
 (function(window) {
     'use strict';
-//2012-08-01 04:47:15.001101
+
     if (!window._wd) { return; }
 
     var wd = window._wd;
@@ -11,31 +20,12 @@
      */
     function log(stuff) { p.log(stuff); }
 
-    /*
+    /**
+     * @class {protected} Callback
      *
+     * Callbacks for DOM events, and API custom events.
      */
     var me = p.Callback = {};
-
-    /*
-     * Parameter Names
-     */
-    //TODO: have them in a common place
-    var kUsername = 'u';
-    var kPassword = 'p';
-
-    /*
-     * Element IDs
-     */
-    //TODO: have them in a common place.
-    var kLoginButtonId = 'wd_btnLogin';
-
-    /*
-     * User login JSONP callback.
-     */
-    //TODO: to B.
-    function fireUserLogin(response) {
-        p.o2.Event.publish(p.event.USER_LOGGED_IN, response);
-    }
 
     /*
      * Global event handler on document's click event.
@@ -48,9 +38,7 @@
         document_click : function(evt) {
             log('Callback.event.document_click()');
 
-            var o2   = p.o2;
-            var url  = p.url;
-            var path = p.path;
+            var o2 = p.o2;
 
             var target = o2.Event.getTarget(evt);
 
@@ -62,19 +50,57 @@
 
             // Just for demonstration.
             var params = {};
-            params[kUsername] = 'dummy';
-            params[kPassword] = 'dummy';
+            params[p.param.USERNAME] = 'dummy';
+            params[p.param.PASSWORD] = 'dummy';
 
-            if (id.indexOf(kLoginButtonId) === -1) {
+            if (id.indexOf(p.elm.LOGIN_BUTTON) === -1) {
                 return;
             }
 
-            //TODO: to C
-            o2.Jsonp.get(
-                o2.String.concat(url.API_ROOT, path.LOGIN),
-                params,
-                fireUserLogin
-            );
+            // Delegation -> Behavior
+            p.pub(p.event.USER_LOGIN, params);
+        }
+    };
+
+    /*
+     * API Response Handlers
+     */
+    me.widget = {
+
+        /*
+         * Initial widget state is ready.
+         */
+        getParams_complete : function(response) {
+            log('Callback.widget.getParams_complete(');
+            log(response);
+            log(')');
+
+            // Delegation -> Behavior
+            p.pub(p.event.BEGIN_RENDER, [response]);
+        },
+
+        /*
+         * User login server response callback.
+         */
+        sendUserLogin_complete : function(response) {
+            log('Callback.widget.sendUserLogin_complete(');
+            log(response);
+            log(')');
+
+            // Delegation -> Behavior
+            p.pub(p.event.USER_LOGGED_IN, response);
+        },
+
+        /*
+         * Widget CSS has been loaded.
+         */
+        loadCss_complete : function(params) {
+            log('Callback.widget.loadCss_complete(');
+            log(params);
+            log(')');
+
+            // Delegation -> Behavior
+            p.pub(p.event.CSS_LOADED, params);
         }
     };
 }(this));

@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:45:07.437431
+ *  lastModified: 2012-08-01 23:46:26.857221
  * -->
  */
 (function(window, document) {
@@ -20,6 +20,11 @@
      */
     function log(stuff) { p.log(stuff); }
 
+    /**
+     * @class {protected} Event
+     *
+     * Event controller.
+     */
     var me = p.Event = {};
 
     /*
@@ -27,39 +32,27 @@
      */
     var kClick = 'click';
 
-    //TODO: consolidate
-    var kBeginRender  = 'wd-begin-render';
-
-    /*
-     * Subscribes to API-specific custom event handers.
-     */
-    me.subscribe = function() {
-        log('Event.subscribe()');
-
-        var o2  = p.o2;
-        var sub = o2.Event.subscribe;
-
-        sub(p.event.USER_LOGGED_IN, function(response) {
-            //TODO: rendering.
-            var div = p.Dom.getWidgetAnchor();
-            div.innerHTML = response.data;
-        });
-
-        //TODO:
-        sub(kBeginRender, function(state) {
-            p.setReadyState('BEGIN_RENDER');
-            p.Rendering.render(state);
-        });
-    };
-
     /*
      * Use event delegation to bind widget events.
      */
-    me.delegate = function() {
+    function delegate() {
         log('Event.delegate()');
 
         p.o2.Event.addEventListener(
             document, kClick, p.Callback.event.document_click
         );
+    }
+
+    /**
+     * @function {static} subscribe
+     *
+     * Subscribes to API-specific custom event handers.
+     */
+    me.subscribe = function() {
+        log('Event.subscribe()');
+
+        var sub = p.sub;
+
+        sub(p.event.DELEGATE_EVENTS, delegate);
     };
 }(this, this.document));

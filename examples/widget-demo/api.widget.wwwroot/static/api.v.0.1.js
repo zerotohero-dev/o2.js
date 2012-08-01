@@ -34,13 +34,6 @@
     var kQuery  = '?';
 
     /*
-     * Parameter Names
-     */
-    var kGuid    = 'guid';
-    var kRandom  = 'r';
-    var kVersion = 'v';
-
-    /*
      * Regular Expression
      */
     var kCompleteRegExp = /loaded|complete/;
@@ -66,6 +59,24 @@
      * Common Widget Keys
      */
     var kReadyState = 'readyState';
+
+    /*
+     * Parameter Names
+     */
+    var param = {
+        GUID     : 'guid',
+        RANDOM   : 'r',
+        VERSION  : 'v',
+        USERNAME : 'u',
+        PASSWORD : 'p'
+    };
+
+    /*
+     * Element IDs
+     */
+    var elm = {
+        LOGIN_BUTTON : 'wd_btnLogin'
+    };
 
     /*
      * Widget Ready States
@@ -103,7 +114,21 @@
      * Custom Events
      */
     var event = {
-        USER_LOGGED_IN : 'wd-user-logged-in'
+        BEGIN_RENDER     : 'wd-begin-render',
+        CSS_LOADED       : 'wd-css-loaded',
+        DELEGATE_EVENTS  : 'wd-delegate-events',
+        FIRE_ASYNC_INIT  : 'wd-fire-async-init',
+        GET_PARAMS       : 'wd-get-params',
+        INSERT_BEACON    : 'wd-insert-beacon',
+        LOAD_CSS         : 'wd-load-css',
+        LOAD_STATE       : 'wd-load-state',
+        OVERRIDE_QUEUE   : 'wd-override-queue',
+        PROCESS_QUEUE    : 'wd-process-queue',
+        RENDER_LOGGED_IN : 'wd-render-logged-in',
+        RENDER_WIDGET    : 'wd-render-widget',
+        SEND_USER_LOGIN  : 'wd-send-user-login',
+        USER_LOGGED_IN   : 'wd-user-logged-in',
+        USER_LOGIN       : 'wd-user-login'
     };
 
     /*
@@ -198,8 +223,8 @@
         log('o->checkForUpdates()');
 
         insertScript(url.API_ROOT, [path.BEACON, kQuery,
-            kVersion,  kEquals, versionTimestamp , kAnd,
-            kRandom, kEquals, (new Date()).getTime()
+            param.VERSION,  kEquals, versionTimestamp , kAnd,
+            param.RANDOM, kEquals, (new Date()).getTime()
         ].join(kEmpty), noop);
     }
 
@@ -211,6 +236,30 @@
 
         var wp = window[kWidgetAlias].protecteds;
 
+        wp.sub = function(name, callback) {
+            var nom = wp.event[name];
+
+            if (!nom) {
+                log('wp.sub: No such event for "' + name + '"');
+
+                return;
+            }
+
+            o2.Event.subscribe(nom, callback);
+        };
+
+        wp.pub = function(name, payload) {
+            var nom = wp.event[name];
+
+            if (!nom) {
+                log('wp.pub: No such event for "' + name + '"');
+
+                return;
+            }
+
+            o2.Event.publish(nom, payload);
+        };
+
         wp.event         = event;
         wp.log           = log;
         wp.noop          = noop;
@@ -219,6 +268,8 @@
         wp.readyState    = readyState;
         wp.setReadyState = setReadyState;
         wp.url           = url;
+        wp.param         = param;
+        wp.elm           = elm;
     }
 
     /*
@@ -241,11 +292,13 @@
 
         var config = wp.Config.get();
 
-        config[kGuid] = o2.String.generateGuid();
+        config[param.GUID] = o2.String.generateGuid();
 
-        wp.Event.subscribe();
+        //wp.Event.subscribe();
 
-        wp.Init.loadState(config);
+        //wp.Init.loadState(config);
+
+        wp.pub(wp.event.LOAD_STATE);
     }
 
     /*
