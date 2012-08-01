@@ -220,14 +220,20 @@
 
             if (!username) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             if (!password) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             if (!callback) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             var session = req.session;
@@ -249,14 +255,20 @@
 
             if (!callback) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             if (!publisherId) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             if (!guid) {
                 res.send(statusCode.NO_DATA);
+
+                return;
             }
 
             // very primitive access control.

@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:42:44.568276
+ *  lastModified: 2012-08-02 01:11:16.176382
  * -->
  */
 (function(window, document) {
@@ -34,7 +34,7 @@
     var me = p.Dom = {};
 
     /**
-     * @function {static} getWidgetAnchor
+     * @function {static} Dom.getWidgetAnchor
      *
      * Finds a place to append the widget UI.
      */
@@ -63,5 +63,20 @@
         log(null);
 
         return null;
+    };
+
+    /**
+     * @function {static} Dom.render
+     *
+     * Simply sets the <code>innerHTML</code> of the
+     * <strong>container</strong>.
+     */
+    me.render = function(container, html) {
+        log('Dom.render(')
+        log(container);
+        log(html);
+        log(')');
+
+        container.innerHTML = html;
     };
 }(this, this.document));

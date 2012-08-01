@@ -44,7 +44,7 @@
     }
 
     /**
-     * @function {static} subscribe
+     * @function {static} Event.subscribe
      *
      * Subscribes to API-specific custom event handers.
      */
@@ -53,6 +53,6 @@
 
         var sub = p.sub;
 
-        sub(p.event.DELEGATE_EVENTS, delegate);
+        sub('DELEGATE_EVENTS', delegate);
     };
 }(this, this.document));

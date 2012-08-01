@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:42:44.568276
+ *  lastModified: 2012-08-02 01:10:28.658250
  * -->
  */
 (function(window) {
@@ -40,8 +40,7 @@
             return;
         }
 
-        //TODO: to p.Dom
-        container.innerHTML = html;
+        p.Dom.render(container, html);
     }
 
     /*
@@ -70,7 +69,7 @@
     }
 
     /**
-     * @function {static} subscribe
+     * @function {static} Rendering.subscribe
      *
      * Subscribes to render-related custom event handers.
      */

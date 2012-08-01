@@ -57,7 +57,7 @@
     }
 
     /**
-     * @function {static} subscribe
+     * @function {static} Init.subscribe
      *
      * Subscribes to relevant events.
      */

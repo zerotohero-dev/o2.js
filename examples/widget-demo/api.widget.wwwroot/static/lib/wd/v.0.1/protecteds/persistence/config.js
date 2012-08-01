@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 23:49:58.091716
+ *  lastModified: 2012-08-02 01:11:38.551023
  * -->
  */
 (function(window) {
@@ -34,7 +34,7 @@
     var me = p.Config = {};
 
     /**
-     * @function {static} get
+     * @function {static} Config.get
      *
      * Gets widget configuration from DOM.
      */

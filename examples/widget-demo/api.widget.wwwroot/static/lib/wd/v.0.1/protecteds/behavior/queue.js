@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 22:58:30.545663
+ *  lastModified: 2012-08-02 01:13:47.842161
  * -->
  */
 (function(window) {
@@ -24,8 +24,6 @@
      * Common Constants
      */
     var kWidgetQueueAlias = '_wdq';
-    var kAction           = 'action';
-    var kPayload          = 'payload';
 
     /*
      * Action Enums
@@ -45,11 +43,11 @@
     function execute(item) {
         log('Queue.execute()');
 
-        var action = item[kAction];
+        var action = item[p.param.ACTION];
 
         if (action === kEcho) {
             log('ECHO: ');
-            log(item[kPayload]);
+            log(item[p.param.PAYLOAD]);
 
             return;
         }
@@ -101,7 +99,7 @@
     }
 
     /**
-     * @function {static} subscribe
+     * @function {static} Queue.subscribe
      *
      * Subscribes to relevant events.
      */

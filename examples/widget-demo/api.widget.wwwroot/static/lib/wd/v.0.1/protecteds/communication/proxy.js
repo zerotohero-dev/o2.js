@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 23:25:27.079984
+ *  lastModified: 2012-08-02 01:12:40.124656
  * -->
  */
 (function(window) {
@@ -29,7 +29,7 @@
     var me = p.Proxy = {};
 
     /**
-     * @function {static} subscribe
+     * @function {static} Proxy.subscribe
      *
      * Subscribes to relevant events.
      */

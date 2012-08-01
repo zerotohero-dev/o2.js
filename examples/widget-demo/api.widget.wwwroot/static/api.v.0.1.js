@@ -68,7 +68,9 @@
         RANDOM   : 'r',
         VERSION  : 'v',
         USERNAME : 'u',
-        PASSWORD : 'p'
+        PASSWORD : 'p',
+        ACTION   : 'action',
+        PAYLOAD  : 'payload'
     };
 
     /*
@@ -111,7 +113,7 @@
     };
 
     /*
-     * Custom Events
+     * Custom Events (used for inter-module messaging)
      */
     var event = {
         BEGIN_RENDER     : 'wd-begin-render',
@@ -196,11 +198,6 @@
      * of the document.
      */
     function insertScript(root, src) {
-        log('o->insertScript(');
-        log(root);
-        log(src);
-        log(')');
-
         var s = document.createElement(kScript);
         var x = document.getElementsByTagName(kScript)[0] ||
             document.getElementsByTagName(kHead)[0];
@@ -240,7 +237,7 @@
             var nom = wp.event[name];
 
             if (!nom) {
-                log('wp.sub: No such event for "' + name + '"');
+                log(['wp.sub: No such event for "', name, '"'].join(kEmpty));
 
                 return;
             }
@@ -252,7 +249,7 @@
             var nom = wp.event[name];
 
             if (!nom) {
-                log('wp.pub: No such event for "' + name + '"');
+                log(['wp.pub: No such event for "', name, '"'].join(kEmpty));
 
                 return;
             }
@@ -270,6 +267,20 @@
         wp.url           = url;
         wp.param         = param;
         wp.elm           = elm;
+    }
+
+    /*
+     * Trigger modules to subscribe to events.
+     */
+    function subscribe() {
+        var wp = window[kWidgetAlias].protecteds;
+
+        wp.Init.subscribe();
+        wp.Queue.subscribe();
+        wp.Event.subscribe();
+        wp.Widget.subscribe();
+        wp.Proxy.subscribe();
+        wp.Rendering.subscribe();
     }
 
     /*
@@ -294,11 +305,9 @@
 
         config[param.GUID] = o2.String.generateGuid();
 
-        //wp.Event.subscribe();
+        subscribe();
 
-        //wp.Init.loadState(config);
-
-        wp.pub(wp.event.LOAD_STATE);
+        wp.pub('LOAD_STATE', [config]);
     }
 
     /*
@@ -306,12 +315,6 @@
      * has loaded successfully.
      */
     function loadNext(root, loader, callback) {
-        log('o->loadNext(');
-        log(root);
-        log(loader);
-        log(callback);
-        log(')');
-
         if (scriptQueue.length) {
             loader(root, scriptQueue.shift(), callback);
 
@@ -327,12 +330,6 @@
      * there's no resource left to be loeded next.
      */
     var loadScript = function(root, src, callback) {
-        log('o->loadScript(');
-        log(root);
-        log(src);
-        log(callback);
-        log(')');
-
         var s = insertScript(root, src);
 
         function processNext() {
@@ -354,12 +351,6 @@
      * Loads an array of scripts one after another.
      */
     function loadScripts(root, ar, callback) {
-        log('o->loadScripts(');
-        log(root);
-        log(ar);
-        log(callback);
-        log(')');
-
         scriptQueue = ar;
 
         loadScript(root, scriptQueue.shift(), callback);
@@ -389,9 +380,10 @@
             'o2.js/o2.event.custom.js',
             'o2.js/o2.method.core.js',
             'o2.js/o2.collection.core.js',
-            'wd/v.0.1/protecteds/behavior/beacon.js',
             'wd/v.0.1/protecteds/behavior/init.js',
             'wd/v.0.1/protecteds/behavior/queue.js',
+            'wd/v.0.1/protecteds/behavior/widget.js',
+            'wd/v.0.1/protecteds/communication/proxy.js',
             'wd/v.0.1/protecteds/delegation/callback.js',
             'wd/v.0.1/protecteds/delegation/event.js',
             'wd/v.0.1/protecteds/persistence/config.js',

@@ -58,7 +58,7 @@
             }
 
             // Delegation -> Behavior
-            p.pub(p.event.USER_LOGIN, params);
+            p.pub('USER_LOGIN', [params]);
         }
     };
 
@@ -76,7 +76,7 @@
             log(')');
 
             // Delegation -> Behavior
-            p.pub(p.event.BEGIN_RENDER, [response]);
+            p.pub('BEGIN_RENDER', [response]);
         },
 
         /*
@@ -88,7 +88,7 @@
             log(')');
 
             // Delegation -> Behavior
-            p.pub(p.event.USER_LOGGED_IN, response);
+            p.pub('USER_LOGGED_IN', [response]);
         },
 
         /*
@@ -100,7 +100,7 @@
             log(')');
 
             // Delegation -> Behavior
-            p.pub(p.event.CSS_LOADED, params);
+            p.pub('CSS_LOADED', [params]);
         }
     };
 }(this));

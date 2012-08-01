@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:47:15.001101
+ *  lastModified: 2012-08-02 01:13:18.611215
  * -->
  */
 (function(window) {
@@ -28,7 +28,7 @@
     var me = p.Widget = {};
 
     /**
-     * @function {static} subscribe
+     * @function {static} Widget.subscribe
      *
      * Subscribes to relevant events.
      */
@@ -72,6 +72,7 @@
             // Behavior -> Presentation
             p.pub('RENDER_WIDGET', [params]);
 
+            // Once the widget is rendered, it's responsive and complete:
             p.setReadyState('COMPLETE');
 
             // Behavior -> Delegation
