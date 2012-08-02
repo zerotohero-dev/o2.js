@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-02 01:13:18.611215
+ *  lastModified: 2012-08-03 00:27:49.751926
  * -->
  */
 (function(window) {
@@ -35,6 +35,7 @@
     me.subscribe = function() {
         log('Widget.subscribe()');
 
+        // Start rendering of the widget.
         p.sub('BEGIN_RENDER', function(state) {
             log('event<BEGIN_RENDER');
             log(state);
@@ -46,6 +47,7 @@
             p.pub('LOAD_CSS', [state]);
         });
 
+        // User login action from UI.
         p.sub('USER_LOGIN', function(params) {
             log('event<USER_LOGIN');
             log(params);
@@ -55,6 +57,7 @@
             p.pub('SEND_USER_LOGIN', [params]);
         });
 
+        // Login response from server.
         p.sub('USER_LOGGED_IN', function(response) {
             log('event<USER_LOGGED_IN');
             log(response);
@@ -64,6 +67,7 @@
             p.pub('RENDER_LOGGED_IN', [response]);
         });
 
+        // Widget CSS is loaded.
         p.sub('CSS_LOADED', function(params) {
             log('event<CSS_LOADED');
             log(params);

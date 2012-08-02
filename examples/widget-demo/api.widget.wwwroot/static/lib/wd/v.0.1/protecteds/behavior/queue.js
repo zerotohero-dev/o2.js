@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-02 01:13:47.842161
+ *  lastModified: 2012-08-03 00:27:49.751926
  * -->
  */
 (function(window) {
@@ -108,7 +108,10 @@
 
         var sub = p.sub;
 
+        // Process initial widget queue.
         sub('PROCESS_QUEUE' , process);
+
+        // Override queue implementation.
         sub('OVERRIDE_QUEUE', override);
     };
 }(this));

@@ -23,27 +23,290 @@ Part 5:
     http://o2js.com/2012/07/28/javascript-widgets-user-interface/
 
 Part 6:
-    First some refactoring...
+    (overview of the former article)
 
-publish/subscribe is a bit like explosives. In the hands of thoughtful experts, you can expect to have a sky scraper demolished safely and in a reasonable time frame. In the hands of amateurs, working with explosives, you’ll end up with some very noisy and messy situations when you least expect it. And sure, every once in a while, even experts make mistakes.
+    This article is not directly related to widget development, it is more
+    about code reorganization.
 
-two things, helper libs and wd modules
-= raise events for cross-module messaging
-= use helper libraries
+    In the former example we were using a monolithic api file to manage the
+    entire widget initialization flow, event registration, and api behavior.
+
+    If we follow this approach, it's highly possible that our widget api code
+    will grow over a few hunderds of thousand lines of code, and we will have
+    hard time improving, developing and debugging it.
+
+    Chaos is the inevitable fate of any software projece being developed
+    for several year with different teams of developers along the way.
+    Although we cannot avoid it, we can minimize the consequences of it, by
+    organizing chaos in an orderly manner as much as we can.
+
+    One way to do this is to keep our codebase in logically-coherent modules.
+    And split our application logic into tiers.
+    - lesser merge conflicts when working with teams
+    - easier to find where to look, when a functionality breaks
+
+    In this article, we will
+
+    - organize our codebase into tiers. The structure will be similar
+    to the BPC architecture (link), where we'll have well-defined behavior,
+    communication, delegation and persistence tiers.
+    - each tier will contain one or more modules.
+
+    {img of tiers}
+
+    and to improve the structure further, we will decouple modules as much as
+    we can. Instead of having modules call public method of each other, we will
+    be raising events, for inter-module communication.
+
+    This way each module will have no direct knowledge of the other modules
+    talking to it. This loose coupling
+
+    - will give us the flexibility to easily move code pieces around.
+    - and since the modules only know about themselves and no one else, it will
+    be easier to unit test them individually.
+
+    Here's the directory struture of our application
+
+    {img}
+
+    two things, helper libs and wd modules
+    = raise events for cross-module messaging
+    = use helper libraries
+
+    As seen we have 5 layers behavior, comunication, communication,
+    delegation, persistence and presentation.
+
+    Each layer contains modules, and each module is defined under
+    window._wd.protecteds namespace.
+
+    For example the Init module under the behavior tier, in deed resolves to
+    window._wd.protecteds.Init
+
+    the "protecteds" namespace is an informal indicator that these modules
+    are meant to be used by the internal functionality of our widget, and
+    they are not meant to be accessed publicly.
+
+    In order to send messages to other modules, each module either publishes
+    events
+
+    ... filename
+    /*
+     * Load initial widget state data from the server.
+     */
+    function loadState(config) {
+        log('Init.loadState(');
+        log(config);
+        log(')');
+
+        // Behavior -> Communication
+        p.pub('GET_PARAMS', [config]);
+    }
+
+    And any module that's the intended recepient of a message subscribes
+    to that message
+
+    ...filename
+    /**
+     * @function {static} Proxy.subscribe
+     *
+     * Subscribes to relevant events.
+     */
+    me.subscribe = function() {
+        log('Proxy.subscribe()');
+
+        ...
+
+        sub('GET_PARAMS', function(params) {
+            log('event<GET_PARAMS');
+            log(params);
+            log('>');
+
+            get(
+                concat(url.API_ROOT, path.PARAMS),
+                params,
+                callback.getParams_complete
+            );
+        });
+
+        ...
+    };
+
+    publish/subscribe is a bit like explosives. In the hands of thoughtful experts, you can expect to have a sky scraper demolished safely and in a reasonable time frame. In the hands of amateurs, working with explosives, you’ll end up with some very noisy and messy situations when you least expect it. And sure, every once in a while, even experts make mistakes.
+
+    Let's see how the thing works from the beginning:
+
+    /*
+     * Load necessary o2.js components in noConflict mode.
+     */
+    function loadDependencies(callback) {
+        log('o->loadDependencies(');
+        log(callback);
+        log(')');
+
+        setReadyState('LOADING_DEPENDENCIES');
+
+        loadScripts(url.LIB_ROOT, [
+            'o2.js/o2.meta.js',
+            'o2.js/o2.core.js',
+            'o2.js/o2.string.core.js',
+            'o2.js/o2.jsonp.core.js',
+            'o2.js/o2.dom.constants.js',
+            'o2.js/o2.dom.core.js',
+            'o2.js/o2.dom.load.js',
+            'o2.js/o2.event.constants.js',
+            'o2.js/o2.validation.core.js',
+            'o2.js/o2.event.core.js',
+            'o2.js/o2.event.custom.js',
+            'o2.js/o2.method.core.js',
+            'o2.js/o2.collection.core.js',
+
+            'wd/v.0.1/protecteds/behavior/init.js',
+            'wd/v.0.1/protecteds/behavior/queue.js',
+            'wd/v.0.1/protecteds/behavior/widget.js',
+
+            'wd/v.0.1/protecteds/communication/proxy.js',
+
+            'wd/v.0.1/protecteds/delegation/callback.js',
+            'wd/v.0.1/protecteds/delegation/event.js',
+
+            'wd/v.0.1/protecteds/persistence/config.js',
+
+            'wd/v.0.1/protecteds/presentation/dom.js',
+            'wd/v.0.1/protecteds/presentation/rendering.js'
+        ], callback);
+    }
+
+    ...
+
+        /*
+     * Initialize after loading prerequisites.
+     */
+    function initialize() {
+        log('o->initialize()');
+
+        var wp = window[kWidgetAlias].protecteds;
+
+        if (!window.o2) {return;}
+
+        setReadyState('LOADED_DEPENDENCIES');
+
+        window.o2.noConflict(kO2Alias);
+
+        o2 = window[kO2Alias];
+
+        exportProtecteds();
+
+        var config = wp.Config.get();
+
+        config[param.GUID] = o2.String.generateGuid();
+
+        subscribe();
+
+        wp.pub('LOAD_STATE', [config]);
+    }
 
 
-    {{handling sessions}}
-    {{how to authenticate user}}
-    {{third party cookies}}
+    /*
+     * Exports protected methods for intra-module use.
+     */
+    function exportProtecteds() {
+        log('o->exportProtecteds()');
+
+        var wp = window[kWidgetAlias].protecteds;
+
+        wp.sub = function(name, callback) {
+            var nom = wp.event[name];
+
+            if (!nom) {
+                log(['wp.sub: No such event for "', name, '"'].join(kEmpty));
+
+                return;
+            }
+
+            o2.Event.subscribe(nom, callback);
+        };
+
+        wp.pub = function(name, payload) {
+            var nom = wp.event[name];
+
+            if (!nom) {
+                log(['wp.pub: No such event for "', name, '"'].join(kEmpty));
+
+                return;
+            }
+
+            o2.Event.publish(nom, payload);
+        };
+
+        wp.event         = event;
+        wp.log           = log;
+        wp.noop          = noop;
+        wp.o2            = o2;
+        wp.path          = path;
+        wp.readyState    = readyState;
+        wp.setReadyState = setReadyState;
+        wp.url           = url;
+        wp.param         = param;
+        wp.elm           = elm;
+    }
+
+    /*
+     * Trigger modules to subscribe to events.
+     */
+    function subscribe() {
+        var wp = window[kWidgetAlias].protecteds;
+
+        wp.Init.subscribe();
+        wp.Queue.subscribe();
+        wp.Event.subscribe();
+        wp.Widget.subscribe();
+        wp.Proxy.subscribe();
+        wp.Rendering.subscribe();
+    }
+
+    /*
+     * Custom Events (used for inter-module messaging)
+     */
+    var event = {
+        BEGIN_RENDER     : 'wd-begin-render',
+        CSS_LOADED       : 'wd-css-loaded',
+        DELEGATE_EVENTS  : 'wd-delegate-events',
+        FIRE_ASYNC_INIT  : 'wd-fire-async-init',
+        GET_PARAMS       : 'wd-get-params',
+        INSERT_BEACON    : 'wd-insert-beacon',
+        LOAD_CSS         : 'wd-load-css',
+        LOAD_STATE       : 'wd-load-state',
+        OVERRIDE_QUEUE   : 'wd-override-queue',
+        PROCESS_QUEUE    : 'wd-process-queue',
+        RENDER_DOM       : 'wd-render-dom',
+        RENDER_LOGGED_IN : 'wd-render-logged-in',
+        RENDER_WIDGET    : 'wd-render-widget',
+        SEND_USER_LOGIN  : 'wd-send-user-login',
+        USER_LOGGED_IN   : 'wd-user-logged-in',
+        USER_LOGIN       : 'wd-user-login'
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+Part 7:
+
+    {{retrieving data from server, modifying it, persisting it to server}}
+
 
     TODO: add a references section
         - Ben and Anthon's book was helpul
         - So as Steve's articles
         - list a bunch of links that may be good for further reading.
-
-Part 7:
-
-    {{retrieving data from server, modifying it, persisting it to server}}
 
 Part 8:
     preparing for production.

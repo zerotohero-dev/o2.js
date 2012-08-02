@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-01 04:42:44.568276
+ *  lastModified: 2012-08-03 00:27:49.751926
  * -->
  */
 (function(window, document, isDebugMode) {
@@ -126,6 +126,7 @@
         LOAD_STATE       : 'wd-load-state',
         OVERRIDE_QUEUE   : 'wd-override-queue',
         PROCESS_QUEUE    : 'wd-process-queue',
+        RENDER_DOM       : 'wd-render-dom',
         RENDER_LOGGED_IN : 'wd-render-logged-in',
         RENDER_WIDGET    : 'wd-render-widget',
         SEND_USER_LOGIN  : 'wd-send-user-login',
@@ -275,12 +276,13 @@
     function subscribe() {
         var wp = window[kWidgetAlias].protecteds;
 
-        wp.Init.subscribe();
-        wp.Queue.subscribe();
+        wp.Dom.subscribe();
         wp.Event.subscribe();
-        wp.Widget.subscribe();
+        wp.Init.subscribe();
         wp.Proxy.subscribe();
+        wp.Queue.subscribe();
         wp.Rendering.subscribe();
+        wp.Widget.subscribe();
     }
 
     /*
@@ -380,13 +382,18 @@
             'o2.js/o2.event.custom.js',
             'o2.js/o2.method.core.js',
             'o2.js/o2.collection.core.js',
+
             'wd/v.0.1/protecteds/behavior/init.js',
             'wd/v.0.1/protecteds/behavior/queue.js',
             'wd/v.0.1/protecteds/behavior/widget.js',
+
             'wd/v.0.1/protecteds/communication/proxy.js',
+
             'wd/v.0.1/protecteds/delegation/callback.js',
             'wd/v.0.1/protecteds/delegation/event.js',
+
             'wd/v.0.1/protecteds/persistence/config.js',
+
             'wd/v.0.1/protecteds/presentation/dom.js',
             'wd/v.0.1/protecteds/presentation/rendering.js'
         ], callback);

@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-02 01:10:28.658250
+ *  lastModified: 2012-08-03 00:27:49.751926
  * -->
  */
 (function(window) {
@@ -30,17 +30,12 @@
     /*
      * Does the actual rendering.
      */
-    function renderWidget(container, html) {
+    function renderWidget(html) {
         log('Rendering.renderWidget(');
-        log(container);
         log(html);
         log(')');
 
-        if (!container) {
-            return;
-        }
-
-        p.Dom.render(container, html);
+        p.pub('RENDER_DOM', [html]);
     }
 
     /*
@@ -51,21 +46,18 @@
         log(state);
         log(')');
 
-        var div  = p.Dom.getWidgetAnchor();
-
-        if (!div) {
-            return;
-        }
-
-        renderWidget(div, state.data);
+        renderWidget(state.data);
     }
 
     /*
      * Renders logged in UI.
      */
     function renderLoggedIn(response) {
-        var div = p.Dom.getWidgetAnchor();
-        div.innerHTML = response.data;
+        log('Rendering.renderLoggedIn(');
+        log(response);
+        log(')');
+
+        renderWidget(response.data);
     }
 
     /**
@@ -76,7 +68,10 @@
     me.subscribe = function() {
         log('Rendering.subscribe()');
 
+        // Render initial widget.
         p.sub('RENDER_WIDGET'   , render);
+
+        // Render logged in state.
         p.sub('RENDER_LOGGED_IN', renderLoggedIn);
     };
 }(this));

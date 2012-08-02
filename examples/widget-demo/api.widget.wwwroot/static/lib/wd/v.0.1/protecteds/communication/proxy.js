@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-02 01:12:40.124656
+ *  lastModified: 2012-08-03 00:27:49.751926
  * -->
  */
 (function(window) {
@@ -46,6 +46,7 @@
         var sub      = p.sub;
         var url      = p.url;
 
+        // Get widget parameters from the server.
         sub('GET_PARAMS', function(params) {
             log('event<GET_PARAMS');
             log(params);
@@ -58,6 +59,7 @@
             );
         });
 
+        // Send user login event.
         sub('SEND_USER_LOGIN', function(params) {
             log('event<SEND_USER_LOGIN');
             log(params);
@@ -70,6 +72,7 @@
             );
         });
 
+        // Load widget CSS.
         sub('LOAD_CSS', function(params) {
             log('event<LOAD_CSS');
             log(params);
