@@ -53,7 +53,7 @@
         log(')');
 
         // Behavior -> Communication
-        p.pub('GET_PARAMS', [config]);
+        p.pub('SEND_GET_PARAMS', [config]);
     }
 
     /**

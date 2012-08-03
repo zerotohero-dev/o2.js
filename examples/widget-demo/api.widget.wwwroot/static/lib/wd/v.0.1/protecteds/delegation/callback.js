@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-03 00:27:49.751926
+ *  lastModified: 2012-08-03 06:07:42.393597
  * -->
  */
 (function(window) {
@@ -70,8 +70,8 @@
         /*
          * Initial widget state is ready.
          */
-        getParams_complete : function(response) {
-            log('Callback.widget.getParams_complete(');
+        sendGetParams_complete : function(response) {
+            log('Callback.widget.sendGetParams_complete(');
             log(response);
             log(')');
 
@@ -94,8 +94,8 @@
         /*
          * Widget CSS has been loaded.
          */
-        loadCss_complete : function(params) {
-            log('Callback.widget.loadCss_complete(');
+        sendLoadCss_complete : function(params) {
+            log('Callback.widget.sendLoadCss_complete(');
             log(params);
             log(')');
 

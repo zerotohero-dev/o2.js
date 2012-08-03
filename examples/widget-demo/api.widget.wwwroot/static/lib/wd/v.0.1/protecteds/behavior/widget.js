@@ -4,7 +4,7 @@
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
  *
- *  lastModified: 2012-08-03 00:27:49.751926
+ *  lastModified: 2012-08-03 06:07:42.393597
  * -->
  */
 (function(window) {
@@ -44,7 +44,7 @@
             p.setReadyState('BEGIN_RENDER');
 
             // Behavior -> Presentation
-            p.pub('LOAD_CSS', [state]);
+            p.pub('SEND_LOAD_CSS', [state]);
         });
 
         // User login action from UI.
