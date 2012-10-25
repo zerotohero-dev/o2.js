@@ -1,44 +1,60 @@
 /**
- * @module   jsonpcontroller
+ * @module   jsonpcontroller.core
  * @requires core
- * @requires ajaxcontroller
- * @requires jsonpstate
- * @requires object
+ * @requires ajaxcontroller.core
+ * @requires jsonpstate.core
+ * @requires object.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
- * <p>A <code>JSONP</code> controller that implements the
+ * <p>A <strong>JSONP</strong> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var construct = attr(_, 'construct');
-    var override  = attr(_, 'override');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonpcontroller.core', ['core', 'ajaxcontroller.core',
+        'jsonpstate.core', 'object.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        construct = attr(fp, 'construct'),
+        override  = attr(fp, 'override'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'JsonpController';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'JsonpController',
 
-    var nill        = require('nill');
-    var state       = require('JsonpState');
-    var copyMethods = require('Object', 'copyMethods');
+        /*
+         * Aliases
+         */
+
+        nill        = require('nill'),
+        state       = require('JsonpState'),
+        copyMethods = require('Object', 'copyMethods'),
+
+        /*
+         * State
+         */
+        purgeQueue = [],
+
+        /*
+         * Inheritance
+         */
+        base = require('AjaxController'),
+        self = require(kModuleName),
+        me   = null;
 
     /**
      * @class o2.JsonpController
@@ -81,15 +97,9 @@
     /*
      *
      */
-    var me = exports.JsonpController;
+    me = exports.JsonpController;
 
-    /*
-     * State
-     */
-    var purgeQueue = [];
 
-    var base = require('AjaxController');
-    var self = require(kModuleName);
 
     // A quick way of inheriting methods without constructing base
     // (i.e. without the `self.prototype = new base();` assignment).
@@ -114,9 +124,7 @@
      * @see o2.AjaxController.update
      */
     exports.update = override(me, 'update', function(data) {
-        if (!data.isTimedOut) {
-            return;
-        }
+        if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
         this.unregister(state);
@@ -152,10 +160,8 @@
      *
      */
     exports.unregister = override(me, 'unregister', function() {
-        if (this.isDeleted) {
-            return;
-        }
+        if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

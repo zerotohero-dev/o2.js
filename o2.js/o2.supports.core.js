@@ -6,53 +6,57 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object support checker.</p>
  */
-(function(framework, document) {
+(function(framework, fp, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('supports.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Supports';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Supports
-     *
-     * <p>Checks support for various objects and properties like
-     * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Supports',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Supports
+         *
+         * <p>Checks support for various objects and properties like
+         * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    /*
-     *
-     */
-    var isDomSupported = document.getElementById &&
-        document.createElement && document.getElementsByTagName;
+        myName = require('name'),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty            = '';
-    var kTestCookiePrefix = 'tst';
+        /*
+         * <code>true</code> if there's an adequate level of
+         * <strong>DOM</strong> support.
+         */
+        isDomSupported = document.getElementById &&
+            document.createElement && document.getElementsByTagName,
+
+        /*
+         * Common Constants
+         */
+        kEmpty            = '',
+        kTestCookiePrefix = 'tst';
 
     /**
      * @function {static} o2.Supports.ajax
@@ -92,20 +96,19 @@
      * @throws Exception - if <code>o2.Cookie</code> does not exist.
      */
     exports.cookie = def(me, 'cookie', function() {
-        var testCookieName = [myName, kTestCookiePrefix].join(kEmpty);
-        var value = null;
+        var testCookieName = [myName, kTestCookiePrefix].join(kEmpty),
+            value = null,
 
-        var kCookie = 'Cookie';
-        var save    = require(kCookie, 'save');
-        var read    = require(kCookie, 'read');
-        var remove  = require(kCookie, 'remove');
+            kCookie = 'Cookie',
+            save    = require(kCookie, 'save'),
+            read    = require(kCookie, 'read'),
+            remove  = require(kCookie, 'remove');
 
         save(testCookieName, testCookieName, 1);
 
         try {
             value = read(testCookieName);
-        } catch(ignore) {
-        }
+        } catch(ignore) {}
 
         if (value) {
             remove(testCookieName);
@@ -133,4 +136,4 @@
     exports.dom = def(me, 'dom', function() {
         return isDomSupported;
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));

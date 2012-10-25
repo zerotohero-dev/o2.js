@@ -6,100 +6,106 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A debugging helper.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('debugger.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Debugger';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Debugger
-     *
-     * <p>A static object for debugging purposes.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * // note: initalize Debugger only once,
-     * // possibly on window.load or dom content ready
-     * o2.Debugger.init(someDomNode, true);
-     *
-     * //then inside your code use this syntax.
-     * o2.Debugger.println('stuff to debug');
-     * </pre>
-     *
-     * @see o2.Unit
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Debugger',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Debugger
+         *
+         * <p>A static object for debugging purposes.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // note: initalize Debugger only once,
+         * // possibly on window.load or dom content ready
+         * o2.Debugger.init(someDomNode, true);
+         *
+         * //then inside your code use this syntax.
+         * o2.Debugger.println('stuff to debug');
+         * </pre>
+         *
+         * @see o2.Unit
+         */
+        me = create(kModuleName),
 
-    var $    = require('$');
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var createElement = attr(document, 'createElement');
+        $    = require('$'),
+        nill = require('nill'),
 
-    var console = window.console || {};
-    var error   = console.error  || nill;
-    var info    = console.info   || nill;
-    var log     = console.log    || nill;
-    var warn    = console.warn   || nill;
+        createElement = attr(document, 'createElement'),
 
-    /*
-     * Configuration
-     */
-    var isUsingConsole = true;
-    var outputElement  = null;
+        console = window.console || {},
+        error   = console.error  || nill,
+        info    = console.info   || nill,
+        log     = console.log    || nill,
+        warn    = console.warn   || nill,
 
+        /*
+         * Configuration
+         */
+        outputElement  = null,
 
-    /*
-     * State
-     */
-    var isInitialized = false;
+        /*
+         * State
+         */
+        isInitialized = false,
 
-    /*
-     * Common Class Names
-     */
-    var kError = 'error';
-    var kFail  = 'fail';
-    var kInfo  = 'info';
-    var kLog   = 'log';
-    var kPass  = 'pass';
-    var kWarn  = 'warn';
+        /*
+         * Common Class Names
+         */
+        kError = 'error',
+        kFail  = 'fail',
+        kInfo  = 'info',
+        kLog   = 'log',
+        kPass  = 'pass',
+        kWarn  = 'warn',
 
-    /*
-     * Common Errors
-     */
-    var kCannotInitialize = 'Debugger: cannot initialize outputElement';
-    var kErrorText        = '<b>ERROR:</b> ';
-    var kFailText         = '<b>FAIL:</b> ';
-    var kInfoText         = '<b>INFO:</b> ';
-    var kPassText         = '<b>PASS:</b> ';
-    var kWarnText         = '<b>WARN:</b> ';
+        /*
+         * Common Errors
+         */
+        kCannotInitialize = 'Debugger: cannot initialize outputElement',
+        kErrorText        = '<b>ERROR:</b> ',
+        kFailText         = '<b>FAIL:</b> ',
+        kInfoText         = '<b>INFO:</b> ',
+        kPassText         = '<b>PASS:</b> ',
+        kWarnText         = '<b>WARN:</b> ',
 
-    /*
-     * Common Constants
-     */
-    var kDefaultContainer = 'div';
-    var kEmpty            = '';
+        /*
+         * Common Constants
+         */
+        kDefaultContainer = 'div',
+        kEmpty            = '',
+
+        /*
+         * To be Overridden
+         */
+        PrinterFactory = null;
 
     /*
      *
@@ -133,7 +139,7 @@
      * A factory class that creates printer deleages,
      * by parsing the configuration object.
      */
-    var PrinterFactory = {
+    PrinterFactory = {
 
         /*
          * Returns a delegate, parsing the configuration object.
@@ -152,25 +158,31 @@
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
+
                     outputElement.appendChild(debugContent);
 
                     println(value, className);
                 };
-            } else if (isUsingConsole && !outputElement) {
+            }
+
+            if (isUsingConsole && !outputElement) {
                 return function(value, className) {
                     println(value, className);
                 };
-            } else if (!isUsingConsole && outputElement) {
+            }
+
+            if (!isUsingConsole && outputElement) {
                 return function(value, className) {
                     var debugContent = createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
+
                     outputElement.appendChild(debugContent);
                 };
-            } else {
-                return nill;
             }
+
+            return nill;
         }
     };
 
@@ -194,9 +206,7 @@
      * @see o2.Unit.assert
      */
     exports.assert = def(me, 'assert', function(pass, message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         if (pass) {
             me.println([kPassText, message].join(kEmpty), kPass);
@@ -221,9 +231,7 @@
      * @param {String} message - the error message to display.
      */
     exports.error = def(me, 'error', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kErrorText, message].join(kEmpty), kError);
     });
@@ -242,9 +250,7 @@
      * @param {String} message - the info message to display.
      */
     exports.info = def(me, 'info', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kInfoText, message].join(kEmpty), kInfo);
     });
@@ -269,7 +275,9 @@
      * be used, if available.
      */
     exports.init = def(me, 'init', function(outputElement, shouldUseConsole) {
-        var outputNode = $(outputElement);
+        var outputNode     = $(outputElement),
+            isCfgOk        = false,
+            isUsingConsole = false;
 
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
@@ -279,7 +287,7 @@
         // Is everything ok? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
-        var isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
+        isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
 
         if (!isCfgOk) {
             throw kCannotInitialize;
@@ -312,9 +320,7 @@
      * @see o2.Unit.log
      */
     exports.log = def(me, 'log', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println(message, kLog);
     });
@@ -338,9 +344,7 @@
 
         // If not initialized, then we cannot use any of
         // Debugger's public methods.
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         // Reset className if not given.
         if (!className) {
@@ -368,10 +372,8 @@
      * @param {String} message - the warning message to display.
      */
     exports.warn = def(me, 'warn', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kWarnText, message].join(kEmpty), kWarn);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

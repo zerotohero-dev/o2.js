@@ -2,79 +2,78 @@
  * @module   dom.core
  * @requires core
  * @requires dom.constants
- * @requires dom.style
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-(function(framework, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.core', ['core', 'dom.constants']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (core)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (core)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var nt            = require(kModuleName, 'nodeType');
-    var kElementNode  = attr(nt, 'ELEMENT');
-    var kDocumentNode = attr(nt, 'DOCUMENT');
-    var kText         = attr(nt, 'TEXT');
+        $ = require('$'),
 
-    var createElement          = attr(document,'createElement');
-    var createDocumentFragment = attr(document, 'createDocumentFragment');
+        nt            = require(kModuleName, 'nodeType'),
+        kElementNode  = attr(nt, 'ELEMENT'),
+        kDocumentNode = attr(nt, 'DOCUMENT'),
+        kText         = attr(nt, 'TEXT'),
 
-    /*
-     * Common Constants
-     */
-    var kClass     = 'class';
-    var kClassName = 'className';
-    var kCss       = 'css';
-    var kCssText   = 'cssText';
-    var kDiv       = 'div';
-    var kEmpty     = '';
-    var kFunction  = 'function';
-    var kNumber    = 'number';
-    var kObject    = 'object';
-    var kString    = 'string';
-    var kStyle     = 'style';
+        /*
+         * Common Constants
+         */
+        kClass     = 'class',
+        kClassName = 'className',
+        kCss       = 'css',
+        kCssText   = 'cssText',
+        kDiv       = 'div',
+        kEmpty     = '',
+        kFunction  = 'function',
+        kNumber    = 'number',
+        kObject    = 'object',
+        kString    = 'string',
+        kStyle     = 'style',
 
-    /*
-     * Common Regular Expression
-     */
-    var kReturnRegExp = /\r\n|\r/g;
-    var kWhiteSpaceRegExp = /^\s*$/;
+        /*
+         * Common Regular Expressions
+         */
+        kReturnRegExp = /\r\n|\r/g,
+        kWhiteSpaceRegExp = /^\s*$/,
 
-    /*
-     * For creating document fragments.
-     */
-    var tempFragmentDiv = null;
+        /*
+         * For creating document fragments.
+         */
+        tempFragmentDiv = null;
 
     /**
      * @function {static} o2.Dom.append
@@ -95,16 +94,14 @@
      * <strong>id</strong> of the container.
      */
     exports.append = def(me, 'append', function(elmChild, elmParent) {
-        var child  = $(elmChild);
-        var parent = $(elmParent);
-        var temp   = null;
+        var child  = $(elmChild),
+            parent = $(elmParent),
+            temp   = null;
 
-        if (!child || !parent) {
-            return;
-        }
+        if (!child || !parent) {return;}
 
         if (typeof child === 'string') {
-            temp = createElement(kDiv);
+            temp = document.createElement(kDiv);
             parent.appendChild(temp).innerHTML = child;
             return temp;
         }
@@ -132,9 +129,9 @@
      */
     exports.createDocumentFragment = def(me, 'createDocumentFragment',
                 function(html) {
-        var result = createDocumentFragment();
+        var result = document.createDocumentFragment();
 
-        tempFragmentDiv = tempFragmentDiv || createElement(kDiv);
+        tempFragmentDiv = tempFragmentDiv || document.createElement(kDiv);
 
         tempFragmentDiv.innerHTML = html;
 
@@ -169,11 +166,11 @@
      */
     exports.createElement = def(me, 'createElement', function(name,
                 attributes) {
-        var e       = createElement(name);
-        var isClass = false;
-        var isStyle = false;
-        var key     = null;
-        var value   = kEmpty;
+        var e       = document.createElement(name),
+            isClass = false,
+            isStyle = false,
+            key     = null,
+            value   = kEmpty;
 
         // Internet Explorer 7- (and some minor browsers) cannot set values
         // for style, class or event handlers, using setAttribute.
@@ -246,38 +243,29 @@
      * otherwise.
      */
     exports.getAttribute = def(me, 'getAttribute', function(elm, attribute) {
-        var obj = $(elm);
+        var obj = $(elm),
+            value = null;
 
-        if (!obj || !attribute) {
-            return null;
-        }
-
-        var value = null;
+        if (!obj || !attribute) {return null;}
 
         if (attribute === kClass || attribute === kClassName) {
             value = obj.className;
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         if (attribute === kStyle || attribute === kCss ||
                     attribute === kCssText) {
             value = obj.cssText;
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         // The DOM object (obj) may not have a getAttribute method.
         if (typeof obj.getAttribute === kFunction) {
             value = obj.getAttribute(attribute);
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         return obj[attribute] || null;
@@ -303,9 +291,7 @@
     exports.getHtml = def(me, 'getHtml', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj) {return null;}
 
         return obj.innerHTML;
     });
@@ -331,49 +317,37 @@
          * @return the textual content of the given node.
          */
         exports.getText = def(me, 'getText', function(elm) {
-            var obj = $(elm);
+            var obj     = $(elm),
+                nodeType = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
-            var nodeType = obj.nodeType;
+            nodeType = obj.nodeType;
 
-            if (!nodeType) {
-                return null;
-            }
+            if (!nodeType) {return null;}
 
-            if (nodeType !== kElementNode && nodeType !== kDocumentNode) {
-                return null;
-            }
+            if (nodeType !== kElementNode &&
+                        nodeType !== kDocumentNode) {return null;}
 
-            if (typeof obj.innerText !== kString) {
-                return null;
-            }
+            if (typeof obj.innerText !== kString) {return null;}
 
             return obj.innerText.replace(kReturnRegExp, '');
         });
     } else {
         exports.getText = def(me, 'getText', function(elm) {
-            var obj = $(elm);
+            var obj      = $(elm),
+                nodeType = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
-            var nodeType = obj.nodeType;
+            nodeType = obj.nodeType;
 
-            if (!nodeType) {
-                return null;
-            }
+            if (!nodeType) {return null;}
 
-            if (nodeType !== kElementNode && nodeType !== kDocumentNode) {
-                return null;
-            }
+            if (nodeType !== kElementNode &&
+                        nodeType !== kDocumentNode) {return null;}
 
-            if (typeof obj.textContent !== kString) {
-                return null;
-            }
+            if (typeof obj.textContent !== kString) {return null;}
 
             return obj.textContent;
         });
@@ -398,14 +372,13 @@
      * <strong>id</strong> of the node.
      */
     exports.insertAfter = def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
-        var newNode = $(elmNewNode);
-        var refNode = $(elmRefNode);
+        var newNode = $(elmNewNode),
+            refNode = $(elmRefNode),
+            obj     = null;
 
-        if (!newNode || !refNode) {
-            return;
-        }
+        if (!newNode || !refNode) {return;}
 
-        var obj = refNode.parentNode;
+        obj = refNode.parentNode;
 
         if (refNode.nextSibling) {
             obj.insertBefore(newNode, refNode.nextSibling);
@@ -436,14 +409,13 @@
      */
     exports.insertBefore = def(me, 'insertBefore', function(elmNewNode,
                 elmRefNode) {
-        var newNode = $(elmNewNode);
-        var refNode = $(elmRefNode);
+        var newNode = $(elmNewNode),
+            refNode = $(elmRefNode),
+            obj     = null;
 
-        if (!newNode || !refNode) {
-            return;
-        }
+        if (!newNode || !refNode) {return;}
 
-        var obj = refNode.parentNode;
+        obj = refNode.parentNode;
 
         obj.insertBefore(newNode, refNode);
     });
@@ -494,12 +466,15 @@
     //TODO: add documentation.
     exports.isNode = def(me, 'isNode', function(obj) {
         return (
-            typeof window.Node === 'object' ?
+            typeof window.Node === kObject ?
+
                 // DOM Level 2
                 obj instanceof window.Node :
+
+                // Legacy
                 obj && typeof obj === kObject &&
-                typeof obj.nodeType === kNumber &&
-                typeof obj.nodeName === kString
+                    typeof obj.nodeType === kNumber &&
+                    typeof obj.nodeName === kString
         );
     });
 
@@ -522,15 +497,14 @@
      * container.
      */
     exports.prepend = def(me, 'prepend', function(elmChild, elmParent) {
-        var child  = $(elmChild);
-        var parent = $(elmParent);
+        var child  = $(elmChild),
+            parent = $(elmParent),
+            temp   = null;
 
-        if (!child || !parent) {
-            return;
-        }
+        if (!child || !parent) {return;}
 
         if (typeof child === kString) {
-            var temp = createElement(kDiv);
+            temp           = document.createElement(kDiv);
             temp.innerHTML = child;
 
             if (parent.childNodes.length === 0) {
@@ -566,9 +540,7 @@
     exports.remove = def(me, 'remove', function(e) {
         var elm = $(e);
 
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         elm.parentNode.removeChild(elm);
 
@@ -601,9 +573,7 @@
     exports.removeChildren = def(me, 'removeChildren', function(elm) {
         var node = $(elm);
 
-        if (!node) {
-            return;
-        }
+        if (!node) {return;}
 
         node.innerHTML = kEmpty;
     });
@@ -635,18 +605,18 @@
      * <strong>id</strong> of it to process.
      */
     exports.removeEmptyTextNodes = def(me, 'removeEmptyTextNodes', function(e) {
-        var arRemove     = [];
-        var child        = null;
-        var elm          = $(e);
-        var i            = 0;
-        var shouldRemove = false;
+        var arRemove     = [],
+            child        = null,
+            elm          = $(e),
+            i            = 0,
+            shouldRemove = false,
+            children     = null,
+            len          = 0;
 
-        if (!elm) {
-            return;
-        }
+        if (!elm) {return;}
 
-        var children = elm.childNodes;
-        var len      = children.length;
+        children = elm.childNodes;
+        len      = children.length;
 
         for (i = 0; i < len; i++) {
             child = children[i];
@@ -696,9 +666,7 @@
                 value) {
         var obj = $(elm);
 
-        if (!obj || !attribute) {
-            return;
-        }
+        if (!obj || !attribute) {return;}
 
         if (attribute === kClass  || attribute === kClassName){
             obj.className = value;
@@ -732,10 +700,8 @@
     exports.setHtml = def(me, 'setHtml', function(elm, html) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         obj.innerHTML = html;
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

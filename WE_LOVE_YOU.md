@@ -147,7 +147,7 @@ you create a usage example and put it there.
 You can also write a blog post about your particular use case, and share the
 link as an **issue** so that we can add it to a **links** section.
 
-No project can have too many examples. And a solid example that explains 
+No project can have too many examples. And a solid example that explains
 the proper usage of the project is worth a thousand pages of documentation.
 
 ### Add Unit Tests
@@ -182,7 +182,7 @@ conventions, variable namings, indentation, and the like.
 3. Fork **o2.js**.
 4. Clone your fork into your local repository.
 5. Make sure you are working on the **dev** branch.
-6. **Branching out from the dev branch**, 
+6. **Branching out from the dev branch**,
 create a thoughtfully named **topic branch** containing your change.
 7. Implement your change.
 8. [JSLint your code](http://jslint.com/).
@@ -241,22 +241,16 @@ copy and paste your code to <http://jslint.com> every time you want to **JSLint*
 
 The **JSLint** validation preferences that **[o2.js][1]** uses are as follows:
 
-        var JSLINT_PREFS = {
-            browser : true,
-            evil    : false,
-            laxbreak: true,
-            maxerr  : 1000,
-            newcap  : true,
-            nomen   : true,
-            passfail: false,
-            plusplus: true,
-            rhino   : true,
-            undef   : true,
-            vars    : true,
-            white   : true,
-            regexp  : true,
-            bitwise : true
-        };
+        "--indent", "4",
+        "--space",
+        "--newcap",
+        "--undef",
+        "--regexp",
+        "--bitwise",
+        "--white",
+        "--node",
+        "--plusplus",
+        "--stupid",
 
 * Run the publish script.
 

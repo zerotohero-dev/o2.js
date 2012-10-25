@@ -7,73 +7,77 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A static class for timeout related operations.</p>
  */
-(function(framework, window, UNDEFINED) {
+(function(framework, fp, window, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('timer.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Timer';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Timer
-     *
-     * <p>A class for executing repeated timed actions.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * // A unique id for the timer.
-     * var kCheckId = 'my_timer';
-     *
-     * // Auto start timer with id kCheckId to repeat doStuff approximately
-     * // every 500 milliseconds, please note that this is an approximation.
-     * // for further details see John Resig's excellent article on this:
-     * // http://ejohn.org/blog/how-javascript-timers-work/
-     * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
-     *
-     * // Stops the timer (i.e. doStuff will not be executed further).
-     * o2.Timer.stop(kCheckId);
-     *
-     * // Restarts the timer (i.e. doStuff will be periodically executed again).
-     * o2.Timer.start(kCheckId);
-     * </pre>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Timer',
 
-    /*
-     * Aliases
-     */
-    var concat = require('String', 'concat');
+        /**
+         * @class {static} o2.Timer
+         *
+         * <p>A class for executing repeated timed actions.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // A unique id for the timer.
+         * var kCheckId = 'my_timer';
+         *
+         * // Auto start timer with id kCheckId to repeat doStuff approximately
+         * // every 500 milliseconds, please note that this is an approximation.
+         * // for further details see John Resig's excellent article on this:
+         * // http://ejohn.org/blog/how-javascript-timers-work/
+         * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+         *
+         * // Stops the timer (i.e. doStuff will not be executed further).
+         * o2.Timer.stop(kCheckId);
+         *
+         * // Restarts the timer (i.e. doStuff will be periodically executed again).
+         * o2.Timer.start(kCheckId);
+         * </pre>
+         */
+        me = create(kModuleName),
 
-    var clearInterval = attr(window, 'clearInterval');
-    var clearTimeout  = attr(window, 'clearTimeout');
-    var setInterval   = attr(window, 'setInterval');
-    var setTimeout    = attr(window, 'setTimeout');
+        /*
+         * Aliases
+         */
+        concat = require('String', 'concat'),
 
-    /*
-     * Common Constants
-     */
-    var kPrefix = 't';
+        /*
+         * Common Constants
+         */
+        kPrefix = 't',
 
-    /*
-     * A collection of timers.
-     */
-    var timers = {};
+        /*
+         * State Information
+         */
+        timers = {},
+
+        /*
+         * To be Overridden
+         */
+        start = null,
+        stop  = null;
 
     /**
      * @function {static} o2.Timer.start
@@ -89,34 +93,28 @@
      * @param {String} id - the id of the timer to start.
      */
     exports.start = def(me, 'start', function(id) {
-        var timerId = concat(kPrefix, id);
-        var meta    = timers[timerId];
+        var timerId = concat(kPrefix, id),
+            meta    = timers[timerId];
 
-        if (!meta) {
-            return;
-        }
+        if (!meta) {return;}
 
         if (meta.shouldRepeat) {
             clearInterval(meta.id);
 
-            meta.id = setInterval(function() {
-                meta.delegate();
-            }, meta.timeout);
+            meta.id = setInterval(meta.delegate, meta.timeout);
 
             return;
         }
 
         clearTimeout(meta.id);
 
-        meta.id = setTimeout(function() {
-            meta.delegate();
-        }, meta.timeout);
+        meta.id = setTimeout(meta.delegate, meta.timeout);
     });
 
     /*
      *
      */
-    var start = require(kModuleName, 'start');
+    start = require(kModuleName, 'start');
 
     /**
      * @function {static} o2.Timer.stop
@@ -132,12 +130,10 @@
      * @param {String} id - the id of the timer to stop.
      */
     exports.stop = def(me, 'stop', function(id) {
-        var timerId = concat(kPrefix, id);
-        var meta    = timers[timerId];
+        var timerId = concat(kPrefix, id),
+            meta    = timers[timerId];
 
-        if (!meta) {
-            return;
-        }
+        if (!meta) {return;}
 
         if (meta.shouldRepeat) {
             clearInterval(meta.id);
@@ -151,7 +147,7 @@
     /*
      *
      */
-    var stop = require(kModuleName, 'stop');
+    stop = require(kModuleName, 'stop');
 
     /**
      * @function {static} o2.Timer.set
@@ -207,4 +203,4 @@
             start(id);
         }
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

@@ -9,79 +9,96 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>A utility package to
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.style', ['core', 'string.core',
+        'string.transform', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (style)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (style)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var t      = require('t');
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kString               = 'String';
-    var concat                = require(kString, 'concat');
-    var toCamelCase           = require(kString, 'toCamelCase');
-    var toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase');
+        $             = require('$'),
+        t             = require('t'),
+        frameworkName = require('name'),
 
-    /*
-     * Common Constants
-     */
-    var kBackgroundPositionX = 'background-position-x';
-    var kBackgroundPositionY = 'background-position-y';
-    var kCssFloat            = 'cssFloat';
-    var kDisplay             = 'display';
-    var kEmpty               = '';
-    var kFloat               = 'float';
-    var kHead                = 'head';
-    var kHidden              = 'hidden';
-    var kLeft                = 'left';
-    var kLink                = 'link';
-    var kM$                  = 'MSIE';
-    var kNone                = 'none';
-    var kOldDisplay          = '_oldDisplay';
-    var kPixels              = 'px';
-    var kRel                 = 'rel';
-    var kStyle               = 'style';
-    var kTextCss             = 'text/css';
-    var kTitle               = 'title';
-    var kTop                 = 'top';
-    var kVisibility          = 'visibility';
-    var kZeroPx              = '0px';
+        kString               = 'String',
+        concat                = require(kString, 'concat'),
+        toCamelCase           = require(kString, 'toCamelCase'),
+        toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase'),
 
-    /*
-     * Common Regular Expressions
-     */
-    var kRegNumber      = /^-?\d/;
-    var kRegPixelNumber = /^-?\d+(?:px)?$/i;
+        /*
+         * Common Constants
+         */
+        kBackgroundPositionX = 'background-position-x',
+        kBackgroundPositionY = 'background-position-y',
+        kCssFloat            = 'cssFloat',
+        kDisplay             = 'display',
+        kEmpty               = '',
+        kFloat               = 'float',
+        kHead                = 'head',
+        kHidden              = 'hidden',
+        kLeft                = 'left',
+        kLink                = 'link',
+        kM$                  = 'MSIE',
+        kNone                = 'none',
+        kOldDisplay          = '_oldDisplay',
+        kPixels              = 'px',
+        kRel                 = 'rel',
+        kStyle               = 'style',
+        kTextCss             = 'text/css',
+        kTitle               = 'title',
+        kTop                 = 'top',
+        kVisibility          = 'visibility',
+        kZeroPx              = '0px',
+        kCssText             = 'cssText',
+
+        /*
+         * Common Regular Expressions
+         */
+        kRegNumber      = /^-?\d/,
+        kRegPixelNumber = /^-?\d+(?:px)?$/i,
+
+        /*
+         *
+         */
+        isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+
+        /*
+         * To be Overridden
+         */
+        hide      = null,
+        show      = null,
+        isVisible = null;
 
     /**
      * @function {static} o2.Dom.activateAlternateStylesheet
@@ -100,26 +117,22 @@
      */
     exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
                 function(title) {
-        var i             = 0;
-        var len           = 0;
-        var link          = null;
-        var links         = t(kLink);
-        var linkTitle     = kEmpty;
-        var shouldDisable = false;
+        var i             = 0,
+            len           = 0,
+            link          = null,
+            links         = t(kLink),
+            linkTitle     = kEmpty,
+            shouldDisable = false;
 
         for (i = 0, len = links.length; i < len; i++) {
-            link = links[i];
-            linkTitle = link.getAttribute(kTitle);
+            link          = links[i];
+            linkTitle     = link.getAttribute(kTitle);
             shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
                 title;
+
             link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
     });
-
-    /*
-     *
-     */
-    var isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
 
     if(isCrap) {
 
@@ -151,14 +164,13 @@
     } else {
         exports.addCssRules = def(me, 'addCssRules', function(cssText) {
             var d         = document.createElement(kStyle);
+
             d.type        = kTextCss;
             d.textContent = cssText;
 
             document.getElementsByTagName(kHead)[0].appendChild(d);
         });
     }
-
-    var kCssText = 'cssText';
 
     /**
      * @function {static} o2.Dom.addStyle
@@ -186,14 +198,11 @@
     exports.addStyle = def(me, 'addStyle', function(obj, style) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var key               = null;
-        var toCamelCaseCached = toCamelCase;
-
-        var objStyle = obj.style;
+        var key               = null,
+            toCamelCaseCached = toCamelCase,
+            objStyle          = obj.style;
 
         if (typeof style === kString) {
             if(objStyle.setAttribute) {
@@ -242,9 +251,7 @@
     function getStyleTextFromAttribute(obj) {
         var styleText = obj.getAttribute(kStyle);
 
-        if(!styleText) {
-            return kEmpty;
-        }
+        if(!styleText) {return kEmpty;}
 
         if (typeof styleText === kString) {
             return styleText;
@@ -261,9 +268,7 @@
         //return the property if set inline.
         var val = obj.style[cssProp];
 
-        if (val) {
-            return val;
-        }
+        if (val) {return val;}
 
         return null;
     }
@@ -318,26 +323,26 @@
          */
         exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
                     isNoForce) {
-            var noForce   = !!isNoForce;
-            var obj       = $(elm);
+            var noForce     = !!isNoForce,
+                obj         = $(elm),
+                defaultView = document.defaultView,
+                cssProp     = kEmpty,
+                d           = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
             if (!cssProperty) {
                 return getStyleTextFromAttribute(obj);
             }
 
-            var defaultView = document.defaultView;
-            var cssProp = prepareCssProperty(cssProperty);
+            cssProp = prepareCssProperty(cssProperty);
 
             if (noForce) {
                 return getInlineStyle(obj, cssProp);
             }
 
-            var d = defaultView.getComputedStyle(obj, kEmpty
-                ).getPropertyValue(toDashedFromCamelCase(cssProp));
+            d = defaultView.getComputedStyle(obj, kEmpty).getPropertyValue(
+                toDashedFromCamelCase(cssProp));
 
             if (cssProp === kBackgroundPositionY ||
                         cssProp === kBackgroundPositionX) {
@@ -351,18 +356,22 @@
     } else {
         exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
                     isNoForce) {
-            var noForce   = !!isNoForce;
-            var obj       = $(elm);
+            var noForce      = !!isNoForce,
+                obj          = $(elm),
+                cssProp      = kEmpty,
+                camelizedCss = kEmpty,
+                value        = kEmpty,
+                isImproper   = false,
+                left         = kEmpty,
+                runtimeLeft  = kEmpty;
 
-            if (!obj) {
-                return;
-            }
+            if (!obj) {return;}
 
             if (!cssProperty) {
                 return getStyleTextFromAttribute(obj);
             }
 
-            var cssProp = prepareCssProperty(cssProperty);
+            cssProp = prepareCssProperty(cssProperty);
 
             if(noForce) {
                 return getInlineStyle(obj, cssProp);
@@ -370,9 +379,9 @@
 
             //TODO: factor out.
             if (obj.currentStyle) {
-                var camelizedCss = toCamelCase(cssProp);
-                var value      = obj.currentStyle[camelizedCss];
-                var isImproper = !kRegPixelNumber.test(value) &&
+                camelizedCss = toCamelCase(cssProp);
+                value        = obj.currentStyle[camelizedCss];
+                isImproper   = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
 
                 //
@@ -399,15 +408,16 @@
                 // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
                 //
                 if (isImproper) {
-                    var left = obj.style.left;
-                    var runtimeLeft = obj.runtimeStyle.left;
+                    left        = obj.style.left;
+                    runtimeLeft = obj.runtimeStyle.left;
 
                     obj.runtimeStyle.left = obj.currentStyle.left;
-                    obj.style.left = (value || 0);
+                    obj.style.left        = (value || 0);
+
                     value = concat(obj.style.pixelLeft, kPixels);
 
-                    obj.style.left = left;
                     obj.runtimeStyle.left = runtimeLeft;
+                    obj.style.left        = left;
 
                     return value;
                 }
@@ -445,12 +455,10 @@
     exports.hide = def(me, 'hide', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (obj.style.display !== kNone) {
-            obj[[myName, kOldDisplay].join(kEmpty)] = obj.style.display;
+            obj[[frameworkName, kOldDisplay].join(kEmpty)] = obj.style.display;
         }
 
         obj.style.display = kNone;
@@ -459,7 +467,7 @@
     /*
      *
      */
-    var hide = require(kModuleName, 'hide');
+    hide = require(kModuleName, 'hide');
 
     /**
      * @function {static} o2.Dom.show
@@ -478,19 +486,17 @@
     exports.show = def(me, 'show', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
+        obj.style.display = obj[[frameworkName, kOldDisplay].join(kEmpty)] || kEmpty;
 
-        delete obj[[myName, kOldDisplay].join(kEmpty)];
+        delete obj[[frameworkName, kOldDisplay].join(kEmpty)];
     });
 
     /*
      *
      */
-    var show = require(kModuleName, 'show');
+    show = require(kModuleName, 'show');
 
     /**
      * @function {static} o2.Dom.isVisible
@@ -518,9 +524,7 @@
     exports.isVisible = def(me, 'isVisible', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return false;
-        }
+        if (!obj) {return false;}
 
         // has offset dimensions
         // OR display IN (inline,block,'')
@@ -535,16 +539,11 @@
         // from the computed style, then the method fails and returns
         // false.
 
-        var display = me.getStyle(obj, kDisplay);
-        var visibility = me.getStyle(obj, kVisibility);
+        var display    = me.getStyle(obj, kDisplay),
+            visibility = me.getStyle(obj, kVisibility);
 
-        if (visibility === kHidden) {
-            return false;
-        }
-
-        if (display === kNone) {
-            return false;
-        }
+        if (visibility === kHidden) {return false;}
+        if (display === kNone     ) {return false;}
 
         return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) ||
                ((display    ===  null  ) && (visibility !== kHidden)) ||
@@ -555,7 +554,7 @@
     /*
      *
      */
-    var isVisible = require(kModuleName, 'isVisible');
+    isVisible = require(kModuleName, 'isVisible');
 
     /**
      * @function {static} o2.Dom.toggleVisibility
@@ -579,9 +578,7 @@
                 state) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (state !== UNDEFINED) {
             if (state) {
@@ -603,4 +600,4 @@
 
         show(elm);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

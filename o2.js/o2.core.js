@@ -9,14 +9,12 @@
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001343759096
+  * @version     0.25.a.0001351142298
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
 
-/*
- *  lastModified: 2012-06-02 22:47:21.699341
- */
+if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
 /**
  * @module   core
@@ -24,49 +22,51 @@
  *
  * <p>The core module.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var kFrameworkUndefined = 'Please include module "core.meta"!';
+    // Ensure that dependencies have been loaded.
+    fp.ensure('core', ['core.meta']);
 
-    if (framework === UNDEFINED) {
-        throw kFrameworkUndefined;
-    }
+    var attr     = fp.getAttr,
+        def      = attr(fp, 'define'),
+        obj      = attr(fp, 'getObject'),
+        require  = attr(fp, 'require'),
+        root     = attr(fp, 'getRoot'),
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
-    var require   = attr(_, 'require');
-    var root      = attr(_, 'getRoot');
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    var exports = {};
+        /*
+         * Guid (copied from String.core to remove dependency)
+         */
+        kGuidRadix    = 36,
+        kGuidShift    = 30,
+        kDecimalPoint = '.',
 
-    /*
-     * Guid (copied from String.core to remove dependency)
-     */
-    var kGuidRadix    = 36;
-    var kGuidShift    = 30;
-    var kDecimalPoint = '.';
+        /*
+         * o2 (Root Namespace)
+         */
+        me     = root(),
+        myself = obj(me),
 
-    /*
-     * o2 (Root Namespace)
-     */
-    var me     = root();
-    var myself = obj(me);
+        /*
+         * Common Constants
+         */
+        kEmpty            = '',
+        kLoad             = 'load',
+        kObjectNotDefined = ' : Object is not defined.',
+        kString           = 'string',
 
-    /*
-     * Aliases
-     */
-    var getElementsByName = attr(document, 'getElementsByName');
-
-    /*
-     * Common Constants
-     */
-    var kEmpty            = '';
-    var kLoad             = 'load';
-    var kObjectNotDefined = ' : Object is not defined.';
-    var kString           = 'string';
+        /*
+         * To be Overridden
+         */
+        myName = null,
+        t      = null,
+        n      = null,
+        $      = null;
 
     /**
      * @function {static} o2.nill
@@ -86,7 +86,7 @@
     /*
      *
      */
-    var myName = require('name');
+    myName = require('name');
 
     /**
      * @property {readonly String} o2.url
@@ -118,7 +118,7 @@
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001343759096');
+    exports.build = def(me, 'build', '.0001351142298');
 
     /**
      * @function {static} o2.$
@@ -153,7 +153,7 @@
     /*
      *
      */
-    var $ = require('$');
+    $ = require('$');
 
     /**
      * @function {static} o2.ready
@@ -243,11 +243,11 @@
     exports.noConflict = def(me, 'noConflict', function(newName) {
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
-            ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
+            ).replace(kDecimalPoint, kEmpty)].join(kEmpty),
+            kCacheKey = '_o2_cached';
 
-        window[name] = myself;
-
-        window[myName] = window._o2_cached;
+        window[name]   = myself;
+        window[myName] = window[kCacheKey];
 
         return window[name];
     });
@@ -270,18 +270,17 @@
      * @return a collection of matching elements.
      */
     exports.n = def(me, 'n', function(name, parent) {
-        var collection = getElementsByName(name);
-        var i          = 0;
-        var isParent   = require('Dom', 'isParent');
-        var item       = null;
-        var len        = 0;
-        var result     = [];
+        var collection = document.getElementsByName(name),
+            father     = null,
+            i          = 0,
+            isParent   = require('Dom', 'isParent'),
+            item       = null,
+            len        = 0,
+            result     = [];
 
-        if (!parent) {
-            return collection;
-        }
+        if (!parent) {return collection;}
 
-        var father = $(parent);
+        father = $(parent);
 
         for (i = 0, len = collection.length; i < len; i++) {
             item = collection[i];
@@ -297,7 +296,7 @@
     /*
      *
      */
-    var n = require('n');
+    n = require('n');
 
     /**
      * @function {static} o2.nn
@@ -345,9 +344,7 @@
     exports.t = def(me, 't', function(tagName, parent) {
         var p = $(parent || document);
 
-        if (!p) {
-            return null;
-        }
+        if (!p) {return null;}
 
         return p.getElementsByTagName(tagName);
     });
@@ -355,7 +352,7 @@
     /*
      *
      */
-    var t = require('t');
+    t = require('t');
 
     /**
      * @function {static} o2.tt
@@ -378,10 +375,9 @@
      * otherwise.
      */
     exports.tt = def(me, 'tt', function(tagName, parent) {
-        var p = $(parent);
-
-        var result = t(tagName, p);
+        var p      = $(parent),
+            result = t(tagName, p);
 
         return result ? result[0] : null;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds. this, this.document));

@@ -28,28 +28,35 @@ if (!document) {
     this.Image         = {};
     this.scrollTo      = function() {};
     this.location      = {};
-}/**
+}
+/**
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
- */
-
-if (this.o2) {
-    this._o2_cached = this.o2;
-} else {
-    this.o2 = {isProduction : false};
-}
-
-
-/**
- * @module core.meta
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-31 21:21:58.177362
  * -->
+ */
+
+(function(window) {
+    'use strict';
+
+    var kCache     = '_o2_cached',
+        kFramework = 'o2';
+
+    if (window[kFramework]) {
+        window[kCache] = window[kFramework];
+
+        return;
+    }
+
+    window[kFramework] = {isProduction : false};
+}(this));
+
+/**
+ * @module core.meta
  *
  * <p>Meta information.</p>
  */
@@ -59,11 +66,82 @@ if (this.o2) {
     /*
      * Common Constants
      */
+    var kAny    = '*',
+        kEmpty  = '',
+        kObject = 'object',
+        kString = 'string',
 
-    var kAny    = '*';
-    var kEmpty  = '';
-    var kObject = 'object';
-    var kString = 'string';
+        /*
+         * Warning Messages
+         */
+        kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ',
+        kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ',
+        kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.',
+        kNameNotProvided      = 'framework.protecteds: name not provided',
+        kNoMetaDefinition     = 'framework.protecteds: no meta definition.',
+        kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection',
+        kObjNameNotString     = 'framework.protecteds: "name" should be  a String.',
+        kRootNotFound         = 'framework.protecteds: root not found for',
+
+        /*
+         * Module Names
+         */
+        kCore                = 'core',
+        kExtend              = 'extend',
+        kAjaxCore            = 'ajax.core',
+        kAjaxExtend          = 'ajax.extend',
+        kAjaxControllerCore  = 'ajaxcontroller.core',
+        kAjaxStateCore       = 'ajaxstate.core',
+        kCollectionCore      = 'colleciton.core',
+        kCookieCore          = 'cookie.core',
+        kDebuggerCore        = 'debugger.core',
+        kDateCore            = 'date.core',
+        kDomCore             = 'dom.core',
+        kDomConstants        = 'dom.constants',
+        kDomClass            = 'dom.class',
+        kDomDimension        = 'dom.dimension',
+        kDomForm             = 'dom.form',
+        kDomLoad             = 'dom.load',
+        kDomModify           = 'dom.modify',
+        kDomReady            = 'dom.ready',
+        kDomScroll           = 'dom.scroll',
+        kDomTraverse         = 'dom.traverse',
+        kDomStyle            = 'dom.style',
+        kEventConstants      = 'event.constants',
+        kEventCore           = 'event.core',
+        kEventExtend         = 'event.extend',
+        kEventCustom         = 'event.custom',
+        kJsonpCore           = 'jsonp.core',
+        kJsonpControllerCore = 'jsonpcontroller.core',
+        kJsonpStateCore      = 'jsonpstate.core',
+        kMethodCore          = 'method.core',
+        kMethodEvent         = 'method.event',
+        kMethodInherit       = 'method.inherit',
+        kMethodRepeat        = 'method.repeat',
+        kMethodTimer         = 'method.timer',
+        kMethodTranspose     = 'method.transpose',
+        kObjectCore          = 'object.core',
+        kQueryStringCore     = 'querystring.core',
+        kSortDelegateCore    = 'sortdelegate.core',
+        kStringCore          = 'string.core',
+        kStringEncode        = 'string.encode',
+        kStringStrip         = 'string.strip',
+        kStringTransform     = 'string.transform',
+        kSupportsCore        = 'supports.core',
+        kTemplateCore        = 'template.core',
+        kTimerCore           = 'timer.core',
+        kTryCore             = 'try.core',
+        kUnitCore            = 'unit.core',
+        kValidationCore      = 'validation.core',
+        kValidationRegExp    = 'validation.regexp',
+        kCoreMeta            = 'core.meta',
+
+        /*
+         * To be Overridden
+         */
+        fp           = null,
+        classes      = null,
+        modules      = null;
 
     /*
      *
@@ -88,13 +166,8 @@ if (this.o2) {
      *
      */
     function init(root, key, value) {
-        if (!root || typeof root !== kObject) {
-            return null;
-        }
-
-        if (root[key]) {
-            return root[key];
-        }
+        if (!root || typeof root !== kObject) {return null;}
+        if (root[key]                       ) {return root[key];}
 
         root[key] = value;
 
@@ -106,19 +179,15 @@ if (this.o2) {
      * returns the existing namespace otherwise.
      */
     function namespace(root, key) {
-        if (!root || typeof root !== kObject) {
-            return null;
-        }
+        if (!root || typeof root !== kObject) {return null;}
 
         return init(root, key, {});
     }
 
-    var fp = init(framework, 'protecteds', {});
-
     /*
      *
      */
-    var isProduction = framework.isProduction;
+    fp = init(framework, 'protecteds', {});
 
     /*
      * @property {protected Object} o2.protecteds.classes
@@ -138,15 +207,7 @@ if (this.o2) {
      * <p>This structure is especially useful while running automated unit
      * tests and checking the consistency of the overall framework.</p>
      */
-
-    var kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ';
-    var kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ';
-    var kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.';
-    var kNameNotProvided      = 'framework.protecteds: name not provided';
-    var kNoMetaDefinition     = 'framework.protecteds: no meta definition.';
-    var kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection';
-    var kObjNameNotString     = 'framework.protecteds: "name" should be  a String.';
-    var kRootNotFound         = 'framework.protecteds: root not found for';
+    classes  = init(fp, 'classes', {});
 
     /*
      *
@@ -240,6 +301,9 @@ if (this.o2) {
         ].join(kEmpty);
     }
 
+    /*
+     *
+     */
     function getIncorrectMetaDefinitionWarning(name) {
         return ['framework.protecteds: Incorrect meta definition for "',
             name, '".'
@@ -247,1116 +311,670 @@ if (this.o2) {
     }
 
     /*
-     * These constants save some space during minification:
+     *
      */
-     var kAjaxControllerCore    = 'ajaxcontroller.core';
-     var kAjaxCore              = 'ajax.core';
-     var kAjaxExtend            = 'ajax.extend';
-     var kAjaxStateCore         = 'ajaxstate.core';
-     var kCollectionCore        = 'collection.core';
-     var kCookieCore            = 'cookie.core';
-     var kCore                  = 'core';
-     var kDebuggerCore          = 'debugger.core';
-     var kDateCore              = 'date.core';
-     var kDomClass              = 'dom.class';
-     var kDomConstants          = 'dom.constants';
-     var kDomCore               = 'dom.core';
-     var kDomDimension          = 'dom.dimension';
-     var kDomForm               = 'dom.form';
-     var kDomLoad               = 'dom.load';
-     var kDomModify             = 'dom.modify';
-     var kDomReady              = 'dom.ready';
-     var kDomScroll             = 'dom.scroll';
-     var kDomStyle              = 'dom.style';
-     var kDomTraverse           = 'dom.traverse';
-     var kEventConstants        = 'event.constants';
-     var kEventCore             = 'event.core';
-     var kEventCustom           = 'event.custom';
-     var kEventExtend           = 'event.extend';
-     var kExtend                = 'extend';
-     var kJsonpCore             = 'jsonp.core';
-     var kJsonpControllerCore   = 'jsonpcontroller.core';
-     var kJsonpStateCore        = 'jsonpstate.core';
-     var kMethodCore            = 'method.core';
-     var kMethodEvent           = 'method.event';
-     var kMethodInherit         = 'method.inherit';
-     var kMethodRepeat          = 'method.repeat';
-     var kMethodTimer           = 'method.timer';
-     var kMethodTranspose       = 'method.transpose';
-     var kObjectCore            = 'object.core';
-     var kQueryStringCore       = 'querystring.core';
-     var kSortDelegateCore      = 'sortdelegate.core';
-     var kStringCore            = 'string.core';
-     var kStringEncode          = 'string.encode';
-     var kStringStrip           = 'string.strip';
-     var kStringTransform       = 'string.transform';
-     var kSupportsCore          = 'supports.core';
-     var kTemplateCore          = 'template.core';
-     var kTimerCore             = 'timer.core';
-     var kTryCore               = 'try.core';
-     var kUnitCore              = 'unit.core';
-     var kValidationCore        = 'validation.core';
-     var kValidationRegExp      = 'validation.regexp';
+    function addItems(moduleName, moduleIdentifier, itemList) {
+        var inheritance = moduleName.split(/>/),
+            module      = init(classes, inheritance[0], {}),
+            items       = null,
+            i           = 0,
+            len         = 0;
 
-     init(fp, 'classes', {
-        o2 : {
-            items : {
-                $          : {MODULE : kCore},
-                build      : {MODULE : kCore},
-                load       : {MODULE : kCore},
-                longName   : {MODULE : kCore},
-                name       : {MODULE : kCore},
-                nill       : {MODULE : kCore},
-                noConflict : {MODULE : kCore},
-                now        : {MODULE : kCore},
-                ready      : {MODULE : kCore},
-                url        : {MODULE : kCore},
-                version    : {MODULE : kCore},
-
-                n  : {MODULE : kExtend},
-                nn : {MODULE : kExtend},
-                t  : {MODULE : kExtend},
-                tt : {MODULE : kExtend}
-
-            }
-        },
-        Ajax : {
-            items : {
-                 abort     : {MODULE : kAjaxCore},
-                 createXhr : {MODULE : kAjaxCore},
-                 get       : {MODULE : kAjaxCore},
-                 post      : {MODULE : kAjaxCore},
-
-                 getSingle  : {MODULE : kAjaxExtend},
-                 postSingle : {MODULE : kAjaxExtend}
-            }
-        },
-        AjaxController : {
-            items : {
-                unregister : {MODULE : kAjaxControllerCore},
-                update     : {MODULE : kAjaxControllerCore}
-            }
-        },
-        AjaxState : {
-            items : {
-                protecteds          : {MODULE : kAjaxStateCore},
-
-                addObserver         : {MODULE : kAjaxStateCore},
-                countObservers      : {MODULE : kAjaxStateCore},
-                deleteObserver      : {MODULE : kAjaxStateCore},
-                deleteObservers     : {MODULE : kAjaxStateCore},
-                init                : {MODULE : kAjaxStateCore},
-                timeoutObservers    : {MODULE : kAjaxStateCore},
-                timeoutAllObservers : {MODULE : kAjaxStateCore}
-            }
-        },
-        Collection : {
-            items : {
-                any                 : {MODULE : kCollectionCore},
-                clear               : {MODULE : kCollectionCore},
-                clone               : {MODULE : kCollectionCore},
-                compact             : {MODULE : kCollectionCore},
-                contains            : {MODULE : kCollectionCore},
-                copy                : {MODULE : kCollectionCore},
-                detect              : {MODULE : kCollectionCore},
-                diff                : {MODULE : kCollectionCore},
-                each                : {MODULE : kCollectionCore},
-                every               : {MODULE : kCollectionCore},
-                exclude             : {MODULE : kCollectionCore},
-                extend              : {MODULE : kCollectionCore},
-                filter              : {MODULE : kCollectionCore},
-                find                : {MODULE : kCollectionCore},
-                flatten             : {MODULE : kCollectionCore},
-                fold                : {MODULE : kCollectionCore},
-                foldR               : {MODULE : kCollectionCore},
-                forEach             : {MODULE : kCollectionCore},
-                getCount            : {MODULE : kCollectionCore},
-                getDifference       : {MODULE : kCollectionCore},
-                getFirst            : {MODULE : kCollectionCore},
-                getFirstN           : {MODULE : kCollectionCore},
-                getFunctions        : {MODULE : kCollectionCore},
-                getKeys             : {MODULE : kCollectionCore},
-                getLast             : {MODULE : kCollectionCore},
-                getLastN            : {MODULE : kCollectionCore},
-                getLength           : {MODULE : kCollectionCore},
-                getMax              : {MODULE : kCollectionCore},
-                getMethods          : {MODULE : kCollectionCore},
-                getMin              : {MODULE : kCollectionCore},
-                getRest             : {MODULE : kCollectionCore},
-                getSize             : {MODULE : kCollectionCore},
-                getSortedIndex      : {MODULE : kCollectionCore},
-                getValues           : {MODULE : kCollectionCore},
-                grep                : {MODULE : kCollectionCore},
-                group               : {MODULE : kCollectionCore},
-                inArray             : {MODULE : kCollectionCore},
-                includes            : {MODULE : kCollectionCore},
-                indexOf             : {MODULE : kCollectionCore},
-                intersect           : {MODULE : kCollectionCore},
-                invoke              : {MODULE : kCollectionCore},
-                isEmpty             : {MODULE : kCollectionCore},
-                lastIndexOf         : {MODULE : kCollectionCore},
-                map                 : {MODULE : kCollectionCore},
-                merge               : {MODULE : kCollectionCore},
-                pluck               : {MODULE : kCollectionCore},
-                reduce              : {MODULE : kCollectionCore},
-                reduceRight         : {MODULE : kCollectionCore},
-                reject              : {MODULE : kCollectionCore},
-                removeElement       : {MODULE : kCollectionCore},
-                removeElementByValue: {MODULE : kCollectionCore},
-                select              : {MODULE : kCollectionCore},
-                shuffle             : {MODULE : kCollectionCore},
-                some                : {MODULE : kCollectionCore},
-                sort                : {MODULE : kCollectionCore},
-                touch               : {MODULE : kCollectionCore},
-                toArray             : {MODULE : kCollectionCore},
-                union               : {MODULE : kCollectionCore},
-                unique              : {MODULE : kCollectionCore},
-                zip                 : {MODULE : kCollectionCore}
-            }
-        },
-        Cookie : {
-            items : {
-                read   : {MODULE : kCookieCore},
-                remove : {MODULE : kCookieCore},
-                save   : {MODULE : kCookieCore}
-            }
-        },
-        Debugger : {
-            items : {
-                assert  : {MODULE : kDebuggerCore},
-                error   : {MODULE : kDebuggerCore},
-                info    : {MODULE : kDebuggerCore},
-                init    : {MODULE : kDebuggerCore},
-                log     : {MODULE : kDebuggerCore},
-                println : {MODULE : kDebuggerCore},
-                warn    : {MODULE : kDebuggerCore}
-            }
-        },
-        Date : {
-            items : {
-                getPrettyDate : {MODULE : kDateCore},
-                getTime       : {MODULE : kDateCore},
-                now           : {MODULE : kDateCore}
-            }
-        },
-        Dom : {
-            items : {
-                nodeType : {MODULE : kDomConstants},
-
-                append                  : {MODULE : kDomCore},
-                create                  : {MODULE : kDomCore},
-                createDocumentFragment  : {MODULE : kDomCore},
-                createElement           : {MODULE : kDomCore},
-                empty                   : {MODULE : kDomCore},
-                getAttribute            : {MODULE : kDomCore},
-                getHtml                 : {MODULE : kDomCore},
-                getText                 : {MODULE : kDomCore},
-                insertAfter             : {MODULE : kDomCore},
-                insertBefore            : {MODULE : kDomCore},
-                isDocument              : {MODULE : kDomCore},
-                isElement               : {MODULE : kDomCore},
-                isNode                  : {MODILE : kDomCore},
-                prepend                 : {MODULE : kDomCore},
-                remove                  : {MODULE : kDomCore},
-                removeChildren          : {MODULE : kDomCore},
-                removeEmpty             : {MODULE : kDomCore},
-                removeEmptyTextNodes    : {MODULE : kDomCore},
-                removeNode              : {MODULE : kDomCore},
-                setAttribute            : {MODULE : kDomCore},
-                setHtml                 : {MODULE : kDomCore},
-
-                addClass              : {MODULE : kDomClass},
-                createClassNameRegExp : {MODULE : kDomClass},
-                hasClass              : {MODULE : kDomClass},
-                removeClass           : {MODULE : kDomClass},
-                toggleClass           : {MODULE : kDomClass},
-
-                getDimension            : {MODULE : kDomDimension},
-                getDocumentDimension    : {MODULE : kDomDimension},
-                getDocumentHeight       : {MODULE : kDomDimension},
-                getDocumentWidth        : {MODULE : kDomDimension},
-                getHeight               : {MODULE : kDomDimension},
-                getViewportInfo         : {MODULE : kDomDimension},
-                getWidth                : {MODULE : kDomDimension},
-                getWindowInnerDimension : {MODULE : kDomDimension},
-                getWindowInnerHeight    : {MODULE : kDomDimension},
-                getWindowInnerWidth     : {MODULE : kDomDimension},
-                setDimension            : {MODULE : kDomDimension},
-                setHeight               : {MODULE : kDomDimension},
-                setWidth                : {MODULE : kDomDimension},
-
-                compactField          : {MODULE : kDomForm},
-                disable               : {MODULE : kDomForm},
-                preventMultipleSubmit : {MODULE : kDomForm},
-                removePlaceholder     : {MODULE : kDomForm},
-                resetField            : {MODULE : kDomForm},
-                trimField             : {MODULE : kDomForm},
-
-                loadCss    : {MODULE : kDomLoad},
-                loadImage  : {MODULE : kDomLoad},
-                loadScript : {MODULE : kDomLoad},
-
-                replace : {MODULE : kDomModify},
-                unwrap  : {MODULE : kDomModify},
-                wrap    : {MODULE : kDomModify},
-
-                ready : {MODULE : kDomReady},
-
-                getObjectScrollOfset  : {MODULE : kDomScroll},
-                getScrollOffset       : {MODULE : kDomScroll},
-                getWindowScrollOffset : {MODULE : kDomScroll},
-                scrollObjectToBottom  : {MODULE : kDomScroll},
-                scrollObjectToTop     : {MODULE : kDomScroll},
-                scrollTo              : {MODULE : kDomScroll},
-                scrollToObject        : {MODULE : kDomScroll},
-                scrollWindowToBottom  : {MODULE : kDomScroll},
-                scrollWindowToObject  : {MODULE : kDomScroll},
-                scrollWindowToTop     : {MODULE : kDomScroll},
-
-                activateAlternateStylesheet : {MODULE : kDomStyle},
-                addCssRules                 : {MODULE : kDomStyle},
-                addStyle                    : {MODULE : kDomStyle},
-                getCss                      : {MODULE : kDomStyle},
-                getStyle                    : {MODULE : kDomStyle},
-                hide                        : {MODULE : kDomStyle},
-                isVisible                   : {MODULE : kDomStyle},
-                setCss                      : {MODULE : kDomStyle},
-                setStyle                    : {MODULE : kDomStyle},
-                show                        : {MODULE : kDomStyle},
-                toggleVisibility            : {MODULE : kDomStyle},
-
-                getChildren                   : {MODULE : kDomTraverse},
-                getChildrenByAttribute        : {MODULE : kDomTraverse},
-                getChildrenByAttributeUntil   : {MODULE : kDomTraverse},
-                getChildrenByClass            : {MODULE : kDomTraverse},
-                getChildrenByClassUntil       : {MODULE : kDomTraverse},
-                getChildrenUntil              : {MODULE : kDomTraverse},
-                getChildrenWithAttribute      : {MODULE : kDomTraverse},
-                getChildrenWithAttributeUntil : {MODULE : kDomTraverse},
-                getChildrenWithClass          : {MODULE : kDomTraverse},
-                getChildrenWithClassUntil     : {MODULE : kDomTraverse},
-                getChildrenWithId             : {MODULE : kDomTraverse},
-                getChildrenWithIdUntil        : {MODULE : kDomTraverse},
-
-                getElements                   : {MODULE : kDomTraverse},
-                getElementsByAttribute        : {MODULE : kDomTraverse},
-                getElementsByClass            : {MODULE : kDomTraverse},
-                getElementsWithAttribute      : {MODULE : kDomTraverse},
-                getElementsWithClass          : {MODULE : kDomTraverse},
-                getElementsWithId             : {MODULE : kDomTraverse},
-
-                getFirst              : {MODULE : kDomTraverse},
-                getFirstByAttribute   : {MODULE : kDomTraverse},
-                getFirstByClass       : {MODULE : kDomTraverse},
-                getFirstWithAttribute : {MODULE : kDomTraverse},
-                getFirstWithClass     : {MODULE : kDomTraverse},
-                getFirstWithId        : {MODULE : kDomTraverse},
-
-                getFirstChild              : {MODULE : kDomTraverse},
-                getFirstChildByAttribute   : {MODULE : kDomTraverse},
-                getFirstChildByClass       : {MODULE : kDomTraverse},
-                getFirstChildWithAttribute : {MODULE : kDomTraverse},
-                getFirstChildWithClass     : {MODULE : kDomTraverse},
-                getFirstChildWithId        : {MODULE : kDomTraverse},
-
-                getLast              : {MODULE : kDomTraverse},
-                getLastByAttribute   : {MODULE : kDomTraverse},
-                getLastByClass       : {MODULE : kDomTraverse},
-                getLastWithId        : {MODULE : kDomTraverse},
-                getLastWithAttribute : {MODULE : kDomTraverse},
-                getLastWithClass     : {MODULE : kDomTraverse},
-
-                getLastChild              : {MODULE : kDomTraverse},
-                getLastChildByAttribute   : {MODULE : kDomTraverse},
-                getLastChildByClass       : {MODULE : kDomTraverse},
-                getLastChildWithAttribute : {MODULE : kDomTraverse},
-                getLastChildWithClass     : {MODULE : kDomTraverse},
-                getLastChildWithId        : {MODULE : kDomTraverse},
-
-                getNext              : {MODULE : kDomTraverse},
-                getNextByAttribute   : {MODULE : kDomTraverse},
-                getNextByClass       : {MODULE : kDomTraverse},
-                getNextWithAttribute : {MODULE : kDomTraverse},
-                getNextWithClass     : {MODULE : kDomTraverse},
-                getNextWithId        : {MODULE : kDomTraverse},
-
-                getNextAll                   : {MODULE : kDomTraverse},
-                getNextAllByAttribute        : {MODULE : kDomTraverse},
-                getNextAllByAttributeUntil   : {MODULE : kDomTraverse},
-                getNextAllByClass            : {MODULE : kDomTraverse},
-                getNextAllByClassUntil       : {MODULE : kDomTraverse},
-                getNextAllUntil              : {MODULE : kDomTraverse},
-                getNextAllWithAttribute      : {MODULE : kDomTraverse},
-                getNextAllWithAttributeUntil : {MODULE : kDomTraverse},
-                getNextAllWithClass          : {MODULE : kDomTraverse},
-                getNextAllWithClassUntil     : {MODULE : kDomTraverse},
-                getNextAllWithId             : {MODULE : kDomTraverse},
-                getNextAllWithIdUntil        : {MODULE : kDomTraverse},
-
-                getNth              : {MODULE : kDomTraverse},
-                getNthByAttribute   : {MODULE : kDomTraverse},
-                getNthByClass       : {MODULE : kDomTraverse},
-                getNthWithAttribute : {MODULE : kDomTraverse},
-                getNthWithClass     : {MODULE : kDomTraverse},
-                getNthWithId        : {MODULE : kDomTraverse},
-
-                getNthChild              : {MODULE : kDomTraverse},
-                getNthChildByAttribute   : {MODULE : kDomTraverse},
-                getNthChildByClass       : {MODULE : kDomTraverse},
-                getNthChildWithAttribute : {MODULE : kDomTraverse},
-                getNthChildWithClass     : {MODULE : kDomTraverse},
-                getNthChildWithId        : {MODULE : kDomTraverse},
-
-                getNthNext              : {MODULE : kDomTraverse},
-                getNthNextByAttribute   : {MODULE : kDomTraverse},
-                getNthNextByClass       : {MODULE : kDomTraverse},
-                getNthNextWithAttribute : {MODULE : kDomTraverse},
-                getNthNextWithClass     : {MODULE : kDomTraverse},
-                getNthNextWithId        : {MODULE : kDomTraverse},
-
-                getNthParent              : {MODULE : kDomTraverse},
-                getNthParentByAttribute   : {MODULE : kDomTraverse},
-                getNthParentByClass       : {MODULE : kDomTraverse},
-                getNthParentWithAttribute : {MODULE : kDomTraverse},
-                getNthParentWithClass     : {MODULE : kDomTraverse},
-                getNthParentWithId        : {MODULE : kDomTraverse},
-
-                getNthPrev              : {MODULE : kDomTraverse},
-                getNthPrevByAttribute   : {MODULE : kDomTraverse},
-                getNthPrevByClass       : {MODULE : kDomTraverse},
-                getNthPrevWithAttribute : {MODULE : kDomTraverse},
-                getNthPrevWithClass     : {MODULE : kDomTraverse},
-                getNthPrevWithId        : {MODULE : kDomTraverse},
-
-                getParent              : {MODULE : kDomTraverse},
-                getParentByAttribute   : {MODULE : kDomTraverse},
-                getParentByClass       : {MODULE : kDomTraverse},
-                getParentWithAttribute : {MODULE : kDomTraverse},
-                getParentWithClass     : {MODULE : kDomTraverse},
-                getParentWithId        : {MODULE : kDomTraverse},
-
-                getParents                   : {MODULE : kDomTraverse},
-                getParentsByAttribute        : {MODULE : kDomTraverse},
-                getParentsByAttributeUntil   : {MODULE : kDomTraverse},
-                getParentsByClass            : {MODULE : kDomTraverse},
-                getParentsByClassUntil       : {MODULE : kDomTraverse},
-                getParentsUntil              : {MODULE : kDomTraverse},
-                getParentsWithAttribute      : {MODULE : kDomTraverse},
-                getParentsWithAttributeUntil : {MODULE : kDomTraverse},
-                getParentsWithClass          : {MODULE : kDomTraverse},
-                getParentsWithClassUntil     : {MODULE : kDomTraverse},
-                getParentsWithId             : {MODULE : kDomTraverse},
-                getParentsWithIdUntil        : {MODULE : kDomTraverse},
-
-                getPrev              : {MODULE : kDomTraverse},
-                getPrevByAttribute   : {MODULE : kDomTraverse},
-                getPrevByClass       : {MODULE : kDomTraverse},
-                getPrevWithAttribute : {MODULE : kDomTraverse},
-                getPrevWithClass     : {MODULE : kDomTraverse},
-                getPrevWithId        : {MODULE : kDomTraverse},
-
-                getPrevAll                   : {MODULE : kDomTraverse},
-                getPrevAllByAttribute        : {MODULE : kDomTraverse},
-                getPrevAllByAttributeUntil   : {MODULE : kDomTraverse},
-                getPrevAllByClass            : {MODULE : kDomTraverse},
-                getPrevAllByClassUntil       : {MODULE : kDomTraverse},
-                getPrevAllUntil              : {MODULE : kDomTraverse},
-                getPrevAllWithAttribute      : {MODULE : kDomTraverse},
-                getPrevAllWithAttributeUntil : {MODULE : kDomTraverse},
-                getPrevAllWithClass          : {MODULE : kDomTraverse},
-                getPrevAllWithClassUntil     : {MODULE : kDomTraverse},
-                getPrevAllWithId             : {MODULE : kDomTraverse},
-                getPrevAllWithIdUntil        : {MODULE : kDomTraverse},
-
-                getSiblings                   : {MODULE : kDomTraverse},
-                getSiblingsByAttribute        : {MODULE : kDomTraverse},
-                getSiblingsByAttributeUntil   : {MODULE : kDomTraverse},
-                getSiblingsByClass            : {MODULE : kDomTraverse},
-                getSiblingsByClassUntil       : {MODULE : kDomTraverse},
-                getSiblingsUntil              : {MODULE : kDomTraverse},
-                getSiblingsWithAttribute      : {MODULE : kDomTraverse},
-                getSiblingsWithAttributeUntil : {MODULE : kDomTraverse},
-                getSiblingsWithClass          : {MODULE : kDomTraverse},
-                getSiblingsWithClassUntil     : {MODULE : kDomTraverse},
-                getSiblingsWithId             : {MODULE : kDomTraverse},
-                getSiblingsWithIdUntil        : {MODULE : kDomTraverse},
-
-                isChild        : {MODULE : kDomTraverse},
-                isNext         : {MODULE : kDomTraverse},
-                isParent       : {MODULE : kDomTraverse},
-                isParentOrSelf : {MODULE : kDomTraverse},
-                isPrev         : {MODULE : kDomTraverse},
-                isSibling      : {MODULE : kDomTraverse}
-            }
-        },
-        Event : {
-            items : {
-                keyCode : {MODULE : kEventConstants},
-
-                addEventListener   : {MODULE : kEventCore},
-                addEventListeners  : {MODULE : kEventCore},
-                getEventObject     : {MODULE : kEventCore},
-                getKeyCode         : {MODULE : kEventCore},
-                getMouseCoordinates: {MODULE : kEventCore},
-                getTarget          : {MODULE : kEventCore},
-                off                : {MODULE : kEventCore},
-                on                 : {MODULE : kEventCore},
-                preventDefault     : {MODULE : kEventCore},
-                removeEventListener: {MODULE : kEventCore},
-                stopPropagation    : {MODULE : kEventCore},
-
-                isArrowKey               : {MODULE : kEventExtend},
-                isBackspaceKey           : {MODULE : kEventExtend},
-                isCharacterKeypressEvent : {MODULE : kEventExtend},
-                isEnterKey               : {MODULE : kEventExtend},
-                isEscapeKey              : {MODULE : kEventExtend},
-                isRightClick             : {MODULE : kEventExtend},
-                isTabKey                 : {MODULE : kEventExtend},
-
-                publish     : {MODULE : kEventCustom},
-                subscribe   : {MODULE : kEventCustom},
-                unsubscribe : {MODULE : kEventCustom}
-            }
-        },
-        Jsonp : {
-            items : {
-                get : {MODULE : kJsonpCore}
-            }
-        },
-        JsonpController : {
-            base  : 'AjaxController',
-            items : {
-                update     : {MODULE : kJsonpControllerCore},
-                unregister : {MODULE : kJsonpControllerCore}
-            }
-        },
-        JsonpState : {
-            base  : 'AjaxState',
-            items : {
-                protecteds : {MODULE : kJsonpStateCore},
-
-                // Overrides:
-                update     : {MODULE : kJsonpStateCore},
-                unregister : {MODULE : kJsonpStateCore}
-            }
-        },
-        Method : {
-            items : {
-                bind     : {MODULE : kMethodCore},
-                curry    : {MODULE : kMethodCore},
-                identity : {MODULE : kMethodCore},
-                memoize  : {MODULE : kMethodCore},
-                partial  : {MODULE : kMethodCore},
-
-                bindAsEventListener : {MODULE : kMethodEvent},
-
-                overload            : {MODULE : kMethodInherit},
-                requireAllArguments : {MODULE : kMethodInherit},
-
-                after : {MODULE : kMethodRepeat},
-                once  : {MODULE : kMethodRepeat},
-                times : {MODULE : kMethodRepeat},
-
-                debounce : {MODULE : kMethodTimer},
-                defer    : {MODULE : kMethodTimer},
-                delay    : {MODULE : kMethodTimer},
-                throttle : {MODULE : kMethodTimer},
-
-                compose : {MODULE : kMethodTranspose},
-                flip    : {MODULE : kMethodTranspose},
-                wrap    : {MODULE : kMethodTranspose}
-            }
-        },
-        Object : {
-            items : {
-                copy          : {MODULE : kObjectCore},
-                copyMethods   : {MODULE : kObjectCore},
-                copyPrototype : {MODULE : kObjectCore},
-                extend        : {MODULE : kObjectCore},
-                stringify     : {MODULE : kObjectCore},
-                toArray       : {MODULE : kObjectCore},
-                toJsonString  : {MODULE : kObjectCore},
-                touch         : {MODULE : kObjectCore}
-            }
-        },
-        QueryString : {
-            items : {
-                encode : {MODULE : kQueryStringCore},
-                parse  : {MODULE : kQueryStringCore}
-            }
-        },
-        SortDelegate : {
-            items : {
-                sort     : {MODULE : kSortDelegateCore},
-                sortAsc  : {MODULE : kSortDelegateCore},
-                sortDesc : {MODULE : kSortDelegateCore}
-            }
-        },
-        String : {
-            items : {
-                compact        : {MODULE : kStringCore},
-                concat         : {MODULE : kStringCore},
-                format         : {MODULE : kStringCore},
-                generateGuid   : {MODULE : kStringCore},
-                generateRandom : {MODULE : kStringCore},
-                printf         : {MODULE : kStringCore},
-                remove         : {MODULE : kStringCore},
-                trim           : {MODULE : kStringCore},
-
-                decode         : {MODULE : kStringEncode},
-                encode         : {MODULE : kStringEncode},
-                encodeSafeHtml : {MODULE : kStringEncode},
-                escape         : {MODULE : kStringEncode},
-                htmlEncode     : {MODULE : kStringEncode},
-                safeHtmlEncode : {MODULE : kStringEncode},
-                unescape       : {MODULE : kStringEncode},
-                xssEncode      : {MODULE : kStringEncode},
-
-                stripNonAlpha        : {MODULE : kStringStrip},
-                stripNonAlphanumeric : {MODULE : kStringStrip},
-                stripTags            : {MODULE : kStringStrip},
-                stripNonNumeric      : {MODULE : kStringStrip},
-                stripNumeric         : {MODULE : kStringStrip},
-
-                br2nl                     : {MODULE : kStringTransform},
-                nl2br                     : {MODULE : kStringTransform},
-                toCamelCase               : {MODULE : kStringTransform},
-                toDashedFromCamelCase     : {MODULE : kStringTransform},
-                toJson                    : {MODULE : kStringTransform},
-                toUnderscoreFromCamelCase : {MODULE : kStringTransform},
-                truncate                  : {MODULE : kStringTransform}
-            }
-        },
-        Supports : {
-            items : {
-                ajax   : {MODULE : kSupportsCore},
-                cookie : {MODULE : kSupportsCore},
-                dom    : {MODULE : kSupportsCore}
-            }
-        },
-        Template : {
-            items : {
-                parse : {MODULE : kTemplateCore}
-            }
-        },
-        Timer : {
-            items : {
-                set   : {MODULE : kTimerCore},
-                start : {MODULE : kTimerCore},
-                stop  : {MODULE : kTimerCore}
-            }
-        },
-        Try : {
-            items : {
-                all   : {MODULE : kTryCore},
-                these : {MODULE : kTryCore}
-            }
-        },
-        Unit : {
-            items : {
-                add                   : {MODULE : kUnitCore},
-                assert                : {MODULE : kUnitCore},
-                assertEqual           : {MODULE : kUnitCore},
-                assertNotEqual        : {MODULE : kUnitCore},
-                assertStrictEqual     : {MODULE : kUnitCore},
-                assertStrictNotEqual  : {MODULE : kUnitCore},
-                getGlobalFailureCount : {MODULE : kUnitCore},
-                getGlobalSuccessCount : {MODULE : kUnitCore},
-                isRunning             : {MODULE : kUnitCore},
-                log                   : {MODULE : kUnitCore},
-                run                   : {MODULE : kUnitCore}
-            }
-        },
-        Validation : {
-            items : {
-                is          : {MODULE : kValidationCore},
-                isArguments : {MODULE : kValidationCore},
-                isArray     : {MODULE : kValidationCore},
-                isBoolean   : {MODULE : kValidationCore},
-                isDate      : {MODULE : kValidationCore},
-                isFunction  : {MODULE : kValidationCore},
-                isNaN       : {MODULE : kValidationCore},
-                isNull      : {MODULE : kValidationCore},
-                isNumber    : {MODULE : kValidationCore},
-                isNumeric   : {MODULE : kValidationCore},
-                isObject    : {MODULE : kValidationCore},
-                isRegExp    : {MODULE : kValidationCore},
-                isString    : {MODULE : kValidationCore},
-                isUndefined : {MODULE : kValidationCore},
-                isWindow    : {MODULE : kValidationCore},
-
-                isEmail      : {MODULE : kValidationRegExp},
-                isUrl        : {MODULE : kValidationRegExp},
-                isWhitespace : {MODULE : kValidationRegExp}
-            }
+        if (inheritance.length > 1) {
+            init(module, 'base', inheritance[1]);
         }
-    });
+
+        items = init(module, 'items', {});
+
+        for (i = 0, len = itemList.length; i < len; i++) {
+            items[itemList[i]] = {MODULE : moduleIdentifier};
+        }
+    }
+
+    /*
+     *
+     */
+    function defineMetaData() {
+        var i   = 0,
+            len = 0;
+
+        for (i = 0, len = arguments.length; i < len; i++) {
+            addItems.apply(null, arguments[i]);
+        }
+    }
+
+    // Define meta data for automated unit tests:
+    defineMetaData([
+        'o2', kCore, [
+            '$', 'build', 'load', 'longName', 'name', 'nill', 'noConflict',
+            'now', 'ready', 'url', 'version'
+    ]],[
+        'o2', kExtend, [
+            'n', 'nn', 't', 'tt'
+    ]],[
+        'Ajax', kAjaxCore, [
+            'abort', 'createXhr', 'get', 'post'
+    ]],[
+        'Ajax', kAjaxExtend, [
+            'getSingle', 'postSingle'
+    ]],[
+        'AjaxController', kAjaxControllerCore, [
+            'unregister', 'update'
+    ]],[
+        'AjaxState', kAjaxStateCore, [
+            'protecteds',
+
+            'addObserver', 'countObservers',
+            'deleteObserver', 'deleteObservers',
+            'init', 'timeoutObservers', 'timeoutAllObservers'
+    ]],[
+        'Collection', kCollectionCore, [
+            'any', 'clear', 'clone', 'compact', 'contains', 'copy', 'detect',
+            'diff', 'each', 'every', 'exclude', 'extend', 'filter', 'find',
+            'flatten', 'fold', 'foldR', 'forEach', 'getCount', 'getDifference',
+            'getFirst', 'getFirstN', 'getFunctions', 'getKeys', 'getLast',
+            'getLastN', 'getLength', 'getMax', 'getMethods', 'getMin',
+            'getRest', 'getSize', 'getSortedIndex', 'getValues', 'grep',
+            'group', 'inArray', 'includes', 'indexOf', 'intersect', 'invoke',
+            'isEmpty', 'lastIndexOf', 'map', 'merge', 'pluck', 'reduce',
+            'reduceRight', 'reject', 'removeElement', 'removeElementByValue',
+            'select', 'shuffle', 'some', 'sort', 'touch', 'toArray', 'union',
+            'unique', 'zip'
+    ]],[
+        'Cookie', kCookieCore, [
+            'read', 'remove', 'save'
+    ]],[
+        'Debugger', kDebuggerCore, [
+            'assert', 'error', 'info', 'init', 'log', 'println', 'warn'
+    ]],[
+        'Date', kDateCore, [
+            'getPrettyDate', 'getTime', 'now'
+    ]],[
+        'Dom', kDomConstants, [
+            'nodeType'
+    ]],[
+        'Dom', kDomCore, [
+            'append', 'create', 'createDocumentFragment', 'createElement',
+            'empty', 'getAttribute', 'getHtml', 'getText', 'insertAfter',
+            'insertBefore', 'isDocument', 'isElement', 'isNode', 'prepend',
+            'remove', 'removeChildren', 'removeEmpty', 'removeEmptyTextNodes',
+            'removeNode', 'setAttribute', 'setHtml'
+    ]],[
+        'Dom', kDomClass, [
+            'addClass', 'createClassNameRegExp', 'hasClass',
+            'removeClass', 'toggleClass'
+    ]],[
+        'Dom', kDomDimension, [
+            'getDimension', 'getDocumentDimension', 'getDocumentHeight',
+            'getDocumentWidth', 'getHeight', 'getViewportInfo',
+            'getWidth', 'getWindowInnerDimension', 'getWindowInnerHeight',
+            'getWindowInnerWidth', 'setDimension', 'setHeight', 'setWidth'
+    ]],[
+        'Dom', kDomForm, [
+            'compactField', 'disable', 'preventMultipleSubmit',
+            'removePlaceholder', 'resetField', 'trimField'
+    ]],[
+        'Dom', kDomLoad, [
+            'loadCss', 'loadImage', 'loadScript'
+    ]],[
+        'Dom', kDomModify, [
+            'replace', 'unwrap', 'wrap'
+    ]],[
+        'Dom', kDomReady, [
+            'ready'
+    ]],[
+        'Dom', kDomScroll, [
+            'getObjectScrollOfset', 'getScrollOffset', 'getWindowScrollOffset',
+            'scrollObjectToBottom', 'scrollObjectToTop', 'scrollTo',
+            'scrollToObject', 'scrollWindowToBottom', 'scrollWindowToObject',
+            'scrollWindowToTop'
+    ]],[
+        'Dom', kDomStyle, [
+            'activateAlternateStylesheet', 'addCssRules', 'addStyle', 'getCss',
+            'getStyle', 'hide', 'isVisible', 'setCss', 'setStyle', 'show',
+            'toggleVisibility'
+    ]],[
+        'Dom', kDomTraverse, [
+
+            //TODO: dom.traverse.core
+            'getElements', 'getElementsByAttribute', 'getElementsByClass',
+            'getElementsWithAttribute', 'getElementsWithClass',
+            'getElementsWithId',
+
+            //TOOD: dom.traverse.ends
+            'getFirst', 'getFirstByAttribute', 'getFirstByClass',
+            'getFirstWithAttribute', 'getFirstWithClass', 'getFirstWithId',
+
+            'getLast', 'getLastByAttribute', 'getLastByClass', 'getLastWithId',
+            'getLastWithAttribute', 'getLastWithClass',
+
+            //TODO: dom.traverse.child
+            'getChildren', 'getChildrenByAttribute',
+            'getChildrenByAttributeUntil', 'getChildrenByClass',
+            'getChildrenByClassUntil', 'getChildrenUntil',
+            'getChildrenWithAttribute', 'getChildrenWithAttributeUntil',
+            'getChildrenWithClass', 'getChildrenWithClassUntil',
+            'getChildrenWithId', 'getChildrenWithIdUntil',
+
+            'getFirstChild', 'getFirstChildByAttribute', 'getFirstChildByClass',
+            'getFirstChildWithAttribute', 'getFirstChildWithClass',
+            'getFirstChildWithId',
+
+            'getLastChild', 'getLastChildByAttribute', 'getLastChildByClass',
+            'getLastChildWithAttribute', 'getLastChildWithClass',
+            'getLastChildWithId',
+
+            'getNthChild', 'getNthChildByAttribute', 'getNthChildByClass',
+            'getNthChildWithAttribute', 'getNthChildWithClass',
+            'getNthChildWithId',
+
+            //TODO: dom.traverse.next
+            'getNext', 'getNextByAttribute', 'getNextByClass',
+            'getNextWithAttribute', 'getNextWithClass', 'getNextWithId',
+
+            'getNextAll', 'getNextAllByAttribute', 'getNextAllByAttributeUntil',
+            'getNextAllByClass', 'getNextAllByClassUntil', 'getNextAllUntil',
+            'getNextAllWithAttribute', 'getNextAllWithAttributeUntil',
+            'getNextAllWithClass', 'getNextAllWithClassUntil',
+            'getNextAllWithId', 'getNextAllWithIdUntil',
+
+            'getNthNext', 'getNthNextByAttribute', 'getNthNextByClass',
+            'getNthNextWithAttribute', 'getNthNextWithClass',
+            'getNthNextWithId',
+
+            //TODO: dom.traverse.parent
+            'getNthParent', 'getNthParentByAttribute', 'getNthParentByClass',
+            'getNthParentWithAttribute', 'getNthParentWithClass',
+            'getNthParentWithId',
+
+            'getParent', 'getParentByAttribute', 'getParentByClass',
+            'getParentWithAttribute', 'getParentWithClass', 'getParentWithId',
+            'getParents', 'getParentsByAttribute', 'getParentsByAttributeUntil',
+            'getParentsByClass', 'getParentsByClassUntil', 'getParentsUntil',
+            'getParentsWithAttribute', 'getParentsWithAttributeUntil',
+            'getParentsWithClass', 'getParentsWithClassUntil',
+            'getParentsWithId', 'getParentsWithIdUntil',
+
+            //TODO: dom.traverse.prev
+            'getNthPrev', 'getNthPrevByAttribute', 'getNthPrevByClass',
+            'getNthPrevWithAttribute', 'getNthPrevWithClass',
+            'getNthPrevWithId',
+
+            'getPrev', 'getPrevByAttribute', 'getPrevByClass',
+            'getPrevWithAttribute', 'getPrevWithClass', 'getPrevWithId',
+            'getPrevAll', 'getPrevAllByAttribute', 'getPrevAllByAttributeUntil',
+            'getPrevAllByClass', 'getPrevAllByClassUntil', 'getPrevAllUntil',
+            'getPrevAllWithAttribute', 'getPrevAllWithAttributeUntil',
+            'getPrevAllWithClass', 'getPrevAllWithClassUntil',
+            'getPrevAllWithId', 'getPrevAllWithIdUntil',
+
+            //TODO: dom.traverse.sibling
+            'getSiblings', 'getSiblingsByAttribute',
+            'getSiblingsByAttributeUntil', 'getSiblingsByClass',
+            'getSiblingsByClassUntil', 'getSiblingsUntil',
+            'getSiblingsWithAttribute', 'getSiblingsWithAttributeUntil',
+            'getSiblingsWithClass', 'getSiblingsWithClassUntil',
+            'getSiblingsWithId', 'getSiblingsWithIdUntil',
+
+            'getNth', 'getNthByAttribute', 'getNthByClass',
+            'getNthWithAttribute', 'getNthWithClass', 'getNthWithId',
+
+            //TODO: dom.traverse.validate
+            'isChild', 'isNext', 'isParent', 'isParentOrSelf', 'isPrev',
+            'isSibling'
+    ]],[
+        'Event', kEventConstants, [
+            'keyCode'
+    ]],[
+        'Event', kEventCore, [
+            'addEventListener', 'addEventListeners', 'getEventObject',
+            'getKeyCode', 'getMouseCoordinates', 'getTarget', 'off', 'on',
+            'preventDefault', 'removeEventListener', 'stopPropagation'
+    ]],[
+        'Event', kEventExtend, [
+            'isArrowKey', 'isBackspaceKey', 'isCharacterKeypressEvent',
+            'isEnterKey', 'isEscapeKey', 'isRightClick', 'isTabKey'
+    ]],[
+        'Event', kEventCustom, [
+            'publish', 'subscribe', 'unsubscribe'
+    ]],[
+        'Jsonp', kJsonpCore, [
+            'get'
+    ]],[
+        'JsonpController>AjaxController', kJsonpControllerCore, [
+            'update', 'unregister'
+    ]],[
+        'JsonpState>AjaxState', kJsonpStateCore, [
+            'protecteds',
+
+            // Overrides:
+            'update', 'unregister'
+    ]],[
+        'Method', kMethodCore, [
+            'bind', 'curry', 'identity', 'memoize', 'partial'
+    ]],[
+        'Method', kMethodEvent, [
+            'bindAsEventListener'
+    ]],[
+        'Method', kMethodInherit, [
+            'overload', 'requireAllArguments'
+    ]],[
+        'Method', kMethodRepeat, [
+            'after', 'once', 'times'
+    ]],[
+        'Method', kMethodTimer, [
+            'debounce', 'defer', 'delay', 'throttle'
+    ]],[
+        'Method', kMethodTranspose, [
+            'compose', 'flip', 'wrap'
+    ]],[
+        'Object', kObjectCore, [
+            'copy', 'copyMethods', 'copyPrototype', 'extend', 'stringify',
+            'toArray', 'toJsonString', 'touch'
+    ]],[
+        'QueryString', kQueryStringCore, [
+            'encode', 'parse'
+    ]],[
+        'SortDelegate', kSortDelegateCore, [
+            'sort', 'sortAsc', 'sortDesc'
+    ]],[
+        'String', kStringCore, [
+            'compact', 'concat', 'format', 'generateGuid', 'generateRandom',
+            'printf', 'remove', 'trim'
+    ]],[
+        'String', kStringEncode, [
+            'decode', 'encode', 'encodeSafeHtml', 'escape', 'htmlEncode',
+            'safeHtmlEncode', 'unescape', 'xssEncode'
+    ]],[
+        'String', kStringStrip, [
+            'stripNonAlpha', 'stripNonAlphanumeric', 'stripTags',
+            'stripNumeric', 'stripNonNumeric'
+    ]],[
+        'String', kStringTransform, [
+            'br2nl', 'nl2br', 'toCamelCase', 'toDashedFromCamelCase',
+            'toJson', 'toUnderscoreFromCamelCase', 'truncate'
+    ]],[
+        'Supports', kSupportsCore, [
+            'ajax', 'cookie', 'dom'
+    ]],[
+        'Template', kTemplateCore, [
+            'parse'
+    ]],[
+        'Timer', kTimerCore, [
+            'set', 'start', 'stop'
+    ]],[
+        'Try', kTryCore, [
+            'all', 'these'
+    ]],[
+        'Unit', kUnitCore, [
+            'add', 'assert', 'assertEqual', 'assertNotEqual',
+            'assertStrictEqual', 'assertStrictNotEqual',
+            'getGlobalFailureCount', 'getGlobalSuccessCount',
+            'isRunning', 'log', 'run',
+    ]],[
+        'Validation', kValidationCore, [
+            'is', 'isArguments', 'isArray', 'isBoolean', 'isDate',
+            'isFunction', 'isNaN', 'isNull', 'isNumber', 'isNumeric',
+            'isObject', 'isRegExp', 'isString', 'isUndefined', 'isWindow'
+    ]],[
+        'Validation', kValidationRegExp, [
+            'isEmail', 'isUrl', 'isWhitespace'
+    ]]);
+
 
     //TODO: complete me.
-    init(fp, 'modules', {
-        'core.meta' : {
-            depends : []
-        },
-        'core' : {
-            depends : ['core.meta']
-        },
-        'template.core' : {
-            depends : ['core']
-        }
-    });
+    modules = init(fp, 'dependencies');
+
+    /*
+     *
+     */
+    function depend(baseModuleName, dependencies) {
+        init(modules, baseModuleName,
+            {dependencies:dependencies, isLoaded:false}
+        );
+    }
+
+    //TODO: complete me.
+    //TODO: make an automated runner.
+    //TODO: raise a 'dependency not loaded error if it is so.
+    depend(kCoreMeta,     []);
+    depend(kCore,         [kCoreMeta]);
+    depend(kTemplateCore, [kCore]);
+
 
     // The methods below are <em>internal</em> methods that are used
     // to ensure consistency within the framework.
     // They are not meant for external use.
 
-//TODO: override this file from o2.meta.production.js in production
-//since you do not have any MODULE check for production, that's the
-//most viable option.
+    /*
+     *
+     */
+    init(fp, 'alias', function(mixed, aliasName, existingName) {
+        if (!mixed) {
+            dbg();
 
-    if (isProduction) {
+            throw kNoMetaDefinition;
+        }
 
-        /*
-         *
-         */
-        init(fp, 'alias', function(mixed, aliasName, existingName) {
-            mixed[1][aliasName] = mixed[1][existingName];
-        });
+        if (!mixed[1]) {
+            dbg();
 
-        /*
-         *
-         */
-        init(fp, 'create', function(name) {
-            var cls = fp.classes[name];
+            throw kObjectNotDefined;
+        }
 
-            return [cls.items, namespace(framework, name)];
-        });
+        if (!mixed[0][existingName]) {
+            dbg();
 
-        /*
-         *
-         */
-        init(fp, 'construct', function(name, delegate) {
-            var cls = fp.classes[name];
+            throw getMethodNotDefinedInMetaWarning(existingName);
+        }
 
-            framework[name] = delegate;
+        if (!mixed[0][aliasName]) {
+            dbg();
 
-            return [cls.items, delegate];
-        });
+            throw getMethodNotDefinedInMetaWarning(aliasName);
+        }
 
-        /*
-         *
-         */
-        init(fp, 'define', function(mixed, name, fn) {
-            var me = mixed[1];
+        if (mixed[1][aliasName]) {
+            dbg();
+
+            throw [kMethodAlreadyDefined, aliasName].join(kEmpty);
+        }
+
+        mixed[1][aliasName] = mixed[1][existingName];
+    });
+
+    /*
+     *
+     */
+    init(fp, 'create', function(name) {
+        var cls = fp.classes[name];
+
+        if (!cls) {
+            dbg();
+
+            throw getClassNotDefinedInMetaWarning(name);
+        }
+
+        if (!cls.items) {
+            throw getIncorrectMetaDefinitionWarning(name);
+        }
+
+        return [cls.items, namespace(framework, name)];
+    });
+
+    /*
+     *
+     */
+    init(fp, 'construct', function(name, delegate) {
+        var cls = fp.classes[name];
+
+        if (!cls) {
+            dbg();
+
+            throw getClassNotDefinedInMetaWarning(name);
+        }
+
+        if (framework[name]) {
+            dbg();
+
+            throw getConstructorAlreadyDefinedWarning(name);
+        }
+
+        framework[name] = delegate;
+
+        return [cls.items, delegate];
+    });
+
+    /*
+     *
+     */
+    init(fp, 'define', function(mixed, name, fn) {
+        var meta = mixed[0],
+            me   = mixed[1];
+
+        if (!me) {
+            dbg();
+
+            throw kObjectNotDefined;
+        }
+
+        if (!fn) {
+            dbg();
+
+            throw [kDelegateNotdefined, name].join(kEmpty);
+        }
+
+        if (!meta) {
+            dbg();
+
+            throw kNoMetaDefinition;
+        }
+
+        if (meta[name]) {
+            if (me[name]) {
+                dbg();
+
+                throw [kMethodAlreadyDefined, name].join(kEmpty);
+            }
 
             me[name] = fn;
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getAttr', function(root, name) {
-            var elem = root[name];
-
-            return elem;
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getObject', function(mixed) {
-            return mixed[1];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getRoot', function() {
-            return [fp.classes.o2.items, framework];
-        });
+        }
+    });
 
-        /*
-         *
-         */
-        init(fp, 'override', function(mixed, methodName, fn) {
-            var me = mixed[1];
+    /*
+     *
+     */
+    init(fp, 'getAttr', function(root, name) {
+        if (!root) {
+            dbg();
 
-            me.prototype[methodName] = fn;
-        });
+            throw [kRootNotFound, ' "', name, '"'].join(kEmpty);
+        }
 
-        /*
-         *
-         */
-        init(fp, 'proto', function(mixed, methodName, fn) {
-            var me = mixed[1];
+        if (!name) {
+            dbg();
 
-            me.prototype[methodName] = fn;
-        });
+            throw kNameNotProvided;
+        }
 
-        /*
-         *
-         */
-        init(fp, 'require', function(name, method) {
-            var methodName = '';
-            var objName = '';
+        var elem = root[name];
 
-            if (arguments.length === 1) {
-                methodName = name;
-                objName = kEmpty;
-            } else {
-                methodName = method;
-                objName = name;
-            }
+        if (!elem) {
+            dbg();
 
-            var meta = null;
-            var classes = fp.classes;
+            throw getRootDoesNotHaveAttributeWarning(name);
+        }
 
-            if (objName === kEmpty) {
-                var result = null;
+        return elem;
+    });
+
+    /*
+     *
+     */
+    init(fp, 'getObject', function(mixed) {
+        return mixed[1];
+    });
+
+    /*
+     *
+     */
+    init(fp, 'getRoot', function() {
+        return [fp.classes.o2.items, framework];
+    });
 
-                if (classes.hasOwnProperty(methodName)) {
-                    result = framework[methodName];
+    /*
+     *
+     */
+    init(fp, 'override', function(mixed, methodName, fn) {
+        var meta = mixed[0],
+            me   = mixed[1];
 
-                    return result;
-                }
+        if (!me) {
+            dbg();
 
-                meta = classes.o2.items;
+            throw 'Object not found in mixed collection';
+        }
 
-                result = framework[methodName];
+        if (!fn) {
+            dbg();
 
-                return result;
-            }
+            throw [kDelegateNotdefined, methodName].join(kEmpty);
+        }
 
-            var obj = framework[objName];
-            var theMethod = obj[methodName];
+        if (!meta[methodName]) {
+            dbg();
 
-            return theMethod;
-        });
-    } else {
+            throw getClassNotDefinedInMetaWarning(methodName);
+        }
 
-        /*
-         *
-         */
-        init(fp, 'alias', function(mixed, aliasName, existingName) {
-            if (!mixed) {
-                dbg();
+        if (!me.prototype[methodName]) {
+            dbg();
 
-                throw kNoMetaDefinition;
-            }
+            throw getNoMethodToOverrideWarning(methodName);
+        }
 
-            if (!mixed[1]) {
-                dbg();
+        me.prototype[methodName] = fn;
+    });
 
-                throw kObjectNotDefined;
-            }
+    /*
+     *
+     */
+    init(fp, 'proto', function(mixed, methodName, fn) {
+        var meta = mixed[0],
+            me   = mixed[1];
 
-            if (!mixed[0][existingName]) {
-                dbg();
+        if (!me) {
+            dbg();
 
-                throw getMethodNotDefinedInMetaWarning(existingName);
-            }
+            throw kObjectNotDefined;
+        }
 
-            if (!mixed[0][aliasName]) {
-                dbg();
+        if (!fn) {
+            dbg();
 
-                throw getMethodNotDefinedInMetaWarning(aliasName);
-            }
+            throw [kDelegateNotdefined, methodName].join(kEmpty);
+        }
 
-            if (mixed[1][aliasName]) {
-                dbg();
+        if (!meta[methodName]) {
+            dbg();
 
-                throw [kMethodAlreadyDefined, aliasName].join(kEmpty);
-            }
-
-            mixed[1][aliasName] = mixed[1][existingName];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'create', function(name) {
-            var cls = fp.classes[name];
-
-            if (!cls) {
-                dbg();
-
-                throw getClassNotDefinedInMetaWarning(name);
-            }
-
-            if (!cls.items) {
-                throw getIncorrectMetaDefinitionWarning(name);
-            }
-
-            return [cls.items, namespace(framework, name)];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'construct', function(name, delegate) {
-            var cls = fp.classes[name];
-
-            if (!cls) {
-                dbg();
-
-                throw getClassNotDefinedInMetaWarning(name);
-            }
-
-            if (framework[name]) {
-                dbg();
-
-                throw getConstructorAlreadyDefinedWarning(name);
-            }
-
-            framework[name] = delegate;
-
-            return [cls.items, delegate];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'define', function(mixed, name, fn) {
-            var meta = mixed[0];
-            var me = mixed[1];
-
-            if (!me) {
-                dbg();
-
-                throw kObjectNotDefined;
-            }
-
-            if (!fn) {
-                dbg();
-
-                throw [kDelegateNotdefined, name].join(kEmpty);
-            }
-
-            if (!meta) {
-                dbg();
-
-                throw kNoMetaDefinition;
-            }
-
-            if (meta[name]) {
-                if (me[name]) {
-                    dbg();
-
-                    throw [kMethodAlreadyDefined, name].join(kEmpty);
-                }
-
-                me[name] = fn;
-            }
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getAttr', function(root, name) {
-            if (!root) {
-                dbg();
-
-                throw [kRootNotFound, ' "', name, '"'].join(kEmpty);
-            }
-
-            if (!name) {
-                dbg();
-
-                throw kNameNotProvided;
-            }
-
-            var elem = root[name];
-
-            if (!elem) {
-                dbg();
-
-                throw getRootDoesNotHaveAttributeWarning(name);
-            }
-
-            return elem;
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getObject', function(mixed) {
-            return mixed[1];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'getRoot', function() {
-            return [fp.classes.o2.items, framework];
-        });
-
-        /*
-         *
-         */
-        init(fp, 'override', function(mixed, methodName, fn) {
-            var meta = mixed[0];
-            var me = mixed[1];
-
-            if (!me) {
-                dbg();
-
-                throw 'Object not found in mixed collection';
-            }
-
-            if (!fn) {
-                dbg();
-
-                throw [kDelegateNotdefined, methodName].join(kEmpty);
-            }
-
-            if (!meta[methodName]) {
-                dbg();
-
-                throw getClassNotDefinedInMetaWarning(methodName);
-            }
-
-            if (!me.prototype[methodName]) {
-                dbg();
-
-                throw getNoMethodToOverrideWarning(methodName);
-            }
-
-            me.prototype[methodName] = fn;
-        });
-
-        /*
-         *
-         */
-        init(fp, 'proto', function(mixed, methodName, fn) {
-            var meta = mixed[0];
-            var me = mixed[1];
-
-            if (!me) {
-                dbg();
-
-                throw kObjectNotDefined;
-            }
-
-            if (!fn) {
-                dbg();
-
-                throw [kDelegateNotdefined, methodName].join(kEmpty);
-            }
-
-            if (!meta[methodName]) {
-                dbg();
-
-                throw getMethodOfClassNotDefinedInMetaWarning(kAny, methodName);
-            }
-
-            if (me.prototype[methodName]) {
-                dbg();
-
-                throw [kMethodAlreadyDefined, methodName].join(kEmpty);
-            }
-
-            me.prototype[methodName] = fn;
-        });
-
-        /*
-         *
-         */
-        init(fp, 'require', function(name, method) {
-            var methodName = '';
-            var objName = '';
-
-            if (arguments.length === 1) {
-                methodName = name;
-                objName = kEmpty;
-            } else {
-                methodName = method;
-                objName = name;
-            }
-
-            if (typeof objName !== kString) {
-                dbg();
-
-                throw kObjNameNotString;
-            }
-
-            if (typeof methodName !== kString) {
-                dbg();
-
-                throw kMethodNameNotString;
-            }
-
-            var meta = null;
-            var classes = fp.classes;
-
-            if (objName === kEmpty) {
-                var result = null;
-
-                if (classes.hasOwnProperty(methodName)) {
-                    result = framework[methodName];
-
-                    if (!result) {
-                        dbg();
-
-                        throw getClassNotDefinedWarning(methodName);
-                    }
-
-                    return result;
-                }
-
-                meta = classes.o2.items;
-
-                if (!meta[methodName]) {
-                    dbg();
-
-                    throw getMethodNotDefinedInMetaWarning(methodName);
-                }
-
+            throw getMethodOfClassNotDefinedInMetaWarning(kAny, methodName);
+        }
+
+        if (me.prototype[methodName]) {
+            dbg();
+
+            throw [kMethodAlreadyDefined, methodName].join(kEmpty);
+        }
+
+        me.prototype[methodName] = fn;
+    });
+
+    /*
+     *
+     */
+    init(fp, 'require', function(name, method) {
+        var methodName = kEmpty,
+            objName    = kEmpty,
+            meta       = null,
+            classes    = fp.classes,
+            result     = null,
+            cls        = null,
+            mtd        = null,
+            obj        = null,
+            theMethod  = null;
+
+        if (arguments.length === 1) {
+            methodName = name;
+            objName = kEmpty;
+        } else {
+            methodName = method;
+            objName = name;
+        }
+
+        if (typeof objName !== kString) {
+            dbg();
+
+            throw kObjNameNotString;
+        }
+
+        if (typeof methodName !== kString) {
+            dbg();
+
+            throw kMethodNameNotString;
+        }
+
+        if (objName === kEmpty) {
+            if (classes.hasOwnProperty(methodName)) {
                 result = framework[methodName];
 
                 if (!result) {
                     dbg();
 
-                    throw getMethodNotDefinedInFrameworkWarning(methodName);
+                    throw getClassNotDefinedWarning(methodName);
                 }
 
                 return result;
             }
 
-            var cls = classes[objName];
+            meta = classes.o2.items;
 
-            if (!cls) {
+            if (!meta[methodName]) {
                 dbg();
 
-                throw getClassNotDefinedInMetaWarning(objName);
+                throw getMethodNotDefinedInMetaWarning(methodName);
             }
 
-            var mtd = cls.items[methodName];
+            result = framework[methodName];
 
-            if (!mtd) {
+            if (!result) {
                 dbg();
 
-                throw getMethodOfClassNotDefinedInMetaWarning(objName,
-                    methodName);
+                throw getMethodNotDefinedInFrameworkWarning(methodName);
             }
 
-            var obj = framework[objName];
+            return result;
+        }
 
-            if (!obj) {
-                dbg();
+        cls = classes[objName];
 
-                throw getClassDoesNotExistWarning(objName);
-            }
+        if (!cls) {
+            dbg();
 
-            var theMethod = obj[methodName];
+            throw getClassNotDefinedInMetaWarning(objName);
+        }
 
-            if (!theMethod) {
-                dbg();
+        mtd = cls.items[methodName];
 
-                throw getMethodOfClassDoesNotExistWarning(objName, methodName);
-            }
+        if (!mtd) {
+            dbg();
 
-            return theMethod;
-        });
-    }
+            throw getMethodOfClassNotDefinedInMetaWarning(objName,
+                methodName);
+        }
+
+        obj = framework[objName];
+
+        if (!obj) {
+            dbg();
+
+            throw getClassDoesNotExistWarning(objName);
+        }
+
+        theMethod = obj[methodName];
+
+        if (!theMethod) {
+            dbg();
+
+            throw getMethodOfClassDoesNotExistWarning(objName, methodName);
+        }
+
+        return theMethod;
+    });
+
+    init(fp, 'ensure', function() {
+        //TODO: implement me.
+    });
 }(this.o2));
  /**
   * <b>o2.js</b>
@@ -1369,14 +987,12 @@ if (this.o2) {
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001343759096
+  * @version     0.25.a.0001351142298
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
 
-/*
- *  lastModified: 2012-06-02 22:47:21.699341
- */
+if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
 /**
  * @module   core
@@ -1384,49 +1000,51 @@ if (this.o2) {
  *
  * <p>The core module.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var kFrameworkUndefined = 'Please include module "core.meta"!';
+    // Ensure that dependencies have been loaded.
+    fp.ensure('core', ['core.meta']);
 
-    if (framework === UNDEFINED) {
-        throw kFrameworkUndefined;
-    }
+    var attr     = fp.getAttr,
+        def      = attr(fp, 'define'),
+        obj      = attr(fp, 'getObject'),
+        require  = attr(fp, 'require'),
+        root     = attr(fp, 'getRoot'),
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
-    var require   = attr(_, 'require');
-    var root      = attr(_, 'getRoot');
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    var exports = {};
+        /*
+         * Guid (copied from String.core to remove dependency)
+         */
+        kGuidRadix    = 36,
+        kGuidShift    = 30,
+        kDecimalPoint = '.',
 
-    /*
-     * Guid (copied from String.core to remove dependency)
-     */
-    var kGuidRadix    = 36;
-    var kGuidShift    = 30;
-    var kDecimalPoint = '.';
+        /*
+         * o2 (Root Namespace)
+         */
+        me     = root(),
+        myself = obj(me),
 
-    /*
-     * o2 (Root Namespace)
-     */
-    var me     = root();
-    var myself = obj(me);
+        /*
+         * Common Constants
+         */
+        kEmpty            = '',
+        kLoad             = 'load',
+        kObjectNotDefined = ' : Object is not defined.',
+        kString           = 'string',
 
-    /*
-     * Aliases
-     */
-    var getElementsByName = attr(document, 'getElementsByName');
-
-    /*
-     * Common Constants
-     */
-    var kEmpty            = '';
-    var kLoad             = 'load';
-    var kObjectNotDefined = ' : Object is not defined.';
-    var kString           = 'string';
+        /*
+         * To be Overridden
+         */
+        myName = null,
+        t      = null,
+        n      = null,
+        $      = null;
 
     /**
      * @function {static} o2.nill
@@ -1446,7 +1064,7 @@ if (this.o2) {
     /*
      *
      */
-    var myName = require('name');
+    myName = require('name');
 
     /**
      * @property {readonly String} o2.url
@@ -1478,7 +1096,7 @@ if (this.o2) {
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001343759096');
+    exports.build = def(me, 'build', '.0001351142298');
 
     /**
      * @function {static} o2.$
@@ -1513,7 +1131,7 @@ if (this.o2) {
     /*
      *
      */
-    var $ = require('$');
+    $ = require('$');
 
     /**
      * @function {static} o2.ready
@@ -1603,11 +1221,11 @@ if (this.o2) {
     exports.noConflict = def(me, 'noConflict', function(newName) {
         var name = newName || [myName, ((new Date()).getTime() +
             Math.random() * (1 << kGuidShift)).toString(kGuidRadix
-            ).replace(kDecimalPoint, kEmpty)].join(kEmpty);
+            ).replace(kDecimalPoint, kEmpty)].join(kEmpty),
+            kCacheKey = '_o2_cached';
 
-        window[name] = myself;
-
-        window[myName] = window._o2_cached;
+        window[name]   = myself;
+        window[myName] = window[kCacheKey];
 
         return window[name];
     });
@@ -1630,18 +1248,17 @@ if (this.o2) {
      * @return a collection of matching elements.
      */
     exports.n = def(me, 'n', function(name, parent) {
-        var collection = getElementsByName(name);
-        var i          = 0;
-        var isParent   = require('Dom', 'isParent');
-        var item       = null;
-        var len        = 0;
-        var result     = [];
+        var collection = document.getElementsByName(name),
+            father     = null,
+            i          = 0,
+            isParent   = require('Dom', 'isParent'),
+            item       = null,
+            len        = 0,
+            result     = [];
 
-        if (!parent) {
-            return collection;
-        }
+        if (!parent) {return collection;}
 
-        var father = $(parent);
+        father = $(parent);
 
         for (i = 0, len = collection.length; i < len; i++) {
             item = collection[i];
@@ -1657,7 +1274,7 @@ if (this.o2) {
     /*
      *
      */
-    var n = require('n');
+    n = require('n');
 
     /**
      * @function {static} o2.nn
@@ -1705,9 +1322,7 @@ if (this.o2) {
     exports.t = def(me, 't', function(tagName, parent) {
         var p = $(parent || document);
 
-        if (!p) {
-            return null;
-        }
+        if (!p) {return null;}
 
         return p.getElementsByTagName(tagName);
     });
@@ -1715,7 +1330,7 @@ if (this.o2) {
     /*
      *
      */
-    var t = require('t');
+    t = require('t');
 
     /**
      * @function {static} o2.tt
@@ -1738,13 +1353,12 @@ if (this.o2) {
      * otherwise.
      */
     exports.tt = def(me, 'tt', function(tagName, parent) {
-        var p = $(parent);
-
-        var result = t(tagName, p);
+        var p      = $(parent),
+            result = t(tagName, p);
 
         return result ? result[0] : null;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds. this, this.document));
 /**
  * @module   string.core
  * @requires core
@@ -1753,80 +1367,88 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>String</code> helper.</p>
  */
-(function(framework) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.String
-     *
-     * <p>A <code>String</code> helper <strong>class</strong>.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Aliases
-     */
-    var floor  = attr(Math, 'floor');
-    var random = attr(Math, 'random');
-    var slice  = attr(Array.prototype, 'slice');
+        /**
+         * @class {static} o2.String
+         *
+         * <p>A <code>String</code> helper <strong>class</strong>.</p>
+         */
+        me = create(kModuleName),
 
-    var trim   = String.prototype.trim;
+        /*
+         * Aliases
+         */
+        floor  = attr(Math, 'floor'),
+        random = attr(Math, 'random'),
+        slice  = attr(Array.prototype, 'slice'),
+        trim   = attr(String.prototype, 'trim'),
 
-    /*
-     * Common Constants
-     */
-    var kBlank          = ' ';
-    var kDecimalPoint   = '.';
-    var kEmpty          = '';
-    var kFormatEnd      = '}';
-    var kFormatStart    = '{';
-    var kGlobal         = 'g';
-    var kNumeric        = '([0-9]+)';
-    var kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+        /*
+         * Common Constants
+         */
+        kBlank          = ' ',
+        kDecimalPoint   = '.',
+        kEmpty          = '',
+        kFormatEnd      = '}',
+        kFormatStart    = '{',
+        kGlobal         = 'g',
+        kNumeric        = '([0-9]+)',
+        kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
-    /*
-     * Default length for generating a random <code>String</code>s.
-     */
-    var kDefaultRandomLength = 8;
+        /*
+         * Default length for generating a random <code>String</code>s.
+         */
+        kDefaultRandomLength = 8,
 
-   /*
-    * Common Regular Expressions
-    */
-    var kPrintfRegExp     = /(%(\w+):s)|(%s)/g;
-    var kTrimRegExp       = /^\s+|\s+$/g;
-    var kWhitespaceRegExp = /\s+/g;
+       /*
+        * Common Regular Expressions
+        */
+        kPrintfRegExp     = /(%(\w+):s)|(%s)/g,
+        kTrimRegExp       = /^\s+|\s+$/g,
+        kWhitespaceRegExp = /\s+/g,
 
-    /*
-     * Printf Replacement Indexes
-     */
-    var kAllIndex                   = 0;
-    var kParametrizedMatchIndex     = 2;
-    var kReplaceParameterStartIndex = 1;
+        /*
+         * Printf Replacement Indexes
+         */
+        kAllIndex                   = 0,
+        kParametrizedMatchIndex     = 2,
+        kReplaceParameterStartIndex = 1,
 
-    /*
-     * Guid
-     */
-    var kGuidRadix = 36;
-    var kGuidShift = 30;
+        /*
+         * Guid
+         */
+        kGuidRadix = 36,
+        kGuidShift = 30,
+
+        /*
+         * To be Overridden.
+         */
+        concat = null,
+        strim  = null;
 
     /**
      * @function {static} o2.String.concat
@@ -1850,7 +1472,7 @@ if (this.o2) {
     /*
      *
      */
-    var concat = require(kModuleName, 'concat');
+    concat = require(kModuleName, 'concat');
 
     /**
      * @function {static} o2.String.format
@@ -1869,22 +1491,15 @@ if (this.o2) {
      * @return the formated <code>String</code>.
      */
     exports.format = def(me, 'format', function() {
-        var args = arguments;
+        var args    = arguments,
+            pattern = new RegExp([kFormatStart, kNumeric,
+                kFormatEnd].join(kEmpty), kGlobal);
 
-        if (args.length === 0) {
-            return null;
-        }
-
-        if (args.length === 1) {
-            return args[0];
-        }
-
-        var pattern = new RegExp([kFormatStart, kNumeric,
-            kFormatEnd].join(kEmpty), kGlobal);
+        if (args.length === 0) {return null;}
+        if (args.length === 1) {return args[0];}
 
         return args[0].replace(pattern, function(match, index) {
-            var dummy = null;
-            dummy     = match;
+            match = UNDEFINED;
 
             return args[(+index) + 1];
         });
@@ -1928,12 +1543,12 @@ if (this.o2) {
      * @return the generated <code>String</code>.
      */
     exports.generateRandom = def(me, 'generateRandom', function(length) {
-        var buffer       = [];
-        var chars        = kRandomCharFeed;
-        var charsLength  = chars.length;
-        var i            = 0;
-        var len          = length || kDefaultRandomLength;
-        var randomNumber = 0;
+        var buffer       = [],
+            chars        = kRandomCharFeed,
+            charsLength  = chars.length,
+            i            = 0,
+            len          = length || kDefaultRandomLength,
+            randomNumber = 0;
 
         for (i = 0; i < len; i++) {
             randomNumber = floor(random() * charsLength);
@@ -1972,12 +1587,12 @@ if (this.o2) {
      * @return the formatted <code>String</code>.
      */
     exports.printf = def(me, 'printf', function(str) {
-        var buffer    = [];
-        var index     = kReplaceParameterStartIndex;
-        var lastMatch = 0;
-        var result    = kPrintfRegExp.exec(str);
-        var rep       = null;
-        var par       = null;
+        var buffer    = [],
+            index     = kReplaceParameterStartIndex,
+            lastMatch = 0,
+            result    = kPrintfRegExp.exec(str),
+            rep       = null,
+            par       = null;
 
         while (result) {
             buffer.push(str.substring(lastMatch, result.index));
@@ -2049,8 +1664,8 @@ if (this.o2) {
          * @return the processed <code>String</code>.
          */
         exports.trim = def(me, 'trim', function(str, shouldCompact) {
-            var s           = concat(kEmpty, str);
-            var willCompact = shouldCompact || false;
+            var s           = concat(kEmpty, str),
+                willCompact = shouldCompact || false;
 
             return willCompact ?
                 s.replace(kWhitespaceRegExp, kBlank).trim() :
@@ -2058,8 +1673,8 @@ if (this.o2) {
         });
     } else {
         exports.trim = def(me, 'trim', function(str, shouldCompact) {
-            var s           = concat(kEmpty, str);
-            var willCompact = shouldCompact || false;
+            var s           = concat(kEmpty, str),
+                willCompact = shouldCompact || false;
 
             return willCompact ?
                 s.replace(kWhitespaceRegExp, kBlank).replace(
@@ -2068,7 +1683,7 @@ if (this.o2) {
         });
     }
 
-    var strim = require(kModuleName, 'trim');
+    strim = require(kModuleName, 'trim');
 
     /**
      * @function {static} o2.String.compact
@@ -2091,7 +1706,7 @@ if (this.o2) {
     exports.compact = def(me, 'compact', function(str) {
         return strim(concat(kEmpty, str), true);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   string.encode
  * @requires core
@@ -2101,111 +1716,110 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
- * <p>Responsible for encoding and decoding <code>String</code>s.</p>
+ * <p>This package is responsible for encoding and decoding
+ * <code>String</code>s.</p>
  */
-(function(framework, document) {
+(function(framework, fp, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.encode', ['core', 'string.core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        alias  = attr(fp, 'alias'),
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (encode)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Aliases
-     */
-    var createElement  = attr(document, 'createElement');
-    var createTextNode = attr(document, 'createTextNode');
+        /*
+         * String (encode)
+         */
+        me = create(kModuleName),
 
-    /*
-     *
-     */
-    var xssEncodeNoAmpMap = [
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /</g,  replace : '&#60;'},
-        {regExp : />/g,  replace : '&#62;'},
-        {regExp : /\'/g, replace : '&#39;'}
-    ];
+        /*
+         *
+         */
+        xssEncodeNoAmpMap = [
+            {regExp : /"/g,  replace : '&#34;'},
+            {regExp : /</g,  replace : '&#60;'},
+            {regExp : />/g,  replace : '&#62;'},
+            {regExp : /\'/g, replace : '&#39;'}
+        ],
 
-    /*
-     *
-     */
-    var xssEncodeMap = [
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /&/g,  replace : '&amp;'},
-        {regExp : /</g,  replace : '&#60;'},
-        {regExp : />/g,  replace : '&#62;'},
-        {regExp : /\'/g, replace : '&#39;'}
-    ];
+        /*
+         *
+         */
+        xssEncodeMap = [
+            {regExp : /"/g,  replace : '&#34;'},
+            {regExp : /&/g,  replace : '&amp;'},
+            {regExp : /</g,  replace : '&#60;'},
+            {regExp : />/g,  replace : '&#62;'},
+            {regExp : /\'/g, replace : '&#39;'}
+        ],
 
-    /*
-     *
-     */
-    var encodeMap = [
-        {regExp : / /g,  replace : '&nbsp;'},
-        {regExp : /"/g,  replace : '&#34;' },
-        {regExp : /&/g,  replace : '&amp;' },
-        {regExp : /</g,  replace : '&#60;' },
-        {regExp : />/g,  replace : '&#62;' },
-        {regExp : /\'/g, replace : '&#39;' }
-    ];
+        /*
+         *
+         */
+        encodeMap = [
+            {regExp : / /g,  replace : '&nbsp;'},
+            {regExp : /"/g,  replace : '&#34;' },
+            {regExp : /&/g,  replace : '&amp;' },
+            {regExp : /</g,  replace : '&#60;' },
+            {regExp : />/g,  replace : '&#62;' },
+            {regExp : /\'/g, replace : '&#39;' }
+        ],
 
-    /*
-     *
-     */
-    var decodeMap = [
-        {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-        {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-        {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-        {regExp : /&#60;|&lt;/g,           replace : '<'},
-        {regExp : /&#62;|&gt;/g,           replace : '>'},
-        {regExp : /&#38;|&amp;/g,          replace : '&'}
-    ];
+        /*
+         *
+         */
+        //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
+        decodeMap = [
+            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
+            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
+            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
+            {regExp : /&#60;|&lt;/g,           replace : '<'},
+            {regExp : /&#62;|&gt;/g,           replace : '>'},
+            {regExp : /&#38;|&amp;/g,          replace : '&'}
+        ],
 
-    /*
-     *
-     */
-    var safeHtmlMap = [
-        {regExp : /"/g, replace : '&quot;'},
-        {regExp : /'/g, replace : '&#39;' }
-    ];
+        /*
+         *
+         */
+        safeHtmlMap = [
+            {regExp : /"/g, replace : '&quot;'},
+            {regExp : /'/g, replace : '&#39;' }
+        ],
 
-    /*
-     * Common Text
-     */
-    var kEmpty     = '';
-    var kContainer = 'div';
+        /*
+         * Common Text
+         */
+        kEmpty     = '',
+        kContainer = 'div',
 
-    /*
-     *
-     */
-    var tempDiv = null;
+        /*
+         * Temporary
+         */
+        tempDiv = null;
 
     /*
      *
      */
     function processMap(str, map) {
-        var i = 0;
-        var len = 0;
-        var mapItem = null;
-        var result = str;
+        var i       = 0,
+            len     = 0,
+            mapItem = null,
+            result  = str;
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -2289,11 +1903,14 @@ if (this.o2) {
      */
     exports.encodeSafeHtml = def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
-            tempDiv = createElement(kContainer);
+            tempDiv = document.createElement(kContainer);
         }
 
         tempDiv.innerHTML = kEmpty;
-        tempDiv.appendChild(createTextNode([kEmpty, str].join(kEmpty)));
+
+        tempDiv.appendChild(
+            document.createTextNode([kEmpty, str].join(kEmpty))
+        );
 
         return processMap(tempDiv.innerHTML, safeHtmlMap);
     });
@@ -2362,7 +1979,7 @@ if (this.o2) {
             !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
         );
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));
 /**
  * @module   string.strip
  * @requires core
@@ -2371,46 +1988,49 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.strip', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (strip)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g;
-    var kNonAlphaRegExp        = /[^A-Za-z ]+/g;
-    var kNonNumericRegExp      = /[^0-9-.]/g;
-    var kNumericRegExp         = /[0-9]/g;
-    var kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
+        /*
+         * String (strip)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Strings
-     */
-    var kEmpty = '';
+        /*
+         * Common Regular Expressions
+         */
+        kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g,
+        kNonAlphaRegExp        = /[^A-Za-z ]+/g,
+        kNonNumericRegExp      = /[^0-9-.]/g,
+        kNumericRegExp         = /[0-9]/g,
+        kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig,
+
+        /*
+         * Common Strings
+         */
+        kEmpty = '';
 
     /**
      * @function {static} o2.String.stripNonAlpha
@@ -2508,7 +2128,7 @@ if (this.o2) {
     exports.stripNumeric = def(me, 'stripNumeric', function(str) {
         return str.replace(kNumericRegExp, kEmpty);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   string.transform
  * @requires core
@@ -2517,58 +2137,61 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.transform', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (transform)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kAllCapsRegExp            = /([A-Z])/g;
-    var kCamelCaseRegExp          = /(\-[a-z])/g;
-    var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
-    var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
-    //var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
+        /*
+         * String (transform)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Text
-     */
-    var kBr               = '<br />';
-    var kDash             = '-';
-    var kEllipsis         = '&hellip;';
-    var kEmpty            = '';
-    var kJsonNotSupported = 'JSON support cannot be found!';
-    var kNewLine          = '\n';
-    var kUnderscore       = '_';
+        /*
+         * Common Regular Expressions
+         */
+        kAllCapsRegExp            = /([A-Z])/g,
+        kCamelCaseRegExp          = /(\-[a-z])/g,
+        kLineBreakToNewLineRegExp = /<br\s*\/?>/g,
+        kNewLineToLineBreakRegExp = /\r\n|\n|\r/g,
+        //kRemoveTagsRegExp       = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
 
-    /*
-     * <p>Maximum length, after which the string is truncated with an
-     * ellipsis (...)</p>
-     */
-    var kTruncationLength = 100;
+        /*
+         * Common Text
+         */
+        kBr               = '<br />',
+        kDash             = '-',
+        kEllipsis         = '&hellip;',
+        kEmpty            = '',
+        kJsonNotSupported = 'JSON support cannot be found!',
+        kNewLine          = '\n',
+        kUnderscore       = '_',
+
+        /*
+         * <p>Maximum length, after which the string is truncated with an
+         * ellipsis (...)</p>
+         */
+        kTruncationLength = 100;
 
     /**
      * @function {static} o2.String.br2nl
@@ -2675,9 +2298,7 @@ if (this.o2) {
      * <strong>JSON</strong> <code>String</code>.
      */
     exports.toJson = def(me, 'toJson', function(str) {
-        if (!JSON) {
-            throw kJsonNotSupported;
-        }
+        if (!JSON) {throw kJsonNotSupported;}
 
         return JSON.parse(str);
     });
@@ -2724,8 +2345,8 @@ if (this.o2) {
      * @return the processed <code>String</code>.
      */
     exports.truncate = def(me, 'truncate', function(str, maxLen) {
-        var eLen      = kEllipsis.length;
-        var maxLength = maxLen || kTruncationLength;
+        var eLen      = kEllipsis.length,
+            maxLength = maxLen || kTruncationLength;
 
         if (str.length > maxLength) {
             return [str.substr(0, maxLength - eLen), kEllipsis].join(kEmpty);
@@ -2733,7 +2354,7 @@ if (this.o2) {
 
         return str;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   event.constants
  * @requires core
@@ -2742,33 +2363,36 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.constants', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Event
-     *
-     * <p>A cross-browser event handling and event utilities class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
+
+        /**
+         * @class {static} o2.Event
+         *
+         * <p>A cross-browser event handling and event utilities class.</p>
+         */
+        me = create(kModuleName);
 
     /**
     * @struct {static} o2.Event.keyCode
@@ -2913,7 +2537,7 @@ if (this.o2) {
          */
         COMMA : 188
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   event.core
  * @requires core
@@ -2924,58 +2548,68 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.core', ['core', 'event.core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Event (core)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Event (core)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var myName = require('name');
-    var nill   = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var concat  = require(kString, 'concat');
-    var format  = require(kString, 'format');
+        $      = require('$'),
+        myName = require('name'),
+        nill   = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kCallbackNotDefined = format('{0}: Callback is not defined!', myName);
-    var kOn                 = 'on';
+        kString = 'String',
+        concat  = require(kString, 'concat'),
+        format  = require(kString, 'format'),
 
-    /*
-     * Feature Tests
-     */
-    var isAddEventListener = !!document.addEventListener;
-    var isAttachEvent      = !!document.attachEvent;
-    var windowEventHandle  = window.event;
+        /*
+         * Common Constants
+         */
+        kCallbackNotDefined = format('{0}: Callback is not defined!', myName),
+        kOn                 = 'on',
+
+        /*
+         * Feature Tests
+         */
+        isAddEventListener = !!document.addEventListener,
+        isAttachEvent      = !!document.attachEvent,
+        windowEventHandle  = window.event,
+
+        /*
+         * To be Overridden
+         */
+        addEventListener    = null,
+        getEventObject      = null,
+        getMouseCoordinates = null;
 
     if (isAddEventListener) {
 
@@ -3004,13 +2638,8 @@ if (this.o2) {
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             // `false` disables event capturing.
             //
@@ -3045,13 +2674,8 @@ if (this.o2) {
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.removeEventListener(evt, fn, false);
         });
@@ -3060,13 +2684,8 @@ if (this.o2) {
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.attachEvent(concat(kOn, evt), fn);
         });
@@ -3075,13 +2694,8 @@ if (this.o2) {
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.detachEvent(concat(kOn, evt), fn);
         });
@@ -3090,13 +2704,8 @@ if (this.o2) {
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj[concat(kOn, evt)] = fn;
         });
@@ -3105,13 +2714,9 @@ if (this.o2) {
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            //TODO: if (!guard(obj, fn)) {return;}
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj[concat(kOn, evt)] = nill;
         });
@@ -3126,7 +2731,7 @@ if (this.o2) {
     /*
      *
      */
-    var addEventListener = require(kModuleName, 'addEventListener');
+    addEventListener = require(kModuleName, 'addEventListener');
 
     /**
      * @function {static} o2.Event.addEventListeners
@@ -3155,12 +2760,10 @@ if (this.o2) {
      */
     exports.addEventListeners = def(me, 'addEventListeners', function(collection,
                 eventName, handler) {
-        if (!collection) {
-            return;
-        }
+        if (!collection) {return;}
 
-        var listen = addEventListener;
-        var key = null;
+        var listen = addEventListener,
+            key    = null;
 
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
@@ -3227,7 +2830,7 @@ if (this.o2) {
     /*
      *
      */
-    var getEventObject = require(kModuleName, 'getEventObject');
+    getEventObject = require(kModuleName, 'getEventObject');
 
     /**
      * @function {static} o2.Event.getKeyCode
@@ -3253,9 +2856,7 @@ if (this.o2) {
     exports.getKeyCode = def(me, 'getKeyCode', function(evt) {
         var e = getEventObject(evt);
 
-        if (!e) {
-            return 0;
-        }
+        if (!e) {return 0;}
 
         // For a cross-event (i.e. keydown, keyup, keypress)
         // result we normalize the code.
@@ -3271,21 +2872,18 @@ if (this.o2) {
     /*
      *
      */
-    var getMouseCoordinates = function(evt) {
-        var e = getEventObject(evt);
+    getMouseCoordinates = function(evt) {
+        var e      = getEventObject(evt),
+            origin = {x : 0, y : 0},
+            posx   = 0,
+            posy   = 0;
 
-        if (!e) {
-            return {x : 0, y : 0};
-        }
 
-        var posx = 0;
-        var posy = 0;
+        if (!e) {return origin;}
 
         if (e.pageX) {
             getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {x : 0, y : 0};
-                }
+                if (!e) {return origin;}
 
                 posx = e.pageX || 0;
                 posy = e.pageY || 0;
@@ -3298,13 +2896,11 @@ if (this.o2) {
 
         if(e.clientX) {
             getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {x : 0, y : 0};
-                }
+                if (!e) {return origin;}
 
-                var clientX = e.clientX || 0;
-                var clientY = e.clientY || 0;
-                var wd = document;
+                var clientX = e.clientX || 0,
+                    clientY = e.clientY || 0,
+                    wd      = document;
 
                 posx = clientX + wd.body.scrollLeft +
                     wd.documentElement.scrollLeft;
@@ -3318,7 +2914,7 @@ if (this.o2) {
         }
 
         // The current event object has neither pageX, nor clientX defined.
-        return {x : 0, y : 0};
+        return origin;
     };
 
     /**
@@ -3375,9 +2971,7 @@ if (this.o2) {
         });
     } else {
         exports.preventDefault = def(me, 'preventDefault', function(evt) {
-            if (!evt) {
-                return false;
-            }
+            if (!evt) {return false;}
 
             if (evt.preventDefault) {
                 evt.preventDefault();
@@ -3425,14 +3019,12 @@ if (this.o2) {
         });
     } else {
         exports.stopPropagation = def(me, 'stopPropagation', function(evt) {
-            if (!evt) {
-                return;
-            }
+            if (!evt) {return;}
 
             evt.stopPropagation();
         });
     }
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   event.extend
  * @requires core
@@ -3442,67 +3034,72 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Extension methods for the {@link Event} object.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.extend', ['core', 'event.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Event (extend)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Event (extend)
+         */
+        me = create(kModuleName),
 
-    var kEvent         = kModuleName;
-    var getKeyCode     = require(kEvent, 'getKeyCode');
-    var getEventObject = require(kEvent, 'getEventObject');
+        /*
+         * Aliases
+         */
 
-    var keyCode    = require(kModuleName, 'keyCode');
-    var kBackspace = attr(keyCode, 'BACKSPACE');
-    var kBottom    = attr(keyCode, 'BOTTOM');
-    var kEnter     = attr(keyCode, 'ENTER');
-    var kEscape    = attr(keyCode, 'ESCAPE');
-    var kLeft      = attr(keyCode, 'LEFT');
-    var kTab       = attr(keyCode, 'TAB');
+        kEvent         = kModuleName,
+        getKeyCode     = require(kEvent, 'getKeyCode'),
+        getEventObject = require(kEvent, 'getEventObject'),
 
-    var kNumber = 'number';
+        keyCode    = require(kModuleName, 'keyCode'),
+        kBackspace = attr(keyCode, 'BACKSPACE'),
+        kBottom    = attr(keyCode, 'BOTTOM'),
+        kEnter     = attr(keyCode, 'ENTER'),
+        kEscape    = attr(keyCode, 'ESCAPE'),
+        kLeft      = attr(keyCode, 'LEFT'),
+        kTab       = attr(keyCode, 'TAB'),
 
-    // According to W3C
-    //     Left Button: 0
-    //     Middle Button: 1
-    //     Right Button: 2 (!)
-    //
-    // According to M$
-    //     Left Button: 1
-    //     Middle Button: 4
-    //     Right Button: 2 (!)
-    //     Left and Right: 3
-    //     Left and Middle: 5
-    //     Right and Middle: 6
-    //     All three: 7
-    //
-    // ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
-    var kRightButton = 2;
+        kNumber = 'number',
+
+        /*
+         * According to W3C
+         *     Left Button: 0
+         *     Middle Button: 1
+         *     Right Button: 2 (!)
+         *
+         * According to M$
+         *     Left Button: 1
+         *     Middle Button: 4
+         *     Right Button: 2 (!)
+         *     Left and Right: 3
+         *     Left and Middle: 5
+         *     Right and Middle: 6
+         *     All three: 7
+         *
+         * ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
+         */
+        kRightButton = 2;
 
     /**
      * @function {static} o2.Event.isArrowKey
@@ -3581,9 +3178,7 @@ if (this.o2) {
                     function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             // M$IE only fires keypress events for printable keys:
             return true;
@@ -3591,19 +3186,16 @@ if (this.o2) {
     } else {
         exports.isCharacterKeypressEvent = def(me, 'isCharacterKeypressEvent',
                     function(evt) {
-            var e = getEventObject(evt);
+            var e     = getEventObject(evt),
+                which = null;
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             // In other browsers evt.which is > 0 if and only if
             // the key pressed is a printable key.
-            var which = e.which;
+            which = e.which;
 
-            if (typeof which !== kNumber || which <= 0) {
-                return false;
-            }
+            if (typeof which !== kNumber || which <= 0) {return false;}
 
             //TODO: test for ctrl+backspace shift+backspace alt+backspace etc.
 
@@ -3682,9 +3274,7 @@ if (this.o2) {
         exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             return e.which === kRightButton;
         });
@@ -3692,9 +3282,7 @@ if (this.o2) {
         exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             return e.button === kRightButton;
         });
@@ -3722,7 +3310,7 @@ if (this.o2) {
     exports.isTabKey = def(me, 'isTabKey', function(evt) {
         return getKeyCode(evt) === kTab;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   ajax.core
  * @requires core
@@ -3733,141 +3321,144 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajax.core', ['core', 'string.core', 'event.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Ajax';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Ajax
-     *
-     * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
-     * <strong>GET</strong> and <strong>POST</strong> requests.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Ajax',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Ajax
+         *
+         * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
+         * <strong>GET</strong> and <strong>POST</strong> requests.</p>
+         */
+        me = create(kModuleName),
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString       = 'String';
-    var concat        = require(kString, 'concat');
-    var generateGuid  = require(kString, 'generateGuid');
+        nill = require('nill'),
 
-    var listen = require('Event', 'addEventListener');
+        kString       = 'String',
+        concat        = require(kString, 'concat'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    var ActiveXObject  = window.ActiveXObject;
-    var XMLHttpRequest = window.XMLHttpRequest;
+        listen = require('Event', 'addEventListener'),
 
-    /*
-     * Headers
-     */
-    var commonHeaders = [{
-        'Accept' :
-        'text/javascript, text/html, application/xml, text/xml, */*'
-    }];
-    var postHeaders = [{
-        'Content-Type' : 'application/x-www-form-urlencoded'
-    }];
+        /*
+         * Headers
+         */
+        commonHeaders = [{
+            'Accept' :
+            'text/javascript, text/html, application/xml, text/xml, */*'
+        }],
+        postHeaders = [{
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }],
 
-    /*
-     * Microsoft-Specific ProgIds
-     */
-    var progIds = [
-        'Msxml2.XMLHTTP',
-        'Microsoft.XMLHTTP',
-        'Msxml2.XMLHTTP.7.0',
-        'Msxml2.XMLHTTP.6.0',
-        'Msxml2.XMLHTTP.5.0',
-        'Msxml2.XMLHTTP.3.0'
-    ];
+        /*
+         * Microsoft-Specific ProgIds
+         */
+        progIds = [
+            'Msxml2.XMLHTTP',
+            'Microsoft.XMLHTTP',
+            'Msxml2.XMLHTTP.7.0',
+            'Msxml2.XMLHTTP.6.0',
+            'Msxml2.XMLHTTP.5.0',
+            'Msxml2.XMLHTTP.3.0'
+        ],
 
-    /*
-     * Event
-     */
-    var kUnload = 'unload';
+        /*
+         * Event
+         */
+        kUnload = 'unload',
 
-    /*
-     * Error Message
-     */
-    var kNoXhr = 'Failed to create an XHR instance';
+        /*
+         * Error Message
+         */
+        kNoXhr = 'Failed to create an XHR instance',
 
-    /*
-     * Status
-     */
-    var kCached   = 304;
-    var kComplete = 4;
-    var kOk       = 200;
+        /*
+         * Status
+         */
+        kCached   = 304,
+        kComplete = 4,
+        kOk       = 200,
 
-    /*
-     * Verb
-     */
-    var kGet  = 'GET';
-    var kPost = 'POST';
+        /*
+         * Verb
+         */
+        kGet  = 'GET',
+        kPost = 'POST',
 
-    /*
-     * Text, Prefix, Suffix
-     */
-    var kAnd    = '&';
-    var kEmpty  = '';
-    var kEquals = '=';
-    var kKey    = 'r';
-    var kPlus   = '+';
-    var kRandom = '?rnd=';
+        /*
+         * Text, Prefix, Suffix
+         */
+        kAnd    = '&',
+        kEmpty  = '',
+        kEquals = '=',
+        kKey    = 'r',
+        kPlus   = '+',
+        kRandom = '?rnd=',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kUrlSpaceRegExp = /%20/g;
+        /*
+         * Common Regular Expressions
+         */
+        kUrlSpaceRegExp = /%20/g,
 
-    /*
-     * Active requests are cached here.
-     */
-    var requestCache = {};
+        /*
+         * Active requests are cached here.
+         */
+        requestCache = {},
 
-    /*
-     * To uniquely mark xhr requests.
-     */
-    var counter = 0;
+        /*
+         * To uniquely mark xhr requests.
+         */
+        counter = 0,
 
-    /*
-     * The total number of opened, but not completed (i.e. active) requests.
-     */
-    var activeRequestCount = 0;
+        /*
+         * The total number of opened, but not completed (i.e. active) requests.
+         */
+        activeRequestCount = 0,
+
+        /*
+         * Will be overridden.
+         */
+        createXhr = null;
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
      */
-    var createXhr = function() {
-        var progId  = null;
-        var request = null;
+    createXhr = function() {
+        var progId  = null,
+            request = null;
 
         if (window.XMLHttpRequest) {
             createXhr = function() {
-                var request = new XMLHttpRequest();
+                var request = new window.XMLHttpRequest();
 
-                if (!request) {
-                    throw kNoXhr;
-                }
+                if (!request) {throw kNoXhr;}
 
                 // Request is not completed yet.
                 request.isComplete = false;
@@ -3882,19 +3473,16 @@ if (this.o2) {
             progId = progIds.shift();
 
             try {
-                request = new ActiveXObject(progId);
+                request = new window.ActiveXObject(progId);
 
                 break;
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
 
-        if (!request) {
-            throw kNoXhr;
-        }
+        if (!request) {throw kNoXhr;}
 
         createXhr = function() {
-            var request = new ActiveXObject(progId);
+            var request = new window.ActiveXObject(progId);
 
             // Request is not completed yet.
             request.isComplete = false;
@@ -3911,9 +3499,7 @@ if (this.o2) {
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
     function finalizeXhr(xhr) {
-        if (!xhr) {
-            return;
-        }
+        if (!xhr) {return;}
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
@@ -3940,15 +3526,15 @@ if (this.o2) {
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-        var isSuccess    = false;
-        var onaborted    = callbacks.onaborted   || nill;
-        var oncomplete   = callbacks.oncomplete  || nill;
-        var onerror      = callbacks.onerror     || nill;
-        var onexception  = callbacks.onexception || nill;
-        var responseText = kEmpty;
-        var responseXml  = null;
-        var status       = 0;
-        var statusText   = kEmpty;
+        var isSuccess    = false,
+            onaborted    = callbacks.onaborted   || nill,
+            oncomplete   = callbacks.oncomplete  || nill,
+            onerror      = callbacks.onerror     || nill,
+            onexception  = callbacks.onexception || nill,
+            responseText = kEmpty,
+            responseXml  = null,
+            status       = 0,
+            statusText   = kEmpty;
 
         if (xhr.isAborted) {
             onaborted(xhr);
@@ -3963,8 +3549,7 @@ if (this.o2) {
             responseText = xhr.responseText;
             responseXml  = xhr.responseXML;
             statusText   = xhr.statusText;
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
 
         isSuccess = status === kOk || status === kCached;
 
@@ -4000,13 +3585,8 @@ if (this.o2) {
      * optional.
      */
     function registerCallbacks(xhr, callbacks) {
-        if (!xhr) {
-            return;
-        }
-
-        if (xhr.isInitialized) {
-            return;
-        }
+        if (!xhr             ) {return;}
+        if (xhr.isInitialized) {return;}
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === kComplete) {
@@ -4024,10 +3604,10 @@ if (this.o2) {
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
-        var header = null;
-        var i      = 0;
-        var key    = 0;
-        var len    = 0;
+        var header = null,
+            i      = 0,
+            key    = 0,
+            len    = 0;
 
         for (i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
@@ -4064,8 +3644,8 @@ if (this.o2) {
      * the form "&name1=value1&name2=value2"</p>
      */
     function generateParametrizeQueryString(params) {
-        var buffer = [];
-        var key = null;
+        var buffer = [],
+            key    = null;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -4084,25 +3664,26 @@ if (this.o2) {
      * @return the original <code>XMLHttpRequest</code>
      */
     function send(url, verb, parameters, callbacks, isSync) {
-        if (!url) {
-            return null;
-        }
+        if (!url) {return null;}
 
-        var ajaxCallbacks      = callbacks  || {};
-        var ajaxParameters     = parameters || {};
+        var ajaxCallbacks  = callbacks  || {},
+            ajaxParameters = parameters || {},
 
-        var parametrizedQuery  = generateParametrizeQueryString(ajaxParameters);
+        parametrizedQuery = generateParametrizeQueryString(ajaxParameters),
 
-        var isPost   = verb !== kGet;
-        var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
+        isPost   = verb !== kGet,
 
-        var index      = counter++;
-        var isAsync    = !!!isSync;
-        var postQuery  = isPost ? parametrizedQuery : kEmpty;
-        var xhr        = createXhr();
+        getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery),
+
+        index     = counter++,
+        isAsync   = !!!isSync,
+
+        postQuery = isPost ? parametrizedQuery : kEmpty,
+        xhr       = createXhr();
 
         // Add request to cache.
         requestCache[kKey+index] = xhr;
+
         xhr.index = (kKey+index);
 
         activeRequestCount++;
@@ -4148,15 +3729,12 @@ if (this.o2) {
      * <strong>XMLHttpRequest</strong> being sent.
      */
     exports.abort = def(me, 'abort', function(xhr) {
-        if (!xhr || xhr.isAborted) {
-            return;
-        }
+        if (!xhr || xhr.isAborted) {return;}
 
         try {
             xhr.isAborted = true;
             xhr.abort();
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
     });
 
     /**
@@ -4259,21 +3837,26 @@ if (this.o2) {
     // long-polling, the next time you open a page on that domain it will
     // hang forever. The below event listener fixes that.
     listen(window, kUnload, function() {
-        var key     = null;
-        var request = null;
+        var key     = null,
+            request = null;
 
         try {
+
+            // TODO: v8 does not make performance optimization inside
+            // a try block, encapsulate this logic into a function and
+            // take it out of the try-catch. search all trys, and do the
+            // same.
             for(key in requestCache) {
                 if(requestCache.hasOwnProperty(key)) {
                     request = requestCache[key];
                     request.abort();
+
                     delete requestCache[key];
                 }
             }
-        } catch(ignore) {
-        }
+        } catch(ignore) {}
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   ajax.extend
  * @requires ajax.core
@@ -4283,57 +3866,60 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajax.extend', ['core', 'ajax.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Ajax';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Ajax (extend)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Ajax',
 
-    /*
-     * Aliases
-     */
-    var get  = require(kModuleName, 'get');
-    var post = require(kModuleName, 'post');
+        /*
+         * Ajax (extend)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Caches
-     */
-    var getCache  = {};
-    var postCache = {};
+        /*
+         * Aliases
+         */
+        get  = require(kModuleName, 'get'),
+        post = require(kModuleName, 'post'),
 
-    /*
-     * Common Constants
-     */
-    var kDelimeter = ',';
+        /*
+         * Caches
+         */
+        getCache  = {},
+        postCache = {},
+
+        /*
+         * Common Constants
+         */
+        kDelimeter = ',';
 
     /*
      *
      */
     function prepareToken(url, parameters) {
-        var ar = [];
-        var key = null;
+        var ar = [],
+            key = null;
 
         ar.push(url);
 
@@ -4388,19 +3974,16 @@ if (this.o2) {
     */
     exports.getSingle = def(me, 'getSingle', function(url, parameters,
                 callbacks) {
-        var token = prepareToken(url, parameters);
+        var token   = prepareToken(url, parameters),
+            request = getCache[token];
 
-        var request = getCache[token];
-
-        if (request && !request.isComplete) {
-            return getCache[token];
-        }
+        if (request && !request.isComplete) {return request;}
 
         delete getCache[token];
 
-        getCache[token] = get(url, parameters, callbacks);
+        request = getCache[token] = get(url, parameters, callbacks);
 
-        return getCache[token];
+        return request;
     });
 
    /**
@@ -4444,80 +4027,83 @@ if (this.o2) {
     */
     exports.postSingle = def(me, 'postSingle', function(url, parameters,
                 callbacks) {
-        var token = prepareToken(url, parameters);
+        var token = prepareToken(url, parameters),
+            request = postCache[token];
 
-        var request = postCache[token];
-
-        if (request && !request.isComplete) {
-            return;
-        }
+        if (request && !request.isComplete) {return request;}
 
         delete postCache[token];
 
-        postCache[token] = post(url, parameters, callbacks);
+        request = postCache[token] = post(url, parameters, callbacks);
+
+        return request;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
- * @module   ajaxstate
+ * @module   ajaxstate.core
  * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  Please see the LICENSE file for details.F
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajaxstate.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'AjaxState';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.AjaxState
-     * @implements Observable
-     *
-     * <p>A <code>Model</code> for the available <code>AjaxController</code>
-     * objects.</p>
-     * <p>Implements the <code>Observable</code> interface.</p>
-     *
-     * <p>See
-     * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'AjaxState',
 
-    /*
-     * Aliases
-     */
-    var setTimeout   = attr(window, 'setTimeout');
-    var clearTimeout = attr(window, 'clearTimeout');
+        /**
+         * @class {static} o2.AjaxState
+         * @implements Observable
+         *
+         * <p>A <code>Model</code> for the available <code>AjaxController</code>
+         * objects.</p>
+         * <p>Implements the <code>Observable</code> interface.</p>
+         *
+         * <p>See
+         * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html
+         * </p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Constants
-     */
-    var kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
+        /*
+         * Aliases
+         */
+        setTimeout   = attr(window, 'setTimeout'),
+        clearTimeout = attr(window, 'clearTimeout'),
+
+        /*
+         * Common Constants
+         */
+        kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
 
     /*
      *
      */
     function timeoutObservers(self, observers) {
-        var i        = 0;
-        var len      = 0;
-        var observer = null;
+        var i        = 0,
+            len      = 0,
+            observer = null;
 
         for (i = 0, len = observers.length; i < len; i++) {
             observer = observers[i].object;
@@ -4536,36 +4122,41 @@ if (this.o2) {
     /*
      *
      */
+    function getSelfProtecteds(self, key) {
+        return attr(getProtecteds(self), key);
+    }
+
+    /*
+     *
+     */
     function getConfig(self) {
-        return attr(getProtecteds(self), 'config');
+        return getSelfProtecteds(self, 'config');
     }
 
     /*
      *
      */
     function getState(self) {
-        return attr(getProtecteds(self), 'state');
+        return getSelfProtecteds(self, 'state');
     }
 
     /*
      *
      */
     function getObservers(self) {
-        return attr(getProtecteds(self), 'observers');
+        return getSelfProtecteds(self, 'observers');
     }
 
     /*
      *
      */
     function hasObserver(self, observer) {
-        var i         = 0;
-        var len       = 0;
-        var observers = getObservers(self);
+        var i         = 0,
+            len       = 0,
+            observers = getObservers(self);
 
         for (i = 0, len = observers.length; i < len; i++) {
-            if (observer.object === observers[i]) {
-                return true;
-            }
+            if (observer.object === observers[i]) {return true;}
         }
 
         return false;
@@ -4575,20 +4166,20 @@ if (this.o2) {
      *
      */
     function listen(stateObject) {
-        var config = getConfig(stateObject);
-        var meta   = null;
-        var now    = (new Date()).getTime();
+        var config = getConfig(stateObject),
+            meta   = null,
+            now    = (new Date()).getTime(),
 
-        var observer  = null;
-        var observers = getObservers(stateObject);
-        var i         = 0;
-        var len       = observers.length;
+            observer  = null,
+            observers = getObservers(stateObject),
+            i         = 0,
+            len       = observers.length,
 
-        var registrationTime     = null;
-        var shouldNotifyObserver = false;
-        var state                = getState(stateObject);
-        var timeout              = null;
-        var unregisterQueue      = [];
+            registrationTime     = null,
+            shouldNotifyObserver = false,
+            state                = getState(stateObject),
+            timeout              = null,
+            unregisterQueue      = [];
 
         if (!len) {
             clearTimeout(state.listenTimeoutId);
@@ -4601,14 +4192,12 @@ if (this.o2) {
         }
 
         for (i = 0; i < len; i++) {
-            observer = observers[i];
-            meta = observer.meta;
-            timeout = meta.timeout;
+            observer         = observers[i];
+            meta             = observer.meta;
+            timeout          = meta.timeout;
             registrationTime = meta.registrationTime;
 
-            if (!timeout) {
-                throw kNoTimeoutMetaData;
-            }
+            if (!timeout) {throw kNoTimeoutMetaData;}
 
             shouldNotifyObserver = (now - registrationTime > timeout);
 
@@ -4646,9 +4235,7 @@ if (this.o2) {
 
         //!
         // acquire(me, this, 'observer');
-        if (hasObserver(this, observer)) {
-            return;
-        }
+        if (hasObserver(this, observer)) {return;}
 
         var observers = getObservers(this);
 
@@ -4697,15 +4284,13 @@ if (this.o2) {
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
     exports.deleteObserver = def(me, 'deleteObserver', function(observer) {
-        var i         = 0;
-        var len       = 0;
-        var observers = getObservers(this);
+        var i         = 0,
+            len       = 0,
+            observers = getObservers(this);
 
         // This is an already-deleted zombie object.
         // No need for further processing.
-        if (observer.isDeleted) {
-            return true;
-        }
+        if (observer.isDeleted) {return true;}
 
         for (i = 0, len = observers.length; i < len; i++) {
             if (observer === observers[i].object) {
@@ -4823,7 +4408,7 @@ if (this.o2) {
          */
         observers : []
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   ajaxcontroller.core
  * @requires ajaxstate.core
@@ -4833,36 +4418,44 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var construct = attr(_, 'construct');
-    var proto     = attr(_, 'proto');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajaxcontroller.core', ['core', 'ajaxstate.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        construct = attr(fp, 'construct'),
+        proto     = attr(fp, 'proto'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'AjaxController';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'AjaxController',
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var state = require('AjaxState');
+        nill = require('nill'),
+
+        state = require('AjaxState'),
+
+        /*
+         * Class reference (overridden below).
+         */
+        me = null;
 
     /**
      * @class o2.AjaxController
@@ -4909,8 +4502,8 @@ if (this.o2) {
      * both attributes are optional.
      */
     exports.AjaxController = construct(kModuleName, function(xhr, args) {
-        this.xhr = xhr;
-        this.timeout = (args && args.timeout) || null;
+        this.xhr       = xhr;
+        this.timeout   = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
         this.isDeleted = false;
 
@@ -4921,7 +4514,7 @@ if (this.o2) {
     /*
      *
      */
-    var me = exports.AjaxController;
+    me = exports.AjaxController;
 
     /**
      * @function {virtual} o2.AjaxController.update
@@ -4946,9 +4539,7 @@ if (this.o2) {
      * to this <code>Observer</code>.
      */
     exports.update = proto(me, 'update', function(data) {
-        if (!data.isTimedOut) {
-            return;
-        }
+        if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
         this.unregister();
@@ -4981,13 +4572,11 @@ if (this.o2) {
      *
      */
     exports.unregister = proto(me, 'unregister', function() {
-        if (this.isDeleted) {
-            return;
-        }
+        if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   validation.core
  * @requires core
@@ -4996,70 +4585,77 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.2888371
  * -->
  *
  * <p>A validation helper.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('validation.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
+        obj    = attr(fp, 'getObject'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Validation';
+        /*
+         * Exports
+         */
+        exports = {},
 
+        /*
+         * Module Name
+         */
+        kModuleName = 'Validation',
 
-    /**
-     * @class {static} o2.Validation
-     *
-     * <p>A simple class for validating various kinds of
-     * <strong>object</strong>s.</p>
-     */
-    var me = create(kModuleName);
+        /**
+         * @class {static} o2.Validation
+         *
+         * <p>A simple class for validating various kinds of
+         * <strong>object</strong>s.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Aliases
-     */
-    var toString = attr(Object.prototype, 'toString');
+        /*
+         * Aliases
+         */
+        toString = attr(Object.prototype, 'toString'),
 
-    /*
-     * Calendar Months
-     */
-    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        /*
+         * Calendar Months
+         */
+        months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
-    /*
-     * Common Constants
-     */
-    var kDecimalBase          = 10;
-    var kFebruaryIndex        = 1;
-    var kLeapFebruaryDays     = 29;
-    var kNormalFebruaryDays   = 28;
-    var kObjectNameStartIndex = 8;
-    var kTrimLastBraceIndex   = -1;
-    var kYmdArgLen            = 3;
+        /*
+         * Common Constants
+         */
+        kDecimalBase          = 10,
+        kFebruaryIndex        = 1,
+        kLeapFebruaryDays     = 29,
+        kNormalFebruaryDays   = 28,
+        kObjectNameStartIndex = 8,
+        kTrimLastBraceIndex   = -1,
+        kYmdArgLen            = 3,
 
-    /*
-     * EcmaScript Types
-     */
-    var kArguments = 'Arguments';
-    var kArray     = 'Array';
-    var kBoolean   = 'Boolean';
-    var kDate      = 'Date';
-    var kFunction  = 'Function';
-    var kNumber    = 'Number';
-    var kObject    = 'Object';
-    var kRegExp    = 'RegExp';
-    var kString    = 'String';
+        /*
+         * EcmaScript Types
+         */
+        kArguments = 'Arguments',
+        kArray     = 'Array',
+        kBoolean   = 'Boolean',
+        kDate      = 'Date',
+        kFunction  = 'Function',
+        kNumber    = 'Number',
+        kObject    = 'Object',
+        kRegExp    = 'RegExp',
+        kString    = 'String',
+
+        /*
+         * Defined as aliases.
+         */
+        is = null;
 
     /*
      * Cheks whether the year is a leap year.
@@ -5096,7 +4692,7 @@ if (this.o2) {
         return obj !== UNDEFINED && obj !== null && klass === type;
     });
 
-    var is = obj(me).is;
+    is = obj(me).is;
 
     /**
      * @function {static} o2.Validation.isArguments
@@ -5179,23 +4775,19 @@ if (this.o2) {
      * <code>false</code> otherwise.
      */
     exports.isDate = def(me, 'isDate', function(objYear, objMonth, objDay) {
-        var day    = objDay;
-        var maxDay = 0;
-        var month  = objMonth;
-        var year   = objYear;
+        var day    = objDay,
+            maxDay = 0,
+            month  = objMonth,
+            year   = objYear;
 
         if (arguments.length === kYmdArgLen) {
-            if (!year || !month || !day) {
-                return false;
-            }
+            if (!year || !month || !day) {return false;}
 
             month = parseInt(month, kDecimalBase);
             year  = parseInt(year, kDecimalBase);
             day   = parseInt(day, kDecimalBase);
 
-            if (month < 0 || month > months.length) {
-                return false;
-            }
+            if (month < 0 || month > months.length) {return false;}
 
             months[kFebruaryIndex] = isLeapYear(year) ?
                 kLeapFebruaryDays :
@@ -5388,6 +4980,8 @@ if (this.o2) {
      * <code>false</code> otherwise.
      */
     exports.isUndefined = def(me, 'isUndefined', function(obj) {
+
+        //JSLint complains. It's okay.
         return obj === void 0;
     });
 
@@ -5411,7 +5005,7 @@ if (this.o2) {
     exports.isWindow = def(me, 'isWindow', function(obj) {
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   validation.regexp
  * @requires core
@@ -5420,39 +5014,42 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('validation.regexp', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Validation';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Validation (regexp)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Validation',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
-    var kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
-    var kWhitespaceRegExp = /^\s*$/;
+        /*
+         * Validation (regexp)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Common Regular Expressions
+         */
+        kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
+        kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
+        kWhitespaceRegExp = /^\s*$/;
 
     /**
      * @function {static} o2.Validation.isEmail
@@ -5527,7 +5124,7 @@ if (this.o2) {
     exports.isWhitespace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   method.core
  * @requires core
@@ -5536,45 +5133,48 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
  * <strong>memoization</strong>, <strong>partial functions</strong> and
  * <strong>currying</strong>.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Method
-     *
-     * <p>A method helper class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Method
+         *
+         * <p>A method helper class.</p>
+         */
+        me = create(kModuleName),
 
-    var ap     = Array.prototype;
-    var concat = attr(ap, 'concat');
-    var slice  = attr(ap, 'slice');
+        /*
+         * Aliases
+         */
 
-    var bind = Function.prototype.bind;
+        ap     = Array.prototype,
+        concat = attr(ap, 'concat'),
+        slice  = attr(ap, 'slice'),
+
+        bind = Function.prototype.bind;
 
     if (bind) {
 
@@ -5607,17 +5207,17 @@ if (this.o2) {
          * @return the modified <code>Function</code>.
          */
         exports.bind = def(me, 'bind', function() {
-            var args = slice.call(arguments);
-            var context = args.shift();
-            var fn = args.shift();
+            var args    = slice.call(arguments),
+                context = args.shift(),
+                fn      = args.shift();
 
             return fn.bind(context, args);
         });
     } else {
         exports.bind = def(me, 'bind', function() {
-            var args = slice.call(arguments);
-            var context = args.shift();
-            var fn = args.shift();
+            var args    = slice.call(arguments),
+                context = args.shift(),
+                 fn     = args.shift();
 
             return function() {
                 return fn.apply(
@@ -5645,9 +5245,9 @@ if (this.o2) {
      * @return the modified <code>Function</code>.
      */
     exports.curry = def(me, 'curry', function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function() {
             return fn.apply(context,
@@ -5703,30 +5303,30 @@ if (this.o2) {
      * @return a reference to the memoized <code>Function</code>.
      */
     exports.memoize = def(me, 'memoize', function() {
-        var pad = {};
-        var args = slice.call(arguments);
-        var self = args.shift();
-        var obj = args.length > 0 ? args[0] : null;
+        var pad  = {},
+            args = slice.call(arguments),
+            self = args.shift(),
+            obj  = args.length > 0 ? args[0] : null,
 
-        var memoizedFn = function() {
+            memoizedFn = function() {
 
-            // Copy the arguments object into an array:
-            // this allows it to be used as a cache key.
-            var args = [];
-            var i = 0;
+                // Copy the arguments object into an array:
+                // this allows it to be used as a cache key.
+                var args = [],
+                    i    = 0;
 
-            for (i = 0; i < arguments.length; i++) {
-                args[i] = arguments[i];
-            }
+                for (i = 0; i < arguments.length; i++) {
+                    args[i] = arguments[i];
+                }
 
-            // Evaluate the memoized function if it hasn't
-            // been evaluated with these arguments before.
-            if (!pad.hasOwnProperty(args)) {
-                pad[args] = self.apply(obj, arguments);
-            }
+                // Evaluate the memoized function if it hasn't
+                // been evaluated with these arguments before.
+                if (!pad.hasOwnProperty(args)) {
+                    pad[args] = self.apply(obj, arguments);
+                }
 
-            return pad[args];
-        };
+                return pad[args];
+            };
 
         return memoizedFn;
     });
@@ -5755,13 +5355,13 @@ if (this.o2) {
      * @return the modified <code>Function</code>.
      */
     exports.partial = def(me, 'partial', function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function() {
-            var arg = 0;
-            var i = 0;
+            var arg = 0,
+                i   = 0;
 
             for (i = 0; i < args.length && arg < arguments.length; i++) {
                 if (args[i] === UNDEFINED) {
@@ -5772,7 +5372,7 @@ if (this.o2) {
             return fn.apply(context, args);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   method.event
  * @requires core
@@ -5781,36 +5381,39 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.event', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (event)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var slice = attr(Array.prototype, 'slice');
+        /*
+         * Method (event)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Aliases
+         */
+        slice = attr(Array.prototype, 'slice');
 
     /**
     * @function {static} o2.Method.bindAsEventListener
@@ -5858,9 +5461,9 @@ if (this.o2) {
     * @see o2.Event.addEventListener
     */
     exports.bindAsEventListener = def(me, 'bindAsEventListener', function() {
-        var args    = slice.call(arguments);
-        var context = args.shift();
-        var fn      = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function(e) {
             args.unshift(e);
@@ -5868,7 +5471,7 @@ if (this.o2) {
             return fn.apply(context, args);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   method.inherit
  * @requires core
@@ -5878,45 +5481,48 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
- * <p>OOP/Inheritance related method helpers.</p>
+ * <p>OOJS/Inheritance related method helpers.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+     // Ensure that dependencies have been loaded.
+    fp.ensure('method.inherit', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (inherit)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var format = require('String', 'format');
+        /*
+         * Method (inherit)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty                 = '';
-    var kArgumentCountMismatch = ['Method: Argument count mismatch. ',
-        'Expecting: {0}, provided: {1}'].join(kEmpty);
-    var kFunction              = 'function';
+        /*
+         * Aliases
+         */
+        format = require('String', 'format'),
+
+        /*
+         * Common Constants
+         */
+        kEmpty                 = '',
+        kArgumentCountMismatch = ['Method: Argument count mismatch. ',
+            'Expecting: {0}, provided: {1}'].join(kEmpty),
+        kFunction              = 'function';
 
     /**
      * @function {static} o2.Method.overload
@@ -6009,7 +5615,7 @@ if (this.o2) {
             return fn.apply(this, arguments);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   method.repeat
  * @requires core
@@ -6018,31 +5624,34 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.repeat', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (repeat)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
+
+        /*
+         * Method (repeat)
+         */
+        me = create(kModuleName);
 
     /**
      * @function {static} o2.Method.after
@@ -6069,15 +5678,13 @@ if (this.o2) {
      * called <strong>count</strong> times.
      */
     exports.after = def(me, 'after', function(count, delegate) {
-        if (count <= 0) {
-            return;
-        }
+        if (count <= 0) {return;}
 
         return function() {
             count--;
 
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args   = arguments;
 
             if (count < 1) {
                 return delegate.apply(context, args);
@@ -6108,19 +5715,16 @@ if (this.o2) {
      * @return a <code>Function</code> that will execute only once.
      */
     exports.once = def(me, 'once', function(delegate) {
-        var did = false;
-        var cache = null;
+        var did   = false,
+            cache = null;
 
         return function() {
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args    = arguments;
 
-            if (did) {
-                return cache;
-            }
+            if (did) {return cache;}
 
-            did = true;
-
+            did   = true;
             cache = delegate.apply(context, args);
 
             return cache;
@@ -6161,7 +5765,7 @@ if (this.o2) {
             delegate.apply(context, [i, payload]);
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   method.timer
  * @requires core
@@ -6170,48 +5774,48 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
  * a <code>Function</code> call.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.timer', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (timer)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var now = require('now');
+        /*
+         * Method (timer)
+         */
+        me = create(kModuleName),
 
-    var clearTimeout = attr(window, 'clearTimeout');
-    var setTimeout   = attr(window, 'setTimeout');
+        /*
+         * Aliases
+         */
+        now = require('now'),
 
-    /*
-     * Timer-Related
-     */
-    var kTimerId       = 'id';
-    var kDelayCheckMs  = 50;
+        /*
+         * Timer-Related
+         */
+        kTimerId       = 'id',
+        kDelayCheckMs  = 50;
 
     /*
      *
@@ -6235,25 +5839,20 @@ if (this.o2) {
     function exec(timers, queue, delegate) {
         var item = queue.pop();
 
-        if (!item) {
-            return;
-        }
+        if (!item) {return;}
 
         timers.lastCallTime = now();
 
         try {
             delegate.apply(item.context, item.args);
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
     }
 
     /*
      *
      */
     function execIfWaitedEnough(timers, queue, waitMs, delegate) {
-        if (!isTimeExceeded(timers.lastCallTime, waitMs)) {
-            return;
-        }
+        if (!isTimeExceeded(timers.lastCallTime, waitMs)) {return;}
 
         exec(timers, queue, delegate);
     }
@@ -6284,8 +5883,8 @@ if (this.o2) {
         timers[kTimerId] = null;
 
         return function() {
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args    = arguments;
 
             doTimeout(timers, kTimerId, function() {
                 delegate.apply(context, args);
@@ -6353,20 +5952,16 @@ if (this.o2) {
      * @return the throttled <code>Function</code>.
      */
     exports.throttle = def(me, 'throttle', function(delegate, waitMs) {
-        var timers = {
-            lastCallTime : null
-        };
+        var timers = {lastCallTime : null},
+            queue  = [],
+            loop   = null;
 
         timers[kTimerId] = null;
 
-        var queue = [];
-
-        var loop = function() {
+        loop = function() {
             execIfWaitedEnough(timers, queue, waitMs, delegate);
 
-            if (!queue.length) {
-                return;
-            }
+            if (!queue.length) {return;}
 
             doTimeout(timers, kTimerId, loop, kDelayCheckMs);
         };
@@ -6377,47 +5972,50 @@ if (this.o2) {
             loop();
         };
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
- * @module   method.transpose.
+ * @module   method.transpose
  * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose
  * <code>Function</code>s.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.transpose', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (transpose)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var ap     = Array.prototype;
-    var slice  = attr(ap, 'slice');
+        /*
+         * Method (transpose)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Aliases
+         */
+        ap     = Array.prototype,
+        slice  = attr(ap, 'slice');
 
     /**
      * @function {static} o2.Method.compose
@@ -6472,8 +6070,8 @@ if (this.o2) {
      */
     exports.flip = def(me, 'flip', function(fn, index1, index2) {
         return function() {
-            var args      = slice.call(arguments);
-            var temporary = args[index1];
+            var args      = slice.call(arguments),
+                temporary = args[index1];
 
             args[index1] = args[index2];
             args[index2] = temporary;
@@ -6513,73 +6111,90 @@ if (this.o2) {
                 [delegate].concat(slice.call(arguments)));
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   collection.core
  * @requires core
- * @requires methodhelper.core
+ * @requires method.core
  * @requires validation.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('collection.core', ['core', 'method.core', 'validation.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Collection';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Collection
-     *
-     * <p>A <strong>class</strong> to modify collections.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Collection',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Collection
+         *
+         * <p>A <strong>class</strong> to modify collections.</p>
+         */
+        me = create(kModuleName),
 
-    var kMethodHelper = 'Method';
-    var identity      = require(kMethodHelper, 'identity');
-    var bind          = require(kMethodHelper, 'bind');
+        /*
+         * Aliases
+         */
 
-    var kValidation = 'Validation';
-    var isArguments = require(kValidation, 'isArguments');
-    var isArray     = require(kValidation, 'isArray');
-    var isFunction  = require(kValidation, 'isFunction');
-    var isObject    = require(kValidation, 'isObject');
+        kMethodHelper = 'Method',
+        identity      = require(kMethodHelper, 'identity'),
+        bind          = require(kMethodHelper, 'bind'),
 
-    var slice = attr(Array.prototype, 'slice');
+        kValidation = 'Validation',
+        isArguments = require(kValidation, 'isArguments'),
+        isArray     = require(kValidation, 'isArray'),
+        isFunction  = require(kValidation, 'isFunction'),
+        isObject    = require(kValidation, 'isObject'),
 
-    var floor  = attr(Math, 'floor');
-    var max    = attr(Math, 'max');
-    var min    = attr(Math, 'min');
-    var random = attr(Math, 'random');
+        slice = attr(Array.prototype, 'slice'),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty  = '';
-    var kLength = 'length';
+        floor  = attr(Math, 'floor'),
+        max    = attr(Math, 'max'),
+        min    = attr(Math, 'min'),
+        random = attr(Math, 'random'),
+
+        /*
+         * Common Constants
+         */
+        kEmpty  = '',
+        kLength = 'length',
+
+        /*
+         * To be Overridden
+         */
+        indexOf  = null,
+        contains = null,
+        isEmpty  = null,
+        getMax   = null,
+        toArray  = null,
+        map      = null,
+        unique   = null,
+        pluck    = null,
+        reduce   = null,
+        flatten  = null;
 
     /**
      * @function {static} o2.Collection.clear
@@ -6604,9 +6219,7 @@ if (this.o2) {
     exports.clear = def(me, 'clear', function(ar) {
         var key = null;
 
-        if (!ar) {
-            return null;
-        }
+        if (!ar) {return ar;}
 
         if (isArray(ar)) {
             ar.length = 0;
@@ -6614,9 +6227,7 @@ if (this.o2) {
             return ar;
         }
 
-        if (!isObject(ar)) {
-            return ar;
-        }
+        if (!isObject(ar)) {return ar;}
 
         for (key in ar) {
             if (ar.hasOwnProperty(key)) {
@@ -6646,19 +6257,13 @@ if (this.o2) {
      * @return the copied <code>Object</code>.
      */
     exports.copy = def(me,'copy', function(ar) {
-        if (!ar) {
-            return [];
-        }
+        if (!ar          ) {return [];}
+        if (!isObject(ar)) {return [];}
 
-        //TODO: fixme
-        if (!isObject(ar)) {
-            return ar;
-        }
+        var theCopy = isArray(ar) ? [] : {},
+            key = null;
 
-        var theCopy = isArray(ar) ? [] : {};
-        var key = null;
-
-        if (isArray(ar)) {
+        if (ar.slice) {
             return ar.slice();
         }
 
@@ -6702,20 +6307,15 @@ if (this.o2) {
      * @return a reference to the <code>Object</code> itself.
      */
     exports.compact = def(me,'compact', function(ar) {
-        var value = null;
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var value = null,
+            i     = 0,
+            len   = 0,
+            key   = null;
 
-        if (!ar) {
-            return null;
-        }
+        if (!ar          ) {return ar;}
+        if (!isObject(ar)) {return ar;}
 
-        if (!isObject(ar)) {
-            return ar;
-        }
-
-        if (isArray(ar)) {
+        if (ar.splice) {
             for (i = 0, len = ar.length; i < len; i++) {
                 value = ar[i];
 
@@ -6764,18 +6364,13 @@ if (this.o2) {
      */
     //TODO: check whether "def" actually returns the function.
     exports.indexOf = def(me, 'indexOf', function(ar, elm) {
-        var counter = 0;
-        var i       = 0;
-        var key     = null;
-        var len     = 0;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0;
 
-        if (!ar) {
-            return -1;
-        }
-
-        if (!isObject(ar)) {
-            return -1;
-        }
+        if (!ar          ) {return -1;}
+        if (!isObject(ar)) {return -1;}
 
         // Array.prototype.indexOf
         if (ar.indexOf) {
@@ -6789,10 +6384,6 @@ if (this.o2) {
                 }
             }
 
-            return -1;
-        }
-
-        if (!isObject(ar)) {
             return -1;
         }
 
@@ -6812,7 +6403,7 @@ if (this.o2) {
     /*
      *
      */
-    var indexOf = require(kModuleName, 'indexOf');
+    indexOf = require(kModuleName, 'indexOf');
 
     /**
      * @function {static} o2.Collection.contains
@@ -6835,13 +6426,8 @@ if (this.o2) {
      * <code>false</code> otherwise.
      */
     exports.contains = def(me,'contains', function(ar, elm) {
-        if (!ar) {
-            return -1;
-        }
-
-        if (!isObject(ar)) {
-            return -1;
-        }
+        if (!ar          ) {return -1;}
+        if (!isObject(ar)) {return -1;}
 
         return indexOf(ar, elm) > -1;
     });
@@ -6849,7 +6435,7 @@ if (this.o2) {
     /*
      *
      */
-    var contains = require(kModuleName, 'contains');
+    contains = require(kModuleName, 'contains');
 
     /**
      * @function {static} o2.Collection.includes
@@ -6901,20 +6487,15 @@ if (this.o2) {
      * is found.
      */
     exports.find = def(me,'find', function(obj, delegate, context) {
-        var i      = 0;
-        var index  = 0;
-        var key    = null;
-        var len    = 0;
-        var result = null;
-        var value  = null;
+        var i      = 0,
+            index  = 0,
+            key    = null,
+            len    = 0,
+            result = null,
+            value  = null;
 
-        if (!obj) {
-            return null;
-        }
-
-        if (!isObject(obj)) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -6933,6 +6514,7 @@ if (this.o2) {
         for(key in obj) {
             if(obj.hasOwnProperty(key)) {
                 value = obj[key];
+
                 if(delegate.apply(context, [value, index, obj])) {
                     result = value;
 
@@ -6985,17 +6567,12 @@ if (this.o2) {
      * <code>function(item, index, collection)</code>.
      */
     exports.forEach = def(me, 'forEach', function(obj, delegate) {
-        var i   = 0;
-        var key = null;
-        var len = 0;
+        var i   = 0,
+            key = null,
+            len = 0;
 
-        if (!obj) {
-            return;
-        }
-
-        if (!isObject(obj)) {
-            return;
-        }
+        if (!obj          ) {return;}
+        if (!isObject(obj)) {return;}
 
         // Array.prototype.forEach
         if (obj.forEach) {
@@ -7054,20 +6631,15 @@ if (this.o2) {
      * @see o2.Collection.union
      */
     exports.diff = def(me,'diff', function(collection) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var rest   = null;
-        var result = [];
-        var value  = null;
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            rest   = null,
+            result = [],
+            value  = null;
 
-        if (!collection) {
-            return result;
-        }
-
-        if (!isObject(collection)) {
-            return result;
-        }
+        if (!collection          ) {return result;}
+        if (!isObject(collection)) {return result;}
 
         rest = slice.call(arguments, 1);
 
@@ -7135,18 +6707,14 @@ if (this.o2) {
      * otherwise.
      */
     exports.every = def(me,'every', function(obj, delegate, context) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = true;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0,
+            result  = true;
 
-        if (!obj) {
-            return true;
-        }
-
-        if (!isObject(obj)) {
-            return true;
-        }
+        if (!obj          ) {return true;}
+        if (!isObject(obj)) {return true;}
 
         // Array.prototype.every
         if (obj.every) {
@@ -7157,23 +6725,19 @@ if (this.o2) {
             for(i = 0, len = obj.length; i < len; i++) {
                 result = delegate.apply(context, [obj[i], i, obj]);
 
-                if (!result) {
-                    return false;
-                }
+                if (!result) {return false;}
             }
 
             return true;
         }
 
-        var counter = 0;
+        counter = 0;
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 result = delegate.apply(context, [obj[key], counter, obj]);
 
-                if (!result) {
-                    return false;
-                }
+                if (!result) {return false;}
 
                 counter++;
             }
@@ -7216,45 +6780,43 @@ if (this.o2) {
      * @see o2.Collection.grep
      */
     exports.exclude = def(me,'exclude', function(obj, delegate, context) {
-         var i       = 0;
-         var key     = null;
-         var len     = 0;
-         var results = [];
-         var value   = null;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0,
+            results = [],
+            value   = null;
 
-         if (!obj) {
-             return results;
-         }
+        if (!obj          ) {return results;}
+        if (!isObject(obj)) {return results;}
 
-         if (!isObject(obj)) {
-            return results;
-         }
-
-         if (isArray(obj)) {
+        if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
                 value = obj[i];
+
                 if (!delegate.apply(context, value, i, obj)) {
                     results.push(value);
                 }
             }
 
-             return results;
-         }
+            return results;
+        }
 
-         var counter = 0;
+        counter = 0;
 
-         for (key in obj) {
+        for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
+
                 if (!delegate.apply(context, value, counter, obj)) {
                     results.push(value);
                 }
 
                 counter++;
             }
-         }
+        }
 
-         return results;
+        return results;
     });
 
     /**
@@ -7288,29 +6850,19 @@ if (this.o2) {
      * @return a <strong>reference</strong> to the modified <code>toObj</code>.
      */
     exports.extend = def(me,'extend', function(toObj, fromObj) {
-         var i     = 0;
-         var key   = null;
-         var len   = 0;
-         var value = null;
+        var i     = 0,
+            key   = null,
+            len   = 0,
+            value = null;
 
-        if (!toObj) {
-            return {};
-        }
-
-        if (!isObject(toObj)) {
-            return toObj;
-        }
-
-        if (!isObject(fromObj)) {
-            return toObj;
-        }
+        if (!toObj            ) {return {};}
+        if (!isObject(toObj)  ) {return toObj;}
+        if (!isObject(fromObj)) {return toObj;}
 
         if (isArray(toObj)) {
-            if(!isArray(fromObj)) {
-                return toObj;
-            }
+            if(!isArray(fromObj)) {return toObj;}
 
-            i = 0;
+            i   = 0;
             len = fromObj.length;
 
             for (i = 0; i < len; i++) {
@@ -7362,15 +6914,10 @@ if (this.o2) {
     exports.getFirst = def(me,'getFirst', function(obj) {
         var key = null;
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (isArray(obj)) {
+        if (isArray(obj)  ) {
             return obj[0] || null;
         }
 
@@ -7405,18 +6952,13 @@ if (this.o2) {
      * in the collection otherwise.
      */
     exports.getFirstN = def(me,'getFirstN', function(obj, n) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return [];
-        }
-
-        if (!isObject(obj)) {
-            return [];
-        }
+        if (!obj          ) {return [];}
+        if (!isObject(obj)) {return [];}
 
         if (isArray(obj)) {
             for (i = 0; i < len && i < n; i++) {
@@ -7457,19 +6999,14 @@ if (this.o2) {
      * object.
      */
     exports.getFunctions = def(me,'getFunctions', function(obj) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
-        var value  = null;
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [],
+            value  = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -7525,18 +7062,13 @@ if (this.o2) {
      * @return an <code>Array</code> of the object's keys.
      */
     exports.getKeys = def(me,'getKeys', function(obj) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -7575,17 +7107,12 @@ if (this.o2) {
      * otherwise.
      */
     exports.getLast = def(me,'getLast', function(obj) {
-        var key  = null;
-        var last = null;
-        var len  = 0;
+        var key  = null,
+            last = null,
+            len  = 0;
 
-        if (!obj) {
-            return last;
-        }
-
-        if (!isObject(obj)) {
-            return last;
-        }
+        if (!obj          ) {return last;}
+        if (!isObject(obj)) {return last;}
 
         if (isArray(obj)) {
             len = obj.length;
@@ -7623,22 +7150,14 @@ if (this.o2) {
      * <strong>n</strong> items; all the items of the collection otherwise.
      */
     exports.getLastN = def(me,'getLastN', function(obj, n) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
-
-        if (!n) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
+        if (!n            ) {return result;}
 
         if (isArray(obj)) {
             return slice.apply(obj, [max(obj.length - n, 0)]);
@@ -7683,13 +7202,8 @@ if (this.o2) {
      * otherwise.
      */
     exports.isEmpty = def(me,'isEmpty', function (obj) {
-         if (!obj) {
-             return true;
-         }
-
-         if (!isObject(obj)) {
-            return true;
-         }
+         if (!obj          ) {return true;}
+         if (!isObject(obj)) {return true;}
 
          var key = null;
 
@@ -7705,7 +7219,7 @@ if (this.o2) {
     /*
      *
      */
-    var isEmpty = require(kModuleName, 'isEmpty');
+    isEmpty = require(kModuleName, 'isEmpty');
 
     /**
      * @function {static} o2.Collection.getMax
@@ -7739,27 +7253,20 @@ if (this.o2) {
      * @return the maximum value in the collection.
      */
     exports.getMax = def(me,'getMax', function(obj, delegate, context) {
-        var calculated = null;
-        var index      = 0;
-        var key        = null;
-        var result     = -Infinity;
-        var store      = null;
+        var calculated = null,
+            index      = 0,
+            key        = null,
+            result     = -Infinity,
+            store      = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!delegate) {
+            if (isEmpty(obj)) {return result;}
+
             if (isArray(obj)) {
                 return max.apply(Math, obj);
-            }
-
-            if (isEmpty(obj)) {
-                return result;
             }
 
             for (key in obj) {
@@ -7796,7 +7303,7 @@ if (this.o2) {
     /*
      *
      */
-    var getMax = require(kModuleName, 'getMax');
+    getMax = require(kModuleName, 'getMax');
 
     /**
      * @function {static} o2.Collection.getMin
@@ -7830,28 +7337,21 @@ if (this.o2) {
      * @return the minimum value in the collection.
      */
     exports.getMin = def(me,'getMin', function(obj, delegate, context) {
-        var calculated = null;
-        var index      = 0;
-        var key        = null;
-        var result     = Infinity;
-        var store      = null;
+        var calculated = null,
+            index      = 0,
+            key        = null,
+            result     = Infinity,
+            store      = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!delegate) {
             if (isArray(obj)) {
                 return min.apply(Math, obj);
             }
 
-            if (isEmpty(obj)) {
-                return result;
-            }
+            if (isEmpty(obj)) {return result;}
 
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
@@ -7910,23 +7410,18 @@ if (this.o2) {
      * item included)
      */
     exports.getRest = def(me,'getRest', function(obj, n) {
-        var cutAt  = 0;
-        var index  = 0;
-        var key    = null;
-        var result = [];
+        var cutAt  = 0,
+            index  = 0,
+            key    = null,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         cutAt = n === UNDEFINED ? 1 : n;
 
-        if (isArray(obj)) {
-            return slice.apply(obj, [cutAt]);
+        if (obj.slice) {
+            return obj.slice(cutAt);
         }
 
         for (key in obj) {
@@ -7959,20 +7454,12 @@ if (this.o2) {
      * @return the number of items in the collection.
      */
     exports.getSize = def(me,'getSize', function(obj) {
-        var counter = 0;
-        var key     = null;
+        var counter = 0,
+            key     = null;
 
-        if (!obj) {
-            return 0;
-        }
-
-        if (!isObject(obj)) {
-            return 0;
-        }
-
-        if (obj.length !== UNDEFINED) {
-            return obj.length;
-        }
+        if (!obj                    ) {return 0;}
+        if (!isObject(obj)          ) {return 0;}
+        if (obj.length !== UNDEFINED) {return obj.length;}
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -8026,22 +7513,19 @@ if (this.o2) {
      */
     exports.getSortedIndex = def(me,'getSortedIndex', function(array, item,
                 delegate) {
-        if (!isArray(array)) {
-            return -1;
-        }
+        if (!isArray(array)) {return -1;}
 
-        var iterator = delegate || identity;
-
-        var high = array.length;
-        var low  = 0;
-        var mid  = 0;
+        var iterator = delegate || identity,
+            high     = array.length,
+            low      = 0,
+            mid      = 0;
 
         // Binary search:
         while (low < high) {
             mid = (low + high) >> 1;
 
             if (iterator(array[mid]) < iterator(item)) {
-                low = mid +1;
+                low = mid + 1;
             } else {
                 high = mid;
             }
@@ -8073,18 +7557,13 @@ if (this.o2) {
      * @return the values in the collection.
      */
     exports.getValues = def(me,'getValues', function(obj) {
-        var key    = null;
-        var result = [];
+        var key    = null,
+            result = [];
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (isArray(obj)) {
+        if (obj.slice) {
             return obj.slice();
         }
 
@@ -8121,15 +7600,13 @@ if (this.o2) {
      * @return the filtered collection.
      */
     exports.grep = def(me,'grep', function(obj, delegate) {
-        var i      = 0;
-        var item   = null;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            item   = null,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -8217,28 +7694,22 @@ if (this.o2) {
      * @see o2.Collection.pluck
      */
     exports.group = def(me,'group', function(obj, delegate) {
-        var i      = 0;
-        var key    = null;
-        var ky     = null;
-        var len    = 0;
-        var result = {};
-        var value  = null;
+        var i        = 0,
+            key      = null,
+            ky       = null,
+            len      = 0,
+            result   = {},
+            value    = null,
+            iterator = isFunction(delegate) ? delegate :
+                function(obj) { return obj[delegate]; };
 
-        var iterator = isFunction(delegate) ? delegate :
-            function(obj) { return obj[delegate]; };
-
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
                 value = obj[i];
-                ky = iterator(value, i);
+                ky    = iterator(value, i);
 
                 if (!result[ky]) {
                     result[ky] = [];
@@ -8253,7 +7724,7 @@ if (this.o2) {
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
-                ky = iterator(value, i);
+                ky    = iterator(value, i);
 
                 if (!result[ky]) {
                     result[ky] = [];
@@ -8291,18 +7762,13 @@ if (this.o2) {
      * @see o2.Object.toArray
      */
     exports.toArray = def(me,'toArray', function(obj) {
-        var key    = null;
-        var result = [];
+        var key    = null,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj       ) {return result;}
+        if (obj.toArray) {return obj.toArray();}
 
-        if (obj.toArray) {
-            return obj.toArray();
-        }
-
-        if (isArray(obj)) {
+        if (obj.slice) {
             return obj.slice();
         }
 
@@ -8322,7 +7788,7 @@ if (this.o2) {
     /*
      *
      */
-    var toArray = require(kModuleName, 'toArray');
+    toArray = require(kModuleName, 'toArray');
 
     /**
      * @function {static} o2.Collection.map
@@ -8357,19 +7823,14 @@ if (this.o2) {
      * @see o2.Collection.invoke
      */
     exports.map = def(me,'map', function(obj, delegate, context) {
-        var i       = 0;
-        var key     = null;
-        var len     = 0;
-        var results = [];
-        var value   = null;
+        var i       = 0,
+            key     = null,
+            len     = 0,
+            results = [],
+            value   = null;
 
-        if (!obj) {
-            return results;
-        }
-
-        if (!isObject(obj)) {
-            return results;
-        }
+        if (!obj          ) {return results;}
+        if (!isObject(obj)) {return results;}
 
         // Array.prototype.map
         if (obj.map) {
@@ -8406,7 +7867,7 @@ if (this.o2) {
     /*
      *
      */
-    var map = require(kModuleName, 'map');
+    map = require(kModuleName, 'map');
 
     /**
      * @function {static} o2.Collection.unique
@@ -8434,22 +7895,16 @@ if (this.o2) {
      * @return a copy of the collection containing unique items.
      */
     exports.unique = def(me,'unique', function(array, delegate) {
-        var ar     = null;
-        var cache  = [];
-        var elm    = null;
-        var i      = 0;
-        var len    = 0;
-        var result = [];
+        var ar     = null,
+            cache  = [],
+            elm    = null,
+            i      = 0,
+            len    = 0,
+            result = [];
 
-        if (!array) {
-            return result;
-        }
+        if (!array) {return result;}
 
-        if (isArray(array)) {
-            ar = array.slice().sort();
-        } else {
-            ar = toArray(array).sort();
-        }
+        ar = isArray(array) ? array.slice().sort() : toArray(array).sort();
 
         if (delegate) {
             ar = delegate ? map(array, delegate) : ar;
@@ -8470,7 +7925,7 @@ if (this.o2) {
     /*
      *
      */
-    var unique = require(kModuleName, 'unique');
+    unique = require(kModuleName, 'unique');
 
     /**
      * @function {static} o2.Collection.intersect
@@ -8496,25 +7951,21 @@ if (this.o2) {
      * @see o2.Collection.union
      */
     exports.intersect = def(me,'intersect', function(ar) {
-        var i      = 0;
-        var item   = null;
-        var j      = 0;
-        var jlen   = 0;
-        var len    = 0;
-        var peer   = null;
-        var peers  = slice.apply(arguments, [1]);
-        var result = unique(ar);
+        var i      = 0,
+            item   = null,
+            j      = 0,
+            jlen   = 0,
+            len    = 0,
+            peer   = null,
+            peers  = slice.apply(arguments, [1]),
+            result = unique(ar);
 
-        if (result.length === 0) {
-            return [];
-        }
+        if (result.length === 0) {return [];}
 
         for (i = 0, len = peers.length; i < len; i++) {
             peer = unique(peers[i]);
 
-            if (!isObject(peer)) {
-                return [];
-            }
+            if (!isObject(peer)) {return [];}
 
             for (j = 0, jlen = result.length; j < jlen; j++) {
                 item = result[j];
@@ -8523,9 +7974,7 @@ if (this.o2) {
                     result.splice(j, 1);
                 }
 
-                if (!result.length) {
-                    return [];
-                }
+                if (!result.length) {return [];}
             }
         }
 
@@ -8567,30 +8016,26 @@ if (this.o2) {
      * @see o2.Collection.map
      */
     exports.invoke = def(me,'invoke', function(obj, delegate) {
-        var i       = 0;
-        var invoker = null;
-        var item    = null;
-        var key     = null;
-        var len     = 0;
+        var i       = 0,
+            invoker = null,
+            item    = null,
+            key     = null,
+            len     = 0,
 
-        if (arguments.length < 2) {
-            return;
-        }
+            kCount  = 2,
+            args    = null;
 
-        if (!obj) {
-            return;
-        }
+        if (arguments.length < kCount ) {return;}
+        if (!obj                      ) {return;}
+        if (!isObject(obj)            ) {return;}
 
-        if (!isObject(obj)) {
-            return;
-        }
-
-        var args = slice.apply(arguments, [2]);
+        args = slice.call(arguments, kCount);
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
-                item = obj[i];
+                item    = obj[i];
                 invoker = isFunction(delegate) ? delegate : item[delegate];
+
                 invoker.apply(item, args);
             }
 
@@ -8599,8 +8044,9 @@ if (this.o2) {
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                item = obj[key];
+                item    = obj[key];
                 invoker = isFunction(delegate) ? delegate : item[delegate];
+
                 invoker.apply(item, args);
             }
         }
@@ -8626,22 +8072,18 @@ if (this.o2) {
      * @return the last index of the item if exists, <code>-1</code> otherwise.
      */
     exports.lastIndexOf = def(me,'lastIndexOf', function(obj, item) {
-        var i = 0;
+        var i          = 0,
+            collection = null;
 
-        if (!obj) {
-            return -1;
-        }
-
-        if (!isObject(obj)) {
-            return -1;
-        }
+        if (!obj          ) {return -1;}
+        if (!isObject(obj)) {return -1;}
 
         // Array.prototype.lastIndexOf
         if (obj.lastIndexOf) {
             return obj.lastIndexOf(item);
         }
 
-        var collection = isArray(obj) ? obj : toArray(obj);
+        collection = isArray(obj) ? obj : toArray(obj);
 
         for (i = collection.length - 1; i >= 0; i--) {
             if (collection[i] === item) {
@@ -8684,18 +8126,13 @@ if (this.o2) {
      * @see o2.Collection.group
      */
     exports.pluck = def(me,'pluck', function(obj, key) {
-        var i      = 0;
-        var k      = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            k      = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -8717,7 +8154,7 @@ if (this.o2) {
     /*
      *
      */
-    var pluck = require(kModuleName, 'pluck');
+    pluck = require(kModuleName, 'pluck');
 
     /**
      * @function {static} o2.Collection.reduce
@@ -8753,22 +8190,17 @@ if (this.o2) {
      * @return a single reduced value.
      */
     exports.reduce = def(me, 'reduce', function(obj, delegate, store, context) {
-        var cache    = store;
-        var i        = 0;
-        var index    = 0;
-        var isSeeded = arguments.length > 2;
-        var iterator = delegate;
-        var key      = null;
-        var len      = 0;
-        var value    = null;
+        var cache    = store,
+            i        = 0,
+            index    = 0,
+            isSeeded = arguments.length > 2,
+            iterator = delegate,
+            key      = null,
+            len      = 0,
+            value    = null;
 
-        if (!obj) {
-            return null;
-        }
-
-        if (!isObject(obj)) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         // Array.prototype.reduce
         if (obj.reduce) {
@@ -8786,7 +8218,7 @@ if (this.o2) {
                 value = obj[i];
 
                 if (!isSeeded) {
-                    cache = value;
+                    cache    = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
@@ -8808,7 +8240,7 @@ if (this.o2) {
                 value = obj[key];
 
                 if (!isSeeded) {
-                    cache = value;
+                    cache   = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
@@ -8831,7 +8263,7 @@ if (this.o2) {
     /*
      *
      */
-    var reduce = require(kModuleName, 'reduce');
+    reduce = require(kModuleName, 'reduce');
 
     /**
      * @function {static} o2.Collection.fold
@@ -8874,16 +8306,12 @@ if (this.o2) {
      */
     exports.reduceRight = def(me,'reduceRight', function(obj, delegate, store,
                 context) {
-        var isSeeded = arguments.length > 2;
-        var iterator = delegate;
+        var isSeeded = arguments.length > 2,
+            iterator = delegate,
+            reversed = null;
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         if (context) {
             iterator = bind(context, delegate);
@@ -8896,7 +8324,7 @@ if (this.o2) {
                 obj.reduceRight(iterator);
         }
 
-        var reversed = toArray(obj).reverse();
+        reversed = toArray(obj).reverse();
 
         return isSeeded ? reduce(reversed, iterator, store, context) :
             reduce(reversed, iterator);
@@ -8930,10 +8358,10 @@ if (this.o2) {
      * @param {Object} elm - the element to remove.
      */
     exports.removeElement = def(me, 'removeElement', function(obj, elm) {
-        var i    = 0;
-        var item = null;
-        var key  = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            key  = null,
+            len  = 0;
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -8985,12 +8413,12 @@ if (this.o2) {
      */
     exports.removeElementByValue = def(me, 'removeElementByValue', function(obj,
                 name, value) {
-        var i    = 0;
-        var item = null;
-        var key  = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            key  = null,
+            len  = 0;
 
-        if (isArray(obj)) {
+        if (obj.splice) {
             for (i = 0, len = obj.length; i < len; i++) {
                 item = obj[i];
 
@@ -9037,26 +8465,17 @@ if (this.o2) {
      * collection.
      */
     exports.shuffle = def(me,'shuffle', function(obj) {
-        var collection = null;
-        var i          = 0;
-        var index      = null;
-        var len        = 0;
-        var result     = [];
-        var value      = null;
+        var collection = null,
+            i          = 0,
+            index      = null,
+            len        = 0,
+            result     = [],
+            value      = null;
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
-        if (!isObject(obj)) {
-            return result;
-        }
-
-        if (!isArray(obj)) {
-            collection = toArray(obj);
-        } else {
-            collection = obj;
-        }
+        collection = isArray(obj) ? obj : toArray(obj);
 
         for (i = 0, len = collection.length; i < len; i++) {
             value = collection[i];
@@ -9064,8 +8483,8 @@ if (this.o2) {
             if (i === 0) {
                 result.push(value);
             } else {
-                index = floor(random() * (i + 1));
-                result[i] = result[index];
+                index         = floor(random() * (i + 1));
+                result[i]     = result[index];
                 result[index] = value;
             }
         }
@@ -9109,21 +8528,16 @@ if (this.o2) {
      * @return a sorted copy of the initial collection.
      */
     exports.sort = def(me,'sort', function(obj, delegate, context) {
-        var i     = 0;
-        var key   = null;
-        var len   = 0;
-        var meta  = [];
-        var value = null;
+        var i        = 0,
+            iterator = delegate || identity,
+            key      = null,
+            len      = 0,
+            meta     = [],
+            result   = null,
+            value    = null;
 
-        var iterator = delegate || identity;
-
-        if (!obj) {
-            return meta;
-        }
-
-        if (!isObject(obj)) {
-            return meta;
-        }
+        if (!obj          ) {return meta;}
+        if (!isObject(obj)) {return meta;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -9146,8 +8560,8 @@ if (this.o2) {
         }
 
         meta.sort(function(left, right) {
-            var l = left.order;
-            var r = right.order;
+            var l = left.order,
+                r = right.order;
 
             if (l < r) {
                 return -1;
@@ -9160,7 +8574,7 @@ if (this.o2) {
             return 0;
         });
 
-        var result = [];
+        result = [];
 
         for(i = 0, len = meta.length; i < len; i++) {
             result.push(meta[i].value);
@@ -9204,16 +8618,14 @@ if (this.o2) {
      * otherwise.
      */
     exports.some = def(me,'some', function(obj, delegate, context) {
-        var i        = 0;
-        var index    = 0;
-        var iterator = delegate || identity;
-        var key      = null;
-        var len      = 0;
-        var result   = false;
+        var i        = 0,
+            index    = 0,
+            iterator = delegate || identity,
+            key      = null,
+            len      = 0,
+            result   = false;
 
-        if (!obj) {
-            return false;
-        }
+        if (!obj) {return false;}
 
         // Array.prototype.some
         if (obj.some) {
@@ -9222,9 +8634,7 @@ if (this.o2) {
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
-                if (result) {
-                    break;
-                }
+                if (result) {break;}
 
                 result = iterator.apply(context, [obj[i], i, obj]);
             }
@@ -9234,9 +8644,7 @@ if (this.o2) {
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                if (result) {
-                    break;
-                }
+                if (result) {break;}
 
                 result = iterator.apply(context,
                     [obj[key], index, obj]);
@@ -9278,19 +8686,14 @@ if (this.o2) {
      * @return the flattened collection.
      */
     exports.flatten = def(me, 'flatten', function(obj) {
-        var i     = 0;
-        var key   = null;
-        var len   = 0;
-        var store = [];
-        var value = null;
+        var i     = 0,
+            key   = null,
+            len   = 0,
+            store = [],
+            value = null;
 
-        if (!obj) {
-            return store;
-        }
-
-        if (!isObject(obj)) {
-            return store;
-        }
+        if (!obj          ) {return store;}
+        if (!isObject(obj)) {return store;}
 
         if (isArray(obj)) {
             for(i = 0, len = obj.length; i < len; i++) {
@@ -9324,7 +8727,7 @@ if (this.o2) {
     /*
      *
      */
-    var flatten = require(kModuleName, 'flatten');
+    flatten = require(kModuleName, 'flatten');
 
     /**
      * @function {static} o2.Collection.union
@@ -9378,10 +8781,10 @@ if (this.o2) {
      * @return a zipped <code>Array</code>.
      */
     exports.zip = def(me,'zip', function() {
-        var args    = slice.call(arguments);
-        var i       = 0;
-        var length  = getMax(pluck(args, kLength));
-        var results = [];
+        var args    = slice.call(arguments),
+            i       = 0,
+            length  = getMax(pluck(args, kLength)),
+            results = [];
 
         for (i = 0; i < length; i++) {
             results[i] = pluck(args, [kEmpty, i].join(kEmpty));
@@ -9389,7 +8792,7 @@ if (this.o2) {
 
         return results;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module convert
  *
@@ -9425,56 +8828,64 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('cookie.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Cookie';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Cookie
-     *
-     * <p>A <strong>cookie</strong> helper class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Cookie',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Cookie
+         *
+         * <p>A <strong>cookie</strong> helper class.</p>
+         */
+        me = create(kModuleName),
 
-    var concat = require('String', 'concat');
+        /*
+         * Aliases
+         */
 
-    var escape = attr(window, 'escape');
+        concat = require('String', 'concat'),
 
-    /*
-     * Common Constants
-     */
-    var kBlank         = ' ';
-    var kDelimeter     = ';';
-    var kDomain        = '; domain=';
-    var kEmpty         = '';
-    var kEquals        = '=';
-    var kExpires       = '; expires=';
-    var kNextCharIndex = 1;
-    var kPath          = '; path=';
-    var kRootPath      = '/';
-    var kSecure        = '; secure';
+        escape = attr(window, 'escape'),
+
+        /*
+         * Common Constants
+         */
+        kBlank         = ' ',
+        kDelimeter     = ';',
+        kDomain        = '; domain=',
+        kEmpty         = '',
+        kEquals        = '=',
+        kExpires       = '; expires=',
+        kNextCharIndex = 1,
+        kPath          = '; path=',
+        kRootPath      = '/',
+        kSecure        = '; secure',
+
+        /*
+         * To be Overridden
+         */
+        save = null;
 
     /**
      * @function {static} o2.Cookie.read
@@ -9495,12 +8906,13 @@ if (this.o2) {
      * if the <strong>cookie</strong> is not found.
      */
     exports.read = def(me, 'read', function(name) {
-        var ca = document.cookie.split(kDelimeter);
-        var eq = concat(decodeURIComponent(name), kEmpty);
-        var i  = 0;
+        var ca = document.cookie.split(kDelimeter),
+            eq = concat(decodeURIComponent(name), kEmpty),
+            i  = 0,
+            c  = 0;
 
         for (i = 0; i < ca.length; i++) {
-            var c = ca[i];
+            c = ca[i];
 
             while (c.charAt(0) === kBlank) {
                 c = c.substring(kNextCharIndex, c.length);
@@ -9536,8 +8948,10 @@ if (this.o2) {
      */
     exports.save = def(me, 'save', function(name, value, days, path, domain,
                 isSecure) {
-        var d  = new Date();
-        var ex = kEmpty;
+        var d            = new Date(),
+            ex           = kEmpty,
+            cookiePath   = kEmpty,
+            cookieString = kEmpty;
 
         if (days) {
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -9546,10 +8960,10 @@ if (this.o2) {
             ex = kEmpty;
         }
 
-        var cookiePath = path || kRootPath;
+        cookiePath = path || kRootPath;
 
-        // Do not use encodeURICompoent for paths as it replaces / with %2F
-        var cookieString = concat(
+        // Do not use encodeURICompoent for paths as it replaces "/" with "%2F"
+        cookieString = concat(
             encodeURIComponent(name), kEquals,
             encodeURIComponent(value), ex, kPath,
             escape(cookiePath)
@@ -9569,7 +8983,7 @@ if (this.o2) {
     /*
      *
      */
-    var save = require(kModuleName, 'save');
+    save = require(kModuleName, 'save');
 
     /**
      * @function {static} o2.Cookie.remove
@@ -9596,7 +9010,7 @@ if (this.o2) {
     // removeAll makes things too complicated if path, and domain
     // come into play... Will not implement it.
     // removeAll : function(){ }
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   date.core
  * @requires core
@@ -9605,106 +9019,117 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('date.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Date';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Date
-     *
-     * <p>A date/time utilities class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Date',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Date
+         *
+         * <p>A date/time utilities class.</p>
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var now    = require('now');
+        /*
+         * Aliases
+         */
 
-    var format = require('String', 'format');
+        $   = require('$'),
+        now = require('now'),
 
-    var math  = Math;
-    var floor = attr(math, 'floor');
-    var abs   = attr(math, 'abs');
+        format = require('String', 'format'),
 
-    /*
-     * i18n
-     */
+        math  = Math,
+        floor = attr(math, 'floor'),
+        abs   = attr(math, 'abs'),
 
-    var kAgo              = 'ago';
-    var kCenturies        = 'centuries';
-    var kDays             = 'days';
-    var kFromNow          = 'from now';
-    var kHours            = 'hours';
-    var kJustNow          = 'just now';
-    var kLastCentury      = 'last century';
-    var kLastMonth        = 'last month';
-    var kLastWeek         = 'last week';
-    var kLastYear         = 'last year';
-    var kMinutes          = 'minutes';
-    var kMonths           = 'months';
-    var kNextCentury      = 'next century';
-    var kNextMonth        = 'next month';
-    var kNextWeek         = 'next week';
-    var kNextYear         = 'next year';
-    var kOneHourAgo       = 'an hour ago';
-    var kOneHourFromNow   = 'an hour from now';
-    var kOneMinuteAgo     = 'a minute ago';
-    var kOneMinuteFromNow = 'a minute from now';
-    var kSeconds          = 'seconds';
-    var kTomorrow         = 'tomorrow';
-    var kWeeks            = 'weeks';
-    var kYears            = 'years';
-    var kYesterday        = 'yesterday';
+        /*
+         * i18n
+         */
 
-    var kTokenizedText = '{0} {1} {2}';
+        //TODO: parse all "TODO"s and enter as issues to github.
 
-    /*
-     * Time Formats
-     */
-    var timeFormats = [
-        [60         , kSeconds     , 1                ],
-        [120        , kOneMinuteAgo, kOneMinuteFromNow],
-        [3600       , kMinutes     , 60               ],
-        [7200       , kOneHourAgo  , kOneHourFromNow  ],
-        [86400      , kHours       , 3600             ],
-        [172800     , kYesterday   , kTomorrow        ],
-        [604800     , kDays        , 86400            ],
-        [1209600    , kLastWeek    , kNextWeek        ],
-        [2419200    , kWeeks       , 604800           ],
-        [4838400    , kLastMonth   , kNextMonth       ],
-        [29030400   , kMonths      , 2419200          ],
-        [58060800   , kLastYear    , kNextYear        ],
-        [2903040000 , kYears       , 29030400         ],
-        [5806080000 , kLastCentury , kNextCentury     ],
-        [58060800000, kCenturies   , 2903040000       ]
-    ];
+        //TOOD: make these configurable in o2.date.config.js.
 
-    /*
-     * Common Constants
-     */
-    var kString = 'string';
+        kAgo              = 'ago',
+        kCenturies        = 'centuries',
+        kDays             = 'days',
+        kFromNow          = 'from now',
+        kHours            = 'hours',
+        kJustNow          = 'just now',
+        kLastCentury      = 'last century',
+        kLastMonth        = 'last month',
+        kLastWeek         = 'last week',
+        kLastYear         = 'last year',
+        kMinutes          = 'minutes',
+        kMonths           = 'months',
+        kNextCentury      = 'next century',
+        kNextMonth        = 'next month',
+        kNextWeek         = 'next week',
+        kNextYear         = 'next year',
+        kOneHourAgo       = 'an hour ago',
+        kOneHourFromNow   = 'an hour from now',
+        kOneMinuteAgo     = 'a minute ago',
+        kOneMinuteFromNow = 'a minute from now',
+        kSeconds          = 'seconds',
+        kTomorrow         = 'tomorrow',
+        kWeeks            = 'weeks',
+        kYears            = 'years',
+        kYesterday        = 'yesterday',
+
+        /*
+         * {15} {days} {ago}.
+         */
+        kTokenizedText = '{0} {1} {2}',
+
+        /*
+         * Time Formats
+         */
+        timeFormats = [
+            [60         , kSeconds     , 1                ],
+            [120        , kOneMinuteAgo, kOneMinuteFromNow],
+            [3600       , kMinutes     , 60               ],
+            [7200       , kOneHourAgo  , kOneHourFromNow  ],
+            [86400      , kHours       , 3600             ],
+            [172800     , kYesterday   , kTomorrow        ],
+            [604800     , kDays        , 86400            ],
+            [1209600    , kLastWeek    , kNextWeek        ],
+            [2419200    , kWeeks       , 604800           ],
+            [4838400    , kLastMonth   , kNextMonth       ],
+            [29030400   , kMonths      , 2419200          ],
+            [58060800   , kLastYear    , kNextYear        ],
+            [2903040000 , kYears       , 29030400         ],
+            [5806080000 , kLastCentury , kNextCentury     ],
+            [58060800000, kCenturies   , 2903040000       ]
+        ],
+
+        /*
+         * Common Constants
+         */
+        kString = 'string',
+        kEmpty  = '';
 
     /**
      * @function {static} o2.Date.getPrettyDate
@@ -9724,19 +9149,23 @@ if (this.o2) {
      * in milliseconds.
      */
     exports.getPrettyDate = def(me, 'getPrettyDate', function(time, currTime) {
-        var currentTime = currTime || $.now();
-        var listChoice  = 1;
-        var seconds     = (new Date(currentTime) - new Date(time)) / 1000;
-        var token       = kAgo;
+        var currentTime   = currTime || $.now(),
+            kInThePast    = 1,
+            kInTheFuture  = 2,
+            listChoice    = kInThePast,
+            seconds       = (new Date(currentTime) - new Date(time)) / 1000,
+            token         = kAgo,
+            i             = 0,
+            currentFormat = kEmpty;
 
         if (seconds < 0) {
-            seconds = abs(seconds);
-            token = kFromNow;
-            listChoice = 2;
+            seconds    = abs(seconds);
+            token      = kFromNow;
+            listChoice = kInTheFuture;
         }
 
-        var i = 0;
-        var currentFormat = timeFormats[i];
+        i             = 0;
+        currentFormat = timeFormats[i];
 
         while (currentFormat) {
             if (seconds < 5) {
@@ -9786,7 +9215,7 @@ if (this.o2) {
      * @see o2.Date.getTime
      */
     exports.now = alias(me, 'now', 'getTime');
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   debugger.core
  * @requires core
@@ -9795,100 +9224,106 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A debugging helper.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('debugger.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Debugger';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Debugger
-     *
-     * <p>A static object for debugging purposes.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * // note: initalize Debugger only once,
-     * // possibly on window.load or dom content ready
-     * o2.Debugger.init(someDomNode, true);
-     *
-     * //then inside your code use this syntax.
-     * o2.Debugger.println('stuff to debug');
-     * </pre>
-     *
-     * @see o2.Unit
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Debugger',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Debugger
+         *
+         * <p>A static object for debugging purposes.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // note: initalize Debugger only once,
+         * // possibly on window.load or dom content ready
+         * o2.Debugger.init(someDomNode, true);
+         *
+         * //then inside your code use this syntax.
+         * o2.Debugger.println('stuff to debug');
+         * </pre>
+         *
+         * @see o2.Unit
+         */
+        me = create(kModuleName),
 
-    var $    = require('$');
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var createElement = attr(document, 'createElement');
+        $    = require('$'),
+        nill = require('nill'),
 
-    var console = window.console || {};
-    var error   = console.error  || nill;
-    var info    = console.info   || nill;
-    var log     = console.log    || nill;
-    var warn    = console.warn   || nill;
+        createElement = attr(document, 'createElement'),
 
-    /*
-     * Configuration
-     */
-    var isUsingConsole = true;
-    var outputElement  = null;
+        console = window.console || {},
+        error   = console.error  || nill,
+        info    = console.info   || nill,
+        log     = console.log    || nill,
+        warn    = console.warn   || nill,
 
+        /*
+         * Configuration
+         */
+        outputElement  = null,
 
-    /*
-     * State
-     */
-    var isInitialized = false;
+        /*
+         * State
+         */
+        isInitialized = false,
 
-    /*
-     * Common Class Names
-     */
-    var kError = 'error';
-    var kFail  = 'fail';
-    var kInfo  = 'info';
-    var kLog   = 'log';
-    var kPass  = 'pass';
-    var kWarn  = 'warn';
+        /*
+         * Common Class Names
+         */
+        kError = 'error',
+        kFail  = 'fail',
+        kInfo  = 'info',
+        kLog   = 'log',
+        kPass  = 'pass',
+        kWarn  = 'warn',
 
-    /*
-     * Common Errors
-     */
-    var kCannotInitialize = 'Debugger: cannot initialize outputElement';
-    var kErrorText        = '<b>ERROR:</b> ';
-    var kFailText         = '<b>FAIL:</b> ';
-    var kInfoText         = '<b>INFO:</b> ';
-    var kPassText         = '<b>PASS:</b> ';
-    var kWarnText         = '<b>WARN:</b> ';
+        /*
+         * Common Errors
+         */
+        kCannotInitialize = 'Debugger: cannot initialize outputElement',
+        kErrorText        = '<b>ERROR:</b> ',
+        kFailText         = '<b>FAIL:</b> ',
+        kInfoText         = '<b>INFO:</b> ',
+        kPassText         = '<b>PASS:</b> ',
+        kWarnText         = '<b>WARN:</b> ',
 
-    /*
-     * Common Constants
-     */
-    var kDefaultContainer = 'div';
-    var kEmpty            = '';
+        /*
+         * Common Constants
+         */
+        kDefaultContainer = 'div',
+        kEmpty            = '',
+
+        /*
+         * To be Overridden
+         */
+        PrinterFactory = null;
 
     /*
      *
@@ -9922,7 +9357,7 @@ if (this.o2) {
      * A factory class that creates printer deleages,
      * by parsing the configuration object.
      */
-    var PrinterFactory = {
+    PrinterFactory = {
 
         /*
          * Returns a delegate, parsing the configuration object.
@@ -9941,25 +9376,31 @@ if (this.o2) {
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
+
                     outputElement.appendChild(debugContent);
 
                     println(value, className);
                 };
-            } else if (isUsingConsole && !outputElement) {
+            }
+
+            if (isUsingConsole && !outputElement) {
                 return function(value, className) {
                     println(value, className);
                 };
-            } else if (!isUsingConsole && outputElement) {
+            }
+
+            if (!isUsingConsole && outputElement) {
                 return function(value, className) {
                     var debugContent = createElement(kDefaultContainer);
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
+
                     outputElement.appendChild(debugContent);
                 };
-            } else {
-                return nill;
             }
+
+            return nill;
         }
     };
 
@@ -9983,9 +9424,7 @@ if (this.o2) {
      * @see o2.Unit.assert
      */
     exports.assert = def(me, 'assert', function(pass, message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         if (pass) {
             me.println([kPassText, message].join(kEmpty), kPass);
@@ -10010,9 +9449,7 @@ if (this.o2) {
      * @param {String} message - the error message to display.
      */
     exports.error = def(me, 'error', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kErrorText, message].join(kEmpty), kError);
     });
@@ -10031,9 +9468,7 @@ if (this.o2) {
      * @param {String} message - the info message to display.
      */
     exports.info = def(me, 'info', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kInfoText, message].join(kEmpty), kInfo);
     });
@@ -10058,7 +9493,9 @@ if (this.o2) {
      * be used, if available.
      */
     exports.init = def(me, 'init', function(outputElement, shouldUseConsole) {
-        var outputNode = $(outputElement);
+        var outputNode     = $(outputElement),
+            isCfgOk        = false,
+            isUsingConsole = false;
 
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
@@ -10068,7 +9505,7 @@ if (this.o2) {
         // Is everything ok? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
-        var isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
+        isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
 
         if (!isCfgOk) {
             throw kCannotInitialize;
@@ -10101,9 +9538,7 @@ if (this.o2) {
      * @see o2.Unit.log
      */
     exports.log = def(me, 'log', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println(message, kLog);
     });
@@ -10127,9 +9562,7 @@ if (this.o2) {
 
         // If not initialized, then we cannot use any of
         // Debugger's public methods.
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         // Reset className if not given.
         if (!className) {
@@ -10157,13 +9590,11 @@ if (this.o2) {
      * @param {String} message - the warning message to display.
      */
     exports.warn = def(me, 'warn', function(message) {
-        if (!isInitialized) {
-            return;
-        }
+        if (!isInitialized) {return;}
 
         me.println([kWarnText, message].join(kEmpty), kWarn);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.class
  * @requires core
@@ -10173,47 +9604,58 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.class', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (class)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (class)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var concat = require('String', 'concat');
+        $ = require('$'),
 
-    /*
-     * Common Constants
-     */
-    var kBeginOrBlank = '(\\s|^)';
-    var kBlank        = ' ';
-    var kEndOrBlank   = '(\\s|$)';
+        concat = require('String', 'concat'),
+
+        /*
+         * Common Constants
+         */
+        kBeginOrBlank = '(\\s|^)',
+        kBlank        = ' ',
+        kEndOrBlank   = '(\\s|$)',
+
+        /*
+         * To be Overridden
+         */
+        createClassNameRegExp = null,
+        hasClass              = null,
+        addClass              = null,
+        removeClass           = null;
 
     /**
      * @function {static} o2.Dom.createClassNameRegExp
@@ -10239,7 +9681,7 @@ if (this.o2) {
     /*
      *
      */
-    var createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
+    createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.Dom.hasClass
@@ -10265,9 +9707,7 @@ if (this.o2) {
     exports.hasClass = def(me, 'hasClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return false;
-        }
+        if (!el) {return false;}
 
         return createClassNameRegExp(c).test(el.className);
     });
@@ -10275,7 +9715,7 @@ if (this.o2) {
     /*
      *
      */
-    var hasClass = require(kModuleName, 'hasClass');
+    hasClass = require(kModuleName, 'hasClass');
 
     /**
      * @function {static} o2.Dom.addClass
@@ -10295,13 +9735,8 @@ if (this.o2) {
     exports.addClass = def(me, 'addClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return;
-        }
-
-        if (hasClass(el, c)) {
-            return;
-        }
+        if (!el            ) {return;}
+        if (hasClass(el, c)) {return;}
 
         el.className += concat(kBlank, c);
     });
@@ -10309,7 +9744,7 @@ if (this.o2) {
     /*
      *
      */
-    var addClass = require(kModuleName, 'addClass');
+    addClass = require(kModuleName, 'addClass');
 
     /**
      * @function {static} o2.Dom.removeClass
@@ -10329,13 +9764,8 @@ if (this.o2) {
     exports.removeClass = def(me, 'removeClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return;
-        }
-
-        if (!hasClass(el, c)) {
-            return;
-        }
+        if (!el             ) {return;}
+        if (!hasClass(el, c)) {return;}
 
         el.className = el.className.replace(createClassNameRegExp(c), kBlank);
     });
@@ -10343,7 +9773,7 @@ if (this.o2) {
     /*
      *
      */
-    var removeClass = require(kModuleName, 'removeClass');
+    removeClass = require(kModuleName, 'removeClass');
 
     /**
      * @function {static} o2.Dom.toggleClass
@@ -10388,7 +9818,7 @@ if (this.o2) {
 
         addClass(el, c);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /************/
 /**
  * @module   dom.constants
@@ -10398,33 +9828,36 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Constant definitions for {@link o2.Dom}.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.constants', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Dom
-     *
-     * A cross-browser <strong>DOM</strong> manipulation helper.
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
+
+        /**
+         * @class {static} o2.Dom
+         *
+         * A cross-browser <strong>DOM</strong> manipulation helper.
+         */
+        me = create(kModuleName);
 
     /**
      * @struct {static} o2.Dom.nodeType
@@ -10506,7 +9939,7 @@ if (this.o2) {
          */
         NOTATION : 12
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 
 //     var _         = framework.protecteds;
 //     var alias     = _.alias;
@@ -10684,79 +10117,78 @@ if (this.o2) {
  * @module   dom.core
  * @requires core
  * @requires dom.constants
- * @requires dom.style
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
  */
-(function(framework, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.core', ['core', 'dom.constants']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (core)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (core)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var nt            = require(kModuleName, 'nodeType');
-    var kElementNode  = attr(nt, 'ELEMENT');
-    var kDocumentNode = attr(nt, 'DOCUMENT');
-    var kText         = attr(nt, 'TEXT');
+        $ = require('$'),
 
-    var createElement          = attr(document,'createElement');
-    var createDocumentFragment = attr(document, 'createDocumentFragment');
+        nt            = require(kModuleName, 'nodeType'),
+        kElementNode  = attr(nt, 'ELEMENT'),
+        kDocumentNode = attr(nt, 'DOCUMENT'),
+        kText         = attr(nt, 'TEXT'),
 
-    /*
-     * Common Constants
-     */
-    var kClass     = 'class';
-    var kClassName = 'className';
-    var kCss       = 'css';
-    var kCssText   = 'cssText';
-    var kDiv       = 'div';
-    var kEmpty     = '';
-    var kFunction  = 'function';
-    var kNumber    = 'number';
-    var kObject    = 'object';
-    var kString    = 'string';
-    var kStyle     = 'style';
+        /*
+         * Common Constants
+         */
+        kClass     = 'class',
+        kClassName = 'className',
+        kCss       = 'css',
+        kCssText   = 'cssText',
+        kDiv       = 'div',
+        kEmpty     = '',
+        kFunction  = 'function',
+        kNumber    = 'number',
+        kObject    = 'object',
+        kString    = 'string',
+        kStyle     = 'style',
 
-    /*
-     * Common Regular Expression
-     */
-    var kReturnRegExp = /\r\n|\r/g;
-    var kWhiteSpaceRegExp = /^\s*$/;
+        /*
+         * Common Regular Expressions
+         */
+        kReturnRegExp = /\r\n|\r/g,
+        kWhiteSpaceRegExp = /^\s*$/,
 
-    /*
-     * For creating document fragments.
-     */
-    var tempFragmentDiv = null;
+        /*
+         * For creating document fragments.
+         */
+        tempFragmentDiv = null;
 
     /**
      * @function {static} o2.Dom.append
@@ -10777,16 +10209,14 @@ if (this.o2) {
      * <strong>id</strong> of the container.
      */
     exports.append = def(me, 'append', function(elmChild, elmParent) {
-        var child  = $(elmChild);
-        var parent = $(elmParent);
-        var temp   = null;
+        var child  = $(elmChild),
+            parent = $(elmParent),
+            temp   = null;
 
-        if (!child || !parent) {
-            return;
-        }
+        if (!child || !parent) {return;}
 
         if (typeof child === 'string') {
-            temp = createElement(kDiv);
+            temp = document.createElement(kDiv);
             parent.appendChild(temp).innerHTML = child;
             return temp;
         }
@@ -10814,9 +10244,9 @@ if (this.o2) {
      */
     exports.createDocumentFragment = def(me, 'createDocumentFragment',
                 function(html) {
-        var result = createDocumentFragment();
+        var result = document.createDocumentFragment();
 
-        tempFragmentDiv = tempFragmentDiv || createElement(kDiv);
+        tempFragmentDiv = tempFragmentDiv || document.createElement(kDiv);
 
         tempFragmentDiv.innerHTML = html;
 
@@ -10851,11 +10281,11 @@ if (this.o2) {
      */
     exports.createElement = def(me, 'createElement', function(name,
                 attributes) {
-        var e       = createElement(name);
-        var isClass = false;
-        var isStyle = false;
-        var key     = null;
-        var value   = kEmpty;
+        var e       = document.createElement(name),
+            isClass = false,
+            isStyle = false,
+            key     = null,
+            value   = kEmpty;
 
         // Internet Explorer 7- (and some minor browsers) cannot set values
         // for style, class or event handlers, using setAttribute.
@@ -10928,38 +10358,29 @@ if (this.o2) {
      * otherwise.
      */
     exports.getAttribute = def(me, 'getAttribute', function(elm, attribute) {
-        var obj = $(elm);
+        var obj = $(elm),
+            value = null;
 
-        if (!obj || !attribute) {
-            return null;
-        }
-
-        var value = null;
+        if (!obj || !attribute) {return null;}
 
         if (attribute === kClass || attribute === kClassName) {
             value = obj.className;
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         if (attribute === kStyle || attribute === kCss ||
                     attribute === kCssText) {
             value = obj.cssText;
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         // The DOM object (obj) may not have a getAttribute method.
         if (typeof obj.getAttribute === kFunction) {
             value = obj.getAttribute(attribute);
 
-            if (value !== UNDEFINED) {
-                return value;
-            }
+            if (value !== UNDEFINED) {return value;}
         }
 
         return obj[attribute] || null;
@@ -10985,9 +10406,7 @@ if (this.o2) {
     exports.getHtml = def(me, 'getHtml', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj) {return null;}
 
         return obj.innerHTML;
     });
@@ -11013,49 +10432,37 @@ if (this.o2) {
          * @return the textual content of the given node.
          */
         exports.getText = def(me, 'getText', function(elm) {
-            var obj = $(elm);
+            var obj     = $(elm),
+                nodeType = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
-            var nodeType = obj.nodeType;
+            nodeType = obj.nodeType;
 
-            if (!nodeType) {
-                return null;
-            }
+            if (!nodeType) {return null;}
 
-            if (nodeType !== kElementNode && nodeType !== kDocumentNode) {
-                return null;
-            }
+            if (nodeType !== kElementNode &&
+                        nodeType !== kDocumentNode) {return null;}
 
-            if (typeof obj.innerText !== kString) {
-                return null;
-            }
+            if (typeof obj.innerText !== kString) {return null;}
 
             return obj.innerText.replace(kReturnRegExp, '');
         });
     } else {
         exports.getText = def(me, 'getText', function(elm) {
-            var obj = $(elm);
+            var obj      = $(elm),
+                nodeType = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
-            var nodeType = obj.nodeType;
+            nodeType = obj.nodeType;
 
-            if (!nodeType) {
-                return null;
-            }
+            if (!nodeType) {return null;}
 
-            if (nodeType !== kElementNode && nodeType !== kDocumentNode) {
-                return null;
-            }
+            if (nodeType !== kElementNode &&
+                        nodeType !== kDocumentNode) {return null;}
 
-            if (typeof obj.textContent !== kString) {
-                return null;
-            }
+            if (typeof obj.textContent !== kString) {return null;}
 
             return obj.textContent;
         });
@@ -11080,14 +10487,13 @@ if (this.o2) {
      * <strong>id</strong> of the node.
      */
     exports.insertAfter = def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
-        var newNode = $(elmNewNode);
-        var refNode = $(elmRefNode);
+        var newNode = $(elmNewNode),
+            refNode = $(elmRefNode),
+            obj     = null;
 
-        if (!newNode || !refNode) {
-            return;
-        }
+        if (!newNode || !refNode) {return;}
 
-        var obj = refNode.parentNode;
+        obj = refNode.parentNode;
 
         if (refNode.nextSibling) {
             obj.insertBefore(newNode, refNode.nextSibling);
@@ -11118,14 +10524,13 @@ if (this.o2) {
      */
     exports.insertBefore = def(me, 'insertBefore', function(elmNewNode,
                 elmRefNode) {
-        var newNode = $(elmNewNode);
-        var refNode = $(elmRefNode);
+        var newNode = $(elmNewNode),
+            refNode = $(elmRefNode),
+            obj     = null;
 
-        if (!newNode || !refNode) {
-            return;
-        }
+        if (!newNode || !refNode) {return;}
 
-        var obj = refNode.parentNode;
+        obj = refNode.parentNode;
 
         obj.insertBefore(newNode, refNode);
     });
@@ -11176,12 +10581,15 @@ if (this.o2) {
     //TODO: add documentation.
     exports.isNode = def(me, 'isNode', function(obj) {
         return (
-            typeof window.Node === 'object' ?
+            typeof window.Node === kObject ?
+
                 // DOM Level 2
                 obj instanceof window.Node :
+
+                // Legacy
                 obj && typeof obj === kObject &&
-                typeof obj.nodeType === kNumber &&
-                typeof obj.nodeName === kString
+                    typeof obj.nodeType === kNumber &&
+                    typeof obj.nodeName === kString
         );
     });
 
@@ -11204,15 +10612,14 @@ if (this.o2) {
      * container.
      */
     exports.prepend = def(me, 'prepend', function(elmChild, elmParent) {
-        var child  = $(elmChild);
-        var parent = $(elmParent);
+        var child  = $(elmChild),
+            parent = $(elmParent),
+            temp   = null;
 
-        if (!child || !parent) {
-            return;
-        }
+        if (!child || !parent) {return;}
 
         if (typeof child === kString) {
-            var temp = createElement(kDiv);
+            temp           = document.createElement(kDiv);
             temp.innerHTML = child;
 
             if (parent.childNodes.length === 0) {
@@ -11248,9 +10655,7 @@ if (this.o2) {
     exports.remove = def(me, 'remove', function(e) {
         var elm = $(e);
 
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         elm.parentNode.removeChild(elm);
 
@@ -11283,9 +10688,7 @@ if (this.o2) {
     exports.removeChildren = def(me, 'removeChildren', function(elm) {
         var node = $(elm);
 
-        if (!node) {
-            return;
-        }
+        if (!node) {return;}
 
         node.innerHTML = kEmpty;
     });
@@ -11317,18 +10720,18 @@ if (this.o2) {
      * <strong>id</strong> of it to process.
      */
     exports.removeEmptyTextNodes = def(me, 'removeEmptyTextNodes', function(e) {
-        var arRemove     = [];
-        var child        = null;
-        var elm          = $(e);
-        var i            = 0;
-        var shouldRemove = false;
+        var arRemove     = [],
+            child        = null,
+            elm          = $(e),
+            i            = 0,
+            shouldRemove = false,
+            children     = null,
+            len          = 0;
 
-        if (!elm) {
-            return;
-        }
+        if (!elm) {return;}
 
-        var children = elm.childNodes;
-        var len      = children.length;
+        children = elm.childNodes;
+        len      = children.length;
 
         for (i = 0; i < len; i++) {
             child = children[i];
@@ -11378,9 +10781,7 @@ if (this.o2) {
                 value) {
         var obj = $(elm);
 
-        if (!obj || !attribute) {
-            return;
-        }
+        if (!obj || !attribute) {return;}
 
         if (attribute === kClass  || attribute === kClassName){
             obj.className = value;
@@ -11414,13 +10815,11 @@ if (this.o2) {
     exports.setHtml = def(me, 'setHtml', function(elm, html) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         obj.innerHTML = html;
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.style
  * @requires core
@@ -11432,79 +10831,96 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>A utility package to
  * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
  * styles.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.style', ['core', 'string.core',
+        'string.transform', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (style)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (style)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var t      = require('t');
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kString               = 'String';
-    var concat                = require(kString, 'concat');
-    var toCamelCase           = require(kString, 'toCamelCase');
-    var toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase');
+        $             = require('$'),
+        t             = require('t'),
+        frameworkName = require('name'),
 
-    /*
-     * Common Constants
-     */
-    var kBackgroundPositionX = 'background-position-x';
-    var kBackgroundPositionY = 'background-position-y';
-    var kCssFloat            = 'cssFloat';
-    var kDisplay             = 'display';
-    var kEmpty               = '';
-    var kFloat               = 'float';
-    var kHead                = 'head';
-    var kHidden              = 'hidden';
-    var kLeft                = 'left';
-    var kLink                = 'link';
-    var kM$                  = 'MSIE';
-    var kNone                = 'none';
-    var kOldDisplay          = '_oldDisplay';
-    var kPixels              = 'px';
-    var kRel                 = 'rel';
-    var kStyle               = 'style';
-    var kTextCss             = 'text/css';
-    var kTitle               = 'title';
-    var kTop                 = 'top';
-    var kVisibility          = 'visibility';
-    var kZeroPx              = '0px';
+        kString               = 'String',
+        concat                = require(kString, 'concat'),
+        toCamelCase           = require(kString, 'toCamelCase'),
+        toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase'),
 
-    /*
-     * Common Regular Expressions
-     */
-    var kRegNumber      = /^-?\d/;
-    var kRegPixelNumber = /^-?\d+(?:px)?$/i;
+        /*
+         * Common Constants
+         */
+        kBackgroundPositionX = 'background-position-x',
+        kBackgroundPositionY = 'background-position-y',
+        kCssFloat            = 'cssFloat',
+        kDisplay             = 'display',
+        kEmpty               = '',
+        kFloat               = 'float',
+        kHead                = 'head',
+        kHidden              = 'hidden',
+        kLeft                = 'left',
+        kLink                = 'link',
+        kM$                  = 'MSIE',
+        kNone                = 'none',
+        kOldDisplay          = '_oldDisplay',
+        kPixels              = 'px',
+        kRel                 = 'rel',
+        kStyle               = 'style',
+        kTextCss             = 'text/css',
+        kTitle               = 'title',
+        kTop                 = 'top',
+        kVisibility          = 'visibility',
+        kZeroPx              = '0px',
+        kCssText             = 'cssText',
+
+        /*
+         * Common Regular Expressions
+         */
+        kRegNumber      = /^-?\d/,
+        kRegPixelNumber = /^-?\d+(?:px)?$/i,
+
+        /*
+         *
+         */
+        isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+
+        /*
+         * To be Overridden
+         */
+        hide      = null,
+        show      = null,
+        isVisible = null;
 
     /**
      * @function {static} o2.Dom.activateAlternateStylesheet
@@ -11523,26 +10939,22 @@ if (this.o2) {
      */
     exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
                 function(title) {
-        var i             = 0;
-        var len           = 0;
-        var link          = null;
-        var links         = t(kLink);
-        var linkTitle     = kEmpty;
-        var shouldDisable = false;
+        var i             = 0,
+            len           = 0,
+            link          = null,
+            links         = t(kLink),
+            linkTitle     = kEmpty,
+            shouldDisable = false;
 
         for (i = 0, len = links.length; i < len; i++) {
-            link = links[i];
-            linkTitle = link.getAttribute(kTitle);
+            link          = links[i];
+            linkTitle     = link.getAttribute(kTitle);
             shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
                 title;
+
             link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
     });
-
-    /*
-     *
-     */
-    var isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
 
     if(isCrap) {
 
@@ -11574,14 +10986,13 @@ if (this.o2) {
     } else {
         exports.addCssRules = def(me, 'addCssRules', function(cssText) {
             var d         = document.createElement(kStyle);
+
             d.type        = kTextCss;
             d.textContent = cssText;
 
             document.getElementsByTagName(kHead)[0].appendChild(d);
         });
     }
-
-    var kCssText = 'cssText';
 
     /**
      * @function {static} o2.Dom.addStyle
@@ -11609,14 +11020,11 @@ if (this.o2) {
     exports.addStyle = def(me, 'addStyle', function(obj, style) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var key               = null;
-        var toCamelCaseCached = toCamelCase;
-
-        var objStyle = obj.style;
+        var key               = null,
+            toCamelCaseCached = toCamelCase,
+            objStyle          = obj.style;
 
         if (typeof style === kString) {
             if(objStyle.setAttribute) {
@@ -11665,9 +11073,7 @@ if (this.o2) {
     function getStyleTextFromAttribute(obj) {
         var styleText = obj.getAttribute(kStyle);
 
-        if(!styleText) {
-            return kEmpty;
-        }
+        if(!styleText) {return kEmpty;}
 
         if (typeof styleText === kString) {
             return styleText;
@@ -11684,9 +11090,7 @@ if (this.o2) {
         //return the property if set inline.
         var val = obj.style[cssProp];
 
-        if (val) {
-            return val;
-        }
+        if (val) {return val;}
 
         return null;
     }
@@ -11741,26 +11145,26 @@ if (this.o2) {
          */
         exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
                     isNoForce) {
-            var noForce   = !!isNoForce;
-            var obj       = $(elm);
+            var noForce     = !!isNoForce,
+                obj         = $(elm),
+                defaultView = document.defaultView,
+                cssProp     = kEmpty,
+                d           = null;
 
-            if (!obj) {
-                return null;
-            }
+            if (!obj) {return null;}
 
             if (!cssProperty) {
                 return getStyleTextFromAttribute(obj);
             }
 
-            var defaultView = document.defaultView;
-            var cssProp = prepareCssProperty(cssProperty);
+            cssProp = prepareCssProperty(cssProperty);
 
             if (noForce) {
                 return getInlineStyle(obj, cssProp);
             }
 
-            var d = defaultView.getComputedStyle(obj, kEmpty
-                ).getPropertyValue(toDashedFromCamelCase(cssProp));
+            d = defaultView.getComputedStyle(obj, kEmpty).getPropertyValue(
+                toDashedFromCamelCase(cssProp));
 
             if (cssProp === kBackgroundPositionY ||
                         cssProp === kBackgroundPositionX) {
@@ -11774,18 +11178,22 @@ if (this.o2) {
     } else {
         exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
                     isNoForce) {
-            var noForce   = !!isNoForce;
-            var obj       = $(elm);
+            var noForce      = !!isNoForce,
+                obj          = $(elm),
+                cssProp      = kEmpty,
+                camelizedCss = kEmpty,
+                value        = kEmpty,
+                isImproper   = false,
+                left         = kEmpty,
+                runtimeLeft  = kEmpty;
 
-            if (!obj) {
-                return;
-            }
+            if (!obj) {return;}
 
             if (!cssProperty) {
                 return getStyleTextFromAttribute(obj);
             }
 
-            var cssProp = prepareCssProperty(cssProperty);
+            cssProp = prepareCssProperty(cssProperty);
 
             if(noForce) {
                 return getInlineStyle(obj, cssProp);
@@ -11793,9 +11201,9 @@ if (this.o2) {
 
             //TODO: factor out.
             if (obj.currentStyle) {
-                var camelizedCss = toCamelCase(cssProp);
-                var value      = obj.currentStyle[camelizedCss];
-                var isImproper = !kRegPixelNumber.test(value) &&
+                camelizedCss = toCamelCase(cssProp);
+                value        = obj.currentStyle[camelizedCss];
+                isImproper   = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
 
                 //
@@ -11822,15 +11230,16 @@ if (this.o2) {
                 // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
                 //
                 if (isImproper) {
-                    var left = obj.style.left;
-                    var runtimeLeft = obj.runtimeStyle.left;
+                    left        = obj.style.left;
+                    runtimeLeft = obj.runtimeStyle.left;
 
                     obj.runtimeStyle.left = obj.currentStyle.left;
-                    obj.style.left = (value || 0);
+                    obj.style.left        = (value || 0);
+
                     value = concat(obj.style.pixelLeft, kPixels);
 
-                    obj.style.left = left;
                     obj.runtimeStyle.left = runtimeLeft;
+                    obj.style.left        = left;
 
                     return value;
                 }
@@ -11868,12 +11277,10 @@ if (this.o2) {
     exports.hide = def(me, 'hide', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (obj.style.display !== kNone) {
-            obj[[myName, kOldDisplay].join(kEmpty)] = obj.style.display;
+            obj[[frameworkName, kOldDisplay].join(kEmpty)] = obj.style.display;
         }
 
         obj.style.display = kNone;
@@ -11882,7 +11289,7 @@ if (this.o2) {
     /*
      *
      */
-    var hide = require(kModuleName, 'hide');
+    hide = require(kModuleName, 'hide');
 
     /**
      * @function {static} o2.Dom.show
@@ -11901,19 +11308,17 @@ if (this.o2) {
     exports.show = def(me, 'show', function(elm) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        obj.style.display = obj[[myName, kOldDisplay].join(kEmpty)] || kEmpty;
+        obj.style.display = obj[[frameworkName, kOldDisplay].join(kEmpty)] || kEmpty;
 
-        delete obj[[myName, kOldDisplay].join(kEmpty)];
+        delete obj[[frameworkName, kOldDisplay].join(kEmpty)];
     });
 
     /*
      *
      */
-    var show = require(kModuleName, 'show');
+    show = require(kModuleName, 'show');
 
     /**
      * @function {static} o2.Dom.isVisible
@@ -11941,9 +11346,7 @@ if (this.o2) {
     exports.isVisible = def(me, 'isVisible', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return false;
-        }
+        if (!obj) {return false;}
 
         // has offset dimensions
         // OR display IN (inline,block,'')
@@ -11958,16 +11361,11 @@ if (this.o2) {
         // from the computed style, then the method fails and returns
         // false.
 
-        var display = me.getStyle(obj, kDisplay);
-        var visibility = me.getStyle(obj, kVisibility);
+        var display    = me.getStyle(obj, kDisplay),
+            visibility = me.getStyle(obj, kVisibility);
 
-        if (visibility === kHidden) {
-            return false;
-        }
-
-        if (display === kNone) {
-            return false;
-        }
+        if (visibility === kHidden) {return false;}
+        if (display === kNone     ) {return false;}
 
         return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) ||
                ((display    ===  null  ) && (visibility !== kHidden)) ||
@@ -11978,7 +11376,7 @@ if (this.o2) {
     /*
      *
      */
-    var isVisible = require(kModuleName, 'isVisible');
+    isVisible = require(kModuleName, 'isVisible');
 
     /**
      * @function {static} o2.Dom.toggleVisibility
@@ -12002,9 +11400,7 @@ if (this.o2) {
                 state) {
         var obj = $(elm);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (state !== UNDEFINED) {
             if (state) {
@@ -12026,7 +11422,7 @@ if (this.o2) {
 
         show(elm);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.dimension
  * @requires core
@@ -12037,72 +11433,78 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.dimension', ['core', 'string.core', 'dom.style']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Dom (dimension)
-     */
-    var me = create(kModuleName);
+        /*
+         * Dom (dimension)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Aliases
-     */
+        /*
+         * Aliases
+         */
 
-    var $ = require('$');
+        $ = require('$'),
 
-    var concat = require('String', 'concat');
+        concat = require('String', 'concat'),
 
-    var setStyle = require(kModuleName, 'setStyle');
+        setStyle = require(kModuleName, 'setStyle'),
 
-    var self = attr(window, 'self');
+        /*
+         * Common Constants
+         */
+        kHeight    = 'height',
+        kModernCss = 'CSS1Compat',
+        kPixel     = 'px',
+        kWidth     = 'width',
 
-    /*
-     * Common Constants
-     */
-    var kHeight    = 'height';
-    var kModernCss = 'CSS1Compat';
-    var kPixel     = 'px';
-    var kWidth     = 'width';
+        /*
+         * To be Overridden
+         */
+        getDocumentElement      = null,
+        getDimension            = null,
+        getDocumentDimension    = null,
+        getWindowInnerDimension = null,
+        setWidth                = null,
+        setHeight               = null;
 
     /*
      *
      */
-    var getDocumentElement = function() {
+    getDocumentElement = function() {
 
-        // document.body can be null when refreshing.
-        if (!document || !document.body) {
-            return null;
-        }
+        // document.body can be null while refreshing.
+        if (!document || !document.body) {return null;}
 
         var result = (document.documentElement &&
             document.compatMode === kModernCss
         ) ? document.documentElement : document.body;
 
-        getDocumentElement = function() {
-            return result;
-        };
+        getDocumentElement = function() {return result;};
 
         return result;
     };
@@ -12134,7 +11536,7 @@ if (this.o2) {
         }
 
         return {
-            width : obj.offsetWidth,
+            width  : obj.offsetWidth,
             height : obj.offsetHeight
         };
     });
@@ -12142,7 +11544,7 @@ if (this.o2) {
     /*
      *
      */
-    var getDimension = require(kModuleName, 'getDimension');
+    getDimension = require(kModuleName, 'getDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentDimension
@@ -12164,9 +11566,7 @@ if (this.o2) {
     exports.getDocumentDimension = def(me, 'getDocumentDimension', function() {
         var doc = getDocumentElement();
 
-        if(!doc) {
-            return {width : 0, height : 0};
-        }
+        if(!doc) {return {width : 0, height : 0};}
 
         return {
             width : Math.max(
@@ -12185,7 +11585,7 @@ if (this.o2) {
     /*
      *
      */
-    var getDocumentDimension = require(kModuleName, 'getDocumentDimension');
+    getDocumentDimension = require(kModuleName, 'getDocumentDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentHeight
@@ -12256,7 +11656,8 @@ if (this.o2) {
      * @return the viewport information.
      */
     exports.getViewportInfo = def(me, 'getViewportInfo', function() {
-        var d  = getDocumentElement();
+        var d    = getDocumentElement(),
+            self = window.self;
 
         if (!d) {
             return {
@@ -12338,7 +11739,7 @@ if (this.o2) {
     /*
      *
      */
-    var getWindowInnerDimension = require(kModuleName, 'getWindowInnerDimension');
+    getWindowInnerDimension = require(kModuleName, 'getWindowInnerDimension');
 
     /**
      * @function {static} o2.Dom.getWindowInnerHeight
@@ -12392,12 +11793,10 @@ if (this.o2) {
     exports.setWidth = def(me, 'setWidth', function(obj, width) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var difference = 0;
-        var cssWidth   = 0;
+        var difference = 0,
+            cssWidth   = 0;
 
         // IE (as always) doesn't play nice with the box model.
         // The calculation below takes care of that.
@@ -12407,6 +11806,7 @@ if (this.o2) {
 
         if (obj.offsetWidth !== UNDEFINED) {
             setStyle(obj, kWidth, concat(width, kPixel));
+
             difference = obj.offsetWidth - width;
         }
 
@@ -12416,9 +11816,7 @@ if (this.o2) {
 
         cssWidth = width - difference;
 
-        if (cssWidth <= 0) {
-            return;
-        }
+        if (cssWidth <= 0) {return;}
 
         setStyle(obj, kWidth, concat(width, kPixel));
     });
@@ -12426,7 +11824,7 @@ if (this.o2) {
     /*
      *
      */
-    var setWidth = require(kModuleName, 'setWidth');
+    setWidth = require(kModuleName, 'setWidth');
 
     /**
      * @function {static} o2.Dom.setHeight
@@ -12446,12 +11844,10 @@ if (this.o2) {
      exports.setHeight = def(me, 'setHeight', function(obj, height) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var difference = 0;
-        var cssHeight  = 0;
+        var difference = 0,
+            cssHeight  = 0;
 
         if (obj.offsetWidth !== UNDEFINED) {
             setStyle(obj, kHeight, concat(height, kPixel));
@@ -12464,9 +11860,7 @@ if (this.o2) {
 
         cssHeight = height - difference;
 
-        if (cssHeight <= 0) {
-            return;
-        }
+        if (cssHeight <= 0) {return;}
 
         setStyle(obj, kHeight, concat(height, kPixel));
     });
@@ -12475,7 +11869,7 @@ if (this.o2) {
     /*
      *
      */
-    var setHeight = require(kModuleName, 'setHeight');
+    setHeight = require(kModuleName, 'setHeight');
 
     /**
      * @function {static} o2.Dom.setDimension
@@ -12496,14 +11890,12 @@ if (this.o2) {
     exports.setDimension = def(me, 'setDimension', function(obj, dimension) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        setWidth(obj, dimension.width);
+        setWidth (obj, dimension.width);
         setHeight(obj, dimension.height);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.form
  * @requires core
@@ -12514,48 +11906,51 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.form', ['core', 'string.core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (form)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (form)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var compact = require(kString, 'compact');
-    var trim    = require(kString, 'trim');
+        $ = require('$'),
 
-    /*
-     * Common Constants
-     */
-    var kPlaceholder = 'placeholder';
-    var kEmpty       = '';
+        kString = 'String',
+        compact = require(kString, 'compact'),
+        trim    = require(kString, 'trim'),
+
+        /*
+         * Common Constants
+         */
+        kPlaceholder = 'placeholder',
+        kEmpty       = '';
 
     /**
      * @function {static} o2.Dom.compactField
@@ -12579,9 +11974,7 @@ if (this.o2) {
     exports.compactField = def(me, 'compactField', function(field) {
         field = $(field);
 
-        if (!field) {
-            return null;
-        }
+        if (!field) {return null;}
 
         field.value = compact(field.value);
 
@@ -12610,9 +12003,7 @@ if (this.o2) {
     exports.trimField = def(me, 'trimField', function(field) {
         field = $(field);
 
-        if (!field) {
-            return null;
-        }
+        if (!field) {return null;}
 
         field.value = trim(field.value);
 
@@ -12638,14 +12029,10 @@ if (this.o2) {
                 function(form) {
         form = $(form);
 
-        if (!form) {
-            return;
-        }
+        if (!form) {return;}
 
         form.onsubmit = function() {
-            form.onsubmit = function() {
-                return false;
-            };
+            form.onsubmit = function() {return false;};
 
             return true;
         };
@@ -12655,9 +12042,7 @@ if (this.o2) {
     exports.removePlaceholder = def(me, 'removePlaceholder', function(elm) {
         var target = $(elm);
 
-        if (!target) {
-            return;
-        }
+        if (!target) {return;}
 
         if(target.getAttribute(kPlaceholder) === target.value) {
             target.value = kEmpty;
@@ -12668,18 +12053,16 @@ if (this.o2) {
     exports.resetField = def(me, 'resetField', function(elm) {
         var item = $(elm);
 
-        if (!item) {
-            return;
-        }
+        if (!item) {return;}
 
         item.value = kEmpty;
     });
 
     //TODO: add documentation.
     exports.disable = def(me, 'disable', function() {
-        var i    = 0;
-        var item = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            len  = 0;
 
         for(i = 0, len = arguments.length; i < len; i++) {
             item = $(arguments[i]);
@@ -12689,7 +12072,7 @@ if (this.o2) {
             }
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   dom.load
  * @requires core
@@ -12700,76 +12083,75 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-28 00:58:14.070066
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.load', ['core', 'string.core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (load)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (load)
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
-    var nill   = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString       = 'String';
-    var concat        = require(kString, 'concat');
-    var format        = require(kString, 'format');
-    var generateGuid  = require(kString, 'generateGuid');
+        frameworkName = require('name'),
+        nill          = require('nill'),
 
-    var Image                = attr(window,   'Image');
-    var setTimeout           = attr(window,   'setTimeout');
-    var sheets               = attr(document, 'styleSheets');
+        kString       = 'String',
+        concat        = require(kString, 'concat'),
+        format        = require(kString, 'format'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    /*
-     * Common Strings
-     */
-    var kCssId      = concat(myName, '-css-{0}');
-    var kHead       = 'head';
-    var kLink       = 'link';
-    var kRel        = 'rel';
-    var kScript     = 'script';
-    var kScriptType = 'text/javascript';
-    var kSheet      = 'stylesheet';
-    var kSheetType  = 'text/css';
+        /*
+         * Common Strings
+         */
+        kCssId      = concat(frameworkName, '-css-{0}'),
+        kHead       = 'head',
+        kLink       = 'link',
+        kRel        = 'rel',
+        kScript     = 'script',
+        kScriptType = 'text/javascript',
+        kSheet      = 'stylesheet',
+        kSheetType  = 'text/css',
 
-    /*
-     * Common Constants
-     */
-    var kCssCheckInterval   = 100;
-    var kMaxCssCheckAttempt = 500;
+        /*
+         * Common Constants
+         */
+        kCssCheckInterval   = 100,
+        kMaxCssCheckAttempt = 500,
 
-    /*
-     * Common Regular Expressions
-     */
-    var kCompleteRegExp = /loaded|complete/;
+        /*
+         * Common Regular Expressions
+         */
+        kCompleteRegExp = /loaded|complete/,
 
-    var kM$     = 'MSIE';
-    var isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
-    var isOpera = !!window.opera;
+        kM$     = 'MSIE',
+        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+        isOpera = !!window.opera;
 
     /**
      * @function {static} o2.Dom.loadCss
@@ -12802,13 +12184,13 @@ if (this.o2) {
      * operation completes.
      */
     exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
-        var s = document.createElement(kLink);
-        var x = document.getElementsByTagName(kHead)[0];
+        var s = document.createElement(kLink),
+            x = document.getElementsByTagName(kHead)[0] || document.body,
 
-        var id      = format(kCssId, generateGuid());
-        var counter = 0;
+            id      = format(kCssId, generateGuid()),
+            counter = 0,
 
-        var onsuccess = successCallback || nill;
+            onsuccess = successCallback || nill;
 
         s.setAttribute(kRel, kSheet);
 
@@ -12823,6 +12205,7 @@ if (this.o2) {
             s.onreadystatechange = function() {
                 if(kCompleteRegExp.test(s.readyState)) {
                     onsuccess();
+
                     onsuccess = nill;
                 }
             };
@@ -12834,6 +12217,7 @@ if (this.o2) {
         if (isOpera) {
             s.onload = function() {
                 onsuccess();
+
                 onsuccess = nill;
             };
 
@@ -12842,13 +12226,12 @@ if (this.o2) {
 
         // worst-case fallback
         setTimeout(function check() {
-            var i     = 0;
-            var len   = 0;
-            var sheet = null;
+            var i      = 0,
+                len    = 0,
+                sheet  = null,
+                sheets = document.styleSheets;
 
-            if (onsuccess === nill) {
-                return;
-            }
+            if (onsuccess === nill) {return;}
 
             for (i = 0, len = sheets.length; i < len; i++) {
                 sheet = sheets[i];
@@ -12897,14 +12280,15 @@ if (this.o2) {
      * <strong>image</strong> is loaded successfully.
      */
     exports.loadImage = def(me, 'loadImage', function(url, succesCallback) {
-        var succesCallbackCached = succesCallback || nill;
+        var succesCallbackCached = succesCallback || nill,
+            testImg = null;
 
         function done() {
             succesCallbackCached();
             succesCallbackCached = nill;
         }
 
-        var testImg = new Image();
+        testImg = new window.Image();
 
         testImg.onload  = done;
         testImg.onerror = done;
@@ -12936,9 +12320,9 @@ if (this.o2) {
      * operation completes.
      */
     exports.loadScript = def(me, 'loadScript', function(src, callback) {
-        var s = document.createElement(kScript);
-        var x = document.getElementsByTagName(kScript)[0] ||
-            document.getElementsByTagName(kHead)[0];
+        var s = document.createElement(kScript),
+            x = document.getElementsByTagName(kScript)[0] ||
+                document.getElementsByTagName(kHead)[0];
 
         s.type  = kScriptType;
         s.async = true;
@@ -12946,9 +12330,7 @@ if (this.o2) {
 
         x.parentNode.insertBefore(s, x);
 
-        if (!callback) {
-            return;
-        }
+        if (!callback) {return;}
 
         s.onreadystatechange = function() {
             if(kCompleteRegExp.test(s.readyState)) {
@@ -12956,59 +12338,60 @@ if (this.o2) {
             }
         };
 
-        s.onload = function() {
-            callback();
-        };
+        s.onload = callback;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.modify
  * @requires core
  * @requires dom.core
- * @requires stringhelper.core
+ * @requires string.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package for additional <strong>DOM</strong> modifications.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.modify', ['core', 'string.core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         *
+         */
+        exports = {},
 
-    /*
-     *
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (modify)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var append       = require(kModuleName, 'append');
-    var insertAfter  = require(kModuleName, 'insertAfter');
-    var insertBefore = require(kModuleName, 'insertBefore');
-    var isElement    = require(kModuleName, 'isElement');
-    var remove       = require(kModuleName, 'remove');
+        $ = require('$'),
+
+        append       = require(kModuleName, 'append'),
+        insertAfter  = require(kModuleName, 'insertAfter'),
+        insertBefore = require(kModuleName, 'insertBefore'),
+        isElement    = require(kModuleName, 'isElement'),
+        remove       = require(kModuleName, 'remove');
 
     /**
      * @function {static} o2.Dom.replace
@@ -13025,8 +12408,8 @@ if (this.o2) {
      * @param elmToReplace - the replacement node or its <code>String</code> id.
      */
     exports.replace = def(me, 'replace', function(elmTarget, elmToReplace) {
-        var target  = $(elmTarget);
-        var replace = $(elmToReplace);
+        var target  = $(elmTarget),
+            replace = $(elmToReplace);
 
         append(target, replace);
         remove(target);
@@ -13049,13 +12432,10 @@ if (this.o2) {
      * to unwrap.
      */
     exports.unwrap = def(me, 'unwrap', function(elmTarget) {
-        var target = $(elmTarget);
+        var target = $(elmTarget),
+            child  = null;
 
-        if (!target) {
-            return;
-        }
-
-        var child = null;
+        if (!target) {return;}
 
         while (target.hasChildNodes()) {
             child = remove(target.firstChild);
@@ -13089,19 +12469,17 @@ if (this.o2) {
      * @return the wrapped node.
      */
     exports.wrap = def(me, 'wrap', function(elmTarget, elmWrapper) {
-        var target  = $(elmTarget);
-        var wrapper = $(elmWrapper);
+        var target  = $(elmTarget),
+            wrapper = $(elmWrapper);
 
-        if (!target || !wrapper) {
-            return;
-        }
+        if (!target || !wrapper) {return;}
 
         insertBefore(wrapper, target);
         append(target, wrapper);
 
         return elmTarget;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   dom.ready
  * @requires core
@@ -13111,162 +12489,161 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
 
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.ready', ['core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (ready)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (ready)
+         */
+        me = create(kModuleName),
 
-    var nill       = require('nill');
+        /*
+         * Aliases
+         */
 
-    var setTimeout = attr(window, 'setTimeout');
+        nill = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kCheckIntervalMs    = 50;
-    var kDomContentLoaded   = 'DOMContentLoaded';
-    var kLoad               = 'load';
-    var kOnLoad             = 'onload';
-    var kOnReadyStateChange = 'onreadystatechange';
-    var kPropertyToCheck    = 'left';
+        /*
+         * Common Constants
+         */
+        kCheckIntervalMs    = 50,
+        kDomContentLoaded   = 'DOMContentLoaded',
+        kLoad               = 'load',
+        kOnLoad             = 'onload',
+        kOnReadyStateChange = 'onreadystatechange',
+        kPropertyToCheck    = 'left',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kDomLoadedRegExp = /^loade|c/;
+        /*
+         * Common Regular Expressions
+         */
+        kDomLoadedRegExp = /^loade|c/,
 
-    /*
-     *
-     */
-    function isDomContentReady() {
-        return (kDomLoadedRegExp).test(document.readyState);
-    }
+        /*
+         *
+         */
+        isDomContentReady = function() {
+            return (kDomLoadedRegExp).test(document.readyState);
+        },
 
-    /*
-     * State
-     */
-    var isApplicationReady = isDomContentReady();
-    var readyQueue         = [];
+        /*
+         * State
+         */
+        isApplicationReady = isDomContentReady(),
+        readyQueue         = [],
 
-    /*
-     *
-     */
-    function flushReadyQueue() {
-        isApplicationReady = true;
+        /*
+         *
+         */
+        flushReadyQueue = function() {
+            isApplicationReady = true;
 
-        while (readyQueue.length > 0) {
+            while (readyQueue.length > 0) {
 
-            // An error in the ready queue should
-            // not prevent the remaining actions from firing
-            try {
-                readyQueue.pop()();
-            } catch(ignore) {
+                // An error in the ready queue should
+                // not prevent the remaining actions from firing
+                try {
+                    readyQueue.pop()();
+                } catch(ignore) {}
             }
-        }
 
-        // undocumented!
-        // A flag to set that the framework is ready and responsive.
-        me.isReady = true;
-    }
+            // undocumented!
+            // A flag to set that the framework is ready and responsive.
+            me.isReady = true;
+        },
 
-    /*
-     * DOM Content ready check for MSIE.
-     * http://javascript.nwbox.com/IEContentLoaded/
-     */
-    var checkScrollLeft = function() {
-        try {
-            document.documentElement.doScroll(kPropertyToCheck);
-        } catch(e) {
-            setTimeout(checkScrollLeft, kCheckIntervalMs);
+        /*
+         * DOM Content ready check for MSIE.
+         * http://javascript.nwbox.com/IEContentLoaded/
+         */
+        checkScrollLeft = function() {
+            try {
+                document.documentElement.doScroll(kPropertyToCheck);
+            } catch(e) {
+                setTimeout(checkScrollLeft, kCheckIntervalMs);
 
-            return;
-        }
+                return;
+            }
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        checkScrollLeft = nill;
-    };
+            checkScrollLeft = nill;
+        },
 
-    /*
-     *
-     */
-    var onMozDomContentLoaded = function() {
-        document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded,
-            false);
+        /*
+         *
+         */
+        onMozDomContentLoaded = function() {
+            document.removeEventListener(kDomContentLoaded,
+                onMozDomContentLoaded, false);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onMozDomContentLoaded = nill;
-    };
+            onMozDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var onMozWindowLoad = function() {
-        document.removeEventListener(kLoad, onMozWindowLoad, false);
+        /*
+         *
+         */
+        onMozWindowLoad = function() {
+            document.removeEventListener(kLoad, onMozWindowLoad, false);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onMozWindowLoad = nill;
-    };
+            onMozWindowLoad = nill;
+        },
 
-    /*
-     *
-     */
-    var onIEDomContentLoaded = function() {
-        if (!isDomContentReady()) {
-            return;
-        }
+        /*
+         *
+         */
+        onIEDomContentLoaded = function() {
+            if (!isDomContentReady()) {return;}
 
-        document.detachEvent(kOnReadyStateChange, onIEDomContentLoaded);
+            document.detachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onIEDomContentLoaded = nill;
-    };
+            onIEDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var onIEWindowLoaded = function() {
-        window.detachEvent(kOnLoad, onIEWindowLoaded);
+        /*
+         *
+         */
+        onIEWindowLoaded = function() {
+            window.detachEvent(kOnLoad, onIEWindowLoaded);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onIEDomContentLoaded = nill;
-    };
+            onIEDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var bindReadyListeners = nill;
+        /*
+         *
+         */
+        bindReadyListeners = nill;
+
 
     if (document.addEventListener) {
 
@@ -13352,7 +12729,7 @@ if (this.o2) {
         // this queue will be processed "only once" after DOM is ready.
         readyQueue.push(delegate);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.scroll
  * @requires core
@@ -13362,42 +12739,52 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A window/div scroll helper.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.scroll', ['core', 'dom.core']);
 
-    var exports = {};
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Dom (scroll)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    var $ = require('$');
+        /*
+         * Dom (scroll)
+         */
+        me = create(kModuleName),
 
-    var de       = document.documentElement;
-    var scrollTo = attr(window, 'scrollTo');
+        /*
+         * Aliases
+         */
+
+        $ = require('$'),
+
+        de = document.documentElement,
+
+        /*
+         * To be Overridden
+         */
+        getWindowScrollOffset,
+        scrollWindowToTop,
+        scrollWindowToBottom;
 
     if(de) {
 
@@ -13417,10 +12804,9 @@ if (this.o2) {
          */
         exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
                     function() {
-            var db = document.body;
-
-            var left = 0;
-            var top  = 0;
+            var db   = document.body,
+                left = 0,
+                top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
@@ -13440,10 +12826,9 @@ if (this.o2) {
     } else {
         exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
                     function() {
-            var db = document.body;
-
-            var left = 0;
-            var top  = 0;
+            var db   = document.body,
+                left = 0,
+                top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
@@ -13462,7 +12847,7 @@ if (this.o2) {
     /*
      *
      */
-    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
+    getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
 
     /**
      * @function {static} o2.Dom.getObjectScrollOffset
@@ -13545,7 +12930,7 @@ if (this.o2) {
     /*
      *
      */
-    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
+    scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
 
     if (de) {
 
@@ -13574,9 +12959,7 @@ if (this.o2) {
         exports.scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
-            if (!db) {
-                return;
-            }
+            if (!db) {return;}
 
             db.scrollTop = 0;
         });
@@ -13585,7 +12968,7 @@ if (this.o2) {
     /*
      *
      */
-    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
+    scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.Dom.scrollObjectToTop
@@ -13604,11 +12987,9 @@ if (this.o2) {
     exports.scrollObjectToTop = def(me, 'scrollObjectToTop', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        if(obj === window) {
+        if (obj === window) {
             scrollWindowToTop();
         }
 
@@ -13633,9 +13014,7 @@ if (this.o2) {
                 function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (obj === window) {
             scrollWindowToBottom();
@@ -13654,17 +13033,12 @@ if (this.o2) {
     exports.scrollTo = def(me, 'scrollTo', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
-
-        if (obj === window) {
-            return;
-        }
+        if (!obj          ) {return;}
+        if (obj === window) {return;}
 
         var offset = me.getOffset(obj);
 
-        scrollTo(offset.left, offset.top);
+        window.scrollTo(offset.left, offset.top);
     });
 
     /**
@@ -13684,7 +13058,7 @@ if (this.o2) {
      * @see o2.Dom.scrollWindowToObject
      */
     exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   dom.traverse
  * @requires collection.core
@@ -13697,82 +13071,120 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-(function(framework, document, UNDEFINED) {
+(function(framework, fp, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.traverse', ['core', 'string.core',
+        'collection.core', 'dom.core', 'dom.class']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Class Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (traverse)
-     */
-    var me = create(kModuleName);
+        /*
+         * Class Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (traverse)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kAll   = '*';
-    var kEmpty = '';
+        $             = require('$'),
+        frameworkName = require('name'),
 
-    var nodeType  = require(kModuleName, 'nodeType');
-    var kTextNode = attr(nodeType, 'TEXT');
+        kAll   = '*',
+        kEmpty = '',
 
-    var getAttribute = require(kModuleName, 'getAttribute');
+        nodeType  = require(kModuleName, 'nodeType'),
+        kTextNode = attr(nodeType, 'TEXT'),
 
-    var kString       = 'String';
-    var format        = require(kString, 'format');
-    var generateGuid  = require(kString, 'generateGuid');
+        getAttribute = require(kModuleName, 'getAttribute'),
 
-    var contains = require('Collection', 'contains');
+        kString       = 'String',
+        format        = require(kString, 'format'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    /*
-     * Selectors
-     */
-    var kImmediateClassSelector       = '#{0} > .{1}';
-    var kImmediateClassAndTagSelector = '#{0} > {1}.{2}';
+        contains = require('Collection', 'contains'),
 
-    /*
-     * Checks document.querySelector support.
-     * Using document.documentMode for IE, since the compatMode property is
-     * deprecated in IE8+ in favor of the documentMode property, and IE7-
-     * does not suppory document.querySelector anyway.
-     * ref: http://msdn.microsoft.com/en-us/library/cc196988(v=vs.85).aspx
-     */
-    var isNativeQuerySupported =
-        (document.documentMode && document.documentMode >= 8) ||
-        (!!document.querySelector);
+        /*
+         * Selectors
+         */
+        kImmediateClassSelector       = '#{0} > .{1}',
+        kImmediateClassAndTagSelector = '#{0} > {1}.{2}',
+
+        /*
+         * Checks document.querySelector support.
+         * Using document.documentMode for IE, since the compatMode property is
+         * deprecated in IE8+ in favor of the documentMode property, and IE7-
+         * does not suppory document.querySelector anyway.
+         * ref: http://msdn.microsoft.com/en-us/library/cc196988(v=vs.85).aspx
+         */
+        isNativeQuerySupported =
+            (document.documentMode && document.documentMode >= 8) ||
+            (!!document.querySelector),
+
+        /*
+         * To be Overridden
+         */
+        getChildren                   = null,
+        getChildrenByAttribute        = null,
+        getChildrenByAttributeUntil   = null,
+        getChildrenByClass            = null,
+        getChildrenByClassUntil       = null,
+        getChildrenUntil              = null,
+        getChildrenWithAttribute      = null,
+        getChildrenWithAttributeUntil = null,
+        getChildrenWithClass          = null,
+        getChildrenWithClassUntil     = null,
+        getChildrenWithId             = null,
+        getChildrenWithIdUntil        = null,
+        getElements                   = null,
+        getSiblings                   = null,
+        getFirst                      = null,
+        getFirstByAttribute           = null,
+        getFirstByClass               = null,
+        getFirstWithClass             = null,
+        getFirstWithAttribute         = null,
+        getFirstWithId                = null,
+        getLast                       = null,
+        getLastByAttribute            = null,
+        getLastByClass                = null,
+        getLastWithId                 = null,
+        getLastWithAttribute          = null,
+        getLastWithClass              = null,
+        getNextAll                    = null,
+        getNth                        = null,
+        getNthByAttribute             = null,
+        getNthByClass                 = null,
+        getNthWithAttribute           = null,
+        getNthWithClass               = null,
+        getNthWithId                  = null,
+        getPrevAll                    = null,
+        isParent                      = null;
 
     /*
      * Checks whether two nodes are equal to one another.
      */
     function isNodeEquals(node, until) {
-        if (!node) {
-            return false;
-        }
-
-        if (!until) {
-            return false;
-        }
+        if (!node ) {return false;}
+        if (!until) {return false;}
 
         return $(node) === $(until);
     }
@@ -13818,18 +13230,15 @@ if (this.o2) {
     function filter(nodes, filterDelegate, filterArgs,
                 breakDelegate, breakArgs, itemsCountCap, returnSingleItemAt,
                 isReverse) {
-        var result = [];
-        var i = 0;
-        var node = null;
-        var fArgs = filterArgs;
-        var counter = 0;
-        var len = 0;
+        var result  = [],
+            i       = 0,
+            node    = null,
+            fArgs   = filterArgs,
+            counter = 0,
+            len     = 0,
+            cache   = [];
 
-        if (!nodes) {
-            return [];
-        }
-
-       var cache = [];
+        if (!nodes) {return cache;}
 
         if (!!isReverse) {
             for (i = nodes.length - 1; i >= 0; i--) {
@@ -13845,9 +13254,7 @@ if (this.o2) {
             if(breakDelegate) {
                 breakArgs.unshift(node);
 
-                if(breakDelegate.apply(node, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(node, breakArgs)) {break;}
             }
 
             if (node.nodeType !== kTextNode) {
@@ -13885,9 +13292,7 @@ if (this.o2) {
             }
         }
 
-        if (!isNaN(returnSingleItemAt)) {
-            return null;
-        }
+        if (!isNaN(returnSingleItemAt)) {return null;}
 
         return result;
     }
@@ -13901,13 +13306,11 @@ if (this.o2) {
                 breakDelegate, breakArgs,
                 name, itemsCountCap, returnSingleItemAt,
                 shouldStartAtFirstSibling, isReverse) {
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return [];}
 
-        var next = null;
-        var result = [];
-        var counter = 0;
+        var next    = null,
+            result  = [],
+            counter = 0;
 
         while (true) {
             if (!next && !!shouldStartAtFirstSibling) {
@@ -13923,9 +13326,7 @@ if (this.o2) {
             if(breakDelegate) {
                 breakArgs.unshift(next);
 
-                if(breakDelegate.apply(next, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(next, breakArgs)) {break;}
             }
 
             if (next.nodeType !== kTextNode) {
@@ -14003,14 +13404,10 @@ if (this.o2) {
                 }
             }
 
-            if (!next) {
-                break;
-            }
+            if (!next) {break;}
         }
 
-        if (returnSingleItemAt !== UNDEFINED) {
-            return null;
-        }
+        if (returnSingleItemAt !== UNDEFINED) {return null;}
 
         return result;
     }
@@ -14024,13 +13421,11 @@ if (this.o2) {
                 breakDelegate, breakArgs,
                 name, itemsCountCap, returnSingleItemAt
     ) {
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return [];}
 
-        var result = [];
-        var target = $(elm);
-        var counter = 0;
+        var result  = [],
+            target  = $(elm),
+            counter = 0;
 
         target = target.parentNode;
 
@@ -14038,9 +13433,7 @@ if (this.o2) {
             if(breakDelegate) {
                 breakArgs.unshift(target);
 
-                if(breakDelegate.apply(target, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(target, breakArgs)) {break;}
             }
 
             if (name) {
@@ -14124,15 +13517,13 @@ if (this.o2) {
      * Gets child nodes of the elm.
      */
     function getChildNodes(elm, name) {
-        var items = elm ? elm.childNodes : [];
-        var item = null;
-        var i = 0;
-        var len = 0;
-        var result = [];
+        var items  = elm ? elm.childNodes : [],
+            item   = null,
+            i      = 0,
+            len    = 0,
+            result = [];
 
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return result;}
 
         if (name) {
             for(i = 0, len = items.length; i < len; i++) {
@@ -14157,9 +13548,7 @@ if (this.o2) {
                 returnSingleItemAt, isReverse) {
         var target = $(elm);
 
-        if (!target) {
-            return [];
-        }
+        if (!target) {return [];}
 
         getterParams.unshift(target);
 
@@ -14194,7 +13583,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildren = require(kModuleName, 'getChildren');
+    getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.Dom.getChildrenByAttribute
@@ -14237,7 +13626,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
+    getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
@@ -14273,7 +13662,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenByAttributeUntil = require(kModuleName,
+    getChildrenByAttributeUntil = require(kModuleName,
         'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
@@ -14311,7 +13700,7 @@ if (this.o2) {
             // and it'll degrade gracefully in IE7-
 
             if (!el.id) {
-                el.id = [myName, generateGuid()].join(kEmpty);
+                el.id = [frameworkName, generateGuid()].join(kEmpty);
             }
 
             if (name) {
@@ -14336,7 +13725,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenByClass = require(kModuleName, 'getChildrenByClass');
+    getChildrenByClass = require(kModuleName, 'getChildrenByClass');
 
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
@@ -14372,7 +13761,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
+    getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenUntil
@@ -14406,7 +13795,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenUntil = require(kModuleName, 'getChildrenUntil');
+    getChildrenUntil = require(kModuleName, 'getChildrenUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
@@ -14439,7 +13828,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
+    getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -14473,7 +13862,10 @@ if (this.o2) {
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
 
-    var getChildrenWithAttributeUntil = require(kModuleName,
+    /*
+     *
+     */
+    getChildrenWithAttributeUntil = require(kModuleName,
         'getChildrenWithAttributeUntil');
 
     /**
@@ -14504,7 +13896,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
+    getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -14538,7 +13930,8 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenWithClassUntil = require(kModuleName, 'getChildrenWithClassUntil');
+    getChildrenWithClassUntil = require(kModuleName,
+        'getChildrenWithClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithId
@@ -14568,7 +13961,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenWithId = require(kModuleName, 'getChildrenWithId');
+    getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -14602,7 +13995,7 @@ if (this.o2) {
     /*
      *
      */
-    var getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
+    getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
 
     /**
      * @function {static} o2.Dom.getElements
@@ -14627,9 +14020,7 @@ if (this.o2) {
     exports.getElements = def(me, 'getElements', function(elm, name) {
         var target = $(elm);
 
-        if (!target) {
-            return [];
-        }
+        if (!target) {return [];}
 
         return target.getElementsByTagName(name || kAll);
     });
@@ -14637,7 +14028,7 @@ if (this.o2) {
     /*
      *
      */
-    var getElements = require(kModuleName, 'getElements');
+    getElements = require(kModuleName, 'getElements');
 
     /**
      * @function {static} o2.Dom.getElementsByAttribute
@@ -14803,7 +14194,7 @@ if (this.o2) {
     /*
      *
      */
-    var getSiblings = require(kModuleName, 'getSiblings');
+    getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -15145,7 +14536,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirst = require(kModuleName, 'getFirst');
+    getFirst = require(kModuleName, 'getFirst');
 
     /**
      * @function {static} o2.Dom.getFirstByAttribute
@@ -15179,7 +14570,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
+    getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstByClass
@@ -15212,7 +14603,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirstByClass = require(kModuleName, 'getFirstByClass');
+    getFirstByClass = require(kModuleName, 'getFirstByClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithAttribute
@@ -15245,7 +14636,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
+    getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstWithClass
@@ -15277,7 +14668,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirstWithClass = require(kModuleName, 'getFirstWithClass');
+    getFirstWithClass = require(kModuleName, 'getFirstWithClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithId
@@ -15308,7 +14699,7 @@ if (this.o2) {
     /*
      *
      */
-    var getFirstWithId = require(kModuleName, 'getFirstWithId');
+    getFirstWithId = require(kModuleName, 'getFirstWithId');
 
     /**
      * @function {static} o2.Dom.getFirstChild
@@ -15331,9 +14722,7 @@ if (this.o2) {
      * <code>null</code> otherwise.
      */
     exports.getFirstChild = def(me, 'getFirstChild', function(elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirst(elm.firstChild, name);
     });
@@ -15363,9 +14752,7 @@ if (this.o2) {
      */
     exports.getFirstChildByAttribute = def(me, 'getFirstChildByAttribute',
                 function(elm, attribute, value, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstByAttribute(elm.firstChild, attribute, value, name);
     });
@@ -15394,9 +14781,7 @@ if (this.o2) {
      */
     exports.getFirstChildByClass = def(me, 'getFirstChildByClass', function(elm,
                 className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstByClass(elm.firstChild, className, name);
     });
@@ -15425,9 +14810,7 @@ if (this.o2) {
      */
     exports.getFirstChildWithAttribute = def(me, 'getFirstChildWithAttribute',
                 function(elm, attribute, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithAttribute(elm.firstChild, attribute, name);
     });
@@ -15455,9 +14838,7 @@ if (this.o2) {
      */
     exports.getFirstChildWithClass = def(me, 'getFirstChildWithClass', function(
                 elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithClass(elm.firstChild, name);
     });
@@ -15485,9 +14866,7 @@ if (this.o2) {
      */
     exports.getFirstChildWithId = def(me, 'getFirstChildWithId', function(elm,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithId(elm.firstChild, name);
     });
@@ -15520,7 +14899,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLast = require(kModuleName, 'getLast');
+    getLast = require(kModuleName, 'getLast');
 
     /**
      * @function {static} o2.Dom.getLastByAttribute
@@ -15554,7 +14933,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLastByAttribute = require(kModuleName, 'getLastByAttribute');
+    getLastByAttribute = require(kModuleName, 'getLastByAttribute');
 
     /**
      * @function {static} o2.Dom.getLastByClass
@@ -15587,7 +14966,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLastByClass = require(kModuleName, 'getLastByClass');
+    getLastByClass = require(kModuleName, 'getLastByClass');
 
     /**
      * @function {static} o2.Dom.getLastWithId
@@ -15618,7 +14997,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLastWithId = require(kModuleName, 'getLastWithId');
+    getLastWithId = require(kModuleName, 'getLastWithId');
 
     /**
      * @function {static} o2.Dom.getLastWithAttribute
@@ -15651,7 +15030,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
+    getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
 
     /**
      * @function {static} o2.Dom.getLastWithClass
@@ -15684,7 +15063,7 @@ if (this.o2) {
     /*
      *
      */
-    var getLastWithClass = require(kModuleName, 'getLastWithClass');
+    getLastWithClass = require(kModuleName, 'getLastWithClass');
 
     /**
      * @function {static} o2.Dom.getLastChild
@@ -15707,9 +15086,7 @@ if (this.o2) {
      * <code>null</code> otherwise.
      */
     exports.getLastChild = def(me, 'getLastChild', function(elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLast(elm.lastChild, name);
     });
@@ -15739,9 +15116,7 @@ if (this.o2) {
      */
     exports.getLastChildByAttribute = def(me, 'getLastChildByAttribute',
                 function(elm, attribute, value, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastByAttribute(elm.lastChild, attribute, value, name);
     });
@@ -15770,9 +15145,7 @@ if (this.o2) {
      */
     exports.getLastChildByClass = def(me, 'getLastChildByClass', function(elm,
                 className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastByClass(elm.lastChild, className, name);
     });
@@ -15801,9 +15174,7 @@ if (this.o2) {
      */
     exports.getLastChildWithAttribute = def(me, 'getLastChildWithAttribute',
                 function(elm, attribute, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithAttribute(elm.lastChild, attribute, name);
     });
@@ -15832,9 +15203,7 @@ if (this.o2) {
      */
     exports.getLastChildWithClass = def(me, 'getLastChildWithClass', function(
                 elm, className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithClass(elm.lastChild, className, name);
     });
@@ -15862,9 +15231,7 @@ if (this.o2) {
      */
     exports.getLastChildWithId = def(me, 'getLastChildWithId', function(elm,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithId(elm.lastChild, name);
     });
@@ -16058,7 +15425,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNextAll = require(kModuleName, 'getNextAll');
+    getNextAll = require(kModuleName, 'getNextAll');
 
     /**
      * @function {static} o2.Dom.getNextAllByAttribute
@@ -16406,7 +15773,10 @@ if (this.o2) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
     });
 
-    var getNth = require(kModuleName, 'getNth');
+    /*
+     *
+     */
+    getNth = require(kModuleName, 'getNth');
 
     /**
      * @function {static} o2.Dom.getNthByAttribute
@@ -16441,7 +15811,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNthByAttribute = require(kModuleName, 'getNthByAttribute');
+    getNthByAttribute = require(kModuleName, 'getNthByAttribute');
 
     /**
      * @function {static} o2.Dom.getNthByClass
@@ -16476,7 +15846,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNthByClass = require(kModuleName, 'getNthByClass');
+    getNthByClass = require(kModuleName, 'getNthByClass');
 
     /**
      * @function {static} o2.Dom.getNthWithAttribute
@@ -16510,7 +15880,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
+    getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
 
     /**
      * @function {static} o2.Dom.getNthWithClass
@@ -16543,7 +15913,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNthWithClass = require(kModuleName, 'getNthWithClass');
+    getNthWithClass = require(kModuleName, 'getNthWithClass');
 
     /**
      * @function {static} o2.Dom.getNthWithId
@@ -16575,7 +15945,7 @@ if (this.o2) {
     /*
      *
      */
-    var getNthWithId = require(kModuleName, 'getNthWithId');
+    getNthWithId = require(kModuleName, 'getNthWithId');
 
     /**
      * @function {static} o2.Dom.getNthChild
@@ -16599,9 +15969,7 @@ if (this.o2) {
      * if found; <code>null</code> otherwise.
      */
     exports.getNthChild = def(me, 'getNthChild', function(elm, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNth(elm.firstChild, n, name);
     });
@@ -16632,9 +16000,7 @@ if (this.o2) {
      */
     exports.getNthChildByAttribute = def(me, 'getNthChildByAttribute', function(
                 elm, attribute, value, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthByAttribute(elm.firstChild, attribute, value, n, name);
     });
@@ -16664,9 +16030,7 @@ if (this.o2) {
      */
     exports.getNthChildByClass = def(me, 'getNthChildByClass', function(elm,
                 className, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthByClass(elm.firstChild, className, n, name);
     });
@@ -16696,9 +16060,7 @@ if (this.o2) {
      */
     exports.getNthChildWithAttribute = def(me, 'getNthChildWithAttribute',
                 function(elm, attribute, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithAttribute(elm.firstChild, attribute, n, name);
     });
@@ -16727,9 +16089,7 @@ if (this.o2) {
      */
     exports.getNthChildWithClass = def(me, 'getNthChildWithClass', function(
                 elm, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithClass(elm.firstChild, n, name);
     });
@@ -16758,9 +16118,7 @@ if (this.o2) {
      */
     exports.getNthChildWithId = def(me, 'getNthChildWithId', function(elm, n,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithId(elm.firstChild, n, name);
     });
@@ -17973,7 +17331,7 @@ if (this.o2) {
     /*
      *
      */
-    var getPrevAll = require(kModuleName, 'getPrevAll');
+    getPrevAll = require(kModuleName, 'getPrevAll');
 
     /**
      * @function {static} o2.Dom.getPrevAllByAttribute
@@ -18321,9 +17679,7 @@ if (this.o2) {
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isChild = def(me, 'isChild', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getChildren(ref), elm);
     });
@@ -18349,9 +17705,7 @@ if (this.o2) {
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isNext = def(me, 'isNext', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getNextAll(ref), elm);
     });
@@ -18377,9 +17731,7 @@ if (this.o2) {
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isParent = def(me, 'isParent', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getParents(ref), elm);
     });
@@ -18387,7 +17739,7 @@ if (this.o2) {
     /*
      *
      */
-    var isParent = require(kModuleName, 'isParent');
+    isParent = require(kModuleName, 'isParent');
 
     /**
      * @function {static} o2.Dom.isParentOrSelf
@@ -18410,13 +17762,8 @@ if (this.o2) {
      * <strong>ref</strong>, or the node itself; <code>false</code> otherwise.
      */
     exports.isParentOrSelf = def(me, 'isParentOrSelf', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
-
-        if (ref === elm) {
-            return true;
-        }
+        if (!ref       ) {return false;}
+        if (ref === elm) {return true;}
 
         return isParent(elm, ref);
     });
@@ -18442,9 +17789,7 @@ if (this.o2) {
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isPrev = def(me, 'isPrev', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getPrevAll(ref), elm);
     });
@@ -18470,13 +17815,11 @@ if (this.o2) {
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isSibling = def(me, 'isSibling', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getSiblings(ref), elm);
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));
 /**
  * @module effect
  *
@@ -18497,57 +17840,61 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('object.core', ['core', 'collection.core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Object';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Object
-     *
-     * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
-     * inheritance.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Object',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Object
+         *
+         * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
+         * inheritance.</p>
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var format  = require(kString, 'format');
-    var concat  = require(kString, 'concat');
+        frameworkName = require('name'),
 
-    var toArray = require('Collection', 'toArray');
+        kString = 'String',
+        format  = require(kString, 'format'),
+        concat  = require(kString, 'concat'),
 
-    var JSON = window.JSON;
+        toArray = require('Collection', 'toArray'),
 
-    /*
-     * Common Constants
-     */
-    var kNoJsonSupport = concat(myName, ': {0}: No JSON support. quitting');
-    var kFunction      = 'function';
-    var kObject        = 'object';
+        JSON = window.JSON,
+
+        /*
+         * Common Constants
+         */
+        kNoJsonSupport = concat(frameworkName,
+            ': {0}: No JSON support. quitting'),
+        kFunction      = 'function',
+        kObject        = 'object';
 
     /**
      * @function {static} o2.Object.copy
@@ -18602,12 +17949,13 @@ if (this.o2) {
      * methods from.
      */
     exports.copyMethods = def(me, 'copyMethods', function(child, base) {
-        var key   = null;
-        var value = null;
+        var key   = null,
+            value = null;
 
         for (key in base) {
             if (base.hasOwnProperty(key)) {
                 value = base[key];
+
                 if (typeof value === kFunction) {
                     child[key] = value;
                 }
@@ -18643,17 +17991,12 @@ if (this.o2) {
      * methods from.
      */
     exports.copyPrototype = def(me, 'copyPrototype', function(child, base) {
-        var baseProto  = base.prototype;
-        var childProto = child.prototype;
-        var key        = null;
+        var baseProto  = base.prototype,
+            childProto = child.prototype,
+            key        = null;
 
-        if (!childProto) {
-            return;
-        }
-
-        if (!baseProto) {
-            return;
-        }
+        if (!childProto) {return;}
+        if (!baseProto ) {return;}
 
         for (key in baseProto) {
             if (baseProto.hasOwnProperty(key)) {
@@ -18680,7 +18023,7 @@ if (this.o2) {
      * function Apple() {}
      * Apple.prototype.name = 'Steve';
      *
-     * o2.Object.inherit(Apple, Fruit, new Fruit());
+     * o2.Object.extend(Apple, Fruit, new Fruit());
      *
      * var fruit = new Fruit();
      * var apple = new Apple();
@@ -18700,10 +18043,11 @@ if (this.o2) {
     exports.extend = def(me, 'extend', function(childConstructor,
                 baseConstructor, baseConstructed) {
         var Junction = function(){};
-        childConstructor.prototype = new Junction();
-        Junction.prototype = baseConstructed;
+
+        childConstructor.prototype             = new Junction();
+        Junction.prototype                     = baseConstructed;
         childConstructor.prototype.constructor = childConstructor;
-        childConstructor.prototype.parent = baseConstructor.prototype;
+        childConstructor.prototype.parent      = baseConstructor.prototype;
     });
 
     /**
@@ -18795,19 +18139,14 @@ if (this.o2) {
      * delagate to it) otherwise.
      */
     exports.touch = def(me,'touch', function(obj, delegate) {
-        if (!obj) {
-            return null;
-        }
-
-        if (typeof obj !== kObject) {
-            return null;
-        }
+        if (!obj                  ) {return null;}
+        if (typeof obj !== kObject) {return null;}
 
         delegate(obj);
 
         return obj;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   jsonpstate.core
  * @requires ajaxstate.core
@@ -18818,105 +18157,120 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonpstate.core', ['core', 'ajaxstate.core', 'object.core']);
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'JsonpState';
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /**
-     * @class {static} o2.JsonpState
-     * @extends o2.AjaxState
-     *
-     * <p>Implements all public methods of {@link AjaxState} for
-     * <strong>JSONP</strong> requests.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'JsonpState',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.JsonpState
+         * @extends o2.AjaxState
+         *
+         * <p>Implements all public methods of {@link AjaxState} for
+         * <strong>JSONP</strong> requests.</p>
+         */
+        me = create(kModuleName),
 
-    var kObjectHelper = 'Object';
-    var copyFn        = require(kObjectHelper, 'copyMethods');
-    var copyAttr      = require(kObjectHelper, 'copy');
+        /*
+         * Aliases
+         */
 
-    /*
-     * Inheritance
-     */
+        kObjectHelper = 'Object',
+        copyFn        = require(kObjectHelper, 'copyMethods'),
+        copyAttr      = require(kObjectHelper, 'copy'),
 
-    var kBaseName   = 'AjaxState';
-    var kMyName     = kModuleName;
-    var kProtecteds = 'protecteds';
+        /*
+         * Inheritance-Related Constants
+         */
 
+        kBaseName   = 'AjaxState',
+        kMyName     = kModuleName,
+        kProtecteds = 'protecteds';
+
+    //TODO: copy with require: f(kMyName, kBaseName)
+
+    // Inheritance implementation (through mixins):
+    copyFn(require(kMyName), require(kBaseName));
     def(me, kProtecteds, {});
-
-    var base   = require(kBaseName);
-    var myself = require(kMyName);
-
-    var baseProtecteds = require(kBaseName, kProtecteds);
-    var myProtecteds   = require(kMyName,   kProtecteds);
-
-    copyFn(myself, base);
-    copyAttr(myProtecteds, baseProtecteds);
-}(this.o2));
+    copyAttr(
+        require(kMyName,   kProtecteds),
+        require(kBaseName, kProtecteds)
+    );
+}(this.o2, this.o2.protecteds));
 /**
- * @module   jsonpcontroller
+ * @module   jsonpcontroller.core
  * @requires core
- * @requires ajaxcontroller
- * @requires jsonpstate
- * @requires object
+ * @requires ajaxcontroller.core
+ * @requires jsonpstate.core
+ * @requires object.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
- * <p>A <code>JSONP</code> controller that implements the
+ * <p>A <strong>JSONP</strong> controller that implements the
  * <strong>Observer</strong> pattern.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var construct = attr(_, 'construct');
-    var override  = attr(_, 'override');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonpcontroller.core', ['core', 'ajaxcontroller.core',
+        'jsonpstate.core', 'object.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        construct = attr(fp, 'construct'),
+        override  = attr(fp, 'override'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'JsonpController';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'JsonpController',
 
-    var nill        = require('nill');
-    var state       = require('JsonpState');
-    var copyMethods = require('Object', 'copyMethods');
+        /*
+         * Aliases
+         */
+
+        nill        = require('nill'),
+        state       = require('JsonpState'),
+        copyMethods = require('Object', 'copyMethods'),
+
+        /*
+         * State
+         */
+        purgeQueue = [],
+
+        /*
+         * Inheritance
+         */
+        base = require('AjaxController'),
+        self = require(kModuleName),
+        me   = null;
 
     /**
      * @class o2.JsonpController
@@ -18959,15 +18313,9 @@ if (this.o2) {
     /*
      *
      */
-    var me = exports.JsonpController;
+    me = exports.JsonpController;
 
-    /*
-     * State
-     */
-    var purgeQueue = [];
 
-    var base = require('AjaxController');
-    var self = require(kModuleName);
 
     // A quick way of inheriting methods without constructing base
     // (i.e. without the `self.prototype = new base();` assignment).
@@ -18992,9 +18340,7 @@ if (this.o2) {
      * @see o2.AjaxController.update
      */
     exports.update = override(me, 'update', function(data) {
-        if (!data.isTimedOut) {
-            return;
-        }
+        if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
         this.unregister(state);
@@ -19030,13 +18376,11 @@ if (this.o2) {
      *
      */
     exports.unregister = override(me, 'unregister', function() {
-        if (this.isDeleted) {
-            return;
-        }
+        if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   jsonp.core
  * @requires core
@@ -19046,68 +18390,72 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonp.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Jsonp';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Jsonp
-     *
-     * <p>An object to make <strong>JSONP</strong> calls.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Jsonp',
 
-    /*
-     * Aliases
-     */
-    var myName = require('name');
-    var nill   = require('nill');
+        /**
+         * @class {static} o2.Jsonp
+         *
+         * <p>An object to make <strong>JSONP</strong> calls.</p>
+         */
+        me = create(kModuleName),
 
-    var concat = require('String', 'concat');
+        /*
+         * Aliases
+         */
 
-    /*
-     * State
-     */
-    var counter = 0;
+        frameworkName = require('name'),
+        nill          = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kAnd      = '&';
-    var kCallback = 'callback';
-    var kEmpty    = '';
-    var kEquals   = '=';
-    var kHead     = 'head';
-    var kJson     = concat(myName, '_json_');
-    var kLoaded   = 'loaded';
-    var kQuery    = '?';
-    var kScript   = 'script';
+        concat = require('String', 'concat'),
+
+        /*
+         * State
+         */
+        counter = 0,
+
+        /*
+         * Common Constants
+         */
+        kAnd      = '&',
+        kCallback = 'callback',
+        kEmpty    = '',
+        kEquals   = '=',
+        kHead     = 'head',
+        kJson     = concat(frameworkName, '_json_'),
+        kLoaded   = 'loaded',
+        kQuery    = '?',
+        kScript   = 'script';
 
     /*
      *
      */
     function load(url) {
-        var done   = false;
-        var head   = document.getElementsByTagName(kHead)[0];
-        var script = document.createElement(kScript);
+        var done   = false,
+            head   = document.getElementsByTagName(kHead)[0],
+            script = document.createElement(kScript);
 
         script.async = true;
         script.src   = url;
@@ -19131,8 +18479,8 @@ if (this.o2) {
      *
      */
     function createQuery(params) {
-        var key   = null;
-        var query = kEmpty;
+        var key   = null,
+            query = kEmpty;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -19167,8 +18515,8 @@ if (this.o2) {
      * <strong>JSONP</strong> arrives.
      */
     exports.get = def(me, 'get', function(url, params, callback) {
-        var query = createQuery(params);
-        var jsonp = concat(kJson, (++counter));
+        var query = createQuery(params),
+            jsonp = concat(kJson, (++counter));
 
         params = params || {};
 
@@ -19183,7 +18531,7 @@ if (this.o2) {
 
         return jsonp;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   querystring.core
  * @requires core
@@ -19192,51 +18540,55 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('querystring.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'QueryString';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.QueryString
-     *
-     * <p>Used for parsing the browser's <strong>query string</strong>.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'QueryString',
 
-    /*
-     * Aliases
-     */
-    var location = attr(window, 'location');
+        /**
+         * @class {static} o2.QueryString
+         *
+         * <p>Used for parsing the browser's <strong>query string</strong>.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Strings
-     */
-    var kAnd    = '&';
-    var kEquals = '=';
-    var kQuery  = '?';
+        /*
+         * Aliases
+         */
+        location = attr(window, 'location'),
 
-    /*
-     * Common Indexes
-     */
-    var kNameIndex  = 0;
-    var kValueIndex = 1;
+        /*
+         * Common Strings
+         */
+        kAnd    = '&',
+        kEquals = '=',
+        kQuery  = '?',
+        kEmpty  = '',
+
+        /*
+         * Common Indexes
+         */
+        kNameIndex  = 0,
+        kValueIndex = 1;
 
     /**
      * @function {static} o2.QueryString.encode
@@ -19253,8 +18605,8 @@ if (this.o2) {
      *
      */
     exports.encode = def(me, 'encode', function(collection) {
-        var key    = null;
-        var buffer = [];
+        var key    = null,
+            buffer = [];
 
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
@@ -19288,19 +18640,18 @@ if (this.o2) {
      * name2:value2} <code>Object</code>.
      */
     exports.parse = def(me, 'parse', function(url) {
-        var args  = {};
-        var href  = url || location.href;
-        var index = href.indexOf(kQuery);
+        var args           = {},
+            href           = url || location.href,
+            index          = href.indexOf(kQuery),
+            i              = 0,
+            nameValuePair  = null,
+            nameValuePairs = null,
+            query          = kEmpty;
 
-        if (index === -1) {
-            return args;
-        }
+        if (index === -1) {return args;}
 
-        var i              = 0;
-        var nameValuePair  = null;
-
-        var query          = href.substring(index + 1);
-        var nameValuePairs = query.split(kAnd);
+        query          = href.substring(index + 1);
+        nameValuePairs = query.split(kAnd);
 
         for (i = 0; i < nameValuePairs.length; i++) {
             nameValuePair = nameValuePairs[i].split(kEquals);
@@ -19310,7 +18661,7 @@ if (this.o2) {
 
         return args;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   sortdelegate.core
  * @requires core
@@ -19319,38 +18670,44 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
- * Custom delegates for <code>Array.sort</code> method.
+ * <p>Custom delegates for <code>Array.sort</code> method.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('sortdelegate.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'SortDelegate';
+        /*
+         * Module Exports
+         */
+        exports = {},
+
+        /*
+         * Module Name
+         */
+        kModuleName = 'SortDelegate',
 
 
-    /**
-     * @class {static} o2.SortDelegate
-     *
-     * <p>Custom delegates for <code>Array.sort</code> method.</p>
-     */
-    var me = create(kModuleName);
+        /**
+         * @class {static} o2.SortDelegate
+         *
+         * <p>Custom delegates for <code>Array.sort</code> method.</p>
+         */
+        me = create(kModuleName),
 
-    var inf = Infinity;
+        /*
+         * To be Overridden.
+         */
+        sort = null;
 
     /*
      *
@@ -19364,10 +18721,10 @@ if (this.o2) {
      */
     function getNanSortOrder(a, b, isDescending) {
         if (isDescending) {
-            return (isNaN(b) ? -inf : b) - (isNaN(a) ? -inf : a);
+            return (isNaN(b) ? -Infinity : b) - (isNaN(a) ? -Infinity : a);
         }
 
-        return (isNaN(a) ? inf : a) - (isNaN(b) ? inf : b);
+        return (isNaN(a) ? Infinity : a) - (isNaN(b) ? Infinity : b);
     }
 
     /**
@@ -19403,7 +18760,7 @@ if (this.o2) {
      */
     exports.sortAsc = alias(me, 'sortAsc', 'sort');
 
-    var sort = require(kModuleName, 'sort');
+    sort = require(kModuleName, 'sort');
 
     /**
      * @function {static} o2.SortDelegate.sortDesc
@@ -19423,7 +18780,7 @@ if (this.o2) {
     exports.sortDesc = def(me, 'sortDesc', function(a, b) {
         return sort(b, a);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   supports.core
  * @requires core
@@ -19432,53 +18789,57 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object support checker.</p>
  */
-(function(framework, document) {
+(function(framework, fp, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('supports.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Supports';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Supports
-     *
-     * <p>Checks support for various objects and properties like
-     * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Supports',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Supports
+         *
+         * <p>Checks support for various objects and properties like
+         * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    /*
-     *
-     */
-    var isDomSupported = document.getElementById &&
-        document.createElement && document.getElementsByTagName;
+        myName = require('name'),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty            = '';
-    var kTestCookiePrefix = 'tst';
+        /*
+         * <code>true</code> if there's an adequate level of
+         * <strong>DOM</strong> support.
+         */
+        isDomSupported = document.getElementById &&
+            document.createElement && document.getElementsByTagName,
+
+        /*
+         * Common Constants
+         */
+        kEmpty            = '',
+        kTestCookiePrefix = 'tst';
 
     /**
      * @function {static} o2.Supports.ajax
@@ -19518,20 +18879,19 @@ if (this.o2) {
      * @throws Exception - if <code>o2.Cookie</code> does not exist.
      */
     exports.cookie = def(me, 'cookie', function() {
-        var testCookieName = [myName, kTestCookiePrefix].join(kEmpty);
-        var value = null;
+        var testCookieName = [myName, kTestCookiePrefix].join(kEmpty),
+            value = null,
 
-        var kCookie = 'Cookie';
-        var save    = require(kCookie, 'save');
-        var read    = require(kCookie, 'read');
-        var remove  = require(kCookie, 'remove');
+            kCookie = 'Cookie',
+            save    = require(kCookie, 'save'),
+            read    = require(kCookie, 'read'),
+            remove  = require(kCookie, 'remove');
 
         save(testCookieName, testCookieName, 1);
 
         try {
             value = read(testCookieName);
-        } catch(ignore) {
-        }
+        } catch(ignore) {}
 
         if (value) {
             remove(testCookieName);
@@ -19559,7 +18919,7 @@ if (this.o2) {
     exports.dom = def(me, 'dom', function() {
         return isDomSupported;
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));
 /**
  * @module   template.core
  * @requires core
@@ -19568,91 +18928,103 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A "very" fast templating engine.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('template.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Template';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Template
-     *
-     * <p>A really <strong>fast</strong> template engine.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Template',
 
-    /*
-     * Common Constants
-     */
-    var kObject = 'object';
-    var kString = 'string';
-    var kEmpty  = '';
+        /**
+         * @class {static} o2.Template
+         *
+         * <p>A really <strong>fast</strong> template engine.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Regular Expressions
-     */
-    var kSeparatorRegExp = /\s+/;
-    var kTemplateRegExp  = /\{\{(.*?)\}\}/g;
+        /*
+         * Common Constants
+         */
+        kObject = 'object',
+        kString = 'string',
+        kEmpty  = '',
 
-    /*
-     * Common Commands
-     */
-    var kEach = 'each';
+        /*
+         * Common Regular Expressions
+         */
+        kSeparatorRegExp = /\s+/,
+        kTemplateRegExp  = /\{\{(.*?)\}\}/g,
 
-    /*
-     *
-     */
-    var doParse = null;
+        /*
+         * Common Commands
+         */
+        kEach = 'each',
+
+        /*
+         * To be Overridden
+         */
+        doParse = null;
 
     /*
      *
      */
     function parseDirective(line, data) {
-        var len = line.length;
+        var kDirectiveIndex     = 0,
+            kSubTemplateIndex   = 1,
+            kCommandIndex       = 0,
+            kDataKeyIndex       = 1,
 
-        switch (len) {
-            case 0:
-                return kEmpty;
-            case 1:
-                return line[0];
-        }
+            collectionKey = kEmpty,
+            directiveKey  = kEmpty,
 
-        var collectionKey = kEmpty;
-        var directive     = line[0].split(kSeparatorRegExp);
-        var directiveKey  = kEmpty;
-        var subTpl        = line[1];
+            directive = null,
 
-        var buffer = [];
-        var clen   = 0;
-        var i      = 0;
+            subTpl = line[kSubTemplateIndex],
+
+            lineLength = line.length,
+
+            buffer = [],
+
+            collection = null,
+
+            clen = 0,
+            i    = 0;
+
+        if (!line.length     ) {return kEmpty;}
+        if (line.length === 1) {return line[0];}
+
+        directive = line[kDirectiveIndex] &&
+                line[kDirectiveIndex].split(kSeparatorRegExp);
 
         if (directive.length > 1) {
-            collectionKey = directive[1];
+            collectionKey = directive[kDataKeyIndex];
         }
 
-        directiveKey = directive[0];
+        directiveKey = directive[kCommandIndex];
 
         if (directiveKey !== kEach) {
             return subTpl.join(kEmpty);
         }
 
-        var collection = collectionKey ? data[collectionKey] : data;
+        collection = collectionKey ? data[collectionKey] : data;
 
         if (typeof collection !== kObject) {
             return subTpl.join(kEmpty);
@@ -19711,10 +19083,10 @@ if (this.o2) {
      * @return {String} the parsed template.
      */
      exports.parse = def(me, 'parse', function(data, tpl){
-        var buffer  = [];
-        var tplData = data || {};
-        var i       = 0;
-        var len     = 0;
+        var buffer  = [],
+            tplData = data || {},
+            i       = 0,
+            len     = 0;
 
         for (i = 0, len = tpl.length; i < len; i++) {
             buffer.push(parse(tpl[i], tplData));
@@ -19727,7 +19099,7 @@ if (this.o2) {
       *
       */
      doParse = require(kModuleName, 'parse');
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   timer.core
  * @requires core
@@ -19737,73 +19109,77 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A static class for timeout related operations.</p>
  */
-(function(framework, window, UNDEFINED) {
+(function(framework, fp, window, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('timer.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Timer';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Timer
-     *
-     * <p>A class for executing repeated timed actions.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * // A unique id for the timer.
-     * var kCheckId = 'my_timer';
-     *
-     * // Auto start timer with id kCheckId to repeat doStuff approximately
-     * // every 500 milliseconds, please note that this is an approximation.
-     * // for further details see John Resig's excellent article on this:
-     * // http://ejohn.org/blog/how-javascript-timers-work/
-     * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
-     *
-     * // Stops the timer (i.e. doStuff will not be executed further).
-     * o2.Timer.stop(kCheckId);
-     *
-     * // Restarts the timer (i.e. doStuff will be periodically executed again).
-     * o2.Timer.start(kCheckId);
-     * </pre>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Timer',
 
-    /*
-     * Aliases
-     */
-    var concat = require('String', 'concat');
+        /**
+         * @class {static} o2.Timer
+         *
+         * <p>A class for executing repeated timed actions.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // A unique id for the timer.
+         * var kCheckId = 'my_timer';
+         *
+         * // Auto start timer with id kCheckId to repeat doStuff approximately
+         * // every 500 milliseconds, please note that this is an approximation.
+         * // for further details see John Resig's excellent article on this:
+         * // http://ejohn.org/blog/how-javascript-timers-work/
+         * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+         *
+         * // Stops the timer (i.e. doStuff will not be executed further).
+         * o2.Timer.stop(kCheckId);
+         *
+         * // Restarts the timer (i.e. doStuff will be periodically executed again).
+         * o2.Timer.start(kCheckId);
+         * </pre>
+         */
+        me = create(kModuleName),
 
-    var clearInterval = attr(window, 'clearInterval');
-    var clearTimeout  = attr(window, 'clearTimeout');
-    var setInterval   = attr(window, 'setInterval');
-    var setTimeout    = attr(window, 'setTimeout');
+        /*
+         * Aliases
+         */
+        concat = require('String', 'concat'),
 
-    /*
-     * Common Constants
-     */
-    var kPrefix = 't';
+        /*
+         * Common Constants
+         */
+        kPrefix = 't',
 
-    /*
-     * A collection of timers.
-     */
-    var timers = {};
+        /*
+         * State Information
+         */
+        timers = {},
+
+        /*
+         * To be Overridden
+         */
+        start = null,
+        stop  = null;
 
     /**
      * @function {static} o2.Timer.start
@@ -19819,34 +19195,28 @@ if (this.o2) {
      * @param {String} id - the id of the timer to start.
      */
     exports.start = def(me, 'start', function(id) {
-        var timerId = concat(kPrefix, id);
-        var meta    = timers[timerId];
+        var timerId = concat(kPrefix, id),
+            meta    = timers[timerId];
 
-        if (!meta) {
-            return;
-        }
+        if (!meta) {return;}
 
         if (meta.shouldRepeat) {
             clearInterval(meta.id);
 
-            meta.id = setInterval(function() {
-                meta.delegate();
-            }, meta.timeout);
+            meta.id = setInterval(meta.delegate, meta.timeout);
 
             return;
         }
 
         clearTimeout(meta.id);
 
-        meta.id = setTimeout(function() {
-            meta.delegate();
-        }, meta.timeout);
+        meta.id = setTimeout(meta.delegate, meta.timeout);
     });
 
     /*
      *
      */
-    var start = require(kModuleName, 'start');
+    start = require(kModuleName, 'start');
 
     /**
      * @function {static} o2.Timer.stop
@@ -19862,12 +19232,10 @@ if (this.o2) {
      * @param {String} id - the id of the timer to stop.
      */
     exports.stop = def(me, 'stop', function(id) {
-        var timerId = concat(kPrefix, id);
-        var meta    = timers[timerId];
+        var timerId = concat(kPrefix, id),
+            meta    = timers[timerId];
 
-        if (!meta) {
-            return;
-        }
+        if (!meta) {return;}
 
         if (meta.shouldRepeat) {
             clearInterval(meta.id);
@@ -19881,7 +19249,7 @@ if (this.o2) {
     /*
      *
      */
-    var stop = require(kModuleName, 'stop');
+    stop = require(kModuleName, 'stop');
 
     /**
      * @function {static} o2.Timer.set
@@ -19937,7 +19305,7 @@ if (this.o2) {
             start(id);
         }
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 /**
  * @module   try.core
  * @requires core
@@ -19946,8 +19314,6 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -19955,31 +19321,36 @@ if (this.o2) {
  * <p>Even if an error occurs when calling a <code>Function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('try.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Try';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Try
-     *
-     * <p>Used for consequentially executing a set of
-     * <code>Function</code>s.</p>
-     * <p>The <strong>function</strong>s are guaranteed to be called.</p>
-     * <p>Even if an error occurs when calling a <code>Function</code>, the next
-     * <code>Function</code> will be tried, disregarding the error.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Try',
+
+        /**
+         * @class {static} o2.Try
+         *
+         * <p>Used for consequentially executing a set of
+         * <code>Function</code>s.</p>
+         * <p>The <strong>function</strong>s are guaranteed to be called.</p>
+         * <p>Even if an error occurs when calling a <code>Function</code>, the next
+         * <code>Function</code> will be tried, disregarding the error.</p>
+         */
+        me = create(kModuleName);
 
     /**
      * @function {static} o2.Try.all
@@ -19997,14 +19368,13 @@ if (this.o2) {
      * @param {Arguments} ... - each argument as a function.
      */
     exports.all = def(me, 'all', function() {
-        var i   = 0;
-        var len = 0;
+        var i   = 0,
+            len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
             try {
                 arguments[i]();
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
     });
 
@@ -20027,19 +19397,18 @@ if (this.o2) {
      * @param {Arguments} ... - each argument as a function.
      */
     exports.these = def(me, 'these', function() {
-        var i   = 0;
-        var len = 0;
+        var i   = 0,
+            len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
             try {
                 arguments[i]();
 
                 return;
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));
 /**
  * @module   unit.core
  * @requires core
@@ -20051,180 +19420,189 @@ if (this.o2) {
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('unit.core',
+        ['core', 'debugger.core', 'dom.scroll', 'string.core']);
 
-    var exports = {};
+    var fp      = framework.protecteds,
+        attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        obj     = attr(fp, 'getObject'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Unit';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Unit
-     *
-     * <p>A "unit test" <strong>runner</strong>.</p>
-     * <p>Runs <code>UnitTest</code>s.</p>
-     */
-    var me     = create(kModuleName);
-    var myself = obj(me);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Unit',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Unit
+         *
+         * <p>A "unit test" <strong>runner</strong>.</p>
+         * <p>Runs <code>UnitTest</code>s.</p>
+         */
+        me     = create(kModuleName),
+        myself = obj(me),
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kDebugger    = 'Debugger';
-    var assert       = require(kDebugger, 'assert');
-    var initDebugger = require(kDebugger, 'init');
-    var log          = require(kDebugger, 'log');
+        nill = require('nill'),
 
-    var kStringHelper = 'String';
-    var concat = require(kStringHelper, 'concat');
-    var format = require(kStringHelper, 'format');
+        kDebugger    = 'Debugger',
 
-    var scrollToBottom = require('Dom', 'scrollWindowToBottom');
+        //TODO: add to documentation that this require is different than
+        //the require.js's require -- it's just a name similarity.
+        assert       = require(kDebugger, 'assert'),
+        initDebugger = require(kDebugger, 'init'),
+        log          = require(kDebugger, 'log'),
 
-    var setTimeout = attr(window, 'setTimeout');
+        kStringHelper = 'String',
+        concat = require(kStringHelper, 'concat'),
+        format = require(kStringHelper, 'format'),
 
-    /*
-     * Common Constants
-     */
+        scrollToBottom = require('Dom', 'scrollWindowToBottom'),
 
-    /*
-     * The DOM element to print the output.
-     */
-    var kOutputContainer = 'Output';
+        /*
+         * Common Constants
+         */
 
-    /*
-     * If true, the output will be sent to the console (if available), as well.
-     */
-    var kShouldUseConsole = true;
+        /*
+         * The DOM element to print the output.
+         */
+        kOutputContainer = 'Output',
 
-    /*
-     * Chunk check interval (in milliseconds).
-     * Chunking allows us to run large number of unit tests (of a test suite),
-     * without causing a "script timed out" error.
-     */
-    var kCheckInterval = 100;
+        /*
+         * If true, the output will be sent to the console (if available), as well.
+         */
+        kShouldUseConsole = true,
 
-    /*
-     * Commonly Used Templates
-     */
+        /*
+         * Chunk check interval (in milliseconds).
+         * Chunking allows us to run large number of unit tests (of a test suite),
+         * without causing a "script timed out" error.
+         */
+        kCheckInterval = 100,
 
-    /*
-     * Unit test suite completed.
-     */
-    var kUpdateTestCompletion = concat(
-        '<p><b>Completed</b>: "{0}":</p>',
-        '<p style="text-align:right">(<b>success: {1}</b> , ',
-        '<b>failure: {2}</b>)</p>'
-    );
+        /*
+         * Commonly Used Templates
+         */
 
-    /*
-     * Unit test has been completed.
-     */
-    var kFinishedUnitTest = concat(
-        'Completed unit test <strong>#{0}</strong>:',
-        ' "<em>{1}</em>"'
-    );
+        /*
+         * Unit test suite completed.
+         */
+        kUpdateTestCompletion = concat(
+            '<p><b>Completed</b>: "{0}":</p>',
+            '<p style="text-align:right">(<b>success: {1}</b> , ',
+            '<b>failure: {2}</b>)</p>'
+        ),
 
-    /*
-     * All of the unit test suites have been completed.
-     */
-    var kReportGlobalCompletion = concat(
-        '<p>All unit tests have been completed:</p>',
-        '<p style="text-align:right">(<b>total success: {0}</b>, ',
-        '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
-    );
+        /*
+         * Unit test has been completed.
+         */
+        kFinishedUnitTest = concat(
+            'Completed unit test <strong>#{0}</strong>:',
+            ' "<em>{1}</em>"'
+        ),
 
-    /*
-     * Debugger problem.
-     */
-    var kFailedToInitializeDebugger = concat(
-        'Failed to initialize Debugger. ',
-        'No "UnitTest"s will be run!'
-    );
+        /*
+         * All of the unit test suites have been completed.
+         */
+        kReportGlobalCompletion = concat(
+            '<p>All unit tests have been completed:</p>',
+            '<p style="text-align:right">(<b>total success: {0}</b>, ',
+            '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
+        ),
 
-    /*
-     *
-     */
-    var kFatalErrorInUnitTest = 'FATAL ERROR in UnitTest setup: "{0}"';
+        /*
+         * Debugger problem.
+         */
+        kFailedToInitializeDebugger = concat(
+            'Failed to initialize Debugger. ',
+            'No "UnitTest"s will be run!'
+        ),
 
-    /*
-     *
-     */
-    var kArgumentCountMismatch = '"{0}" expects {1} arguments';
+        /*
+         *
+         */
+        kFatalErrorInUnitTest = 'FATAL ERROR in UnitTest setup: "{0}"',
 
-    /*
-     *
-     */
-    var kArgumentException = 'Argument count mismatch!';
+        /*
+         *
+         */
+        kArgumentCountMismatch = '"{0}" expects {1} arguments',
 
-    /*
-     *
-     */
-    var kExecutionException = 'Execution exception!';
+        /*
+         *
+         */
+        kArgumentException = 'Argument count mismatch!',
 
-    /*
-     * Static State
-     */
+        /*
+         *
+         */
+        kExecutionException = 'Execution exception!',
 
-    /*
-     * The test queue. This will be empty when there are no more tests to run.
-     */
-    var tests = [];
+        /*
+         * Static State
+         */
 
-    /*
-     * The total number of successful assertions.
-     */
-    var globalSuccessCount = 0;
+        /*
+         * The test queue. This will be empty when there are no more tests to run.
+         */
+        tests = [],
 
-    /*
-     * The total number of failed assertions.
-     */
-    var globalFailureCount = 0;
+        /*
+         * The total number of successful assertions.
+         */
+        globalSuccessCount = 0,
 
-    /*
-     * Total number of completed unit tests.
-     */
-    var globalCompletedUnitTestCount = 0;
+        /*
+         * The total number of failed assertions.
+         */
+        globalFailureCount = 0,
 
-    /*
-     * Is the current <strong>Test Suite</strong> still running.
-     */
-    var isRunning = false;
+        /*
+         * Total number of completed unit tests.
+         */
+        globalCompletedUnitTestCount = 0,
+
+        /*
+         * Is the current <strong>Test Suite</strong> still running.
+         */
+        isRunning = false,
+
+        /*
+         * UnitTest.prototype
+         */
+        p = null;
 
     /*
      * Current unit test's test suite finished running all of its assertions.
      */
     function reportTestCompletion(unitTest) {
-        if (unitTest.remainingCount < 0) {
-            return;
-        }
+        if (unitTest.remainingCount < 0) {return;}
 
-        var description  = unitTest.description;
-        var failureCount = unitTest.failureCount;
-        var isAllSuccess = unitTest.failureCount <= 0;
-        var successCount = unitTest.successCount;
-        var message      = format(kUpdateTestCompletion, description,
-            successCount, failureCount);
+        var description  = unitTest.description,
+            failureCount = unitTest.failureCount,
+            isAllSuccess = unitTest.failureCount <= 0,
+            successCount = unitTest.successCount,
+            message      = format(kUpdateTestCompletion, description,
+                successCount, failureCount);
 
         assert(isAllSuccess, message);
 
@@ -20266,9 +19644,7 @@ if (this.o2) {
      * of the <code>UnitTest</code> <strong>unitTest</strong>
      */
     function didAssertion(unitTest, isSuccess, message) {
-        if (unitTest.remainingCount <= 0) {
-            return;
-        }
+        if (unitTest.remainingCount <= 0) {return;}
 
         assert(isSuccess, message);
         updateTestStatus(unitTest, isSuccess);
@@ -20354,7 +19730,7 @@ if (this.o2) {
         this.testCase       = testCase;
     }
 
-    var p = UnitTest.prototype;
+    p = UnitTest.prototype;
 
     /**
      * @function o2.UnitTest.terminate
@@ -20393,10 +19769,7 @@ if (this.o2) {
      */
     function expectProperArgumentLength(unitTest, localParameterCount,
                 argumentsLength, methodName) {
-        if (argumentsLength === localParameterCount) {
-
-            return;
-        }
+        if (argumentsLength === localParameterCount) {return;}
 
         didAssertion(unitTest, false, kArgumentException);
 
@@ -20428,12 +19801,11 @@ if (this.o2) {
      * <strong>test</strong> is the actual test suite <code>Function</code>.
      */
     exports.add = def(me, 'add', function(description, testMeta) {
-        var kRequiredLocalParameterCount = 2;
-        var kMethodName = 'add';
-        var kArgumentsLength = arguments.length;
-
-        var totalAssertionCount = testMeta.count;
-        var testCase = testMeta.test;
+        var kRequiredLocalParameterCount = 2,
+            kMethodName                  = 'add',
+            kArgumentsLength             = arguments.length,
+            totalAssertionCount          = testMeta.count,
+            testCase                     = testMeta.test;
 
         expectProperArgumentLength({}, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20458,10 +19830,11 @@ if (this.o2) {
      * @param {String} message - the associated message.
      */
     exports.assert = def(me, 'assert', function(unitTest, expression, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assert';
-        var kRequiredLocalParameterCount = 3;
-        var result                       = !!expression;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assert',
+            kRequiredLocalParameterCount = 3,
+
+            result = !!expression;
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20486,12 +19859,12 @@ if (this.o2) {
      */
     exports.assertEqual = def(me, 'assertEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertEqual',
+            kRequiredLocalParameterCount = 4,
 
-        // JSLint valitation error on purpose.
-        var result = (currentValue == expectedValue);
+            // JSLint valitation error on purpose.
+            result = (currentValue == expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20516,12 +19889,12 @@ if (this.o2) {
      */
     exports.assertNotEqual = def(me, 'assertNotEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertNotEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertNotEqual',
+            kRequiredLocalParameterCount = 4,
 
-        // JSLint validation error on purpose:
-        var result = (currentValue != expectedValue);
+            // JSLint validation error on purpose:
+            result = (currentValue != expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20548,11 +19921,11 @@ if (this.o2) {
      */
     exports.assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertStrictEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertStrictEqual',
+            kRequiredLocalParameterCount = 4,
 
-        var result = (currentValue === expectedValue);
+            result = (currentValue === expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20579,11 +19952,11 @@ if (this.o2) {
      */
     exports.assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(
                 unitTest, currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertStrictNotEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertStrictNotEqual',
+            kRequiredLocalParameterCount = 4,
 
-        var result = (currentValue !== expectedValue);
+            result = (currentValue !== expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -20682,17 +20055,14 @@ if (this.o2) {
      * will be run with <code>o2.Unit</code> as a parameter passed to it.
      */
     exports.run = def(me, 'run', function(globalCompletionCallback) {
-        if (isRunning) {
-            return;
-        }
+        if (isRunning) {return;}
 
         isRunning = true;
 
-        var oncomplete = globalCompletionCallback || nill;
+        var oncomplete     = globalCompletionCallback || nill,
+            activeUnitTest = null;
 
         initializeDebugger();
-
-        var activeUnitTest = null;
 
         setTimeout(function waitForUnitTest() {
             if (isLocked(activeUnitTest)) {
@@ -20733,5 +20103,5 @@ if (this.o2) {
 
         }, kCheckInterval);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
 exports.o2 = this.o2;

@@ -1,43 +1,46 @@
 /**
- * @module   method.transpose.
+ * @module   method.transpose
  * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>flip/fold/merge kind of method helper that ammend/transpose
  * <code>Function</code>s.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.transpose', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (transpose)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var ap     = Array.prototype;
-    var slice  = attr(ap, 'slice');
+        /*
+         * Method (transpose)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Aliases
+         */
+        ap     = Array.prototype,
+        slice  = attr(ap, 'slice');
 
     /**
      * @function {static} o2.Method.compose
@@ -92,8 +95,8 @@
      */
     exports.flip = def(me, 'flip', function(fn, index1, index2) {
         return function() {
-            var args      = slice.call(arguments);
-            var temporary = args[index1];
+            var args      = slice.call(arguments),
+                temporary = args[index1];
 
             args[index1] = args[index2];
             args[index2] = temporary;
@@ -133,4 +136,4 @@
                 [delegate].concat(slice.call(arguments)));
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

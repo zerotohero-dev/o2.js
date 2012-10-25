@@ -6,48 +6,48 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for timer-related actions, like delaying
  * a <code>Function</code> call.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.timer', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (timer)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var now = require('now');
+        /*
+         * Method (timer)
+         */
+        me = create(kModuleName),
 
-    var clearTimeout = attr(window, 'clearTimeout');
-    var setTimeout   = attr(window, 'setTimeout');
+        /*
+         * Aliases
+         */
+        now = require('now'),
 
-    /*
-     * Timer-Related
-     */
-    var kTimerId       = 'id';
-    var kDelayCheckMs  = 50;
+        /*
+         * Timer-Related
+         */
+        kTimerId       = 'id',
+        kDelayCheckMs  = 50;
 
     /*
      *
@@ -71,25 +71,20 @@
     function exec(timers, queue, delegate) {
         var item = queue.pop();
 
-        if (!item) {
-            return;
-        }
+        if (!item) {return;}
 
         timers.lastCallTime = now();
 
         try {
             delegate.apply(item.context, item.args);
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
     }
 
     /*
      *
      */
     function execIfWaitedEnough(timers, queue, waitMs, delegate) {
-        if (!isTimeExceeded(timers.lastCallTime, waitMs)) {
-            return;
-        }
+        if (!isTimeExceeded(timers.lastCallTime, waitMs)) {return;}
 
         exec(timers, queue, delegate);
     }
@@ -120,8 +115,8 @@
         timers[kTimerId] = null;
 
         return function() {
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args    = arguments;
 
             doTimeout(timers, kTimerId, function() {
                 delegate.apply(context, args);
@@ -189,20 +184,16 @@
      * @return the throttled <code>Function</code>.
      */
     exports.throttle = def(me, 'throttle', function(delegate, waitMs) {
-        var timers = {
-            lastCallTime : null
-        };
+        var timers = {lastCallTime : null},
+            queue  = [],
+            loop   = null;
 
         timers[kTimerId] = null;
 
-        var queue = [];
-
-        var loop = function() {
+        loop = function() {
             execIfWaitedEnough(timers, queue, waitMs, delegate);
 
-            if (!queue.length) {
-                return;
-            }
+            if (!queue.length) {return;}
 
             doTimeout(timers, kTimerId, loop, kDelayCheckMs);
         };
@@ -213,4 +204,4 @@
             loop();
         };
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

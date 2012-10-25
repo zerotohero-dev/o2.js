@@ -6,33 +6,36 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Constant definitions for {@link o2.Dom}.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.constants', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Dom
-     *
-     * A cross-browser <strong>DOM</strong> manipulation helper.
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
+
+        /**
+         * @class {static} o2.Dom
+         *
+         * A cross-browser <strong>DOM</strong> manipulation helper.
+         */
+        me = create(kModuleName);
 
     /**
      * @struct {static} o2.Dom.nodeType
@@ -114,4 +117,4 @@
          */
         NOTATION : 12
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

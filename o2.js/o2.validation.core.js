@@ -6,70 +6,77 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.2888371
  * -->
  *
  * <p>A validation helper.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('validation.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
+        obj    = attr(fp, 'getObject'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Validation';
+        /*
+         * Exports
+         */
+        exports = {},
 
+        /*
+         * Module Name
+         */
+        kModuleName = 'Validation',
 
-    /**
-     * @class {static} o2.Validation
-     *
-     * <p>A simple class for validating various kinds of
-     * <strong>object</strong>s.</p>
-     */
-    var me = create(kModuleName);
+        /**
+         * @class {static} o2.Validation
+         *
+         * <p>A simple class for validating various kinds of
+         * <strong>object</strong>s.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Aliases
-     */
-    var toString = attr(Object.prototype, 'toString');
+        /*
+         * Aliases
+         */
+        toString = attr(Object.prototype, 'toString'),
 
-    /*
-     * Calendar Months
-     */
-    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        /*
+         * Calendar Months
+         */
+        months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
-    /*
-     * Common Constants
-     */
-    var kDecimalBase          = 10;
-    var kFebruaryIndex        = 1;
-    var kLeapFebruaryDays     = 29;
-    var kNormalFebruaryDays   = 28;
-    var kObjectNameStartIndex = 8;
-    var kTrimLastBraceIndex   = -1;
-    var kYmdArgLen            = 3;
+        /*
+         * Common Constants
+         */
+        kDecimalBase          = 10,
+        kFebruaryIndex        = 1,
+        kLeapFebruaryDays     = 29,
+        kNormalFebruaryDays   = 28,
+        kObjectNameStartIndex = 8,
+        kTrimLastBraceIndex   = -1,
+        kYmdArgLen            = 3,
 
-    /*
-     * EcmaScript Types
-     */
-    var kArguments = 'Arguments';
-    var kArray     = 'Array';
-    var kBoolean   = 'Boolean';
-    var kDate      = 'Date';
-    var kFunction  = 'Function';
-    var kNumber    = 'Number';
-    var kObject    = 'Object';
-    var kRegExp    = 'RegExp';
-    var kString    = 'String';
+        /*
+         * EcmaScript Types
+         */
+        kArguments = 'Arguments',
+        kArray     = 'Array',
+        kBoolean   = 'Boolean',
+        kDate      = 'Date',
+        kFunction  = 'Function',
+        kNumber    = 'Number',
+        kObject    = 'Object',
+        kRegExp    = 'RegExp',
+        kString    = 'String',
+
+        /*
+         * Defined as aliases.
+         */
+        is = null;
 
     /*
      * Cheks whether the year is a leap year.
@@ -106,7 +113,7 @@
         return obj !== UNDEFINED && obj !== null && klass === type;
     });
 
-    var is = obj(me).is;
+    is = obj(me).is;
 
     /**
      * @function {static} o2.Validation.isArguments
@@ -189,23 +196,19 @@
      * <code>false</code> otherwise.
      */
     exports.isDate = def(me, 'isDate', function(objYear, objMonth, objDay) {
-        var day    = objDay;
-        var maxDay = 0;
-        var month  = objMonth;
-        var year   = objYear;
+        var day    = objDay,
+            maxDay = 0,
+            month  = objMonth,
+            year   = objYear;
 
         if (arguments.length === kYmdArgLen) {
-            if (!year || !month || !day) {
-                return false;
-            }
+            if (!year || !month || !day) {return false;}
 
             month = parseInt(month, kDecimalBase);
             year  = parseInt(year, kDecimalBase);
             day   = parseInt(day, kDecimalBase);
 
-            if (month < 0 || month > months.length) {
-                return false;
-            }
+            if (month < 0 || month > months.length) {return false;}
 
             months[kFebruaryIndex] = isLeapYear(year) ?
                 kLeapFebruaryDays :
@@ -398,6 +401,8 @@
      * <code>false</code> otherwise.
      */
     exports.isUndefined = def(me, 'isUndefined', function(obj) {
+
+        //JSLint complains. It's okay.
         return obj === void 0;
     });
 
@@ -421,4 +426,4 @@
     exports.isWindow = def(me, 'isWindow', function(obj) {
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

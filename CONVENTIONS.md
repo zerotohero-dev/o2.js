@@ -1563,22 +1563,16 @@ folder of this bundle.
 
 The **JSLint** validation preferences used are as follows:
 
-    var JSLINT_PREFS = {
-        browser : true,
-        evil    : false,
-        laxbreak: true,
-        maxerr  : 1000,
-        newcap  : true,
-        nomen   : true,
-        passfail: false,
-        plusplus: true,
-        rhino   : true,
-        undef   : true,
-        vars    : true,
-        white   : true,
-        regexp  : true,
-        bitwise : true
-    };
+    "--indent", "4",
+    "--space",
+    "--newcap",
+    "--undef",
+    "--regexp",
+    "--bitwise",
+    "--white",
+    "--node",
+    "--plusplus",
+    "--stupid",
 
 ### **Event Handler** Naming Convention
 

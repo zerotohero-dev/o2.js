@@ -8,141 +8,144 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajax.core', ['core', 'string.core', 'event.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Ajax';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Ajax
-     *
-     * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
-     * <strong>GET</strong> and <strong>POST</strong> requests.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Ajax',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Ajax
+         *
+         * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
+         * <strong>GET</strong> and <strong>POST</strong> requests.</p>
+         */
+        me = create(kModuleName),
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString       = 'String';
-    var concat        = require(kString, 'concat');
-    var generateGuid  = require(kString, 'generateGuid');
+        nill = require('nill'),
 
-    var listen = require('Event', 'addEventListener');
+        kString       = 'String',
+        concat        = require(kString, 'concat'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    var ActiveXObject  = window.ActiveXObject;
-    var XMLHttpRequest = window.XMLHttpRequest;
+        listen = require('Event', 'addEventListener'),
 
-    /*
-     * Headers
-     */
-    var commonHeaders = [{
-        'Accept' :
-        'text/javascript, text/html, application/xml, text/xml, */*'
-    }];
-    var postHeaders = [{
-        'Content-Type' : 'application/x-www-form-urlencoded'
-    }];
+        /*
+         * Headers
+         */
+        commonHeaders = [{
+            'Accept' :
+            'text/javascript, text/html, application/xml, text/xml, */*'
+        }],
+        postHeaders = [{
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }],
 
-    /*
-     * Microsoft-Specific ProgIds
-     */
-    var progIds = [
-        'Msxml2.XMLHTTP',
-        'Microsoft.XMLHTTP',
-        'Msxml2.XMLHTTP.7.0',
-        'Msxml2.XMLHTTP.6.0',
-        'Msxml2.XMLHTTP.5.0',
-        'Msxml2.XMLHTTP.3.0'
-    ];
+        /*
+         * Microsoft-Specific ProgIds
+         */
+        progIds = [
+            'Msxml2.XMLHTTP',
+            'Microsoft.XMLHTTP',
+            'Msxml2.XMLHTTP.7.0',
+            'Msxml2.XMLHTTP.6.0',
+            'Msxml2.XMLHTTP.5.0',
+            'Msxml2.XMLHTTP.3.0'
+        ],
 
-    /*
-     * Event
-     */
-    var kUnload = 'unload';
+        /*
+         * Event
+         */
+        kUnload = 'unload',
 
-    /*
-     * Error Message
-     */
-    var kNoXhr = 'Failed to create an XHR instance';
+        /*
+         * Error Message
+         */
+        kNoXhr = 'Failed to create an XHR instance',
 
-    /*
-     * Status
-     */
-    var kCached   = 304;
-    var kComplete = 4;
-    var kOk       = 200;
+        /*
+         * Status
+         */
+        kCached   = 304,
+        kComplete = 4,
+        kOk       = 200,
 
-    /*
-     * Verb
-     */
-    var kGet  = 'GET';
-    var kPost = 'POST';
+        /*
+         * Verb
+         */
+        kGet  = 'GET',
+        kPost = 'POST',
 
-    /*
-     * Text, Prefix, Suffix
-     */
-    var kAnd    = '&';
-    var kEmpty  = '';
-    var kEquals = '=';
-    var kKey    = 'r';
-    var kPlus   = '+';
-    var kRandom = '?rnd=';
+        /*
+         * Text, Prefix, Suffix
+         */
+        kAnd    = '&',
+        kEmpty  = '',
+        kEquals = '=',
+        kKey    = 'r',
+        kPlus   = '+',
+        kRandom = '?rnd=',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kUrlSpaceRegExp = /%20/g;
+        /*
+         * Common Regular Expressions
+         */
+        kUrlSpaceRegExp = /%20/g,
 
-    /*
-     * Active requests are cached here.
-     */
-    var requestCache = {};
+        /*
+         * Active requests are cached here.
+         */
+        requestCache = {},
 
-    /*
-     * To uniquely mark xhr requests.
-     */
-    var counter = 0;
+        /*
+         * To uniquely mark xhr requests.
+         */
+        counter = 0,
 
-    /*
-     * The total number of opened, but not completed (i.e. active) requests.
-     */
-    var activeRequestCount = 0;
+        /*
+         * The total number of opened, but not completed (i.e. active) requests.
+         */
+        activeRequestCount = 0,
+
+        /*
+         * Will be overridden.
+         */
+        createXhr = null;
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
      */
-    var createXhr = function() {
-        var progId  = null;
-        var request = null;
+    createXhr = function() {
+        var progId  = null,
+            request = null;
 
         if (window.XMLHttpRequest) {
             createXhr = function() {
-                var request = new XMLHttpRequest();
+                var request = new window.XMLHttpRequest();
 
-                if (!request) {
-                    throw kNoXhr;
-                }
+                if (!request) {throw kNoXhr;}
 
                 // Request is not completed yet.
                 request.isComplete = false;
@@ -157,19 +160,16 @@
             progId = progIds.shift();
 
             try {
-                request = new ActiveXObject(progId);
+                request = new window.ActiveXObject(progId);
 
                 break;
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
 
-        if (!request) {
-            throw kNoXhr;
-        }
+        if (!request) {throw kNoXhr;}
 
         createXhr = function() {
-            var request = new ActiveXObject(progId);
+            var request = new window.ActiveXObject(progId);
 
             // Request is not completed yet.
             request.isComplete = false;
@@ -186,9 +186,7 @@
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
     function finalizeXhr(xhr) {
-        if (!xhr) {
-            return;
-        }
+        if (!xhr) {return;}
 
         // To avoid memory leaks.
         xhr.onreadystatechange = nill;
@@ -215,15 +213,15 @@
      * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-        var isSuccess    = false;
-        var onaborted    = callbacks.onaborted   || nill;
-        var oncomplete   = callbacks.oncomplete  || nill;
-        var onerror      = callbacks.onerror     || nill;
-        var onexception  = callbacks.onexception || nill;
-        var responseText = kEmpty;
-        var responseXml  = null;
-        var status       = 0;
-        var statusText   = kEmpty;
+        var isSuccess    = false,
+            onaborted    = callbacks.onaborted   || nill,
+            oncomplete   = callbacks.oncomplete  || nill,
+            onerror      = callbacks.onerror     || nill,
+            onexception  = callbacks.onexception || nill,
+            responseText = kEmpty,
+            responseXml  = null,
+            status       = 0,
+            statusText   = kEmpty;
 
         if (xhr.isAborted) {
             onaborted(xhr);
@@ -238,8 +236,7 @@
             responseText = xhr.responseText;
             responseXml  = xhr.responseXML;
             statusText   = xhr.statusText;
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
 
         isSuccess = status === kOk || status === kCached;
 
@@ -275,13 +272,8 @@
      * optional.
      */
     function registerCallbacks(xhr, callbacks) {
-        if (!xhr) {
-            return;
-        }
-
-        if (xhr.isInitialized) {
-            return;
-        }
+        if (!xhr             ) {return;}
+        if (xhr.isInitialized) {return;}
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState === kComplete) {
@@ -299,10 +291,10 @@
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
-        var header = null;
-        var i      = 0;
-        var key    = 0;
-        var len    = 0;
+        var header = null,
+            i      = 0,
+            key    = 0,
+            len    = 0;
 
         for (i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
@@ -339,8 +331,8 @@
      * the form "&name1=value1&name2=value2"</p>
      */
     function generateParametrizeQueryString(params) {
-        var buffer = [];
-        var key = null;
+        var buffer = [],
+            key    = null;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -359,25 +351,26 @@
      * @return the original <code>XMLHttpRequest</code>
      */
     function send(url, verb, parameters, callbacks, isSync) {
-        if (!url) {
-            return null;
-        }
+        if (!url) {return null;}
 
-        var ajaxCallbacks      = callbacks  || {};
-        var ajaxParameters     = parameters || {};
+        var ajaxCallbacks  = callbacks  || {},
+            ajaxParameters = parameters || {},
 
-        var parametrizedQuery  = generateParametrizeQueryString(ajaxParameters);
+        parametrizedQuery = generateParametrizeQueryString(ajaxParameters),
 
-        var isPost   = verb !== kGet;
-        var getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery);
+        isPost   = verb !== kGet,
 
-        var index      = counter++;
-        var isAsync    = !!!isSync;
-        var postQuery  = isPost ? parametrizedQuery : kEmpty;
-        var xhr        = createXhr();
+        getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery),
+
+        index     = counter++,
+        isAsync   = !!!isSync,
+
+        postQuery = isPost ? parametrizedQuery : kEmpty,
+        xhr       = createXhr();
 
         // Add request to cache.
         requestCache[kKey+index] = xhr;
+
         xhr.index = (kKey+index);
 
         activeRequestCount++;
@@ -423,15 +416,12 @@
      * <strong>XMLHttpRequest</strong> being sent.
      */
     exports.abort = def(me, 'abort', function(xhr) {
-        if (!xhr || xhr.isAborted) {
-            return;
-        }
+        if (!xhr || xhr.isAborted) {return;}
 
         try {
             xhr.isAborted = true;
             xhr.abort();
-        } catch (ignore) {
-        }
+        } catch (ignore) {}
     });
 
     /**
@@ -534,18 +524,23 @@
     // long-polling, the next time you open a page on that domain it will
     // hang forever. The below event listener fixes that.
     listen(window, kUnload, function() {
-        var key     = null;
-        var request = null;
+        var key     = null,
+            request = null;
 
         try {
+
+            // TODO: v8 does not make performance optimization inside
+            // a try block, encapsulate this logic into a function and
+            // take it out of the try-catch. search all trys, and do the
+            // same.
             for(key in requestCache) {
                 if(requestCache.hasOwnProperty(key)) {
                     request = requestCache[key];
                     request.abort();
+
                     delete requestCache[key];
                 }
             }
-        } catch(ignore) {
-        }
+        } catch(ignore) {}
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

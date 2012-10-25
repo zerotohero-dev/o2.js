@@ -8,76 +8,75 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-28 00:58:14.070066
  * -->
  *
  * <p>This package is for asynchronously loading resources such as images and
  * scripts.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.load', ['core', 'string.core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (load)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (load)
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
-    var nill   = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString       = 'String';
-    var concat        = require(kString, 'concat');
-    var format        = require(kString, 'format');
-    var generateGuid  = require(kString, 'generateGuid');
+        frameworkName = require('name'),
+        nill          = require('nill'),
 
-    var Image                = attr(window,   'Image');
-    var setTimeout           = attr(window,   'setTimeout');
-    var sheets               = attr(document, 'styleSheets');
+        kString       = 'String',
+        concat        = require(kString, 'concat'),
+        format        = require(kString, 'format'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    /*
-     * Common Strings
-     */
-    var kCssId      = concat(myName, '-css-{0}');
-    var kHead       = 'head';
-    var kLink       = 'link';
-    var kRel        = 'rel';
-    var kScript     = 'script';
-    var kScriptType = 'text/javascript';
-    var kSheet      = 'stylesheet';
-    var kSheetType  = 'text/css';
+        /*
+         * Common Strings
+         */
+        kCssId      = concat(frameworkName, '-css-{0}'),
+        kHead       = 'head',
+        kLink       = 'link',
+        kRel        = 'rel',
+        kScript     = 'script',
+        kScriptType = 'text/javascript',
+        kSheet      = 'stylesheet',
+        kSheetType  = 'text/css',
 
-    /*
-     * Common Constants
-     */
-    var kCssCheckInterval   = 100;
-    var kMaxCssCheckAttempt = 500;
+        /*
+         * Common Constants
+         */
+        kCssCheckInterval   = 100,
+        kMaxCssCheckAttempt = 500,
 
-    /*
-     * Common Regular Expressions
-     */
-    var kCompleteRegExp = /loaded|complete/;
+        /*
+         * Common Regular Expressions
+         */
+        kCompleteRegExp = /loaded|complete/,
 
-    var kM$     = 'MSIE';
-    var isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera;
-    var isOpera = !!window.opera;
+        kM$     = 'MSIE',
+        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+        isOpera = !!window.opera;
 
     /**
      * @function {static} o2.Dom.loadCss
@@ -110,13 +109,13 @@
      * operation completes.
      */
     exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
-        var s = document.createElement(kLink);
-        var x = document.getElementsByTagName(kHead)[0];
+        var s = document.createElement(kLink),
+            x = document.getElementsByTagName(kHead)[0] || document.body,
 
-        var id      = format(kCssId, generateGuid());
-        var counter = 0;
+            id      = format(kCssId, generateGuid()),
+            counter = 0,
 
-        var onsuccess = successCallback || nill;
+            onsuccess = successCallback || nill;
 
         s.setAttribute(kRel, kSheet);
 
@@ -131,6 +130,7 @@
             s.onreadystatechange = function() {
                 if(kCompleteRegExp.test(s.readyState)) {
                     onsuccess();
+
                     onsuccess = nill;
                 }
             };
@@ -142,6 +142,7 @@
         if (isOpera) {
             s.onload = function() {
                 onsuccess();
+
                 onsuccess = nill;
             };
 
@@ -150,13 +151,12 @@
 
         // worst-case fallback
         setTimeout(function check() {
-            var i     = 0;
-            var len   = 0;
-            var sheet = null;
+            var i      = 0,
+                len    = 0,
+                sheet  = null,
+                sheets = document.styleSheets;
 
-            if (onsuccess === nill) {
-                return;
-            }
+            if (onsuccess === nill) {return;}
 
             for (i = 0, len = sheets.length; i < len; i++) {
                 sheet = sheets[i];
@@ -205,14 +205,15 @@
      * <strong>image</strong> is loaded successfully.
      */
     exports.loadImage = def(me, 'loadImage', function(url, succesCallback) {
-        var succesCallbackCached = succesCallback || nill;
+        var succesCallbackCached = succesCallback || nill,
+            testImg = null;
 
         function done() {
             succesCallbackCached();
             succesCallbackCached = nill;
         }
 
-        var testImg = new Image();
+        testImg = new window.Image();
 
         testImg.onload  = done;
         testImg.onerror = done;
@@ -244,9 +245,9 @@
      * operation completes.
      */
     exports.loadScript = def(me, 'loadScript', function(src, callback) {
-        var s = document.createElement(kScript);
-        var x = document.getElementsByTagName(kScript)[0] ||
-            document.getElementsByTagName(kHead)[0];
+        var s = document.createElement(kScript),
+            x = document.getElementsByTagName(kScript)[0] ||
+                document.getElementsByTagName(kHead)[0];
 
         s.type  = kScriptType;
         s.async = true;
@@ -254,9 +255,7 @@
 
         x.parentNode.insertBefore(s, x);
 
-        if (!callback) {
-            return;
-        }
+        if (!callback) {return;}
 
         s.onreadystatechange = function() {
             if(kCompleteRegExp.test(s.readyState)) {
@@ -264,8 +263,6 @@
             }
         };
 
-        s.onload = function() {
-            callback();
-        };
+        s.onload = callback;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

@@ -6,39 +6,42 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>Does validation by matching test subjects against predefined
  * <strong>regular expression</strong>s.<p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('validation.regexp', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Validation';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Validation (regexp)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Validation',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i;
-    var kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i;
-    var kWhitespaceRegExp = /^\s*$/;
+        /*
+         * Validation (regexp)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Common Regular Expressions
+         */
+        kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
+        kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
+        kWhitespaceRegExp = /^\s*$/;
 
     /**
      * @function {static} o2.Validation.isEmail
@@ -113,4 +116,4 @@
     exports.isWhitespace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

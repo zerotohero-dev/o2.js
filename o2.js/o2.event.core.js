@@ -8,58 +8,68 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.core', ['core', 'event.core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Event (core)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Event (core)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var myName = require('name');
-    var nill   = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var concat  = require(kString, 'concat');
-    var format  = require(kString, 'format');
+        $      = require('$'),
+        myName = require('name'),
+        nill   = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kCallbackNotDefined = format('{0}: Callback is not defined!', myName);
-    var kOn                 = 'on';
+        kString = 'String',
+        concat  = require(kString, 'concat'),
+        format  = require(kString, 'format'),
 
-    /*
-     * Feature Tests
-     */
-    var isAddEventListener = !!document.addEventListener;
-    var isAttachEvent      = !!document.attachEvent;
-    var windowEventHandle  = window.event;
+        /*
+         * Common Constants
+         */
+        kCallbackNotDefined = format('{0}: Callback is not defined!', myName),
+        kOn                 = 'on',
+
+        /*
+         * Feature Tests
+         */
+        isAddEventListener = !!document.addEventListener,
+        isAttachEvent      = !!document.attachEvent,
+        windowEventHandle  = window.event,
+
+        /*
+         * To be Overridden
+         */
+        addEventListener    = null,
+        getEventObject      = null,
+        getMouseCoordinates = null;
 
     if (isAddEventListener) {
 
@@ -88,13 +98,8 @@
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             // `false` disables event capturing.
             //
@@ -129,13 +134,8 @@
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.removeEventListener(evt, fn, false);
         });
@@ -144,13 +144,8 @@
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.attachEvent(concat(kOn, evt), fn);
         });
@@ -159,13 +154,8 @@
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj.detachEvent(concat(kOn, evt), fn);
         });
@@ -174,13 +164,8 @@
                     evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj[concat(kOn, evt)] = fn;
         });
@@ -189,13 +174,9 @@
                     node, evt, fn) {
             var obj = $(node);
 
-            if (!obj) {
-                return;
-            }
-
-            if (!fn) {
-                throw kCallbackNotDefined;
-            }
+            //TODO: if (!guard(obj, fn)) {return;}
+            if (!obj) {return;}
+            if (!fn ) {throw kCallbackNotDefined;}
 
             obj[concat(kOn, evt)] = nill;
         });
@@ -210,7 +191,7 @@
     /*
      *
      */
-    var addEventListener = require(kModuleName, 'addEventListener');
+    addEventListener = require(kModuleName, 'addEventListener');
 
     /**
      * @function {static} o2.Event.addEventListeners
@@ -239,12 +220,10 @@
      */
     exports.addEventListeners = def(me, 'addEventListeners', function(collection,
                 eventName, handler) {
-        if (!collection) {
-            return;
-        }
+        if (!collection) {return;}
 
-        var listen = addEventListener;
-        var key = null;
+        var listen = addEventListener,
+            key    = null;
 
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
@@ -311,7 +290,7 @@
     /*
      *
      */
-    var getEventObject = require(kModuleName, 'getEventObject');
+    getEventObject = require(kModuleName, 'getEventObject');
 
     /**
      * @function {static} o2.Event.getKeyCode
@@ -337,9 +316,7 @@
     exports.getKeyCode = def(me, 'getKeyCode', function(evt) {
         var e = getEventObject(evt);
 
-        if (!e) {
-            return 0;
-        }
+        if (!e) {return 0;}
 
         // For a cross-event (i.e. keydown, keyup, keypress)
         // result we normalize the code.
@@ -355,21 +332,18 @@
     /*
      *
      */
-    var getMouseCoordinates = function(evt) {
-        var e = getEventObject(evt);
+    getMouseCoordinates = function(evt) {
+        var e      = getEventObject(evt),
+            origin = {x : 0, y : 0},
+            posx   = 0,
+            posy   = 0;
 
-        if (!e) {
-            return {x : 0, y : 0};
-        }
 
-        var posx = 0;
-        var posy = 0;
+        if (!e) {return origin;}
 
         if (e.pageX) {
             getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {x : 0, y : 0};
-                }
+                if (!e) {return origin;}
 
                 posx = e.pageX || 0;
                 posy = e.pageY || 0;
@@ -382,13 +356,11 @@
 
         if(e.clientX) {
             getMouseCoordinates = function(e) {
-                if (!e) {
-                    return {x : 0, y : 0};
-                }
+                if (!e) {return origin;}
 
-                var clientX = e.clientX || 0;
-                var clientY = e.clientY || 0;
-                var wd = document;
+                var clientX = e.clientX || 0,
+                    clientY = e.clientY || 0,
+                    wd      = document;
 
                 posx = clientX + wd.body.scrollLeft +
                     wd.documentElement.scrollLeft;
@@ -402,7 +374,7 @@
         }
 
         // The current event object has neither pageX, nor clientX defined.
-        return {x : 0, y : 0};
+        return origin;
     };
 
     /**
@@ -459,9 +431,7 @@
         });
     } else {
         exports.preventDefault = def(me, 'preventDefault', function(evt) {
-            if (!evt) {
-                return false;
-            }
+            if (!evt) {return false;}
 
             if (evt.preventDefault) {
                 evt.preventDefault();
@@ -509,11 +479,9 @@
         });
     } else {
         exports.stopPropagation = def(me, 'stopPropagation', function(evt) {
-            if (!evt) {
-                return;
-            }
+            if (!evt) {return;}
 
             evt.stopPropagation();
         });
     }
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

@@ -6,38 +6,44 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
- * Custom delegates for <code>Array.sort</code> method.
+ * <p>Custom delegates for <code>Array.sort</code> method.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('sortdelegate.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'SortDelegate';
+        /*
+         * Module Exports
+         */
+        exports = {},
+
+        /*
+         * Module Name
+         */
+        kModuleName = 'SortDelegate',
 
 
-    /**
-     * @class {static} o2.SortDelegate
-     *
-     * <p>Custom delegates for <code>Array.sort</code> method.</p>
-     */
-    var me = create(kModuleName);
+        /**
+         * @class {static} o2.SortDelegate
+         *
+         * <p>Custom delegates for <code>Array.sort</code> method.</p>
+         */
+        me = create(kModuleName),
 
-    var inf = Infinity;
+        /*
+         * To be Overridden.
+         */
+        sort = null;
 
     /*
      *
@@ -51,10 +57,10 @@
      */
     function getNanSortOrder(a, b, isDescending) {
         if (isDescending) {
-            return (isNaN(b) ? -inf : b) - (isNaN(a) ? -inf : a);
+            return (isNaN(b) ? -Infinity : b) - (isNaN(a) ? -Infinity : a);
         }
 
-        return (isNaN(a) ? inf : a) - (isNaN(b) ? inf : b);
+        return (isNaN(a) ? Infinity : a) - (isNaN(b) ? Infinity : b);
     }
 
     /**
@@ -90,7 +96,7 @@
      */
     exports.sortAsc = alias(me, 'sortAsc', 'sort');
 
-    var sort = require(kModuleName, 'sort');
+    sort = require(kModuleName, 'sort');
 
     /**
      * @function {static} o2.SortDelegate.sortDesc
@@ -110,4 +116,4 @@
     exports.sortDesc = def(me, 'sortDesc', function(a, b) {
         return sort(b, a);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds));

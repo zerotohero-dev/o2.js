@@ -1,64 +1,68 @@
 /**
- * @module   ajaxstate
+ * @module   ajaxstate.core
  * @requires core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
+ *  Please see the LICENSE file for details.F
  * -->
  *
  * <p>A Model for controlling AJAX timeouts etc.</p>
  * <p>An {@link AjaxController} should be registered to this model.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajaxstate.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'AjaxState';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.AjaxState
-     * @implements Observable
-     *
-     * <p>A <code>Model</code> for the available <code>AjaxController</code>
-     * objects.</p>
-     * <p>Implements the <code>Observable</code> interface.</p>
-     *
-     * <p>See
-     * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'AjaxState',
 
-    /*
-     * Aliases
-     */
-    var setTimeout   = attr(window, 'setTimeout');
-    var clearTimeout = attr(window, 'clearTimeout');
+        /**
+         * @class {static} o2.AjaxState
+         * @implements Observable
+         *
+         * <p>A <code>Model</code> for the available <code>AjaxController</code>
+         * objects.</p>
+         * <p>Implements the <code>Observable</code> interface.</p>
+         *
+         * <p>See
+         * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html
+         * </p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Constants
-     */
-    var kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
+        /*
+         * Aliases
+         */
+        setTimeout   = attr(window, 'setTimeout'),
+        clearTimeout = attr(window, 'clearTimeout'),
+
+        /*
+         * Common Constants
+         */
+        kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
 
     /*
      *
      */
     function timeoutObservers(self, observers) {
-        var i        = 0;
-        var len      = 0;
-        var observer = null;
+        var i        = 0,
+            len      = 0,
+            observer = null;
 
         for (i = 0, len = observers.length; i < len; i++) {
             observer = observers[i].object;
@@ -77,36 +81,41 @@
     /*
      *
      */
+    function getSelfProtecteds(self, key) {
+        return attr(getProtecteds(self), key);
+    }
+
+    /*
+     *
+     */
     function getConfig(self) {
-        return attr(getProtecteds(self), 'config');
+        return getSelfProtecteds(self, 'config');
     }
 
     /*
      *
      */
     function getState(self) {
-        return attr(getProtecteds(self), 'state');
+        return getSelfProtecteds(self, 'state');
     }
 
     /*
      *
      */
     function getObservers(self) {
-        return attr(getProtecteds(self), 'observers');
+        return getSelfProtecteds(self, 'observers');
     }
 
     /*
      *
      */
     function hasObserver(self, observer) {
-        var i         = 0;
-        var len       = 0;
-        var observers = getObservers(self);
+        var i         = 0,
+            len       = 0,
+            observers = getObservers(self);
 
         for (i = 0, len = observers.length; i < len; i++) {
-            if (observer.object === observers[i]) {
-                return true;
-            }
+            if (observer.object === observers[i]) {return true;}
         }
 
         return false;
@@ -116,20 +125,20 @@
      *
      */
     function listen(stateObject) {
-        var config = getConfig(stateObject);
-        var meta   = null;
-        var now    = (new Date()).getTime();
+        var config = getConfig(stateObject),
+            meta   = null,
+            now    = (new Date()).getTime(),
 
-        var observer  = null;
-        var observers = getObservers(stateObject);
-        var i         = 0;
-        var len       = observers.length;
+            observer  = null,
+            observers = getObservers(stateObject),
+            i         = 0,
+            len       = observers.length,
 
-        var registrationTime     = null;
-        var shouldNotifyObserver = false;
-        var state                = getState(stateObject);
-        var timeout              = null;
-        var unregisterQueue      = [];
+            registrationTime     = null,
+            shouldNotifyObserver = false,
+            state                = getState(stateObject),
+            timeout              = null,
+            unregisterQueue      = [];
 
         if (!len) {
             clearTimeout(state.listenTimeoutId);
@@ -142,14 +151,12 @@
         }
 
         for (i = 0; i < len; i++) {
-            observer = observers[i];
-            meta = observer.meta;
-            timeout = meta.timeout;
+            observer         = observers[i];
+            meta             = observer.meta;
+            timeout          = meta.timeout;
             registrationTime = meta.registrationTime;
 
-            if (!timeout) {
-                throw kNoTimeoutMetaData;
-            }
+            if (!timeout) {throw kNoTimeoutMetaData;}
 
             shouldNotifyObserver = (now - registrationTime > timeout);
 
@@ -187,9 +194,7 @@
 
         //!
         // acquire(me, this, 'observer');
-        if (hasObserver(this, observer)) {
-            return;
-        }
+        if (hasObserver(this, observer)) {return;}
 
         var observers = getObservers(this);
 
@@ -238,15 +243,13 @@
      * @param {Object} observer - the <code>Observer</code> to remove.
      */
     exports.deleteObserver = def(me, 'deleteObserver', function(observer) {
-        var i         = 0;
-        var len       = 0;
-        var observers = getObservers(this);
+        var i         = 0,
+            len       = 0,
+            observers = getObservers(this);
 
         // This is an already-deleted zombie object.
         // No need for further processing.
-        if (observer.isDeleted) {
-            return true;
-        }
+        if (observer.isDeleted) {return true;}
 
         for (i = 0, len = observers.length; i < len; i++) {
             if (observer === observers[i].object) {
@@ -364,4 +367,4 @@
          */
         observers : []
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));
