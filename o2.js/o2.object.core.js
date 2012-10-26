@@ -8,57 +8,61 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An object/clone/copy/inheritance helper.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('object.core', ['core', 'collection.core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Object';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Object
-     *
-     * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
-     * inheritance.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Object',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Object
+         *
+         * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
+         * inheritance.</p>
+         */
+        me = create(kModuleName),
 
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var format  = require(kString, 'format');
-    var concat  = require(kString, 'concat');
+        frameworkName = require('name'),
 
-    var toArray = require('Collection', 'toArray');
+        kString = 'String',
+        format  = require(kString, 'format'),
+        concat  = require(kString, 'concat'),
 
-    var JSON = window.JSON;
+        toArray = require('Collection', 'toArray'),
 
-    /*
-     * Common Constants
-     */
-    var kNoJsonSupport = concat(myName, ': {0}: No JSON support. quitting');
-    var kFunction      = 'function';
-    var kObject        = 'object';
+        JSON = window.JSON,
+
+        /*
+         * Common Constants
+         */
+        kNoJsonSupport = concat(frameworkName,
+            ': {0}: No JSON support. quitting'),
+        kFunction      = 'function',
+        kObject        = 'object';
 
     /**
      * @function {static} o2.Object.copy
@@ -113,12 +117,13 @@
      * methods from.
      */
     exports.copyMethods = def(me, 'copyMethods', function(child, base) {
-        var key   = null;
-        var value = null;
+        var key   = null,
+            value = null;
 
         for (key in base) {
             if (base.hasOwnProperty(key)) {
                 value = base[key];
+
                 if (typeof value === kFunction) {
                     child[key] = value;
                 }
@@ -154,17 +159,12 @@
      * methods from.
      */
     exports.copyPrototype = def(me, 'copyPrototype', function(child, base) {
-        var baseProto  = base.prototype;
-        var childProto = child.prototype;
-        var key        = null;
+        var baseProto  = base.prototype,
+            childProto = child.prototype,
+            key        = null;
 
-        if (!childProto) {
-            return;
-        }
-
-        if (!baseProto) {
-            return;
-        }
+        if (!childProto) {return;}
+        if (!baseProto ) {return;}
 
         for (key in baseProto) {
             if (baseProto.hasOwnProperty(key)) {
@@ -191,7 +191,7 @@
      * function Apple() {}
      * Apple.prototype.name = 'Steve';
      *
-     * o2.Object.inherit(Apple, Fruit, new Fruit());
+     * o2.Object.extend(Apple, Fruit, new Fruit());
      *
      * var fruit = new Fruit();
      * var apple = new Apple();
@@ -211,10 +211,11 @@
     exports.extend = def(me, 'extend', function(childConstructor,
                 baseConstructor, baseConstructed) {
         var Junction = function(){};
-        childConstructor.prototype = new Junction();
-        Junction.prototype = baseConstructed;
+
+        childConstructor.prototype             = new Junction();
+        Junction.prototype                     = baseConstructed;
         childConstructor.prototype.constructor = childConstructor;
-        childConstructor.prototype.parent = baseConstructor.prototype;
+        childConstructor.prototype.parent      = baseConstructor.prototype;
     });
 
     /**
@@ -306,16 +307,11 @@
      * delagate to it) otherwise.
      */
     exports.touch = def(me,'touch', function(obj, delegate) {
-        if (!obj) {
-            return null;
-        }
-
-        if (typeof obj !== kObject) {
-            return null;
-        }
+        if (!obj                  ) {return null;}
+        if (typeof obj !== kObject) {return null;}
 
         delegate(obj);
 
         return obj;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

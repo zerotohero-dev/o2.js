@@ -8,61 +8,60 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
  * etc. A {@link JsonpController} should be registered to this
  * <strong>model</strong>.
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonpstate.core', ['core', 'ajaxstate.core', 'object.core']);
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'JsonpState';
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /**
-     * @class {static} o2.JsonpState
-     * @extends o2.AjaxState
-     *
-     * <p>Implements all public methods of {@link AjaxState} for
-     * <strong>JSONP</strong> requests.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'JsonpState',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.JsonpState
+         * @extends o2.AjaxState
+         *
+         * <p>Implements all public methods of {@link AjaxState} for
+         * <strong>JSONP</strong> requests.</p>
+         */
+        me = create(kModuleName),
 
-    var kObjectHelper = 'Object';
-    var copyFn        = require(kObjectHelper, 'copyMethods');
-    var copyAttr      = require(kObjectHelper, 'copy');
+        /*
+         * Aliases
+         */
 
-    /*
-     * Inheritance
-     */
+        kObjectHelper = 'Object',
+        copyFn        = require(kObjectHelper, 'copyMethods'),
+        copyAttr      = require(kObjectHelper, 'copy'),
 
-    var kBaseName   = 'AjaxState';
-    var kMyName     = kModuleName;
-    var kProtecteds = 'protecteds';
+        /*
+         * Inheritance-Related Constants
+         */
 
+        kBaseName   = 'AjaxState',
+        kMyName     = kModuleName,
+        kProtecteds = 'protecteds';
+
+    //TODO: copy with require: f(kMyName, kBaseName)
+
+    // Inheritance implementation (through mixins):
+    copyFn(require(kMyName), require(kBaseName));
     def(me, kProtecteds, {});
-
-    var base   = require(kBaseName);
-    var myself = require(kMyName);
-
-    var baseProtecteds = require(kBaseName, kProtecteds);
-    var myProtecteds   = require(kMyName,   kProtecteds);
-
-    copyFn(myself, base);
-    copyAttr(myProtecteds, baseProtecteds);
-}(this.o2));
+    copyAttr(
+        require(kMyName,   kProtecteds),
+        require(kBaseName, kProtecteds)
+    );
+}(this.o2, this.o2.protecteds));

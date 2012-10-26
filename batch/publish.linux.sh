@@ -14,12 +14,9 @@
 php update_build_number.php
 ant -f o2.xml
 
-#rm -rf /var/www/html/o2.js
-rm -rf /Applications/MAMP/htdocs/o2.js
+rm -rf /var/www/html/o2.js
 
-# TODO: put this in a commonly-editabl configuration file.
-#rsync -rv --exclude=.git ../ /var/www/o2.js/
-rsync -r --exclude=.git ../ /Applications/MAMP/htdocs/o2.js/
+rsync -r --exclude=.git ../ /var/www/o2.js/
 
 # Export as a NodeJS Module
 sh nodejs_export.sh

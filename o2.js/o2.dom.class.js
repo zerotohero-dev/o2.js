@@ -7,47 +7,58 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A utility package to add/remove/modify <code>class</code>es.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.class', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (class)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (class)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var concat = require('String', 'concat');
+        $ = require('$'),
 
-    /*
-     * Common Constants
-     */
-    var kBeginOrBlank = '(\\s|^)';
-    var kBlank        = ' ';
-    var kEndOrBlank   = '(\\s|$)';
+        concat = require('String', 'concat'),
+
+        /*
+         * Common Constants
+         */
+        kBeginOrBlank = '(\\s|^)',
+        kBlank        = ' ',
+        kEndOrBlank   = '(\\s|$)',
+
+        /*
+         * To be Overridden
+         */
+        createClassNameRegExp = null,
+        hasClass              = null,
+        addClass              = null,
+        removeClass           = null;
 
     /**
      * @function {static} o2.Dom.createClassNameRegExp
@@ -73,7 +84,7 @@
     /*
      *
      */
-    var createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
+    createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
 
     /**
      * @function {static} o2.Dom.hasClass
@@ -99,9 +110,7 @@
     exports.hasClass = def(me, 'hasClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return false;
-        }
+        if (!el) {return false;}
 
         return createClassNameRegExp(c).test(el.className);
     });
@@ -109,7 +118,7 @@
     /*
      *
      */
-    var hasClass = require(kModuleName, 'hasClass');
+    hasClass = require(kModuleName, 'hasClass');
 
     /**
      * @function {static} o2.Dom.addClass
@@ -129,13 +138,8 @@
     exports.addClass = def(me, 'addClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return;
-        }
-
-        if (hasClass(el, c)) {
-            return;
-        }
+        if (!el            ) {return;}
+        if (hasClass(el, c)) {return;}
 
         el.className += concat(kBlank, c);
     });
@@ -143,7 +147,7 @@
     /*
      *
      */
-    var addClass = require(kModuleName, 'addClass');
+    addClass = require(kModuleName, 'addClass');
 
     /**
      * @function {static} o2.Dom.removeClass
@@ -163,13 +167,8 @@
     exports.removeClass = def(me, 'removeClass', function(el, c) {
         el = $(el);
 
-        if (!el) {
-            return;
-        }
-
-        if (!hasClass(el, c)) {
-            return;
-        }
+        if (!el             ) {return;}
+        if (!hasClass(el, c)) {return;}
 
         el.className = el.className.replace(createClassNameRegExp(c), kBlank);
     });
@@ -177,7 +176,7 @@
     /*
      *
      */
-    var removeClass = require(kModuleName, 'removeClass');
+    removeClass = require(kModuleName, 'removeClass');
 
     /**
      * @function {static} o2.Dom.toggleClass
@@ -222,4 +221,4 @@
 
         addClass(el, c);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

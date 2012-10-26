@@ -6,31 +6,34 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.repeat', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (repeat)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
+
+        /*
+         * Method (repeat)
+         */
+        me = create(kModuleName);
 
     /**
      * @function {static} o2.Method.after
@@ -57,15 +60,13 @@
      * called <strong>count</strong> times.
      */
     exports.after = def(me, 'after', function(count, delegate) {
-        if (count <= 0) {
-            return;
-        }
+        if (count <= 0) {return;}
 
         return function() {
             count--;
 
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args   = arguments;
 
             if (count < 1) {
                 return delegate.apply(context, args);
@@ -96,19 +97,16 @@
      * @return a <code>Function</code> that will execute only once.
      */
     exports.once = def(me, 'once', function(delegate) {
-        var did = false;
-        var cache = null;
+        var did   = false,
+            cache = null;
 
         return function() {
-            var context = this;
-            var args = arguments;
+            var context = this,
+                args    = arguments;
 
-            if (did) {
-                return cache;
-            }
+            if (did) {return cache;}
 
-            did = true;
-
+            did   = true;
             cache = delegate.apply(context, args);
 
             return cache;
@@ -149,4 +147,4 @@
             delegate.apply(context, [i, payload]);
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

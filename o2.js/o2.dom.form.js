@@ -8,48 +8,51 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A HTML <code>Form</code> utility class.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.form', ['core', 'string.core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (form)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (form)
+         */
+        me = create(kModuleName),
 
-    var $ = require('$');
+        /*
+         * Aliases
+         */
 
-    var kString = 'String';
-    var compact = require(kString, 'compact');
-    var trim    = require(kString, 'trim');
+        $ = require('$'),
 
-    /*
-     * Common Constants
-     */
-    var kPlaceholder = 'placeholder';
-    var kEmpty       = '';
+        kString = 'String',
+        compact = require(kString, 'compact'),
+        trim    = require(kString, 'trim'),
+
+        /*
+         * Common Constants
+         */
+        kPlaceholder = 'placeholder',
+        kEmpty       = '';
 
     /**
      * @function {static} o2.Dom.compactField
@@ -73,9 +76,7 @@
     exports.compactField = def(me, 'compactField', function(field) {
         field = $(field);
 
-        if (!field) {
-            return null;
-        }
+        if (!field) {return null;}
 
         field.value = compact(field.value);
 
@@ -104,9 +105,7 @@
     exports.trimField = def(me, 'trimField', function(field) {
         field = $(field);
 
-        if (!field) {
-            return null;
-        }
+        if (!field) {return null;}
 
         field.value = trim(field.value);
 
@@ -132,14 +131,10 @@
                 function(form) {
         form = $(form);
 
-        if (!form) {
-            return;
-        }
+        if (!form) {return;}
 
         form.onsubmit = function() {
-            form.onsubmit = function() {
-                return false;
-            };
+            form.onsubmit = function() {return false;};
 
             return true;
         };
@@ -149,9 +144,7 @@
     exports.removePlaceholder = def(me, 'removePlaceholder', function(elm) {
         var target = $(elm);
 
-        if (!target) {
-            return;
-        }
+        if (!target) {return;}
 
         if(target.getAttribute(kPlaceholder) === target.value) {
             target.value = kEmpty;
@@ -162,18 +155,16 @@
     exports.resetField = def(me, 'resetField', function(elm) {
         var item = $(elm);
 
-        if (!item) {
-            return;
-        }
+        if (!item) {return;}
 
         item.value = kEmpty;
     });
 
     //TODO: add documentation.
     exports.disable = def(me, 'disable', function() {
-        var i    = 0;
-        var item = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            len  = 0;
 
         for(i = 0, len = arguments.length; i < len; i++) {
             item = $(arguments[i]);
@@ -183,4 +174,4 @@
             }
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

@@ -6,36 +6,39 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Event-handling-related helper methods.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.event', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (event)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var slice = attr(Array.prototype, 'slice');
+        /*
+         * Method (event)
+         */
+        me = create(kModuleName),
+
+        /*
+         * Aliases
+         */
+        slice = attr(Array.prototype, 'slice');
 
     /**
     * @function {static} o2.Method.bindAsEventListener
@@ -83,9 +86,9 @@
     * @see o2.Event.addEventListener
     */
     exports.bindAsEventListener = def(me, 'bindAsEventListener', function() {
-        var args    = slice.call(arguments);
-        var context = args.shift();
-        var fn      = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function(e) {
             args.unshift(e);
@@ -93,4 +96,4 @@
             return fn.apply(context, args);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

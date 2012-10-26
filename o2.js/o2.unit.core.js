@@ -9,180 +9,189 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is a unit test runner, that is used to test
  * <strong>js</strong> units.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var obj       = attr(_, 'getObject');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('unit.core',
+        ['core', 'debugger.core', 'dom.scroll', 'string.core']);
 
-    var exports = {};
+    var fp      = framework.protecteds,
+        attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        obj     = attr(fp, 'getObject'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Unit';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Unit
-     *
-     * <p>A "unit test" <strong>runner</strong>.</p>
-     * <p>Runs <code>UnitTest</code>s.</p>
-     */
-    var me     = create(kModuleName);
-    var myself = obj(me);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Unit',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Unit
+         *
+         * <p>A "unit test" <strong>runner</strong>.</p>
+         * <p>Runs <code>UnitTest</code>s.</p>
+         */
+        me     = create(kModuleName),
+        myself = obj(me),
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var kDebugger    = 'Debugger';
-    var assert       = require(kDebugger, 'assert');
-    var initDebugger = require(kDebugger, 'init');
-    var log          = require(kDebugger, 'log');
+        nill = require('nill'),
 
-    var kStringHelper = 'String';
-    var concat = require(kStringHelper, 'concat');
-    var format = require(kStringHelper, 'format');
+        kDebugger    = 'Debugger',
 
-    var scrollToBottom = require('Dom', 'scrollWindowToBottom');
+        //TODO: add to documentation that this require is different than
+        //the require.js's require -- it's just a name similarity.
+        assert       = require(kDebugger, 'assert'),
+        initDebugger = require(kDebugger, 'init'),
+        log          = require(kDebugger, 'log'),
 
-    var setTimeout = attr(window, 'setTimeout');
+        kStringHelper = 'String',
+        concat = require(kStringHelper, 'concat'),
+        format = require(kStringHelper, 'format'),
 
-    /*
-     * Common Constants
-     */
+        scrollToBottom = require('Dom', 'scrollWindowToBottom'),
 
-    /*
-     * The DOM element to print the output.
-     */
-    var kOutputContainer = 'Output';
+        /*
+         * Common Constants
+         */
 
-    /*
-     * If true, the output will be sent to the console (if available), as well.
-     */
-    var kShouldUseConsole = true;
+        /*
+         * The DOM element to print the output.
+         */
+        kOutputContainer = 'Output',
 
-    /*
-     * Chunk check interval (in milliseconds).
-     * Chunking allows us to run large number of unit tests (of a test suite),
-     * without causing a "script timed out" error.
-     */
-    var kCheckInterval = 100;
+        /*
+         * If true, the output will be sent to the console (if available), as well.
+         */
+        kShouldUseConsole = true,
 
-    /*
-     * Commonly Used Templates
-     */
+        /*
+         * Chunk check interval (in milliseconds).
+         * Chunking allows us to run large number of unit tests (of a test suite),
+         * without causing a "script timed out" error.
+         */
+        kCheckInterval = 100,
 
-    /*
-     * Unit test suite completed.
-     */
-    var kUpdateTestCompletion = concat(
-        '<p><b>Completed</b>: "{0}":</p>',
-        '<p style="text-align:right">(<b>success: {1}</b> , ',
-        '<b>failure: {2}</b>)</p>'
-    );
+        /*
+         * Commonly Used Templates
+         */
 
-    /*
-     * Unit test has been completed.
-     */
-    var kFinishedUnitTest = concat(
-        'Completed unit test <strong>#{0}</strong>:',
-        ' "<em>{1}</em>"'
-    );
+        /*
+         * Unit test suite completed.
+         */
+        kUpdateTestCompletion = concat(
+            '<p><b>Completed</b>: "{0}":</p>',
+            '<p style="text-align:right">(<b>success: {1}</b> , ',
+            '<b>failure: {2}</b>)</p>'
+        ),
 
-    /*
-     * All of the unit test suites have been completed.
-     */
-    var kReportGlobalCompletion = concat(
-        '<p>All unit tests have been completed:</p>',
-        '<p style="text-align:right">(<b>total success: {0}</b>, ',
-        '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
-    );
+        /*
+         * Unit test has been completed.
+         */
+        kFinishedUnitTest = concat(
+            'Completed unit test <strong>#{0}</strong>:',
+            ' "<em>{1}</em>"'
+        ),
 
-    /*
-     * Debugger problem.
-     */
-    var kFailedToInitializeDebugger = concat(
-        'Failed to initialize Debugger. ',
-        'No "UnitTest"s will be run!'
-    );
+        /*
+         * All of the unit test suites have been completed.
+         */
+        kReportGlobalCompletion = concat(
+            '<p>All unit tests have been completed:</p>',
+            '<p style="text-align:right">(<b>total success: {0}</b>, ',
+            '<b>total failure: {1}</b>, <b>total # of test: {2}</b>)</p>'
+        ),
 
-    /*
-     *
-     */
-    var kFatalErrorInUnitTest = 'FATAL ERROR in UnitTest setup: "{0}"';
+        /*
+         * Debugger problem.
+         */
+        kFailedToInitializeDebugger = concat(
+            'Failed to initialize Debugger. ',
+            'No "UnitTest"s will be run!'
+        ),
 
-    /*
-     *
-     */
-    var kArgumentCountMismatch = '"{0}" expects {1} arguments';
+        /*
+         *
+         */
+        kFatalErrorInUnitTest = 'FATAL ERROR in UnitTest setup: "{0}"',
 
-    /*
-     *
-     */
-    var kArgumentException = 'Argument count mismatch!';
+        /*
+         *
+         */
+        kArgumentCountMismatch = '"{0}" expects {1} arguments',
 
-    /*
-     *
-     */
-    var kExecutionException = 'Execution exception!';
+        /*
+         *
+         */
+        kArgumentException = 'Argument count mismatch!',
 
-    /*
-     * Static State
-     */
+        /*
+         *
+         */
+        kExecutionException = 'Execution exception!',
 
-    /*
-     * The test queue. This will be empty when there are no more tests to run.
-     */
-    var tests = [];
+        /*
+         * Static State
+         */
 
-    /*
-     * The total number of successful assertions.
-     */
-    var globalSuccessCount = 0;
+        /*
+         * The test queue. This will be empty when there are no more tests to run.
+         */
+        tests = [],
 
-    /*
-     * The total number of failed assertions.
-     */
-    var globalFailureCount = 0;
+        /*
+         * The total number of successful assertions.
+         */
+        globalSuccessCount = 0,
 
-    /*
-     * Total number of completed unit tests.
-     */
-    var globalCompletedUnitTestCount = 0;
+        /*
+         * The total number of failed assertions.
+         */
+        globalFailureCount = 0,
 
-    /*
-     * Is the current <strong>Test Suite</strong> still running.
-     */
-    var isRunning = false;
+        /*
+         * Total number of completed unit tests.
+         */
+        globalCompletedUnitTestCount = 0,
+
+        /*
+         * Is the current <strong>Test Suite</strong> still running.
+         */
+        isRunning = false,
+
+        /*
+         * UnitTest.prototype
+         */
+        p = null;
 
     /*
      * Current unit test's test suite finished running all of its assertions.
      */
     function reportTestCompletion(unitTest) {
-        if (unitTest.remainingCount < 0) {
-            return;
-        }
+        if (unitTest.remainingCount < 0) {return;}
 
-        var description  = unitTest.description;
-        var failureCount = unitTest.failureCount;
-        var isAllSuccess = unitTest.failureCount <= 0;
-        var successCount = unitTest.successCount;
-        var message      = format(kUpdateTestCompletion, description,
-            successCount, failureCount);
+        var description  = unitTest.description,
+            failureCount = unitTest.failureCount,
+            isAllSuccess = unitTest.failureCount <= 0,
+            successCount = unitTest.successCount,
+            message      = format(kUpdateTestCompletion, description,
+                successCount, failureCount);
 
         assert(isAllSuccess, message);
 
@@ -224,9 +233,7 @@
      * of the <code>UnitTest</code> <strong>unitTest</strong>
      */
     function didAssertion(unitTest, isSuccess, message) {
-        if (unitTest.remainingCount <= 0) {
-            return;
-        }
+        if (unitTest.remainingCount <= 0) {return;}
 
         assert(isSuccess, message);
         updateTestStatus(unitTest, isSuccess);
@@ -312,7 +319,7 @@
         this.testCase       = testCase;
     }
 
-    var p = UnitTest.prototype;
+    p = UnitTest.prototype;
 
     /**
      * @function o2.UnitTest.terminate
@@ -351,10 +358,7 @@
      */
     function expectProperArgumentLength(unitTest, localParameterCount,
                 argumentsLength, methodName) {
-        if (argumentsLength === localParameterCount) {
-
-            return;
-        }
+        if (argumentsLength === localParameterCount) {return;}
 
         didAssertion(unitTest, false, kArgumentException);
 
@@ -386,12 +390,11 @@
      * <strong>test</strong> is the actual test suite <code>Function</code>.
      */
     exports.add = def(me, 'add', function(description, testMeta) {
-        var kRequiredLocalParameterCount = 2;
-        var kMethodName = 'add';
-        var kArgumentsLength = arguments.length;
-
-        var totalAssertionCount = testMeta.count;
-        var testCase = testMeta.test;
+        var kRequiredLocalParameterCount = 2,
+            kMethodName                  = 'add',
+            kArgumentsLength             = arguments.length,
+            totalAssertionCount          = testMeta.count,
+            testCase                     = testMeta.test;
 
         expectProperArgumentLength({}, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -416,10 +419,11 @@
      * @param {String} message - the associated message.
      */
     exports.assert = def(me, 'assert', function(unitTest, expression, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assert';
-        var kRequiredLocalParameterCount = 3;
-        var result                       = !!expression;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assert',
+            kRequiredLocalParameterCount = 3,
+
+            result = !!expression;
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -444,12 +448,12 @@
      */
     exports.assertEqual = def(me, 'assertEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertEqual',
+            kRequiredLocalParameterCount = 4,
 
-        // JSLint valitation error on purpose.
-        var result = (currentValue == expectedValue);
+            // JSLint valitation error on purpose.
+            result = (currentValue == expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -474,12 +478,12 @@
      */
     exports.assertNotEqual = def(me, 'assertNotEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertNotEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertNotEqual',
+            kRequiredLocalParameterCount = 4,
 
-        // JSLint validation error on purpose:
-        var result = (currentValue != expectedValue);
+            // JSLint validation error on purpose:
+            result = (currentValue != expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -506,11 +510,11 @@
      */
     exports.assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertStrictEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertStrictEqual',
+            kRequiredLocalParameterCount = 4,
 
-        var result = (currentValue === expectedValue);
+            result = (currentValue === expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -537,11 +541,11 @@
      */
     exports.assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(
                 unitTest, currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length;
-        var kMethodName                  = 'assertStrictNotEqual';
-        var kRequiredLocalParameterCount = 4;
+        var kArgumentsLength             = arguments.length,
+            kMethodName                  = 'assertStrictNotEqual',
+            kRequiredLocalParameterCount = 4,
 
-        var result = (currentValue !== expectedValue);
+            result = (currentValue !== expectedValue);
 
         expectProperArgumentLength(unitTest, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
@@ -640,17 +644,14 @@
      * will be run with <code>o2.Unit</code> as a parameter passed to it.
      */
     exports.run = def(me, 'run', function(globalCompletionCallback) {
-        if (isRunning) {
-            return;
-        }
+        if (isRunning) {return;}
 
         isRunning = true;
 
-        var oncomplete = globalCompletionCallback || nill;
+        var oncomplete     = globalCompletionCallback || nill,
+            activeUnitTest = null;
 
         initializeDebugger();
-
-        var activeUnitTest = null;
 
         setTimeout(function waitForUnitTest() {
             if (isLocked(activeUnitTest)) {
@@ -691,4 +692,4 @@
 
         }, kCheckInterval);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

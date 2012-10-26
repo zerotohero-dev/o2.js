@@ -7,57 +7,60 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajax.extend', ['core', 'ajax.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Ajax';
+        /*
+         * Exports
+         */
+        exports = {},
 
-    /*
-     * Ajax (extend)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Ajax',
 
-    /*
-     * Aliases
-     */
-    var get  = require(kModuleName, 'get');
-    var post = require(kModuleName, 'post');
+        /*
+         * Ajax (extend)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Caches
-     */
-    var getCache  = {};
-    var postCache = {};
+        /*
+         * Aliases
+         */
+        get  = require(kModuleName, 'get'),
+        post = require(kModuleName, 'post'),
 
-    /*
-     * Common Constants
-     */
-    var kDelimeter = ',';
+        /*
+         * Caches
+         */
+        getCache  = {},
+        postCache = {},
+
+        /*
+         * Common Constants
+         */
+        kDelimeter = ',';
 
     /*
      *
      */
     function prepareToken(url, parameters) {
-        var ar = [];
-        var key = null;
+        var ar = [],
+            key = null;
 
         ar.push(url);
 
@@ -112,19 +115,16 @@
     */
     exports.getSingle = def(me, 'getSingle', function(url, parameters,
                 callbacks) {
-        var token = prepareToken(url, parameters);
+        var token   = prepareToken(url, parameters),
+            request = getCache[token];
 
-        var request = getCache[token];
-
-        if (request && !request.isComplete) {
-            return getCache[token];
-        }
+        if (request && !request.isComplete) {return request;}
 
         delete getCache[token];
 
-        getCache[token] = get(url, parameters, callbacks);
+        request = getCache[token] = get(url, parameters, callbacks);
 
-        return getCache[token];
+        return request;
     });
 
    /**
@@ -168,16 +168,15 @@
     */
     exports.postSingle = def(me, 'postSingle', function(url, parameters,
                 callbacks) {
-        var token = prepareToken(url, parameters);
+        var token = prepareToken(url, parameters),
+            request = postCache[token];
 
-        var request = postCache[token];
-
-        if (request && !request.isComplete) {
-            return;
-        }
+        if (request && !request.isComplete) {return request;}
 
         delete postCache[token];
 
-        postCache[token] = post(url, parameters, callbacks);
+        request = postCache[token] = post(url, parameters, callbacks);
+
+        return request;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

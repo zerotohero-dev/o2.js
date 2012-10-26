@@ -7,36 +7,44 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>An AJAX controller that implements the <strong>Observer
  * Pattern</strong>.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var construct = attr(_, 'construct');
-    var proto     = attr(_, 'proto');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('ajaxcontroller.core', ['core', 'ajaxstate.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        construct = attr(fp, 'construct'),
+        proto     = attr(fp, 'proto'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'AjaxController';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'AjaxController',
 
-    var nill = require('nill');
+        /*
+         * Aliases
+         */
 
-    var state = require('AjaxState');
+        nill = require('nill'),
+
+        state = require('AjaxState'),
+
+        /*
+         * Class reference (overridden below).
+         */
+        me = null;
 
     /**
      * @class o2.AjaxController
@@ -83,8 +91,8 @@
      * both attributes are optional.
      */
     exports.AjaxController = construct(kModuleName, function(xhr, args) {
-        this.xhr = xhr;
-        this.timeout = (args && args.timeout) || null;
+        this.xhr       = xhr;
+        this.timeout   = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
         this.isDeleted = false;
 
@@ -95,7 +103,7 @@
     /*
      *
      */
-    var me = exports.AjaxController;
+    me = exports.AjaxController;
 
     /**
      * @function {virtual} o2.AjaxController.update
@@ -120,9 +128,7 @@
      * to this <code>Observer</code>.
      */
     exports.update = proto(me, 'update', function(data) {
-        if (!data.isTimedOut) {
-            return;
-        }
+        if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
         this.unregister();
@@ -155,10 +161,8 @@
      *
      */
     exports.unregister = proto(me, 'unregister', function() {
-        if (this.isDeleted) {
-            return;
-        }
+        if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds));

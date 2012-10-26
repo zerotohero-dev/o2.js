@@ -7,67 +7,72 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Extension methods for the {@link Event} object.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.extend', ['core', 'event.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Event (extend)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Event (extend)
+         */
+        me = create(kModuleName),
 
-    var kEvent         = kModuleName;
-    var getKeyCode     = require(kEvent, 'getKeyCode');
-    var getEventObject = require(kEvent, 'getEventObject');
+        /*
+         * Aliases
+         */
 
-    var keyCode    = require(kModuleName, 'keyCode');
-    var kBackspace = attr(keyCode, 'BACKSPACE');
-    var kBottom    = attr(keyCode, 'BOTTOM');
-    var kEnter     = attr(keyCode, 'ENTER');
-    var kEscape    = attr(keyCode, 'ESCAPE');
-    var kLeft      = attr(keyCode, 'LEFT');
-    var kTab       = attr(keyCode, 'TAB');
+        kEvent         = kModuleName,
+        getKeyCode     = require(kEvent, 'getKeyCode'),
+        getEventObject = require(kEvent, 'getEventObject'),
 
-    var kNumber = 'number';
+        keyCode    = require(kModuleName, 'keyCode'),
+        kBackspace = attr(keyCode, 'BACKSPACE'),
+        kBottom    = attr(keyCode, 'BOTTOM'),
+        kEnter     = attr(keyCode, 'ENTER'),
+        kEscape    = attr(keyCode, 'ESCAPE'),
+        kLeft      = attr(keyCode, 'LEFT'),
+        kTab       = attr(keyCode, 'TAB'),
 
-    // According to W3C
-    //     Left Button: 0
-    //     Middle Button: 1
-    //     Right Button: 2 (!)
-    //
-    // According to M$
-    //     Left Button: 1
-    //     Middle Button: 4
-    //     Right Button: 2 (!)
-    //     Left and Right: 3
-    //     Left and Middle: 5
-    //     Right and Middle: 6
-    //     All three: 7
-    //
-    // ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
-    var kRightButton = 2;
+        kNumber = 'number',
+
+        /*
+         * According to W3C
+         *     Left Button: 0
+         *     Middle Button: 1
+         *     Right Button: 2 (!)
+         *
+         * According to M$
+         *     Left Button: 1
+         *     Middle Button: 4
+         *     Right Button: 2 (!)
+         *     Left and Right: 3
+         *     Left and Middle: 5
+         *     Right and Middle: 6
+         *     All three: 7
+         *
+         * ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
+         */
+        kRightButton = 2;
 
     /**
      * @function {static} o2.Event.isArrowKey
@@ -146,9 +151,7 @@
                     function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             // M$IE only fires keypress events for printable keys:
             return true;
@@ -156,19 +159,16 @@
     } else {
         exports.isCharacterKeypressEvent = def(me, 'isCharacterKeypressEvent',
                     function(evt) {
-            var e = getEventObject(evt);
+            var e     = getEventObject(evt),
+                which = null;
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             // In other browsers evt.which is > 0 if and only if
             // the key pressed is a printable key.
-            var which = e.which;
+            which = e.which;
 
-            if (typeof which !== kNumber || which <= 0) {
-                return false;
-            }
+            if (typeof which !== kNumber || which <= 0) {return false;}
 
             //TODO: test for ctrl+backspace shift+backspace alt+backspace etc.
 
@@ -247,9 +247,7 @@
         exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             return e.which === kRightButton;
         });
@@ -257,9 +255,7 @@
         exports.isRightClick = def(me, 'isRightClick', function(evt) {
             var e = getEventObject(evt);
 
-            if (!e) {
-                return false;
-            }
+            if (!e) {return false;}
 
             return e.button === kRightButton;
         });
@@ -287,4 +283,4 @@
     exports.isTabKey = def(me, 'isTabKey', function(evt) {
         return getKeyCode(evt) === kTab;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

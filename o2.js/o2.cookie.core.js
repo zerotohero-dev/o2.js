@@ -7,56 +7,64 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>Cookie</strong> helper.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('cookie.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Cookie';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Cookie
-     *
-     * <p>A <strong>cookie</strong> helper class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Cookie',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Cookie
+         *
+         * <p>A <strong>cookie</strong> helper class.</p>
+         */
+        me = create(kModuleName),
 
-    var concat = require('String', 'concat');
+        /*
+         * Aliases
+         */
 
-    var escape = attr(window, 'escape');
+        concat = require('String', 'concat'),
 
-    /*
-     * Common Constants
-     */
-    var kBlank         = ' ';
-    var kDelimeter     = ';';
-    var kDomain        = '; domain=';
-    var kEmpty         = '';
-    var kEquals        = '=';
-    var kExpires       = '; expires=';
-    var kNextCharIndex = 1;
-    var kPath          = '; path=';
-    var kRootPath      = '/';
-    var kSecure        = '; secure';
+        escape = attr(window, 'escape'),
+
+        /*
+         * Common Constants
+         */
+        kBlank         = ' ',
+        kDelimeter     = ';',
+        kDomain        = '; domain=',
+        kEmpty         = '',
+        kEquals        = '=',
+        kExpires       = '; expires=',
+        kNextCharIndex = 1,
+        kPath          = '; path=',
+        kRootPath      = '/',
+        kSecure        = '; secure',
+
+        /*
+         * To be Overridden
+         */
+        save = null;
 
     /**
      * @function {static} o2.Cookie.read
@@ -77,12 +85,13 @@
      * if the <strong>cookie</strong> is not found.
      */
     exports.read = def(me, 'read', function(name) {
-        var ca = document.cookie.split(kDelimeter);
-        var eq = concat(decodeURIComponent(name), kEmpty);
-        var i  = 0;
+        var ca = document.cookie.split(kDelimeter),
+            eq = concat(decodeURIComponent(name), kEmpty),
+            i  = 0,
+            c  = 0;
 
         for (i = 0; i < ca.length; i++) {
-            var c = ca[i];
+            c = ca[i];
 
             while (c.charAt(0) === kBlank) {
                 c = c.substring(kNextCharIndex, c.length);
@@ -118,8 +127,10 @@
      */
     exports.save = def(me, 'save', function(name, value, days, path, domain,
                 isSecure) {
-        var d  = new Date();
-        var ex = kEmpty;
+        var d            = new Date(),
+            ex           = kEmpty,
+            cookiePath   = kEmpty,
+            cookieString = kEmpty;
 
         if (days) {
             d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -128,10 +139,10 @@
             ex = kEmpty;
         }
 
-        var cookiePath = path || kRootPath;
+        cookiePath = path || kRootPath;
 
-        // Do not use encodeURICompoent for paths as it replaces / with %2F
-        var cookieString = concat(
+        // Do not use encodeURICompoent for paths as it replaces "/" with "%2F"
+        cookieString = concat(
             encodeURIComponent(name), kEquals,
             encodeURIComponent(value), ex, kPath,
             escape(cookiePath)
@@ -151,7 +162,7 @@
     /*
      *
      */
-    var save = require(kModuleName, 'save');
+    save = require(kModuleName, 'save');
 
     /**
      * @function {static} o2.Cookie.remove
@@ -178,4 +189,4 @@
     // removeAll makes things too complicated if path, and domain
     // come into play... Will not implement it.
     // removeAll : function(){ }
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

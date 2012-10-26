@@ -1,69 +1,86 @@
 /**
  * @module   collection.core
  * @requires core
- * @requires methodhelper.core
+ * @requires method.core
  * @requires validation.core
  *
  * <!--
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility <strong>class</strong> to modify collections.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('collection.core', ['core', 'method.core', 'validation.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Collection';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Collection
-     *
-     * <p>A <strong>class</strong> to modify collections.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Collection',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Collection
+         *
+         * <p>A <strong>class</strong> to modify collections.</p>
+         */
+        me = create(kModuleName),
 
-    var kMethodHelper = 'Method';
-    var identity      = require(kMethodHelper, 'identity');
-    var bind          = require(kMethodHelper, 'bind');
+        /*
+         * Aliases
+         */
 
-    var kValidation = 'Validation';
-    var isArguments = require(kValidation, 'isArguments');
-    var isArray     = require(kValidation, 'isArray');
-    var isFunction  = require(kValidation, 'isFunction');
-    var isObject    = require(kValidation, 'isObject');
+        kMethodHelper = 'Method',
+        identity      = require(kMethodHelper, 'identity'),
+        bind          = require(kMethodHelper, 'bind'),
 
-    var slice = attr(Array.prototype, 'slice');
+        kValidation = 'Validation',
+        isArguments = require(kValidation, 'isArguments'),
+        isArray     = require(kValidation, 'isArray'),
+        isFunction  = require(kValidation, 'isFunction'),
+        isObject    = require(kValidation, 'isObject'),
 
-    var floor  = attr(Math, 'floor');
-    var max    = attr(Math, 'max');
-    var min    = attr(Math, 'min');
-    var random = attr(Math, 'random');
+        slice = attr(Array.prototype, 'slice'),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty  = '';
-    var kLength = 'length';
+        floor  = attr(Math, 'floor'),
+        max    = attr(Math, 'max'),
+        min    = attr(Math, 'min'),
+        random = attr(Math, 'random'),
+
+        /*
+         * Common Constants
+         */
+        kEmpty  = '',
+        kLength = 'length',
+
+        /*
+         * To be Overridden
+         */
+        indexOf  = null,
+        contains = null,
+        isEmpty  = null,
+        getMax   = null,
+        toArray  = null,
+        map      = null,
+        unique   = null,
+        pluck    = null,
+        reduce   = null,
+        flatten  = null;
 
     /**
      * @function {static} o2.Collection.clear
@@ -88,9 +105,7 @@
     exports.clear = def(me, 'clear', function(ar) {
         var key = null;
 
-        if (!ar) {
-            return null;
-        }
+        if (!ar) {return ar;}
 
         if (isArray(ar)) {
             ar.length = 0;
@@ -98,9 +113,7 @@
             return ar;
         }
 
-        if (!isObject(ar)) {
-            return ar;
-        }
+        if (!isObject(ar)) {return ar;}
 
         for (key in ar) {
             if (ar.hasOwnProperty(key)) {
@@ -130,19 +143,13 @@
      * @return the copied <code>Object</code>.
      */
     exports.copy = def(me,'copy', function(ar) {
-        if (!ar) {
-            return [];
-        }
+        if (!ar          ) {return [];}
+        if (!isObject(ar)) {return [];}
 
-        //TODO: fixme
-        if (!isObject(ar)) {
-            return ar;
-        }
+        var theCopy = isArray(ar) ? [] : {},
+            key = null;
 
-        var theCopy = isArray(ar) ? [] : {};
-        var key = null;
-
-        if (isArray(ar)) {
+        if (ar.slice) {
             return ar.slice();
         }
 
@@ -186,20 +193,15 @@
      * @return a reference to the <code>Object</code> itself.
      */
     exports.compact = def(me,'compact', function(ar) {
-        var value = null;
-        var i = 0;
-        var len = 0;
-        var key = null;
+        var value = null,
+            i     = 0,
+            len   = 0,
+            key   = null;
 
-        if (!ar) {
-            return null;
-        }
+        if (!ar          ) {return ar;}
+        if (!isObject(ar)) {return ar;}
 
-        if (!isObject(ar)) {
-            return ar;
-        }
-
-        if (isArray(ar)) {
+        if (ar.splice) {
             for (i = 0, len = ar.length; i < len; i++) {
                 value = ar[i];
 
@@ -248,18 +250,13 @@
      */
     //TODO: check whether "def" actually returns the function.
     exports.indexOf = def(me, 'indexOf', function(ar, elm) {
-        var counter = 0;
-        var i       = 0;
-        var key     = null;
-        var len     = 0;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0;
 
-        if (!ar) {
-            return -1;
-        }
-
-        if (!isObject(ar)) {
-            return -1;
-        }
+        if (!ar          ) {return -1;}
+        if (!isObject(ar)) {return -1;}
 
         // Array.prototype.indexOf
         if (ar.indexOf) {
@@ -273,10 +270,6 @@
                 }
             }
 
-            return -1;
-        }
-
-        if (!isObject(ar)) {
             return -1;
         }
 
@@ -296,7 +289,7 @@
     /*
      *
      */
-    var indexOf = require(kModuleName, 'indexOf');
+    indexOf = require(kModuleName, 'indexOf');
 
     /**
      * @function {static} o2.Collection.contains
@@ -319,13 +312,8 @@
      * <code>false</code> otherwise.
      */
     exports.contains = def(me,'contains', function(ar, elm) {
-        if (!ar) {
-            return -1;
-        }
-
-        if (!isObject(ar)) {
-            return -1;
-        }
+        if (!ar          ) {return -1;}
+        if (!isObject(ar)) {return -1;}
 
         return indexOf(ar, elm) > -1;
     });
@@ -333,7 +321,7 @@
     /*
      *
      */
-    var contains = require(kModuleName, 'contains');
+    contains = require(kModuleName, 'contains');
 
     /**
      * @function {static} o2.Collection.includes
@@ -385,20 +373,15 @@
      * is found.
      */
     exports.find = def(me,'find', function(obj, delegate, context) {
-        var i      = 0;
-        var index  = 0;
-        var key    = null;
-        var len    = 0;
-        var result = null;
-        var value  = null;
+        var i      = 0,
+            index  = 0,
+            key    = null,
+            len    = 0,
+            result = null,
+            value  = null;
 
-        if (!obj) {
-            return null;
-        }
-
-        if (!isObject(obj)) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -417,6 +400,7 @@
         for(key in obj) {
             if(obj.hasOwnProperty(key)) {
                 value = obj[key];
+
                 if(delegate.apply(context, [value, index, obj])) {
                     result = value;
 
@@ -469,17 +453,12 @@
      * <code>function(item, index, collection)</code>.
      */
     exports.forEach = def(me, 'forEach', function(obj, delegate) {
-        var i   = 0;
-        var key = null;
-        var len = 0;
+        var i   = 0,
+            key = null,
+            len = 0;
 
-        if (!obj) {
-            return;
-        }
-
-        if (!isObject(obj)) {
-            return;
-        }
+        if (!obj          ) {return;}
+        if (!isObject(obj)) {return;}
 
         // Array.prototype.forEach
         if (obj.forEach) {
@@ -538,20 +517,15 @@
      * @see o2.Collection.union
      */
     exports.diff = def(me,'diff', function(collection) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var rest   = null;
-        var result = [];
-        var value  = null;
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            rest   = null,
+            result = [],
+            value  = null;
 
-        if (!collection) {
-            return result;
-        }
-
-        if (!isObject(collection)) {
-            return result;
-        }
+        if (!collection          ) {return result;}
+        if (!isObject(collection)) {return result;}
 
         rest = slice.call(arguments, 1);
 
@@ -619,18 +593,14 @@
      * otherwise.
      */
     exports.every = def(me,'every', function(obj, delegate, context) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = true;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0,
+            result  = true;
 
-        if (!obj) {
-            return true;
-        }
-
-        if (!isObject(obj)) {
-            return true;
-        }
+        if (!obj          ) {return true;}
+        if (!isObject(obj)) {return true;}
 
         // Array.prototype.every
         if (obj.every) {
@@ -641,23 +611,19 @@
             for(i = 0, len = obj.length; i < len; i++) {
                 result = delegate.apply(context, [obj[i], i, obj]);
 
-                if (!result) {
-                    return false;
-                }
+                if (!result) {return false;}
             }
 
             return true;
         }
 
-        var counter = 0;
+        counter = 0;
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 result = delegate.apply(context, [obj[key], counter, obj]);
 
-                if (!result) {
-                    return false;
-                }
+                if (!result) {return false;}
 
                 counter++;
             }
@@ -700,45 +666,43 @@
      * @see o2.Collection.grep
      */
     exports.exclude = def(me,'exclude', function(obj, delegate, context) {
-         var i       = 0;
-         var key     = null;
-         var len     = 0;
-         var results = [];
-         var value   = null;
+        var counter = 0,
+            i       = 0,
+            key     = null,
+            len     = 0,
+            results = [],
+            value   = null;
 
-         if (!obj) {
-             return results;
-         }
+        if (!obj          ) {return results;}
+        if (!isObject(obj)) {return results;}
 
-         if (!isObject(obj)) {
-            return results;
-         }
-
-         if (isArray(obj)) {
+        if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
                 value = obj[i];
+
                 if (!delegate.apply(context, value, i, obj)) {
                     results.push(value);
                 }
             }
 
-             return results;
-         }
+            return results;
+        }
 
-         var counter = 0;
+        counter = 0;
 
-         for (key in obj) {
+        for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
+
                 if (!delegate.apply(context, value, counter, obj)) {
                     results.push(value);
                 }
 
                 counter++;
             }
-         }
+        }
 
-         return results;
+        return results;
     });
 
     /**
@@ -772,29 +736,19 @@
      * @return a <strong>reference</strong> to the modified <code>toObj</code>.
      */
     exports.extend = def(me,'extend', function(toObj, fromObj) {
-         var i     = 0;
-         var key   = null;
-         var len   = 0;
-         var value = null;
+        var i     = 0,
+            key   = null,
+            len   = 0,
+            value = null;
 
-        if (!toObj) {
-            return {};
-        }
-
-        if (!isObject(toObj)) {
-            return toObj;
-        }
-
-        if (!isObject(fromObj)) {
-            return toObj;
-        }
+        if (!toObj            ) {return {};}
+        if (!isObject(toObj)  ) {return toObj;}
+        if (!isObject(fromObj)) {return toObj;}
 
         if (isArray(toObj)) {
-            if(!isArray(fromObj)) {
-                return toObj;
-            }
+            if(!isArray(fromObj)) {return toObj;}
 
-            i = 0;
+            i   = 0;
             len = fromObj.length;
 
             for (i = 0; i < len; i++) {
@@ -846,15 +800,10 @@
     exports.getFirst = def(me,'getFirst', function(obj) {
         var key = null;
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (isArray(obj)) {
+        if (isArray(obj)  ) {
             return obj[0] || null;
         }
 
@@ -889,18 +838,13 @@
      * in the collection otherwise.
      */
     exports.getFirstN = def(me,'getFirstN', function(obj, n) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return [];
-        }
-
-        if (!isObject(obj)) {
-            return [];
-        }
+        if (!obj          ) {return [];}
+        if (!isObject(obj)) {return [];}
 
         if (isArray(obj)) {
             for (i = 0; i < len && i < n; i++) {
@@ -941,19 +885,14 @@
      * object.
      */
     exports.getFunctions = def(me,'getFunctions', function(obj) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
-        var value  = null;
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [],
+            value  = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -1009,18 +948,13 @@
      * @return an <code>Array</code> of the object's keys.
      */
     exports.getKeys = def(me,'getKeys', function(obj) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -1059,17 +993,12 @@
      * otherwise.
      */
     exports.getLast = def(me,'getLast', function(obj) {
-        var key  = null;
-        var last = null;
-        var len  = 0;
+        var key  = null,
+            last = null,
+            len  = 0;
 
-        if (!obj) {
-            return last;
-        }
-
-        if (!isObject(obj)) {
-            return last;
-        }
+        if (!obj          ) {return last;}
+        if (!isObject(obj)) {return last;}
 
         if (isArray(obj)) {
             len = obj.length;
@@ -1107,22 +1036,14 @@
      * <strong>n</strong> items; all the items of the collection otherwise.
      */
     exports.getLastN = def(me,'getLastN', function(obj, n) {
-        var i      = 0;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
-
-        if (!n) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
+        if (!n            ) {return result;}
 
         if (isArray(obj)) {
             return slice.apply(obj, [max(obj.length - n, 0)]);
@@ -1167,13 +1088,8 @@
      * otherwise.
      */
     exports.isEmpty = def(me,'isEmpty', function (obj) {
-         if (!obj) {
-             return true;
-         }
-
-         if (!isObject(obj)) {
-            return true;
-         }
+         if (!obj          ) {return true;}
+         if (!isObject(obj)) {return true;}
 
          var key = null;
 
@@ -1189,7 +1105,7 @@
     /*
      *
      */
-    var isEmpty = require(kModuleName, 'isEmpty');
+    isEmpty = require(kModuleName, 'isEmpty');
 
     /**
      * @function {static} o2.Collection.getMax
@@ -1223,27 +1139,20 @@
      * @return the maximum value in the collection.
      */
     exports.getMax = def(me,'getMax', function(obj, delegate, context) {
-        var calculated = null;
-        var index      = 0;
-        var key        = null;
-        var result     = -Infinity;
-        var store      = null;
+        var calculated = null,
+            index      = 0,
+            key        = null,
+            result     = -Infinity,
+            store      = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!delegate) {
+            if (isEmpty(obj)) {return result;}
+
             if (isArray(obj)) {
                 return max.apply(Math, obj);
-            }
-
-            if (isEmpty(obj)) {
-                return result;
             }
 
             for (key in obj) {
@@ -1280,7 +1189,7 @@
     /*
      *
      */
-    var getMax = require(kModuleName, 'getMax');
+    getMax = require(kModuleName, 'getMax');
 
     /**
      * @function {static} o2.Collection.getMin
@@ -1314,28 +1223,21 @@
      * @return the minimum value in the collection.
      */
     exports.getMin = def(me,'getMin', function(obj, delegate, context) {
-        var calculated = null;
-        var index      = 0;
-        var key        = null;
-        var result     = Infinity;
-        var store      = null;
+        var calculated = null,
+            index      = 0,
+            key        = null,
+            result     = Infinity,
+            store      = null;
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (!delegate) {
             if (isArray(obj)) {
                 return min.apply(Math, obj);
             }
 
-            if (isEmpty(obj)) {
-                return result;
-            }
+            if (isEmpty(obj)) {return result;}
 
             for (key in obj) {
                 if (obj.hasOwnProperty(key)) {
@@ -1394,23 +1296,18 @@
      * item included)
      */
     exports.getRest = def(me,'getRest', function(obj, n) {
-        var cutAt  = 0;
-        var index  = 0;
-        var key    = null;
-        var result = [];
+        var cutAt  = 0,
+            index  = 0,
+            key    = null,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         cutAt = n === UNDEFINED ? 1 : n;
 
-        if (isArray(obj)) {
-            return slice.apply(obj, [cutAt]);
+        if (obj.slice) {
+            return obj.slice(cutAt);
         }
 
         for (key in obj) {
@@ -1443,20 +1340,12 @@
      * @return the number of items in the collection.
      */
     exports.getSize = def(me,'getSize', function(obj) {
-        var counter = 0;
-        var key     = null;
+        var counter = 0,
+            key     = null;
 
-        if (!obj) {
-            return 0;
-        }
-
-        if (!isObject(obj)) {
-            return 0;
-        }
-
-        if (obj.length !== UNDEFINED) {
-            return obj.length;
-        }
+        if (!obj                    ) {return 0;}
+        if (!isObject(obj)          ) {return 0;}
+        if (obj.length !== UNDEFINED) {return obj.length;}
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
@@ -1510,22 +1399,19 @@
      */
     exports.getSortedIndex = def(me,'getSortedIndex', function(array, item,
                 delegate) {
-        if (!isArray(array)) {
-            return -1;
-        }
+        if (!isArray(array)) {return -1;}
 
-        var iterator = delegate || identity;
-
-        var high = array.length;
-        var low  = 0;
-        var mid  = 0;
+        var iterator = delegate || identity,
+            high     = array.length,
+            low      = 0,
+            mid      = 0;
 
         // Binary search:
         while (low < high) {
             mid = (low + high) >> 1;
 
             if (iterator(array[mid]) < iterator(item)) {
-                low = mid +1;
+                low = mid + 1;
             } else {
                 high = mid;
             }
@@ -1557,18 +1443,13 @@
      * @return the values in the collection.
      */
     exports.getValues = def(me,'getValues', function(obj) {
-        var key    = null;
-        var result = [];
+        var key    = null,
+            result = [];
 
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (isArray(obj)) {
+        if (obj.slice) {
             return obj.slice();
         }
 
@@ -1605,15 +1486,13 @@
      * @return the filtered collection.
      */
     exports.grep = def(me,'grep', function(obj, delegate) {
-        var i      = 0;
-        var item   = null;
-        var key    = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            item   = null,
+            key    = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -1701,28 +1580,22 @@
      * @see o2.Collection.pluck
      */
     exports.group = def(me,'group', function(obj, delegate) {
-        var i      = 0;
-        var key    = null;
-        var ky     = null;
-        var len    = 0;
-        var result = {};
-        var value  = null;
+        var i        = 0,
+            key      = null,
+            ky       = null,
+            len      = 0,
+            result   = {},
+            value    = null,
+            iterator = isFunction(delegate) ? delegate :
+                function(obj) { return obj[delegate]; };
 
-        var iterator = isFunction(delegate) ? delegate :
-            function(obj) { return obj[delegate]; };
-
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
                 value = obj[i];
-                ky = iterator(value, i);
+                ky    = iterator(value, i);
 
                 if (!result[ky]) {
                     result[ky] = [];
@@ -1737,7 +1610,7 @@
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
                 value = obj[key];
-                ky = iterator(value, i);
+                ky    = iterator(value, i);
 
                 if (!result[ky]) {
                     result[ky] = [];
@@ -1775,18 +1648,13 @@
      * @see o2.Object.toArray
      */
     exports.toArray = def(me,'toArray', function(obj) {
-        var key    = null;
-        var result = [];
+        var key    = null,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj       ) {return result;}
+        if (obj.toArray) {return obj.toArray();}
 
-        if (obj.toArray) {
-            return obj.toArray();
-        }
-
-        if (isArray(obj)) {
+        if (obj.slice) {
             return obj.slice();
         }
 
@@ -1806,7 +1674,7 @@
     /*
      *
      */
-    var toArray = require(kModuleName, 'toArray');
+    toArray = require(kModuleName, 'toArray');
 
     /**
      * @function {static} o2.Collection.map
@@ -1841,19 +1709,14 @@
      * @see o2.Collection.invoke
      */
     exports.map = def(me,'map', function(obj, delegate, context) {
-        var i       = 0;
-        var key     = null;
-        var len     = 0;
-        var results = [];
-        var value   = null;
+        var i       = 0,
+            key     = null,
+            len     = 0,
+            results = [],
+            value   = null;
 
-        if (!obj) {
-            return results;
-        }
-
-        if (!isObject(obj)) {
-            return results;
-        }
+        if (!obj          ) {return results;}
+        if (!isObject(obj)) {return results;}
 
         // Array.prototype.map
         if (obj.map) {
@@ -1890,7 +1753,7 @@
     /*
      *
      */
-    var map = require(kModuleName, 'map');
+    map = require(kModuleName, 'map');
 
     /**
      * @function {static} o2.Collection.unique
@@ -1918,22 +1781,16 @@
      * @return a copy of the collection containing unique items.
      */
     exports.unique = def(me,'unique', function(array, delegate) {
-        var ar     = null;
-        var cache  = [];
-        var elm    = null;
-        var i      = 0;
-        var len    = 0;
-        var result = [];
+        var ar     = null,
+            cache  = [],
+            elm    = null,
+            i      = 0,
+            len    = 0,
+            result = [];
 
-        if (!array) {
-            return result;
-        }
+        if (!array) {return result;}
 
-        if (isArray(array)) {
-            ar = array.slice().sort();
-        } else {
-            ar = toArray(array).sort();
-        }
+        ar = isArray(array) ? array.slice().sort() : toArray(array).sort();
 
         if (delegate) {
             ar = delegate ? map(array, delegate) : ar;
@@ -1954,7 +1811,7 @@
     /*
      *
      */
-    var unique = require(kModuleName, 'unique');
+    unique = require(kModuleName, 'unique');
 
     /**
      * @function {static} o2.Collection.intersect
@@ -1980,25 +1837,21 @@
      * @see o2.Collection.union
      */
     exports.intersect = def(me,'intersect', function(ar) {
-        var i      = 0;
-        var item   = null;
-        var j      = 0;
-        var jlen   = 0;
-        var len    = 0;
-        var peer   = null;
-        var peers  = slice.apply(arguments, [1]);
-        var result = unique(ar);
+        var i      = 0,
+            item   = null,
+            j      = 0,
+            jlen   = 0,
+            len    = 0,
+            peer   = null,
+            peers  = slice.apply(arguments, [1]),
+            result = unique(ar);
 
-        if (result.length === 0) {
-            return [];
-        }
+        if (result.length === 0) {return [];}
 
         for (i = 0, len = peers.length; i < len; i++) {
             peer = unique(peers[i]);
 
-            if (!isObject(peer)) {
-                return [];
-            }
+            if (!isObject(peer)) {return [];}
 
             for (j = 0, jlen = result.length; j < jlen; j++) {
                 item = result[j];
@@ -2007,9 +1860,7 @@
                     result.splice(j, 1);
                 }
 
-                if (!result.length) {
-                    return [];
-                }
+                if (!result.length) {return [];}
             }
         }
 
@@ -2051,30 +1902,26 @@
      * @see o2.Collection.map
      */
     exports.invoke = def(me,'invoke', function(obj, delegate) {
-        var i       = 0;
-        var invoker = null;
-        var item    = null;
-        var key     = null;
-        var len     = 0;
+        var i       = 0,
+            invoker = null,
+            item    = null,
+            key     = null,
+            len     = 0,
 
-        if (arguments.length < 2) {
-            return;
-        }
+            kCount  = 2,
+            args    = null;
 
-        if (!obj) {
-            return;
-        }
+        if (arguments.length < kCount ) {return;}
+        if (!obj                      ) {return;}
+        if (!isObject(obj)            ) {return;}
 
-        if (!isObject(obj)) {
-            return;
-        }
-
-        var args = slice.apply(arguments, [2]);
+        args = slice.call(arguments, kCount);
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
-                item = obj[i];
+                item    = obj[i];
                 invoker = isFunction(delegate) ? delegate : item[delegate];
+
                 invoker.apply(item, args);
             }
 
@@ -2083,8 +1930,9 @@
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                item = obj[key];
+                item    = obj[key];
                 invoker = isFunction(delegate) ? delegate : item[delegate];
+
                 invoker.apply(item, args);
             }
         }
@@ -2110,22 +1958,18 @@
      * @return the last index of the item if exists, <code>-1</code> otherwise.
      */
     exports.lastIndexOf = def(me,'lastIndexOf', function(obj, item) {
-        var i = 0;
+        var i          = 0,
+            collection = null;
 
-        if (!obj) {
-            return -1;
-        }
-
-        if (!isObject(obj)) {
-            return -1;
-        }
+        if (!obj          ) {return -1;}
+        if (!isObject(obj)) {return -1;}
 
         // Array.prototype.lastIndexOf
         if (obj.lastIndexOf) {
             return obj.lastIndexOf(item);
         }
 
-        var collection = isArray(obj) ? obj : toArray(obj);
+        collection = isArray(obj) ? obj : toArray(obj);
 
         for (i = collection.length - 1; i >= 0; i--) {
             if (collection[i] === item) {
@@ -2168,18 +2012,13 @@
      * @see o2.Collection.group
      */
     exports.pluck = def(me,'pluck', function(obj, key) {
-        var i      = 0;
-        var k      = null;
-        var len    = 0;
-        var result = [];
+        var i      = 0,
+            k      = null,
+            len    = 0,
+            result = [];
 
-        if (!obj) {
-            return result;
-        }
-
-        if (!isObject(obj)) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -2201,7 +2040,7 @@
     /*
      *
      */
-    var pluck = require(kModuleName, 'pluck');
+    pluck = require(kModuleName, 'pluck');
 
     /**
      * @function {static} o2.Collection.reduce
@@ -2237,22 +2076,17 @@
      * @return a single reduced value.
      */
     exports.reduce = def(me, 'reduce', function(obj, delegate, store, context) {
-        var cache    = store;
-        var i        = 0;
-        var index    = 0;
-        var isSeeded = arguments.length > 2;
-        var iterator = delegate;
-        var key      = null;
-        var len      = 0;
-        var value    = null;
+        var cache    = store,
+            i        = 0,
+            index    = 0,
+            isSeeded = arguments.length > 2,
+            iterator = delegate,
+            key      = null,
+            len      = 0,
+            value    = null;
 
-        if (!obj) {
-            return null;
-        }
-
-        if (!isObject(obj)) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         // Array.prototype.reduce
         if (obj.reduce) {
@@ -2270,7 +2104,7 @@
                 value = obj[i];
 
                 if (!isSeeded) {
-                    cache = value;
+                    cache    = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
@@ -2292,7 +2126,7 @@
                 value = obj[key];
 
                 if (!isSeeded) {
-                    cache = value;
+                    cache   = value;
                     isSeeded = true;
                 } else {
                     cache = iterator.apply(context,
@@ -2315,7 +2149,7 @@
     /*
      *
      */
-    var reduce = require(kModuleName, 'reduce');
+    reduce = require(kModuleName, 'reduce');
 
     /**
      * @function {static} o2.Collection.fold
@@ -2358,16 +2192,12 @@
      */
     exports.reduceRight = def(me,'reduceRight', function(obj, delegate, store,
                 context) {
-        var isSeeded = arguments.length > 2;
-        var iterator = delegate;
+        var isSeeded = arguments.length > 2,
+            iterator = delegate,
+            reversed = null;
 
-        if (!isObject(obj)) {
-            return null;
-        }
-
-        if (!obj) {
-            return null;
-        }
+        if (!obj          ) {return null;}
+        if (!isObject(obj)) {return null;}
 
         if (context) {
             iterator = bind(context, delegate);
@@ -2380,7 +2210,7 @@
                 obj.reduceRight(iterator);
         }
 
-        var reversed = toArray(obj).reverse();
+        reversed = toArray(obj).reverse();
 
         return isSeeded ? reduce(reversed, iterator, store, context) :
             reduce(reversed, iterator);
@@ -2414,10 +2244,10 @@
      * @param {Object} elm - the element to remove.
      */
     exports.removeElement = def(me, 'removeElement', function(obj, elm) {
-        var i    = 0;
-        var item = null;
-        var key  = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            key  = null,
+            len  = 0;
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -2469,12 +2299,12 @@
      */
     exports.removeElementByValue = def(me, 'removeElementByValue', function(obj,
                 name, value) {
-        var i    = 0;
-        var item = null;
-        var key  = null;
-        var len  = 0;
+        var i    = 0,
+            item = null,
+            key  = null,
+            len  = 0;
 
-        if (isArray(obj)) {
+        if (obj.splice) {
             for (i = 0, len = obj.length; i < len; i++) {
                 item = obj[i];
 
@@ -2521,26 +2351,17 @@
      * collection.
      */
     exports.shuffle = def(me,'shuffle', function(obj) {
-        var collection = null;
-        var i          = 0;
-        var index      = null;
-        var len        = 0;
-        var result     = [];
-        var value      = null;
+        var collection = null,
+            i          = 0,
+            index      = null,
+            len        = 0,
+            result     = [],
+            value      = null;
 
-        if (!obj) {
-            return result;
-        }
+        if (!obj          ) {return result;}
+        if (!isObject(obj)) {return result;}
 
-        if (!isObject(obj)) {
-            return result;
-        }
-
-        if (!isArray(obj)) {
-            collection = toArray(obj);
-        } else {
-            collection = obj;
-        }
+        collection = isArray(obj) ? obj : toArray(obj);
 
         for (i = 0, len = collection.length; i < len; i++) {
             value = collection[i];
@@ -2548,8 +2369,8 @@
             if (i === 0) {
                 result.push(value);
             } else {
-                index = floor(random() * (i + 1));
-                result[i] = result[index];
+                index         = floor(random() * (i + 1));
+                result[i]     = result[index];
                 result[index] = value;
             }
         }
@@ -2593,21 +2414,16 @@
      * @return a sorted copy of the initial collection.
      */
     exports.sort = def(me,'sort', function(obj, delegate, context) {
-        var i     = 0;
-        var key   = null;
-        var len   = 0;
-        var meta  = [];
-        var value = null;
+        var i        = 0,
+            iterator = delegate || identity,
+            key      = null,
+            len      = 0,
+            meta     = [],
+            result   = null,
+            value    = null;
 
-        var iterator = delegate || identity;
-
-        if (!obj) {
-            return meta;
-        }
-
-        if (!isObject(obj)) {
-            return meta;
-        }
+        if (!obj          ) {return meta;}
+        if (!isObject(obj)) {return meta;}
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
@@ -2630,8 +2446,8 @@
         }
 
         meta.sort(function(left, right) {
-            var l = left.order;
-            var r = right.order;
+            var l = left.order,
+                r = right.order;
 
             if (l < r) {
                 return -1;
@@ -2644,7 +2460,7 @@
             return 0;
         });
 
-        var result = [];
+        result = [];
 
         for(i = 0, len = meta.length; i < len; i++) {
             result.push(meta[i].value);
@@ -2688,16 +2504,14 @@
      * otherwise.
      */
     exports.some = def(me,'some', function(obj, delegate, context) {
-        var i        = 0;
-        var index    = 0;
-        var iterator = delegate || identity;
-        var key      = null;
-        var len      = 0;
-        var result   = false;
+        var i        = 0,
+            index    = 0,
+            iterator = delegate || identity,
+            key      = null,
+            len      = 0,
+            result   = false;
 
-        if (!obj) {
-            return false;
-        }
+        if (!obj) {return false;}
 
         // Array.prototype.some
         if (obj.some) {
@@ -2706,9 +2520,7 @@
 
         if (isArray(obj)) {
             for (i = 0, len = obj.length; i < len; i++) {
-                if (result) {
-                    break;
-                }
+                if (result) {break;}
 
                 result = iterator.apply(context, [obj[i], i, obj]);
             }
@@ -2718,9 +2530,7 @@
 
         for (key in obj) {
             if (obj.hasOwnProperty(key)) {
-                if (result) {
-                    break;
-                }
+                if (result) {break;}
 
                 result = iterator.apply(context,
                     [obj[key], index, obj]);
@@ -2762,19 +2572,14 @@
      * @return the flattened collection.
      */
     exports.flatten = def(me, 'flatten', function(obj) {
-        var i     = 0;
-        var key   = null;
-        var len   = 0;
-        var store = [];
-        var value = null;
+        var i     = 0,
+            key   = null,
+            len   = 0,
+            store = [],
+            value = null;
 
-        if (!obj) {
-            return store;
-        }
-
-        if (!isObject(obj)) {
-            return store;
-        }
+        if (!obj          ) {return store;}
+        if (!isObject(obj)) {return store;}
 
         if (isArray(obj)) {
             for(i = 0, len = obj.length; i < len; i++) {
@@ -2808,7 +2613,7 @@
     /*
      *
      */
-    var flatten = require(kModuleName, 'flatten');
+    flatten = require(kModuleName, 'flatten');
 
     /**
      * @function {static} o2.Collection.union
@@ -2862,10 +2667,10 @@
      * @return a zipped <code>Array</code>.
      */
     exports.zip = def(me,'zip', function() {
-        var args    = slice.call(arguments);
-        var i       = 0;
-        var length  = getMax(pluck(args, kLength));
-        var results = [];
+        var args    = slice.call(arguments),
+            i       = 0,
+            length  = getMax(pluck(args, kLength)),
+            results = [];
 
         for (i = 0; i < length; i++) {
             results[i] = pluck(args, [kEmpty, i].join(kEmpty));
@@ -2873,4 +2678,4 @@
 
         return results;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

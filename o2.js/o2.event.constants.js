@@ -6,33 +6,36 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A cross-browser event management object.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('event.constants', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Event';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Event
-     *
-     * <p>A cross-browser event handling and event utilities class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
+
+        /**
+         * @class {static} o2.Event
+         *
+         * <p>A cross-browser event handling and event utilities class.</p>
+         */
+        me = create(kModuleName);
 
     /**
     * @struct {static} o2.Event.keyCode
@@ -177,4 +180,4 @@
          */
         COMMA : 188
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

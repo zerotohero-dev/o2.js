@@ -6,80 +6,88 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>String</code> helper.</p>
  */
-(function(framework) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.String
-     *
-     * <p>A <code>String</code> helper <strong>class</strong>.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Aliases
-     */
-    var floor  = attr(Math, 'floor');
-    var random = attr(Math, 'random');
-    var slice  = attr(Array.prototype, 'slice');
+        /**
+         * @class {static} o2.String
+         *
+         * <p>A <code>String</code> helper <strong>class</strong>.</p>
+         */
+        me = create(kModuleName),
 
-    var trim   = String.prototype.trim;
+        /*
+         * Aliases
+         */
+        floor  = attr(Math, 'floor'),
+        random = attr(Math, 'random'),
+        slice  = attr(Array.prototype, 'slice'),
+        trim   = attr(String.prototype, 'trim'),
 
-    /*
-     * Common Constants
-     */
-    var kBlank          = ' ';
-    var kDecimalPoint   = '.';
-    var kEmpty          = '';
-    var kFormatEnd      = '}';
-    var kFormatStart    = '{';
-    var kGlobal         = 'g';
-    var kNumeric        = '([0-9]+)';
-    var kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+        /*
+         * Common Constants
+         */
+        kBlank          = ' ',
+        kDecimalPoint   = '.',
+        kEmpty          = '',
+        kFormatEnd      = '}',
+        kFormatStart    = '{',
+        kGlobal         = 'g',
+        kNumeric        = '([0-9]+)',
+        kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
-    /*
-     * Default length for generating a random <code>String</code>s.
-     */
-    var kDefaultRandomLength = 8;
+        /*
+         * Default length for generating a random <code>String</code>s.
+         */
+        kDefaultRandomLength = 8,
 
-   /*
-    * Common Regular Expressions
-    */
-    var kPrintfRegExp     = /(%(\w+):s)|(%s)/g;
-    var kTrimRegExp       = /^\s+|\s+$/g;
-    var kWhitespaceRegExp = /\s+/g;
+       /*
+        * Common Regular Expressions
+        */
+        kPrintfRegExp     = /(%(\w+):s)|(%s)/g,
+        kTrimRegExp       = /^\s+|\s+$/g,
+        kWhitespaceRegExp = /\s+/g,
 
-    /*
-     * Printf Replacement Indexes
-     */
-    var kAllIndex                   = 0;
-    var kParametrizedMatchIndex     = 2;
-    var kReplaceParameterStartIndex = 1;
+        /*
+         * Printf Replacement Indexes
+         */
+        kAllIndex                   = 0,
+        kParametrizedMatchIndex     = 2,
+        kReplaceParameterStartIndex = 1,
 
-    /*
-     * Guid
-     */
-    var kGuidRadix = 36;
-    var kGuidShift = 30;
+        /*
+         * Guid
+         */
+        kGuidRadix = 36,
+        kGuidShift = 30,
+
+        /*
+         * To be Overridden.
+         */
+        concat = null,
+        strim  = null;
 
     /**
      * @function {static} o2.String.concat
@@ -103,7 +111,7 @@
     /*
      *
      */
-    var concat = require(kModuleName, 'concat');
+    concat = require(kModuleName, 'concat');
 
     /**
      * @function {static} o2.String.format
@@ -122,22 +130,15 @@
      * @return the formated <code>String</code>.
      */
     exports.format = def(me, 'format', function() {
-        var args = arguments;
+        var args    = arguments,
+            pattern = new RegExp([kFormatStart, kNumeric,
+                kFormatEnd].join(kEmpty), kGlobal);
 
-        if (args.length === 0) {
-            return null;
-        }
-
-        if (args.length === 1) {
-            return args[0];
-        }
-
-        var pattern = new RegExp([kFormatStart, kNumeric,
-            kFormatEnd].join(kEmpty), kGlobal);
+        if (args.length === 0) {return null;}
+        if (args.length === 1) {return args[0];}
 
         return args[0].replace(pattern, function(match, index) {
-            var dummy = null;
-            dummy     = match;
+            match = UNDEFINED;
 
             return args[(+index) + 1];
         });
@@ -181,12 +182,12 @@
      * @return the generated <code>String</code>.
      */
     exports.generateRandom = def(me, 'generateRandom', function(length) {
-        var buffer       = [];
-        var chars        = kRandomCharFeed;
-        var charsLength  = chars.length;
-        var i            = 0;
-        var len          = length || kDefaultRandomLength;
-        var randomNumber = 0;
+        var buffer       = [],
+            chars        = kRandomCharFeed,
+            charsLength  = chars.length,
+            i            = 0,
+            len          = length || kDefaultRandomLength,
+            randomNumber = 0;
 
         for (i = 0; i < len; i++) {
             randomNumber = floor(random() * charsLength);
@@ -225,12 +226,12 @@
      * @return the formatted <code>String</code>.
      */
     exports.printf = def(me, 'printf', function(str) {
-        var buffer    = [];
-        var index     = kReplaceParameterStartIndex;
-        var lastMatch = 0;
-        var result    = kPrintfRegExp.exec(str);
-        var rep       = null;
-        var par       = null;
+        var buffer    = [],
+            index     = kReplaceParameterStartIndex,
+            lastMatch = 0,
+            result    = kPrintfRegExp.exec(str),
+            rep       = null,
+            par       = null;
 
         while (result) {
             buffer.push(str.substring(lastMatch, result.index));
@@ -302,8 +303,8 @@
          * @return the processed <code>String</code>.
          */
         exports.trim = def(me, 'trim', function(str, shouldCompact) {
-            var s           = concat(kEmpty, str);
-            var willCompact = shouldCompact || false;
+            var s           = concat(kEmpty, str),
+                willCompact = shouldCompact || false;
 
             return willCompact ?
                 s.replace(kWhitespaceRegExp, kBlank).trim() :
@@ -311,8 +312,8 @@
         });
     } else {
         exports.trim = def(me, 'trim', function(str, shouldCompact) {
-            var s           = concat(kEmpty, str);
-            var willCompact = shouldCompact || false;
+            var s           = concat(kEmpty, str),
+                willCompact = shouldCompact || false;
 
             return willCompact ?
                 s.replace(kWhitespaceRegExp, kBlank).replace(
@@ -321,7 +322,7 @@
         });
     }
 
-    var strim = require(kModuleName, 'trim');
+    strim = require(kModuleName, 'trim');
 
     /**
      * @function {static} o2.String.compact
@@ -344,4 +345,4 @@
     exports.compact = def(me, 'compact', function(str) {
         return strim(concat(kEmpty, str), true);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

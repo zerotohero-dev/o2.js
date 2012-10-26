@@ -6,106 +6,117 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Date</code> helper module.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('date.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Date';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Date
-     *
-     * <p>A date/time utilities class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Date',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Date
+         *
+         * <p>A date/time utilities class.</p>
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var now    = require('now');
+        /*
+         * Aliases
+         */
 
-    var format = require('String', 'format');
+        $   = require('$'),
+        now = require('now'),
 
-    var math  = Math;
-    var floor = attr(math, 'floor');
-    var abs   = attr(math, 'abs');
+        format = require('String', 'format'),
 
-    /*
-     * i18n
-     */
+        math  = Math,
+        floor = attr(math, 'floor'),
+        abs   = attr(math, 'abs'),
 
-    var kAgo              = 'ago';
-    var kCenturies        = 'centuries';
-    var kDays             = 'days';
-    var kFromNow          = 'from now';
-    var kHours            = 'hours';
-    var kJustNow          = 'just now';
-    var kLastCentury      = 'last century';
-    var kLastMonth        = 'last month';
-    var kLastWeek         = 'last week';
-    var kLastYear         = 'last year';
-    var kMinutes          = 'minutes';
-    var kMonths           = 'months';
-    var kNextCentury      = 'next century';
-    var kNextMonth        = 'next month';
-    var kNextWeek         = 'next week';
-    var kNextYear         = 'next year';
-    var kOneHourAgo       = 'an hour ago';
-    var kOneHourFromNow   = 'an hour from now';
-    var kOneMinuteAgo     = 'a minute ago';
-    var kOneMinuteFromNow = 'a minute from now';
-    var kSeconds          = 'seconds';
-    var kTomorrow         = 'tomorrow';
-    var kWeeks            = 'weeks';
-    var kYears            = 'years';
-    var kYesterday        = 'yesterday';
+        /*
+         * i18n
+         */
 
-    var kTokenizedText = '{0} {1} {2}';
+        //TODO: parse all "TODO"s and enter as issues to github.
 
-    /*
-     * Time Formats
-     */
-    var timeFormats = [
-        [60         , kSeconds     , 1                ],
-        [120        , kOneMinuteAgo, kOneMinuteFromNow],
-        [3600       , kMinutes     , 60               ],
-        [7200       , kOneHourAgo  , kOneHourFromNow  ],
-        [86400      , kHours       , 3600             ],
-        [172800     , kYesterday   , kTomorrow        ],
-        [604800     , kDays        , 86400            ],
-        [1209600    , kLastWeek    , kNextWeek        ],
-        [2419200    , kWeeks       , 604800           ],
-        [4838400    , kLastMonth   , kNextMonth       ],
-        [29030400   , kMonths      , 2419200          ],
-        [58060800   , kLastYear    , kNextYear        ],
-        [2903040000 , kYears       , 29030400         ],
-        [5806080000 , kLastCentury , kNextCentury     ],
-        [58060800000, kCenturies   , 2903040000       ]
-    ];
+        //TOOD: make these configurable in o2.date.config.js.
 
-    /*
-     * Common Constants
-     */
-    var kString = 'string';
+        kAgo              = 'ago',
+        kCenturies        = 'centuries',
+        kDays             = 'days',
+        kFromNow          = 'from now',
+        kHours            = 'hours',
+        kJustNow          = 'just now',
+        kLastCentury      = 'last century',
+        kLastMonth        = 'last month',
+        kLastWeek         = 'last week',
+        kLastYear         = 'last year',
+        kMinutes          = 'minutes',
+        kMonths           = 'months',
+        kNextCentury      = 'next century',
+        kNextMonth        = 'next month',
+        kNextWeek         = 'next week',
+        kNextYear         = 'next year',
+        kOneHourAgo       = 'an hour ago',
+        kOneHourFromNow   = 'an hour from now',
+        kOneMinuteAgo     = 'a minute ago',
+        kOneMinuteFromNow = 'a minute from now',
+        kSeconds          = 'seconds',
+        kTomorrow         = 'tomorrow',
+        kWeeks            = 'weeks',
+        kYears            = 'years',
+        kYesterday        = 'yesterday',
+
+        /*
+         * {15} {days} {ago}.
+         */
+        kTokenizedText = '{0} {1} {2}',
+
+        /*
+         * Time Formats
+         */
+        timeFormats = [
+            [60         , kSeconds     , 1                ],
+            [120        , kOneMinuteAgo, kOneMinuteFromNow],
+            [3600       , kMinutes     , 60               ],
+            [7200       , kOneHourAgo  , kOneHourFromNow  ],
+            [86400      , kHours       , 3600             ],
+            [172800     , kYesterday   , kTomorrow        ],
+            [604800     , kDays        , 86400            ],
+            [1209600    , kLastWeek    , kNextWeek        ],
+            [2419200    , kWeeks       , 604800           ],
+            [4838400    , kLastMonth   , kNextMonth       ],
+            [29030400   , kMonths      , 2419200          ],
+            [58060800   , kLastYear    , kNextYear        ],
+            [2903040000 , kYears       , 29030400         ],
+            [5806080000 , kLastCentury , kNextCentury     ],
+            [58060800000, kCenturies   , 2903040000       ]
+        ],
+
+        /*
+         * Common Constants
+         */
+        kString = 'string',
+        kEmpty  = '';
 
     /**
      * @function {static} o2.Date.getPrettyDate
@@ -125,19 +136,23 @@
      * in milliseconds.
      */
     exports.getPrettyDate = def(me, 'getPrettyDate', function(time, currTime) {
-        var currentTime = currTime || $.now();
-        var listChoice  = 1;
-        var seconds     = (new Date(currentTime) - new Date(time)) / 1000;
-        var token       = kAgo;
+        var currentTime   = currTime || $.now(),
+            kInThePast    = 1,
+            kInTheFuture  = 2,
+            listChoice    = kInThePast,
+            seconds       = (new Date(currentTime) - new Date(time)) / 1000,
+            token         = kAgo,
+            i             = 0,
+            currentFormat = kEmpty;
 
         if (seconds < 0) {
-            seconds = abs(seconds);
-            token = kFromNow;
-            listChoice = 2;
+            seconds    = abs(seconds);
+            token      = kFromNow;
+            listChoice = kInTheFuture;
         }
 
-        var i = 0;
-        var currentFormat = timeFormats[i];
+        i             = 0;
+        currentFormat = timeFormats[i];
 
         while (currentFormat) {
             if (seconds < 5) {
@@ -187,4 +202,4 @@
      * @see o2.Date.getTime
      */
     exports.now = alias(me, 'now', 'getTime');
-}(this.o2));
+}(this.o2, this.o2.protecteds));

@@ -7,45 +7,48 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
- * <p>OOP/Inheritance related method helpers.</p>
+ * <p>OOJS/Inheritance related method helpers.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+     // Ensure that dependencies have been loaded.
+    fp.ensure('method.inherit', ['core', 'string.core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Method (inherit)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
-    var format = require('String', 'format');
+        /*
+         * Method (inherit)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Constants
-     */
-    var kEmpty                 = '';
-    var kArgumentCountMismatch = ['Method: Argument count mismatch. ',
-        'Expecting: {0}, provided: {1}'].join(kEmpty);
-    var kFunction              = 'function';
+        /*
+         * Aliases
+         */
+        format = require('String', 'format'),
+
+        /*
+         * Common Constants
+         */
+        kEmpty                 = '',
+        kArgumentCountMismatch = ['Method: Argument count mismatch. ',
+            'Expecting: {0}, provided: {1}'].join(kEmpty),
+        kFunction              = 'function';
 
     /**
      * @function {static} o2.Method.overload
@@ -138,4 +141,4 @@
             return fn.apply(this, arguments);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

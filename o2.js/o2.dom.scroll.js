@@ -7,42 +7,52 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A window/div scroll helper.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.scroll', ['core', 'dom.core']);
 
-    var exports = {};
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+    var attr      = fp.getAttr,
+        alias     = attr(fp, 'alias'),
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Dom (scroll)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Aliases
-     */
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    var $ = require('$');
+        /*
+         * Dom (scroll)
+         */
+        me = create(kModuleName),
 
-    var de       = document.documentElement;
-    var scrollTo = attr(window, 'scrollTo');
+        /*
+         * Aliases
+         */
+
+        $ = require('$'),
+
+        de = document.documentElement,
+
+        /*
+         * To be Overridden
+         */
+        getWindowScrollOffset,
+        scrollWindowToTop,
+        scrollWindowToBottom;
 
     if(de) {
 
@@ -62,10 +72,9 @@
          */
         exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
                     function() {
-            var db = document.body;
-
-            var left = 0;
-            var top  = 0;
+            var db   = document.body,
+                left = 0,
+                top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
@@ -85,10 +94,9 @@
     } else {
         exports.getWindowScrollOffset = def(me, 'getWindowScrollOffset',
                     function() {
-            var db = document.body;
-
-            var left = 0;
-            var top  = 0;
+            var db   = document.body,
+                left = 0,
+                top  = 0;
 
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
@@ -107,7 +115,7 @@
     /*
      *
      */
-    var getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
+    getWindowScrollOffset = require(kModuleName, 'getWindowScrollOffset');
 
     /**
      * @function {static} o2.Dom.getObjectScrollOffset
@@ -190,7 +198,7 @@
     /*
      *
      */
-    var scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
+    scrollWindowToBottom = require(kModuleName, 'scrollWindowToBottom');
 
     if (de) {
 
@@ -219,9 +227,7 @@
         exports.scrollWindowToTop = def(me, 'scrollWindowToTop', function() {
             var db = document.body;
 
-            if (!db) {
-                return;
-            }
+            if (!db) {return;}
 
             db.scrollTop = 0;
         });
@@ -230,7 +236,7 @@
     /*
      *
      */
-    var scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
+    scrollWindowToTop = require(kModuleName, 'scrollWindowToTop');
 
     /**
      * @function {static} o2.Dom.scrollObjectToTop
@@ -249,11 +255,9 @@
     exports.scrollObjectToTop = def(me, 'scrollObjectToTop', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        if(obj === window) {
+        if (obj === window) {
             scrollWindowToTop();
         }
 
@@ -278,9 +282,7 @@
                 function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
         if (obj === window) {
             scrollWindowToBottom();
@@ -299,17 +301,12 @@
     exports.scrollTo = def(me, 'scrollTo', function(obj) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
-
-        if (obj === window) {
-            return;
-        }
+        if (!obj          ) {return;}
+        if (obj === window) {return;}
 
         var offset = me.getOffset(obj);
 
-        scrollTo(offset.left, offset.top);
+        window.scrollTo(offset.left, offset.top);
     });
 
     /**
@@ -329,4 +326,4 @@
      * @see o2.Dom.scrollWindowToObject
      */
     exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
