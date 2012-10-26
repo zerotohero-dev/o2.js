@@ -53,8 +53,10 @@
          * Inheritance
          */
         base = require('AjaxController'),
-        self = require(kModuleName),
-        me   = null;
+        me   = null,
+        self = null,
+
+        kConstructorIndex = 1;
 
     /**
      * @class o2.JsonpController
@@ -99,6 +101,11 @@
      */
     me = exports.JsonpController;
 
+
+    /*
+     *
+     */
+     self = me[kConstructorIndex];
 
 
     // A quick way of inheriting methods without constructing base

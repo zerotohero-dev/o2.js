@@ -40,6 +40,9 @@ if (!document) {
  * -->
  */
 
+/*
+ * Used in <code>o2.noConflict</code>.
+ */
 (function(window) {
     'use strict';
 
@@ -60,8 +63,12 @@ if (!document) {
  *
  * <p>Meta information.</p>
  */
-(function(framework) {
+(function(framework, window) {
     'use strict';
+
+    function log() {
+        try {window.console.log(arguments);} catch(ignore){}
+    }
 
     /*
      * Common Constants
@@ -166,6 +173,8 @@ if (!document) {
      *
      */
     function init(root, key, value) {
+        log('init', arguments);
+
         if (!root || typeof root !== kObject) {return null;}
         if (root[key]                       ) {return root[key];}
 
@@ -179,6 +188,8 @@ if (!document) {
      * returns the existing namespace otherwise.
      */
     function namespace(root, key) {
+        log('namespace', arguments);
+
         if (!root || typeof root !== kObject) {return null;}
 
         return init(root, key, {});
@@ -629,6 +640,8 @@ if (!document) {
      *
      */
     function depend(baseModuleName, dependencies) {
+        log('depend', arguments);
+
         init(modules, baseModuleName,
             {dependencies:dependencies, isLoaded:false}
         );
@@ -650,6 +663,8 @@ if (!document) {
      *
      */
     init(fp, 'alias', function(mixed, aliasName, existingName) {
+        log('alias', arguments);
+
         if (!mixed) {
             dbg();
 
@@ -687,6 +702,8 @@ if (!document) {
      *
      */
     init(fp, 'create', function(name) {
+        log('create', arguments);
+
         var cls = fp.classes[name];
 
         if (!cls) {
@@ -706,6 +723,8 @@ if (!document) {
      *
      */
     init(fp, 'construct', function(name, delegate) {
+        log('construct', arguments);
+
         var cls = fp.classes[name];
 
         if (!cls) {
@@ -729,6 +748,8 @@ if (!document) {
      *
      */
     init(fp, 'define', function(mixed, name, fn) {
+        log('define', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -765,6 +786,8 @@ if (!document) {
      *
      */
     init(fp, 'getAttr', function(root, name) {
+        log('getAttr', arguments);
+
         if (!root) {
             dbg();
 
@@ -792,6 +815,8 @@ if (!document) {
      *
      */
     init(fp, 'getObject', function(mixed) {
+        log('getObject', arguments);
+
         return mixed[1];
     });
 
@@ -799,6 +824,8 @@ if (!document) {
      *
      */
     init(fp, 'getRoot', function() {
+        log('getRoot', arguments);
+
         return [fp.classes.o2.items, framework];
     });
 
@@ -806,6 +833,8 @@ if (!document) {
      *
      */
     init(fp, 'override', function(mixed, methodName, fn) {
+        log('override', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -840,6 +869,8 @@ if (!document) {
      *
      */
     init(fp, 'proto', function(mixed, methodName, fn) {
+        log('proto', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -874,6 +905,12 @@ if (!document) {
      *
      */
     init(fp, 'require', function(name, method) {
+        log('require', arguments);
+
+        if (name==='JsonpController') {
+            debugger;
+        }
+
         var methodName = kEmpty,
             objName    = kEmpty,
             meta       = null,
@@ -973,9 +1010,11 @@ if (!document) {
     });
 
     init(fp, 'ensure', function() {
+        log('ensure', arguments);
         //TODO: implement me.
+        console.log('ensure', arguments);
     });
-}(this.o2));
+}(this.o2, this));
  /**
   * <b>o2.js</b>
   *
@@ -987,7 +1026,7 @@ if (!document) {
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001351142298
+  * @version     0.25.a.0001351267578
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
@@ -1096,7 +1135,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001351142298');
+    exports.build = def(me, 'build', '.0001351267578');
 
     /**
      * @function {static} o2.$
@@ -1358,7 +1397,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         return result ? result[0] : null;
     });
-}(this.o2, this.o2.protecteds. this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));
 /**
  * @module   string.core
  * @requires core
@@ -18269,8 +18308,10 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * Inheritance
          */
         base = require('AjaxController'),
-        self = require(kModuleName),
-        me   = null;
+        me   = null,
+        self = null,
+
+        kConstructorIndex = 1;
 
     /**
      * @class o2.JsonpController
@@ -18315,6 +18356,11 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      */
     me = exports.JsonpController;
 
+
+    /*
+     *
+     */
+     self = me[kConstructorIndex];
 
 
     // A quick way of inheriting methods without constructing base

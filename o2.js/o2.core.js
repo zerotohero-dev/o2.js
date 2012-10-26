@@ -9,7 +9,7 @@
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001351142298
+  * @version     0.25.a.0001351267578
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
@@ -118,7 +118,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001351142298');
+    exports.build = def(me, 'build', '.0001351267578');
 
     /**
      * @function {static} o2.$
@@ -380,4 +380,4 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         return result ? result[0] : null;
     });
-}(this.o2, this.o2.protecteds. this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

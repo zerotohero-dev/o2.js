@@ -9,6 +9,9 @@
  * -->
  */
 
+/*
+ * Used in <code>o2.noConflict</code>.
+ */
 (function(window) {
     'use strict';
 
@@ -29,8 +32,12 @@
  *
  * <p>Meta information.</p>
  */
-(function(framework) {
+(function(framework, window) {
     'use strict';
+
+    function log() {
+        try {window.console.log(arguments);} catch(ignore){}
+    }
 
     /*
      * Common Constants
@@ -135,6 +142,8 @@
      *
      */
     function init(root, key, value) {
+        log('init', arguments);
+
         if (!root || typeof root !== kObject) {return null;}
         if (root[key]                       ) {return root[key];}
 
@@ -148,6 +157,8 @@
      * returns the existing namespace otherwise.
      */
     function namespace(root, key) {
+        log('namespace', arguments);
+
         if (!root || typeof root !== kObject) {return null;}
 
         return init(root, key, {});
@@ -598,6 +609,8 @@
      *
      */
     function depend(baseModuleName, dependencies) {
+        log('depend', arguments);
+
         init(modules, baseModuleName,
             {dependencies:dependencies, isLoaded:false}
         );
@@ -619,6 +632,8 @@
      *
      */
     init(fp, 'alias', function(mixed, aliasName, existingName) {
+        log('alias', arguments);
+
         if (!mixed) {
             dbg();
 
@@ -656,6 +671,8 @@
      *
      */
     init(fp, 'create', function(name) {
+        log('create', arguments);
+
         var cls = fp.classes[name];
 
         if (!cls) {
@@ -675,6 +692,8 @@
      *
      */
     init(fp, 'construct', function(name, delegate) {
+        log('construct', arguments);
+
         var cls = fp.classes[name];
 
         if (!cls) {
@@ -698,6 +717,8 @@
      *
      */
     init(fp, 'define', function(mixed, name, fn) {
+        log('define', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -734,6 +755,8 @@
      *
      */
     init(fp, 'getAttr', function(root, name) {
+        log('getAttr', arguments);
+
         if (!root) {
             dbg();
 
@@ -761,6 +784,8 @@
      *
      */
     init(fp, 'getObject', function(mixed) {
+        log('getObject', arguments);
+
         return mixed[1];
     });
 
@@ -768,6 +793,8 @@
      *
      */
     init(fp, 'getRoot', function() {
+        log('getRoot', arguments);
+
         return [fp.classes.o2.items, framework];
     });
 
@@ -775,6 +802,8 @@
      *
      */
     init(fp, 'override', function(mixed, methodName, fn) {
+        log('override', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -809,6 +838,8 @@
      *
      */
     init(fp, 'proto', function(mixed, methodName, fn) {
+        log('proto', arguments);
+
         var meta = mixed[0],
             me   = mixed[1];
 
@@ -843,6 +874,12 @@
      *
      */
     init(fp, 'require', function(name, method) {
+        log('require', arguments);
+
+        if (name==='JsonpController') {
+            debugger;
+        }
+
         var methodName = kEmpty,
             objName    = kEmpty,
             meta       = null,
@@ -942,6 +979,8 @@
     });
 
     init(fp, 'ensure', function() {
+        log('ensure', arguments);
         //TODO: implement me.
+        console.log('ensure', arguments);
     });
-}(this.o2));
+}(this.o2, this));
