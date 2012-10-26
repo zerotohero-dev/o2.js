@@ -1,50 +1,52 @@
 //TODO: add header.
-(function(framework) {
+(function(framework, fp) {
     'use strict';
-
-//2012-07-31 22:56:57.638192
-
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
-
-    var exports = {};
-
-    var kModuleName = 'Event';
-
-    var me = create(kModuleName);
-
-    /*
-     * Aliases
-     */
-
-    var isArray = require('Validation', 'isArray');
 
     //TODO: add documentations.
 
-    var cache = {};
+    fp.ensure('event.custom', ['core', 'validation.core']);
+
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
+
+        /*
+         * Module Exports
+         */
+        exports = {},
+
+        /*
+         * Module Name
+         */
+        kModuleName = 'Event',
+
+        /**
+         *
+         */
+        me = create(kModuleName),
+
+        /*
+         * Aliases
+         */
+
+        isArray = require('Validation', 'isArray'),
+
+        /*
+         * State
+         */
+        cache = {};
 
     exports.publish = def(me, 'publish', function(name, argv) {
-        if (!name) {
-            return;
-        }
+        if (!name) {return;}
 
-        var delegates = cache[name];
+        var delegates = cache[name],
+            args      = argv || [],
+            i         = 0,
+            len       = 0;
 
-        var args = argv || [];
-
-        if (!isArray(args)) {
-            args = [args];
-        }
-
-        var i         = 0;
-        var len       = 0;
-
-        if (!delegates) {
-            return;
-        }
+        if (!delegates    ) {return;}
+        if (!isArray(args)) {args = [args];}
 
         for (i = 0, len = delegates.length; i < len; i++) {
             try {
@@ -54,9 +56,7 @@
     });
 
     exports.subscribe = def(me, 'subscribe', function(name, callback) {
-        if (!name) {
-            return;
-        }
+        if (!name) {return;}
 
         if (!cache[name]) {
             cache[name] = [];
@@ -73,17 +73,14 @@
     });
 
     exports.unsubscribe = def(me, 'unsubscribe', function(handle) {
-        var name = handle.name;
-        var callback = handle.callback;
+        var name      = handle.name,
+            callback  = handle.callback,
+            delegates = cache[name],
+            i         = 0,
+            len       = 0,
+            delegate  = null;
 
-        var delegates = cache[name];
-        var i         = 0;
-        var len       = 0;
-        var delegate  = null;
-
-        if (!delegates) {
-            return;
-        }
+        if (!delegates) {return;}
 
         for (i = 0, len = delegates.length; i < len; i++) {
             delegate = delegates[i];
@@ -95,6 +92,4 @@
             }
         }
     });
-
-
-}(this.o2));
+}(this.o2, this.o2.protecteds));

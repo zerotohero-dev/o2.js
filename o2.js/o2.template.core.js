@@ -6,91 +6,103 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A "very" fast templating engine.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('template.core', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Template';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Template
-     *
-     * <p>A really <strong>fast</strong> template engine.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Template',
 
-    /*
-     * Common Constants
-     */
-    var kObject = 'object';
-    var kString = 'string';
-    var kEmpty  = '';
+        /**
+         * @class {static} o2.Template
+         *
+         * <p>A really <strong>fast</strong> template engine.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Regular Expressions
-     */
-    var kSeparatorRegExp = /\s+/;
-    var kTemplateRegExp  = /\{\{(.*?)\}\}/g;
+        /*
+         * Common Constants
+         */
+        kObject = 'object',
+        kString = 'string',
+        kEmpty  = '',
 
-    /*
-     * Common Commands
-     */
-    var kEach = 'each';
+        /*
+         * Common Regular Expressions
+         */
+        kSeparatorRegExp = /\s+/,
+        kTemplateRegExp  = /\{\{(.*?)\}\}/g,
 
-    /*
-     *
-     */
-    var doParse = null;
+        /*
+         * Common Commands
+         */
+        kEach = 'each',
+
+        /*
+         * To be Overridden
+         */
+        doParse = null;
 
     /*
      *
      */
     function parseDirective(line, data) {
-        var len = line.length;
+        var kDirectiveIndex     = 0,
+            kSubTemplateIndex   = 1,
+            kCommandIndex       = 0,
+            kDataKeyIndex       = 1,
 
-        switch (len) {
-            case 0:
-                return kEmpty;
-            case 1:
-                return line[0];
-        }
+            collectionKey = kEmpty,
+            directiveKey  = kEmpty,
 
-        var collectionKey = kEmpty;
-        var directive     = line[0].split(kSeparatorRegExp);
-        var directiveKey  = kEmpty;
-        var subTpl        = line[1];
+            directive = null,
 
-        var buffer = [];
-        var clen   = 0;
-        var i      = 0;
+            subTpl = line[kSubTemplateIndex],
+
+            lineLength = line.length,
+
+            buffer = [],
+
+            collection = null,
+
+            clen = 0,
+            i    = 0;
+
+        if (!line.length     ) {return kEmpty;}
+        if (line.length === 1) {return line[0];}
+
+        directive = line[kDirectiveIndex] &&
+                line[kDirectiveIndex].split(kSeparatorRegExp);
 
         if (directive.length > 1) {
-            collectionKey = directive[1];
+            collectionKey = directive[kDataKeyIndex];
         }
 
-        directiveKey = directive[0];
+        directiveKey = directive[kCommandIndex];
 
         if (directiveKey !== kEach) {
             return subTpl.join(kEmpty);
         }
 
-        var collection = collectionKey ? data[collectionKey] : data;
+        collection = collectionKey ? data[collectionKey] : data;
 
         if (typeof collection !== kObject) {
             return subTpl.join(kEmpty);
@@ -149,10 +161,10 @@
      * @return {String} the parsed template.
      */
      exports.parse = def(me, 'parse', function(data, tpl){
-        var buffer  = [];
-        var tplData = data || {};
-        var i       = 0;
-        var len     = 0;
+        var buffer  = [],
+            tplData = data || {},
+            i       = 0,
+            len     = 0;
 
         for (i = 0, len = tpl.length; i < len; i++) {
             buffer.push(parse(tpl[i], tplData));
@@ -165,4 +177,4 @@
       *
       */
      doParse = require(kModuleName, 'parse');
-}(this.o2));
+}(this.o2, this.o2.protecteds));

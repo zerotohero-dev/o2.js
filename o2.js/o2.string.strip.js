@@ -6,46 +6,49 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> stripping
  * operations.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.strip', ['core']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (strip)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g;
-    var kNonAlphaRegExp        = /[^A-Za-z ]+/g;
-    var kNonNumericRegExp      = /[^0-9-.]/g;
-    var kNumericRegExp         = /[0-9]/g;
-    var kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig;
+        /*
+         * String (strip)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Strings
-     */
-    var kEmpty = '';
+        /*
+         * Common Regular Expressions
+         */
+        kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g,
+        kNonAlphaRegExp        = /[^A-Za-z ]+/g,
+        kNonNumericRegExp      = /[^0-9-.]/g,
+        kNumericRegExp         = /[0-9]/g,
+        kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig,
+
+        /*
+         * Common Strings
+         */
+        kEmpty = '';
 
     /**
      * @function {static} o2.String.stripNonAlpha
@@ -143,4 +146,4 @@
     exports.stripNumeric = def(me, 'stripNumeric', function(str) {
         return str.replace(kNumericRegExp, kEmpty);
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

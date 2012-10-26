@@ -6,58 +6,61 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>This package is responsible for simple <code>String</code> transformation
  * operations.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.transform', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (transform)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kAllCapsRegExp            = /([A-Z])/g;
-    var kCamelCaseRegExp          = /(\-[a-z])/g;
-    var kLineBreakToNewLineRegExp = /<br\s*\/?>/g;
-    var kNewLineToLineBreakRegExp = /\r\n|\n|\r/g;
-    //var kRemoveTagsRegExp         = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
+        /*
+         * String (transform)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Text
-     */
-    var kBr               = '<br />';
-    var kDash             = '-';
-    var kEllipsis         = '&hellip;';
-    var kEmpty            = '';
-    var kJsonNotSupported = 'JSON support cannot be found!';
-    var kNewLine          = '\n';
-    var kUnderscore       = '_';
+        /*
+         * Common Regular Expressions
+         */
+        kAllCapsRegExp            = /([A-Z])/g,
+        kCamelCaseRegExp          = /(\-[a-z])/g,
+        kLineBreakToNewLineRegExp = /<br\s*\/?>/g,
+        kNewLineToLineBreakRegExp = /\r\n|\n|\r/g,
+        //kRemoveTagsRegExp       = /<[\/]?([a-zA-Z0-9]+)[^><]*>/ig;
 
-    /*
-     * <p>Maximum length, after which the string is truncated with an
-     * ellipsis (...)</p>
-     */
-    var kTruncationLength = 100;
+        /*
+         * Common Text
+         */
+        kBr               = '<br />',
+        kDash             = '-',
+        kEllipsis         = '&hellip;',
+        kEmpty            = '',
+        kJsonNotSupported = 'JSON support cannot be found!',
+        kNewLine          = '\n',
+        kUnderscore       = '_',
+
+        /*
+         * <p>Maximum length, after which the string is truncated with an
+         * ellipsis (...)</p>
+         */
+        kTruncationLength = 100;
 
     /**
      * @function {static} o2.String.br2nl
@@ -164,9 +167,7 @@
      * <strong>JSON</strong> <code>String</code>.
      */
     exports.toJson = def(me, 'toJson', function(str) {
-        if (!JSON) {
-            throw kJsonNotSupported;
-        }
+        if (!JSON) {throw kJsonNotSupported;}
 
         return JSON.parse(str);
     });
@@ -213,8 +214,8 @@
      * @return the processed <code>String</code>.
      */
     exports.truncate = def(me, 'truncate', function(str, maxLen) {
-        var eLen      = kEllipsis.length;
-        var maxLength = maxLen || kTruncationLength;
+        var eLen      = kEllipsis.length,
+            maxLength = maxLen || kTruncationLength;
 
         if (str.length > maxLength) {
             return [str.substr(0, maxLength - eLen), kEllipsis].join(kEmpty);
@@ -222,4 +223,4 @@
 
         return str;
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

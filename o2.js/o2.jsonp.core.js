@@ -7,68 +7,72 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-07-26 19:10:32.635045
  * -->
  *
  * <p>An object to make <strong>JSONP</strong> calls.</p>
  */
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('jsonp.core', ['core', 'string.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Jsonp';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Jsonp
-     *
-     * <p>An object to make <strong>JSONP</strong> calls.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Jsonp',
 
-    /*
-     * Aliases
-     */
-    var myName = require('name');
-    var nill   = require('nill');
+        /**
+         * @class {static} o2.Jsonp
+         *
+         * <p>An object to make <strong>JSONP</strong> calls.</p>
+         */
+        me = create(kModuleName),
 
-    var concat = require('String', 'concat');
+        /*
+         * Aliases
+         */
 
-    /*
-     * State
-     */
-    var counter = 0;
+        frameworkName = require('name'),
+        nill          = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kAnd      = '&';
-    var kCallback = 'callback';
-    var kEmpty    = '';
-    var kEquals   = '=';
-    var kHead     = 'head';
-    var kJson     = concat(myName, '_json_');
-    var kLoaded   = 'loaded';
-    var kQuery    = '?';
-    var kScript   = 'script';
+        concat = require('String', 'concat'),
+
+        /*
+         * State
+         */
+        counter = 0,
+
+        /*
+         * Common Constants
+         */
+        kAnd      = '&',
+        kCallback = 'callback',
+        kEmpty    = '',
+        kEquals   = '=',
+        kHead     = 'head',
+        kJson     = concat(frameworkName, '_json_'),
+        kLoaded   = 'loaded',
+        kQuery    = '?',
+        kScript   = 'script';
 
     /*
      *
      */
     function load(url) {
-        var done   = false;
-        var head   = document.getElementsByTagName(kHead)[0];
-        var script = document.createElement(kScript);
+        var done   = false,
+            head   = document.getElementsByTagName(kHead)[0],
+            script = document.createElement(kScript);
 
         script.async = true;
         script.src   = url;
@@ -92,8 +96,8 @@
      *
      */
     function createQuery(params) {
-        var key   = null;
-        var query = kEmpty;
+        var key   = null,
+            query = kEmpty;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -128,8 +132,8 @@
      * <strong>JSONP</strong> arrives.
      */
     exports.get = def(me, 'get', function(url, params, callback) {
-        var query = createQuery(params);
-        var jsonp = concat(kJson, (++counter));
+        var query = createQuery(params),
+            jsonp = concat(kJson, (++counter));
 
         params = params || {};
 
@@ -144,4 +148,4 @@
 
         return jsonp;
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

@@ -7,111 +7,110 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
- * <p>Responsible for encoding and decoding <code>String</code>s.</p>
+ * <p>This package is responsible for encoding and decoding
+ * <code>String</code>s.</p>
  */
-(function(framework, document) {
+(function(framework, fp, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var alias     = attr(_, 'alias');
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('string.encode', ['core', 'string.core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        alias  = attr(fp, 'alias'),
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'String';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * String (encode)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'String',
 
-    /*
-     * Aliases
-     */
-    var createElement  = attr(document, 'createElement');
-    var createTextNode = attr(document, 'createTextNode');
+        /*
+         * String (encode)
+         */
+        me = create(kModuleName),
 
-    /*
-     *
-     */
-    var xssEncodeNoAmpMap = [
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /</g,  replace : '&#60;'},
-        {regExp : />/g,  replace : '&#62;'},
-        {regExp : /\'/g, replace : '&#39;'}
-    ];
+        /*
+         *
+         */
+        xssEncodeNoAmpMap = [
+            {regExp : /"/g,  replace : '&#34;'},
+            {regExp : /</g,  replace : '&#60;'},
+            {regExp : />/g,  replace : '&#62;'},
+            {regExp : /\'/g, replace : '&#39;'}
+        ],
 
-    /*
-     *
-     */
-    var xssEncodeMap = [
-        {regExp : /"/g,  replace : '&#34;'},
-        {regExp : /&/g,  replace : '&amp;'},
-        {regExp : /</g,  replace : '&#60;'},
-        {regExp : />/g,  replace : '&#62;'},
-        {regExp : /\'/g, replace : '&#39;'}
-    ];
+        /*
+         *
+         */
+        xssEncodeMap = [
+            {regExp : /"/g,  replace : '&#34;'},
+            {regExp : /&/g,  replace : '&amp;'},
+            {regExp : /</g,  replace : '&#60;'},
+            {regExp : />/g,  replace : '&#62;'},
+            {regExp : /\'/g, replace : '&#39;'}
+        ],
 
-    /*
-     *
-     */
-    var encodeMap = [
-        {regExp : / /g,  replace : '&nbsp;'},
-        {regExp : /"/g,  replace : '&#34;' },
-        {regExp : /&/g,  replace : '&amp;' },
-        {regExp : /</g,  replace : '&#60;' },
-        {regExp : />/g,  replace : '&#62;' },
-        {regExp : /\'/g, replace : '&#39;' }
-    ];
+        /*
+         *
+         */
+        encodeMap = [
+            {regExp : / /g,  replace : '&nbsp;'},
+            {regExp : /"/g,  replace : '&#34;' },
+            {regExp : /&/g,  replace : '&amp;' },
+            {regExp : /</g,  replace : '&#60;' },
+            {regExp : />/g,  replace : '&#62;' },
+            {regExp : /\'/g, replace : '&#39;' }
+        ],
 
-    /*
-     *
-     */
-    var decodeMap = [
-        {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-        {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-        {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-        {regExp : /&#60;|&lt;/g,           replace : '<'},
-        {regExp : /&#62;|&gt;/g,           replace : '>'},
-        {regExp : /&#38;|&amp;/g,          replace : '&'}
-    ];
+        /*
+         *
+         */
+        //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
+        decodeMap = [
+            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
+            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
+            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
+            {regExp : /&#60;|&lt;/g,           replace : '<'},
+            {regExp : /&#62;|&gt;/g,           replace : '>'},
+            {regExp : /&#38;|&amp;/g,          replace : '&'}
+        ],
 
-    /*
-     *
-     */
-    var safeHtmlMap = [
-        {regExp : /"/g, replace : '&quot;'},
-        {regExp : /'/g, replace : '&#39;' }
-    ];
+        /*
+         *
+         */
+        safeHtmlMap = [
+            {regExp : /"/g, replace : '&quot;'},
+            {regExp : /'/g, replace : '&#39;' }
+        ],
 
-    /*
-     * Common Text
-     */
-    var kEmpty     = '';
-    var kContainer = 'div';
+        /*
+         * Common Text
+         */
+        kEmpty     = '',
+        kContainer = 'div',
 
-    /*
-     *
-     */
-    var tempDiv = null;
+        /*
+         * Temporary
+         */
+        tempDiv = null;
 
     /*
      *
      */
     function processMap(str, map) {
-        var i = 0;
-        var len = 0;
-        var mapItem = null;
-        var result = str;
+        var i       = 0,
+            len     = 0,
+            mapItem = null,
+            result  = str;
 
         for (i = 0, len = map.length; i < len; i++) {
             mapItem = map[i];
@@ -195,11 +194,14 @@
      */
     exports.encodeSafeHtml = def(me, 'encodeSafeHtml', function(str) {
         if (!tempDiv) {
-            tempDiv = createElement(kContainer);
+            tempDiv = document.createElement(kContainer);
         }
 
         tempDiv.innerHTML = kEmpty;
-        tempDiv.appendChild(createTextNode([kEmpty, str].join(kEmpty)));
+
+        tempDiv.appendChild(
+            document.createTextNode([kEmpty, str].join(kEmpty))
+        );
 
         return processMap(tempDiv.innerHTML, safeHtmlMap);
     });
@@ -268,4 +270,4 @@
             !!isAmpersandsPreserved ? xssEncodeNoAmpMap : xssEncodeMap
         );
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));

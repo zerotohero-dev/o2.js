@@ -8,72 +8,78 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
  * methods.</p>
  */
-(function(framework, window, document, UNDEFINED) {
+(function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.dimension', ['core', 'string.core', 'dom.style']);
 
-    var exports = {};
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Dom (dimension)
-     */
-    var me = create(kModuleName);
+        /*
+         * Dom (dimension)
+         */
+        me = create(kModuleName),
 
-    /*
-     * Aliases
-     */
+        /*
+         * Aliases
+         */
 
-    var $ = require('$');
+        $ = require('$'),
 
-    var concat = require('String', 'concat');
+        concat = require('String', 'concat'),
 
-    var setStyle = require(kModuleName, 'setStyle');
+        setStyle = require(kModuleName, 'setStyle'),
 
-    var self = attr(window, 'self');
+        /*
+         * Common Constants
+         */
+        kHeight    = 'height',
+        kModernCss = 'CSS1Compat',
+        kPixel     = 'px',
+        kWidth     = 'width',
 
-    /*
-     * Common Constants
-     */
-    var kHeight    = 'height';
-    var kModernCss = 'CSS1Compat';
-    var kPixel     = 'px';
-    var kWidth     = 'width';
+        /*
+         * To be Overridden
+         */
+        getDocumentElement      = null,
+        getDimension            = null,
+        getDocumentDimension    = null,
+        getWindowInnerDimension = null,
+        setWidth                = null,
+        setHeight               = null;
 
     /*
      *
      */
-    var getDocumentElement = function() {
+    getDocumentElement = function() {
 
-        // document.body can be null when refreshing.
-        if (!document || !document.body) {
-            return null;
-        }
+        // document.body can be null while refreshing.
+        if (!document || !document.body) {return null;}
 
         var result = (document.documentElement &&
             document.compatMode === kModernCss
         ) ? document.documentElement : document.body;
 
-        getDocumentElement = function() {
-            return result;
-        };
+        getDocumentElement = function() {return result;};
 
         return result;
     };
@@ -105,7 +111,7 @@
         }
 
         return {
-            width : obj.offsetWidth,
+            width  : obj.offsetWidth,
             height : obj.offsetHeight
         };
     });
@@ -113,7 +119,7 @@
     /*
      *
      */
-    var getDimension = require(kModuleName, 'getDimension');
+    getDimension = require(kModuleName, 'getDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentDimension
@@ -135,9 +141,7 @@
     exports.getDocumentDimension = def(me, 'getDocumentDimension', function() {
         var doc = getDocumentElement();
 
-        if(!doc) {
-            return {width : 0, height : 0};
-        }
+        if(!doc) {return {width : 0, height : 0};}
 
         return {
             width : Math.max(
@@ -156,7 +160,7 @@
     /*
      *
      */
-    var getDocumentDimension = require(kModuleName, 'getDocumentDimension');
+    getDocumentDimension = require(kModuleName, 'getDocumentDimension');
 
     /**
      * @function {static} o2.Dom.getDocumentHeight
@@ -227,7 +231,8 @@
      * @return the viewport information.
      */
     exports.getViewportInfo = def(me, 'getViewportInfo', function() {
-        var d  = getDocumentElement();
+        var d    = getDocumentElement(),
+            self = window.self;
 
         if (!d) {
             return {
@@ -309,7 +314,7 @@
     /*
      *
      */
-    var getWindowInnerDimension = require(kModuleName, 'getWindowInnerDimension');
+    getWindowInnerDimension = require(kModuleName, 'getWindowInnerDimension');
 
     /**
      * @function {static} o2.Dom.getWindowInnerHeight
@@ -363,12 +368,10 @@
     exports.setWidth = def(me, 'setWidth', function(obj, width) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var difference = 0;
-        var cssWidth   = 0;
+        var difference = 0,
+            cssWidth   = 0;
 
         // IE (as always) doesn't play nice with the box model.
         // The calculation below takes care of that.
@@ -378,6 +381,7 @@
 
         if (obj.offsetWidth !== UNDEFINED) {
             setStyle(obj, kWidth, concat(width, kPixel));
+
             difference = obj.offsetWidth - width;
         }
 
@@ -387,9 +391,7 @@
 
         cssWidth = width - difference;
 
-        if (cssWidth <= 0) {
-            return;
-        }
+        if (cssWidth <= 0) {return;}
 
         setStyle(obj, kWidth, concat(width, kPixel));
     });
@@ -397,7 +399,7 @@
     /*
      *
      */
-    var setWidth = require(kModuleName, 'setWidth');
+    setWidth = require(kModuleName, 'setWidth');
 
     /**
      * @function {static} o2.Dom.setHeight
@@ -417,12 +419,10 @@
      exports.setHeight = def(me, 'setHeight', function(obj, height) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        var difference = 0;
-        var cssHeight  = 0;
+        var difference = 0,
+            cssHeight  = 0;
 
         if (obj.offsetWidth !== UNDEFINED) {
             setStyle(obj, kHeight, concat(height, kPixel));
@@ -435,9 +435,7 @@
 
         cssHeight = height - difference;
 
-        if (cssHeight <= 0) {
-            return;
-        }
+        if (cssHeight <= 0) {return;}
 
         setStyle(obj, kHeight, concat(height, kPixel));
     });
@@ -446,7 +444,7 @@
     /*
      *
      */
-    var setHeight = require(kModuleName, 'setHeight');
+    setHeight = require(kModuleName, 'setHeight');
 
     /**
      * @function {static} o2.Dom.setDimension
@@ -467,11 +465,9 @@
     exports.setDimension = def(me, 'setDimension', function(obj, dimension) {
         obj = $(obj);
 
-        if (!obj) {
-            return;
-        }
+        if (!obj) {return;}
 
-        setWidth(obj, dimension.width);
+        setWidth (obj, dimension.width);
         setHeight(obj, dimension.height);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

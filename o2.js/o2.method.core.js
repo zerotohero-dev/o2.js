@@ -6,45 +6,48 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <code>Function</code> helper for stuff like
  * <strong>memoization</strong>, <strong>partial functions</strong> and
  * <strong>currying</strong>.</p>
  */
-(function(framework, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('method.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Method';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Method
-     *
-     * <p>A method helper class.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Method',
 
-    /*
-     * Aliases
-     */
+        /**
+         * @class {static} o2.Method
+         *
+         * <p>A method helper class.</p>
+         */
+        me = create(kModuleName),
 
-    var ap     = Array.prototype;
-    var concat = attr(ap, 'concat');
-    var slice  = attr(ap, 'slice');
+        /*
+         * Aliases
+         */
 
-    var bind = Function.prototype.bind;
+        ap     = Array.prototype,
+        concat = attr(ap, 'concat'),
+        slice  = attr(ap, 'slice'),
+
+        bind = Function.prototype.bind;
 
     if (bind) {
 
@@ -77,17 +80,17 @@
          * @return the modified <code>Function</code>.
          */
         exports.bind = def(me, 'bind', function() {
-            var args = slice.call(arguments);
-            var context = args.shift();
-            var fn = args.shift();
+            var args    = slice.call(arguments),
+                context = args.shift(),
+                fn      = args.shift();
 
             return fn.bind(context, args);
         });
     } else {
         exports.bind = def(me, 'bind', function() {
-            var args = slice.call(arguments);
-            var context = args.shift();
-            var fn = args.shift();
+            var args    = slice.call(arguments),
+                context = args.shift(),
+                 fn     = args.shift();
 
             return function() {
                 return fn.apply(
@@ -115,9 +118,9 @@
      * @return the modified <code>Function</code>.
      */
     exports.curry = def(me, 'curry', function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function() {
             return fn.apply(context,
@@ -173,30 +176,30 @@
      * @return a reference to the memoized <code>Function</code>.
      */
     exports.memoize = def(me, 'memoize', function() {
-        var pad = {};
-        var args = slice.call(arguments);
-        var self = args.shift();
-        var obj = args.length > 0 ? args[0] : null;
+        var pad  = {},
+            args = slice.call(arguments),
+            self = args.shift(),
+            obj  = args.length > 0 ? args[0] : null,
 
-        var memoizedFn = function() {
+            memoizedFn = function() {
 
-            // Copy the arguments object into an array:
-            // this allows it to be used as a cache key.
-            var args = [];
-            var i = 0;
+                // Copy the arguments object into an array:
+                // this allows it to be used as a cache key.
+                var args = [],
+                    i    = 0;
 
-            for (i = 0; i < arguments.length; i++) {
-                args[i] = arguments[i];
-            }
+                for (i = 0; i < arguments.length; i++) {
+                    args[i] = arguments[i];
+                }
 
-            // Evaluate the memoized function if it hasn't
-            // been evaluated with these arguments before.
-            if (!pad.hasOwnProperty(args)) {
-                pad[args] = self.apply(obj, arguments);
-            }
+                // Evaluate the memoized function if it hasn't
+                // been evaluated with these arguments before.
+                if (!pad.hasOwnProperty(args)) {
+                    pad[args] = self.apply(obj, arguments);
+                }
 
-            return pad[args];
-        };
+                return pad[args];
+            };
 
         return memoizedFn;
     });
@@ -225,13 +228,13 @@
      * @return the modified <code>Function</code>.
      */
     exports.partial = def(me, 'partial', function() {
-        var args = slice.call(arguments);
-        var context = args.shift();
-        var fn = args.shift();
+        var args    = slice.call(arguments),
+            context = args.shift(),
+            fn      = args.shift();
 
         return function() {
-            var arg = 0;
-            var i = 0;
+            var arg = 0,
+                i   = 0;
 
             for (i = 0; i < args.length && arg < arguments.length; i++) {
                 if (args[i] === UNDEFINED) {
@@ -242,4 +245,4 @@
             return fn.apply(context, args);
         };
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

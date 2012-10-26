@@ -6,51 +6,55 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A <strong>query string</strong> parser.</p>
  */
-(function(framework, window) {
+(function(framework, fp, window) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('querystring.core', ['core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'QueryString';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.QueryString
-     *
-     * <p>Used for parsing the browser's <strong>query string</strong>.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'QueryString',
 
-    /*
-     * Aliases
-     */
-    var location = attr(window, 'location');
+        /**
+         * @class {static} o2.QueryString
+         *
+         * <p>Used for parsing the browser's <strong>query string</strong>.</p>
+         */
+        me = create(kModuleName),
 
-    /*
-     * Common Strings
-     */
-    var kAnd    = '&';
-    var kEquals = '=';
-    var kQuery  = '?';
+        /*
+         * Aliases
+         */
+        location = attr(window, 'location'),
 
-    /*
-     * Common Indexes
-     */
-    var kNameIndex  = 0;
-    var kValueIndex = 1;
+        /*
+         * Common Strings
+         */
+        kAnd    = '&',
+        kEquals = '=',
+        kQuery  = '?',
+        kEmpty  = '',
+
+        /*
+         * Common Indexes
+         */
+        kNameIndex  = 0,
+        kValueIndex = 1;
 
     /**
      * @function {static} o2.QueryString.encode
@@ -67,8 +71,8 @@
      *
      */
     exports.encode = def(me, 'encode', function(collection) {
-        var key    = null;
-        var buffer = [];
+        var key    = null,
+            buffer = [];
 
         for (key in collection) {
             if (collection.hasOwnProperty(key)) {
@@ -102,19 +106,18 @@
      * name2:value2} <code>Object</code>.
      */
     exports.parse = def(me, 'parse', function(url) {
-        var args  = {};
-        var href  = url || location.href;
-        var index = href.indexOf(kQuery);
+        var args           = {},
+            href           = url || location.href,
+            index          = href.indexOf(kQuery),
+            i              = 0,
+            nameValuePair  = null,
+            nameValuePairs = null,
+            query          = kEmpty;
 
-        if (index === -1) {
-            return args;
-        }
+        if (index === -1) {return args;}
 
-        var i              = 0;
-        var nameValuePair  = null;
-
-        var query          = href.substring(index + 1);
-        var nameValuePairs = query.split(kAnd);
+        query          = href.substring(index + 1);
+        nameValuePairs = query.split(kAnd);
 
         for (i = 0; i < nameValuePairs.length; i++) {
             nameValuePair = nameValuePairs[i].split(kEquals);
@@ -124,4 +127,4 @@
 
         return args;
     });
-}(this.o2, this));
+}(this.o2, this.o2.protecteds, this));

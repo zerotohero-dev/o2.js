@@ -7,162 +7,161 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
  */
 
-(function(framework, window, document) {
+(function(framework, fp, window, document) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.ready', ['core', 'dom.core']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (ready)
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (ready)
+         */
+        me = create(kModuleName),
 
-    var nill       = require('nill');
+        /*
+         * Aliases
+         */
 
-    var setTimeout = attr(window, 'setTimeout');
+        nill = require('nill'),
 
-    /*
-     * Common Constants
-     */
-    var kCheckIntervalMs    = 50;
-    var kDomContentLoaded   = 'DOMContentLoaded';
-    var kLoad               = 'load';
-    var kOnLoad             = 'onload';
-    var kOnReadyStateChange = 'onreadystatechange';
-    var kPropertyToCheck    = 'left';
+        /*
+         * Common Constants
+         */
+        kCheckIntervalMs    = 50,
+        kDomContentLoaded   = 'DOMContentLoaded',
+        kLoad               = 'load',
+        kOnLoad             = 'onload',
+        kOnReadyStateChange = 'onreadystatechange',
+        kPropertyToCheck    = 'left',
 
-    /*
-     * Common Regular Expressions
-     */
-    var kDomLoadedRegExp = /^loade|c/;
+        /*
+         * Common Regular Expressions
+         */
+        kDomLoadedRegExp = /^loade|c/,
 
-    /*
-     *
-     */
-    function isDomContentReady() {
-        return (kDomLoadedRegExp).test(document.readyState);
-    }
+        /*
+         *
+         */
+        isDomContentReady = function() {
+            return (kDomLoadedRegExp).test(document.readyState);
+        },
 
-    /*
-     * State
-     */
-    var isApplicationReady = isDomContentReady();
-    var readyQueue         = [];
+        /*
+         * State
+         */
+        isApplicationReady = isDomContentReady(),
+        readyQueue         = [],
 
-    /*
-     *
-     */
-    function flushReadyQueue() {
-        isApplicationReady = true;
+        /*
+         *
+         */
+        flushReadyQueue = function() {
+            isApplicationReady = true;
 
-        while (readyQueue.length > 0) {
+            while (readyQueue.length > 0) {
 
-            // An error in the ready queue should
-            // not prevent the remaining actions from firing
-            try {
-                readyQueue.pop()();
-            } catch(ignore) {
+                // An error in the ready queue should
+                // not prevent the remaining actions from firing
+                try {
+                    readyQueue.pop()();
+                } catch(ignore) {}
             }
-        }
 
-        // undocumented!
-        // A flag to set that the framework is ready and responsive.
-        me.isReady = true;
-    }
+            // undocumented!
+            // A flag to set that the framework is ready and responsive.
+            me.isReady = true;
+        },
 
-    /*
-     * DOM Content ready check for MSIE.
-     * http://javascript.nwbox.com/IEContentLoaded/
-     */
-    var checkScrollLeft = function() {
-        try {
-            document.documentElement.doScroll(kPropertyToCheck);
-        } catch(e) {
-            setTimeout(checkScrollLeft, kCheckIntervalMs);
+        /*
+         * DOM Content ready check for MSIE.
+         * http://javascript.nwbox.com/IEContentLoaded/
+         */
+        checkScrollLeft = function() {
+            try {
+                document.documentElement.doScroll(kPropertyToCheck);
+            } catch(e) {
+                setTimeout(checkScrollLeft, kCheckIntervalMs);
 
-            return;
-        }
+                return;
+            }
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        checkScrollLeft = nill;
-    };
+            checkScrollLeft = nill;
+        },
 
-    /*
-     *
-     */
-    var onMozDomContentLoaded = function() {
-        document.removeEventListener(kDomContentLoaded, onMozDomContentLoaded,
-            false);
+        /*
+         *
+         */
+        onMozDomContentLoaded = function() {
+            document.removeEventListener(kDomContentLoaded,
+                onMozDomContentLoaded, false);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onMozDomContentLoaded = nill;
-    };
+            onMozDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var onMozWindowLoad = function() {
-        document.removeEventListener(kLoad, onMozWindowLoad, false);
+        /*
+         *
+         */
+        onMozWindowLoad = function() {
+            document.removeEventListener(kLoad, onMozWindowLoad, false);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onMozWindowLoad = nill;
-    };
+            onMozWindowLoad = nill;
+        },
 
-    /*
-     *
-     */
-    var onIEDomContentLoaded = function() {
-        if (!isDomContentReady()) {
-            return;
-        }
+        /*
+         *
+         */
+        onIEDomContentLoaded = function() {
+            if (!isDomContentReady()) {return;}
 
-        document.detachEvent(kOnReadyStateChange, onIEDomContentLoaded);
+            document.detachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onIEDomContentLoaded = nill;
-    };
+            onIEDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var onIEWindowLoaded = function() {
-        window.detachEvent(kOnLoad, onIEWindowLoaded);
+        /*
+         *
+         */
+        onIEWindowLoaded = function() {
+            window.detachEvent(kOnLoad, onIEWindowLoaded);
 
-        flushReadyQueue();
+            flushReadyQueue();
 
-        onIEDomContentLoaded = nill;
-    };
+            onIEDomContentLoaded = nill;
+        },
 
-    /*
-     *
-     */
-    var bindReadyListeners = nill;
+        /*
+         *
+         */
+        bindReadyListeners = nill;
+
 
     if (document.addEventListener) {
 
@@ -248,4 +247,4 @@
         // this queue will be processed "only once" after DOM is ready.
         readyQueue.push(delegate);
     });
-}(this.o2, this, this.document));
+}(this.o2, this.o2.protecteds, this, this.document));

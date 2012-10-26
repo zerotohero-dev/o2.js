@@ -6,8 +6,6 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-02 22:47:21.699341
  * -->
  *
  * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
@@ -15,31 +13,36 @@
  * <p>Even if an error occurs when calling a <code>Function</code>, the next
  * function will be tried, disregarding the error.</p>
  */
-(function(framework) {
+(function(framework, fp) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('try.core', ['core']);
 
-    var exports = {};
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
-    /*
-     * Module Name
-     */
-    var kModuleName = 'Try';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /**
-     * @class {static} o2.Try
-     *
-     * <p>Used for consequentially executing a set of
-     * <code>Function</code>s.</p>
-     * <p>The <strong>function</strong>s are guaranteed to be called.</p>
-     * <p>Even if an error occurs when calling a <code>Function</code>, the next
-     * <code>Function</code> will be tried, disregarding the error.</p>
-     */
-    var me = create(kModuleName);
+        /*
+         * Module Name
+         */
+        kModuleName = 'Try',
+
+        /**
+         * @class {static} o2.Try
+         *
+         * <p>Used for consequentially executing a set of
+         * <code>Function</code>s.</p>
+         * <p>The <strong>function</strong>s are guaranteed to be called.</p>
+         * <p>Even if an error occurs when calling a <code>Function</code>, the next
+         * <code>Function</code> will be tried, disregarding the error.</p>
+         */
+        me = create(kModuleName);
 
     /**
      * @function {static} o2.Try.all
@@ -57,14 +60,13 @@
      * @param {Arguments} ... - each argument as a function.
      */
     exports.all = def(me, 'all', function() {
-        var i   = 0;
-        var len = 0;
+        var i   = 0,
+            len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
             try {
                 arguments[i]();
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
     });
 
@@ -87,16 +89,15 @@
      * @param {Arguments} ... - each argument as a function.
      */
     exports.these = def(me, 'these', function() {
-        var i   = 0;
-        var len = 0;
+        var i   = 0,
+            len = 0;
 
         for (i = 0, len = arguments.length; i < len; i++) {
             try {
                 arguments[i]();
 
                 return;
-            } catch(ignore) {
-            }
+            } catch(ignore) {}
         }
     });
-}(this.o2));
+}(this.o2, this.o2.protecteds));

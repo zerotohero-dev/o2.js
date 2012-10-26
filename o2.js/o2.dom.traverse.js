@@ -10,82 +10,120 @@
  *  This program is distributed under
  *  the terms of the MIT license.
  *  Please see the LICENSE file for details.
- *
- *  lastModified: 2012-06-03 00:12:56.288837
  * -->
  *
  * <p>A utility package for traversing the <code>DOM</code>.</p>
  */
-(function(framework, document, UNDEFINED) {
+(function(framework, fp, document, UNDEFINED) {
     'use strict';
 
-    var _         = framework.protecteds;
-    var attr      = _.getAttr;
-    var create    = attr(_, 'create');
-    var def       = attr(_, 'define');
-    var require   = attr(_, 'require');
+    // Ensure that dependencies have been loaded.
+    fp.ensure('dom.traverse', ['core', 'string.core',
+        'collection.core', 'dom.core', 'dom.class']);
 
-    var exports = {};
+    var attr      = fp.getAttr,
+        create    = attr(fp, 'create'),
+        def       = attr(fp, 'define'),
+        require   = attr(fp, 'require'),
 
-    /*
-     * Class Name
-     */
-    var kModuleName = 'Dom';
+        /*
+         * Module Exports
+         */
+        exports = {},
 
-    /*
-     * Dom (traverse)
-     */
-    var me = create(kModuleName);
+        /*
+         * Class Name
+         */
+        kModuleName = 'Dom',
 
-    /*
-     * Aliases
-     */
+        /*
+         * Dom (traverse)
+         */
+        me = create(kModuleName),
 
-    var $      = require('$');
-    var myName = require('name');
+        /*
+         * Aliases
+         */
 
-    var kAll   = '*';
-    var kEmpty = '';
+        $             = require('$'),
+        frameworkName = require('name'),
 
-    var nodeType  = require(kModuleName, 'nodeType');
-    var kTextNode = attr(nodeType, 'TEXT');
+        kAll   = '*',
+        kEmpty = '',
 
-    var getAttribute = require(kModuleName, 'getAttribute');
+        nodeType  = require(kModuleName, 'nodeType'),
+        kTextNode = attr(nodeType, 'TEXT'),
 
-    var kString       = 'String';
-    var format        = require(kString, 'format');
-    var generateGuid  = require(kString, 'generateGuid');
+        getAttribute = require(kModuleName, 'getAttribute'),
 
-    var contains = require('Collection', 'contains');
+        kString       = 'String',
+        format        = require(kString, 'format'),
+        generateGuid  = require(kString, 'generateGuid'),
 
-    /*
-     * Selectors
-     */
-    var kImmediateClassSelector       = '#{0} > .{1}';
-    var kImmediateClassAndTagSelector = '#{0} > {1}.{2}';
+        contains = require('Collection', 'contains'),
 
-    /*
-     * Checks document.querySelector support.
-     * Using document.documentMode for IE, since the compatMode property is
-     * deprecated in IE8+ in favor of the documentMode property, and IE7-
-     * does not suppory document.querySelector anyway.
-     * ref: http://msdn.microsoft.com/en-us/library/cc196988(v=vs.85).aspx
-     */
-    var isNativeQuerySupported =
-        (document.documentMode && document.documentMode >= 8) ||
-        (!!document.querySelector);
+        /*
+         * Selectors
+         */
+        kImmediateClassSelector       = '#{0} > .{1}',
+        kImmediateClassAndTagSelector = '#{0} > {1}.{2}',
+
+        /*
+         * Checks document.querySelector support.
+         * Using document.documentMode for IE, since the compatMode property is
+         * deprecated in IE8+ in favor of the documentMode property, and IE7-
+         * does not suppory document.querySelector anyway.
+         * ref: http://msdn.microsoft.com/en-us/library/cc196988(v=vs.85).aspx
+         */
+        isNativeQuerySupported =
+            (document.documentMode && document.documentMode >= 8) ||
+            (!!document.querySelector),
+
+        /*
+         * To be Overridden
+         */
+        getChildren                   = null,
+        getChildrenByAttribute        = null,
+        getChildrenByAttributeUntil   = null,
+        getChildrenByClass            = null,
+        getChildrenByClassUntil       = null,
+        getChildrenUntil              = null,
+        getChildrenWithAttribute      = null,
+        getChildrenWithAttributeUntil = null,
+        getChildrenWithClass          = null,
+        getChildrenWithClassUntil     = null,
+        getChildrenWithId             = null,
+        getChildrenWithIdUntil        = null,
+        getElements                   = null,
+        getSiblings                   = null,
+        getFirst                      = null,
+        getFirstByAttribute           = null,
+        getFirstByClass               = null,
+        getFirstWithClass             = null,
+        getFirstWithAttribute         = null,
+        getFirstWithId                = null,
+        getLast                       = null,
+        getLastByAttribute            = null,
+        getLastByClass                = null,
+        getLastWithId                 = null,
+        getLastWithAttribute          = null,
+        getLastWithClass              = null,
+        getNextAll                    = null,
+        getNth                        = null,
+        getNthByAttribute             = null,
+        getNthByClass                 = null,
+        getNthWithAttribute           = null,
+        getNthWithClass               = null,
+        getNthWithId                  = null,
+        getPrevAll                    = null,
+        isParent                      = null;
 
     /*
      * Checks whether two nodes are equal to one another.
      */
     function isNodeEquals(node, until) {
-        if (!node) {
-            return false;
-        }
-
-        if (!until) {
-            return false;
-        }
+        if (!node ) {return false;}
+        if (!until) {return false;}
 
         return $(node) === $(until);
     }
@@ -131,18 +169,15 @@
     function filter(nodes, filterDelegate, filterArgs,
                 breakDelegate, breakArgs, itemsCountCap, returnSingleItemAt,
                 isReverse) {
-        var result = [];
-        var i = 0;
-        var node = null;
-        var fArgs = filterArgs;
-        var counter = 0;
-        var len = 0;
+        var result  = [],
+            i       = 0,
+            node    = null,
+            fArgs   = filterArgs,
+            counter = 0,
+            len     = 0,
+            cache   = [];
 
-        if (!nodes) {
-            return [];
-        }
-
-       var cache = [];
+        if (!nodes) {return cache;}
 
         if (!!isReverse) {
             for (i = nodes.length - 1; i >= 0; i--) {
@@ -158,9 +193,7 @@
             if(breakDelegate) {
                 breakArgs.unshift(node);
 
-                if(breakDelegate.apply(node, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(node, breakArgs)) {break;}
             }
 
             if (node.nodeType !== kTextNode) {
@@ -198,9 +231,7 @@
             }
         }
 
-        if (!isNaN(returnSingleItemAt)) {
-            return null;
-        }
+        if (!isNaN(returnSingleItemAt)) {return null;}
 
         return result;
     }
@@ -214,13 +245,11 @@
                 breakDelegate, breakArgs,
                 name, itemsCountCap, returnSingleItemAt,
                 shouldStartAtFirstSibling, isReverse) {
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return [];}
 
-        var next = null;
-        var result = [];
-        var counter = 0;
+        var next    = null,
+            result  = [],
+            counter = 0;
 
         while (true) {
             if (!next && !!shouldStartAtFirstSibling) {
@@ -236,9 +265,7 @@
             if(breakDelegate) {
                 breakArgs.unshift(next);
 
-                if(breakDelegate.apply(next, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(next, breakArgs)) {break;}
             }
 
             if (next.nodeType !== kTextNode) {
@@ -316,14 +343,10 @@
                 }
             }
 
-            if (!next) {
-                break;
-            }
+            if (!next) {break;}
         }
 
-        if (returnSingleItemAt !== UNDEFINED) {
-            return null;
-        }
+        if (returnSingleItemAt !== UNDEFINED) {return null;}
 
         return result;
     }
@@ -337,13 +360,11 @@
                 breakDelegate, breakArgs,
                 name, itemsCountCap, returnSingleItemAt
     ) {
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return [];}
 
-        var result = [];
-        var target = $(elm);
-        var counter = 0;
+        var result  = [],
+            target  = $(elm),
+            counter = 0;
 
         target = target.parentNode;
 
@@ -351,9 +372,7 @@
             if(breakDelegate) {
                 breakArgs.unshift(target);
 
-                if(breakDelegate.apply(target, breakArgs)) {
-                    break;
-                }
+                if(breakDelegate.apply(target, breakArgs)) {break;}
             }
 
             if (name) {
@@ -437,15 +456,13 @@
      * Gets child nodes of the elm.
      */
     function getChildNodes(elm, name) {
-        var items = elm ? elm.childNodes : [];
-        var item = null;
-        var i = 0;
-        var len = 0;
-        var result = [];
+        var items  = elm ? elm.childNodes : [],
+            item   = null,
+            i      = 0,
+            len    = 0,
+            result = [];
 
-        if (!elm) {
-            return [];
-        }
+        if (!elm) {return result;}
 
         if (name) {
             for(i = 0, len = items.length; i < len; i++) {
@@ -470,9 +487,7 @@
                 returnSingleItemAt, isReverse) {
         var target = $(elm);
 
-        if (!target) {
-            return [];
-        }
+        if (!target) {return [];}
 
         getterParams.unshift(target);
 
@@ -507,7 +522,7 @@
     /*
      *
      */
-    var getChildren = require(kModuleName, 'getChildren');
+    getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.Dom.getChildrenByAttribute
@@ -550,7 +565,7 @@
     /*
      *
      */
-    var getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
+    getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
@@ -586,7 +601,7 @@
     /*
      *
      */
-    var getChildrenByAttributeUntil = require(kModuleName,
+    getChildrenByAttributeUntil = require(kModuleName,
         'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
@@ -624,7 +639,7 @@
             // and it'll degrade gracefully in IE7-
 
             if (!el.id) {
-                el.id = [myName, generateGuid()].join(kEmpty);
+                el.id = [frameworkName, generateGuid()].join(kEmpty);
             }
 
             if (name) {
@@ -649,7 +664,7 @@
     /*
      *
      */
-    var getChildrenByClass = require(kModuleName, 'getChildrenByClass');
+    getChildrenByClass = require(kModuleName, 'getChildrenByClass');
 
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
@@ -685,7 +700,7 @@
     /*
      *
      */
-    var getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
+    getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenUntil
@@ -719,7 +734,7 @@
     /*
      *
      */
-    var getChildrenUntil = require(kModuleName, 'getChildrenUntil');
+    getChildrenUntil = require(kModuleName, 'getChildrenUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
@@ -752,7 +767,7 @@
     /*
      *
      */
-    var getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
+    getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -786,7 +801,10 @@
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
 
-    var getChildrenWithAttributeUntil = require(kModuleName,
+    /*
+     *
+     */
+    getChildrenWithAttributeUntil = require(kModuleName,
         'getChildrenWithAttributeUntil');
 
     /**
@@ -817,7 +835,7 @@
     /*
      *
      */
-    var getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
+    getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -851,7 +869,8 @@
     /*
      *
      */
-    var getChildrenWithClassUntil = require(kModuleName, 'getChildrenWithClassUntil');
+    getChildrenWithClassUntil = require(kModuleName,
+        'getChildrenWithClassUntil');
 
     /**
      * @function {static} o2.Dom.getChildrenWithId
@@ -881,7 +900,7 @@
     /*
      *
      */
-    var getChildrenWithId = require(kModuleName, 'getChildrenWithId');
+    getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -915,7 +934,7 @@
     /*
      *
      */
-    var getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
+    getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
 
     /**
      * @function {static} o2.Dom.getElements
@@ -940,9 +959,7 @@
     exports.getElements = def(me, 'getElements', function(elm, name) {
         var target = $(elm);
 
-        if (!target) {
-            return [];
-        }
+        if (!target) {return [];}
 
         return target.getElementsByTagName(name || kAll);
     });
@@ -950,7 +967,7 @@
     /*
      *
      */
-    var getElements = require(kModuleName, 'getElements');
+    getElements = require(kModuleName, 'getElements');
 
     /**
      * @function {static} o2.Dom.getElementsByAttribute
@@ -1116,7 +1133,7 @@
     /*
      *
      */
-    var getSiblings = require(kModuleName, 'getSiblings');
+    getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -1458,7 +1475,7 @@
     /*
      *
      */
-    var getFirst = require(kModuleName, 'getFirst');
+    getFirst = require(kModuleName, 'getFirst');
 
     /**
      * @function {static} o2.Dom.getFirstByAttribute
@@ -1492,7 +1509,7 @@
     /*
      *
      */
-    var getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
+    getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstByClass
@@ -1525,7 +1542,7 @@
     /*
      *
      */
-    var getFirstByClass = require(kModuleName, 'getFirstByClass');
+    getFirstByClass = require(kModuleName, 'getFirstByClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithAttribute
@@ -1558,7 +1575,7 @@
     /*
      *
      */
-    var getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
+    getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstWithClass
@@ -1590,7 +1607,7 @@
     /*
      *
      */
-    var getFirstWithClass = require(kModuleName, 'getFirstWithClass');
+    getFirstWithClass = require(kModuleName, 'getFirstWithClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithId
@@ -1621,7 +1638,7 @@
     /*
      *
      */
-    var getFirstWithId = require(kModuleName, 'getFirstWithId');
+    getFirstWithId = require(kModuleName, 'getFirstWithId');
 
     /**
      * @function {static} o2.Dom.getFirstChild
@@ -1644,9 +1661,7 @@
      * <code>null</code> otherwise.
      */
     exports.getFirstChild = def(me, 'getFirstChild', function(elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirst(elm.firstChild, name);
     });
@@ -1676,9 +1691,7 @@
      */
     exports.getFirstChildByAttribute = def(me, 'getFirstChildByAttribute',
                 function(elm, attribute, value, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstByAttribute(elm.firstChild, attribute, value, name);
     });
@@ -1707,9 +1720,7 @@
      */
     exports.getFirstChildByClass = def(me, 'getFirstChildByClass', function(elm,
                 className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstByClass(elm.firstChild, className, name);
     });
@@ -1738,9 +1749,7 @@
      */
     exports.getFirstChildWithAttribute = def(me, 'getFirstChildWithAttribute',
                 function(elm, attribute, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithAttribute(elm.firstChild, attribute, name);
     });
@@ -1768,9 +1777,7 @@
      */
     exports.getFirstChildWithClass = def(me, 'getFirstChildWithClass', function(
                 elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithClass(elm.firstChild, name);
     });
@@ -1798,9 +1805,7 @@
      */
     exports.getFirstChildWithId = def(me, 'getFirstChildWithId', function(elm,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getFirstWithId(elm.firstChild, name);
     });
@@ -1833,7 +1838,7 @@
     /*
      *
      */
-    var getLast = require(kModuleName, 'getLast');
+    getLast = require(kModuleName, 'getLast');
 
     /**
      * @function {static} o2.Dom.getLastByAttribute
@@ -1867,7 +1872,7 @@
     /*
      *
      */
-    var getLastByAttribute = require(kModuleName, 'getLastByAttribute');
+    getLastByAttribute = require(kModuleName, 'getLastByAttribute');
 
     /**
      * @function {static} o2.Dom.getLastByClass
@@ -1900,7 +1905,7 @@
     /*
      *
      */
-    var getLastByClass = require(kModuleName, 'getLastByClass');
+    getLastByClass = require(kModuleName, 'getLastByClass');
 
     /**
      * @function {static} o2.Dom.getLastWithId
@@ -1931,7 +1936,7 @@
     /*
      *
      */
-    var getLastWithId = require(kModuleName, 'getLastWithId');
+    getLastWithId = require(kModuleName, 'getLastWithId');
 
     /**
      * @function {static} o2.Dom.getLastWithAttribute
@@ -1964,7 +1969,7 @@
     /*
      *
      */
-    var getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
+    getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
 
     /**
      * @function {static} o2.Dom.getLastWithClass
@@ -1997,7 +2002,7 @@
     /*
      *
      */
-    var getLastWithClass = require(kModuleName, 'getLastWithClass');
+    getLastWithClass = require(kModuleName, 'getLastWithClass');
 
     /**
      * @function {static} o2.Dom.getLastChild
@@ -2020,9 +2025,7 @@
      * <code>null</code> otherwise.
      */
     exports.getLastChild = def(me, 'getLastChild', function(elm, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLast(elm.lastChild, name);
     });
@@ -2052,9 +2055,7 @@
      */
     exports.getLastChildByAttribute = def(me, 'getLastChildByAttribute',
                 function(elm, attribute, value, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastByAttribute(elm.lastChild, attribute, value, name);
     });
@@ -2083,9 +2084,7 @@
      */
     exports.getLastChildByClass = def(me, 'getLastChildByClass', function(elm,
                 className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastByClass(elm.lastChild, className, name);
     });
@@ -2114,9 +2113,7 @@
      */
     exports.getLastChildWithAttribute = def(me, 'getLastChildWithAttribute',
                 function(elm, attribute, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithAttribute(elm.lastChild, attribute, name);
     });
@@ -2145,9 +2142,7 @@
      */
     exports.getLastChildWithClass = def(me, 'getLastChildWithClass', function(
                 elm, className, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithClass(elm.lastChild, className, name);
     });
@@ -2175,9 +2170,7 @@
      */
     exports.getLastChildWithId = def(me, 'getLastChildWithId', function(elm,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getLastWithId(elm.lastChild, name);
     });
@@ -2371,7 +2364,7 @@
     /*
      *
      */
-    var getNextAll = require(kModuleName, 'getNextAll');
+    getNextAll = require(kModuleName, 'getNextAll');
 
     /**
      * @function {static} o2.Dom.getNextAllByAttribute
@@ -2719,7 +2712,10 @@
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
     });
 
-    var getNth = require(kModuleName, 'getNth');
+    /*
+     *
+     */
+    getNth = require(kModuleName, 'getNth');
 
     /**
      * @function {static} o2.Dom.getNthByAttribute
@@ -2754,7 +2750,7 @@
     /*
      *
      */
-    var getNthByAttribute = require(kModuleName, 'getNthByAttribute');
+    getNthByAttribute = require(kModuleName, 'getNthByAttribute');
 
     /**
      * @function {static} o2.Dom.getNthByClass
@@ -2789,7 +2785,7 @@
     /*
      *
      */
-    var getNthByClass = require(kModuleName, 'getNthByClass');
+    getNthByClass = require(kModuleName, 'getNthByClass');
 
     /**
      * @function {static} o2.Dom.getNthWithAttribute
@@ -2823,7 +2819,7 @@
     /*
      *
      */
-    var getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
+    getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
 
     /**
      * @function {static} o2.Dom.getNthWithClass
@@ -2856,7 +2852,7 @@
     /*
      *
      */
-    var getNthWithClass = require(kModuleName, 'getNthWithClass');
+    getNthWithClass = require(kModuleName, 'getNthWithClass');
 
     /**
      * @function {static} o2.Dom.getNthWithId
@@ -2888,7 +2884,7 @@
     /*
      *
      */
-    var getNthWithId = require(kModuleName, 'getNthWithId');
+    getNthWithId = require(kModuleName, 'getNthWithId');
 
     /**
      * @function {static} o2.Dom.getNthChild
@@ -2912,9 +2908,7 @@
      * if found; <code>null</code> otherwise.
      */
     exports.getNthChild = def(me, 'getNthChild', function(elm, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNth(elm.firstChild, n, name);
     });
@@ -2945,9 +2939,7 @@
      */
     exports.getNthChildByAttribute = def(me, 'getNthChildByAttribute', function(
                 elm, attribute, value, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthByAttribute(elm.firstChild, attribute, value, n, name);
     });
@@ -2977,9 +2969,7 @@
      */
     exports.getNthChildByClass = def(me, 'getNthChildByClass', function(elm,
                 className, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthByClass(elm.firstChild, className, n, name);
     });
@@ -3009,9 +2999,7 @@
      */
     exports.getNthChildWithAttribute = def(me, 'getNthChildWithAttribute',
                 function(elm, attribute, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithAttribute(elm.firstChild, attribute, n, name);
     });
@@ -3040,9 +3028,7 @@
      */
     exports.getNthChildWithClass = def(me, 'getNthChildWithClass', function(
                 elm, n, name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithClass(elm.firstChild, n, name);
     });
@@ -3071,9 +3057,7 @@
      */
     exports.getNthChildWithId = def(me, 'getNthChildWithId', function(elm, n,
                 name) {
-        if (!elm) {
-            return null;
-        }
+        if (!elm) {return null;}
 
         return getNthWithId(elm.firstChild, n, name);
     });
@@ -4286,7 +4270,7 @@
     /*
      *
      */
-    var getPrevAll = require(kModuleName, 'getPrevAll');
+    getPrevAll = require(kModuleName, 'getPrevAll');
 
     /**
      * @function {static} o2.Dom.getPrevAllByAttribute
@@ -4634,9 +4618,7 @@
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isChild = def(me, 'isChild', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getChildren(ref), elm);
     });
@@ -4662,9 +4644,7 @@
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isNext = def(me, 'isNext', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getNextAll(ref), elm);
     });
@@ -4690,9 +4670,7 @@
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isParent = def(me, 'isParent', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getParents(ref), elm);
     });
@@ -4700,7 +4678,7 @@
     /*
      *
      */
-    var isParent = require(kModuleName, 'isParent');
+    isParent = require(kModuleName, 'isParent');
 
     /**
      * @function {static} o2.Dom.isParentOrSelf
@@ -4723,13 +4701,8 @@
      * <strong>ref</strong>, or the node itself; <code>false</code> otherwise.
      */
     exports.isParentOrSelf = def(me, 'isParentOrSelf', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
-
-        if (ref === elm) {
-            return true;
-        }
+        if (!ref       ) {return false;}
+        if (ref === elm) {return true;}
 
         return isParent(elm, ref);
     });
@@ -4755,9 +4728,7 @@
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isPrev = def(me, 'isPrev', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getPrevAll(ref), elm);
     });
@@ -4783,10 +4754,8 @@
      * <strong>ref</strong>; <code>false</code> otherwise.
      */
     exports.isSibling = def(me, 'isSibling', function(elm, ref) {
-        if (!ref) {
-            return false;
-        }
+        if (!ref) {return false;}
 
         return contains(getSiblings(ref), elm);
     });
-}(this.o2, this.document));
+}(this.o2, this.o2.protecteds, this.document));
