@@ -1026,7 +1026,7 @@ if (!document) {
   *  <p>
   *
   * @project     o2.js
-  * @version     0.25.a.0001351267578
+  * @version     0.25.a.0001351569277
   * @author      Volkan Özçelik
   * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
   */
@@ -1135,7 +1135,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001351267578');
+    exports.build = def(me, 'build', '.0001351569277');
 
     /**
      * @function {static} o2.$
@@ -6198,9 +6198,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * Aliases
          */
 
-        kMethodHelper = 'Method',
-        identity      = require(kMethodHelper, 'identity'),
-        bind          = require(kMethodHelper, 'bind'),
+        kMethod  = 'Method',
+        identity = require(kMethod, 'identity'),
+        bind     = require(kMethod, 'bind'),
 
         kValidation = 'Validation',
         isArguments = require(kValidation, 'isArguments'),
@@ -6247,7 +6247,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * o2.Collection.clear(obj);
      * // obj is now {}
      * obj = [1,2,3];
-     * o2.CollectionHelper.clear(obj);
+     * o2.Collection.clear(obj);
      * // obj is now []
      * </pre>
      *
@@ -18231,9 +18231,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * Aliases
          */
 
-        kObjectHelper = 'Object',
-        copyFn        = require(kObjectHelper, 'copyMethods'),
-        copyAttr      = require(kObjectHelper, 'copy'),
+        kObject  = 'Object',
+        copyFn   = require(kObject, 'copyMethods'),
+        copyAttr = require(kObject, 'copy'),
 
         /*
          * Inheritance-Related Constants
@@ -19518,9 +19518,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         initDebugger = require(kDebugger, 'init'),
         log          = require(kDebugger, 'log'),
 
-        kStringHelper = 'String',
-        concat = require(kStringHelper, 'concat'),
-        format = require(kStringHelper, 'format'),
+        kString = 'String',
+        concat = require(kString, 'concat'),
+        format = require(kString, 'format'),
 
         scrollToBottom = require('Dom', 'scrollWindowToBottom'),
 
