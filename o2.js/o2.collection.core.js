@@ -45,9 +45,9 @@
          * Aliases
          */
 
-        kMethodHelper = 'Method',
-        identity      = require(kMethodHelper, 'identity'),
-        bind          = require(kMethodHelper, 'bind'),
+        kMethod  = 'Method',
+        identity = require(kMethod, 'identity'),
+        bind     = require(kMethod, 'bind'),
 
         kValidation = 'Validation',
         isArguments = require(kValidation, 'isArguments'),
@@ -94,7 +94,7 @@
      * o2.Collection.clear(obj);
      * // obj is now {}
      * obj = [1,2,3];
-     * o2.CollectionHelper.clear(obj);
+     * o2.Collection.clear(obj);
      * // obj is now []
      * </pre>
      *

@@ -43,9 +43,9 @@
          * Aliases
          */
 
-        kObjectHelper = 'Object',
-        copyFn        = require(kObjectHelper, 'copyMethods'),
-        copyAttr      = require(kObjectHelper, 'copy'),
+        kObject  = 'Object',
+        copyFn   = require(kObject, 'copyMethods'),
+        copyAttr = require(kObject, 'copy'),
 
         /*
          * Inheritance-Related Constants
