@@ -61,9 +61,9 @@
         initDebugger = require(kDebugger, 'init'),
         log          = require(kDebugger, 'log'),
 
-        kStringHelper = 'String',
-        concat = require(kStringHelper, 'concat'),
-        format = require(kStringHelper, 'format'),
+        kString = 'String',
+        concat = require(kString, 'concat'),
+        format = require(kString, 'format'),
 
         scrollToBottom = require('Dom', 'scrollWindowToBottom'),
 
