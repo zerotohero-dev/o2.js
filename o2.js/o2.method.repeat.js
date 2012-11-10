@@ -1,33 +1,39 @@
-/**
- * @module   method.repeat
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('method.repeat', ['core']);
+    /**
+     * @module   method.repeat
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
+     */
+    fp.ensure(
+        'method.repeat',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
         def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Method',
 
         /*

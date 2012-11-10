@@ -1,26 +1,30 @@
-/**
- * @module   dom.style
- * @requires core
- * @requires dom.core
- * @requires string.core
- * @requires string.transform
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A utility package to
- * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
- * styles.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.style', ['core', 'string.core',
-        'string.transform', 'dom.core']);
+    /**
+     * @module   dom.style
+     *
+     * @requires core
+     * @requires string.core
+     * @requires string.transform
+     *
+     * <p>A utility package to
+     * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
+     * styles.</p>
+     */
+    fp.ensure(
+        'dom.style',
+    [
+        'core',
+        'string.core',
+        'string.transform'
+    ]);
 
     var attr      = fp.getAttr,
         alias     = attr(fp, 'alias'),
@@ -29,13 +33,15 @@
         require   = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -44,21 +50,32 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $             = require('$'),
         t             = require('t'),
         frameworkName = require('name'),
 
+        /*
+         * string.core
+         */
         kString               = 'String',
         concat                = require(kString, 'concat'),
+
+        /*
+         * string.transform
+         */
         toCamelCase           = require(kString, 'toCamelCase'),
         toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kBackgroundPositionX = 'background-position-x',
         kBackgroundPositionY = 'background-position-y',
         kCssFloat            = 'cssFloat',
@@ -83,19 +100,22 @@
         kCssText             = 'cssText',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kRegNumber      = /^-?\d/,
         kRegPixelNumber = /^-?\d+(?:px)?$/i,
 
         /*
-         *
+         * # Minimal Browser Detection
          */
+
         isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         hide      = null,
         show      = null,
         isVisible = null;

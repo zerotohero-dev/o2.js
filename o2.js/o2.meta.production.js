@@ -1,4 +1,10 @@
-//TODO: check that this file works.
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
+//TODO: ensure that this file works.
 
 /*
  * A production-optimized version of o2.meta.js

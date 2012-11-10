@@ -1,21 +1,26 @@
-/**
- * @module   dom.class
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A utility package to add/remove/modify <code>class</code>es.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.class', ['core', 'string.core']);
+    /**
+     * @module   dom.class
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>A utility package to add/remove/modify <code>class</code>es.</p>
+     */
+    fp.ensure(
+        'dom.class',
+    [
+        'core',
+        'string.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -23,13 +28,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -38,23 +45,31 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * string.core
+         */
         concat = require('String', 'concat'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kBeginOrBlank = '(\\s|^)',
         kBlank        = ' ',
         kEndOrBlank   = '(\\s|$)',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         createClassNameRegExp = null,
         hasClass              = null,
         addClass              = null,

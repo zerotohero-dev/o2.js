@@ -1,22 +1,28 @@
-/**
- * @module   ajax.core
- * @requires core
- * @requires string.core
- * @requires event.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('ajax.core', ['core', 'string.core', 'event.core']);
+    /**
+     * @module   ajax.core
+     *
+     * @requires core
+     * @requires string.core
+     * @requires event.core
+     *
+     * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
+     */
+    fp.ensure(
+        'ajax.core',
+    [
+        'core',
+        'string.core',
+        'event.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -24,12 +30,12 @@
         require = attr(fp, 'require'),
 
         /*
-         * Exports
+         * # Module Exports
          */
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
         kModuleName = 'Ajax',
 
@@ -42,20 +48,30 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         nill = require('nill'),
 
+        /*
+         * string.core
+         */
         kString       = 'String',
         concat        = require(kString, 'concat'),
         generateGuid  = require(kString, 'generateGuid'),
 
+        /*
+         * event.core
+         */
         listen = require('Event', 'addEventListener'),
 
         /*
-         * Headers
+         * # Headers
          */
+
         commonHeaders = [{
             'Accept' :
             'text/javascript, text/html, application/xml, text/xml, */*'
@@ -65,8 +81,9 @@
         }],
 
         /*
-         * Microsoft-Specific ProgIds
+         * # Microsoft-Specific ProgIds
          */
+
         progIds = [
             'Msxml2.XMLHTTP',
             'Microsoft.XMLHTTP',
@@ -77,31 +94,36 @@
         ],
 
         /*
-         * Event
+         * # Events
          */
+
         kUnload = 'unload',
 
         /*
-         * Error Message
+         * # Error Messages
          */
+
         kNoXhr = 'Failed to create an XHR instance',
 
         /*
-         * Status
+         * # Statuses
          */
+
         kCached   = 304,
         kComplete = 4,
         kOk       = 200,
 
         /*
-         * Verb
+         * # Verbs
          */
+
         kGet  = 'GET',
         kPost = 'POST',
 
         /*
-         * Text, Prefix, Suffix
+         * # Text, Prefix, Suffix
          */
+
         kAnd    = '&',
         kEmpty  = '',
         kEquals = '=',
@@ -110,9 +132,14 @@
         kRandom = '?rnd=',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kUrlSpaceRegExp = /%20/g,
+
+        /*
+         * # Static State
+         */
 
         /*
          * Active requests are cached here.
@@ -130,8 +157,9 @@
         activeRequestCount = 0,
 
         /*
-         * Will be overridden.
+         * # To be Overridden
          */
+
         createXhr = null;
 
     /*
@@ -145,7 +173,7 @@
             createXhr = function() {
                 var request = new window.XMLHttpRequest();
 
-                if (!request) {throw kNoXhr;}
+                if (!request) { throw kNoXhr; }
 
                 // Request is not completed yet.
                 request.isComplete = false;
@@ -210,7 +238,8 @@
      * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
      *
      * @param {XMLHttpRequest} xhr - the current <code>Xhr</code> instance.
-     * @param {Object} callbacks - oncomplete, onerror and onexception callbacks.
+     * @param {Object} callbacks - oncomplete, onerror and onexception
+     * callbacks.
      */
     function processCallbacks(xhr, callbacks) {
         var isSuccess    = false,
@@ -514,7 +543,8 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    exports.post = def(me, 'post', function(url, parameters, callbacks, isSync) {
+    exports.post = def(me, 'post', function(url, parameters, callbacks,
+                isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
     });
 

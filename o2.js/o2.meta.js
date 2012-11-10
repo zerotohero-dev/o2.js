@@ -1,12 +1,13 @@
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
+
 /**
  * Root namespace &ndash; magic goes here ;)
  * @namespace o2
- *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
  */
 
 /*
@@ -39,17 +40,19 @@
         try {window.console.log(arguments);} catch(ignore){}
     }
 
-    /*
-     * Common Constants
-     */
+        /*
+         * # Common Constants
+         */
+
     var kAny    = '*',
         kEmpty  = '',
         kObject = 'object',
         kString = 'string',
 
         /*
-         * Warning Messages
+         * # Warning Messages
          */
+
         kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ',
         kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ',
         kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.',
@@ -60,8 +63,9 @@
         kRootNotFound         = 'framework.protecteds: root not found for',
 
         /*
-         * Module Names
+         * # Module Names
          */
+
         kCore                = 'core',
         kExtend              = 'extend',
         kAjaxCore            = 'ajax.core',
@@ -81,7 +85,16 @@
         kDomModify           = 'dom.modify',
         kDomReady            = 'dom.ready',
         kDomScroll           = 'dom.scroll',
-        kDomTraverse         = 'dom.traverse',
+        kDomTraverseChild    = 'dom.traverse.child',
+        kDomTraverseChildren = 'dom.traverse.children',
+        kDomTraverseCore     = 'dom.traverse.core',
+        kDomTraverseEnds     = 'dom.traverse.ends',
+        kDomTraverseNext     = 'dom.traverse.next',
+        kDomTraverseNth      = 'dom.traverse.nth',
+        kDomTraverseParent   = 'dom.traverse.parent',
+        kDomTraversePrev     = 'dom.traverse.prev',
+        kDomTraverseSiblings = 'dom.traverse.siblings',
+        kDomTraverseValidate = 'dom.traverse.validate',
         kDomStyle            = 'dom.style',
         kEventConstants      = 'event.constants',
         kEventCore           = 'event.core',
@@ -113,8 +126,9 @@
         kCoreMeta            = 'core.meta',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         fp           = null,
         classes      = null,
         modules      = null;
@@ -414,28 +428,27 @@
             'getStyle', 'hide', 'isVisible', 'setCss', 'setStyle', 'show',
             'toggleVisibility'
     ]],[
-        'Dom', kDomTraverse, [
-
-            //TODO: dom.traverse.core
+        'Dom', kDomTraverseCore, [
             'getElements', 'getElementsByAttribute', 'getElementsByClass',
             'getElementsWithAttribute', 'getElementsWithClass',
-            'getElementsWithId',
-
-            //TOOD: dom.traverse.ends
+            'getElementsWithId'
+    ]],[
+        'Dom', kDomTraverseEnds, [
             'getFirst', 'getFirstByAttribute', 'getFirstByClass',
             'getFirstWithAttribute', 'getFirstWithClass', 'getFirstWithId',
 
             'getLast', 'getLastByAttribute', 'getLastByClass', 'getLastWithId',
-            'getLastWithAttribute', 'getLastWithClass',
-
-            //TODO: dom.traverse.child
+            'getLastWithAttribute', 'getLastWithClass'
+    ]],[
+        'Dom', kDomTraverseChildren, [
             'getChildren', 'getChildrenByAttribute',
             'getChildrenByAttributeUntil', 'getChildrenByClass',
             'getChildrenByClassUntil', 'getChildrenUntil',
             'getChildrenWithAttribute', 'getChildrenWithAttributeUntil',
             'getChildrenWithClass', 'getChildrenWithClassUntil',
-            'getChildrenWithId', 'getChildrenWithIdUntil',
-
+            'getChildrenWithId', 'getChildrenWithIdUntil'
+    ]],[
+        'Dom', kDomTraverseChild, [
             'getFirstChild', 'getFirstChildByAttribute', 'getFirstChildByClass',
             'getFirstChildWithAttribute', 'getFirstChildWithClass',
             'getFirstChildWithId',
@@ -446,9 +459,9 @@
 
             'getNthChild', 'getNthChildByAttribute', 'getNthChildByClass',
             'getNthChildWithAttribute', 'getNthChildWithClass',
-            'getNthChildWithId',
-
-            //TODO: dom.traverse.next
+            'getNthChildWithId'
+    ]],[
+        'Dom', kDomTraverseNext, [
             'getNext', 'getNextByAttribute', 'getNextByClass',
             'getNextWithAttribute', 'getNextWithClass', 'getNextWithId',
 
@@ -457,49 +470,50 @@
             'getNextAllWithAttribute', 'getNextAllWithAttributeUntil',
             'getNextAllWithClass', 'getNextAllWithClassUntil',
             'getNextAllWithId', 'getNextAllWithIdUntil',
+    ]],[
+        'Dom', kDomTraverseNth, [
+            'getNth', 'getNthByAttribute', 'getNthByClass',
+            'getNthWithAttribute', 'getNthWithClass', 'getNthWithId',
 
             'getNthNext', 'getNthNextByAttribute', 'getNthNextByClass',
             'getNthNextWithAttribute', 'getNthNextWithClass',
             'getNthNextWithId',
 
-            //TODO: dom.traverse.parent
+            'getNthPrev', 'getNthPrevByAttribute', 'getNthPrevByClass',
+            'getNthPrevWithAttribute', 'getNthPrevWithClass',
+            'getNthPrevWithId',
+
             'getNthParent', 'getNthParentByAttribute', 'getNthParentByClass',
             'getNthParentWithAttribute', 'getNthParentWithClass',
-            'getNthParentWithId',
-
+            'getNthParentWithId'
+    ]],[
+        'Dom', kDomTraverseParent, [
             'getParent', 'getParentByAttribute', 'getParentByClass',
             'getParentWithAttribute', 'getParentWithClass', 'getParentWithId',
             'getParents', 'getParentsByAttribute', 'getParentsByAttributeUntil',
             'getParentsByClass', 'getParentsByClassUntil', 'getParentsUntil',
             'getParentsWithAttribute', 'getParentsWithAttributeUntil',
             'getParentsWithClass', 'getParentsWithClassUntil',
-            'getParentsWithId', 'getParentsWithIdUntil',
-
-            //TODO: dom.traverse.prev
-            'getNthPrev', 'getNthPrevByAttribute', 'getNthPrevByClass',
-            'getNthPrevWithAttribute', 'getNthPrevWithClass',
-            'getNthPrevWithId',
-
+            'getParentsWithId', 'getParentsWithIdUntil'
+    ]],[
+        'Dom', kDomTraversePrev, [
             'getPrev', 'getPrevByAttribute', 'getPrevByClass',
             'getPrevWithAttribute', 'getPrevWithClass', 'getPrevWithId',
             'getPrevAll', 'getPrevAllByAttribute', 'getPrevAllByAttributeUntil',
             'getPrevAllByClass', 'getPrevAllByClassUntil', 'getPrevAllUntil',
             'getPrevAllWithAttribute', 'getPrevAllWithAttributeUntil',
             'getPrevAllWithClass', 'getPrevAllWithClassUntil',
-            'getPrevAllWithId', 'getPrevAllWithIdUntil',
-
-            //TODO: dom.traverse.sibling
+            'getPrevAllWithId', 'getPrevAllWithIdUntil'
+    ]],[
+        'Dom', kDomTraverseSiblings, [
             'getSiblings', 'getSiblingsByAttribute',
             'getSiblingsByAttributeUntil', 'getSiblingsByClass',
             'getSiblingsByClassUntil', 'getSiblingsUntil',
             'getSiblingsWithAttribute', 'getSiblingsWithAttributeUntil',
             'getSiblingsWithClass', 'getSiblingsWithClassUntil',
-            'getSiblingsWithId', 'getSiblingsWithIdUntil',
-
-            'getNth', 'getNthByAttribute', 'getNthByClass',
-            'getNthWithAttribute', 'getNthWithClass', 'getNthWithId',
-
-            //TODO: dom.traverse.validate
+            'getSiblingsWithId', 'getSiblingsWithIdUntil'
+    ]],[
+        'Dom', kDomTraverseValidate, [
             'isChild', 'isNext', 'isParent', 'isParentOrSelf', 'isPrev',
             'isSibling'
     ]],[
@@ -749,7 +763,14 @@
 
             me[name] = fn;
         }
+
+        //TODO: handle if no meta[name]
+        //if the name does not exist in the meta data, then you
+        //cannot define it.
     });
+
+//TODO: add documentation to these protected methods, they are
+//harder to fully understand from outside.
 
     /*
      *
@@ -779,6 +800,11 @@
 
         return elem;
     });
+
+    function setAttr(root, name, value) {
+        // if root.name exists throw error
+        //
+    }
 
     /*
      *

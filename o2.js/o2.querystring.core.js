@@ -1,33 +1,38 @@
-/**
- * @module   querystring.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <strong>query string</strong> parser.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('querystring.core', ['core']);
+    /**
+     * @module   querystring.core
+     *
+     * @requires core
+     *
+     * <p>A <strong>query string</strong> parser.</p>
+     */
+    fp.ensure(
+        'querystring.core',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'QueryString',
 
         /**
@@ -38,21 +43,27 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
+         */
+
+        /*
+         * native
          */
         location = attr(window, 'location'),
 
         /*
-         * Common Strings
+         * # Common Strings
          */
+
         kAnd    = '&',
         kEquals = '=',
         kQuery  = '?',
         kEmpty  = '',
 
         /*
-         * Common Indexes
+         * # Common Indexes
          */
+
         kNameIndex  = 0,
         kValueIndex = 1;
 

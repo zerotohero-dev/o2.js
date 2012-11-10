@@ -1,22 +1,25 @@
-/**
- * @module   dom.ready
- * @requires core
- * @requires dom.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A helper to fire events when the <code>DOM</code> content is loaded.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
-
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.ready', ['core', 'dom.core']);
+    /**
+     * @module   dom.ready
+     *
+     * @requires core
+     *
+     * <p>A helper to fire events when the <code>DOM</code> content
+     * is loaded.</p>
+     */
+    fp.ensure(
+        'dom.ready',
+    [
+        'core'
+    ]);
 
     var attr      = fp.getAttr,
         create    = attr(fp, 'create'),
@@ -24,13 +27,15 @@
         require   = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -39,14 +44,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         nill = require('nill'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kCheckIntervalMs    = 50,
         kDomContentLoaded   = 'DOMContentLoaded',
         kLoad               = 'load',
@@ -55,8 +64,9 @@
         kPropertyToCheck    = 'left',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kDomLoadedRegExp = /^loade|c/,
 
         /*
@@ -67,10 +77,15 @@
         },
 
         /*
-         * State
+         * # State
          */
+
         isApplicationReady = isDomContentReady(),
         readyQueue         = [],
+
+        /*
+         * # Private Static Helper Methods
+         */
 
         /*
          *
@@ -158,8 +173,9 @@
         },
 
         /*
-         *
+         * # To be Overridden
          */
+
         bindReadyListeners = nill;
 
 

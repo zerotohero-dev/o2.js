@@ -1,37 +1,45 @@
-/**
- * @module   object.core
- * @requires collection.core
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>An object/clone/copy/inheritance helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('object.core', ['core', 'collection.core', 'string.core']);
+    /**
+     * @module   object.core
+     *
+     * @requires core
+     * @requires collection.core
+     * @requires string.core
+     *
+     * <p>An object/clone/copy/inheritance helper.</p>
+     */
+    fp.ensure(
+        'object.core',
+    [
+        'core',
+        'collection.core',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        alias     = attr(fp, 'alias'),
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Object',
 
         /**
@@ -43,22 +51,35 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         frameworkName = require('name'),
 
+        /*
+         * string.core
+         */
         kString = 'String',
         format  = require(kString, 'format'),
         concat  = require(kString, 'concat'),
 
+        /*
+         * collection.core
+         */
         toArray = require('Collection', 'toArray'),
 
+        /*
+         * native/shim
+         */
         JSON = window.JSON,
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kNoJsonSupport = concat(frameworkName,
             ': {0}: No JSON support. quitting'),
         kFunction      = 'function',

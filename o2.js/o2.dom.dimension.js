@@ -1,23 +1,29 @@
-/**
- * @module   dom.dimension
- * @requires core
- * @requires dom.style
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>Includes dimension (<strong>i.e. width-height related</strong>) helper
- * methods.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.dimension', ['core', 'string.core', 'dom.style']);
+    /**
+     * @module   dom.dimension
+     *
+     * @requires core
+     * @requires dom.style
+     * @requires string.core
+     *
+     * <p>Includes dimension (<strong>i.e. width-height related</strong>)
+     * helper methods.</p>
+     */
+    fp.ensure(
+        'dom.dimension',
+    [
+        'core',
+        'dom.style',
+        'string.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -25,13 +31,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -40,26 +48,42 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * string.core
+         */
         concat = require('String', 'concat'),
 
+        /*
+         * dom.style
+         */
         setStyle = require(kModuleName, 'setStyle'),
 
         /*
-         * Common Constants
+         * native
          */
+        max = attr(Math, 'max'),
+
+        /*
+         * # Common Constants
+         */
+
         kHeight    = 'height',
         kModernCss = 'CSS1Compat',
         kPixel     = 'px',
         kWidth     = 'width',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         getDocumentElement      = null,
         getDimension            = null,
         getDocumentDimension    = null,
@@ -144,12 +168,12 @@
         if(!doc) {return {width : 0, height : 0};}
 
         return {
-            width : Math.max(
+            width : max(
                 doc.scrollHeight,
                 doc.offsetHeight,
                 doc.clientHeight
             ),
-            height : Math.max(
+            height : max(
                 doc.scrollWidth,
                 doc.offsetWidth,
                 doc.clientWidth

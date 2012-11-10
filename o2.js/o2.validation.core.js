@@ -1,20 +1,24 @@
-/**
- * @module   validation.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A validation helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('validation.core', ['core']);
+    /**
+     * @module   validation.core
+     *
+     * @requires core
+     *
+     * <p>A validation helper.</p>
+     */
+    fp.ensure(
+        'validation.core',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
@@ -22,13 +26,15 @@
         obj    = attr(fp, 'getObject'),
 
         /*
-         * Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Validation',
 
         /**
@@ -40,9 +46,17 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
+         */
+
+        /*
+         * native
          */
         toString = attr(Object.prototype, 'toString'),
+
+        /*
+         * # Configuration
+         */
 
         /*
          * Calendar Months
@@ -50,8 +64,9 @@
         months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kDecimalBase          = 10,
         kFebruaryIndex        = 1,
         kLeapFebruaryDays     = 29,
@@ -61,8 +76,9 @@
         kYmdArgLen            = 3,
 
         /*
-         * EcmaScript Types
+         * # EcmaScript Types
          */
+
         kArguments = 'Arguments',
         kArray     = 'Array',
         kBoolean   = 'Boolean',
@@ -74,8 +90,9 @@
         kString    = 'String',
 
         /*
-         * Defined as aliases.
+         * To be Overridden
          */
+
         is = null;
 
     /*

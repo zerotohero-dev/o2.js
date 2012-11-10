@@ -1,37 +1,43 @@
-/**
- * @module   dom.load
- * @requires core
- * @requires dom.core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>This package is for asynchronously loading resources such as images and
- * scripts.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.load', ['core', 'string.core', 'dom.core']);
+    /**
+     * @module   dom.load
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>This package is for asynchronously loading resources such as images
+     * and scripts.</p>
+     */
+    fp.ensure(
+        'dom.load',
+    [
+        'core',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -40,20 +46,27 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         frameworkName = require('name'),
         nill          = require('nill'),
 
+        /*
+         * string.core
+         */
         kString       = 'String',
         concat        = require(kString, 'concat'),
         format        = require(kString, 'format'),
         generateGuid  = require(kString, 'generateGuid'),
 
         /*
-         * Common Strings
+         * # Common Strings
          */
+
         kCssId      = concat(frameworkName, '-css-{0}'),
         kHead       = 'head',
         kLink       = 'link',
@@ -64,18 +77,30 @@
         kSheetType  = 'text/css',
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kCssCheckInterval   = 100,
         kMaxCssCheckAttempt = 500,
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kCompleteRegExp = /loaded|complete/,
 
+        /*
+         * # Minimal Browser Detection
+         *
+         *     "In the future, they said; things will be better, they said."
+         *
+         *     It's year 2012+ and it's a shame that still sometimes the only
+         *     workaround is browser sniffing.
+         */
+
         kM$     = 'MSIE',
-        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 &&
+            !window.opera,
         isOpera = !!window.opera;
 
     /**

@@ -1,37 +1,45 @@
-/**
- * @module   event.core
- * @requires core
- * @requires event.constants
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A cross-browser event management object.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('event.core', ['core', 'event.core', 'string.core']);
+    /**
+     * @module   event.core
+     *
+     * @requires core
+     * @requires event.constants
+     * @requires string.core
+     *
+     * <p>A cross-browser event management object.</p>
+     */
+    fp.ensure(
+        'event.core',
+    [
+        'core',
+        'event.constants',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        alias     = attr(fp, 'alias'),
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Event',
 
         /*
@@ -40,33 +48,42 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $      = require('$'),
         myName = require('name'),
         nill   = require('nill'),
 
+        /*
+         * string.core
+         */
         kString = 'String',
         concat  = require(kString, 'concat'),
         format  = require(kString, 'format'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kCallbackNotDefined = format('{0}: Callback is not defined!', myName),
         kOn                 = 'on',
 
         /*
-         * Feature Tests
+         * # Feature Detection
          */
+
         isAddEventListener = !!document.addEventListener,
         isAttachEvent      = !!document.attachEvent,
         windowEventHandle  = window.event,
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         addEventListener    = null,
         getEventObject      = null,
         getMouseCoordinates = null;

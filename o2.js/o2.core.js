@@ -1,32 +1,36 @@
- /**
-  * <b>o2.js</b>
-  *
-  *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
-  *  This program is distributed under the terms of the MIT license.<br />
-  *  Please see the <strong><a
-  *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
-  *  >LICENSE</a></strong> file for details.<br /><br />
-  *  <p>
-  *
-  * @project     o2.js
-  * @version     0.25.a.0001351569277
-  * @author      Volkan Özçelik
-  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
-  */
+/**
+ *  <b>o2.js</b>
+ *
+ *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
+ *  This program is distributed under the terms of the "MIT License".<br />
+ *  Please see the <strong><a
+ *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
+ *  >LICENSE</a></strong> file for details.<br /><br />
+ *  <p>
+ *
+ * @project     o2.js
+ * @version     0.25.a.0001352586028
+ * @author      Volkan Özçelik and Community
+ * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ */
 
 if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
-/**
- * @module   core
- * @requires core.meta
- *
- * <p>The core module.</p>
- */
 (function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('core', ['core.meta']);
+    /**
+     * @module   core
+     *
+     * @requires core.meta
+     *
+     * <p>The core module.</p>
+     */
+    fp.ensure(
+        'core',
+    [
+        'core.meta'
+    ]);
 
     var attr     = fp.getAttr,
         def      = attr(fp, 'define'),
@@ -35,34 +39,39 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         root     = attr(fp, 'getRoot'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
-        exports = {},
+
+        explicitorts = {},
 
         /*
-         * Guid (copied from String.core to remove dependency)
+         * # Guid (copied from String.core to remove dependency)
          */
+
         kGuidRadix    = 36,
         kGuidShift    = 30,
         kDecimalPoint = '.',
 
         /*
-         * o2 (Root Namespace)
+         * # o2 (Root Namespace)
          */
+
         me     = root(),
         myself = obj(me),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kEmpty            = '',
         kLoad             = 'load',
         kObjectNotDefined = ' : Object is not defined.',
         kString           = 'string',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         myName = null,
         t      = null,
         n      = null,
@@ -118,7 +127,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001351569277');
+    exports.build = def(me, 'build', '.0001352586028');
 
     /**
      * @function {static} o2.$

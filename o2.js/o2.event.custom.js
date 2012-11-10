@@ -1,10 +1,21 @@
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
 //TODO: add header.
 (function(framework, fp) {
     'use strict';
 
     //TODO: add documentations.
 
-    fp.ensure('event.custom', ['core', 'validation.core']);
+    fp.ensure(
+        'event.custom',
+    [
+        'core',
+        'validation.core'
+    ]);
 
     var attr      = fp.getAttr,
         create    = attr(fp, 'create'),
@@ -12,13 +23,15 @@
         require   = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Event',
 
         /**
@@ -27,14 +40,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * validation.core
+         */
         isArray = require('Validation', 'isArray'),
 
         /*
-         * State
+         * # Static State
          */
+
         cache = {};
 
     exports.publish = def(me, 'publish', function(name, argv) {

@@ -1,16 +1,17 @@
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
+
 /**
  * @module   extend
  * @requires core
- * @requires domhelper.traverse
- *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
  *
  * Extension functions.
  */
+
 /*(function(framework, document) {
     'use strict';
 

@@ -1,34 +1,40 @@
-/**
- * @module   ajaxstate.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.F
- * -->
- *
- * <p>A Model for controlling AJAX timeouts etc.</p>
- * <p>An {@link AjaxController} should be registered to this model.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('ajaxstate.core', ['core']);
+    /**
+     * @module   ajaxstate.core
+     *
+     * @requires core
+     *
+     * <p>a model for controlling ajax timeouts etc.</p>
+     * <p>an {@link ajaxcontroller} should be registered to this model.</p>
+     */
+    fp.ensure(
+        'ajaxstate.core',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
         def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'AjaxState',
 
         /**
@@ -46,14 +52,9 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Common Constants
          */
-        setTimeout   = attr(window, 'setTimeout'),
-        clearTimeout = attr(window, 'clearTimeout'),
 
-        /*
-         * Common Constants
-         */
         kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
 
     /*

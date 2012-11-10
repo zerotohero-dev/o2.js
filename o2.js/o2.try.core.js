@@ -1,36 +1,42 @@
-/**
- * @module   try.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
- * <p>The functions are guaranteed to be called.</p>
- * <p>Even if an error occurs when calling a <code>Function</code>, the next
- * function will be tried, disregarding the error.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('try.core', ['core']);
+    /**
+     * @module   try.core
+     *
+     * @requires core
+     *
+     * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
+     * <p>The functions are guaranteed to be called.</p>
+     * <p>Even if an error occurs when calling a <code>Function</code>, the next
+     * function will be tried, disregarding the error.</p>
+     */
+    fp.ensure(
+        'try.core',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
         def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Try',
 
         /**

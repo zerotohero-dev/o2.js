@@ -1,21 +1,26 @@
-/**
- * @module   dom.core
- * @requires core
- * @requires dom.constants
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.core', ['core', 'dom.constants']);
+    /**
+     * @module   dom.core
+     *
+     * @requires core
+     * @requires dom.constants
+     *
+     * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
+     */
+    fp.ensure(
+        'dom.core',
+    [
+        'core',
+        'dom.constants'
+    ]);
 
     var attr    = fp.getAttr,
         alias   = attr(fp, 'alias'),
@@ -24,13 +29,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Exports
+         * #Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -39,19 +46,26 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * dom.constants
+         */
         nt            = require(kModuleName, 'nodeType'),
         kElementNode  = attr(nt, 'ELEMENT'),
         kDocumentNode = attr(nt, 'DOCUMENT'),
         kText         = attr(nt, 'TEXT'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kClass     = 'class',
         kClassName = 'className',
         kCss       = 'css',
@@ -65,10 +79,15 @@
         kStyle     = 'style',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kReturnRegExp = /\r\n|\r/g,
         kWhiteSpaceRegExp = /^\s*$/,
+
+        /*
+         * # Static State
+         */
 
         /*
          * For creating document fragments.

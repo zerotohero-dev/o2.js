@@ -1,34 +1,40 @@
-/**
- * @module   method.transpose
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>flip/fold/merge kind of method helper that ammend/transpose
- * <code>Function</code>s.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('method.transpose', ['core']);
+    /**
+     * @module   method.transpose
+     *
+     * @requires core
+     *
+     * <p>flip/fold/merge kind of method helper that ammend/transpose
+     * <code>Function</code>s.</p>
+     */
+    fp.ensure(
+        'method.transpose',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Method',
 
         /*
@@ -37,10 +43,13 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
-        ap     = Array.prototype,
-        slice  = attr(ap, 'slice');
+
+        /*
+         * native
+         */
+        slice  = attr(Array.prototype, 'slice');
 
     /**
      * @function {static} o2.Method.compose

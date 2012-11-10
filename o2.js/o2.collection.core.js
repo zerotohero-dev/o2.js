@@ -1,22 +1,28 @@
-/**
- * @module   collection.core
- * @requires core
- * @requires method.core
- * @requires validation.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A utility <strong>class</strong> to modify collections.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('collection.core', ['core', 'method.core', 'validation.core']);
+    /**
+     * @module   collection.core
+     *
+     * @requires core
+     * @requires method.core
+     * @requires validation.core
+     *
+     * <p>A utility <strong>class</strong> to modify collections.</p>
+     */
+    fp.ensure(
+        'collection.core',
+    [
+        'core',
+        'method.core',
+        'validation.core'
+    ]);
 
     var attr    = fp.getAttr,
         alias   = attr(fp, 'alias'),
@@ -25,13 +31,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Collection',
 
         /**
@@ -42,35 +50,45 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * method.core
+         */
         kMethod  = 'Method',
         identity = require(kMethod, 'identity'),
         bind     = require(kMethod, 'bind'),
 
+        /*
+         * validation.core
+         */
         kValidation = 'Validation',
         isArguments = require(kValidation, 'isArguments'),
         isArray     = require(kValidation, 'isArray'),
         isFunction  = require(kValidation, 'isFunction'),
         isObject    = require(kValidation, 'isObject'),
 
-        slice = attr(Array.prototype, 'slice'),
-
+        /*
+         * native
+         */
+        slice  = attr(Array.prototype, 'slice'),
         floor  = attr(Math, 'floor'),
         max    = attr(Math, 'max'),
         min    = attr(Math, 'min'),
         random = attr(Math, 'random'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kEmpty  = '',
         kLength = 'length',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         indexOf  = null,
         contains = null,
         isEmpty  = null,

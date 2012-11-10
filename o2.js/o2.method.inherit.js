@@ -1,21 +1,25 @@
-/**
- * @module   method.inherit
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>OOJS/Inheritance related method helpers.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-     // Ensure that dependencies have been loaded.
-    fp.ensure('method.inherit', ['core', 'string.core']);
+    /**
+     * @module   method.inherit
+     * @requires core
+     * @requires string.corei
+     *
+     * <p>OOJS/Inheritance related method helpers.</p>
+     */
+    fp.ensure(
+        'method.inherit',
+    [
+        'core',
+        'string.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -23,13 +27,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Method',
 
         /*
@@ -38,13 +44,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
+         */
+
+        /*
+         * string.core
          */
         format = require('String', 'format'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kEmpty                 = '',
         kArgumentCountMismatch = ['Method: Argument count mismatch. ',
             'Expecting: {0}, provided: {1}'].join(kEmpty),

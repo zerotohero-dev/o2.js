@@ -1,20 +1,24 @@
-/**
- * @module   debugger.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A debugging helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('debugger.core', ['core']);
+    /**
+     * @module   debugger.core
+     *
+     * @requires core
+     *
+     * <p>A debugging helper.</p>
+     */
+    fp.ensure(
+        'debugger.core',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -22,13 +26,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Debugger',
 
         /**
@@ -52,14 +58,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $    = require('$'),
         nill = require('nill'),
 
-        createElement = attr(document, 'createElement'),
-
+        /*
+         * native
+         */
         console = window.console || {},
         error   = console.error  || nill,
         info    = console.info   || nill,
@@ -67,18 +77,21 @@
         warn    = console.warn   || nill,
 
         /*
-         * Configuration
+         * # Configuration
          */
+
         outputElement  = null,
 
         /*
-         * State
+         * # State
          */
+
         isInitialized = false,
 
         /*
-         * Common Class Names
+         * # Common Class Names
          */
+
         kError = 'error',
         kFail  = 'fail',
         kInfo  = 'info',
@@ -87,8 +100,9 @@
         kWarn  = 'warn',
 
         /*
-         * Common Errors
+         * # Common Errors
          */
+
         kCannotInitialize = 'Debugger: cannot initialize outputElement',
         kErrorText        = '<b>ERROR:</b> ',
         kFailText         = '<b>FAIL:</b> ',
@@ -97,14 +111,16 @@
         kWarnText         = '<b>WARN:</b> ',
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kDefaultContainer = 'div',
         kEmpty            = '',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         PrinterFactory = null;
 
     /*

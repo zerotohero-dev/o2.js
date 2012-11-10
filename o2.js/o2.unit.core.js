@@ -1,41 +1,48 @@
-/**
- * @module   unit.core
- * @requires core
- * @requires debugger.core
- * @requires dom.scroll
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>This package is a unit test runner, that is used to test
- * <strong>js</strong> units.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('unit.core',
-        ['core', 'debugger.core', 'dom.scroll', 'string.core']);
+    /**
+     * @module   unit.core
+     *
+     * @requires core
+     * @requires debugger.core
+     * @requires dom.scroll
+     * @requires string.core
+     *
+     * <p>This package is a unit test runner, that is used to test
+     * <strong>js</strong> units.</p>
+     */
+    fp.ensure(
+        'unit.core',
+    [
+        'core',
+        'debugger.core',
+        'dom.scroll',
+        'string.core'
+    ]);
 
-    var fp      = framework.protecteds,
-        attr    = fp.getAttr,
+    var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         obj     = attr(fp, 'getObject'),
         require = attr(fp, 'require'),
 
         /*
-         * Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Unit',
 
         /**
@@ -48,10 +55,17 @@
         myself = obj(me),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         nill = require('nill'),
+
+        /*
+         * debugger.core
+         */
 
         kDebugger    = 'Debugger',
 
@@ -61,14 +75,20 @@
         initDebugger = require(kDebugger, 'init'),
         log          = require(kDebugger, 'log'),
 
+        /*
+         * string.core
+         */
         kString = 'String',
         concat = require(kString, 'concat'),
         format = require(kString, 'format'),
 
+        /*
+         * dom.scroll
+         */
         scrollToBottom = require('Dom', 'scrollWindowToBottom'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
 
         /*
@@ -89,7 +109,7 @@
         kCheckInterval = 100,
 
         /*
-         * Commonly Used Templates
+         * # Commonly Used Templates
          */
 
         /*
@@ -147,7 +167,7 @@
         kExecutionException = 'Execution exception!',
 
         /*
-         * Static State
+         * # Static State
          */
 
         /*
@@ -174,6 +194,10 @@
          * Is the current <strong>Test Suite</strong> still running.
          */
         isRunning = false,
+
+        /*
+         * # To be Overridden
+         */
 
         /*
          * UnitTest.prototype

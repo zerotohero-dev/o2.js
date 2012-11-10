@@ -1,3 +1,8 @@
+/*
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ */
 /**
  * @module   jsonpcontroller.core
  * @requires core
@@ -18,8 +23,12 @@
     'use strict';
 
     // Ensure that dependencies have been loaded.
-    fp.ensure('jsonpcontroller.core', ['core', 'ajaxcontroller.core',
-        'jsonpstate.core', 'object.core']);
+    fp.ensure('jsonpcontroller.core', [
+        'ajaxcontroller.core',
+        'core',
+        'jsonpstate.core',
+        'object.core'
+    ]);
 
     var attr      = fp.getAttr,
         construct = attr(fp, 'construct'),

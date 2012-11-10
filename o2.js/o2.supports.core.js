@@ -1,20 +1,24 @@
-/**
- * @module   supports.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>An object support checker.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('supports.core', ['core']);
+    /**
+     * @module   supports.core
+     *
+     * @requires core
+     *
+     * <p>An object support checker.</p>
+     */
+    fp.ensure(
+        'supports.core',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -22,13 +26,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Supports',
 
         /**
@@ -40,10 +46,17 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         myName = require('name'),
+
+        /*
+         * # Feature Detection
+         */
 
         /*
          * <code>true</code> if there's an adequate level of
@@ -53,8 +66,9 @@
             document.createElement && document.getElementsByTagName,
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kEmpty            = '',
         kTestCookiePrefix = 'tst';
 

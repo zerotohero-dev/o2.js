@@ -1,10 +1,18 @@
-/**
- * @module effect
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <p>NOT IMPLEMENTED.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
-(function() {
+(function(a, b) {
     'use strict';
 
+    /**
+     * @module effect
+     *
+     * <p>NOT IMPLEMENTED.</p>
+     */
+
+
     //throw 'o2.Effect module has not been built yet.';
-}());
+}(this));

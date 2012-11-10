@@ -1,36 +1,43 @@
-/**
- * @module   dom.modify
- * @requires core
- * @requires dom.core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A utility package for additional <strong>DOM</strong> modifications.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.modify', ['core', 'string.core', 'dom.core']);
+    /**
+     * @module   dom.modify
+     *
+     * @requires core
+     * @requires dom.core
+     *
+     * <p>A utility package for additional <strong>DOM</strong>
+     * modifications.</p>
+     */
+    fp.ensure(
+        'dom.modify',
+    [
+        'core',
+        'dom.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         *
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -39,11 +46,17 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * dom.core
+         */
         append       = require(kModuleName, 'append'),
         insertAfter  = require(kModuleName, 'insertAfter'),
         insertBefore = require(kModuleName, 'insertBefore'),

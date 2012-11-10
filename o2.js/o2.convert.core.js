@@ -1,22 +1,24 @@
-/**
- * @module convert
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <p>not implemented.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(/*framework, window, undefined*/) {
     'use strict';
 
-    // var _         = framework.protecteds;
-    // var alias     = _.alias;
-    // var attr      = _.getAttr;
-    // var construct = _.construct;
-    // var create    = _.create;
-    // var def       = _.define;
-    // var obj       = _.getObject;
-    // var proto     = _.proto;
-    // var require   = _.require;
+    /*
+     * # Module Definition
+     */
 
-    // NOTE: this object will NOT be developed until all the unit tests are done.
+    /**
+     * @module convert
+     *
+     * <p>not implemented.</p>
+     */
+
+    // NOTE: this object will NOT be developed until all the unit tests
+    // :ware done.
     // var me = framework;
     // me.Convert = {
     //     toArray : function(obj, isDeep) {},

@@ -1,22 +1,27 @@
-/**
- * @module   ajaxcontroller.core
- * @requires ajaxstate.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>An AJAX controller that implements the <strong>Observer
- * Pattern</strong>.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('ajaxcontroller.core', ['core', 'ajaxstate.core']);
+    /**
+     * @module   ajaxcontroller.core
+     *
+     * @requires core
+     * @requires ajaxstate.core
+     *
+     * <p>An AJAX controller that implements the <strong>Observer
+     * Pattern</strong>.</p>
+     */
+    fp.ensure(
+        'ajaxcontroller.core',
+    [
+        'core',
+        'ajaxstate.core'
+    ]);
 
     var attr      = fp.getAttr,
         construct = attr(fp, 'construct'),
@@ -24,26 +29,35 @@
         require   = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'AjaxController',
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         nill = require('nill'),
 
+        /*
+         * ajaxstate.core
+         */
         state = require('AjaxState'),
 
         /*
-         * Class reference (overridden below).
+         * # To be Overridden
          */
+
         me = null;
 
     /**

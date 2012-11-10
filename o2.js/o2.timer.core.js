@@ -1,21 +1,25 @@
-/**
- * @module   timer.core
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A static class for timeout related operations.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('timer.core', ['core', 'string.core']);
+   /**
+    * @module   timer.core
+    *
+    * @requires core
+    * @requires string.core
+    *
+    * <p>A static class for timeout related operations.</p>
+    */
+    fp.ensure(
+        'timer.core',
+    [
+        'string.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -23,13 +27,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Timer',
 
         /**
@@ -61,21 +67,28 @@
         /*
          * Aliases
          */
+
+        /*
+         * string.core
+         */
         concat = require('String', 'concat'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kPrefix = 't',
 
         /*
-         * State Information
+         * # Static State
          */
+
         timers = {},
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         start = null,
         stop  = null;
 

@@ -1,33 +1,40 @@
-/**
- * @module   jsonpstate.core
- * @requires ajaxstate.core
- * @requires core
- * @requires object.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
- * etc. A {@link JsonpController} should be registered to this
- * <strong>model</strong>.
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('jsonpstate.core', ['core', 'ajaxstate.core', 'object.core']);
+     /**
+     * @module   jsonpstate.core
+     *
+     * @requires core
+     * @requires ajaxstate.core
+     * @requires object.core
+     *
+     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
+     * etc. A {@link JsonpController} should be registered to this
+     * <strong>model</strong>.
+     */
+    fp.ensure(
+        'jsonpstate.core',
+    [
+        'core',
+        'ajaxstate.core',
+        'object.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'JsonpState',
 
         /**
@@ -40,15 +47,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * object.core
+         */
         kObject  = 'Object',
         copyFn   = require(kObject, 'copyMethods'),
         copyAttr = require(kObject, 'copy'),
 
         /*
-         * Inheritance-Related Constants
+         * # Inheritance-Related Constants
          */
 
         kBaseName   = 'AjaxState',
@@ -57,11 +67,17 @@
 
     //TODO: copy with require: f(kMyName, kBaseName)
 
-    // Inheritance implementation (through mixins):
-    copyFn(require(kMyName), require(kBaseName));
-    def(me, kProtecteds, {});
-    copyAttr(
-        require(kMyName,   kProtecteds),
-        require(kBaseName, kProtecteds)
-    );
-}(this.o2, this.o2.protecteds));
+    /*
+     * Inheritance implementation through mixins.
+     */
+    function inherit() {
+        copyFn(require(kMyName), require(kBaseName));
+        def(me, kProtecteds, {});
+        copyAttr(
+            require(kMyName,   kProtecteds),
+            require(kBaseName, kProtecteds)
+        );
+    }
+
+    inherit();
+}(things.o2, this.o2.protecteds));
