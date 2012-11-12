@@ -1,8 +1,11 @@
 # //TODO: update related documentation about jshint options etc.
+# //TODO: automate this file
+# //for every file in o2.js folder, if the file is not to be excluded
+# //jshint the file.
 
-jshint --config jshint-options.json ../o2.js/o2.ajaxcontroller.core.js
 jshint --config jshint-options.json ../o2.js/o2.ajax.core.js
 jshint --config jshint-options.json ../o2.js/o2.ajax.extend.js
+jshint --config jshint-options.json ../o2.js/o2.ajaxcontroller.core.js
 jshint --config jshint-options.json ../o2.js/o2.ajaxstate.core.js
 jshint --config jshint-options.json ../o2.js/o2.collection.core.js
 jshint --config jshint-options.json ../o2.js/o2.convert.core.js
@@ -27,10 +30,10 @@ jshint --config jshint-options.json ../o2.js/o2.dom.traverse.child.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.children.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.core.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.ends.js
-jshint --config jshint-options.json ../o2.js/o2.dom.traverse.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.next.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.nth.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.parent.js
+jshint --config jshint-options.json ../o2.js/o2.dom.traverse.parents.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.prev.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.siblings.js
 jshint --config jshint-options.json ../o2.js/o2.dom.traverse.validate.js

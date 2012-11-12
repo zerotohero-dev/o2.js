@@ -20,5 +20,6 @@
     "unused"   : true,
     "white"    : false,
     "trailing" : true,
+    "node"     : true,
     "maxlen"   :80
 }
