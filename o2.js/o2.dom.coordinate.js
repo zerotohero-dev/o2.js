@@ -1,3 +1,9 @@
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
 
 //     var _         = framework.protecteds;
 //     var alias     = _.alias;
@@ -22,8 +28,8 @@
 //          * @param {Object} e - the element, or the id of the element, to get
 //          * the offsets of.
 //          *
-//          * @return the offset from the top-left corner of the viewport, in the
-//          * form <code>{left: l, top: t}</code>.
+//          * @return the offset from the top-left corner of the viewport,
+//          * in the form <code>{left: l, top: t}</code>.
 //          */
 //         def(me, 'getOffset', function(elmItem) {
 //             var elm = $(elmItem);

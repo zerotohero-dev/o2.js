@@ -1,20 +1,24 @@
-/**
- * @module   template.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A "very" fast templating engine.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('template.core', ['core']);
+    /**
+     * @module   template.core
+     *
+     * @requires core
+     *
+     * <p>A "very" fast templating engine.</p>
+     */
+    fp.ensure(
+        'template.core',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -22,13 +26,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Template',
 
         /**
@@ -39,36 +45,40 @@
         me = create(kModuleName),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kObject = 'object',
         kString = 'string',
         kEmpty  = '',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kSeparatorRegExp = /\s+/,
-        kTemplateRegExp  = /\{\{(.*?)\}\}/g,
+        kTemplateRegExp  = /\{\{([a-zA-Z0-9]*?)\}\}/g,
 
         /*
-         * Common Commands
+         * # Common Commands
          */
+
         kEach = 'each',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         doParse = null;
 
     /*
      *
      */
     function parseDirective(line, data) {
-        var kDirectiveIndex     = 0,
-            kSubTemplateIndex   = 1,
-            kCommandIndex       = 0,
-            kDataKeyIndex       = 1,
+        var kDirectiveIndex   = 0,
+            kSubTemplateIndex = 1,
+            kCommandIndex     = 0,
+            kDataKeyIndex     = 1,
 
             collectionKey = kEmpty,
             directiveKey  = kEmpty,
@@ -76,8 +86,6 @@
             directive = null,
 
             subTpl = line[kSubTemplateIndex],
-
-            lineLength = line.length,
 
             buffer = [],
 
@@ -178,3 +186,4 @@
       */
      doParse = require(kModuleName, 'parse');
 }(this.o2, this.o2.protecteds));
+

@@ -1,21 +1,26 @@
-/**
- * @module   dom.core
- * @requires core
- * @requires dom.constants
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.core', ['core', 'dom.constants']);
+    /**
+     * @module   dom.core
+     *
+     * @requires core
+     * @requires dom.constants
+     *
+     * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
+     */
+    fp.ensure(
+        'dom.core',
+    [
+        'core',
+        'dom.constants'
+    ]);
 
     var attr    = fp.getAttr,
         alias   = attr(fp, 'alias'),
@@ -24,13 +29,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Exports
+         * #Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -39,19 +46,26 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * dom.constants
+         */
         nt            = require(kModuleName, 'nodeType'),
         kElementNode  = attr(nt, 'ELEMENT'),
         kDocumentNode = attr(nt, 'DOCUMENT'),
         kText         = attr(nt, 'TEXT'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kClass     = 'class',
         kClassName = 'className',
         kCss       = 'css',
@@ -65,10 +79,15 @@
         kStyle     = 'style',
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kReturnRegExp = /\r\n|\r/g,
         kWhiteSpaceRegExp = /^\s*$/,
+
+        /*
+         * # Static State
+         */
 
         /*
          * For creating document fragments.
@@ -202,8 +221,8 @@
                     //
                     // ...
                     //
-                    // To avoid problems a combination of cssText and
-                    // getAttribute/setAttribute can be used.
+                    // To avoid problems the following combination of cssText
+                    // and getAttribute/setAttribute can be used.
                     e.style.cssText = value;
                     e.setAttribute(kStyle, value);
                 } else {
@@ -371,7 +390,8 @@
      * @param {Object} elmRefNode - the reference node, or the
      * <strong>id</strong> of the node.
      */
-    exports.insertAfter = def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
+    exports.insertAfter = def(me, 'insertAfter', function(elmNewNode,
+                elmRefNode) {
         var newNode = $(elmNewNode),
             refNode = $(elmRefNode),
             obj     = null;
@@ -404,8 +424,8 @@
      *
      * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
      * node, to insert before.
-     * @param {Object} elmRefNode - the reference, or the <strong>id</strong> of
-     * the node.
+     * @param {Object} elmRefNode - the reference, or the <strong>id</strong>
+     * of the node.
      */
     exports.insertBefore = def(me, 'insertBefore', function(elmNewNode,
                 elmRefNode) {
@@ -443,7 +463,8 @@
     /**
      * @function {static} o2.Dom.isElement
      *
-     * <p>Checks whether the given node is an <strong>element</strong> node.</p>
+     * <p>Checks whether the given node is an <strong>element</strong>
+     * node.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -529,7 +550,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Dom.remove('nagivation');
+     * o2.Dom.remove('navigation');
      * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
@@ -705,3 +726,4 @@
         obj.innerHTML = html;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

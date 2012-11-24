@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001351569277
+	                 version 0.25.a.0001353741487
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -71,12 +71,7 @@
             <b>o2</b>
        </code>
     </div>
-                <div class="comment"><!--
-  This program is distributed under
-  the terms of the MIT license.
-  Please see the LICENSE file for details.
- -->
-
+                <div class="comment">
  Root namespace &ndash; magic goes here ;)
  </div>
                                         <hr/> 
@@ -156,8 +151,8 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- // note: initalize Debugger only once,
- // possibly on window.load or dom content ready
+ // note: initialize Debugger only once,
+ // possibly on window.load or DOM content ready
  o2.Debugger.init(someDomNode, true);
 
  //then inside your code use this syntax.
@@ -300,7 +295,8 @@
  // Stops the timer (i.e. doStuff will not be executed further).
  o2.Timer.stop(kCheckId);
 
- // Restarts the timer (i.e. doStuff will be periodically executed again).
+ // Restarts the timer (i.e. doStuff will be periodically executed
+ // again).
  o2.Timer.start(kCheckId);
  </pre>    </div>
                             </div>
@@ -314,8 +310,9 @@
         <p>Used for consequentially executing a set of
  <code>Function</code>s.</p>
  <p>The <strong>function</strong>s are guaranteed to be called.</p>
- <p>Even if an error occurs when calling a <code>Function</code>, the next
- <code>Function</code> will be tried, disregarding the error.</p>    </div>
+ <p>Even if an error occurs when calling a <code>Function</code>,
+ the next <code>Function</code> will be tried, disregarding the
+ error.</p>    </div>
                             </div>
                     <div class="summaryItem">
                                         <div class="summaryItemDef">
@@ -346,6 +343,15 @@
             <div class="summaryTableHeader">
                 <span class="objType">Property</span> Summary
             </div>
+                    <div class="summaryItem">
+                                                <div class="summaryItemDef">
+        <span class="modifiers"></span>
+        <span class="type">readonly String</span>
+        <a href="logical/o2.html#___appVersion"><span class="elementName">appVersion</span></a>
+    </div> 
+    <div class="summaryItemDesc">
+        <p>Project version.</p>    </div>  
+                            </div>
                     <div class="summaryItem">
                                                 <div class="summaryItemDef">
         <span class="modifiers"></span>
@@ -382,15 +388,6 @@
     </div> 
     <div class="summaryItemDesc">
         <p>URL of the project.</p>    </div>  
-                            </div>
-                    <div class="summaryItem">
-                                                <div class="summaryItemDef">
-        <span class="modifiers"></span>
-        <span class="type">readonly String</span>
-        <a href="logical/o2.html#___version"><span class="elementName">version</span></a>
-    </div> 
-    <div class="summaryItemDesc">
-        <p>Project version.</p>    </div>  
                             </div>
                 </div>
         <p/>
@@ -518,7 +515,7 @@
                 <a href="logical/o2.html#___now"><span class="elementName">now</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>Returns the unix time (i.e. the number of milliseconds since
+        <p>Returns the Unix time (i.e. the number of milliseconds since
  midnight of January 1, 1970)</p>
 
  <p><strong>Usage example:</strong></p>
@@ -592,6 +589,19 @@
             <h2 class="sectionHeader">Property Details</h2>
                                                             
             <h3>
+        <a name="___appVersion">
+            <span class="objType">property</span> <span class="modifiers"></span>
+            <span class="type">readonly String</span>
+            <span class="objName">appVersion</span>         
+        </a>
+    </h3>
+    <div class="comment">
+        <p>Project version.</p>
+
+     </div>    
+                                        <hr />  
+                                                                            
+            <h3>
         <a name="___build">
             <span class="objType">property</span> <span class="modifiers"></span>
             <span class="type">readonly String</span>
@@ -640,19 +650,6 @@
     </h3>
     <div class="comment">
         <p>URL of the project.</p>
-
-     </div>    
-                                        <hr />  
-                                                                            
-            <h3>
-        <a name="___version">
-            <span class="objType">property</span> <span class="modifiers"></span>
-            <span class="type">readonly String</span>
-            <span class="objName">version</span>         
-        </a>
-    </h3>
-    <div class="comment">
-        <p>Project version.</p>
 
      </div>    
                                         <hr />  
@@ -936,7 +933,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>Returns the unix time (i.e. the number of milliseconds since
+        <p>Returns the Unix time (i.e. the number of milliseconds since
  midnight of January 1, 1970)</p>
 
  <p><strong>Usage example:</strong></p>
@@ -949,7 +946,7 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the current unix time.
+	            	             the current Unix time.
      	            	        </div>
         </div>      
                                                 <hr/>       
@@ -1140,10 +1137,40 @@
                                                                                                                                                                                                                                                                                                                                                                                 <div>
                                 <a href="physical/file-o2/dom/range.js.html">o2.dom.range.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div>
+                                                                                                                                                                                                                                                                                                                                                                                <div>
+                                <a href="physical/file-o2/dom/traverse/core.js.html">o2.dom.traverse.core.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/ends.js.html">o2.dom.traverse.ends.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/next.js.html">o2.dom.traverse.next.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/nth.js.html">o2.dom.traverse.nth.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/parent.js.html">o2.dom.traverse.parent.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/parents.js.html">o2.dom.traverse.parents.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/prev.js.html">o2.dom.traverse.prev.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/siblings.js.html">o2.dom.traverse.siblings.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/validate.js.html">o2.dom.traverse.validate.js</a>
+                            </div>                              
+                                                                                                                                                                                                                                                                        <div>
                                 <a href="physical/file-o2/event/custom.js.html">o2.event.custom.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/jsonpcontroller/core.js.html">o2.jsonpcontroller.core.js</a>
+                            </div>                              
+                                                                                                                                                                                                                    <div>
                                 <a href="physical/file-o2/meta/production.js.html">o2.meta.production.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                                                                                                                                                                                     <div>
@@ -1229,7 +1256,10 @@
                                 <a href="physical/dom/module-style.html">dom.style</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/dom/module-traverse.html">dom.traverse</a>
+                                <a href="physical/dom/traverse/module-child.html">dom.traverse.child</a>
+                            </div>                              
+                                                    <div>
+                                <a href="physical/dom/traverse/module-children.html">dom.traverse.children</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/module-effect.html">effect</a>
@@ -1248,9 +1278,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/jsonp/module-core.html">jsonp.core</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/jsonpcontroller/module-core.html">jsonpcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>

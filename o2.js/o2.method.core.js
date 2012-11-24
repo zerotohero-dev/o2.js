@@ -1,34 +1,39 @@
-/**
- * @module   method.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <code>Function</code> helper for stuff like
- * <strong>memoization</strong>, <strong>partial functions</strong> and
- * <strong>currying</strong>.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('method.core', ['core']);
+    /**
+     * @module   method.core
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for stuff like
+     * <strong>memoization</strong>, <strong>partial functions</strong> and
+     * <strong>currying</strong>.</p>
+     */
+    fp.ensure(
+        'method.core',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * Module Definition
          */
         kModuleName = 'Method',
 
@@ -40,14 +45,16 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * native
+         */
         ap     = Array.prototype,
         concat = attr(ap, 'concat'),
         slice  = attr(ap, 'slice'),
-
-        bind = Function.prototype.bind;
+        bind   = Function.prototype.bind;
 
     if (bind) {
 
@@ -74,8 +81,8 @@
          * @param {Object} base - the context of the newly created
          * <code>Function</code>.
          * @param {Function} fn - the <code>Function</code> to modify.
-         * @param {Arguments} varargin - variable number of input arguments to be
-         * passed as initial set of arguments.
+         * @param {Arguments} varargin - variable number of input arguments
+         * to be passed as initial set of arguments.
          *
          * @return the modified <code>Function</code>.
          */
@@ -246,3 +253,4 @@
         };
     });
 }(this.o2, this.o2.protecteds));
+

@@ -1,34 +1,40 @@
-/**
- * @module   validation.regexp
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>Does validation by matching test subjects against predefined
- * <strong>regular expression</strong>s.<p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp) {
+(function(fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('validation.regexp', ['core']);
+     /**
+      * @module   validation.regexp
+      *
+      * @requires core
+      *
+      * <p>Does validation by matching test subjects against predefined
+      * <strong>regular expression</strong>s.<p>
+      */
+    fp.ensure(
+        'validation.regexp',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
         def    = attr(fp, 'define'),
 
         /*
-         * Exports
+         * Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * Module Definition
          */
+
         kModuleName = 'Validation',
 
         /*
@@ -37,10 +43,15 @@
         me = create(kModuleName),
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
-        kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
+        kUrlRegExp        = new RegExp([
+                '^(https?|ftp|file):',
+                '\\/\\/[\\-A-Z0-9+&@#\\/%?=~_|!:,.;]*',
+                '[\\-A-Z0-9+&@#\\/%=~_|]$'
+            ].join(''), 'i'),
         kWhitespaceRegExp = /^\s*$/;
 
     /**
@@ -49,10 +60,10 @@
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
      * e-mails?</p>
-     * <p>There is no good (and realistic) regular expression to match an e-mail
-     * address.<p>
-     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
-     * for that.</p>
+     * <p>There is no good (and realistic) regular expression to match an
+     * e-mail address.<p>
+     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too
+     * complicated for that.</p>
      * <p>This method matches <strong>e-mail</strong> addresses, while giving
      * some false-positives.</p>
      * <p>The correct action to validate an <strong>e-mail</strong> address is
@@ -116,4 +127,5 @@
     exports.isWhitespace = def(me, 'isWhitespace', function(text) {
         return kWhitespaceRegExp.test(text);
     });
-}(this.o2, this.o2.protecteds));
+}(this.o2.protecteds));
+

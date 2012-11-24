@@ -1,32 +1,36 @@
- /**
-  * <b>o2.js</b>
-  *
-  *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
-  *  This program is distributed under the terms of the MIT license.<br />
-  *  Please see the <strong><a
-  *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
-  *  >LICENSE</a></strong> file for details.<br /><br />
-  *  <p>
-  *
-  * @project     o2.js
-  * @version     0.25.a.0001351569277
-  * @author      Volkan Özçelik
-  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
-  */
+/**
+ *  <b>o2.js</b>
+ *
+ *  <p style="border:1px solid;background:#ccc;padding:10px;margin:10px">
+ *  This program is distributed under the terms of the "MIT License".<br />
+ *  Please see the <strong><a
+ *  href="https://github.com/v0lkan/o2.js/blob/master/LICENSE"
+ *  >LICENSE</a></strong> file for details.<br /><br />
+ *  <p>
+ *
+ * @project     o2.js
+ * @version     0.25.a.0001353741487
+ * @author      Volkan Özçelik and Community
+ * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
+ */
 
 if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
-/**
- * @module   core
- * @requires core.meta
- *
- * <p>The core module.</p>
- */
 (function(framework, fp, window, document, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('core', ['core.meta']);
+    /**
+     * @module   core
+     *
+     * @requires core.meta
+     *
+     * <p>The core module.</p>
+     */
+    fp.ensure(
+        'core',
+    [
+        'core.meta'
+    ]);
 
     var attr     = fp.getAttr,
         def      = attr(fp, 'define'),
@@ -35,34 +39,39 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         root     = attr(fp, 'getRoot'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Guid (copied from String.core to remove dependency)
+         * # Guid (copied from String.core to remove dependency)
          */
+
         kGuidRadix    = 36,
         kGuidShift    = 30,
         kDecimalPoint = '.',
 
         /*
-         * o2 (Root Namespace)
+         * # o2 (Root Namespace)
          */
+
         me     = root(),
         myself = obj(me),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kEmpty            = '',
         kLoad             = 'load',
         kObjectNotDefined = ' : Object is not defined.',
         kString           = 'string',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         myName = null,
         t      = null,
         n      = null,
@@ -107,7 +116,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     );
 
     /**
-     * @property {readonly String} o2.version
+     * @property {readonly String} o2.appVersion
      *
      * <p>Project version.</p>
      */
@@ -118,7 +127,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001351569277');
+    exports.build = def(me, 'build', '.0001353741487');
 
     /**
      * @function {static} o2.$
@@ -199,7 +208,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.now
      *
-     * <p>Returns the unix time (i.e. the number of milliseconds since
+     * <p>Returns the Unix time (i.e. the number of milliseconds since
      * midnight of January 1, 1970)</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -208,7 +217,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * var unixTimestamp = o2.now();
      * </pre>
      *
-     * @return the current unix time.
+     * @return the current Unix time.
      */
     exports.now = def(me, 'now', function() {
         return (new Date()).getTime();
@@ -381,3 +390,4 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return result ? result[0] : null;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

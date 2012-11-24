@@ -1,34 +1,40 @@
-/**
- * @module   string.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <code>String</code> helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, UNDEFINED) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('string.core', ['core']);
+    /**
+     * @module   string.core
+     *
+     * @requires core
+     *
+     * <p>A <code>String</code> helper.</p>
+     */
+    fp.ensure(
+        'string.core',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr     = fp.getAttr,
+        create   = attr(fp, 'create'),
+        def      = attr(fp, 'define'),
+        require  = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'String',
 
         /**
@@ -39,16 +45,21 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
-        floor  = attr(Math, 'floor'),
-        random = attr(Math, 'random'),
-        slice  = attr(Array.prototype, 'slice'),
-        trim   = attr(String.prototype, 'trim'),
 
         /*
-         * Common Constants
+         * native
          */
+        slice  = attr(Array.prototype, 'slice'),
+        trim   = attr(String.prototype, 'trim'),
+        floor  = attr(Math, 'floor'),
+        random = attr(Math, 'random'),
+
+        /*
+         * # Common Constants
+         */
+
         kBlank          = ' ',
         kDecimalPoint   = '.',
         kEmpty          = '',
@@ -56,7 +67,8 @@
         kFormatStart    = '{',
         kGlobal         = 'g',
         kNumeric        = '([0-9]+)',
-        kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
+        kRandomCharFeed =
+            '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
         /*
          * Default length for generating a random <code>String</code>s.
@@ -64,28 +76,32 @@
         kDefaultRandomLength = 8,
 
        /*
-        * Common Regular Expressions
+        * # Common Regular Expressions
         */
+
         kPrintfRegExp     = /(%(\w+):s)|(%s)/g,
         kTrimRegExp       = /^\s+|\s+$/g,
         kWhitespaceRegExp = /\s+/g,
 
         /*
-         * Printf Replacement Indexes
+         * # Printf Replacement Indexes
          */
+
         kAllIndex                   = 0,
         kParametrizedMatchIndex     = 2,
         kReplaceParameterStartIndex = 1,
 
         /*
-         * Guid
+         * # Guid-Related
          */
+
         kGuidRadix = 36,
         kGuidShift = 30,
 
         /*
-         * To be Overridden.
+         * # To be Overridden
          */
+
         concat = null,
         strim  = null;
 
@@ -160,7 +176,7 @@
      */
     exports.generateGuid = def(me, 'generateGuid', function() {
         return (
-            (new Date()).getTime() + Math.random() * (1 << kGuidShift)
+            (new Date()).getTime() + random() * (1 << kGuidShift)
         ).toString(kGuidRadix).replace(kDecimalPoint, kEmpty);
     });
 
@@ -296,9 +312,8 @@
          *
          * @param {String} str - the <code>String</code> to process.
          * @param {Boolean} shouldCompact - Optional (default:
-         * <code>false</code>)
-         *     if <code>true</code>, multiple whitespace is compacted into single
-         * whitespace.
+         * <code>false</code>) if <code>true</code>, multiple whitespace
+         * is compacted into single whitespace.
          *
          * @return the processed <code>String</code>.
          */
@@ -346,3 +361,4 @@
         return strim(concat(kEmpty, str), true);
     });
 }(this.o2, this.o2.protecteds));
+

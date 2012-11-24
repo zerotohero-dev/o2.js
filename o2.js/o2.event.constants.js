@@ -1,33 +1,39 @@
-/**
- * @module   event.constants
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A cross-browser event management object.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('event.constants', ['core']);
+   /**
+    * @module   event.constants
+    *
+    * @requires core
+    *
+    * <p>A cross-browser event management object.</p>
+    */
+    fp.ensure(
+        'event.constants',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
+    var attr   = fp.getAttr,
+        create = attr(fp, 'create'),
+        def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Event',
 
         /**
@@ -181,3 +187,4 @@
         COMMA : 188
     });
 }(this.o2, this.o2.protecteds));
+

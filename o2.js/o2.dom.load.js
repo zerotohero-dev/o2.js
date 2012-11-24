@@ -1,37 +1,43 @@
-/**
- * @module   dom.load
- * @requires core
- * @requires dom.core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>This package is for asynchronously loading resources such as images and
- * scripts.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.load', ['core', 'string.core', 'dom.core']);
+    /**
+     * @module   dom.load
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>This package is for asynchronously loading resources such as images
+     * and scripts.</p>
+     */
+    fp.ensure(
+        'dom.load',
+    [
+        'core',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -40,20 +46,27 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         frameworkName = require('name'),
         nill          = require('nill'),
 
+        /*
+         * string.core
+         */
         kString       = 'String',
         concat        = require(kString, 'concat'),
         format        = require(kString, 'format'),
         generateGuid  = require(kString, 'generateGuid'),
 
         /*
-         * Common Strings
+         * # Common Strings
          */
+
         kCssId      = concat(frameworkName, '-css-{0}'),
         kHead       = 'head',
         kLink       = 'link',
@@ -64,26 +77,38 @@
         kSheetType  = 'text/css',
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kCssCheckInterval   = 100,
         kMaxCssCheckAttempt = 500,
 
         /*
-         * Common Regular Expressions
+         * # Common Regular Expressions
          */
+
         kCompleteRegExp = /loaded|complete/,
 
+        /*
+         * # Minimal Browser Detection
+         *
+         *     "In the future, they said; things will be better, they said."
+         *
+         *     It's year 2012+ and it's a shame that still sometimes the only
+         *     workaround is browser sniffing.
+         */
+
         kM$     = 'MSIE',
-        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
+        isCrap  = window.navigator.userAgent.indexOf(kM$) > -1 &&
+            !window.opera,
         isOpera = !!window.opera;
 
     /**
      * @function {static} o2.Dom.loadCss
      *
-     * <p>Asynchronously loads a <strong>css</strong> file with a given
+     * <p>Asynchronously loads a <strong>CSS</strong> file with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+     * <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
      * not have to be in the same domain as the web page.</p>
      *
      * <p>The success and failure callbacks is a somewhat hacky way of handling
@@ -98,7 +123,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+     * o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
      *      handleSuccess();
      * });
      * </pre>
@@ -149,7 +174,7 @@
             return;
         }
 
-        // worst-case fallback
+        // worst-case fall-back
         setTimeout(function check() {
             var i      = 0,
                 len    = 0,
@@ -186,9 +211,10 @@
      *
      * <p>Tries to load the image into a <strong>JavaScript</strong>
      * <code>Image</code> object; then triggers
-     * <code>successCallback</code> or <code>failureCallback</code> depending on
-     * the
-     * result of the load attempt.</p>
+     * <strong>successCallback</strong> or
+     * <strong>failureCallback</strong> depending on
+     * the result of the load attempt.</p>
+     *
      * <p>This function can be used for pre-loading or post-loading images.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -228,8 +254,9 @@
      *
      * <p>Asynchronously loads a <strong>script</strong> with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
-     * have to be in the same domain as the web page.</p>
+     *
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does
+     * not have to be in the same domain as the web page.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -266,3 +293,4 @@
         s.onload = callback;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

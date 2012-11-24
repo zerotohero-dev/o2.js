@@ -1,35 +1,42 @@
-/**
- * @module   jsonp.core
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>An object to make <strong>JSONP</strong> calls.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('jsonp.core', ['core', 'string.core']);
+    /**
+     * @module   jsonp.core
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>An object to make <strong>JSONP</strong> calls.</p>
+     */
+    fp.ensure(
+        'jsonp.core',
+    [
+        'core',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Jsonp',
 
         /**
@@ -40,22 +47,24 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         frameworkName = require('name'),
         nill          = require('nill'),
 
+        /*
+         * string.core
+         */
         concat = require('String', 'concat'),
 
         /*
-         * State
+         * # Common Constants
          */
-        counter = 0,
 
-        /*
-         * Common Constants
-         */
         kAnd      = '&',
         kCallback = 'callback',
         kEmpty    = '',
@@ -64,7 +73,13 @@
         kJson     = concat(frameworkName, '_json_'),
         kLoaded   = 'loaded',
         kQuery    = '?',
-        kScript   = 'script';
+        kScript   = 'script',
+
+        /*
+         * # Static State
+         */
+
+        counter = 0;
 
     /*
      *
@@ -149,3 +164,4 @@
         return jsonp;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

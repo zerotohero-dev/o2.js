@@ -1,60 +1,63 @@
-/**
- * @module   ajaxstate.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.F
- * -->
- *
- * <p>A Model for controlling AJAX timeouts etc.</p>
- * <p>An {@link AjaxController} should be registered to this model.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('ajaxstate.core', ['core']);
+    /**
+     * @module   ajaxstate.core
+     *
+     * @requires core
+     *
+     * <p>a model for controlling ajax timeouts etc.</p>
+     * <p>an {@link o2.AjaxController} should be registered to this model.</p>
+     */
+    fp.ensure(
+        'ajaxstate.core',
+    [
+        'core'
+    ]);
 
     var attr   = fp.getAttr,
         create = attr(fp, 'create'),
         def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'AjaxState',
 
         /**
          * @class {static} o2.AjaxState
          * @implements Observable
          *
-         * <p>A <code>Model</code> for the available <code>AjaxController</code>
-         * objects.</p>
+         * <p>A <code>Model</code> for the available
+         * <code>AjaxController</code> objects.</p>
          * <p>Implements the <code>Observable</code> interface.</p>
          *
          * <p>See
-         * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html
+         * http://download.oracle.com/javase/1.4.2/docs/api/java/
+         * util/Observable.html
          * </p>
          */
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Common Constants
          */
-        setTimeout   = attr(window, 'setTimeout'),
-        clearTimeout = attr(window, 'clearTimeout'),
 
-        /*
-         * Common Constants
-         */
-        kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
+        kNoTimeoutMetaData =
+            'Please specify timeout meta data for the observers';
 
     /*
      *
@@ -267,7 +270,7 @@
      *
      * <p>An implementation of the <code>Observer.deleteObservers</code>
      * method.</p>
-     * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
+     * <p>Unregisters all of the registered <code>Observer</code>s.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -295,7 +298,7 @@
      */
     exports.init = def(me, 'init', function() {
 
-        // We use implicit this, instead of explicity using
+        // We use implicit this, instead of explicitly using
         // o2.AjaxState.protecteds.listen, because o2.JsonpState inherits
         // o2.AjaxState, and in o2.JsonpState this refers to o2.JsonpState.
         listen(this);
@@ -315,7 +318,8 @@
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      */
-    exports.timeoutObservers = def(me, 'timeoutObservers', function(observers) {
+    exports.timeoutObservers = def(me, 'timeoutObservers',
+                function(observers) {
         timeoutObservers(this, observers);
     });
 
@@ -367,4 +371,5 @@
          */
         observers : []
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+

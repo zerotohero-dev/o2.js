@@ -1,22 +1,27 @@
-/**
- * @module   ajax.extend
- * @requires ajax.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>An AJAX controller that implements the <strong>Observer
- * Pattern</strong>.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('ajax.extend', ['core', 'ajax.core']);
+    /**
+     * @module   ajax.extend
+     *
+     * @requires core
+     * @requires ajax.core
+     *
+     * <p>An AJAX controller that implements the <strong>Observer
+     * Pattern</strong>.</p>
+     */
+    fp.ensure(
+        'ajax.extend',
+    [
+        'core',
+        'ajax.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -24,13 +29,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Ajax',
 
         /*
@@ -39,20 +46,26 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
+         */
+
+        /*
+         * ajax.core
          */
         get  = require(kModuleName, 'get'),
         post = require(kModuleName, 'post'),
 
         /*
-         * Caches
+         * # Caches
          */
+
         getCache  = {},
         postCache = {},
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kDelimeter = ',';
 
     /*
@@ -82,7 +95,7 @@
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>GET</strong> requests will be fired without waiting for the
     * other.</p>
     *
@@ -135,7 +148,7 @@
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>POST</strong> requests will be fired without waiting for
     * the other.</p>
     *
@@ -180,3 +193,4 @@
         return request;
     });
 }(this.o2, this.o2.protecteds));
+

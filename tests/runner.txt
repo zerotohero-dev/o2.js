@@ -1,0 +1,38 @@
+# TODO: for the test runner.
+
+0. The runner should read the meta information in o2.meta.js.
+1. For each module in the meta information the runner should load the
+corresponding spec file.
+    Example:
+        for 'o2.dom.dimension' load '<testfolder>o2.dom.dimension.test.html'
+2. Continuing with the dom.dimension example;
+    o2.dom.dimension.test.html should include a /suite/o2.dom.dimension.js
+
+3. Once the suite is loaded the RUNNER should check that the suite has
+    apropriate test methods defined, by looking at its meta information.
+    
+    In our case test methods should exist for the following items:
+
+            'getDimension', 'getDocumentDimension', 'getDocumentHeight',
+            'getDocumentWidth', 'getHeight', 'getViewportInfo',
+            'getWidth', 'getWindowInnerDimension', 'getWindowInnerHeight',
+            'getWindowInnerWidth', 'setDimension', 'setHeight', 'setWidth'
+
+    The runner (parent.Runner) will validate this by 
+
+    3.1. checking that the suite has registered itself 
+        (the suite should call `parent.Runner.addObserver(Suite)` for the check
+        to succeed. and the suite should also provide an `update` method
+        so that the parent runner can tell it to 'run' if everything is okay
+        or send an error message if there's a problem.
+        )
+
+    3.2. the runner should test the existence of
+        Suite.tests.getDimension ... etc.
+
+        and if all the tests are present it should send a green light to
+        the observer to continue to what it's doing.
+        
+
+    
+

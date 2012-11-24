@@ -1,36 +1,42 @@
-/**
- * @module   method.timer
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <code>Function</code> helper for timer-related actions, like delaying
- * a <code>Function</code> call.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('method.timer', ['core']);
+    /**
+     * @module   method.timer
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for timer-related actions, like
+     * delaying a <code>Function</code> call.</p>
+     */
+    fp.ensure(
+        'method.timer',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        alias     = attr(fp, 'alias'),
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Method',
 
         /*
@@ -39,13 +45,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
+         */
+
+        /*
+         * core
          */
         now = require('now'),
 
         /*
-         * Timer-Related
+         * # Timer-Related Constants
          */
+
         kTimerId       = 'id',
         kDelayCheckMs  = 50;
 
@@ -204,4 +215,5 @@
             loop();
         };
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+

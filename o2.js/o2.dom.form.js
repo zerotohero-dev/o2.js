@@ -1,27 +1,31 @@
-/**
- * @module   dom.form
- * @requires core
- * @requires dom.core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A HTML <code>Form</code> utility class.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.form', ['core', 'string.core', 'dom.core']);
+    /**
+     * @module   dom.form
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>A HTML <code>Form</code> utility class.</p>
+     */
+    fp.ensure(
+        'dom.form',
+    [
+        'core',
+        'string.core'
+    ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
          * Module Exports
@@ -29,7 +33,7 @@
         exports = {},
 
         /*
-         * Module Name
+         * Module Definition
          */
         kModuleName = 'Dom',
 
@@ -42,15 +46,22 @@
          * Aliases
          */
 
+        /*
+         * core
+         */
         $ = require('$'),
 
+        /*
+         * string.core
+         */
         kString = 'String',
         compact = require(kString, 'compact'),
         trim    = require(kString, 'trim'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kPlaceholder = 'placeholder',
         kEmpty       = '';
 
@@ -175,3 +186,4 @@
         }
     });
 }(this.o2, this.o2.protecteds));
+

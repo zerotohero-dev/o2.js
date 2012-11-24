@@ -1,22 +1,26 @@
-/**
- * @module   dom.scroll
- * @requires core
- * @requires dom.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A window/div scroll helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.scroll', ['core', 'dom.core']);
-
+    /**
+     * @module   dom.scroll
+     *
+     * @requires core
+     * @requires dom.core
+     *
+     * <p>A window/div scroll helper.</p>
+     */
+    fp.ensure(
+        'dom.scroll',
+    [
+        'core',
+        'dom.core'
+    ]);
 
     var attr      = fp.getAttr,
         alias     = attr(fp, 'alias'),
@@ -25,13 +29,15 @@
         require   = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Dom',
 
         /*
@@ -40,16 +46,24 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
-
-        $ = require('$'),
-
-        de = document.documentElement,
 
         /*
-         * To be Overridden
+         * core
          */
+        $ = require('$'),
+
+        /*
+         * native
+         */
+        de  = document.documentElement,
+        max = attr(Math, 'max'),
+
+        /*
+         * # To be Overridden
+         */
+
         getWindowScrollOffset,
         scrollWindowToTop,
         scrollWindowToBottom;
@@ -79,8 +93,8 @@
             // document.body may not be immediately available if
             // the script is placed in HEAD. check for it.
             if (db) {
-                left = Math.max(db.scrollLeft, de.scrollLeft);
-                top  = Math.max(db.scrollTop, de.scrollTop);
+                left = max(db.scrollLeft, de.scrollLeft);
+                top  = max(db.scrollTop, de.scrollTop);
             } else {
                 left = de.scrollLeft;
                 top  = de.scrollTop;
@@ -151,7 +165,7 @@
     /**
      * @function {static} o2.Dom.getScrollOffset
      *
-     * <p>An alias to {@link o2.Dom.getObjectStrollOffset}.</p>
+     * <p>An alias to {@link o2.Dom.getObjectScrollOffset}.</p>
      *
      * @see o2.Dom.getObjectScrollOffset
      */
@@ -316,7 +330,8 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject', 'scrollTo');
+    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject',
+        'scrollTo');
 
     /**
      * @function {static} o2.Dom.scrollToObject
@@ -327,3 +342,4 @@
      */
     exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this.o2.protecteds, this, this.document));
+

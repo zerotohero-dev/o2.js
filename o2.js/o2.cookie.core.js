@@ -1,21 +1,26 @@
-/**
- * @module   cookie.core
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <strong>Cookie</strong> helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('cookie.core', ['core', 'string.core']);
+    /**
+     * @module   cookie.core
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>A <strong>Cookie</strong> helper.</p>
+     */
+    fp.ensure(
+        'cookie.core',
+    [
+        'core',
+        'string.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -23,13 +28,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Cookie',
 
         /**
@@ -40,16 +47,23 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * string.core
+         */
         concat = require('String', 'concat'),
 
+        /*
+         * native
+         */
         escape = attr(window, 'escape'),
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kBlank         = ' ',
         kDelimeter     = ';',
         kDomain        = '; domain=',
@@ -62,8 +76,9 @@
         kSecure        = '; secure',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         save = null;
 
     /**
@@ -141,7 +156,8 @@
 
         cookiePath = path || kRootPath;
 
-        // Do not use encodeURICompoent for paths as it replaces "/" with "%2F"
+        // Do not use encodeURICompoent for paths,
+        // as it replaces "/" with "%2F".
         cookieString = concat(
             encodeURIComponent(name), kEquals,
             encodeURIComponent(value), ex, kPath,
@@ -190,3 +206,4 @@
     // come into play... Will not implement it.
     // removeAll : function(){ }
 }(this.o2, this.o2.protecteds, this, this.document));
+
