@@ -4,7 +4,6 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-
 (function(framework, fp) {
     'use strict';
 
@@ -124,3 +123,4 @@
         return sort(b, a);
     });
 }(this.o2, this.o2.protecteds));
+

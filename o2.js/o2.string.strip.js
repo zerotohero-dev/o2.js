@@ -48,7 +48,7 @@
 
         kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g,
         kNonAlphaRegExp        = /[^A-Za-z ]+/g,
-        kNonNumericRegExp      = /[^0-9-.]/g,
+        kNonNumericRegExp      = /[^0-9\-.]/g,
         kNumericRegExp         = /[0-9]/g,
         kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig,
 
@@ -155,3 +155,4 @@
         return str.replace(kNumericRegExp, kEmpty);
     });
 }(this.o2, this.o2.protecteds));
+

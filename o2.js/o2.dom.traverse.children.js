@@ -5,7 +5,7 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp, document) {
     'use strict';
 
     /**
@@ -24,11 +24,10 @@
         'core',
         'dom.traverse.core',
         'dom.traverse.validate',
-        'string.core',
+        'string.core'
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -70,16 +69,17 @@
         /*
          * dom.traverse.validate
          */
-        hasAttribute      = require(me, 'hasAttribute'),
-        hasClassAttribute = require(me, 'hasClassAttribute'),
-        hasClassName      = require(me, 'hasClassName'),
-        hasIdAttribute    = require(me, 'hasIdAttribute'),
-        isAttributeEquals = require(me, 'isAttributeEquals'),
+        hasAttribute      = require(kModuleName, 'hasAttribute'),
+        hasClassAttribute = require(kModuleName, 'hasClassAttribute'),
+        hasClassName      = require(kModuleName, 'hasClassName'),
+        hasIdAttribute    = require(kModuleName, 'hasIdAttribute'),
+        isAttributeEquals = require(kModuleName, 'isAttributeEquals'),
+        isNodeEquals      = require(kModuleName, 'isNodeEquals'),
 
         /*
          * (o2.dom.traverse.core) Protecteds
          */
-        protecteds = require(me, 'protecteds'),
+        protecteds = require(kModuleName, 'protecteds'),
         execFilter = attr(protecteds, 'execFilter'),
 
         /*
@@ -108,24 +108,7 @@
          */
         isNativeQuerySupported =
             (document.documentMode && document.documentMode >= 8) ||
-            (!!document.querySelector),
-
-        /*
-         * # To be Overridden
-         */
-
-         getChildren                   = null,
-         getChildrenByAttribute        = null,
-         getChildrenByAttributeUntil   = null,
-         getChildrenByClass            = null,
-         getChildrenByClassUntil       = null,
-         getChildrenUntil              = null,
-         getChildrenWithAttribute      = null,
-         getChildrenWithAttributeUntil = null,
-         getChildrenWithClass          = null,
-         getChildrenWithClassUntil     = null,
-         getChildrenWithId             = null,
-         getChildrenWithIdUntil        = null;
+            (!!document.querySelector);
 
     /*
      * Gets child nodes of the elm.
@@ -154,16 +137,6 @@
         return result;
     }
 
-    /*
-     * Checks whether two nodes are equal to one another.
-     */
-    function isNodeEquals(node, until) {
-        if (!node ) {return false;}
-        if (!until) {return false;}
-
-        return $(node) === $(until);
-    }
-
     /**
      * function {static} o2.Dom.getChildren
      *
@@ -184,11 +157,6 @@
     exports.getChildren = def(me, 'getChildren', function(elm, name) {
         return execFilter(elm, getChildNodes, [name]);
     });
-
-    /*
-     *
-     */
-    getChildren = require(kModuleName, 'getChildren');
 
     /**
      * function {static} o2.Dom.getChildrenByAttribute
@@ -228,11 +196,6 @@
             isAttributeEquals, [attribute, value]);
     });
 
-    /*
-     *
-     */
-    getChildrenByAttribute = require(kModuleName, 'getChildrenByAttribute');
-
     /**
      * @function {static} o2.Dom.getChildrenByAttributeUntil
      *
@@ -263,12 +226,6 @@
         return execFilter(elm, getChildNodes, [name],
             isAttributeEquals, [attribute, value], isNodeEquals, [until]);
     });
-
-    /*
-     *
-     */
-    getChildrenByAttributeUntil = require(kModuleName,
-        'getChildrenByAttributeUntil');
 
     if (isNativeQuerySupported) {
 
@@ -327,11 +284,6 @@
         });
     }
 
-    /*
-     *
-     */
-    getChildrenByClass = require(kModuleName, 'getChildrenByClass');
-
     /**
      * @function {static} o2.Dom.getChildrenByClassUntil
      *
@@ -363,11 +315,6 @@
             hasClassName, [className], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    getChildrenByClassUntil = require(kModuleName, 'getChildrenByClassUntil');
-
     /**
      * @function {static} o2.Dom.getChildrenUntil
      *
@@ -397,11 +344,6 @@
             null, [], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    getChildrenUntil = require(kModuleName, 'getChildrenUntil');
-
     /**
      * @function {static} o2.Dom.getChildrenWithAttribute
      *
@@ -429,11 +371,6 @@
         return execFilter(elm, getChildNodes, [name],
             hasAttribute, [attribute]);
     });
-
-    /*
-     *
-     */
-    getChildrenWithAttribute = require(kModuleName, 'getChildrenWithAttribute');
 
     /**
      * @function {static} o2.Dom.getChildrenWithAttributeUntil
@@ -467,12 +404,6 @@
             hasAttribute, [attribute], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    getChildrenWithAttributeUntil = require(kModuleName,
-        'getChildrenWithAttributeUntil');
-
     /**
      * @function {static} o2.Dom.getChildrenWithClass
      *
@@ -497,11 +428,6 @@
                 name) {
         return execFilter(elm, getChildNodes, [name], hasClassAttribute, []);
     });
-
-    /*
-     *
-     */
-    getChildrenWithClass = require(kModuleName, 'getChildrenWithClass');
 
     /**
      * @function {static} o2.Dom.getChildrenWithClassUntil
@@ -532,12 +458,6 @@
             hasClassAttribute, [], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    getChildrenWithClassUntil = require(kModuleName,
-        'getChildrenWithClassUntil');
-
     /**
      * @function {static} o2.Dom.getChildrenWithId
      *
@@ -562,11 +482,6 @@
                 name) {
         return execFilter(elm, getChildNodes, [name], hasIdAttribute, []);
     });
-
-    /*
-     *
-     */
-    getChildrenWithId = require(kModuleName, 'getChildrenWithId');
 
     /**
      * @function {static} o2.Dom.getChildrenWithIdUntil
@@ -597,9 +512,5 @@
             hasIdAttribute, [], isNodeEquals, [until]);
     });
 
-    /*
-     *
-     */
-    getChildrenWithIdUntil = require(kModuleName, 'getChildrenWithIdUntil');
-
 }(this.o2, this.o2.protecteds, this.document));
+

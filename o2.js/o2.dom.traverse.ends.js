@@ -5,17 +5,17 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
-    fp.ensure('dom.traverse.ends', [
+    fp.ensure(
+        'dom.traverse.ends',
+    [
         'core',
-        'dom.traverse.next',
         'dom.traverse.validate'
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -42,14 +42,25 @@
          */
 
         /*
-         * dom.traverse.next
-         */
-        getNextSiblings = require(me, 'getNextSiblings'),
-
-        /*
          * dom.traverse.validate
          */
-        isAttributeEquals = require(me, 'isAttributeEquals');
+        isAttributeEquals = require(kModuleName, 'isAttributeEquals'),
+        hasClassName      = require(kModuleName, 'hasClassName'),
+        hasAttribute      = require(kModuleName, 'hasAttribute'),
+        hasClassAttribute = require(kModuleName, 'hasClassAttribute'),
+        hasIdAttribute    = require(kModuleName, 'hasIdAttribute'),
+
+        /*
+         * (o2.dom.traverse.core) Protecteds
+         */
+        protecteds      = require(kModuleName, 'protecteds'),
+        getNextSiblings = attr(protecteds, 'getNextSiblings');
+
+        /*
+         * # To be Overridden
+         */
+//
+//        getFirst = null;
 
     /**
      * @function {static} o2.Dom.getFirst
@@ -78,7 +89,7 @@
     /*
      *
      */
-    getFirst = require(kModuleName, 'getFirst');
+//    getFirst = require(kModuleName, 'getFirst');
 
     /**
      * @function {static} o2.Dom.getFirstByAttribute
@@ -112,7 +123,7 @@
     /*
      *
      */
-    getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
+//    getFirstByAttribute = require(kModuleName, 'getFirstByAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstByClass
@@ -145,7 +156,7 @@
     /*
      *
      */
-    getFirstByClass = require(kModuleName, 'getFirstByClass');
+//    getFirstByClass = require(kModuleName, 'getFirstByClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithAttribute
@@ -178,7 +189,7 @@
     /*
      *
      */
-    getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
+//    getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute');
 
     /**
      * @function {static} o2.Dom.getFirstWithClass
@@ -210,7 +221,7 @@
     /*
      *
      */
-    getFirstWithClass = require(kModuleName, 'getFirstWithClass');
+//    getFirstWithClass = require(kModuleName, 'getFirstWithClass');
 
     /**
      * @function {static} o2.Dom.getFirstWithId
@@ -241,7 +252,7 @@
     /*
      *
      */
-    getFirstWithId = require(kModuleName, 'getFirstWithId');
+//    getFirstWithId = require(kModuleName, 'getFirstWithId');
 
 
     /**
@@ -272,7 +283,7 @@
     /*
      *
      */
-    getLast = require(kModuleName, 'getLast');
+//    getLast = require(kModuleName, 'getLast');
 
     /**
      * @function {static} o2.Dom.getLastByAttribute
@@ -306,7 +317,7 @@
     /*
      *
      */
-    getLastByAttribute = require(kModuleName, 'getLastByAttribute');
+//    getLastByAttribute = require(kModuleName, 'getLastByAttribute');
 
     /**
      * @function {static} o2.Dom.getLastByClass
@@ -336,11 +347,6 @@
             null, [], name, null, 0, true, true);
     });
 
-    /*
-     *
-     */
-    getLastByClass = require(kModuleName, 'getLastByClass');
-
     /**
      * @function {static} o2.Dom.getLastWithId
      *
@@ -366,11 +372,6 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, 0, true, true);
     });
-
-    /*
-     *
-     */
-    getLastWithId = require(kModuleName, 'getLastWithId');
 
     /**
      * @function {static} o2.Dom.getLastWithAttribute
@@ -400,11 +401,6 @@
             null, [], name, null, 0, true, true);
     });
 
-    /*
-     *
-     */
-    getLastWithAttribute = require(kModuleName, 'getLastWithAttribute');
-
     /**
      * @function {static} o2.Dom.getLastWithClass
      *
@@ -432,16 +428,5 @@
         return getNextSiblings(elm, hasClassName, [className],
             null, [], name, null, 0, true, true);
     });
-
-    /*
-     *
-     */
-    getLastWithClass = require(kModuleName, 'getLastWithClass');
-}(this.o2, this.o2.protecteds, this.document));
-
-
-
-
-
-
+}(this.o2, this.o2.protecteds));
 

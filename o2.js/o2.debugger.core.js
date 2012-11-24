@@ -45,8 +45,8 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * // note: initalize Debugger only once,
-         * // possibly on window.load or dom content ready
+         * // note: initialize Debugger only once,
+         * // possibly on window.load or DOM content ready
          * o2.Debugger.init(someDomNode, true);
          *
          * //then inside your code use this syntax.
@@ -152,7 +152,7 @@
     }
 
     /*
-     * A factory class that creates printer deleages,
+     * A factory class that creates printer delegates,
      * by parsing the configuration object.
      */
     PrinterFactory = {
@@ -170,7 +170,9 @@
 
             if (isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -189,7 +191,9 @@
 
             if (!isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -241,7 +245,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Debugger.error('A serious error occured');
+     * o2.Debugger.error('A serious error occurred');
      * </pre>
      *
      * @param {String} message - the error message to display.
@@ -275,9 +279,8 @@
      * @function {static} o2.Debugger.init
      *
      * <p>Initializes the {@link Debugger} <code>static</code> class.</p>
-     * <p>Either <strong>>outputElement</strong>>, or
-     * <strong>>shouldUseConsole</strong>, or
-     * both should be provided.</p>
+     * <p>Either <strong>outputElement</strong>, or
+     * <strong>shouldUseConsole</strong>, or both should be provided.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -300,7 +303,7 @@
         // boolean.)
         isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
-        // Is everything ok? -- I should either use the output element, or
+        // Is everything OK? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
         isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
@@ -393,3 +396,4 @@
         me.println([kWarnText, message].join(kEmpty), kWarn);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

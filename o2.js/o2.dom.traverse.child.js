@@ -5,7 +5,7 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -24,7 +24,6 @@
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -56,28 +55,28 @@
 
          //TODO: this require can make a module lookup too and throw errors like
          // 'getFirst' is not defined, include `o2.dom.traverse.ends`.
-         getFirst              = require(me, 'getFirst'),
-         getFirstByAttribute   = require(me, 'getFirstByAttribute'),
-         getFirstByClass       = require(me, 'getFirstByClass'),
-         getFirstWithAttribute = require(me, 'getFirstWithAtttribute'),
-         getFirstWithClass     = require(me, 'getFirstWithClass'),
-         getFirstWithId        = require(me, 'getFirstWithId'),
-         getLast               = require(me, 'getLast'),
-         getLastByAttribute    = require(me, 'getLastByAttribute'),
-         getLastByClass        = require(me, 'getLastByClass'),
-         getLastWithAttribute  = require(me, 'getLastWithAttribute'),
-         getLastWithClass      = require(me, 'getLastWithClass'),
-         getLastWithId         = require(me, 'getLastWithId'),
+         getFirst              = require(kModuleName, 'getFirst'),
+         getFirstByAttribute   = require(kModuleName, 'getFirstByAttribute'),
+         getFirstByClass       = require(kModuleName, 'getFirstByClass'),
+         getFirstWithAttribute = require(kModuleName, 'getFirstWithAttribute'),
+         getFirstWithClass     = require(kModuleName, 'getFirstWithClass'),
+         getFirstWithId        = require(kModuleName, 'getFirstWithId'),
+         getLast               = require(kModuleName, 'getLast'),
+         getLastByAttribute    = require(kModuleName, 'getLastByAttribute'),
+         getLastByClass        = require(kModuleName, 'getLastByClass'),
+         getLastWithAttribute  = require(kModuleName, 'getLastWithAttribute'),
+         getLastWithClass      = require(kModuleName, 'getLastWithClass'),
+         getLastWithId         = require(kModuleName, 'getLastWithId'),
 
         /*
          * dom.traverse.nth
          */
-         getNth              = require(me, 'getNth'),
-         getNthByAttribute   = require(me, 'getNthByAttribute'),
-         getNthByClass       = require(me, 'getNthByClass'),
-         getNthWithAttribute = require(me, 'getNthWithAttribute'),
-         getNthWithClass     = require(me, 'getNthWithClass'),
-         getNthWithId        = require(me, 'getNthWithId');
+         getNth              = require(kModuleName, 'getNth'),
+         getNthByAttribute   = require(kModuleName, 'getNthByAttribute'),
+         getNthByClass       = require(kModuleName, 'getNthByClass'),
+         getNthWithAttribute = require(kModuleName, 'getNthWithAttribute'),
+         getNthWithClass     = require(kModuleName, 'getNthWithClass'),
+         getNthWithId        = require(kModuleName, 'getNthWithId');
 
     /**
      * @function {static} o2.Dom.getFirstChild
@@ -595,4 +594,5 @@
 
         return getNthWithId(elm.firstChild, n, name);
     });
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
+

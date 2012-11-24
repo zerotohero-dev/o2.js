@@ -5,18 +5,20 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
     fp.ensure(
         'dom.traverse.nth',
     [
         'core',
-        'dom.constants'
+        'dom.constants',
+        'dom.traverse.validate',
+        'dom.traverse.siblings',
+        'dom.traverse.parents'
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -36,7 +38,31 @@
         /*
          * Dom (traverse.nth)
          */
-        me = create(kModuleName);
+        me = create(kModuleName),
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * (dom.traverse.core) Protecteds
+         */
+        protecteds      = require(kModuleName, 'protecteds'),
+        getNextSiblings = attr(protecteds, 'getNextSiblings'),
+
+        /*
+         * dom.traverse.parents
+         */
+        getParents = require(kModuleName, 'getParents'),
+
+        /*
+         * dom.traverse.validate
+         */
+        isAttributeEquals = require(kModuleName, 'isAttributeEquals'),
+        hasClassName      = require(kModuleName, 'hasClassName'),
+        hasAttribute      = require(kModuleName, 'hasAttribute'),
+        hasClassAttribute = require(kModuleName, 'hasClassAttribute'),
+        hasIdAttribute    = require(kModuleName, 'hasIdAttribute');
 
     /**
      * @function {static} o2.Dom.getNth
@@ -63,11 +89,6 @@
     exports.getNth = def(me, 'getNth', function(elm, n, name) {
         return getNextSiblings(elm, null, [], null, [], name, null, n, true);
     });
-
-    /*
-     *
-     */
-    getNth = require(kModuleName, 'getNth');
 
     /**
      * @function {static} o2.Dom.getNthByAttribute
@@ -99,11 +120,6 @@
             null, [], name, null, n, true);
     });
 
-    /*
-     *
-     */
-    getNthByAttribute = require(kModuleName, 'getNthByAttribute');
-
     /**
      * @function {static} o2.Dom.getNthByClass
      *
@@ -134,11 +150,6 @@
             null, [], name, null, n, true);
     });
 
-    /*
-     *
-     */
-    getNthByClass = require(kModuleName, 'getNthByClass');
-
     /**
      * @function {static} o2.Dom.getNthWithAttribute
      *
@@ -168,11 +179,6 @@
             null, [], name, null, n, true);
     });
 
-    /*
-     *
-     */
-    getNthWithAttribute = require(kModuleName, 'getNthWithAttribute');
-
     /**
      * @function {static} o2.Dom.getNthWithClass
      *
@@ -201,11 +207,6 @@
             name, null, n, true);
     });
 
-    /*
-     *
-     */
-    getNthWithClass = require(kModuleName, 'getNthWithClass');
-
     /**
      * @function {static} o2.Dom.getNthWithId
      *
@@ -232,11 +233,6 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n, true);
     });
-
-    /*
-     *
-     */
-    getNthWithId = require(kModuleName, 'getNthWithId');
 
     /**
      * @function {static} o2.Dom.getNthNext
@@ -748,20 +744,5 @@
        return getNextSiblings(elm, hasIdAttribute, [],
             null, [], name, null, n, false, true);
     });
-
-      'getNth', 'getNthByAttribute', 'getNthByClass',
-      'getNthWithAttribute', 'getNthWithClass', 'getNthWithId',
-
-      'getNthNext', 'getNthNextByAttribute', 'getNthNextByClass',
-      'getNthNextWithAttribute', 'getNthNextWithClass',
-      'getNthNextWithId',
-
-      'getNthPrev', 'getNthPrevByAttribute', 'getNthPrevByClass',
-      'getNthPrevWithAttribute', 'getNthPrevWithClass',
-      'getNthPrevWithId',
-
-      'getNthParent', 'getNthParentByAttribute', 'getNthParentByClass',
-      'getNthParentWithAttribute', 'getNthParentWithClass',
-      'getNthParentWithId'
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
 

@@ -67,7 +67,8 @@
         kFormatStart    = '{',
         kGlobal         = 'g',
         kNumeric        = '([0-9]+)',
-        kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
+        kRandomCharFeed =
+            '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
         /*
          * Default length for generating a random <code>String</code>s.
@@ -311,9 +312,8 @@
          *
          * @param {String} str - the <code>String</code> to process.
          * @param {Boolean} shouldCompact - Optional (default:
-         * <code>false</code>)
-         *     if <code>true</code>, multiple whitespace is compacted into single
-         * whitespace.
+         * <code>false</code>) if <code>true</code>, multiple whitespace
+         * is compacted into single whitespace.
          *
          * @return the processed <code>String</code>.
          */
@@ -361,3 +361,4 @@
         return strim(concat(kEmpty, str), true);
     });
 }(this.o2, this.o2.protecteds));
+

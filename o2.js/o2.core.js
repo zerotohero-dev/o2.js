@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001352586028
+ * @version     0.25.a.0001353741487
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -42,7 +42,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * # Module Exports
          */
 
-        explicitorts = {},
+        exports = {},
 
         /*
          * # Guid (copied from String.core to remove dependency)
@@ -116,7 +116,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     );
 
     /**
-     * @property {readonly String} o2.version
+     * @property {readonly String} o2.appVersion
      *
      * <p>Project version.</p>
      */
@@ -127,7 +127,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001352586028');
+    exports.build = def(me, 'build', '.0001353741487');
 
     /**
      * @function {static} o2.$
@@ -208,7 +208,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.now
      *
-     * <p>Returns the unix time (i.e. the number of milliseconds since
+     * <p>Returns the Unix time (i.e. the number of milliseconds since
      * midnight of January 1, 1970)</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -217,7 +217,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * var unixTimestamp = o2.now();
      * </pre>
      *
-     * @return the current unix time.
+     * @return the current Unix time.
      */
     exports.now = def(me, 'now', function() {
         return (new Date()).getTime();
@@ -390,3 +390,4 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return result ? result[0] : null;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

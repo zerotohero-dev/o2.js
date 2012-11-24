@@ -5,14 +5,69 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
     fp.ensure(
         'dom.traverse.siblings',
     [
-        'core'
+        'core',
+        'dom.traverse.children'
     ]);
+
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
+
+        /*
+         * # Module Exports
+         */
+
+        exports = {},
+
+        /*
+         * # Module Definition
+         */
+
+        kModuleName = 'Dom',
+
+        /*
+         * Dom (traverse.siblings)
+         */
+        me = create(kModuleName),
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * dom.traverse.children
+         */
+        getChildren                   = require(kModuleName,
+            'getChildren'),
+        getChildrenByAttribute        = require(kModuleName,
+            'getChildrenByAttribute'),
+        getChildrenByAttributeUntil   = require(kModuleName,
+            'getChildrenByAttributeUntil'),
+        getChildrenByClass            = require(kModuleName,
+            'getChildrenByClass'),
+        getChildrenByClassUntil       = require(kModuleName,
+            'getChildrenByClassUntil'),
+        getChildrenWithId             = require(kModuleName,
+            'getChildrenWithId'),
+        getChildrenWithIdUntil        = require(kModuleName,
+            'getChildrenWithIdUntil'),
+        getChildrenUntil              = require(kModuleName,
+            'getChildrenUntil'),
+        getChildrenWithAttribute      = require(kModuleName,
+            'getChildrenWithAttribute'),
+        getChildrenWithAttributeUntil = require(kModuleName,
+            'getChildrenWithAttributeUntil'),
+        getChildrenWithClass          = require(kModuleName,
+            'getChildrenWithClass'),
+        getChildrenWithClassUntil     = require(kModuleName,
+            'getChildrenWithClassUntil');
 
     /**
      * @function {static} o2.Dom.getSiblings
@@ -37,11 +92,6 @@
     exports.getSiblings = def(me, 'getSiblings', function(elm, name) {
         return !elm ? [] : getChildren(elm.parentNode, name);
     });
-
-    /*
-     *
-     */
-    getSiblings = require(kModuleName, 'getSiblings');
 
     /**
      * @function {static} o2.Dom.getSiblingsByAttribute
@@ -355,4 +405,5 @@
                 function(elm, until, name) {
         return !elm ? [] : getChildrenWithIdUntil(elm.parentNode, until, name);
     });
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
+

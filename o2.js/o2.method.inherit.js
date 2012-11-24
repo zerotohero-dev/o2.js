@@ -9,6 +9,7 @@
 
     /**
      * @module   method.inherit
+     *
      * @requires core
      * @requires string.corei
      *
@@ -153,3 +154,4 @@
         };
     });
 }(this.o2, this.o2.protecteds));
+

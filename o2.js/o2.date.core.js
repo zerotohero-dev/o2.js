@@ -61,6 +61,12 @@
         format = require('String', 'format'),
 
         /*
+         * native
+         */
+        abs   = attr(Math, 'abs'),
+        floor = attr(Math, 'floor'),
+
+        /*
          * # i18n
          */
 
@@ -212,3 +218,4 @@
      */
     exports.now = alias(me, 'now', 'getTime');
 }(this.o2, this.o2.protecteds));
+

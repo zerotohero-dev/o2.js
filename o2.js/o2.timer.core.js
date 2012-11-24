@@ -58,7 +58,8 @@
          * // Stops the timer (i.e. doStuff will not be executed further).
          * o2.Timer.stop(kCheckId);
          *
-         * // Restarts the timer (i.e. doStuff will be periodically executed again).
+         * // Restarts the timer (i.e. doStuff will be periodically executed
+         * // again).
          * o2.Timer.start(kCheckId);
          * </pre>
          */
@@ -217,3 +218,4 @@
         }
     });
 }(this.o2, this.o2.protecteds, this));
+

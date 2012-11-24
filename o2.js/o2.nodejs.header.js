@@ -12,7 +12,7 @@
  *  !!! IF YOU EDIT IT, YOU MAY LOSE YOUR CHANGES !!!
  */
 
-if (!document) {
+if (!this.document) {
     var document = {
         getElementsByName      : function() {},
         createElement          : function() {},
@@ -27,7 +27,7 @@ if (!document) {
     this.setInterval   = setInterval;
     this.clearTimeout  = clearTimeout;
     this.clearInterval = clearInterval;
-    this.escape        = escape;
+    this.escape        = function() {};
     this.navigator     = {
         userAgent : 'o2.js DOM Mockup for Node.JS'
     };

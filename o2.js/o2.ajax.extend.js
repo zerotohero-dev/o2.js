@@ -95,7 +95,7 @@
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>GET</strong> requests will be fired without waiting for the
     * other.</p>
     *
@@ -148,7 +148,7 @@
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>POST</strong> requests will be fired without waiting for
     * the other.</p>
     *
@@ -193,3 +193,4 @@
         return request;
     });
 }(this.o2, this.o2.protecteds));
+

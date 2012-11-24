@@ -4,7 +4,7 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(a, b) {
+(function() {
     'use strict';
 
     /**
@@ -15,4 +15,4 @@
 
 
     //throw 'o2.Effect module has not been built yet.';
-}(this));
+}());

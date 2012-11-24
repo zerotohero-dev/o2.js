@@ -444,3 +444,4 @@
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
 }(this.o2, this.o2.protecteds));
+

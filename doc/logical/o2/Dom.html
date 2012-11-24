@@ -32,7 +32,7 @@
 	               <a href="http://o2js.com/">o2.js</a>   
                 </h1>
                 <div class="bar">
-	                 version 0.25.a.0001352586028
+	                 version 0.25.a.0001353741487
 	            </div>
 	         </div>
              <div class="content" id="docContent">
@@ -98,7 +98,7 @@
  title)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Activates the <strong>alternate stylesheet</strong> with the given
+        <p>Activates the <strong>alternate style sheet</strong> with the given
  <code>title</code>.</p>
 
  <p><strong>Usage example:</strong></p>
@@ -2978,7 +2978,7 @@
                 <a href="logical/o2/Dom.html#___getScrollOffset"><span class="elementName">getScrollOffset</span></a>()
             </div>
         <div class="summaryItemDesc">
-        <p>An alias to o2.Dom.getObjectStrollOffset.</p>    </div>  
+        <p>An alias to <a href="logical/o2/Dom.html#___getObjectScrollOffset">o2.Dom.getObjectScrollOffset</a>.</p>    </div>  
                             </div>
                     <div class="summaryItem">
                                                                     <div class="summaryItemDef">
@@ -3325,7 +3325,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- var innerHeight = o2.Dom.getWindow.innerHeight();
+ var innerHeight = o2.Dom.getWindowInnerHeight();
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -3481,7 +3481,8 @@
  obj)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Checks whether the given node is an <strong>element</strong> node.</p>
+        <p>Checks whether the given node is an <strong>element</strong>
+ node.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -3617,9 +3618,9 @@
  successCallback)
             </div>          
                 <div class="summaryItemDesc">
-        <p>Asynchronously loads a <strong>css</strong> file with a given
+        <p>Asynchronously loads a <strong>CSS</strong> file with a given
  <strong>src</strong>.</p>
- <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+ <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
  not have to be in the same domain as the web page.</p>
 
  <p>The success and failure callbacks is a somewhat hacky way of handling
@@ -3634,7 +3635,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+ o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
       handleSuccess();
  });
  </pre>    </div>  
@@ -3651,9 +3652,10 @@
                 <div class="summaryItemDesc">
         <p>Tries to load the image into a <strong>JavaScript</strong>
  <code>Image</code> object; then triggers
- <code>successCallback</code> or <code>failureCallback</code> depending on
- the
- result of the load attempt.</p>
+ <strong>successCallback</strong> or
+ <strong>failureCallback</strong> depending on
+ the result of the load attempt.</p>
+
  <p>This function can be used for pre-loading or post-loading images.</p>
 
  <p><strong>Usage example:</strong></p>
@@ -3676,8 +3678,9 @@
                 <div class="summaryItemDesc">
         <p>Asynchronously loads a <strong>script</strong> with a given
  <strong>src</strong>.</p>
- <p>Cross-domain loading is also okay: The <strong>script</strong> does not
- have to be in the same domain as the web page.</p>
+
+ <p>Cross-domain loading is also okay: The <strong>script</strong> does
+ not have to be in the same domain as the web page.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -3758,7 +3761,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.remove('nagivation');
+ o2.Dom.remove('navigation');
  </pre>    </div>  
                             </div>
                     <div class="summaryItem">
@@ -4183,7 +4186,7 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Activates the <strong>alternate stylesheet</strong> with the given
+        <p>Activates the <strong>alternate style sheet</strong> with the given
  <code>title</code>.</p>
 
  <p><strong>Usage example:</strong></p>
@@ -4202,7 +4205,7 @@
         <code>
             title        </code>
          - the <code>title</code> of the <strong>alternate
- stylesheet</strong> to activate.            </div>   
+ style sheet</strong> to activate.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -10195,8 +10198,8 @@
             	<div class="returns">
 	        <span class="descSection">Returns:</span><br/>
 	        <div class="paddedDetails">
-	            	             the offset from the top-left corner of the viewport, in the
-//          * form <code>{left: l, top: t}</code>.
+	            	             the offset from the top-left corner of the viewport,
+//          * in the form <code>{left: l, top: t}</code>.
 //          	            	        </div>
         </div>      
                                                 <hr/>       
@@ -12377,7 +12380,7 @@
                 </code>
             </div>    
         <div class="comment">
-        <p>An alias to o2.Dom.getObjectStrollOffset.</p>
+        <p>An alias to <a href="logical/o2/Dom.html#___getObjectScrollOffset">o2.Dom.getObjectScrollOffset</a>.</p>
 
      </div>
                                 <div class="seealso">
@@ -13331,7 +13334,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- var innerHeight = o2.Dom.getWindow.innerHeight();
+ var innerHeight = o2.Dom.getWindowInnerHeight();
  </pre>
 
      </div>
@@ -13580,8 +13583,8 @@
                                                 <div class="param paddedDetails">
         <code>
             elmRefNode        </code>
-         - the reference, or the <strong>id</strong> of
- the node.            </div>   
+         - the reference, or the <strong>id</strong>
+ of the node.            </div>   
                                         </div>
                 </div>
                     </div>
@@ -13697,7 +13700,8 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Checks whether the given node is an <strong>element</strong> node.</p>
+        <p>Checks whether the given node is an <strong>element</strong>
+ node.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -14053,9 +14057,9 @@
                 </code> 
             </div>          
                 <div class="comment">
-        <p>Asynchronously loads a <strong>css</strong> file with a given
+        <p>Asynchronously loads a <strong>CSS</strong> file with a given
  <strong>src</strong>.</p>
- <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+ <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
  not have to be in the same domain as the web page.</p>
 
  <p>The success and failure callbacks is a somewhat hacky way of handling
@@ -14070,7 +14074,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+ o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
       handleSuccess();
  });
  </pre>
@@ -14113,9 +14117,10 @@
                 <div class="comment">
         <p>Tries to load the image into a <strong>JavaScript</strong>
  <code>Image</code> object; then triggers
- <code>successCallback</code> or <code>failureCallback</code> depending on
- the
- result of the load attempt.</p>
+ <strong>successCallback</strong> or
+ <strong>failureCallback</strong> depending on
+ the result of the load attempt.</p>
+
  <p>This function can be used for pre-loading or post-loading images.</p>
 
  <p><strong>Usage example:</strong></p>
@@ -14164,8 +14169,9 @@
                 <div class="comment">
         <p>Asynchronously loads a <strong>script</strong> with a given
  <strong>src</strong>.</p>
- <p>Cross-domain loading is also okay: The <strong>script</strong> does not
- have to be in the same domain as the web page.</p>
+
+ <p>Cross-domain loading is also okay: The <strong>script</strong> does
+ not have to be in the same domain as the web page.</p>
 
  <p><strong>Usage example:</strong></p>
 
@@ -14340,7 +14346,7 @@
  <p><strong>Usage example:</strong></p>
 
  <pre>
- o2.Dom.remove('nagivation');
+ o2.Dom.remove('navigation');
  </pre>
 
      </div>
@@ -15289,7 +15295,7 @@
                                                 <div class="param paddedDetails">
         <code>
             elmWrapper        </code>
-         - the wrapper node ot its <code>String</code>
+         - the wrapper node to its <code>String</code>
  id.            </div>   
                                         </div>
                 </div>
@@ -15353,7 +15359,7 @@
                                                                                                             <div>
                                 <a href="physical/file-o2/dom/traverse/ends.js.html">o2.dom.traverse.ends.js</a>
                             </div>                              
-                                                                                                                                                                <div>
+                                                                                                            <div>
                                 <a href="physical/file-o2/dom/traverse/next.js.html">o2.dom.traverse.next.js</a>
                             </div>                              
                                                                                                             <div>
@@ -15361,6 +15367,9 @@
                             </div>                              
                                                                                                             <div>
                                 <a href="physical/file-o2/dom/traverse/parent.js.html">o2.dom.traverse.parent.js</a>
+                            </div>                              
+                                                                                                            <div>
+                                <a href="physical/file-o2/dom/traverse/parents.js.html">o2.dom.traverse.parents.js</a>
                             </div>                              
                                                                                                             <div>
                                 <a href="physical/file-o2/dom/traverse/prev.js.html">o2.dom.traverse.prev.js</a>
@@ -15374,7 +15383,10 @@
                                                                                                                                                                                                                                                                         <div>
                                 <a href="physical/file-o2/event/custom.js.html">o2.event.custom.js</a>
                             </div>                              
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <div>
+                                                                                                                                                                                                                                                                        <div>
+                                <a href="physical/file-o2/jsonpcontroller/core.js.html">o2.jsonpcontroller.core.js</a>
+                            </div>                              
+                                                                                                                                                                                                                    <div>
                                 <a href="physical/file-o2/meta/production.js.html">o2.meta.production.js</a>
                             </div>                              
                                                                                                                                                                                                                                                                                                                                                                                                                                     <div>
@@ -15460,9 +15472,6 @@
                                 <a href="physical/dom/module-style.html">dom.style</a>
                             </div>                              
                                                     <div>
-                                <a href="physical/dom/module-traverse.html">dom.traverse</a>
-                            </div>                              
-                                                    <div>
                                 <a href="physical/dom/traverse/module-child.html">dom.traverse.child</a>
                             </div>                              
                                                     <div>
@@ -15485,9 +15494,6 @@
                             </div>                              
                                                     <div>
                                 <a href="physical/jsonp/module-core.html">jsonp.core</a>
-                            </div>                              
-                                                    <div>
-                                <a href="physical/jsonpcontroller/module-core.html">jsonpcontroller.core</a>
                             </div>                              
                                                     <div>
                                 <a href="physical/jsonpstate/module-core.html">jsonpstate.core</a>

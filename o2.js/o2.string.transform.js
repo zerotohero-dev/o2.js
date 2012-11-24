@@ -12,8 +12,8 @@
      *
      * @requires core
      *
-     * <p>This package is responsible for simple <code>String</code> transformation
-     * operations.</p>
+     * <p>This package is responsible for simple <code>String</code>
+     * transformation operations.</p>
      */
     fp.ensure(
         'string.transform',
@@ -232,3 +232,4 @@
         return str;
     });
 }(this.o2, this.o2.protecteds));
+

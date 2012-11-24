@@ -14,8 +14,8 @@
      * @requires ajaxstate.core
      * @requires object.core
      *
-     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
-     * etc. A {@link JsonpController} should be registered to this
+     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong>
+     * timeouts etc. A {@link JsonpController} should be registered to this
      * <strong>model</strong>.
      */
     fp.ensure(
@@ -80,4 +80,5 @@
     }
 
     inherit();
-}(things.o2, this.o2.protecteds));
+}(this.o2, this.o2.protecteds));
+

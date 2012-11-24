@@ -226,7 +226,7 @@
 
         activeRequestCount--;
 
-        // " <= 0 "  is just for devensive coding.
+        // " <= 0 "  is just for defensive coding.
         // " === 0 " would suffice as well.
         if (activeRequestCount <= 0) {
             counter = 0;
@@ -261,7 +261,7 @@
         // IE9 throws an error when accessing these properties
         // while the request is in an "aborted" state.
         try {
-            status = xhr.status;
+            status       = xhr.status;
             responseText = xhr.responseText;
             responseXml  = xhr.responseXML;
             statusText   = xhr.statusText;

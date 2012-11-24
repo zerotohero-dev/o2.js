@@ -100,6 +100,23 @@
         reduce   = null,
         flatten  = null;
 
+    /*
+     *
+     */
+    function doBinarySearch(low, high) {
+        while (low < high) {
+            mid = (low + high) >> 1;
+
+            if (iterator(array[mid]) < iterator(item)) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+
+        return low;
+    }
+
     /**
      * @function {static} o2.Collection.clear
      *
@@ -387,7 +404,7 @@
      * the context that acts as the <code>this</code>
      * reference in the <strong>iterator</strong>.
      *
-     * @return the first truthy evaluated item; <code>null</code> if nothing
+     * @return the first "truthy" evaluated item; <code>null</code> if nothing
      * is found.
      */
     exports.find = def(me,'find', function(obj, delegate, context) {
@@ -654,7 +671,7 @@
      * @function {static} o2.Collection.exclude
      *
      * <p>Excludes filtered out items from the collection. Returns a new
-     * collection without alterin the initial one.</p>
+     * collection without altering the initial one.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -726,7 +743,7 @@
     /**
      * @function {static} o2.Collection.reject
      *
-     * <p>An <strong>alıas</strong> to {@link o2.Collection.exclude}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.exclude}.</p>
      *
      * @see o2.Collection.reject
      */
@@ -1147,7 +1164,7 @@
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
-     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * form <code>function(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
@@ -1231,7 +1248,7 @@
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
-     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * form <code>function(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
@@ -1424,18 +1441,7 @@
             low      = 0,
             mid      = 0;
 
-        // Binary search:
-        while (low < high) {
-            mid = (low + high) >> 1;
-
-            if (iterator(array[mid]) < iterator(item)) {
-                low = mid + 1;
-            } else {
-                high = mid;
-            }
-        }
-
-        return low;
+        return doBinarySearch(low, high);
     });
 
     /**
@@ -1646,7 +1652,8 @@
     /**
      * @function {static} o2.Collection.toArray
      *
-     * <p>Safely converts the <code>Object</code> in question into anarray.</p>
+     * <p>Safely converts the <code>Object</code> in question into an
+     * array.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -1894,7 +1901,7 @@
      * @function {static} o2.Collection.invoke
      *
      * <p>Calls the delegate <code>Function</code> with an optional set
-     * of parametrs for each item in the collection.</p>
+     * of parameters for each item in the collection.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -2157,6 +2164,7 @@
         }
 
         if (!isSeeded) {
+
             //TODO: const.
             throw 'redude: empty collection with no seed';
         }
@@ -2198,7 +2206,7 @@
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Functon} delegate - the reducer <code>Functon</code>.
+     * @param {Functon} delegate - the reducer <code>Function</code>.
      * @param {Object} store - the initial seed.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that the <strong>delegate</strong>
@@ -2247,7 +2255,7 @@
     /**
      * @function {static} o2.Collection.removeElement
      *
-     * <p>Removes all ocurences of the element from the collection.</p>
+     * <p>Removes all occurrences of the element from the collection.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -2497,7 +2505,7 @@
      * <code>function(context, value, index, collection)</code>, iterates
      * through the items of the <strong>collection</strong> and returns
      * a <strong>boolean</strong> value. When this <strong>delegate</strong>
-     * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
+     * returns <code>true</code> in any iteration, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -2650,7 +2658,7 @@
      * @return the merged <code>Array</code>.
      *
      * @see o2.Collection.diff
-     * @see o2.Collection.istersect
+     * @see o2.Collection.intersect
      */
     exports.union = def(me,'union', function() {
         return unique(flatten(arguments));
@@ -2697,3 +2705,4 @@
         return results;
     });
 }(this.o2, this.o2.protecteds, this));
+

@@ -181,14 +181,14 @@
 
     if (document.addEventListener) {
 
-        // Mozilla, Opera, webkit
+        // Mozilla, Opera, Webkit
         bindReadyListeners = function() {
 
             //Listen to native on dom content loaded event.
             document.addEventListener(kDomContentLoaded, onMozDomContentLoaded,
                 false);
 
-            //Worst-case fallback
+            //Worst-case fall-back
             window.addEventListener(kLoad, onMozWindowLoad, false);
 
             //Do not process further calls.
@@ -202,7 +202,7 @@
             // Listen to ready state change.
             document.attachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
-            // Worst-case fallback
+            // Worst-case fall-back
             window.attachEvent(kOnLoad, onIEWindowLoaded);
 
             // If the document is not an IFRAME then ready state has no use,
@@ -218,7 +218,7 @@
         };
     } else {
 
-        // Fallback for really archaic browsers.
+        // Fall-back for really archaic browsers.
         bindReadyListeners = function() {
             var cached = window.onload || nill;
 
@@ -264,3 +264,4 @@
         readyQueue.push(delegate);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

@@ -8,14 +8,17 @@
 (function(framework, fp, document, UNDEFINED) {
     'use strict';
 
+    // TODO: write a code that creates a dependency tree
+    // out of these ensures.
     fp.ensure(
        'dom.traverse.validate',
     [
-        'core'
+        'core',
+        'collection.core',
+        'dom.core'
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -35,7 +38,32 @@
         /*
          * Dom (traverse.validate)
          */
-        me = create(kModuleName);
+        me = create(kModuleName),
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * core
+         */
+        $ = require('$'),
+
+        /*
+         * collection.core
+         */
+        contains = require('Collection', 'contains'),
+
+        /*
+         * dom.core
+         */
+        getAttribute = require(kModuleName, 'getAttribute'),
+
+        /*
+         * # To be Overridden
+         */
+
+        isParent = null;
 
     /**
      * @function {static} o2.Dom.isChild
@@ -60,7 +88,8 @@
     exports.isChild = def(me, 'isChild', function(elm, ref) {
         if (!ref) {return false;}
 
-        return contains(getChildren(ref), elm);
+        // `require` is to get rid of circular dependency.
+        return contains(require(me, 'getChildren')(ref), elm);
     });
 
     /**
@@ -86,7 +115,7 @@
     exports.isNext = def(me, 'isNext', function(elm, ref) {
         if (!ref) {return false;}
 
-        return contains(getNextAll(ref), elm);
+        return contains(require(me, 'getNextAll')(ref), elm);
     });
 
     /**
@@ -112,7 +141,7 @@
     exports.isParent = def(me, 'isParent', function(elm, ref) {
         if (!ref) {return false;}
 
-        return contains(getParents(ref), elm);
+        return contains(require(me, 'getParents')(ref), elm);
     });
 
     /*
@@ -170,7 +199,7 @@
     exports.isPrev = def(me, 'isPrev', function(elm, ref) {
         if (!ref) {return false;}
 
-        return contains(getPrevAll(ref), elm);
+        return contains(require(me, 'getPrevAll')(ref), elm);
     });
 
     /**
@@ -196,11 +225,12 @@
     exports.isSibling = def(me, 'isSibling', function(elm, ref) {
         if (!ref) {return false;}
 
-        return contains(getSiblings(ref), elm);
+        return contains(require(me, 'getSiblings')(ref), elm);
     });
 
     //TODO: add documentation to the stuff below too.
-    //TODO: ensure that these below are referenced directly via Dom, not Dom.protecteds.
+    //TODO: ensure that these below are referenced directly via Dom,
+    //not Dom.protecteds.
     /*
      * Does the node have a given `attribute = value` pair?
      */
@@ -236,4 +266,15 @@
     exports.hasClassName = def(me, 'hasClassName', function(node, name) {
         return node && node.className.indexOf(name) > -1;
     });
+
+    /*
+     * Checks whether two nodes are equal to one another.
+     */
+    exports.isNodeEquals = def(me, 'isNodeEquals', function(node, until) {
+        if (!node ) {return false;}
+        if (!until) {return false;}
+
+        return $(node) === $(until);
+    });
 }(this.o2, this.o2.protecteds, this.document));
+

@@ -5,14 +5,58 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
     fp.ensure(
         'dom.traverse.next',
     [
-        'core'
+        'core',
+        'dom.traverse.validate'
     ]);
+
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
+
+        /*
+         * # Module Exports
+         */
+
+        exports = {},
+
+        /*
+         * # Module Definition
+         */
+
+        kModuleName = 'Dom',
+
+        /*
+         * Dom (traverse.next)
+         */
+        me = create(kModuleName),
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * dom.traverse.validate
+         */
+        isAttributeEquals = require(kModuleName, 'isAttributeEquals'),
+        hasClassName      = require(kModuleName, 'hasClassName'),
+        hasAttribute      = require(kModuleName, 'hasAttribute'),
+        hasClassAttribute = require(kModuleName, 'hasClassAttribute'),
+        hasIdAttribute    = require(kModuleName, 'hasIdAttribute'),
+        isNodeEquals      = require(kModuleName, 'isNodeEquals'),
+
+        /*
+         * (o2.dom.traverse.core) Protecteds
+         */
+        protecteds      = require(kModuleName, 'protecteds'),
+        getNextSiblings = attr(protecteds, 'getNextSiblings');
+
 
     /**
      *
@@ -200,11 +244,6 @@
     exports.getNextAll = def(me, 'getNextAll', function(elm, name) {
         return getNextSiblings(elm, null, [], null, [], name);
     });
-
-    /*
-     *
-     */
-    getNextAll = require(kModuleName, 'getNextAll');
 
     /**
      * @function {static} o2.Dom.getNextAllByAttribute
@@ -492,7 +531,8 @@
      * @return an <code>Array</code> of nodes, if found; and empty
      * <code>Array</code> if nothing is found.
      */
-    exports.getNextAllWithId = def(me, 'getNextAllWithId', function(elm, name) {
+    exports.getNextAllWithId = def(me, 'getNextAllWithId', function(elm,
+                name) {
         return getNextSiblings(elm, hasIdAttribute, [], null, [], name);
     });
 
@@ -525,4 +565,5 @@
         return getNextSiblings(elm, hasIdAttribute, [], isNodeEquals, [until],
             name);
     });
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
+

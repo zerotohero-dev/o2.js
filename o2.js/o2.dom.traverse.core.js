@@ -5,7 +5,7 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp, UNDEFINED) {
     'use strict';
 
     fp.ensure(
@@ -17,10 +17,8 @@
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
-        obj     = attr(fp, 'getObject'),
         require = attr(fp, 'require'),
 
         /*
@@ -50,11 +48,6 @@
         $ = require('$'),
 
         /*
-         * dom.core
-         */
-        getAttribute = require(kModuleName, 'getAttribute'),
-
-        /*
          * dom.constants
          */
         nodeType  = require(kModuleName, 'nodeType'),
@@ -65,7 +58,6 @@
          */
 
         kAll   = '*',
-        kEmpty = '',
 
         /*
          * # To be Overridden
@@ -153,29 +145,147 @@
         return result;
     }
 
-    exports.protecteds = def(me, 'protecteds', {
+    //TODO: define in o2.dom.core - append here.
+    exports.protecteds = def(me, 'protecteds', {});
 
-        /*
-         * Executes the filter.
-         */
-        execFilter : function(elm, getter, getterParams,
-                    checker, checkerParams, stopper, stopperParams,
-                    itemsCountCap, returnSingleItemAt, isReverse) {
-            var target = $(elm);
+    /*
+     * (o2.dom.traverse.core) Protecteds
+     */
+    protecteds = require(kModuleName, 'protecteds');
 
-            if (!target) {return [];}
-
-            getterParams.unshift(target);
-
-            return filter(
-                getter.apply(target, getterParams),
+    /*
+     * Executes the filter.
+     */
+    protecteds.execFilter = function(elm, getter, getterParams,
                 checker, checkerParams, stopper, stopperParams,
-                itemsCountCap, returnSingleItemAt, isReverse
-            );
-        }
-    });
+                itemsCountCap, returnSingleItemAt, isReverse) {
+        var target = $(elm);
 
-    protecteds = require(me, 'protecteds');
+        if (!target) {return [];}
+
+        getterParams.unshift(target);
+
+        return filter(
+            getter.apply(target, getterParams),
+            checker, checkerParams, stopper, stopperParams,
+            itemsCountCap, returnSingleItemAt, isReverse
+        );
+    };
+
+    /*
+     *
+     */
+    protecteds.getNextSiblings = function(elm,
+                filterDelegate, filterArgs,
+                breakDelegate, breakArgs,
+                name, itemsCountCap, returnSingleItemAt,
+                shouldStartAtFirstSibling, isReverse) {
+        if (!elm) {return [];}
+
+        var next    = null,
+            result  = [],
+            counter = 0;
+
+        while (true) {
+            if (!next && !!shouldStartAtFirstSibling) {
+                next = !!isReverse ?
+                    elm.parentNode.lastChild :
+                    elm.parentNode.firstChild;
+            } else {
+                next = !!isReverse ?
+                    elm.getPreviousSibling :
+                    elm.getNextSibling;
+            }
+
+            if(breakDelegate) {
+                breakArgs.unshift(next);
+
+                if(breakDelegate.apply(next, breakArgs)) {break;}
+            }
+
+            if (next.nodeType !== kTextNode) {
+                if (name) {
+                    if (next.nodeName === name) {
+                        if (filterDelegate) {
+                            filterArgs.unshift(next);
+
+                            if (filterDelegate.apply(next, filterArgs)) {
+                                counter++;
+
+                                if (!isNaN(returnSingleItemAt) &&
+                                            returnSingleItemAt === counter) {
+                                    return next;
+                                }
+
+                                result.push(next);
+
+
+                                if (!isNaN(itemsCountCap) &&
+                                            itemsCountCap <= counter) {
+                                    break;
+                                }
+                            }
+                        } else {
+                            counter++;
+
+                            if (!isNaN(returnSingleItemAt)&&
+                                        returnSingleItemAt === counter) {
+                                return next;
+                            }
+
+                            result.push(next);
+
+
+                            if (!isNaN(itemsCountCap) &&
+                                        itemsCountCap <= counter) {
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    if (filterDelegate) {
+                        filterArgs.unshift(next);
+
+                        if (filterDelegate.apply(next, filterArgs)) {
+                            counter++;
+
+                            if (!isNaN(returnSingleItemAt) &&
+                                        returnSingleItemAt === counter) {
+                                return next;
+                            }
+
+                            result.push(next);
+
+                            if (!isNaN(itemsCountCap) &&
+                                        itemsCountCap <= counter) {
+                                break;
+                            }
+                        }
+                    } else {
+                        counter++;
+
+                        if (!isNaN(returnSingleItemAt) &&
+                                    returnSingleItemAt === counter) {
+                            return next;
+                        }
+
+                        result.push(next);
+
+                        if (!isNaN(itemsCountCap) && itemsCountCap <= counter) {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (!next) {break;}
+        }
+
+        if (returnSingleItemAt !== UNDEFINED) {return null;}
+
+        return result;
+    };
+
     execFilter = attr(protecteds, 'execFilter');
 
     /**
@@ -347,5 +457,5 @@
                 name) {
         return execFilter(elm, getElements, [name], hasIdAttribute, []);
     });
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
 

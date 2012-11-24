@@ -12,7 +12,7 @@
  *  !!! IF YOU EDIT IT, YOU MAY LOSE YOUR CHANGES !!!
  */
 
-if (!document) {
+if (!this.document) {
     var document = {
         getElementsByName      : function() {},
         createElement          : function() {},
@@ -27,7 +27,7 @@ if (!document) {
     this.setInterval   = setInterval;
     this.clearTimeout  = clearTimeout;
     this.clearInterval = clearInterval;
-    this.escape        = escape;
+    this.escape        = function() {};
     this.navigator     = {
         userAgent : 'o2.js DOM Mockup for Node.JS'
     };
@@ -92,14 +92,22 @@ if (!document) {
          * # Warning Messages
          */
 
-        kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ',
-        kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ',
-        kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.',
-        kNameNotProvided      = 'framework.protecteds: name not provided',
-        kNoMetaDefinition     = 'framework.protecteds: no meta definition.',
-        kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection',
-        kObjNameNotString     = 'framework.protecteds: "name" should be  a String.',
-        kRootNotFound         = 'framework.protecteds: root not found for',
+        kDelegateNotdefined   =
+            'framework.protecteds: Delegate is undefined: ',
+        kMethodAlreadyDefined =
+            'framework.protecteds: Method name is already defined: ',
+        kMethodNameNotString  =
+            'framework.protecteds: "method" should be  a String.',
+        kNameNotProvided      =
+            'framework.protecteds: name not provided',
+        kNoMetaDefinition     =
+            'framework.protecteds: no meta definition.',
+        kObjectNotDefined     =
+            'framework.protecteds: Object not found in mixed collection',
+        kObjNameNotString     =
+            'framework.protecteds: "name" should be a String.',
+        kRootNotFound         =
+            'framework.protecteds: root not found for',
 
         /*
          * # Module Names
@@ -195,8 +203,6 @@ if (!document) {
      *
      */
     function init(root, key, value) {
-        log('init', arguments);
-
         if (!root || typeof root !== kObject) {return null;}
         if (root[key]                       ) {return root[key];}
 
@@ -218,18 +224,27 @@ if (!document) {
     }
 
     /*
+     * @namespace {protected static} o2.protecteds
      *
+     * <p>A namespace to contain all the <strong>protected</strong> methods
+     * of the <code>o2</code> object.</p>
+     *
+     * <p><strong>protected</strong> in a sense that only this module
+     * (<em>o2.core</em>), and friends of this module (<em>the entire suite of
+     * <strong>o2.*</strong> modules</em>) can access this namespace.
+     * <strong>static</strong>, meaning that you don't need to
+     * instantiate anything to access this namespace.</p>
      */
     fp = init(framework, 'protecteds', {});
 
     /*
-     * @property {protected Object} o2.protecteds.classes
+     * @property {protected static Object} o2.protecteds.classes
      *
-     * <p><storng>Caution:<strong> Highly explosive! Do not mess with it
+     * <p><strong>Caution:<strong> Highly explosive! Do not mess with it
      * unless you know what you are doing <strong>;)</strong></p>
      *
      * <p>This is a meta-level overview of the <strong>o2.js</strong>
-     * framework Any public class and method that <strong>o2.js</storng> uses is
+     * framework Any public class and method that <strong>o2.js</strong> uses is
      * listed here.</p>
      *
      * <p>This list is used for constructing classes at script's
@@ -255,7 +270,7 @@ if (!document) {
      *
      */
     function getMethodNotDefinedInMetaWarning(name) {
-        return ['framework.protecteds: Method"', name,
+        return ['framework.protecteds: Method "', name,
             '" is not found in framework meta definition'
         ].join(kEmpty);
     }
@@ -284,7 +299,7 @@ if (!document) {
     function getMethodOfClassNotDefinedInMetaWarning(name, method) {
         return ['framework.protecteds: Class "', name,
             '" does not have a method "', method,
-            '"" defined in meta definition.'
+            '" defined in meta definition.'
         ].join(kEmpty);
     }
 
@@ -303,7 +318,7 @@ if (!document) {
     function getMethodOfClassDoesNotExistWarning(name, method) {
         return ['framework.protecteds: Class "', name,
             '" does not have a method "', method,
-            '"" defined.'
+            '" defined.'
         ].join(kEmpty);
     }
 
@@ -427,6 +442,8 @@ if (!document) {
             'nodeType'
     ]],[
         'Dom', kDomCore, [
+            'protecteds',
+
             'append', 'create', 'createDocumentFragment', 'createElement',
             'empty', 'getAttribute', 'getHtml', 'getText', 'insertAfter',
             'insertBefore', 'isDocument', 'isElement', 'isNode', 'prepend',
@@ -508,7 +525,7 @@ if (!document) {
             'getNextAllByClass', 'getNextAllByClassUntil', 'getNextAllUntil',
             'getNextAllWithAttribute', 'getNextAllWithAttributeUntil',
             'getNextAllWithClass', 'getNextAllWithClassUntil',
-            'getNextAllWithId', 'getNextAllWithIdUntil',
+            'getNextAllWithId', 'getNextAllWithIdUntil'
     ]],[
         'Dom', kDomTraverseNth, [
             'getNth', 'getNthByAttribute', 'getNthByClass',
@@ -554,7 +571,10 @@ if (!document) {
     ]],[
         'Dom', kDomTraverseValidate, [
             'isChild', 'isNext', 'isParent', 'isParentOrSelf', 'isPrev',
-            'isSibling'
+            'isSibling',
+
+            'isAttributeEquals', 'hasIdAttribute', 'hasClassAttribute',
+            'hasAttribute', 'hasClassName', 'isNodeEquals'
     ]],[
         'Event', kEventConstants, [
             'keyCode'
@@ -643,7 +663,7 @@ if (!document) {
             'add', 'assert', 'assertEqual', 'assertNotEqual',
             'assertStrictEqual', 'assertStrictNotEqual',
             'getGlobalFailureCount', 'getGlobalSuccessCount',
-            'isRunning', 'log', 'run',
+            'isRunning', 'log', 'run'
     ]],[
         'Validation', kValidationCore, [
             'is', 'isArguments', 'isArray', 'isBoolean', 'isDate',
@@ -658,24 +678,25 @@ if (!document) {
     //TODO: complete me.
     modules = init(fp, 'dependencies');
 
-    /*
-     *
-     */
-    function depend(baseModuleName, dependencies) {
-        log('depend', arguments);
-
-        init(modules, baseModuleName,
-            {dependencies:dependencies, isLoaded:false}
-        );
-    }
+//    /*
+//     *
+//     */
+//    function depend(baseModuleName, dependencies) {
+//        log('depend', arguments);
+//
+//        init(modules, baseModuleName,
+//            {dependencies:dependencies, isLoaded:false}
+//        );
+//    }
 
     //TODO: complete me.
     //TODO: make an automated runner.
     //TODO: raise a 'dependency not loaded error if it is so.
-    depend(kCoreMeta,     []);
-    depend(kCore,         [kCoreMeta]);
-    depend(kTemplateCore, [kCore]);
-
+//no need- 1. load all files to the runner. dep tree is auto created
+//from ensures, then runner runs tests.
+//    depend(kCoreMeta,     []);
+//    depend(kCore,         [kCoreMeta]);
+//    depend(kTemplateCore, [kCore]);
 
     // The methods below are <em>internal</em> methods that are used
     // to ensure consistency within the framework.
@@ -685,33 +706,41 @@ if (!document) {
      *
      */
     init(fp, 'alias', function(mixed, aliasName, existingName) {
-        log('alias', arguments);
-
         if (!mixed) {
+            log('alias', arguments);
+
             dbg();
 
             throw kNoMetaDefinition;
         }
 
         if (!mixed[1]) {
+            log('alias', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!mixed[0][existingName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw getMethodNotDefinedInMetaWarning(existingName);
         }
 
         if (!mixed[0][aliasName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw getMethodNotDefinedInMetaWarning(aliasName);
         }
 
         if (mixed[1][aliasName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw [kMethodAlreadyDefined, aliasName].join(kEmpty);
@@ -724,17 +753,21 @@ if (!document) {
      *
      */
     init(fp, 'create', function(name) {
-        log('create', arguments);
-
         var cls = fp.classes[name];
 
         if (!cls) {
+            log('create', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(name);
         }
 
         if (!cls.items) {
+            log('create', arguments);
+
+            dbg();
+
             throw getIncorrectMetaDefinitionWarning(name);
         }
 
@@ -745,17 +778,19 @@ if (!document) {
      *
      */
     init(fp, 'construct', function(name, delegate) {
-        log('construct', arguments);
-
         var cls = fp.classes[name];
 
         if (!cls) {
+            log('construct', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(name);
         }
 
         if (framework[name]) {
+            log('construct', arguments);
+
             dbg();
 
             throw getConstructorAlreadyDefinedWarning(name);
@@ -770,24 +805,28 @@ if (!document) {
      *
      */
     init(fp, 'define', function(mixed, name, fn) {
-        log('define', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('define', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!fn) {
+            log('define', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, name].join(kEmpty);
         }
 
         if (!meta) {
+            log('define', arguments);
+
             dbg();
 
             throw kNoMetaDefinition;
@@ -795,6 +834,8 @@ if (!document) {
 
         if (meta[name]) {
             if (me[name]) {
+                log('define', arguments);
+
                 dbg();
 
                 throw [kMethodAlreadyDefined, name].join(kEmpty);
@@ -815,15 +856,17 @@ if (!document) {
      *
      */
     init(fp, 'getAttr', function(root, name) {
-        log('getAttr', arguments);
-
         if (!root) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw [kRootNotFound, ' "', name, '"'].join(kEmpty);
         }
 
         if (!name) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw kNameNotProvided;
@@ -832,6 +875,8 @@ if (!document) {
         var elem = root[name];
 
         if (!elem) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw getRootDoesNotHaveAttributeWarning(name);
@@ -840,17 +885,10 @@ if (!document) {
         return elem;
     });
 
-    function setAttr(root, name, value) {
-        // if root.name exists throw error
-        //
-    }
-
     /*
      *
      */
     init(fp, 'getObject', function(mixed) {
-        log('getObject', arguments);
-
         return mixed[1];
     });
 
@@ -858,8 +896,6 @@ if (!document) {
      *
      */
     init(fp, 'getRoot', function() {
-        log('getRoot', arguments);
-
         return [fp.classes.o2.items, framework];
     });
 
@@ -867,30 +903,36 @@ if (!document) {
      *
      */
     init(fp, 'override', function(mixed, methodName, fn) {
-        log('override', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('override', arguments);
+
             dbg();
 
             throw 'Object not found in mixed collection';
         }
 
         if (!fn) {
+           log('override', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, methodName].join(kEmpty);
         }
 
         if (!meta[methodName]) {
+            log('override', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(methodName);
         }
 
         if (!me.prototype[methodName]) {
+            log('override', arguments);
+
             dbg();
 
             throw getNoMethodToOverrideWarning(methodName);
@@ -903,30 +945,36 @@ if (!document) {
      *
      */
     init(fp, 'proto', function(mixed, methodName, fn) {
-        log('proto', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('proto', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!fn) {
+            log('proto', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, methodName].join(kEmpty);
         }
 
         if (!meta[methodName]) {
+            log('proto', arguments);
+
             dbg();
 
             throw getMethodOfClassNotDefinedInMetaWarning(kAny, methodName);
         }
 
         if (me.prototype[methodName]) {
+            log('proto', arguments);
+
             dbg();
 
             throw [kMethodAlreadyDefined, methodName].join(kEmpty);
@@ -939,12 +987,6 @@ if (!document) {
      *
      */
     init(fp, 'require', function(name, method) {
-        log('require', arguments);
-
-        if (name==='JsonpController') {
-            debugger;
-        }
-
         var methodName = kEmpty,
             objName    = kEmpty,
             meta       = null,
@@ -964,12 +1006,16 @@ if (!document) {
         }
 
         if (typeof objName !== kString) {
+            log('require', arguments);
+
             dbg();
 
             throw kObjNameNotString;
         }
 
         if (typeof methodName !== kString) {
+            log('require', arguments);
+
             dbg();
 
             throw kMethodNameNotString;
@@ -980,6 +1026,8 @@ if (!document) {
                 result = framework[methodName];
 
                 if (!result) {
+                    log('require', arguments);
+
                     dbg();
 
                     throw getClassNotDefinedWarning(methodName);
@@ -991,6 +1039,8 @@ if (!document) {
             meta = classes.o2.items;
 
             if (!meta[methodName]) {
+                log('require', arguments);
+
                 dbg();
 
                 throw getMethodNotDefinedInMetaWarning(methodName);
@@ -999,6 +1049,8 @@ if (!document) {
             result = framework[methodName];
 
             if (!result) {
+                log('require', arguments);
+
                 dbg();
 
                 throw getMethodNotDefinedInFrameworkWarning(methodName);
@@ -1010,6 +1062,8 @@ if (!document) {
         cls = classes[objName];
 
         if (!cls) {
+            log('require', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(objName);
@@ -1018,6 +1072,8 @@ if (!document) {
         mtd = cls.items[methodName];
 
         if (!mtd) {
+            log('require', arguments);
+
             dbg();
 
             throw getMethodOfClassNotDefinedInMetaWarning(objName,
@@ -1027,6 +1083,8 @@ if (!document) {
         obj = framework[objName];
 
         if (!obj) {
+            log('require', arguments);
+
             dbg();
 
             throw getClassDoesNotExistWarning(objName);
@@ -1035,6 +1093,8 @@ if (!document) {
         theMethod = obj[methodName];
 
         if (!theMethod) {
+            log('require', arguments);
+
             dbg();
 
             throw getMethodOfClassDoesNotExistWarning(objName, methodName);
@@ -1043,10 +1103,39 @@ if (!document) {
         return theMethod;
     });
 
-    init(fp, 'ensure', function() {
-        log('ensure', arguments);
-        //TODO: implement me.
-        console.log('ensure', arguments);
+    var objectGraph        = {};
+    objectGraph[kCoreMeta] = {};
+
+    /*
+     *
+     */
+    init(fp, 'ensure', function(base, dependencies) {
+
+        var i          = 0,
+            len        = 0,
+            dependency = null;
+
+        objectGraph[base] = objectGraph[base] || {};
+
+        for (i = 0, len = dependencies.length; i < len; i++) {
+            dependency = dependencies[i];
+
+            objectGraph[base][dependency] = {};
+
+            if (!objectGraph[dependency]) {
+                log('ensure', arguments);
+
+                dbg();
+
+                //TODO: to constants
+                throw 'Dependency "' +
+                    dependency + '" not satisfied for ' + base + '".';
+            }
+        }
+    });
+
+    init(fp, 'graph', function() {
+        return objectGraph;
     });
 }(this.o2, this));
 /**
@@ -1060,7 +1149,7 @@ if (!document) {
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001352586028
+ * @version     0.25.a.0001353741487
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1093,7 +1182,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * # Module Exports
          */
 
-        explicitorts = {},
+        exports = {},
 
         /*
          * # Guid (copied from String.core to remove dependency)
@@ -1167,7 +1256,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     );
 
     /**
-     * @property {readonly String} o2.version
+     * @property {readonly String} o2.appVersion
      *
      * <p>Project version.</p>
      */
@@ -1178,7 +1267,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001352586028');
+    exports.build = def(me, 'build', '.0001353741487');
 
     /**
      * @function {static} o2.$
@@ -1259,7 +1348,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.now
      *
-     * <p>Returns the unix time (i.e. the number of milliseconds since
+     * <p>Returns the Unix time (i.e. the number of milliseconds since
      * midnight of January 1, 1970)</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -1268,7 +1357,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * var unixTimestamp = o2.now();
      * </pre>
      *
-     * @return the current unix time.
+     * @return the current Unix time.
      */
     exports.now = def(me, 'now', function() {
         return (new Date()).getTime();
@@ -1441,6 +1530,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return result ? result[0] : null;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -1510,7 +1600,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         kFormatStart    = '{',
         kGlobal         = 'g',
         kNumeric        = '([0-9]+)',
-        kRandomCharFeed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
+        kRandomCharFeed =
+            '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz',
 
         /*
          * Default length for generating a random <code>String</code>s.
@@ -1754,9 +1845,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          *
          * @param {String} str - the <code>String</code> to process.
          * @param {Boolean} shouldCompact - Optional (default:
-         * <code>false</code>)
-         *     if <code>true</code>, multiple whitespace is compacted into single
-         * whitespace.
+         * <code>false</code>) if <code>true</code>, multiple whitespace
+         * is compacted into single whitespace.
          *
          * @return the processed <code>String</code>.
          */
@@ -1804,6 +1894,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return strim(concat(kEmpty, str), true);
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -1893,12 +1984,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
         //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
         decodeMap = [
-            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-            {regExp : /&#60;|&lt;/g,           replace : '<'},
-            {regExp : /&#62;|&gt;/g,           replace : '>'},
-            {regExp : /&#38;|&amp;/g,          replace : '&'}
+            {regExp : /&#32;|&nbsp;/g,         replace : ' ' },
+            {regExp : /&#34;|&quot;|&quott;/g, replace : '"' },
+            {regExp : /&#39;|&apos;|&aposs;/g, replace : '\''},
+            {regExp : /&#60;|&lt;/g,           replace : '<' },
+            {regExp : /&#62;|&gt;/g,           replace : '>' },
+            {regExp : /&#38;|&amp;/g,          replace : '&' }
         ],
 
         /*
@@ -2090,6 +2181,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         );
     });
 }(this.o2, this.o2.protecteds, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -2140,7 +2232,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         kNonAlphaNumericRegExp = /[^A-Za-z0-9 ]+/g,
         kNonAlphaRegExp        = /[^A-Za-z ]+/g,
-        kNonNumericRegExp      = /[^0-9-.]/g,
+        kNonNumericRegExp      = /[^0-9\-.]/g,
         kNumericRegExp         = /[0-9]/g,
         kTagRegExp             = /<[\/]?([a-zA-Z0-9]+)[^>\^<]*>/ig,
 
@@ -2247,6 +2339,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return str.replace(kNumericRegExp, kEmpty);
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -2261,8 +2354,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @requires core
      *
-     * <p>This package is responsible for simple <code>String</code> transformation
-     * operations.</p>
+     * <p>This package is responsible for simple <code>String</code>
+     * transformation operations.</p>
      */
     fp.ensure(
         'string.transform',
@@ -2481,6 +2574,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return str;
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -2670,6 +2764,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         COMMA : 188
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -2907,8 +3002,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @throws Exception - if the <strong>handler</strong> callback is not
      * defined.
      */
-    exports.addEventListeners = def(me, 'addEventListeners', function(collection,
-                eventName, handler) {
+    exports.addEventListeners = def(me, 'addEventListeners', function(
+                collection, eventName, handler) {
         if (!collection) {return;}
 
         var listen = addEventListener,
@@ -3174,6 +3269,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         });
     }
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -3427,7 +3523,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         /**
          * @function {static} o2.Event.isRightClick
          *
-         * <p>Checks whether or not the curent action is a right click action.</p>
+         * <p>Checks whether or not the curent action is a right click
+         * action.</p>
          *
          * <p><strong>Usage example:</strong></p>
          *
@@ -3483,6 +3580,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return getKeyCode(evt) === kTab;
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -3711,7 +3809,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         activeRequestCount--;
 
-        // " <= 0 "  is just for devensive coding.
+        // " <= 0 "  is just for defensive coding.
         // " === 0 " would suffice as well.
         if (activeRequestCount <= 0) {
             counter = 0;
@@ -3746,7 +3844,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         // IE9 throws an error when accessing these properties
         // while the request is in an "aborted" state.
         try {
-            status = xhr.status;
+            status       = xhr.status;
             responseText = xhr.responseText;
             responseXml  = xhr.responseXML;
             statusText   = xhr.statusText;
@@ -4156,7 +4254,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>GET</strong> requests will be fired without waiting for the
     * other.</p>
     *
@@ -4209,7 +4307,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     * request.</p>
     *
     * <p>Two requests that have identical <strong>URL</strong>s and parameter
-    * name-value pairs, are considered uniqe. This method, ensures that no two
+    * name-value pairs, are considered unique. This method, ensures that no two
     * unique <strong>POST</strong> requests will be fired without waiting for
     * the other.</p>
     *
@@ -4254,13 +4352,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return request;
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -4269,7 +4368,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @requires core
      *
      * <p>a model for controlling ajax timeouts etc.</p>
-     * <p>an {@link ajaxcontroller} should be registered to this model.</p>
+     * <p>an {@link o2.AjaxController} should be registered to this model.</p>
      */
     fp.ensure(
         'ajaxstate.core',
@@ -4297,12 +4396,13 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * @class {static} o2.AjaxState
          * @implements Observable
          *
-         * <p>A <code>Model</code> for the available <code>AjaxController</code>
-         * objects.</p>
+         * <p>A <code>Model</code> for the available
+         * <code>AjaxController</code> objects.</p>
          * <p>Implements the <code>Observable</code> interface.</p>
          *
          * <p>See
-         * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observable.html
+         * http://download.oracle.com/javase/1.4.2/docs/api/java/
+         * util/Observable.html
          * </p>
          */
         me = create(kModuleName),
@@ -4311,7 +4411,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * # Common Constants
          */
 
-        kNoTimeoutMetaData = 'Please specify timeout meta data for the observer';
+        kNoTimeoutMetaData =
+            'Please specify timeout meta data for the observers';
 
     /*
      *
@@ -4524,7 +4625,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>An implementation of the <code>Observer.deleteObservers</code>
      * method.</p>
-     * <p>Unregisteres all of the registered <code>Observer</code>s.</p>
+     * <p>Unregisters all of the registered <code>Observer</code>s.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -4552,7 +4653,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      */
     exports.init = def(me, 'init', function() {
 
-        // We use implicit this, instead of explicity using
+        // We use implicit this, instead of explicitly using
         // o2.AjaxState.protecteds.listen, because o2.JsonpState inherits
         // o2.AjaxState, and in o2.JsonpState this refers to o2.JsonpState.
         listen(this);
@@ -4572,7 +4673,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @param {Array} observers - A collection of {@link AjaxController}
      * objects.
      */
-    exports.timeoutObservers = def(me, 'timeoutObservers', function(observers) {
+    exports.timeoutObservers = def(me, 'timeoutObservers',
+                function(observers) {
         timeoutObservers(this, observers);
     });
 
@@ -4624,7 +4726,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
         observers : []
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -4719,14 +4822,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * // The request will time out after 5 seconds and then ontimeout
      * // will be called.
-     * var controller = new o2.AjaxController(requrest, {
+     * var controller = new o2.AjaxController(request, {
      *      timeout   : 5000,
      *      ontimeout : function() {
      *      }
      * });
      * </pre>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest
      * @param {Object} args - an associative array in the form
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
@@ -4807,6 +4910,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         state.deleteObserver(this);
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -5253,6 +5357,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return obj && typeof obj === kObject && !!obj.setInterval;
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -5302,7 +5407,11 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
 
         kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
-        kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
+        kUrlRegExp        = new RegExp([
+                '^(https?|ftp|file):',
+                '\\/\\/[\\-A-Z0-9+&@#\\/%?=~_|!:,.;]*',
+                '[\\-A-Z0-9+&@#\\/%=~_|]$'
+            ].join(''), 'i'),
         kWhitespaceRegExp = /^\s*$/;
 
     /**
@@ -5311,10 +5420,10 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
      * e-mails?</p>
-     * <p>There is no good (and realistic) regular expression to match an e-mail
-     * address.<p>
-     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
-     * for that.</p>
+     * <p>There is no good (and realistic) regular expression to match an
+     * e-mail address.<p>
+     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too
+     * complicated for that.</p>
      * <p>This method matches <strong>e-mail</strong> addresses, while giving
      * some false-positives.</p>
      * <p>The correct action to validate an <strong>e-mail</strong> address is
@@ -5379,6 +5488,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return kWhitespaceRegExp.test(text);
     });
 }(this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -5462,8 +5572,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * @param {Object} base - the context of the newly created
          * <code>Function</code>.
          * @param {Function} fn - the <code>Function</code> to modify.
-         * @param {Arguments} varargin - variable number of input arguments to be
-         * passed as initial set of arguments.
+         * @param {Arguments} varargin - variable number of input arguments
+         * to be passed as initial set of arguments.
          *
          * @return the modified <code>Function</code>.
          */
@@ -5634,6 +5744,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         };
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -5743,6 +5854,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         };
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -5754,6 +5866,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
     /**
      * @module   method.inherit
+     *
      * @requires core
      * @requires string.corei
      *
@@ -5898,6 +6011,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         };
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -6054,13 +6168,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -6068,8 +6183,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @requires core
      *
-     * <p>A <code>Function</code> helper for timer-related actions, like delaying
-     * a <code>Function</code> call.</p>
+     * <p>A <code>Function</code> helper for timer-related actions, like
+     * delaying a <code>Function</code> call.</p>
      */
     fp.ensure(
         'method.timer',
@@ -6271,7 +6386,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             loop();
         };
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -6420,6 +6536,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         };
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -6521,6 +6638,23 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         pluck    = null,
         reduce   = null,
         flatten  = null;
+
+    /*
+     *
+     */
+    function doBinarySearch(low, high) {
+        while (low < high) {
+            mid = (low + high) >> 1;
+
+            if (iterator(array[mid]) < iterator(item)) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+
+        return low;
+    }
 
     /**
      * @function {static} o2.Collection.clear
@@ -6809,7 +6943,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * the context that acts as the <code>this</code>
      * reference in the <strong>iterator</strong>.
      *
-     * @return the first truthy evaluated item; <code>null</code> if nothing
+     * @return the first "truthy" evaluated item; <code>null</code> if nothing
      * is found.
      */
     exports.find = def(me,'find', function(obj, delegate, context) {
@@ -7076,7 +7210,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @function {static} o2.Collection.exclude
      *
      * <p>Excludes filtered out items from the collection. Returns a new
-     * collection without alterin the initial one.</p>
+     * collection without altering the initial one.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -7148,7 +7282,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Collection.reject
      *
-     * <p>An <strong>alıas</strong> to {@link o2.Collection.exclude}.</p>
+     * <p>An <strong>alias</strong> to {@link o2.Collection.exclude}.</p>
      *
      * @see o2.Collection.reject
      */
@@ -7569,7 +7703,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
-     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * form <code>function(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
@@ -7653,7 +7787,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <code>Object</code> to work on.
      * @param {Function} delegate - (optional, defaults to
      * <code>undefined</code>) the evaluator <code>Function</code> in the
-     * form <code>functon(item, index, obj)</code> where <strong>item</strong>
+     * form <code>function(item, index, obj)</code> where <strong>item</strong>
      * is the current collection item; <strong>index</strong> is the index
      * of that item.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
@@ -7846,18 +7980,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             low      = 0,
             mid      = 0;
 
-        // Binary search:
-        while (low < high) {
-            mid = (low + high) >> 1;
-
-            if (iterator(array[mid]) < iterator(item)) {
-                low = mid + 1;
-            } else {
-                high = mid;
-            }
-        }
-
-        return low;
+        return doBinarySearch(low, high);
     });
 
     /**
@@ -8068,7 +8191,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Collection.toArray
      *
-     * <p>Safely converts the <code>Object</code> in question into anarray.</p>
+     * <p>Safely converts the <code>Object</code> in question into an
+     * array.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -8316,7 +8440,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @function {static} o2.Collection.invoke
      *
      * <p>Calls the delegate <code>Function</code> with an optional set
-     * of parametrs for each item in the collection.</p>
+     * of parameters for each item in the collection.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -8579,6 +8703,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
 
         if (!isSeeded) {
+
             //TODO: const.
             throw 'redude: empty collection with no seed';
         }
@@ -8620,7 +8745,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @param {Object} obj - an <code>Array</code> or an iterable
      * <code>Object</code> to work on.
-     * @param {Functon} delegate - the reducer <code>Functon</code>.
+     * @param {Functon} delegate - the reducer <code>Function</code>.
      * @param {Object} store - the initial seed.
      * @param {Object} context - (optional, defaults to <code>undefined</code>)
      * the context that the <strong>delegate</strong>
@@ -8669,7 +8794,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Collection.removeElement
      *
-     * <p>Removes all ocurences of the element from the collection.</p>
+     * <p>Removes all occurrences of the element from the collection.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -8919,7 +9044,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <code>function(context, value, index, collection)</code>, iterates
      * through the items of the <strong>collection</strong> and returns
      * a <strong>boolean</strong> value. When this <strong>delegate</strong>
-     * returns <code>true</code> in any iteratioin, <strong>some(...)</strong>
+     * returns <code>true</code> in any iteration, <strong>some(...)</strong>
      * also returns true; it returns <code>false</code> otherwise.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -9072,7 +9197,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @return the merged <code>Array</code>.
      *
      * @see o2.Collection.diff
-     * @see o2.Collection.istersect
+     * @see o2.Collection.intersect
      */
     exports.union = def(me,'union', function() {
         return unique(flatten(arguments));
@@ -9119,6 +9244,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return results;
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -9147,6 +9273,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     //     /* whatever */
     // };
 }(/*this.o2, this*/));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -9305,7 +9432,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         cookiePath = path || kRootPath;
 
-        // Do not use encodeURICompoent for paths as it replaces "/" with "%2F"
+        // Do not use encodeURICompoent for paths,
+        // as it replaces "/" with "%2F".
         cookieString = concat(
             encodeURIComponent(name), kEquals,
             encodeURIComponent(value), ex, kPath,
@@ -9354,6 +9482,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     // come into play... Will not implement it.
     // removeAll : function(){ }
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -9415,6 +9544,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * string.core
          */
         format = require('String', 'format'),
+
+        /*
+         * native
+         */
+        abs   = attr(Math, 'abs'),
+        floor = attr(Math, 'floor'),
 
         /*
          * # i18n
@@ -9568,6 +9703,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      */
     exports.now = alias(me, 'now', 'getTime');
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -9615,8 +9751,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * // note: initalize Debugger only once,
-         * // possibly on window.load or dom content ready
+         * // note: initialize Debugger only once,
+         * // possibly on window.load or DOM content ready
          * o2.Debugger.init(someDomNode, true);
          *
          * //then inside your code use this syntax.
@@ -9722,7 +9858,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     }
 
     /*
-     * A factory class that creates printer deleages,
+     * A factory class that creates printer delegates,
      * by parsing the configuration object.
      */
     PrinterFactory = {
@@ -9740,7 +9876,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
             if (isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -9759,7 +9897,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
             if (!isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -9811,7 +9951,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Debugger.error('A serious error occured');
+     * o2.Debugger.error('A serious error occurred');
      * </pre>
      *
      * @param {String} message - the error message to display.
@@ -9845,9 +9985,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @function {static} o2.Debugger.init
      *
      * <p>Initializes the {@link Debugger} <code>static</code> class.</p>
-     * <p>Either <strong>>outputElement</strong>>, or
-     * <strong>>shouldUseConsole</strong>, or
-     * both should be provided.</p>
+     * <p>Either <strong>outputElement</strong>, or
+     * <strong>shouldUseConsole</strong>, or both should be provided.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -9870,7 +10009,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         // boolean.)
         isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
-        // Is everything ok? -- I should either use the output element, or
+        // Is everything OK? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
         isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
@@ -9963,6 +10102,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         me.println([kWarnText, message].join(kEmpty), kWarn);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -10202,6 +10342,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         addClass(el, c);
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -10335,6 +10476,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         NOTATION : 12
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -10365,8 +10507,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 //          * @param {Object} e - the element, or the id of the element, to get
 //          * the offsets of.
 //          *
-//          * @return the offset from the top-left corner of the viewport, in the
-//          * form <code>{left: l, top: t}</code>.
+//          * @return the offset from the top-left corner of the viewport,
+//          * in the form <code>{left: l, top: t}</code>.
 //          */
 //         def(me, 'getOffset', function(elmItem) {
 //             var elm = $(elmItem);
@@ -10737,8 +10879,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
                     //
                     // ...
                     //
-                    // To avoid problems a combination of cssText and
-                    // getAttribute/setAttribute can be used.
+                    // To avoid problems the following combination of cssText
+                    // and getAttribute/setAttribute can be used.
                     e.style.cssText = value;
                     e.setAttribute(kStyle, value);
                 } else {
@@ -10906,7 +11048,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @param {Object} elmRefNode - the reference node, or the
      * <strong>id</strong> of the node.
      */
-    exports.insertAfter = def(me, 'insertAfter', function(elmNewNode, elmRefNode) {
+    exports.insertAfter = def(me, 'insertAfter', function(elmNewNode,
+                elmRefNode) {
         var newNode = $(elmNewNode),
             refNode = $(elmRefNode),
             obj     = null;
@@ -10939,8 +11082,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
      * node, to insert before.
-     * @param {Object} elmRefNode - the reference, or the <strong>id</strong> of
-     * the node.
+     * @param {Object} elmRefNode - the reference, or the <strong>id</strong>
+     * of the node.
      */
     exports.insertBefore = def(me, 'insertBefore', function(elmNewNode,
                 elmRefNode) {
@@ -10978,7 +11121,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Dom.isElement
      *
-     * <p>Checks whether the given node is an <strong>element</strong> node.</p>
+     * <p>Checks whether the given node is an <strong>element</strong>
+     * node.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -11064,7 +11208,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Dom.remove('nagivation');
+     * o2.Dom.remove('navigation');
      * </pre>
      *
      * @param {Object} e - either the <strong>element</strong>, or the
@@ -11240,6 +11384,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         obj.innerHTML = html;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -11365,7 +11510,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Dom.activateAlternateStylesheet
      *
-     * <p>Activates the <strong>alternate stylesheet</strong> with the given
+     * <p>Activates the <strong>alternate style sheet</strong> with the given
      * <code>title</code>.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -11375,7 +11520,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * </pre>
      *
      * @param {String} title - the <code>title</code> of the <strong>alternate
-     * stylesheet</strong> to activate.
+     * style sheet</strong> to activate.
      */
     exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
                 function(title) {
@@ -11664,7 +11809,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
                 //
                 // To stop the element moving around the screen when we do this,
                 // we set runtimeStyle.left with the current left value. After
-                // we’ve done the conversion we set everything back to the
+                // we've done the conversion we set everything back to the
                 // way it was.
                 //
                 // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
@@ -11750,7 +11895,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         if (!obj) {return;}
 
-        obj.style.display = obj[[frameworkName, kOldDisplay].join(kEmpty)] || kEmpty;
+        obj.style.display = obj[
+            [frameworkName, kOldDisplay].join(kEmpty)
+        ] || kEmpty;
 
         delete obj[[frameworkName, kOldDisplay].join(kEmpty)];
     });
@@ -11863,6 +12010,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         show(elm);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -12213,7 +12361,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * var innerHeight = o2.Dom.getWindow.innerHeight();
+     * var innerHeight = o2.Dom.getWindowInnerHeight();
      * </pre>
      *
      * @return the inner height of the window in pixels.
@@ -12360,6 +12508,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         setHeight(obj, dimension.height);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -12548,6 +12697,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -12656,9 +12806,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Dom.loadCss
      *
-     * <p>Asynchronously loads a <strong>css</strong> file with a given
+     * <p>Asynchronously loads a <strong>CSS</strong> file with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+     * <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
      * not have to be in the same domain as the web page.</p>
      *
      * <p>The success and failure callbacks is a somewhat hacky way of handling
@@ -12673,7 +12823,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+     * o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
      *      handleSuccess();
      * });
      * </pre>
@@ -12724,7 +12874,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             return;
         }
 
-        // worst-case fallback
+        // worst-case fall-back
         setTimeout(function check() {
             var i      = 0,
                 len    = 0,
@@ -12761,9 +12911,10 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Tries to load the image into a <strong>JavaScript</strong>
      * <code>Image</code> object; then triggers
-     * <code>successCallback</code> or <code>failureCallback</code> depending on
-     * the
-     * result of the load attempt.</p>
+     * <strong>successCallback</strong> or
+     * <strong>failureCallback</strong> depending on
+     * the result of the load attempt.</p>
+     *
      * <p>This function can be used for pre-loading or post-loading images.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -12803,8 +12954,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Asynchronously loads a <strong>script</strong> with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
-     * have to be in the same domain as the web page.</p>
+     *
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does
+     * not have to be in the same domain as the web page.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -12841,6 +12993,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         s.onload = callback;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -12976,7 +13129,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @param {Object} elmTarget - the node to wrap or its <code>String</code>
      * id.
-     * @param {Object} elmWrapper - the wrapper node ot its <code>String</code>
+     * @param {Object} elmWrapper - the wrapper node to its <code>String</code>
      * id.
      *
      * @return the wrapped node.
@@ -12993,6 +13146,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return elmTarget;
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -13176,14 +13330,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
     if (document.addEventListener) {
 
-        // Mozilla, Opera, webkit
+        // Mozilla, Opera, Webkit
         bindReadyListeners = function() {
 
             //Listen to native on dom content loaded event.
             document.addEventListener(kDomContentLoaded, onMozDomContentLoaded,
                 false);
 
-            //Worst-case fallback
+            //Worst-case fall-back
             window.addEventListener(kLoad, onMozWindowLoad, false);
 
             //Do not process further calls.
@@ -13197,7 +13351,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             // Listen to ready state change.
             document.attachEvent(kOnReadyStateChange, onIEDomContentLoaded);
 
-            // Worst-case fallback
+            // Worst-case fall-back
             window.attachEvent(kOnLoad, onIEWindowLoaded);
 
             // If the document is not an IFRAME then ready state has no use,
@@ -13213,7 +13367,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         };
     } else {
 
-        // Fallback for really archaic browsers.
+        // Fall-back for really archaic browsers.
         bindReadyListeners = function() {
             var cached = window.onload || nill;
 
@@ -13259,6 +13413,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         readyQueue.push(delegate);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -13426,7 +13581,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /**
      * @function {static} o2.Dom.getScrollOffset
      *
-     * <p>An alias to {@link o2.Dom.getObjectStrollOffset}.</p>
+     * <p>An alias to {@link o2.Dom.getObjectScrollOffset}.</p>
      *
      * @see o2.Dom.getObjectScrollOffset
      */
@@ -13591,7 +13746,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject', 'scrollTo');
+    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject',
+        'scrollTo');
 
     /**
      * @function {static} o2.Dom.scrollToObject
@@ -13602,328 +13758,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      */
     exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this.o2.protecteds, this, this.document));
-/*
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- */
-/**
- * @module   dom.traverse
- * @requires collection.core
- * @requires core
- * @requires dom.class
- * @requires dom.core
- * @requires string.core
- *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A utility package for traversing the <code>DOM</code>.</p>
- */
-(function(framework, fp, document, UNDEFINED) {
-    'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('dom.traverse', [
-        'collection.core',
-        'core',
-        'dom.class'
-        'dom.core',
-        'string.core',
-    ]);
-
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
-
-        /*
-         * Module Exports
-         */
-        exports = {},
-
-        /*
-         * Class Name
-         */
-        kModuleName = 'Dom',
-
-        /*
-         * Dom (traverse)
-         */
-        me = create(kModuleName),
-
-        /*
-         * Aliases
-         */
-
-        contains = require('Collection', 'contains'),
-
-        /*
-         * To be Overridden
-         */
-        getChildren                   = null,
-        getChildrenByAttribute        = null,
-        getChildrenByAttributeUntil   = null,
-        getChildrenByClass            = null,
-        getChildrenByClassUntil       = null,
-        getChildrenUntil              = null,
-        getChildrenWithAttribute      = null,
-        getChildrenWithAttributeUntil = null,
-        getChildrenWithClass          = null,
-        getChildrenWithClassUntil     = null,
-        getChildrenWithId             = null,
-        getChildrenWithIdUntil        = null,
-        getElements                   = null,
-        getFirst                      = null,
-        getFirstByAttribute           = null,
-        getFirstByClass               = null,
-        getFirstWithAttribute         = null,
-        getFirstWithClass             = null,
-        getFirstWithId                = null,
-        getLast                       = null,
-        getLastByAttribute            = null,
-        getLastByClass                = null,
-        getLastWithAttribute          = null,
-        getLastWithClass              = null,
-        getLastWithId                 = null,
-        getNextAll                    = null,
-        getNth                        = null,
-        getSiblings                   = null,
-        getNthByAttribute             = null,
-        getNthByClass                 = null,
-        getNthWithAttribute           = null,
-        getNthWithClass               = null,
-        getNthWithId                  = null,
-        getPrevAll                    = null,
-        isParent                      = null;
-
-    /*
-     * A multipurpose method to get next/previous sibling(s).
-     */
-    //TODO: this name is misleading, rename
-    function getNextSiblings(elm,
-                filterDelegate, filterArgs,
-                breakDelegate, breakArgs,
-                name, itemsCountCap, returnSingleItemAt,
-                shouldStartAtFirstSibling, isReverse) {
-        if (!elm) {return [];}
-
-        var next    = null,
-            result  = [],
-            counter = 0;
-
-        while (true) {
-            if (!next && !!shouldStartAtFirstSibling) {
-                next = !!isReverse ?
-                    elm.parentNode.lastChild :
-                    elm.parentNode.firstChild;
-            } else {
-                next = !!isReverse ?
-                    elm.getPreviousSibling :
-                    elm.getNextSibling;
-            }
-
-            if(breakDelegate) {
-                breakArgs.unshift(next);
-
-                if(breakDelegate.apply(next, breakArgs)) {break;}
-            }
-
-            if (next.nodeType !== kTextNode) {
-                if (name) {
-                    if (next.nodeName === name) {
-                        if (filterDelegate) {
-                            filterArgs.unshift(next);
-
-                            if (filterDelegate.apply(next, filterArgs)) {
-                                counter++;
-
-                                if (!isNaN(returnSingleItemAt) &&
-                                            returnSingleItemAt === counter) {
-                                    return next;
-                                }
-
-                                result.push(next);
-
-
-                                if (!isNaN(itemsCountCap) &&
-                                            itemsCountCap <= counter) {
-                                    break;
-                                }
-                            }
-                        } else {
-                            counter++;
-
-                            if (!isNaN(returnSingleItemAt)&&
-                                        returnSingleItemAt === counter) {
-                                return next;
-                            }
-
-                            result.push(next);
-
-
-                            if (!isNaN(itemsCountCap) &&
-                                        itemsCountCap <= counter) {
-                                break;
-                            }
-                        }
-                    }
-                } else {
-                    if (filterDelegate) {
-                        filterArgs.unshift(next);
-
-                        if (filterDelegate.apply(next, filterArgs)) {
-                            counter++;
-
-                            if (!isNaN(returnSingleItemAt) &&
-                                        returnSingleItemAt === counter) {
-                                return next;
-                            }
-
-                            result.push(next);
-
-                            if (!isNaN(itemsCountCap) &&
-                                        itemsCountCap <= counter) {
-                                break;
-                            }
-                        }
-                    } else {
-                        counter++;
-
-                        if (!isNaN(returnSingleItemAt) &&
-                                    returnSingleItemAt === counter) {
-                            return next;
-                        }
-
-                        result.push(next);
-
-                        if (!isNaN(itemsCountCap) && itemsCountCap <= counter) {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (!next) {break;}
-        }
-
-        if (returnSingleItemAt !== UNDEFINED) {return null;}
-
-        return result;
-    }
-
-    /*
-     * A multifunctional method to get next/previous parent(s).
-     */
-    //TODO: this name is misleading, rename.
-    function getParents(elm,
-                filterDelegate, filterArgs,
-                breakDelegate, breakArgs,
-                name, itemsCountCap, returnSingleItemAt
-    ) {
-        if (!elm) {return [];}
-
-        var result  = [],
-            target  = $(elm),
-            counter = 0;
-
-        target = target.parentNode;
-
-        while (target) {
-            if(breakDelegate) {
-                breakArgs.unshift(target);
-
-                if(breakDelegate.apply(target, breakArgs)) {break;}
-            }
-
-            if (name) {
-                if (target.nodeName.toLowerCase() === name.toLowerCase()) {
-                    if (filterDelegate) {
-                        filterArgs.unshift(target);
-
-                        if (filterDelegate.apply(target, filterArgs)) {
-                            counter++;
-
-                            if (!isNaN(returnSingleItemAt) &&
-                                        returnSingleItemAt === counter) {
-                                return target;
-                            }
-
-                            result.push(target);
-
-                            if (!isNaN(itemsCountCap) &&
-                                        itemsCountCap <= counter) {
-                                break;
-                            }
-                        }
-                    } else {
-                        counter++;
-
-                        if (!isNaN(returnSingleItemAt) &&
-                                    returnSingleItemAt === counter) {
-                            return target;
-                        }
-
-                        result.push(target);
-
-                        if (!isNaN(itemsCountCap) &&
-                                    itemsCountCap <= counter) {
-                            break;
-                        }
-                    }
-                }
-            } else {
-                if (filterDelegate) {
-                    filterArgs.unshift(target);
-
-                    if (filterDelegate.apply(target, filterArgs)) {
-                        counter++;
-
-                        if (!isNaN(returnSingleItemAt) &&
-                                    returnSingleItemAt === counter) {
-                            return target;
-                        }
-
-                        result.push(target);
-
-                        if (!isNaN(itemsCountCap) &&
-                                    itemsCountCap <= counter) {
-                            break;
-                        }
-                    }
-                } else {
-                    counter++;
-
-                    if (!isNaN(returnSingleItemAt) &&
-                                returnSingleItemAt === counter) {
-                        return target;
-                    }
-
-                    result.push(target);
-
-                    if (!isNaN(itemsCountCap) && itemsCountCap <= counter) {
-                        break;
-                    }
-                }
-            }
-
-            target = target.parentNode;
-        }
-
-        return result;
-    }
-
-}(this.o2, this.o2.protecteds, this.document));
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(a, b) {
+(function() {
     'use strict';
 
     /**
@@ -13934,7 +13776,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
 
     //throw 'o2.Effect module has not been built yet.';
-}(this));
+}());
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -14273,6 +14115,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return obj;
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -14289,8 +14132,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @requires ajaxstate.core
      * @requires object.core
      *
-     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong> timeouts
-     * etc. A {@link JsonpController} should be registered to this
+     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong>
+     * timeouts etc. A {@link JsonpController} should be registered to this
      * <strong>model</strong>.
      */
     fp.ensure(
@@ -14355,33 +14198,22 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     }
 
     inherit();
-}(things.o2, this.o2.protecteds));
+}(this.o2, this.o2.protecteds));
+
 /*
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- */
-/**
- * @module   jsonpcontroller.core
- * @requires core
- * @requires ajaxcontroller.core
- * @requires jsonpstate.core
- * @requires object.core
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <strong>JSONP</strong> controller that implements the
- * <strong>Observer</strong> pattern.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
+//TODO: add header and documentation.
 (function(framework, fp, window) {
     'use strict';
 
     // Ensure that dependencies have been loaded.
-    fp.ensure('jsonpcontroller.core', [
+    fp.ensure(
+        'jsonpcontroller.core',
+    [
         'ajaxcontroller.core',
         'core',
         'jsonpstate.core',
@@ -14705,6 +14537,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return jsonp;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -14846,13 +14679,13 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return args;
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-
 (function(framework, fp) {
     'use strict';
 
@@ -14972,6 +14805,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return sort(b, a);
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -15125,6 +14959,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         return isDomSupported;
     });
 }(this.o2, this.o2.protecteds, this.document));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -15184,7 +15019,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
 
         kSeparatorRegExp = /\s+/,
-        kTemplateRegExp  = /\{\{(.*?)\}\}/g,
+        kTemplateRegExp  = /\{\{([a-zA-Z0-9]*?)\}\}/g,
 
         /*
          * # Common Commands
@@ -15202,10 +15037,10 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      */
     function parseDirective(line, data) {
-        var kDirectiveIndex     = 0,
-            kSubTemplateIndex   = 1,
-            kCommandIndex       = 0,
-            kDataKeyIndex       = 1,
+        var kDirectiveIndex   = 0,
+            kSubTemplateIndex = 1,
+            kCommandIndex     = 0,
+            kDataKeyIndex     = 1,
 
             collectionKey = kEmpty,
             directiveKey  = kEmpty,
@@ -15213,8 +15048,6 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             directive = null,
 
             subTpl = line[kSubTemplateIndex],
-
-            lineLength = line.length,
 
             buffer = [],
 
@@ -15315,6 +15148,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
       */
      doParse = require(kModuleName, 'parse');
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -15375,7 +15209,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * // Stops the timer (i.e. doStuff will not be executed further).
          * o2.Timer.stop(kCheckId);
          *
-         * // Restarts the timer (i.e. doStuff will be periodically executed again).
+         * // Restarts the timer (i.e. doStuff will be periodically executed
+         * // again).
          * o2.Timer.start(kCheckId);
          * </pre>
          */
@@ -15534,6 +15369,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
     });
 }(this.o2, this.o2.protecteds, this));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
@@ -15548,10 +15384,11 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @requires core
      *
-     * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
+     * <p>Used for consequentially executing a set of
+     * <code>Function</code>s.</p>
      * <p>The functions are guaranteed to be called.</p>
-     * <p>Even if an error occurs when calling a <code>Function</code>, the next
-     * function will be tried, disregarding the error.</p>
+     * <p>Even if an error occurs when calling a <code>Function</code>,
+     * the next function will be tried, disregarding the error.</p>
      */
     fp.ensure(
         'try.core',
@@ -15581,8 +15418,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * <p>Used for consequentially executing a set of
          * <code>Function</code>s.</p>
          * <p>The <strong>function</strong>s are guaranteed to be called.</p>
-         * <p>Even if an error occurs when calling a <code>Function</code>, the next
-         * <code>Function</code> will be tried, disregarding the error.</p>
+         * <p>Even if an error occurs when calling a <code>Function</code>,
+         * the next <code>Function</code> will be tried, disregarding the
+         * error.</p>
          */
         me = create(kModuleName);
 
@@ -15643,13 +15481,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
     });
 }(this.o2, this.o2.protecteds));
+
 /*
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -15742,14 +15581,15 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         kOutputContainer = 'Output',
 
         /*
-         * If true, the output will be sent to the console (if available), as well.
+         * If true, the output will be sent to the console (if available),
+         * as well.
          */
         kShouldUseConsole = true,
 
         /*
          * Chunk check interval (in milliseconds).
-         * Chunking allows us to run large number of unit tests (of a test suite),
-         * without causing a "script timed out" error.
+         * Chunking allows us to run large number of unit tests
+         * (of a test suite), without causing a "script timed out" error.
          */
         kCheckInterval = 100,
 
@@ -15816,7 +15656,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
 
         /*
-         * The test queue. This will be empty when there are no more tests to run.
+         * The test queue. This will be empty when there are no more tests
+         * to run.
          */
         tests = [],
 
@@ -16361,6 +16202,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         }, kCheckInterval);
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+
 exports.o2 = this.o2;
 

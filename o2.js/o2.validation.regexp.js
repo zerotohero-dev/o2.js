@@ -47,7 +47,11 @@
          */
 
         kEmailRegExp      = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
-        kUrlRegExp        = /^(https?|ftp|file):\/\/[\-A-Z0-9+&@#\/%?=~_|!:,.;]*[\-A-Z0-9+&@#\/%=~_|]$/i,
+        kUrlRegExp        = new RegExp([
+                '^(https?|ftp|file):',
+                '\\/\\/[\\-A-Z0-9+&@#\\/%?=~_|!:,.;]*',
+                '[\\-A-Z0-9+&@#\\/%=~_|]$'
+            ].join(''), 'i'),
         kWhitespaceRegExp = /^\s*$/;
 
     /**
@@ -56,10 +60,10 @@
      * <p>Did you know that <code>Abc\@def@example.com</code>, and
      * <code>customer/department=shipping@example.com</code> are all valid
      * e-mails?</p>
-     * <p>There is no good (and realistic) regular expression to match an e-mail
-     * address.<p>
-     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too complicated
-     * for that.</p>
+     * <p>There is no good (and realistic) regular expression to match an
+     * e-mail address.<p>
+     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too
+     * complicated for that.</p>
      * <p>This method matches <strong>e-mail</strong> addresses, while giving
      * some false-positives.</p>
      * <p>The correct action to validate an <strong>e-mail</strong> address is
@@ -124,3 +128,4 @@
         return kWhitespaceRegExp.test(text);
     });
 }(this.o2.protecteds));
+

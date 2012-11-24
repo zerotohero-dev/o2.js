@@ -4,7 +4,7 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -12,8 +12,8 @@
      *
      * @requires core
      *
-     * <p>A <code>Function</code> helper for timer-related actions, like delaying
-     * a <code>Function</code> call.</p>
+     * <p>A <code>Function</code> helper for timer-related actions, like
+     * delaying a <code>Function</code> call.</p>
      */
     fp.ensure(
         'method.timer',
@@ -215,4 +215,5 @@
             loop();
         };
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+

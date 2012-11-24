@@ -165,7 +165,7 @@
     /**
      * @function {static} o2.Dom.getScrollOffset
      *
-     * <p>An alias to {@link o2.Dom.getObjectStrollOffset}.</p>
+     * <p>An alias to {@link o2.Dom.getObjectScrollOffset}.</p>
      *
      * @see o2.Dom.getObjectScrollOffset
      */
@@ -330,7 +330,8 @@
      *
      * @see o2.Dom.scrollWindowToObject
      */
-    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject', 'scrollTo');
+    exports.scrollWindowToObject = alias(me, 'scrollWindowToObject',
+        'scrollTo');
 
     /**
      * @function {static} o2.Dom.scrollToObject
@@ -341,3 +342,4 @@
      */
     exports.scrollToObject = alias(me, 'scrollToObject', 'scrollTo');
 }(this.o2, this.o2.protecteds, this, this.document));
+

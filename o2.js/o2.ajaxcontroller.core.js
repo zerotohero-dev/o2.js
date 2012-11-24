@@ -92,14 +92,14 @@
      *
      * // The request will time out after 5 seconds and then ontimeout
      * // will be called.
-     * var controller = new o2.AjaxController(requrest, {
+     * var controller = new o2.AjaxController(request, {
      *      timeout   : 5000,
      *      ontimeout : function() {
      *      }
      * });
      * </pre>
      *
-     * @param {XmlHttpRequest} xhr - the original XmlHttpRequest
+     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest
      * @param {Object} args - an associative array in the form
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
@@ -180,3 +180,4 @@
         state.deleteObserver(this);
     });
 }(this.o2, this.o2.protecteds));
+

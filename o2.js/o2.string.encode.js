@@ -87,12 +87,12 @@
          */
         //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
         decodeMap = [
-            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-            {regExp : /&#60;|&lt;/g,           replace : '<'},
-            {regExp : /&#62;|&gt;/g,           replace : '>'},
-            {regExp : /&#38;|&amp;/g,          replace : '&'}
+            {regExp : /&#32;|&nbsp;/g,         replace : ' ' },
+            {regExp : /&#34;|&quot;|&quott;/g, replace : '"' },
+            {regExp : /&#39;|&apos;|&aposs;/g, replace : '\''},
+            {regExp : /&#60;|&lt;/g,           replace : '<' },
+            {regExp : /&#62;|&gt;/g,           replace : '>' },
+            {regExp : /&#38;|&amp;/g,          replace : '&' }
         ],
 
         /*
@@ -284,3 +284,4 @@
         );
     });
 }(this.o2, this.o2.protecteds, this.document));
+

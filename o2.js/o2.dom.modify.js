@@ -133,7 +133,7 @@
      *
      * @param {Object} elmTarget - the node to wrap or its <code>String</code>
      * id.
-     * @param {Object} elmWrapper - the wrapper node ot its <code>String</code>
+     * @param {Object} elmWrapper - the wrapper node to its <code>String</code>
      * id.
      *
      * @return the wrapped node.
@@ -150,3 +150,4 @@
         return elmTarget;
     });
 }(this.o2, this.o2.protecteds));
+

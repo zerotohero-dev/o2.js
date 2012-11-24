@@ -123,7 +123,7 @@
     /**
      * @function {static} o2.Dom.activateAlternateStylesheet
      *
-     * <p>Activates the <strong>alternate stylesheet</strong> with the given
+     * <p>Activates the <strong>alternate style sheet</strong> with the given
      * <code>title</code>.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -133,7 +133,7 @@
      * </pre>
      *
      * @param {String} title - the <code>title</code> of the <strong>alternate
-     * stylesheet</strong> to activate.
+     * style sheet</strong> to activate.
      */
     exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
                 function(title) {
@@ -422,7 +422,7 @@
                 //
                 // To stop the element moving around the screen when we do this,
                 // we set runtimeStyle.left with the current left value. After
-                // we’ve done the conversion we set everything back to the
+                // we've done the conversion we set everything back to the
                 // way it was.
                 //
                 // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
@@ -508,7 +508,9 @@
 
         if (!obj) {return;}
 
-        obj.style.display = obj[[frameworkName, kOldDisplay].join(kEmpty)] || kEmpty;
+        obj.style.display = obj[
+            [frameworkName, kOldDisplay].join(kEmpty)
+        ] || kEmpty;
 
         delete obj[[frameworkName, kOldDisplay].join(kEmpty)];
     });
@@ -621,3 +623,4 @@
         show(elm);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

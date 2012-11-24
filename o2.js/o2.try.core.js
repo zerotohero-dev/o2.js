@@ -12,10 +12,11 @@
      *
      * @requires core
      *
-     * <p>Used for consequentially executing a set of <code>Function</code>s.</p>
+     * <p>Used for consequentially executing a set of
+     * <code>Function</code>s.</p>
      * <p>The functions are guaranteed to be called.</p>
-     * <p>Even if an error occurs when calling a <code>Function</code>, the next
-     * function will be tried, disregarding the error.</p>
+     * <p>Even if an error occurs when calling a <code>Function</code>,
+     * the next function will be tried, disregarding the error.</p>
      */
     fp.ensure(
         'try.core',
@@ -45,8 +46,9 @@
          * <p>Used for consequentially executing a set of
          * <code>Function</code>s.</p>
          * <p>The <strong>function</strong>s are guaranteed to be called.</p>
-         * <p>Even if an error occurs when calling a <code>Function</code>, the next
-         * <code>Function</code> will be tried, disregarding the error.</p>
+         * <p>Even if an error occurs when calling a <code>Function</code>,
+         * the next <code>Function</code> will be tried, disregarding the
+         * error.</p>
          */
         me = create(kModuleName);
 
@@ -107,3 +109,4 @@
         }
     });
 }(this.o2, this.o2.protecteds));
+

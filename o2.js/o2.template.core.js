@@ -57,7 +57,7 @@
          */
 
         kSeparatorRegExp = /\s+/,
-        kTemplateRegExp  = /\{\{(.*?)\}\}/g,
+        kTemplateRegExp  = /\{\{([a-zA-Z0-9]*?)\}\}/g,
 
         /*
          * # Common Commands
@@ -75,10 +75,10 @@
      *
      */
     function parseDirective(line, data) {
-        var kDirectiveIndex     = 0,
-            kSubTemplateIndex   = 1,
-            kCommandIndex       = 0,
-            kDataKeyIndex       = 1,
+        var kDirectiveIndex   = 0,
+            kSubTemplateIndex = 1,
+            kCommandIndex     = 0,
+            kDataKeyIndex     = 1,
 
             collectionKey = kEmpty,
             directiveKey  = kEmpty,
@@ -86,8 +86,6 @@
             directive = null,
 
             subTpl = line[kSubTemplateIndex],
-
-            lineLength = line.length,
 
             buffer = [],
 
@@ -188,3 +186,4 @@
       */
      doParse = require(kModuleName, 'parse');
 }(this.o2, this.o2.protecteds));
+

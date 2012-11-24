@@ -235,8 +235,8 @@
      * @throws Exception - if the <strong>handler</strong> callback is not
      * defined.
      */
-    exports.addEventListeners = def(me, 'addEventListeners', function(collection,
-                eventName, handler) {
+    exports.addEventListeners = def(me, 'addEventListeners', function(
+                collection, eventName, handler) {
         if (!collection) {return;}
 
         var listen = addEventListener,
@@ -502,3 +502,4 @@
         });
     }
 }(this.o2, this.o2.protecteds, this, this.document));
+

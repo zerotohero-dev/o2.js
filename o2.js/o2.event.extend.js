@@ -251,7 +251,8 @@
         /**
          * @function {static} o2.Event.isRightClick
          *
-         * <p>Checks whether or not the curent action is a right click action.</p>
+         * <p>Checks whether or not the curent action is a right click
+         * action.</p>
          *
          * <p><strong>Usage example:</strong></p>
          *
@@ -307,3 +308,4 @@
         return getKeyCode(evt) === kTab;
     });
 }(this.o2, this.o2.protecteds, this));
+

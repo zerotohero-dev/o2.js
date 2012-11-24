@@ -106,9 +106,9 @@
     /**
      * @function {static} o2.Dom.loadCss
      *
-     * <p>Asynchronously loads a <strong>css</strong> file with a given
+     * <p>Asynchronously loads a <strong>CSS</strong> file with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>css</strong> file does
+     * <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
      * not have to be in the same domain as the web page.</p>
      *
      * <p>The success and failure callbacks is a somewhat hacky way of handling
@@ -123,7 +123,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Dom.loadCss('http://cdn.example/com/theme.css', function() {
+     * o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
      *      handleSuccess();
      * });
      * </pre>
@@ -174,7 +174,7 @@
             return;
         }
 
-        // worst-case fallback
+        // worst-case fall-back
         setTimeout(function check() {
             var i      = 0,
                 len    = 0,
@@ -211,9 +211,10 @@
      *
      * <p>Tries to load the image into a <strong>JavaScript</strong>
      * <code>Image</code> object; then triggers
-     * <code>successCallback</code> or <code>failureCallback</code> depending on
-     * the
-     * result of the load attempt.</p>
+     * <strong>successCallback</strong> or
+     * <strong>failureCallback</strong> depending on
+     * the result of the load attempt.</p>
+     *
      * <p>This function can be used for pre-loading or post-loading images.</p>
      *
      * <p><strong>Usage example:</strong></p>
@@ -253,8 +254,9 @@
      *
      * <p>Asynchronously loads a <strong>script</strong> with a given
      * <strong>src</strong>.</p>
-     * <p>Cross-domain loading is also okay: The <strong>script</strong> does not
-     * have to be in the same domain as the web page.</p>
+     *
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does
+     * not have to be in the same domain as the web page.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -291,3 +293,4 @@
         s.onload = callback;
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

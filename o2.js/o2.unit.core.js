@@ -4,7 +4,7 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+(function(framework, fp) {
     'use strict';
 
     /**
@@ -97,14 +97,15 @@
         kOutputContainer = 'Output',
 
         /*
-         * If true, the output will be sent to the console (if available), as well.
+         * If true, the output will be sent to the console (if available),
+         * as well.
          */
         kShouldUseConsole = true,
 
         /*
          * Chunk check interval (in milliseconds).
-         * Chunking allows us to run large number of unit tests (of a test suite),
-         * without causing a "script timed out" error.
+         * Chunking allows us to run large number of unit tests
+         * (of a test suite), without causing a "script timed out" error.
          */
         kCheckInterval = 100,
 
@@ -171,7 +172,8 @@
          */
 
         /*
-         * The test queue. This will be empty when there are no more tests to run.
+         * The test queue. This will be empty when there are no more tests
+         * to run.
          */
         tests = [],
 
@@ -716,4 +718,5 @@
 
         }, kCheckInterval);
     });
-}(this.o2, this.o2.protecteds, this));
+}(this.o2, this.o2.protecteds));
+

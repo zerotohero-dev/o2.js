@@ -156,7 +156,8 @@
 
         cookiePath = path || kRootPath;
 
-        // Do not use encodeURICompoent for paths as it replaces "/" with "%2F"
+        // Do not use encodeURICompoent for paths,
+        // as it replaces "/" with "%2F".
         cookieString = concat(
             encodeURIComponent(name), kEquals,
             encodeURIComponent(value), ex, kPath,
@@ -205,3 +206,4 @@
     // come into play... Will not implement it.
     // removeAll : function(){ }
 }(this.o2, this.o2.protecteds, this, this.document));
+

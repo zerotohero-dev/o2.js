@@ -348,7 +348,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * var innerHeight = o2.Dom.getWindow.innerHeight();
+     * var innerHeight = o2.Dom.getWindowInnerHeight();
      * </pre>
      *
      * @return the inner height of the window in pixels.
@@ -495,3 +495,4 @@
         setHeight(obj, dimension.height);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

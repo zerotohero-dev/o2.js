@@ -81,8 +81,8 @@
          * @param {Object} base - the context of the newly created
          * <code>Function</code>.
          * @param {Function} fn - the <code>Function</code> to modify.
-         * @param {Arguments} varargin - variable number of input arguments to be
-         * passed as initial set of arguments.
+         * @param {Arguments} varargin - variable number of input arguments
+         * to be passed as initial set of arguments.
          *
          * @return the modified <code>Function</code>.
          */
@@ -253,3 +253,4 @@
         };
     });
 }(this.o2, this.o2.protecteds));
+

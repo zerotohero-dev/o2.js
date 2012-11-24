@@ -53,14 +53,22 @@
          * # Warning Messages
          */
 
-        kDelegateNotdefined   = 'framework.protecteds: Delegate is undefined: ',
-        kMethodAlreadyDefined = 'framework.protecteds: Method name is already defined : ',
-        kMethodNameNotString  = 'framework.protecteds: "method" should be  a String.',
-        kNameNotProvided      = 'framework.protecteds: name not provided',
-        kNoMetaDefinition     = 'framework.protecteds: no meta definition.',
-        kObjectNotDefined     = 'framework.protecteds: Object not found in mixed collection',
-        kObjNameNotString     = 'framework.protecteds: "name" should be  a String.',
-        kRootNotFound         = 'framework.protecteds: root not found for',
+        kDelegateNotdefined   =
+            'framework.protecteds: Delegate is undefined: ',
+        kMethodAlreadyDefined =
+            'framework.protecteds: Method name is already defined: ',
+        kMethodNameNotString  =
+            'framework.protecteds: "method" should be  a String.',
+        kNameNotProvided      =
+            'framework.protecteds: name not provided',
+        kNoMetaDefinition     =
+            'framework.protecteds: no meta definition.',
+        kObjectNotDefined     =
+            'framework.protecteds: Object not found in mixed collection',
+        kObjNameNotString     =
+            'framework.protecteds: "name" should be a String.',
+        kRootNotFound         =
+            'framework.protecteds: root not found for',
 
         /*
          * # Module Names
@@ -156,8 +164,6 @@
      *
      */
     function init(root, key, value) {
-        log('init', arguments);
-
         if (!root || typeof root !== kObject) {return null;}
         if (root[key]                       ) {return root[key];}
 
@@ -179,18 +185,27 @@
     }
 
     /*
+     * @namespace {protected static} o2.protecteds
      *
+     * <p>A namespace to contain all the <strong>protected</strong> methods
+     * of the <code>o2</code> object.</p>
+     *
+     * <p><strong>protected</strong> in a sense that only this module
+     * (<em>o2.core</em>), and friends of this module (<em>the entire suite of
+     * <strong>o2.*</strong> modules</em>) can access this namespace.
+     * <strong>static</strong>, meaning that you don't need to
+     * instantiate anything to access this namespace.</p>
      */
     fp = init(framework, 'protecteds', {});
 
     /*
-     * @property {protected Object} o2.protecteds.classes
+     * @property {protected static Object} o2.protecteds.classes
      *
-     * <p><storng>Caution:<strong> Highly explosive! Do not mess with it
+     * <p><strong>Caution:<strong> Highly explosive! Do not mess with it
      * unless you know what you are doing <strong>;)</strong></p>
      *
      * <p>This is a meta-level overview of the <strong>o2.js</strong>
-     * framework Any public class and method that <strong>o2.js</storng> uses is
+     * framework Any public class and method that <strong>o2.js</strong> uses is
      * listed here.</p>
      *
      * <p>This list is used for constructing classes at script's
@@ -216,7 +231,7 @@
      *
      */
     function getMethodNotDefinedInMetaWarning(name) {
-        return ['framework.protecteds: Method"', name,
+        return ['framework.protecteds: Method "', name,
             '" is not found in framework meta definition'
         ].join(kEmpty);
     }
@@ -245,7 +260,7 @@
     function getMethodOfClassNotDefinedInMetaWarning(name, method) {
         return ['framework.protecteds: Class "', name,
             '" does not have a method "', method,
-            '"" defined in meta definition.'
+            '" defined in meta definition.'
         ].join(kEmpty);
     }
 
@@ -264,7 +279,7 @@
     function getMethodOfClassDoesNotExistWarning(name, method) {
         return ['framework.protecteds: Class "', name,
             '" does not have a method "', method,
-            '"" defined.'
+            '" defined.'
         ].join(kEmpty);
     }
 
@@ -388,6 +403,8 @@
             'nodeType'
     ]],[
         'Dom', kDomCore, [
+            'protecteds',
+
             'append', 'create', 'createDocumentFragment', 'createElement',
             'empty', 'getAttribute', 'getHtml', 'getText', 'insertAfter',
             'insertBefore', 'isDocument', 'isElement', 'isNode', 'prepend',
@@ -469,7 +486,7 @@
             'getNextAllByClass', 'getNextAllByClassUntil', 'getNextAllUntil',
             'getNextAllWithAttribute', 'getNextAllWithAttributeUntil',
             'getNextAllWithClass', 'getNextAllWithClassUntil',
-            'getNextAllWithId', 'getNextAllWithIdUntil',
+            'getNextAllWithId', 'getNextAllWithIdUntil'
     ]],[
         'Dom', kDomTraverseNth, [
             'getNth', 'getNthByAttribute', 'getNthByClass',
@@ -515,7 +532,10 @@
     ]],[
         'Dom', kDomTraverseValidate, [
             'isChild', 'isNext', 'isParent', 'isParentOrSelf', 'isPrev',
-            'isSibling'
+            'isSibling',
+
+            'isAttributeEquals', 'hasIdAttribute', 'hasClassAttribute',
+            'hasAttribute', 'hasClassName', 'isNodeEquals'
     ]],[
         'Event', kEventConstants, [
             'keyCode'
@@ -604,7 +624,7 @@
             'add', 'assert', 'assertEqual', 'assertNotEqual',
             'assertStrictEqual', 'assertStrictNotEqual',
             'getGlobalFailureCount', 'getGlobalSuccessCount',
-            'isRunning', 'log', 'run',
+            'isRunning', 'log', 'run'
     ]],[
         'Validation', kValidationCore, [
             'is', 'isArguments', 'isArray', 'isBoolean', 'isDate',
@@ -619,24 +639,25 @@
     //TODO: complete me.
     modules = init(fp, 'dependencies');
 
-    /*
-     *
-     */
-    function depend(baseModuleName, dependencies) {
-        log('depend', arguments);
-
-        init(modules, baseModuleName,
-            {dependencies:dependencies, isLoaded:false}
-        );
-    }
+//    /*
+//     *
+//     */
+//    function depend(baseModuleName, dependencies) {
+//        log('depend', arguments);
+//
+//        init(modules, baseModuleName,
+//            {dependencies:dependencies, isLoaded:false}
+//        );
+//    }
 
     //TODO: complete me.
     //TODO: make an automated runner.
     //TODO: raise a 'dependency not loaded error if it is so.
-    depend(kCoreMeta,     []);
-    depend(kCore,         [kCoreMeta]);
-    depend(kTemplateCore, [kCore]);
-
+//no need- 1. load all files to the runner. dep tree is auto created
+//from ensures, then runner runs tests.
+//    depend(kCoreMeta,     []);
+//    depend(kCore,         [kCoreMeta]);
+//    depend(kTemplateCore, [kCore]);
 
     // The methods below are <em>internal</em> methods that are used
     // to ensure consistency within the framework.
@@ -646,33 +667,41 @@
      *
      */
     init(fp, 'alias', function(mixed, aliasName, existingName) {
-        log('alias', arguments);
-
         if (!mixed) {
+            log('alias', arguments);
+
             dbg();
 
             throw kNoMetaDefinition;
         }
 
         if (!mixed[1]) {
+            log('alias', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!mixed[0][existingName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw getMethodNotDefinedInMetaWarning(existingName);
         }
 
         if (!mixed[0][aliasName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw getMethodNotDefinedInMetaWarning(aliasName);
         }
 
         if (mixed[1][aliasName]) {
+            log('alias', arguments);
+
             dbg();
 
             throw [kMethodAlreadyDefined, aliasName].join(kEmpty);
@@ -685,17 +714,21 @@
      *
      */
     init(fp, 'create', function(name) {
-        log('create', arguments);
-
         var cls = fp.classes[name];
 
         if (!cls) {
+            log('create', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(name);
         }
 
         if (!cls.items) {
+            log('create', arguments);
+
+            dbg();
+
             throw getIncorrectMetaDefinitionWarning(name);
         }
 
@@ -706,17 +739,19 @@
      *
      */
     init(fp, 'construct', function(name, delegate) {
-        log('construct', arguments);
-
         var cls = fp.classes[name];
 
         if (!cls) {
+            log('construct', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(name);
         }
 
         if (framework[name]) {
+            log('construct', arguments);
+
             dbg();
 
             throw getConstructorAlreadyDefinedWarning(name);
@@ -731,24 +766,28 @@
      *
      */
     init(fp, 'define', function(mixed, name, fn) {
-        log('define', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('define', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!fn) {
+            log('define', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, name].join(kEmpty);
         }
 
         if (!meta) {
+            log('define', arguments);
+
             dbg();
 
             throw kNoMetaDefinition;
@@ -756,6 +795,8 @@
 
         if (meta[name]) {
             if (me[name]) {
+                log('define', arguments);
+
                 dbg();
 
                 throw [kMethodAlreadyDefined, name].join(kEmpty);
@@ -776,15 +817,17 @@
      *
      */
     init(fp, 'getAttr', function(root, name) {
-        log('getAttr', arguments);
-
         if (!root) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw [kRootNotFound, ' "', name, '"'].join(kEmpty);
         }
 
         if (!name) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw kNameNotProvided;
@@ -793,6 +836,8 @@
         var elem = root[name];
 
         if (!elem) {
+            log('getAttr', arguments);
+
             dbg();
 
             throw getRootDoesNotHaveAttributeWarning(name);
@@ -801,17 +846,10 @@
         return elem;
     });
 
-    function setAttr(root, name, value) {
-        // if root.name exists throw error
-        //
-    }
-
     /*
      *
      */
     init(fp, 'getObject', function(mixed) {
-        log('getObject', arguments);
-
         return mixed[1];
     });
 
@@ -819,8 +857,6 @@
      *
      */
     init(fp, 'getRoot', function() {
-        log('getRoot', arguments);
-
         return [fp.classes.o2.items, framework];
     });
 
@@ -828,30 +864,36 @@
      *
      */
     init(fp, 'override', function(mixed, methodName, fn) {
-        log('override', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('override', arguments);
+
             dbg();
 
             throw 'Object not found in mixed collection';
         }
 
         if (!fn) {
+           log('override', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, methodName].join(kEmpty);
         }
 
         if (!meta[methodName]) {
+            log('override', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(methodName);
         }
 
         if (!me.prototype[methodName]) {
+            log('override', arguments);
+
             dbg();
 
             throw getNoMethodToOverrideWarning(methodName);
@@ -864,30 +906,36 @@
      *
      */
     init(fp, 'proto', function(mixed, methodName, fn) {
-        log('proto', arguments);
-
         var meta = mixed[0],
             me   = mixed[1];
 
         if (!me) {
+            log('proto', arguments);
+
             dbg();
 
             throw kObjectNotDefined;
         }
 
         if (!fn) {
+            log('proto', arguments);
+
             dbg();
 
             throw [kDelegateNotdefined, methodName].join(kEmpty);
         }
 
         if (!meta[methodName]) {
+            log('proto', arguments);
+
             dbg();
 
             throw getMethodOfClassNotDefinedInMetaWarning(kAny, methodName);
         }
 
         if (me.prototype[methodName]) {
+            log('proto', arguments);
+
             dbg();
 
             throw [kMethodAlreadyDefined, methodName].join(kEmpty);
@@ -900,12 +948,6 @@
      *
      */
     init(fp, 'require', function(name, method) {
-        log('require', arguments);
-
-        if (name==='JsonpController') {
-            debugger;
-        }
-
         var methodName = kEmpty,
             objName    = kEmpty,
             meta       = null,
@@ -925,12 +967,16 @@
         }
 
         if (typeof objName !== kString) {
+            log('require', arguments);
+
             dbg();
 
             throw kObjNameNotString;
         }
 
         if (typeof methodName !== kString) {
+            log('require', arguments);
+
             dbg();
 
             throw kMethodNameNotString;
@@ -941,6 +987,8 @@
                 result = framework[methodName];
 
                 if (!result) {
+                    log('require', arguments);
+
                     dbg();
 
                     throw getClassNotDefinedWarning(methodName);
@@ -952,6 +1000,8 @@
             meta = classes.o2.items;
 
             if (!meta[methodName]) {
+                log('require', arguments);
+
                 dbg();
 
                 throw getMethodNotDefinedInMetaWarning(methodName);
@@ -960,6 +1010,8 @@
             result = framework[methodName];
 
             if (!result) {
+                log('require', arguments);
+
                 dbg();
 
                 throw getMethodNotDefinedInFrameworkWarning(methodName);
@@ -971,6 +1023,8 @@
         cls = classes[objName];
 
         if (!cls) {
+            log('require', arguments);
+
             dbg();
 
             throw getClassNotDefinedInMetaWarning(objName);
@@ -979,6 +1033,8 @@
         mtd = cls.items[methodName];
 
         if (!mtd) {
+            log('require', arguments);
+
             dbg();
 
             throw getMethodOfClassNotDefinedInMetaWarning(objName,
@@ -988,6 +1044,8 @@
         obj = framework[objName];
 
         if (!obj) {
+            log('require', arguments);
+
             dbg();
 
             throw getClassDoesNotExistWarning(objName);
@@ -996,6 +1054,8 @@
         theMethod = obj[methodName];
 
         if (!theMethod) {
+            log('require', arguments);
+
             dbg();
 
             throw getMethodOfClassDoesNotExistWarning(objName, methodName);
@@ -1004,9 +1064,38 @@
         return theMethod;
     });
 
-    init(fp, 'ensure', function() {
-        log('ensure', arguments);
-        //TODO: implement me.
-        console.log('ensure', arguments);
+    var objectGraph        = {};
+    objectGraph[kCoreMeta] = {};
+
+    /*
+     *
+     */
+    init(fp, 'ensure', function(base, dependencies) {
+
+        var i          = 0,
+            len        = 0,
+            dependency = null;
+
+        objectGraph[base] = objectGraph[base] || {};
+
+        for (i = 0, len = dependencies.length; i < len; i++) {
+            dependency = dependencies[i];
+
+            objectGraph[base][dependency] = {};
+
+            if (!objectGraph[dependency]) {
+                log('ensure', arguments);
+
+                dbg();
+
+                //TODO: to constants
+                throw 'Dependency "' +
+                    dependency + '" not satisfied for ' + base + '".';
+            }
+        }
+    });
+
+    init(fp, 'graph', function() {
+        return objectGraph;
     });
 }(this.o2, this));

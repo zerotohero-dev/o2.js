@@ -5,18 +5,18 @@
  *  Please see the <LICENSE.md> file for details.
  */
 //TODO: add header and documentation
-(function(framework, fp, document, UNDEFINED) {
+(function(framework, fp) {
     'use strict';
 
     fp.ensure(
         'dom.traverse.prev',
     [
         'core',
-        'dom.constants'
+        'dom.traverse.siblings',
+        'dom.traverse.validate'
     ]);
 
     var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
         require = attr(fp, 'require'),
@@ -34,9 +34,29 @@
         kModuleName = 'Dom',
 
         /*
-         * Dom (traverse.validate)
+         * Dom (traverse.prev)
          */
-        me = create(kModuleName);
+        me = create(kModuleName),
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * (dom.traverse.core Protecteds
+         */
+        protecteds      = require(kModuleName, 'protecteds'),
+        getNextSiblings = attr(protecteds, 'getNextSiblings'),
+
+        /*
+         * dom.traverse.validate
+         */
+        isAttributeEquals = require(kModuleName, 'isAttributeEquals'),
+        hasClassName      = require(kModuleName, 'hasClassName'),
+        hasAttribute      = require(kModuleName, 'hasAttribute'),
+        hasClassAttribute = require(kModuleName, 'hasClassAttribute'),
+        hasIdAttribute    = require(kModuleName, 'hasIdAttribute'),
+        isNodeEquals      = require(kModuleName, 'isNodeEquals');
 
     /**
      * @function {static} o2.Dom.getPrev
@@ -224,11 +244,6 @@
         return getNextSiblings(elm, null, [], null, [],
             name, null, null, false, true);
     });
-
-    /*
-     *
-     */
-    getPrevAll = require(kModuleName, 'getPrevAll');
 
     /**
      * @function {static} o2.Dom.getPrevAllByAttribute
@@ -554,5 +569,5 @@
         return getNextSiblings(elm, hasIdAttribute, [],
             isNodeEquals, [until], name, null, null, false, true);
     });
-}(this.o2, this.o2.protecteds, this.document));
+}(this.o2, this.o2.protecteds));
 
