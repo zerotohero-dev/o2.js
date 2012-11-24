@@ -1,22 +1,27 @@
-/**
- * @module   string.encode
- * @requires core
- * @requires string.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>This package is responsible for encoding and decoding
- * <code>String</code>s.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, document) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('string.encode', ['core', 'string.core']);
+    /**
+     * @module   string.encode
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>This package is responsible for encoding and decoding
+     * <code>String</code>s.</p>
+     */
+    fp.ensure(
+        'string.encode',
+    [
+        'core',
+        'string.core'
+    ]);
 
     var attr   = fp.getAttr,
         alias  = attr(fp, 'alias'),
@@ -24,19 +29,25 @@
         def    = attr(fp, 'define'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'String',
 
         /*
          * String (encode)
          */
         me = create(kModuleName),
+
+        /*
+         * # Mappings
+         */
 
         /*
          *
@@ -76,12 +87,12 @@
          */
         //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
         decodeMap = [
-            {regExp : /&#32;|&nbsp;/g,         replace : ' '},
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"'},
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : "'"},
-            {regExp : /&#60;|&lt;/g,           replace : '<'},
-            {regExp : /&#62;|&gt;/g,           replace : '>'},
-            {regExp : /&#38;|&amp;/g,          replace : '&'}
+            {regExp : /&#32;|&nbsp;/g,         replace : ' ' },
+            {regExp : /&#34;|&quot;|&quott;/g, replace : '"' },
+            {regExp : /&#39;|&apos;|&aposs;/g, replace : '\''},
+            {regExp : /&#60;|&lt;/g,           replace : '<' },
+            {regExp : /&#62;|&gt;/g,           replace : '>' },
+            {regExp : /&#38;|&amp;/g,          replace : '&' }
         ],
 
         /*
@@ -93,14 +104,16 @@
         ],
 
         /*
-         * Common Text
+         * # Common Text
          */
+
         kEmpty     = '',
         kContainer = 'div',
 
         /*
-         * Temporary
+         * # Temporary
          */
+
         tempDiv = null;
 
     /*
@@ -271,3 +284,4 @@
         );
     });
 }(this.o2, this.o2.protecteds, this.document));
+

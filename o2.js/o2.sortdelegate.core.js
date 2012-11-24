@@ -1,37 +1,42 @@
-/**
- * @module   sortdelegate.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>Custom delegates for <code>Array.sort</code> method.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('sortdelegate.core', ['core']);
+    /**
+     * @module   sortdelegate.core
+     *
+     * @requires core
+     *
+     * <p>Custom delegates for <code>Array.sort</code> method.</p>
+     */
+    fp.ensure(
+        'sortdelegate.core',
+    [
+        'core'
+    ]);
 
-    var attr      = fp.getAttr,
-        alias     = attr(fp, 'alias'),
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        alias   = attr(fp, 'alias'),
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
-        kModuleName = 'SortDelegate',
 
+        kModuleName = 'SortDelegate',
 
         /**
          * @class {static} o2.SortDelegate
@@ -41,8 +46,9 @@
         me = create(kModuleName),
 
         /*
-         * To be Overridden.
+         * # To be Overridden
          */
+
         sort = null;
 
     /*
@@ -117,3 +123,4 @@
         return sort(b, a);
     });
 }(this.o2, this.o2.protecteds));
+

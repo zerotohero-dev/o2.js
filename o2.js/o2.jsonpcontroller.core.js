@@ -1,25 +1,22 @@
-/**
- * @module   jsonpcontroller.core
- * @requires core
- * @requires ajaxcontroller.core
- * @requires jsonpstate.core
- * @requires object.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <strong>JSONP</strong> controller that implements the
- * <strong>Observer</strong> pattern.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
+//TODO: add header and documentation.
 (function(framework, fp, window) {
     'use strict';
 
     // Ensure that dependencies have been loaded.
-    fp.ensure('jsonpcontroller.core', ['core', 'ajaxcontroller.core',
-        'jsonpstate.core', 'object.core']);
+    fp.ensure(
+        'jsonpcontroller.core',
+    [
+        'ajaxcontroller.core',
+        'core',
+        'jsonpstate.core',
+        'object.core'
+    ]);
 
     var attr      = fp.getAttr,
         construct = attr(fp, 'construct'),

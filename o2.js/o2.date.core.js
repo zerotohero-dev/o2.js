@@ -1,20 +1,24 @@
-/**
- * @module   date.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A <code>Date</code> helper module.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('date.core', ['core']);
+    /**
+     * @module   date.core
+     *
+     * @requires core
+     *
+     * <p>A <code>Date</code> helper module.</p>
+     */
+    fp.ensure(
+        'date.core',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         alias   = attr(fp, 'alias'),
@@ -23,13 +27,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Date',
 
         /**
@@ -40,25 +46,33 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $   = require('$'),
         now = require('now'),
 
+        /*
+         * string.core
+         */
         format = require('String', 'format'),
 
-        math  = Math,
-        floor = attr(math, 'floor'),
-        abs   = attr(math, 'abs'),
+        /*
+         * native
+         */
+        abs   = attr(Math, 'abs'),
+        floor = attr(Math, 'floor'),
 
         /*
-         * i18n
+         * # i18n
          */
 
         //TODO: parse all "TODO"s and enter as issues to github.
 
-        //TOOD: make these configurable in o2.date.config.js.
+        //TODO: make these configurable in o2.date.config.js.
 
         kAgo              = 'ago',
         kCenturies        = 'centuries',
@@ -113,8 +127,9 @@
         ],
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kString = 'string',
         kEmpty  = '';
 
@@ -203,3 +218,4 @@
      */
     exports.now = alias(me, 'now', 'getTime');
 }(this.o2, this.o2.protecteds));
+

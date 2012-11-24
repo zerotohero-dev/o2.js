@@ -1,21 +1,28 @@
-/**
- * @module   event.extend
- * @requires core
- * @requires event.core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>Extension methods for the {@link Event} object.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window) {
     'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('event.extend', ['core', 'event.core']);
+     /**
+      * @module   event.extend
+      *
+      * @requires core
+      * @requires event.constants
+      * @requires event.core
+      *
+      * <p>Extension methods for the {@link Event} object.</p>
+      */
+    fp.ensure(
+        'event.extend',
+    [
+        'core',
+        'event.constants',
+        'event.core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -23,13 +30,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Event',
 
         /*
@@ -38,13 +47,19 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * event.core
+         */
         kEvent         = kModuleName,
         getKeyCode     = require(kEvent, 'getKeyCode'),
         getEventObject = require(kEvent, 'getEventObject'),
 
+        /*
+         * event.constants
+         */
         keyCode    = require(kModuleName, 'keyCode'),
         kBackspace = attr(keyCode, 'BACKSPACE'),
         kBottom    = attr(keyCode, 'BOTTOM'),
@@ -53,7 +68,9 @@
         kLeft      = attr(keyCode, 'LEFT'),
         kTab       = attr(keyCode, 'TAB'),
 
-        kNumber = 'number',
+        /*
+         * # DOM Enumerations
+         */
 
         /*
          * According to W3C
@@ -72,7 +89,13 @@
          *
          * ref: http://msdn.microsoft.com/en-us/library/ms533544(v=vs.85).aspx
          */
-        kRightButton = 2;
+        kRightButton = 2,
+
+        /*
+         * # Common Constants
+         */
+
+        kNumber = 'number';
 
     /**
      * @function {static} o2.Event.isArrowKey
@@ -228,7 +251,8 @@
         /**
          * @function {static} o2.Event.isRightClick
          *
-         * <p>Checks whether or not the curent action is a right click action.</p>
+         * <p>Checks whether or not the curent action is a right click
+         * action.</p>
          *
          * <p><strong>Usage example:</strong></p>
          *
@@ -284,3 +308,4 @@
         return getKeyCode(evt) === kTab;
     });
 }(this.o2, this.o2.protecteds, this));
+

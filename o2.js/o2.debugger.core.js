@@ -1,20 +1,24 @@
-/**
- * @module   debugger.core
- * @requires core
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
- * <!--
- *  This program is distributed under
- *  the terms of the MIT license.
- *  Please see the LICENSE file for details.
- * -->
- *
- * <p>A debugging helper.</p>
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
  */
 (function(framework, fp, window, document, UNDEFINED) {
    'use strict';
 
-    // Ensure that dependencies have been loaded.
-    fp.ensure('debugger.core', ['core']);
+    /**
+     * @module   debugger.core
+     *
+     * @requires core
+     *
+     * <p>A debugging helper.</p>
+     */
+    fp.ensure(
+        'debugger.core',
+    [
+        'core'
+    ]);
 
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
@@ -22,13 +26,15 @@
         require = attr(fp, 'require'),
 
         /*
-         * Module Exports
+         * # Module Exports
          */
+
         exports = {},
 
         /*
-         * Module Name
+         * # Module Definition
          */
+
         kModuleName = 'Debugger',
 
         /**
@@ -39,8 +45,8 @@
          * <p><strong>Usage example:</strong></p>
          *
          * <pre>
-         * // note: initalize Debugger only once,
-         * // possibly on window.load or dom content ready
+         * // note: initialize Debugger only once,
+         * // possibly on window.load or DOM content ready
          * o2.Debugger.init(someDomNode, true);
          *
          * //then inside your code use this syntax.
@@ -52,14 +58,18 @@
         me = create(kModuleName),
 
         /*
-         * Aliases
+         * # Aliases
          */
 
+        /*
+         * core
+         */
         $    = require('$'),
         nill = require('nill'),
 
-        createElement = attr(document, 'createElement'),
-
+        /*
+         * native
+         */
         console = window.console || {},
         error   = console.error  || nill,
         info    = console.info   || nill,
@@ -67,18 +77,21 @@
         warn    = console.warn   || nill,
 
         /*
-         * Configuration
+         * # Configuration
          */
+
         outputElement  = null,
 
         /*
-         * State
+         * # State
          */
+
         isInitialized = false,
 
         /*
-         * Common Class Names
+         * # Common Class Names
          */
+
         kError = 'error',
         kFail  = 'fail',
         kInfo  = 'info',
@@ -87,8 +100,9 @@
         kWarn  = 'warn',
 
         /*
-         * Common Errors
+         * # Common Errors
          */
+
         kCannotInitialize = 'Debugger: cannot initialize outputElement',
         kErrorText        = '<b>ERROR:</b> ',
         kFailText         = '<b>FAIL:</b> ',
@@ -97,14 +111,16 @@
         kWarnText         = '<b>WARN:</b> ',
 
         /*
-         * Common Constants
+         * # Common Constants
          */
+
         kDefaultContainer = 'div',
         kEmpty            = '',
 
         /*
-         * To be Overridden
+         * # To be Overridden
          */
+
         PrinterFactory = null;
 
     /*
@@ -136,7 +152,7 @@
     }
 
     /*
-     * A factory class that creates printer deleages,
+     * A factory class that creates printer delegates,
      * by parsing the configuration object.
      */
     PrinterFactory = {
@@ -154,7 +170,9 @@
 
             if (isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -173,7 +191,9 @@
 
             if (!isUsingConsole && outputElement) {
                 return function(value, className) {
-                    var debugContent = createElement(kDefaultContainer);
+                    var debugContent = document.createElement(
+                        kDefaultContainer
+                    );
 
                     debugContent.className = className;
                     debugContent.innerHTML = value;
@@ -225,7 +245,7 @@
      * <p><strong>Usage example:</strong></p>
      *
      * <pre>
-     * o2.Debugger.error('A serious error occured');
+     * o2.Debugger.error('A serious error occurred');
      * </pre>
      *
      * @param {String} message - the error message to display.
@@ -259,9 +279,8 @@
      * @function {static} o2.Debugger.init
      *
      * <p>Initializes the {@link Debugger} <code>static</code> class.</p>
-     * <p>Either <strong>>outputElement</strong>>, or
-     * <strong>>shouldUseConsole</strong>, or
-     * both should be provided.</p>
+     * <p>Either <strong>outputElement</strong>, or
+     * <strong>shouldUseConsole</strong>, or both should be provided.</p>
      *
      * <p><strong>Usage example:</strong></p>
      *
@@ -284,7 +303,7 @@
         // boolean.)
         isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
 
-        // Is everything ok? -- I should either use the output element, or
+        // Is everything OK? -- I should either use the output element, or
         // the console.
         // If I can use neither of them, then it's a fatal situation.
         isCfgOk = ((outputNode && outputNode.nodeName) || isUsingConsole);
@@ -377,3 +396,4 @@
         me.println([kWarnText, message].join(kEmpty), kWarn);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
+

@@ -130,7 +130,7 @@
        {
            localName : "AjaxController",
            fullName : "o2.AjaxController.AjaxController",
-           summary : "constructor AjaxController(XmlHttpRequest xhr, Object args)",
+           summary : "constructor AjaxController(XMLHttpRequest xhr, Object args)",
            ref : "logical/o2/AjaxController.html#___AjaxController",
            parent : "o2.AjaxController",
            type : "constructor",
@@ -4412,6 +4412,15 @@
            elementType : "function"
        } ,         
        {
+           localName : "appVersion",
+           fullName : "o2.appVersion",
+           summary : "property readonly String appVersion",
+           ref : "logical/o2.html#___appVersion",
+           parent : "o2",
+           type : "property",
+           elementType : "variable"
+       } ,         
+       {
            localName : "build",
            fullName : "o2.build",
            summary : "property readonly String build",
@@ -4524,15 +4533,6 @@
            fullName : "o2.url",
            summary : "property readonly String url",
            ref : "logical/o2.html#___url",
-           parent : "o2",
-           type : "property",
-           elementType : "variable"
-       } ,         
-       {
-           localName : "version",
-           fullName : "o2.version",
-           summary : "property readonly String version",
-           ref : "logical/o2.html#___version",
            parent : "o2",
            type : "property",
            elementType : "variable"
