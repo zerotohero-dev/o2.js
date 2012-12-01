@@ -26,7 +26,19 @@
          * that have run so far.
          */
         state = {
+            totalFailureCount : 0,
+            totalSuccessCount : 0
         };
+
+    /*
+     *
+     */
+    function incrementFailureCount() { state.totalFailureCount++; }
+
+    /*
+     *
+     */
+    function incrementSuccessCount() { state.totalSuccessCount++; }
 
     /*
      *
@@ -41,34 +53,54 @@
                 queue.push(['o2.', key, '.test.html'].join(''));
             }
         }
-    }());
 
-    /*
-     *
-     */
-    (function loop() {
-        var file   = queue.pop(),
-            id     = 0;
+        // TODO: use the Deferred pattern.
 
-        if (!file) {
-            log('end of queue');
+        // TOOD: it currently iterates main modules.
+        // what about the partial modules?
 
-            assert(state.totalFailureCount === 0, [
-                '<p><b>All done!</b> ',
-                'Total failure count: <b>', state.totalFailureCount, '</b>, ',
-                'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
-            ].join(''));
+        var Runner = window.Runner = {
+            id : null,
 
-            return;
-        }
+            next : function() {
+                clearTimeout(Runner.id);
 
-        log(['processing: ', file].join(''));
+                var file   = queue.pop(),
+                    id     = 0;
 
-        id = setTimeout(function() {
-            log(['FAIL: unit test. "', file, '" timed out.'].join(''));
+                if (!file) {
+                    log('end of queue');
 
-            loop();
-        }, 3000);
+                    assert(state.totalFailureCount === 0, [
+                        '<p><b>All done!</b> ',
+                        'Total failure count: <b>', state.totalFailureCount, '</b>, ',
+                        'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
+                    ].join(''));
+
+                    return;
+                }
+
+                log(['processing: ', file].join(''));
+
+                Runner.id = setTimeout(function() {
+                    log(['FAIL: unit test. "', file, '" timed out.'].join(''));
+
+                    Runner.reject();
+                }, 3000);
+            },
+
+            resolve : function() {
+                Runner.next();
+            },
+
+            reject : function() {
+                incrementFailureCount();
+
+                Runner.next();
+            }
+        };
+
+        Runner.resolve();
     }());
 }(this.o2));
 
