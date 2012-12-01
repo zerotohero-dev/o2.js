@@ -913,7 +913,7 @@
        {
            localName : "init",
            fullName : "o2.Debugger.init",
-           summary : "static function  init(Object outputElement, Boolean shouldUseConsole)",
+           summary : "static function  init(Object outputElm, Boolean shouldUseConsole)",
            ref : "logical/o2/Debugger.html#___init",
            parent : "o2.Debugger",
            type : "function",

@@ -70,3 +70,4 @@ jshint --config jshint-options.json ../o2.js/o2.try.core.js
 jshint --config jshint-options.json ../o2.js/o2.unit.core.js
 jshint --config jshint-options.json ../o2.js/o2.validation.core.js
 jshint --config jshint-options.json ../o2.js/o2.validation.regexp.js
+jshint --config jshint-options.json ../tests/js/runner.js

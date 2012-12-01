@@ -1,36 +1,73 @@
 (function(o2) {
     'use strict';
 
-
     var classes = o2.protecteds.classes,
-        key     = null,
-        klass   = '',
-        url     = '',
+
+        /*
+         * # Aliases
+         */
+
+        dbg    = o2.Debugger,
+        assert = dbg.assert,
+        log    = dbg.log,
+        init   = dbg.init,
+
+        /*
+         * # State Information
+         */
+
+        /*
+         * Contains meta information about the modules to be tested.
+         */
         queue   = [],
-        file    = '';
 
-    for (key in classes) {
-        if (classes.hasOwnProperty(key)) {
-            queue.push(['o2.', key, '.test.html'].join(''));
+        /*
+         * Contains an aggregated data for the overall status of the test Suites
+         * that have run so far.
+         */
+        state = {
+        };
+
+    /*
+     *
+     */
+    (function initialize() {
+        init('Output', true);
+
+        var key = null;
+
+        for (key in classes) {
+            if (classes.hasOwnProperty(key)) {
+                queue.push(['o2.', key, '.test.html'].join(''));
+            }
         }
-    }
+    }());
 
-    (function run() {
-        var file = queue.pop(),
-            length = queue.length;
+    /*
+     *
+     */
+    (function loop() {
+        var file   = queue.pop(),
+            id     = 0;
 
         if (!file) {
-            console.log('end of queue');
+            log('end of queue');
+
+            assert(state.totalFailureCount === 0, [
+                '<p><b>All done!</b> ',
+                'Total failure count: <b>', state.totalFailureCount, '</b>, ',
+                'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
+            ].join(''));
 
             return;
         }
 
-        console.log(['processing: ', file].join(''));
+        log(['processing: ', file].join(''));
 
-        var id = setTimeout(function() {
-            console.log(['FAIL: unit test', file, ' timed out.'].join(''));
+        id = setTimeout(function() {
+            log(['FAIL: unit test. "', file, '" timed out.'].join(''));
 
-            run();
+            loop();
         }, 3000);
     }());
 }(this.o2));

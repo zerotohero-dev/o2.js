@@ -1149,7 +1149,7 @@ if (!this.document) {
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001354354393
+ * @version     0.25.a.0001354389340
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1267,7 +1267,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001354354393');
+    exports.build = def(me, 'build', '.0001354389340');
 
     /**
      * @function {static} o2.$
@@ -6643,7 +6643,11 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /*
      *
      */
-    function doBinarySearch(low, high) {
+    function doBinarySearch(array, item, iterator) {
+        var mid  = 0,
+            high = array.length,
+            low  = 0;
+
         while (low < high) {
             mid = (low + high) >> 1;
 
@@ -7976,12 +7980,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
                 delegate) {
         if (!isArray(array)) {return -1;}
 
-        var iterator = delegate || identity,
-            high     = array.length,
-            low      = 0,
-            mid      = 0;
-
-        return doBinarySearch(low, high);
+        return doBinarySearch(array, item, delegate || identity);
     });
 
     /**
@@ -9730,6 +9729,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     var attr    = fp.getAttr,
         create  = attr(fp, 'create'),
         def     = attr(fp, 'define'),
+        obj     = attr(fp, 'getObject'),
         require = attr(fp, 'require'),
 
         /*
@@ -9764,6 +9764,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
         me = create(kModuleName),
 
+        myself = obj(me),
+
         /*
          * # Aliases
          */
@@ -9787,7 +9789,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          * # Configuration
          */
 
+        //TODO: move to config. namespace
         outputElement  = null,
+        isUsingConsole = null,
 
         /*
          * # State
@@ -9936,12 +9940,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         if (!isInitialized) {return;}
 
         if (pass) {
-            me.println([kPassText, message].join(kEmpty), kPass);
+            myself.println([kPassText, message].join(kEmpty), kPass);
 
             return;
         }
 
-        me.println([kFailText, message].join(kEmpty), kFail);
+        myself.println([kFailText, message].join(kEmpty), kFail);
     });
 
     /**
@@ -9960,7 +9964,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     exports.error = def(me, 'error', function(message) {
         if (!isInitialized) {return;}
 
-        me.println([kErrorText, message].join(kEmpty), kError);
+        myself.println([kErrorText, message].join(kEmpty), kError);
     });
 
     /**
@@ -9979,7 +9983,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     exports.info = def(me, 'info', function(message) {
         if (!isInitialized) {return;}
 
-        me.println([kInfoText, message].join(kEmpty), kInfo);
+        myself.println([kInfoText, message].join(kEmpty), kInfo);
     });
 
     /**
@@ -9995,15 +9999,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * o2.Debugger.init('divConsole', true);
      * </pre>
      *
-     * @param {Object} outputElement - Either the <strong>id</strong> of the
+     * @param {Object} outputElm - Either the <strong>id</strong> of the
      * element, or the element itself to append debug messages.
      * @param {Boolean} shouldUseConsole - should browser's built-in console
      * be used, if available.
      */
-    exports.init = def(me, 'init', function(outputElement, shouldUseConsole) {
-        var outputNode     = $(outputElement),
-            isCfgOk        = false,
-            isUsingConsole = false;
+    exports.init = def(me, 'init', function(outputElm, shouldUseConsole) {
+        var outputNode     = $(outputElm),
+            isCfgOk        = false;
 
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
@@ -10026,7 +10029,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         isInitialized = true;
 
         // Prevent initializing the object more than once.
-        me.init = nill;
+        myself.init = nill;
     });
 
     /**
@@ -10048,7 +10051,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     exports.log = def(me, 'log', function(message) {
         if (!isInitialized) {return;}
 
-        me.println(message, kLog);
+        myself.println(message, kLog);
     });
 
     /**
@@ -10078,10 +10081,14 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
 
         // Create a new printer method.
-        me.println = PrinterFactory.create();
+        myself.println = PrinterFactory.create(
+            //TODO: printerfactory should take output element
+            //as a config parameter too.
+            {isUsingConsole : isUsingConsole}
+        );
 
         // Call the newly created method.
-        me.println(value, className);
+        myself.println(value, className);
     });
 
     /**
@@ -10100,7 +10107,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     exports.warn = def(me, 'warn', function(message) {
         if (!isInitialized) {return;}
 
-        me.println([kWarnText, message].join(kEmpty), kWarn);
+        myself.println([kWarnText, message].join(kEmpty), kWarn);
     });
 }(this.o2, this.o2.protecteds, this, this.document));
 

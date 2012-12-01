@@ -103,7 +103,11 @@
     /*
      *
      */
-    function doBinarySearch(low, high) {
+    function doBinarySearch(array, item, iterator) {
+        var mid  = 0,
+            high = array.length,
+            low  = 0;
+
         while (low < high) {
             mid = (low + high) >> 1;
 
@@ -1436,12 +1440,7 @@
                 delegate) {
         if (!isArray(array)) {return -1;}
 
-        var iterator = delegate || identity,
-            high     = array.length,
-            low      = 0,
-            mid      = 0;
-
-        return doBinarySearch(low, high);
+        return doBinarySearch(array, item, delegate || identity);
     });
 
     /**
