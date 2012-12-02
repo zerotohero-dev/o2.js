@@ -34,6 +34,36 @@
     /*
      *
      */
+    (function initialize() {
+        init('Output', false);
+
+        var key     = null,
+            itemKey = null,
+            modules = {},
+            items   = null;
+
+        for (key in classes) {
+            if (classes.hasOwnProperty(key)) {
+                items = classes[key].items;
+
+                for (itemKey in items) {
+                    if (items.hasOwnProperty(itemKey)) {
+                        modules[items[itemKey].MODULE] = items[itemKey].MODULE;
+                    }
+                }
+            }
+        }
+
+        for (key in modules) {
+            if (modules.hasOwnProperty(key)) {
+                queue.push(key);
+            }
+        }
+    }());
+
+    /*
+     *
+     */
     function incrementFailureCount() { state.totalFailureCount++; }
 
     /*
@@ -41,101 +71,93 @@
      */
     function incrementSuccessCount() { state.totalSuccessCount++; }
 
-    /*
-     *
-     */
-    (function initialize() {
-        init('Output', false);
 
-        var key = null;
 
-        for (key in classes) {
-            if (classes.hasOwnProperty(key)) {
-                queue.push(['o2.', key, '.test.html'].join(''));
-            }
+    function RunPromise(file) {
+        this.file      = file;
+        this.timerId   = null;
+        this.delegates = [];
+    }
+
+    RunPromise.prototype.keep = function() {
+        clearTimeout(this.timerId);
+
+        var file            = this.file,
+            id              = 0,
+            kPromiseTimeout = 1000;
+
+        log(['Started testing "', this.file , '"...'].join(''));
+
+        if (!file) {
+            this.reject();
+
+            return;
         }
 
-        function RunPromise(file) {
-            this.file      = file;
-            this.timerId   = null;
-            this.delegates = [];
+        var self = this;
+
+        this.timerId = setTimeout(function() {
+            error(['Rejecting "', self.file,
+                  '". Test suite timed out.'].join(''));
+
+            self.reject();
+        }, kPromiseTimeout);
+    };
+
+    RunPromise.prototype.reject = function() {
+        incrementFailureCount();
+
+        for(var i = 0, len = this.delegates.length; i < len; i++) {
+            this.delegates[i]();
         }
 
-        RunPromise.prototype.keep = function() {
-            clearTimeout(this.timerId);
+        window.scrollTop = window.scrollHeight;
+    };
 
-            var file = this.file,
-                id   = 0;
+    RunPromise.prototype.resolve = function() {
+        incrementSuccessCount();
 
-            log(['Started testing "', this.file , '"...'].join(''));
+        for(var i = 0, len = this.delegates.length; i < len; i++) {
+            this.delegates[i]();
+        }
 
-            if (!file) {
-                this.reject();
+        window.scrollTop = window.scrollHeight;
+    };
 
-                return;
-            }
+    RunPromise.prototype.always = function(delegate) {
+        this.delegates.push(delegate);
+    };
 
-            var self = this;
+    // TOOD: it currently iterates main modules.
+    // what about the partial modules?
 
-            this.timerId = setTimeout(function() {
-                error(['Rejecting "', self.file , '". Test suite timed out.'].join(''));
+    var Runner = window.Runner = {
+        init : function() {
+            o2.Debugger.init('Output', false);
 
-                self.reject();
-            }, 1000);
-        };
+            return Runner;
+        },
+        run : function() {
+            var promise = new RunPromise(queue.pop());
 
-        RunPromise.prototype.reject = function() {
-            incrementFailureCount();
+            promise.always(function() {
+                if (queue.length === 0) {
+                    assert(state.totalFailureCount === 0, [
+                        '<p><b>All done!</b> ',
+                        'Total failure count: <b>', state.totalFailureCount, '</b>, ',
+                        'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
+                    ].join(''));
 
-            for(var i = 0, len = this.delegates.length; i < len; i++) {
-                this.delegates[i]();
-            }
-        };
+                    return;
+                }
 
+                Runner.run();
+            });
 
-        RunPromise.prototype.resolve = function() {
-            incrementSuccessCount();
+            promise.keep();
+        }
+    };
 
-            for(var i = 0, len = this.delegates.length; i < len; i++) {
-                this.delegates[i]();
-            }
-        };
-
-        RunPromise.prototype.always = function(delegate) {
-            this.delegates.push(delegate);
-        };
-
-        // TOOD: it currently iterates main modules.
-        // what about the partial modules?
-
-        var Runner = window.Runner = {
-            init : function() {
-                o2.Debugger.init('Output', false);
-
-                return Runner;
-            },
-            run : function() {
-                var promise = new RunPromise(queue.pop());
-
-                promise.always(function() {
-                    if (queue.length === 0) {
-                        assert(state.totalFailureCount === 0, [
-                            '<p><b>All done!</b> ',
-                            'Total failure count: <b>', state.totalFailureCount, '</b>, ',
-                            'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
-                        ].join(''));
-
-                        return;
-                    }
-
-                    Runner.run();
-                });
-
-                promise.keep();
-            }
-        };
-
-        Runner.init().run();
-    }());
+    Runner.init().run();
 }(this.o2));
 

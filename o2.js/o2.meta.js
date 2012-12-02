@@ -80,7 +80,7 @@
         kAjaxExtend          = 'ajax.extend',
         kAjaxControllerCore  = 'ajaxcontroller.core',
         kAjaxStateCore       = 'ajaxstate.core',
-        kCollectionCore      = 'colleciton.core',
+        kCollectionCore      = 'collection.core',
         kCookieCore          = 'cookie.core',
         kDebuggerCore        = 'debugger.core',
         kDateCore            = 'date.core',
