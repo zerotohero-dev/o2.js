@@ -11,6 +11,7 @@
         assert = dbg.assert,
         log    = dbg.log,
         init   = dbg.init,
+        error  = dbg.error,
 
         /*
          * # State Information
@@ -44,7 +45,7 @@
      *
      */
     (function initialize() {
-        init('Output', true);
+        init('Output', false);
 
         var key = null;
 
@@ -54,53 +55,87 @@
             }
         }
 
-        // TODO: use the Deferred pattern.
+        function RunPromise(file) {
+            this.file      = file;
+            this.timerId   = null;
+            this.delegates = [];
+        }
+
+        RunPromise.prototype.keep = function() {
+            clearTimeout(this.timerId);
+
+            var file = this.file,
+                id   = 0;
+
+            log(['Started testing "', this.file , '"...'].join(''));
+
+            if (!file) {
+                this.reject();
+
+                return;
+            }
+
+            var self = this;
+
+            this.timerId = setTimeout(function() {
+                error(['Rejecting "', self.file , '". Test suite timed out.'].join(''));
+
+                self.reject();
+            }, 1000);
+        };
+
+        RunPromise.prototype.reject = function() {
+            incrementFailureCount();
+
+            for(var i = 0, len = this.delegates.length; i < len; i++) {
+                this.delegates[i]();
+            }
+        };
+
+
+        RunPromise.prototype.resolve = function() {
+            incrementSuccessCount();
+
+            for(var i = 0, len = this.delegates.length; i < len; i++) {
+                this.delegates[i]();
+            }
+        };
+
+        RunPromise.prototype.always = function(delegate) {
+            this.delegates.push(delegate);
+        };
 
         // TOOD: it currently iterates main modules.
         // what about the partial modules?
 
         var Runner = window.Runner = {
-            id : null,
+            init : function() {
+                o2.Debugger.init('Output', false);
 
-            next : function() {
-                clearTimeout(Runner.id);
-
-                var file   = queue.pop(),
-                    id     = 0;
-
-                if (!file) {
-                    log('end of queue');
-
-                    assert(state.totalFailureCount === 0, [
-                        '<p><b>All done!</b> ',
-                        'Total failure count: <b>', state.totalFailureCount, '</b>, ',
-                        'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
-                    ].join(''));
-
-                    return;
-                }
-
-                log(['processing: ', file].join(''));
-
-                Runner.id = setTimeout(function() {
-                    log(['FAIL: unit test. "', file, '" timed out.'].join(''));
-
-                    Runner.reject();
-                }, 3000);
+                return Runner;
             },
+            run : function() {
+                var promise = new RunPromise(queue.pop());
 
-            resolve : function() {
-                Runner.next();
-            },
+                promise.always(function() {
+                    if (queue.length === 0) {
+                        assert(state.totalFailureCount === 0, [
+                            '<p><b>All done!</b> ',
+                            'Total failure count: <b>', state.totalFailureCount, '</b>, ',
+                            'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
+                        ].join(''));
 
-            reject : function() {
-                incrementFailureCount();
+                        return;
+                    }
 
-                Runner.next();
+                    Runner.run();
+                });
+
+                promise.keep();
             }
         };
 
-        Runner.resolve();
+        Runner.init().run();
     }());
 }(this.o2));
 

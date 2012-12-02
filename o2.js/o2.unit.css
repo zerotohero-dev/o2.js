@@ -21,6 +21,15 @@ div.fail b {
     color: #000000;
 }
 
+div.error {
+    background : #EE6363;
+    border     : 1px #000000 solid;
+    color      : #ffffff;
+    margin     : 5px;
+    padding    : 10px;
+}
+
+
 div.pass {
     background : #00cc00;
     border     : 1px #000000 solid;
