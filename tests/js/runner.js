@@ -1,4 +1,4 @@
-(function(o2) {
+(function(o2, window) {
     'use strict';
 
     var classes = o2.protecteds.classes,
@@ -21,6 +21,11 @@
          * Contains meta information about the modules to be tested.
          */
         queue   = [],
+
+        /*
+         * A stack of <code>RunPromise</code>s
+         */
+        promises = [];
 
         /*
          * Contains an aggregated data for the overall status of the test Suites
@@ -61,103 +66,210 @@
         }
     }());
 
-    /*
-     *
-     */
-    function incrementFailureCount() { state.totalFailureCount++; }
 
     /*
      *
      */
-    function incrementSuccessCount() { state.totalSuccessCount++; }
+    var RunPromise = (function() {
 
+        /*
+         *
+         */
+        function incrementFailureCount() {
+            state.totalFailureCount++;
+        }
 
+        /*
+         *
+         */
+        function incrementSuccessCount() {
+            state.totalSuccessCount++;
+        }
 
-    function RunPromise(file) {
-        this.file      = file;
-        this.timerId   = null;
-        this.delegates = [];
-    }
+        /*
+         *
+         */
+        function RunPromise(file) {
+            this.file      = file;
+            this.timerId   = null;
+            this.delegates = [];
+        }
 
-    RunPromise.prototype.keep = function() {
-        clearTimeout(this.timerId);
+        /*
+         *
+         */
+        RunPromise.prototype.keep = function() {
+            clearTimeout(this.timerId);
 
-        var file            = this.file,
-            id              = 0,
-            kPromiseTimeout = 1000;
+            var file            = this.file,
+                id              = 0,
+                kPromiseTimeout = 1000;
 
-        log(['Started testing "', this.file , '"...'].join(''));
+            log(['Started testing "', this.file , '"...'].join(''));
 
-        if (!file) {
-            this.reject();
+            if (!file) {
+                this.reject();
+
+                return;
+            }
+
+            var self = this;
+
+            this.timerId = setTimeout(function() {
+                error(['Rejecting "', self.file,
+                      '". Test suite timed out.'].join(''));
+
+                self.reject();
+            }, kPromiseTimeout);
+        };
+
+        /*
+         *
+         */
+        RunPromise.prototype.reject = function() {
+            incrementFailureCount();
+
+            for(var i = 0, len = this.delegates.length; i < len; i++) {
+                this.delegates[i]();
+            }
+
+            window.scrollTop = window.scrollHeight;
+        };
+
+        /*
+         *
+         */
+        RunPromise.prototype.resolve = function() {
+            incrementSuccessCount();
+
+            for(var i = 0, len = this.delegates.length; i < len; i++) {
+                this.delegates[i]();
+            }
+
+            window.scrollTop = window.scrollHeight;
+        };
+
+        /*
+         *
+         */
+        RunPromise.prototype.always = function(delegate) {
+            this.delegates.push(delegate);
+        };
+
+        return { klass : RunPromise };
+    }()).klass;
+
+    /*
+     *
+     */
+    var Runner = (function() {
+        var isRunnerInited = false;
+
+        /*
+         *
+         */
+        var Runner = {
+
+            /*
+             *
+             */
+            init : function() {
+                if (isRunnerInited) { return Runner; }
+
+                o2.Debugger.init('Output', false);
+
+                return Runner;
+            },
+
+            /*
+             *
+             */
+            run : function() {
+                if (!isRunnerInited) { throw 'Initialize Runner first.'; }
+
+                var promise = new RunPromise(queue.pop());
+
+                promises.push(promise);
+
+                promise.always(function() {
+                    if (queue.length === 0) {
+                        assert(state.totalFailureCount === 0, [
+                            '<p><b>All done!</b> ',
+                            'Total failure count: <b>',
+                            state.totalFailureCount, '</b>, ',
+                            'Total success count: <b>',
+                            state.totalSuccessCount, '</b>.</p>'
+                        ].join(''));
+
+                        return;
+                    }
+
+                    Runner.run();
+                });
+
+                promise.keep();
+
+                log('<p>Started <b>"Test Suite Runner"</b>.</p>');
+
+                isRunnerInited = true;
+
+                return Runner;
+            }
+        };
+
+        return { klass : Runner };
+    }()).klass.init().run();
+
+    (function(window, promises) {
+
+        function findPromise(file) {
+            var i       = 0,
+                len     = promises.length,
+                promise = null;
+
+            for (i = 0; i < len; i++) {
+                promise = promises[i];
+
+                if (promise.file === file) {
+                    return promise;
+                }
+            }
+
+            return null;
+        }
+
+        function deletePromise(promise) {
+            var i              = 0,
+                len            = promises.length,
+                currentPromise = null;
+
+            for (i = 0; i < len; i++) {
+                currentPromise = promises[i];
+
+                if (currentPromise === promise) {
+                    promises.splice(i, 1);
+
+                    return;
+                }
+            }
 
             return;
         }
 
-        var self = this;
+        /*
+         * Runner extends Observer
+         */
+        window.Runner = {
+            notify : function(file) {
+                var promise = findPromise(file);
 
-        this.timerId = setTimeout(function() {
-            error(['Rejecting "', self.file,
-                  '". Test suite timed out.'].join(''));
-
-            self.reject();
-        }, kPromiseTimeout);
-    };
-
-    RunPromise.prototype.reject = function() {
-        incrementFailureCount();
-
-        for(var i = 0, len = this.delegates.length; i < len; i++) {
-            this.delegates[i]();
-        }
-
-        window.scrollTop = window.scrollHeight;
-    };
-
-    RunPromise.prototype.resolve = function() {
-        incrementSuccessCount();
-
-        for(var i = 0, len = this.delegates.length; i < len; i++) {
-            this.delegates[i]();
-        }
-
-        window.scrollTop = window.scrollHeight;
-    };
-
-    RunPromise.prototype.always = function(delegate) {
-        this.delegates.push(delegate);
-    };
-
-    // TOOD: it currently iterates main modules.
-    // what about the partial modules?
-
-    var Runner = window.Runner = {
-        init : function() {
-            o2.Debugger.init('Output', false);
-
-            return Runner;
-        },
-        run : function() {
-            var promise = new RunPromise(queue.pop());
-
-            promise.always(function() {
-                if (queue.length === 0) {
-                    assert(state.totalFailureCount === 0, [
-                        '<p><b>All done!</b> ',
-                        'Total failure count: <b>', state.totalFailureCount, '</b>, ',
-                        'Total success count: <b>', state.totalSuccessCount, '</b>.</p>'
-                    ].join(''));
-
-                    return;
+                if (promise) {
+                    promise.resolve();
                 }
 
-                Runner.run();
-            });
-
-            promise.keep();
-        }
-    };
-
-    Runner.init().run();
-}(this.o2));
+                deletePromise(promise);
+            }
+        };
+    }(window, promises));
+}(this.o2, this));
 
