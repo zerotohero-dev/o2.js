@@ -1090,7 +1090,7 @@
 
                 //TODO: to constants
                 throw 'Dependency "' +
-                    dependency + '" not satisfied for ' + base + '".';
+                    dependency + '" is not satisfied for "' + base + '".';
             }
         }
     });

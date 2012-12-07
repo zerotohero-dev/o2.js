@@ -119,7 +119,7 @@ if (!this.document) {
         kAjaxExtend          = 'ajax.extend',
         kAjaxControllerCore  = 'ajaxcontroller.core',
         kAjaxStateCore       = 'ajaxstate.core',
-        kCollectionCore      = 'colleciton.core',
+        kCollectionCore      = 'collection.core',
         kCookieCore          = 'cookie.core',
         kDebuggerCore        = 'debugger.core',
         kDateCore            = 'date.core',
@@ -1129,7 +1129,7 @@ if (!this.document) {
 
                 //TODO: to constants
                 throw 'Dependency "' +
-                    dependency + '" not satisfied for ' + base + '".';
+                    dependency + '" is not satisfied for "' + base + '".';
             }
         }
     });
@@ -1149,7 +1149,7 @@ if (!this.document) {
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001354472771
+ * @version     0.25.a.0001354781072
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1267,7 +1267,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001354472771');
+    exports.build = def(me, 'build', '.0001354781072');
 
     /**
      * @function {static} o2.$
