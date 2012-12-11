@@ -13,7 +13,7 @@
         add    = u.add,
 
         Suite = {
-            tests : 'ajax.core',
+            tests : 'o2.unit.core',
             run : function() {
 
             }

@@ -13,7 +13,7 @@
         add    = u.add,
 
         Suite = {
-            tests : 'ajax.core',
+            tests : 'jsonp.core',
             run : function() {
 
             }

@@ -13,7 +13,7 @@
         add    = u.add,
 
         Suite = {
-            tests : 'ajax.core',
+            tests : 'querystring.core',
             run : function() {
 
             }

@@ -99,7 +99,8 @@
         for (i = 0, len = cache.length; i < len; i++) {
             node = cache[i];
 
-            if(breakDelegate) {
+            if (breakDelegate) {
+
                 breakArgs.unshift(node);
 
                 if(breakDelegate.apply(node, breakArgs)) {break;}
@@ -228,7 +229,7 @@
                         } else {
                             counter++;
 
-                            if (!isNaN(returnSingleItemAt)&&
+                            if (!isNaN(returnSingleItemAt) &&
                                         returnSingleItemAt === counter) {
                                 return next;
                             }

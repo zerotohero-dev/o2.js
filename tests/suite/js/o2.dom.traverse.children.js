@@ -13,7 +13,7 @@
         add    = u.add,
 
         Suite = {
-            tests : 'ajax.core',
+            tests : 'dom.traverse.children',
             run : function() {
 
             }

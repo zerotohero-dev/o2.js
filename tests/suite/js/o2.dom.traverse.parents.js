@@ -1,9 +1,3 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
 (function(window, o2) {
     'use strict';
 
@@ -13,7 +7,7 @@
         add    = u.add,
 
         Suite = {
-            tests : 'ajax.core',
+            tests : 'dom.traverse.parents',
             run : function() {
 
             }
