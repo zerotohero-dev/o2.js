@@ -355,7 +355,6 @@
             posx   = 0,
             posy   = 0;
 
-
         if (!e) {return origin;}
 
         if (e.pageX) {

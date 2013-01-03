@@ -9,7 +9,7 @@
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001354781072
+ * @version     0.25.a.0001357231986
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -127,7 +127,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001354781072');
+    exports.build = def(me, 'build', '.0001357231986');
 
     /**
      * @function {static} o2.$

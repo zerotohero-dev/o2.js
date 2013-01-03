@@ -7,16 +7,18 @@
 (function(window, o2) {
     'use strict';
 
-    var u      = o2.Unit,
-        assert = u.assert,
-        run    = u.run,
-        add    = u.add,
+    var u       = o2.Unit,
+        assert  = u.assert,
+        run     = u.run,
+        add     = u.add;
 
-        Suite = {
-            tests : 'ajax.core',
-            run : function() {
+    window.suites = window.suites || {};
 
-            }
-        };
+    window.suites.o2 = {
+        tests : 'ajax.core',
+        run : function() {
+
+        }
+    };
 }(this, this.o2));
 

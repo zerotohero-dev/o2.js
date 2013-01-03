@@ -10,13 +10,15 @@
     var u      = o2.Unit,
         assert = u.assert,
         run    = u.run,
-        add    = u.add,
+        add    = u.add;
 
-        Suite = {
-            tests : 'ajaxcontroller.core',
-            run : function() {
+    window.suites = window.suites || {};
 
-            }
-        };
+    window.suites.o2 = {
+        tests : 'ajaxcontroller.core',
+        run : function() {
+
+        }
+    };
 }(this, this.o2));
 

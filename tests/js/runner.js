@@ -20,6 +20,15 @@
         error  = dbg.error,
 
         /*
+         * Logs on the console, but not on the page.
+         */
+        trace = function(stuff) {
+            if (!console) {return;}
+
+            console.log(stuff);
+        },
+
+        /*
          * # State Information
          */
 
@@ -73,7 +82,7 @@
     }());
 
     /*
-     *
+     * Note that this is NOT a strict CommonJS Promises/A+ implementation.
      */
     var RunPromise = (function() {
 
@@ -220,7 +229,7 @@
 
                 document.getElementById('TestFrame').src = [
                     'suite/html/o2.', promise.file, '.html'
-                ].join('')
+                ].join('');
 
                 promises.push(promise);
 
@@ -246,7 +255,7 @@
             }
         };
 
-        return { klass : Runner };
+        return {klass : Runner};
     }()).klass.init().run();
 
     /*
@@ -329,7 +338,12 @@
          */
         window.Runner = {
             notify : function(meta) {
+                trace('Runner.notify(');
+                trace(meta);
+                trace(')');
+
                 if (!meta) {throw 'Subject does not have meta information';}
+                if(!meta.subject) {throw 'No subject in meta definition';};
 
                 var file = meta.subject.file;
 

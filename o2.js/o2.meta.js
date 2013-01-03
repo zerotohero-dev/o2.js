@@ -36,15 +36,20 @@
 (function(framework, window) {
     'use strict';
 
-    function log() {
-        try {window.console.log(arguments);} catch(ignore){}
-    }
+        /*
+         * # Flags
+         */
+
+    //TODO: remove it from o2.meta.production
+    //TODO: write a generator that takes o2.meta and converts it into
+    //o2.meta.production
+    var isMetaDebugMode = false,
 
         /*
          * # Common Constants
          */
 
-    var kAny    = '*',
+        kAny    = '*',
         kEmpty  = '',
         kObject = 'object',
         kString = 'string',
@@ -137,9 +142,16 @@
          * # To be Overridden
          */
 
-        fp           = null,
-        classes      = null,
-        modules      = null;
+        fp      = null,
+        classes = null,
+        modules = null,
+        log     = function() {};
+
+    if (isMetaDebugMode) {
+        log = function() {
+            window.console.log(arguments);
+        }
+    }
 
     /*
      *

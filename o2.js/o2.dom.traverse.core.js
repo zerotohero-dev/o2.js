@@ -103,14 +103,14 @@
 
                 breakArgs.unshift(node);
 
-                if(breakDelegate.apply(node, breakArgs)) {break;}
+                if (breakDelegate.apply(node, breakArgs)) {break;}
             }
 
             if (node.nodeType !== kTextNode) {
                 if (filterDelegate) {
                     fArgs.unshift(node);
 
-                    if(filterDelegate.apply(node, fArgs)) {
+                    if (filterDelegate.apply(node, fArgs)) {
                         counter++;
 
                         if (!isNaN(returnSingleItemAt) &&

@@ -75,15 +75,20 @@ if (!this.document) {
 (function(framework, window) {
     'use strict';
 
-    function log() {
-        try {window.console.log(arguments);} catch(ignore){}
-    }
+        /*
+         * # Flags
+         */
+
+    //TODO: remove it from o2.meta.production
+    //TODO: write a generator that takes o2.meta and converts it into
+    //o2.meta.production
+    var isMetaDebugMode = false,
 
         /*
          * # Common Constants
          */
 
-    var kAny    = '*',
+        kAny    = '*',
         kEmpty  = '',
         kObject = 'object',
         kString = 'string',
@@ -176,9 +181,16 @@ if (!this.document) {
          * # To be Overridden
          */
 
-        fp           = null,
-        classes      = null,
-        modules      = null;
+        fp      = null,
+        classes = null,
+        modules = null,
+        log     = function() {};
+
+    if (isMetaDebugMode) {
+        log = function() {
+            window.console.log(arguments);
+        }
+    }
 
     /*
      *
@@ -1149,7 +1161,7 @@ if (!this.document) {
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001354781072
+ * @version     0.25.a.0001357231986
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1267,7 +1279,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001354781072');
+    exports.build = def(me, 'build', '.0001357231986');
 
     /**
      * @function {static} o2.$
@@ -3121,7 +3133,6 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
             origin = {x : 0, y : 0},
             posx   = 0,
             posy   = 0;
-
 
         if (!e) {return origin;}
 
@@ -13178,10 +13189,10 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         'core'
     ]);
 
-    var attr      = fp.getAttr,
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
+    var attr    = fp.getAttr,
+        create  = attr(fp, 'create'),
+        def     = attr(fp, 'define'),
+        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
