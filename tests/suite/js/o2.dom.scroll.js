@@ -1,4 +1,4 @@
-/*
+:
  *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
  *
  *  This program is distributed under the terms of the "MIT License".
@@ -18,5 +18,5 @@
 
             }
         };
-}(this, this.o2));
+}(this, this.o2, ((this.o2Test = {}).suites = {})));
 

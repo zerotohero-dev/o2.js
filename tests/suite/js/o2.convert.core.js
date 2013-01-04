@@ -4,7 +4,7 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(window, o2) {
+(function(window, o2, nns) {
     'use strict';
 
     var u      = o2.Unit,
@@ -12,15 +12,11 @@
         run    = u.run,
         add    = u.add;
 
-    //TODO: add to conventions -- if a named collection,
-    //it's plural; if an entity it's singular and PascalCase.
-    window.suites = window.suites || {};
-
-    window.suites.o2 = {
+    ns.o2 = {
         tests : 'convert.core',
         run : function() {
 
         }
     };
-}(this, this.o2));
+}(this, this.o2, ((this.o2Test = {}).suites = {})));
 

@@ -8,7 +8,7 @@
     'use strict';
 
     window.parent.Runner.notify({
-        subject : window.suites.o2,
+        subject : window.o2Test.suites.o2,
         action  : 'loaded'
     });
 }(this, this.o2));
