@@ -10,13 +10,17 @@
     var u      = o2.Unit,
         assert = u.assert,
         run    = u.run,
-        add    = u.add,
+        add    = u.add;
 
-        Suite = {
-            tests : 'convert.core',
-            run : function() {
+    //TODO: add to conventions -- if a named collection,
+    //it's plural; if an entity it's singular and PascalCase.
+    window.suites = window.suites || {};
 
-            }
-        };
+    window.suites.o2 = {
+        tests : 'convert.core',
+        run : function() {
+
+        }
+    };
 }(this, this.o2));
 

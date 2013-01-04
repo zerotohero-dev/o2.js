@@ -10,13 +10,15 @@
     var u      = o2.Unit,
         assert = u.assert,
         run    = u.run,
-        add    = u.add,
+        add    = u.add;
 
-        Suite = {
-            tests : 'dom.load',
-            run : function() {
+    window.suite = window.suite || {};
 
-            }
-        };
+    window.suite.o2 = {
+        tests : 'dom.load',
+        run : function() {
+
+        }
+    };
 }(this, this.o2));
 
