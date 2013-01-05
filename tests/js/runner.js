@@ -343,7 +343,11 @@
                 trace(')');
 
                 if (!meta) {throw 'Subject does not have meta information';}
-                if(!meta.subject) {throw 'No subject in meta definition';};
+                if (meta.error) {
+                    log(meta.error.name + ':' + meta.error.message);
+                    throw meta.error;
+                }
+                if (!meta.subject) {throw 'No subject in meta definition';};
 
                 var file = meta.subject.file;
 

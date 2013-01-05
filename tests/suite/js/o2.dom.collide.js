@@ -12,8 +12,6 @@
         run    = u.run,
         add    = u.add;
 
-    window.suites = window.suites || {};
-
     ns.o2 = {
         tests : 'dom.collide',
         run : function() {

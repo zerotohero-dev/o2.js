@@ -4,15 +4,15 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(window, o2) {
+(function(window, o2, ns) {
     'use strict';
     var u      = o2.Unit,
         assert = u.assert,
         run    = u.run,
         add    = u.add;
 
-    window.Suite = {
-        file: 'validation.regexp',
+    ns.o2 = {
+        tests: 'validation.regexp',
 
         cases : {
            'isEmail'      : function() {},
@@ -20,5 +20,5 @@
            'isWhitespace' : function() {}
         }
     };
-}(this, this.o2));
+}(this, this.o2, ((this.o2Test = {}).suites = {})));
 

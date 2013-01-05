@@ -1,16 +1,22 @@
-(function(window, o2) {
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
+(function(window, o2, ns) {
     'use strict';
 
     var u      = o2.Unit,
         assert = u.assert,
         run    = u.run,
-        add    = u.add,
+        add    = u.add;
 
-        Suite = {
-            tests : 'dom.traverse.parents',
-            run : function() {
+    ns.o2 = {
+        tests : 'dom.traverse.parents',
+        run : function() {
 
-            }
-        };
-}(this, this.o2));
+        }
+    };
+}(this, this.o2, ((this.o2Test = {}).suites = {})));
 

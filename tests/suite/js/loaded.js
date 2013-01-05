@@ -7,9 +7,13 @@
 (function(window, o2) {
     'use strict';
 
-    window.parent.Runner.notify({
-        subject : window.o2Test.suites.o2,
-        action  : 'loaded'
-    });
+    try {
+        window.parent.Runner.notify({
+            subject : window.o2Test.suites.o2,
+            action  : 'loaded'
+        });
+    } catch(e) {
+        window.parent.Runner.notify({error : e});
+    }
 }(this, this.o2));
 
