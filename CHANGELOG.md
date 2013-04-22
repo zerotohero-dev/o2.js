@@ -8,6 +8,15 @@
 **[o2.js](http://o2js.com/)** Change Log
 --------------------------------------------------------------------------------
 
+### **[o2.js](http://o2js.com/)** v.0.26
+
+v.0.26 is not up there yet. Here are a few major things that will change most of the
+codebase:
+
+- We'll be removing active support of IE versions less than 10
+- We'll be using an AMD approach (either using require.js or a custom AMD implementation
+that supports (or is similar to) require.js API
+
 ### **[o2.js](http://o2js.com/)** v.0.25
 
 * Still work in progress.
