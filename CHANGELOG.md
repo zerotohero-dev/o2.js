@@ -13,6 +13,7 @@
 ### **[o2.js](http://o2js.com/)** v.0.25
 
 * Started working on converting all the o2.js modules to AMD modules.
+
 This version will be **frozen** once the following are installed/done
 	* grunt,
 	* require.js as a submodule,
