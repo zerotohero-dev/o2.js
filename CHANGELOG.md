@@ -8,11 +8,25 @@
 **[o2.js](http://o2js.com/)** Change Log
 --------------------------------------------------------------------------------
 
+### **[o2.js](http://o2js.com/)** v.0.26
+
 ### **[o2.js](http://o2js.com/)** v.0.25
 
-* Still work in progress.
-* There are lots of patches to add.
-* Unit tests are being written from the grounds up.
+* Started working on converting all the o2.js modules to AMD modules.
+This version will be **frozen** once the following are installed/done
+	* grunt,
+	* require.js as a submodule,
+	* a code coverage tool,
+	* a modern documentation tool,
+	* empty jasmine test specs for each module,
+	* updates on jshint and other bathces.
+
+When we're done with this, this version (which is on dev branch) will be
+merged with master and tagged.
+
+Then we'll move forward to v.0.26, where there will be other **major** changes
+such as [removing support from IE9 and older](https://github.com/v0lkan/o2.js/issues/112)
+browsers.
 
 ### **[o2.js](http://o2js.com/)** v.0.24
 

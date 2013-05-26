@@ -4,7 +4,15 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window) {
+define([
+    'o2.string',
+    'o2.event',
+    'o2.core',
+], function(
+    StringUtil,
+    Event,
+    o2
+) {
     'use strict';
 
     /**
@@ -16,151 +24,127 @@
      *
      * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
      */
-    fp.ensure(
-        'ajax.core',
-    [
-        'core',
-        'string.core',
-        'event.core'
-    ]);
 
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
+    /*
+     * # Module Exports
+     */
+    var exports = {},
 
-        /*
-         * # Module Exports
-         */
-        exports = {},
+    /*
+     * # Aliases
+     */
 
-        /*
-         * # Module Definition
-         */
-        kModuleName = 'Ajax',
+    ensure = o2.ensure;
 
-        /**
-         * @class {static} o2.Ajax
-         *
-         * <p>A <strong>static</strong> class for making <strong>AJAX</strong>
-         * <strong>GET</strong> and <strong>POST</strong> requests.</p>
-         */
-        me = create(kModuleName),
+    /*
+     * core
+     */
+    nill = ensure(o2.nill),
 
-        /*
-         * # Aliases
-         */
+    /*
+     * string.core
+     */
+    concat        = ensure(StringUtil.concat),
+    generateGuid  = ensure(StringUtil.generateGuid),
 
-        /*
-         * core
-         */
-        nill = require('nill'),
+    /*
+     * event.core
+     */
+    listen = ensure(Event.addEventListener),
 
-        /*
-         * string.core
-         */
-        kString       = 'String',
-        concat        = require(kString, 'concat'),
-        generateGuid  = require(kString, 'generateGuid'),
+    /*
+     * # Headers
+     */
 
-        /*
-         * event.core
-         */
-        listen = require('Event', 'addEventListener'),
+    commonHeaders = [{
+        'Accept' :
+        'text/javascript, text/html, application/xml, text/xml, */*'
+    }],
+    postHeaders = [{
+        'Content-Type' : 'application/x-www-form-urlencoded'
+    }],
 
-        /*
-         * # Headers
-         */
+    /*
+     * # Microsoft-Specific ProgIds
+     */
 
-        commonHeaders = [{
-            'Accept' :
-            'text/javascript, text/html, application/xml, text/xml, */*'
-        }],
-        postHeaders = [{
-            'Content-Type' : 'application/x-www-form-urlencoded'
-        }],
+    progIds = [
+        'Msxml2.XMLHTTP',
+        'Microsoft.XMLHTTP',
+        'Msxml2.XMLHTTP.7.0',
+        'Msxml2.XMLHTTP.6.0',
+        'Msxml2.XMLHTTP.5.0',
+        'Msxml2.XMLHTTP.3.0'
+    ],
 
-        /*
-         * # Microsoft-Specific ProgIds
-         */
+    /*
+     * # Events
+     */
 
-        progIds = [
-            'Msxml2.XMLHTTP',
-            'Microsoft.XMLHTTP',
-            'Msxml2.XMLHTTP.7.0',
-            'Msxml2.XMLHTTP.6.0',
-            'Msxml2.XMLHTTP.5.0',
-            'Msxml2.XMLHTTP.3.0'
-        ],
+    kUnload = 'unload',
 
-        /*
-         * # Events
-         */
+    /*
+     * # Error Messages
+     */
 
-        kUnload = 'unload',
+    kNoXhr = 'Failed to create an XHR instance',
 
-        /*
-         * # Error Messages
-         */
+    /*
+     * # Statuses
+     */
 
-        kNoXhr = 'Failed to create an XHR instance',
+    kCached   = 304,
+    kComplete = 4,
+    kOk       = 200,
 
-        /*
-         * # Statuses
-         */
+    /*
+     * # Verbs
+     */
 
-        kCached   = 304,
-        kComplete = 4,
-        kOk       = 200,
+    kGet  = 'GET',
+    kPost = 'POST',
 
-        /*
-         * # Verbs
-         */
+    /*
+     * # Text, Prefix, Suffix
+     */
 
-        kGet  = 'GET',
-        kPost = 'POST',
+    kAnd    = '&',
+    kEmpty  = '',
+    kEquals = '=',
+    kKey    = 'r',
+    kPlus   = '+',
+    kRandom = '?rnd=',
 
-        /*
-         * # Text, Prefix, Suffix
-         */
+    /*
+     * # Common Regular Expressions
+     */
 
-        kAnd    = '&',
-        kEmpty  = '',
-        kEquals = '=',
-        kKey    = 'r',
-        kPlus   = '+',
-        kRandom = '?rnd=',
+    kUrlSpaceRegExp = /%20/g,
 
-        /*
-         * # Common Regular Expressions
-         */
+    /*
+     * # Static State
+     */
 
-        kUrlSpaceRegExp = /%20/g,
+    /*
+     * Active requests are cached here.
+     */
+    requestCache = {},
 
-        /*
-         * # Static State
-         */
+    /*
+     * To uniquely mark xhr requests.
+     */
+    counter = 0,
 
-        /*
-         * Active requests are cached here.
-         */
-        requestCache = {},
+    /*
+     * The total number of opened, but not completed (i.e. active) requests.
+     */
+    activeRequestCount = 0,
 
-        /*
-         * To uniquely mark xhr requests.
-         */
-        counter = 0,
+    /*
+     * # To be Overridden
+     */
 
-        /*
-         * The total number of opened, but not completed (i.e. active) requests.
-         */
-        activeRequestCount = 0,
-
-        /*
-         * # To be Overridden
-         */
-
-        createXhr = null;
+    createXhr = null;
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
@@ -423,6 +407,7 @@
         return xhr;
     }
 
+//TODO: update doc comments to use AMD snytax.
     /**
      * @function {static} o2.Ajax.abort
      * <p>Explicitly abort the request.</p>
@@ -444,14 +429,14 @@
      * @param {XMLHttpRequest} xhr - the original
      * <strong>XMLHttpRequest</strong> being sent.
      */
-    exports.abort = def(me, 'abort', function(xhr) {
+    exports.abort = function(xhr) {
         if (!xhr || xhr.isAborted) {return;}
 
         try {
             xhr.isAborted = true;
             xhr.abort();
         } catch (ignore) {}
-    });
+    };
 
     /**
      * @function {static} o2.Ajax.createXhr
@@ -470,9 +455,9 @@
      * </pre>
      * @return the created <code>XMLHttpRequest</code> object.
      */
-    exports.createXhr = def(me, 'createXhr', function() {
+    exports.createXhr = function() {
         return createXhr();
-    });
+    };
 
     /**
      * @function {static} o2.Ajax.get
@@ -506,9 +491,9 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    exports.get = def(me, 'get', function(url, parameters, callbacks, isSync) {
+    exports.get = function(url, parameters, callbacks, isSync) {
         return send(url, kGet, parameters, callbacks, isSync);
-    });
+    };
 
     /**
      * @function {static} o2.Ajax.post
@@ -543,34 +528,15 @@
      *
      * @return the original <code>XMLHttpRequest</code> object.
      */
-    exports.post = def(me, 'post', function(url, parameters, callbacks,
-                isSync) {
+    exports.post = function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
-    });
+    };
 
-    // There is a bug in IE (seen in 7, heard about in others) where AJAX
-    // requests that are open when the window is closed still reserve
-    // connections. This means that if you open and close two windows using
-    // long-polling, the next time you open a page on that domain it will
-    // hang forever. The below event listener fixes that.
-    listen(window, kUnload, function() {
-        var key     = null,
-            request = null;
+    // TODO: got rid of some older-browser-specific code.
 
-        try {
+    // TODO: udpate the release map.
 
-            // TODO: v8 does not make performance optimization inside
-            // a try block, encapsulate this logic into a function and
-            // take it out of the try-catch. search all trys, and do the same.
-            for(key in requestCache) {
-                if(requestCache.hasOwnProperty(key)) {
-                    request = requestCache[key];
-                    request.abort();
-
-                    delete requestCache[key];
-                }
-            }
-        } catch(ignore) {}
-    });
-}(this.o2, this.o2.protecteds, this));
-
+    // TODO: v8 does not make performance optimization inside
+    // a try block, encapsulate this logic into a function and
+    // take it out of the try-catch. search all trys, and do the same.
+});
