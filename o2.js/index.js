@@ -1161,7 +1161,7 @@ if (!this.document) {
  *  <p>
  *
  * @project     o2.js
- * @version     0.25.a.0001357231986
+ * @version     0.25.a.0001369602378
  * @author      Volkan Özçelik and Community
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
@@ -1279,7 +1279,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001357231986');
+    exports.build = def(me, 'build', '.0001369602378');
 
     /**
      * @function {static} o2.$
@@ -1962,33 +1962,33 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          *
          */
         xssEncodeNoAmpMap = [
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /\'/g, replace : '&#39;'}
+            {regExp: /"/g,  replace: '&#34;'},
+            {regExp: /</g,  replace: '&#60;'},
+            {regExp: />/g,  replace: '&#62;'},
+            {regExp: /\'/g, replace: '&#39;'}
         ],
 
         /*
          *
          */
         xssEncodeMap = [
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /&/g,  replace : '&amp;'},
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /\'/g, replace : '&#39;'}
+            {regExp: /"/g,  replace: '&#34;'},
+            {regExp: /&/g,  replace: '&amp;'},
+            {regExp: /</g,  replace: '&#60;'},
+            {regExp: />/g,  replace: '&#62;'},
+            {regExp: /\'/g, replace: '&#39;'}
         ],
 
         /*
          *
          */
         encodeMap = [
-            {regExp : / /g,  replace : '&nbsp;'},
-            {regExp : /"/g,  replace : '&#34;' },
-            {regExp : /&/g,  replace : '&amp;' },
-            {regExp : /</g,  replace : '&#60;' },
-            {regExp : />/g,  replace : '&#62;' },
-            {regExp : /\'/g, replace : '&#39;' }
+            {regExp: / /g,  replace: '&nbsp;'},
+            {regExp: /"/g,  replace: '&#34;' },
+            {regExp: /&/g,  replace: '&amp;' },
+            {regExp: /</g,  replace: '&#60;' },
+            {regExp: />/g,  replace: '&#62;' },
+            {regExp: /\'/g, replace: '&#39;' }
         ],
 
         /*
@@ -1996,12 +1996,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
          */
         //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
         decodeMap = [
-            {regExp : /&#32;|&nbsp;/g,         replace : ' ' },
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"' },
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : '\''},
-            {regExp : /&#60;|&lt;/g,           replace : '<' },
-            {regExp : /&#62;|&gt;/g,           replace : '>' },
-            {regExp : /&#38;|&amp;/g,          replace : '&' }
+            {regExp: /&#32;|&nbsp;/g,         replace: ' ' },
+            {regExp: /&#34;|&quot;|&quott;/g, replace: '"' },
+            {regExp: /&#39;|&apos;|&aposs;/g, replace: '\''},
+            {regExp: /&#60;|&lt;/g,           replace: '<' },
+            {regExp: /&#62;|&gt;/g,           replace: '>' },
+            {regExp: /&#38;|&amp;/g,          replace: '&' }
         ],
 
         /*
@@ -3820,8 +3820,8 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         activeRequestCount--;
 
-        // " <= 0 "  is just for defensive coding.
-        // " === 0 " would suffice as well.
+        // `<= 0`  is just for defensive coding.
+        // `=== 0` would suffice as well.
         if (activeRequestCount <= 0) {
             counter = 0;
             activeRequestCount = 0;
@@ -4155,8 +4155,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
             // TODO: v8 does not make performance optimization inside
             // a try block, encapsulate this logic into a function and
-            // take it out of the try-catch. search all trys, and do the
-            // same.
+            // take it out of the try-catch. search all trys, and do the same.
             for(key in requestCache) {
                 if(requestCache.hasOwnProperty(key)) {
                     request = requestCache[key];
@@ -4545,6 +4544,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         state.listenTimeoutId = setTimeout(function() {
             listen(stateObject);
         }, config.LISTEN_TIMEOUT);
+
+        // TODO:
+        // setTimeout(function(){common.deferred.resolve();}}, LISTEN_TIMEOUT);
+        // return common.deferred;
+        // 
+        // listen().then(exports.init)
     }
 
     /**
@@ -11366,7 +11371,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
 
         if (!obj || !attribute) {return;}
 
-        if (attribute === kClass  || attribute === kClassName){
+        if (attribute === kClass  || attribute === kClassName) {
             obj.className = value;
 
             return;

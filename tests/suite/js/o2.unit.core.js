@@ -14,6 +14,8 @@
 
     ns.o2 = {
         tests : 'o2.unit.core',
+        cases : {
+        },
         run : function() {
 
         }

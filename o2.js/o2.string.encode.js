@@ -53,33 +53,33 @@
          *
          */
         xssEncodeNoAmpMap = [
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /\'/g, replace : '&#39;'}
+            {regExp: /"/g,  replace: '&#34;'},
+            {regExp: /</g,  replace: '&#60;'},
+            {regExp: />/g,  replace: '&#62;'},
+            {regExp: /\'/g, replace: '&#39;'}
         ],
 
         /*
          *
          */
         xssEncodeMap = [
-            {regExp : /"/g,  replace : '&#34;'},
-            {regExp : /&/g,  replace : '&amp;'},
-            {regExp : /</g,  replace : '&#60;'},
-            {regExp : />/g,  replace : '&#62;'},
-            {regExp : /\'/g, replace : '&#39;'}
+            {regExp: /"/g,  replace: '&#34;'},
+            {regExp: /&/g,  replace: '&amp;'},
+            {regExp: /</g,  replace: '&#60;'},
+            {regExp: />/g,  replace: '&#62;'},
+            {regExp: /\'/g, replace: '&#39;'}
         ],
 
         /*
          *
          */
         encodeMap = [
-            {regExp : / /g,  replace : '&nbsp;'},
-            {regExp : /"/g,  replace : '&#34;' },
-            {regExp : /&/g,  replace : '&amp;' },
-            {regExp : /</g,  replace : '&#60;' },
-            {regExp : />/g,  replace : '&#62;' },
-            {regExp : /\'/g, replace : '&#39;' }
+            {regExp: / /g,  replace: '&nbsp;'},
+            {regExp: /"/g,  replace: '&#34;' },
+            {regExp: /&/g,  replace: '&amp;' },
+            {regExp: /</g,  replace: '&#60;' },
+            {regExp: />/g,  replace: '&#62;' },
+            {regExp: /\'/g, replace: '&#39;' }
         ],
 
         /*
@@ -87,12 +87,12 @@
          */
         //TODO: [[/stuff/, 'repl'],[/stuff2/, 'repl2']] would save space.
         decodeMap = [
-            {regExp : /&#32;|&nbsp;/g,         replace : ' ' },
-            {regExp : /&#34;|&quot;|&quott;/g, replace : '"' },
-            {regExp : /&#39;|&apos;|&aposs;/g, replace : '\''},
-            {regExp : /&#60;|&lt;/g,           replace : '<' },
-            {regExp : /&#62;|&gt;/g,           replace : '>' },
-            {regExp : /&#38;|&amp;/g,          replace : '&' }
+            {regExp: /&#32;|&nbsp;/g,         replace: ' ' },
+            {regExp: /&#34;|&quot;|&quott;/g, replace: '"' },
+            {regExp: /&#39;|&apos;|&aposs;/g, replace: '\''},
+            {regExp: /&#60;|&lt;/g,           replace: '<' },
+            {regExp: /&#62;|&gt;/g,           replace: '>' },
+            {regExp: /&#38;|&amp;/g,          replace: '&' }
         ],
 
         /*

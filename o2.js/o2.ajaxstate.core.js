@@ -178,6 +178,12 @@
         state.listenTimeoutId = setTimeout(function() {
             listen(stateObject);
         }, config.LISTEN_TIMEOUT);
+
+        // TODO:
+        // setTimeout(function(){common.deferred.resolve();}}, LISTEN_TIMEOUT);
+        // return common.deferred;
+        // 
+        // listen().then(exports.init)
     }
 
     /**

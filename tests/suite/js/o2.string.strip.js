@@ -14,6 +14,8 @@
 
     ns.o2 = {
         tests : 'string.strip',
+        cases : {
+        },
         run : function() {
 
         }

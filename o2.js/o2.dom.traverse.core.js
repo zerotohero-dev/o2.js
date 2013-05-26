@@ -100,7 +100,6 @@
             node = cache[i];
 
             if (breakDelegate) {
-
                 breakArgs.unshift(node);
 
                 if (breakDelegate.apply(node, breakArgs)) {break;}
@@ -171,6 +170,8 @@
             checker, checkerParams, stopper, stopperParams,
             itemsCountCap, returnSingleItemAt, isReverse
         );
+
+        getWi
     };
 
     /*

@@ -14,6 +14,8 @@
 
     ns.o2 = {
         tests : 'collection.core',
+        cases : {
+        },
         run : function() {
 
         }

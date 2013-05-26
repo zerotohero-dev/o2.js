@@ -119,7 +119,7 @@
 
             var file            = this.file,
                 id              = 0,
-                kPromiseTimeout = 1000;
+                kPromiseTimeout = 5000;
 
             log(['Started testing <b>"', this.file , '"</b>...'].join(''));
 
@@ -134,6 +134,8 @@
             this.timerId = setTimeout(function() {
                 error(['Rejecting <b>"', self.file,
                       '"</b>. Test suite timed out.'].join(''));
+
+                debugger;
 
                 self.reject();
             }, kPromiseTimeout);
@@ -343,22 +345,36 @@
                 trace(')');
 
                 if (!meta) {throw 'Subject does not have meta information';}
+
                 if (meta.error) {
                     log(meta.error.name + ':' + meta.error.message);
+
                     throw meta.error;
                 }
+
                 if (!meta.subject) {throw 'No subject in meta definition';};
 
-                var file = meta.subject.file;
+                console.log('subject is:' + meta.subject.tests);
+
+                var file = meta.subject.tests;
+
+                trace('action:' + meta.action);
 
                 switch (meta.action) {
                     case 'loaded':
+                        //debugger;
 
-                        // Promise has already been processed.
+                        // Promises has already been processed.
                         //TODO: rename method.
                         if (isTimedOut(file)) {
+                            //debugger;
+
+                            //TODO: log.
+
                             return;
                         }
+
+                        //debugger;
 
                         var promise = findPromise(file);
 
@@ -372,8 +388,10 @@
                         var subject = meta.subject;
 
                         if (!cases) {
+                            //debugger;
+
                             error(['Rejecting <b>"', file,
-                                '"</b>. Suite does not have',
+                                '"</b>. Suite does not have ',
                                 '<strong>cases</strong> defined.'
                             ].join(''));
 
@@ -396,6 +414,11 @@
                                     '"</b>. Suite does not have <b>"',
                                     method ,'"</b> defined in its cases.'
                                 ].join(''));
+
+//                                debugger;
+
+                                log(['Methods expected: '
+                                    ].concat(methods).join(' '));
 
                                 promise.reject();
 

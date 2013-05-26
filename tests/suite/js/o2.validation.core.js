@@ -14,6 +14,23 @@
 
     ns.o2 = {
         tests : 'validation.core',
+        cases : {
+            is          : function() {},
+            isArguments : function() {},
+            isArray     : function() {},
+            isBoolean   : function() {},
+            isDate      : function() {},
+            isFunction  : function() {},
+            isNaN       : function() {},
+            isNull      : function() {},
+            isNumber    : function() {},
+            isNumeric   : function() {},
+            isObject    : function() {},
+            isRegExp    : function() {},
+            isString    : function() {},
+            isUndefined : function() {},
+            isWindow    : function() {}
+        },
         run : function() {
 
         }

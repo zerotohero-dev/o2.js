@@ -226,8 +226,8 @@
 
         activeRequestCount--;
 
-        // " <= 0 "  is just for defensive coding.
-        // " === 0 " would suffice as well.
+        // `<= 0`  is just for defensive coding.
+        // `=== 0` would suffice as well.
         if (activeRequestCount <= 0) {
             counter = 0;
             activeRequestCount = 0;
@@ -561,8 +561,7 @@
 
             // TODO: v8 does not make performance optimization inside
             // a try block, encapsulate this logic into a function and
-            // take it out of the try-catch. search all trys, and do the
-            // same.
+            // take it out of the try-catch. search all trys, and do the same.
             for(key in requestCache) {
                 if(requestCache.hasOwnProperty(key)) {
                     request = requestCache[key];

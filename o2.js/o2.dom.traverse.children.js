@@ -123,7 +123,7 @@
         if (!elm) {return result;}
 
         if (name) {
-            for(i = 0, len = items.length; i < len; i++) {
+            for (i = 0, len = items.length; i < len; i++) {
                 item = items[i];
 
                 if (item.nodeName.toLowerCase() === name.toLowerCase()) {
@@ -172,7 +172,7 @@
      *      'data-user-id', '42');
      * </pre>
      *
-     * @param {Object} elm - the <strong>DOM</strong> njode, or the
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
      * <strong>id</strong> of that node.
      * @param {String} attribute - the name of the attribute to filter.
      * @param {String} value - the value of the attribute.
@@ -511,6 +511,4 @@
         return execFilter(elm, getChildNodes, [name],
             hasIdAttribute, [], isNodeEquals, [until]);
     });
-
 }(this.o2, this.o2.protecteds, this.document));
-

@@ -689,7 +689,7 @@
 
         if (!obj || !attribute) {return;}
 
-        if (attribute === kClass  || attribute === kClassName){
+        if (attribute === kClass  || attribute === kClassName) {
             obj.className = value;
 
             return;

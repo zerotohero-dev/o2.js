@@ -352,6 +352,9 @@
         return p.getElementsByTagName(tagName);
     });
 
+    // TODO: add a getElementsByClassName shourtcut too;
+    // since IE9+ supports it. For IE8 you can fall back to a recursive search.
+
     /*
      *
      */
