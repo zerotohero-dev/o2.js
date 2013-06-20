@@ -38,3 +38,8 @@ function select(el, selector) {
         );
     }
 }
+
+// TODO: select will give a collection of DOM nodes,
+// we will need DOM-colleciton funcitons like
+// filter(), find(), children(), parent(), map(), not()...
+// the nodes filtered by those methods should be uniqe.
