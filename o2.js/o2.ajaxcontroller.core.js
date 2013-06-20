@@ -4,41 +4,21 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp) {
+
+/**
+ * @module ajaxcontroller.core
+ *
+ * <p>An AJAX controller that implements the <strong>Observer
+ * Pattern</strong>.</p>
+ */
+define([
+    'o2.core',
+    'o2.ajaxstate.core'
+], function(
+    o2,
+    AjaxState
+) {
     'use strict';
-
-    /**
-     * @module   ajaxcontroller.core
-     *
-     * @requires core
-     * @requires ajaxstate.core
-     *
-     * <p>An AJAX controller that implements the <strong>Observer
-     * Pattern</strong>.</p>
-     */
-    fp.ensure(
-        'ajaxcontroller.core',
-    [
-        'core',
-        'ajaxstate.core'
-    ]);
-
-    var attr      = fp.getAttr,
-        construct = attr(fp, 'construct'),
-        proto     = attr(fp, 'proto'),
-        require   = attr(fp, 'require'),
-
-        /*
-         * # Module Exports
-         */
-
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'AjaxController',
 
         /*
          * # Aliases
@@ -47,18 +27,7 @@
         /*
          * core
          */
-        nill = require('nill'),
-
-        /*
-         * ajaxstate.core
-         */
-        state = require('AjaxState'),
-
-        /*
-         * # To be Overridden
-         */
-
-        me = null;
+    var nill = o2.nill;
 
     /**
      * @class o2.AjaxController
@@ -104,20 +73,15 @@
      * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
      * both attributes are optional.
      */
-    exports.AjaxController = construct(kModuleName, function(xhr, args) {
-        this.xhr       = xhr;
-        this.timeout   = (args && args.timeout) || null;
+    function AjaxController(xhr, args) {
+        this.xhr = xhr;
+        this.timeout = (args && args.timeout) || null;
         this.ontimeout = (args && args.ontimeout) || nill;
         this.isDeleted = false;
 
         // Register self.
-        state.addObserver(this);
-    });
-
-    /*
-     *
-     */
-    me = exports.AjaxController;
+        AjaxState.addObserver(this);
+    };
 
     /**
      * @function {virtual} o2.AjaxController.update
@@ -141,7 +105,7 @@
      * @param {Object} data - parameters passed from the <code>Observable</code>
      * to this <code>Observer</code>.
      */
-    exports.update = proto(me, 'update', function(data) {
+    AjaxController.prototype.update = function(data) {
         if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
@@ -174,10 +138,11 @@
      * </pre>
      *
      */
-    exports.unregister = proto(me, 'unregister', function() {
+    AjaxController.prototype.unregister = function() {
         if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
     });
-}(this.o2, this.o2.protecteds));
 
+    return AjaxController;
+});

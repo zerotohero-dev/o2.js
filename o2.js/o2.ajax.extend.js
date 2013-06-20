@@ -4,62 +4,41 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp) {
+
+/**
+ * @module ajax.extend
+ *
+ * <p>An AJAX controller that implements the <strong>Observer
+ * Pattern</strong>.</p>
+ */
+define([
+    'o2.core',
+    'o2.ajax.core'
+], function(
+    o2,
+    Ajax
+) {
     'use strict';
 
-    /**
-     * @module   ajax.extend
-     *
-     * @requires core
-     * @requires ajax.core
-     *
-     * <p>An AJAX controller that implements the <strong>Observer
-     * Pattern</strong>.</p>
-     */
-    fp.ensure(
-        'ajax.extend',
-    [
-        'core',
-        'ajax.core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
+    //TODO: use a new documentation generator.
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Ajax',
-
-        /*
-         * Ajax (extend)
-         */
-        me = create(kModuleName),
-
-        /*
-         * # Aliases
-         */
+    var exports = {},
 
         /*
          * ajax.core
          */
-        get  = require(kModuleName, 'get'),
-        post = require(kModuleName, 'post'),
+        get = Ajax.get,
+        post = Ajax.post,
 
         /*
          * # Caches
          */
 
-        getCache  = {},
+        getCache = {},
         postCache = {},
 
         /*
@@ -126,9 +105,8 @@
     *
     * @see o2.Ajax.get
     */
-    exports.getSingle = def(me, 'getSingle', function(url, parameters,
-                callbacks) {
-        var token   = prepareToken(url, parameters),
+    function getSingle(url, parameters, callbacks) {
+        var token = prepareToken(url, parameters),
             request = getCache[token];
 
         if (request && !request.isComplete) {return request;}
@@ -138,7 +116,7 @@
         request = getCache[token] = get(url, parameters, callbacks);
 
         return request;
-    });
+    }
 
    /**
     * @function {static} o2.Ajax.postSingle
@@ -179,8 +157,7 @@
     *
     * @see o2.Ajax.post
     */
-    exports.postSingle = def(me, 'postSingle', function(url, parameters,
-                callbacks) {
+    function postSingle(url, parameters, callbacks) {
         var token = prepareToken(url, parameters),
             request = postCache[token];
 
@@ -191,6 +168,16 @@
         request = postCache[token] = post(url, parameters, callbacks);
 
         return request;
-    });
-}(this.o2, this.o2.protecteds));
+    }
 
+    /**
+     * propose usage:
+     * ajaxMixin.extend(Ajax)
+     */
+    exports.extend = function(obj) {
+        obj.getSingle = getSingle;
+        obj.postSingle = postSingle;
+    };
+
+    return exports;
+});

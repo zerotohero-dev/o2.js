@@ -4,6 +4,12 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
+
+/**
+ * @module ajax.core
+ *
+ * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
+ */
 define([
     'o2.string',
     'o2.event',
@@ -15,149 +21,142 @@ define([
 ) {
     'use strict';
 
-    /**
-     * @module   ajax.core
-     *
-     * @requires core
-     * @requires string.core
-     * @requires event.core
-     *
-     * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
-     */
+        /*
+         * # Module Exports
+         */
 
-    /*
-     * # Module Exports
-     */
     var exports = {},
 
-    /*
-     * # Aliases
-     */
+        /*
+         * # Aliases
+         */
 
-    ensure = o2.ensure;
+        ensure = o2.ensure;
 
-    /*
-     * core
-     */
-    nill = ensure(o2.nill),
+        /*
+         * core
+         */
+        nill = ensure(o2.nill),
 
-    /*
-     * string.core
-     */
-    concat        = ensure(StringUtil.concat),
-    generateGuid  = ensure(StringUtil.generateGuid),
+        /*
+         * string.core
+         */
+        concat = ensure(StringUtil.concat),
+        generateGuid = ensure(StringUtil.generateGuid),
 
-    /*
-     * event.core
-     */
-    listen = ensure(Event.addEventListener),
+        /*
+         * event.core
+         */
+        listen = ensure(Event.addEventListener),
 
-    /*
-     * # Headers
-     */
+        /*
+         * # Headers
+         */
 
-    commonHeaders = [{
-        'Accept' :
-        'text/javascript, text/html, application/xml, text/xml, */*'
-    }],
-    postHeaders = [{
-        'Content-Type' : 'application/x-www-form-urlencoded'
-    }],
+        commonHeaders = [{
+            'Accept' :
+            'text/javascript, text/html, application/xml, text/xml, */*'
+        }],
+        postHeaders = [{
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        }],
 
-    /*
-     * # Microsoft-Specific ProgIds
-     */
+        /*
+         * # Microsoft-Specific ProgIds
+         */
 
-    progIds = [
-        'Msxml2.XMLHTTP',
-        'Microsoft.XMLHTTP',
-        'Msxml2.XMLHTTP.7.0',
-        'Msxml2.XMLHTTP.6.0',
-        'Msxml2.XMLHTTP.5.0',
-        'Msxml2.XMLHTTP.3.0'
-    ],
+        // TODO: check this IDs against the supported browser range, we might
+        // not need them anymore.
+        progIds = [
+            'Msxml2.XMLHTTP',
+            'Microsoft.XMLHTTP',
+            'Msxml2.XMLHTTP.7.0',
+            'Msxml2.XMLHTTP.6.0',
+            'Msxml2.XMLHTTP.5.0',
+            'Msxml2.XMLHTTP.3.0'
+        ],
 
-    /*
-     * # Events
-     */
+        /*
+         * # Events
+         */
 
-    kUnload = 'unload',
+        kUnload = 'unload',
 
-    /*
-     * # Error Messages
-     */
+        /*
+         * # Error Messages
+         */
 
-    kNoXhr = 'Failed to create an XHR instance',
+        kNoXhr = 'Failed to create an XHR instance',
 
-    /*
-     * # Statuses
-     */
+        /*
+         * # Statuses
+         */
 
-    kCached   = 304,
-    kComplete = 4,
-    kOk       = 200,
+        kCached = 304,
+        kComplete = 4,
+        kOk = 200,
 
-    /*
-     * # Verbs
-     */
+        /*
+         * # Verbs
+         */
 
-    kGet  = 'GET',
-    kPost = 'POST',
+        kGet = 'GET',
+        kPost = 'POST',
 
-    /*
-     * # Text, Prefix, Suffix
-     */
+        /*
+         * # Text, Prefix, Suffix
+         */
 
-    kAnd    = '&',
-    kEmpty  = '',
-    kEquals = '=',
-    kKey    = 'r',
-    kPlus   = '+',
-    kRandom = '?rnd=',
+        kAnd = '&',
+        kEmpty = '',
+        kEquals = '=',
+        kKey = 'r',
+        kPlus = '+',
+        kRandom = '?rnd=',
 
-    /*
-     * # Common Regular Expressions
-     */
+        /*
+         * # Common Regular Expressions
+         */
 
-    kUrlSpaceRegExp = /%20/g,
+        kUrlSpaceRegExp = /%20/g,
 
-    /*
-     * # Static State
-     */
+        /*
+         * # Static State
+         */
 
-    /*
-     * Active requests are cached here.
-     */
-    requestCache = {},
+        /*
+         * Active requests are cached here.
+         */
+        requestCache = {},
 
-    /*
-     * To uniquely mark xhr requests.
-     */
-    counter = 0,
+        /*
+         * To uniquely mark xhr requests.
+         */
+        counter = 0,
 
-    /*
-     * The total number of opened, but not completed (i.e. active) requests.
-     */
-    activeRequestCount = 0,
+        /*
+         * The total number of opened, but not completed (i.e. active) requests.
+         */
+        activeRequestCount = 0,
 
-    /*
-     * # To be Overridden
-     */
+        /*
+         * # To be Overridden
+         */
 
-    createXhr = null;
+        createXhr;
 
     /*
      * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
      */
     createXhr = function() {
-        var progId  = null,
-            request = null;
+        var progId,
+            request;
 
         if (window.XMLHttpRequest) {
             createXhr = function() {
                 var request = new window.XMLHttpRequest();
 
-                if (!request) { throw kNoXhr; }
+                if (!request) {throw kNoXhr;}
 
                 // Request is not completed yet.
                 request.isComplete = false;
@@ -210,7 +209,7 @@ define([
 
         activeRequestCount--;
 
-        // `<= 0`  is just for defensive coding.
+        // `<= 0` is just for defensive coding.
         // `=== 0` would suffice as well.
         if (activeRequestCount <= 0) {
             counter = 0;
@@ -226,15 +225,15 @@ define([
      * callbacks.
      */
     function processCallbacks(xhr, callbacks) {
-        var isSuccess    = false,
-            onaborted    = callbacks.onaborted   || nill,
-            oncomplete   = callbacks.oncomplete  || nill,
-            onerror      = callbacks.onerror     || nill,
+        var isSuccess = false,
+            onaborted = callbacks.onaborted || nill,
+            oncomplete = callbacks.oncomplete || nill,
+            onerror = callbacks.onerror || nill,
             onexception  = callbacks.onexception || nill,
             responseText = kEmpty,
-            responseXml  = null,
-            status       = 0,
-            statusText   = kEmpty;
+            responseXml = null,
+            status = 0,
+            statusText = kEmpty;
 
         if (xhr.isAborted) {
             onaborted(xhr);
@@ -245,10 +244,10 @@ define([
         // IE9 throws an error when accessing these properties
         // while the request is in an "aborted" state.
         try {
-            status       = xhr.status;
+            status = xhr.status;
             responseText = xhr.responseText;
-            responseXml  = xhr.responseXML;
-            statusText   = xhr.statusText;
+            responseXml = xhr.responseXML;
+            statusText = xhr.statusText;
         } catch (ignore) {}
 
         isSuccess = status === kOk || status === kCached;
@@ -285,7 +284,7 @@ define([
      * optional.
      */
     function registerCallbacks(xhr, callbacks) {
-        if (!xhr             ) {return;}
+        if (!xhr) {return;}
         if (xhr.isInitialized) {return;}
 
         xhr.onreadystatechange = function() {
@@ -304,10 +303,10 @@ define([
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
-        var header = null,
-            i      = 0,
-            key    = 0,
-            len    = 0;
+        var header,
+            i,
+            key,
+            len;
 
         for (i = 0, len = headers.length; i < len; i++) {
             header = headers[i];
@@ -345,7 +344,7 @@ define([
      */
     function generateParametrizeQueryString(params) {
         var buffer = [],
-            key    = null;
+            key;
 
         for (key in params) {
             if (params.hasOwnProperty(key)) {
@@ -366,20 +365,20 @@ define([
     function send(url, verb, parameters, callbacks, isSync) {
         if (!url) {return null;}
 
-        var ajaxCallbacks  = callbacks  || {},
+        var ajaxCallbacks = callbacks  || {},
             ajaxParameters = parameters || {},
 
-        parametrizedQuery = generateParametrizeQueryString(ajaxParameters),
+            parametrizedQuery = generateParametrizeQueryString(ajaxParameters),
 
-        isPost   = verb !== kGet,
+            isPost = verb !== kGet,
 
-        getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery),
+            getQuery = isPost ? kEmpty : concat(kAnd, parametrizedQuery),
 
-        index     = counter++,
-        isAsync   = !!!isSync,
+            index = counter++,
+            isAsync = !!!isSync,
 
-        postQuery = isPost ? parametrizedQuery : kEmpty,
-        xhr       = createXhr();
+            postQuery = isPost ? parametrizedQuery : kEmpty,
+            xhr = createXhr();
 
         // Add request to cache.
         requestCache[kKey+index] = xhr;
@@ -531,6 +530,10 @@ define([
     exports.post = function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
     };
+
+    return exports;
+
+    // TODO: move all TODO's as github tasks, prioritize and plan them.
 
     // TODO: got rid of some older-browser-specific code.
 
