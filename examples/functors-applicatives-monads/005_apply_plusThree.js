@@ -1,0 +1,1 @@
+apply({}, plusThree, 2);
