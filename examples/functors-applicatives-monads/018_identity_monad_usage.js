@@ -1,4 +1,4 @@
-var monad = Monad.create("Welcome... to the real world!");
+var monad = Monad.create('Welcome... to the real world!');
 
 // This logs "Welcome... to the real world!".
 monad.bind(log);

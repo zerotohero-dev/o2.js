@@ -4,7 +4,7 @@ is(
 ) === true;
 
 is(
-    monad.bind(returns),
+    monad.bind(anotherMonad.returns),
     monad
 ) === true;
 

@@ -1,4 +1,4 @@
-var monad = Monad.create("aValue");
+var monad = Monad.create('aValue');
 
 function fn(value) {
     return "fn('" + value + "')";
@@ -10,12 +10,12 @@ function returnsMonad(value) {
 
 // This will log "fn('testValue')".
 log(
-    monad.returns("testValue").bind(fn)
+    monad.returns('testValue').bind(fn)
 );
 
 // This will log "fn('testValue')".
 log(
-    fn("testValue")
+    fn('testValue')
 );
 
 // This will log "fn('returnsMonad('aValue')')".
