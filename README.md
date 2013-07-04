@@ -214,12 +214,6 @@ Contribution Guidelines
 Having said that; make sure you **carefully** read
 [**o2.js** Contribution Guidelines][5] before you start.
 
-Contributors List
---------------------------------------------------------------------------------
-
-You can look at the **[contributors list][11]** to see the people adding value
-to **[o2.js][2]**.
-
 **Anyone** can be a contributor. **[Who else wants to learn how to?][5]**
 
 Change Log
@@ -254,5 +248,4 @@ Contact Information
 [8]: https://github.com/v0lkan/o2.js/blob/master/LICENSE.md "Boring Copyright Stuff"
 [9]: https://github.com/v0lkan/o2.js/blob/master/CHANGELOG.md "Change Log"
 [10]: http://o2js.com/documentation "o2.js API Documentation"
-[11]: https://github.com/v0lkan/o2.js/blob/master/CONTRIBUTORS.md "Contributors"
 [12]: https://github.com/v0lkan/o2.js/blob/master/WE_LOVE_YOU.md "How to Contribute"
