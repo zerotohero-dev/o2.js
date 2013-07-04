@@ -214,12 +214,6 @@ Contribution Guidelines
 Having said that; make sure you **carefully** read
 [**o2.js** Contribution Guidelines][5] before you start.
 
-Contributors List
---------------------------------------------------------------------------------
-
-You can look at the **[contributors list][11]** to see the people adding value
-to **[o2.js][2]**.
-
 **Anyone** can be a contributor. **[Who else wants to learn how to?][5]**
 
 Change Log
