@@ -1,3 +1,4 @@
+// TODO: add these banners with Grunt!
 /**
  *  <b>o2.js</b>
  *
@@ -14,75 +15,61 @@
  * @description o2.js - a Coherent Solution to Your JavaScript Dilemma ;)
  */
 
-if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
-
-(function(framework, fp, window, document, UNDEFINED) {
+/**
+ * @module   core
+ *
+ * @requires core.meta
+ *
+ * <p>The core module.</p>
+ */
+define([
+    'o2.dom.core',
+    'o2.event.core'
+],
+function(
+    Dom,
+    Event
+) {
     'use strict';
-
-    /**
-     * @module   core
-     *
-     * @requires core.meta
-     *
-     * <p>The core module.</p>
-     */
-    fp.ensure(
-        'core',
-    [
-        'core.meta'
-    ]);
-
-    var attr     = fp.getAttr,
-        def      = attr(fp, 'define'),
-        obj      = attr(fp, 'getObject'),
-        require  = attr(fp, 'require'),
-        root     = attr(fp, 'getRoot'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
+    var exports = {},
 
         /*
          * # Guid (copied from String.core to remove dependency)
          */
 
-        kGuidRadix    = 36,
-        kGuidShift    = 30,
+        kGuidRadix = 36,
+        kGuidShift = 30,
         kDecimalPoint = '.',
-
-        /*
-         * # o2 (Root Namespace)
-         */
-
-        me     = root(),
-        myself = obj(me),
 
         /*
          * # Common Constants
          */
 
-        kEmpty            = '',
-        kLoad             = 'load',
+        kEmpty = '',
+        kLoad = 'load',
         kObjectNotDefined = ' : Object is not defined.',
-        kString           = 'string',
+        kString = 'string',
 
         /*
          * # To be Overridden
          */
 
-        myName = null,
-        t      = null,
-        n      = null,
-        $      = null;
+        myName,
+        t,
+        n,
+        $;
 
     /**
      * @function {static} o2.nill
      *
      * <p>An empty function.</p>
      */
-    exports.nill = def(me, 'nill', function() {});
+    exports.nill = function() {};
 
     /**
      * @property {readonly String} o2.name
@@ -90,44 +77,40 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * <p>Short name of the framework, to be used in
      * prefixes, class names etc.</p>
      */
-    exports.name = def(me, 'name', 'o2js');
+    exports.name = 'o2js';
 
     /*
      *
      */
-    myName = require('name');
+    myName = exports.name;
 
     /**
      * @property {readonly String} o2.url
      *
      * <p>URL of the project.</p>
      */
-    exports.url = def(me, 'url', 'http://o2js.com');
+    exports.url = 'http://o2js.com';
 
     /**
      * @property {readonly String} o2.longName
      *
      * <p>Full name of the project.</p>
      */
-    exports.longName = def(
-        me,
-        'longName',
-        'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)'
-    );
+    exports.longName = 'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)';
 
     /**
      * @property {readonly String} o2.appVersion
      *
      * <p>Project version.</p>
      */
-    exports.version = def(me, 'version', '0.25.a');
+    exports.version = '0.25.a';
 
     /**
      * @property {readonly String} o2.build
      *
      * <p>Project build number.</p>
      */
-    exports.build = def(me, 'build', '.0001369602378');
+    exports.build = '.0001369602378';
 
     /**
      * @function {static} o2.$
@@ -147,9 +130,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @throws Exception - if obj is <code>undefined</code>.
      */
-    exports.$ = def(me, '$', function(obj) {
-        if (obj === UNDEFINED) {
-            throw [myName, kObjectNotDefined].join(kEmpty);
+    exports.$ = function(obj) {
+        if (!obj) {
+            return null;
         }
 
         if (typeof obj === kString) {
@@ -157,12 +140,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
         }
 
         return obj || null;
-    });
+    };
 
     /*
      *
      */
-    $ = require('$');
+    $ = exports.$;
 
     /**
      * @function {static} o2.ready
@@ -180,9 +163,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @param {Function} callback - The callback to execute when DOM is
      * ready.
      */
-    exports.ready = def(me, 'ready', function(callback) {
-        require('Dom', 'ready')(callback);
-    });
+    exports.ready = function(callback) {
+        Dom.ready(callback);
+    };
 
     /**
      * @function {static} o2.load
@@ -201,9 +184,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @param {Function} callback - The callback to execute when window is
      * loaded.
      */
-    exports.load = def(me, 'load', function(callback) {
-        require('Event', 'addEventListener')(window, kLoad, callback);
-    });
+    exports.load = function(callback) {
+        Event.addEventListener(window, kLoad, callback);
+    };
 
     /**
      * @function {static} o2.now
@@ -219,47 +202,9 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @return the current Unix time.
      */
-    exports.now = def(me, 'now', function() {
+    exports.now = function() {
         return (new Date()).getTime();
-    });
-
-    /**
-     * @function {static} o2.noConflict
-     *
-     * <p>Exports the <strong>o2</strong> namespace under a new name, so that
-     * it can be used together with an older version of <strong>o2.js</strong>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * [script type="text/javascript" charset="UTF-8" src="o2.0.21.js"][/script]
-     * [script type="text/javascript" charset="UTF-8"]
-     *     // Now "o2 v.0.21" can be accessed through o3 variable
-     *     // (or window.o3).
-     *     o2.noConflict('o3');
-     *
-     *     // Alternative usage without giving explicit namespace.
-     *     myApp.o2 = o2.noConflict();
-     * [/script]
-     * [script type="text/javascript" charset="UTF-8" src="o2.0.23.js"][/script]
-     * </pre>
-     *
-     * @param {String} newName - (Optional; a random unique namespace will be
-     * created if not given) the name of the new namespace.
-     *
-     * @return the new <code>Object</code>.
-     */
-    exports.noConflict = def(me, 'noConflict', function(newName) {
-        var name = newName || [myName, ((new Date()).getTime() +
-            Math.random() * (1 << kGuidShift)).toString(kGuidRadix
-            ).replace(kDecimalPoint, kEmpty)].join(kEmpty),
-            kCacheKey = '_o2_cached';
-
-        window[name]   = myself;
-        window[myName] = window[kCacheKey];
-
-        return window[name];
-    });
+    };
 
     /**
      * @function {static} o2.n
@@ -280,12 +225,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      */
     exports.n = def(me, 'n', function(name, parent) {
         var collection = document.getElementsByName(name),
-            father     = null,
-            i          = 0,
-            isParent   = require('Dom', 'isParent'),
-            item       = null,
-            len        = 0,
-            result     = [];
+            isParent = Dom.isParent,
+            result = [],
+            father,
+            i,
+            item,
+            len;
 
         if (!parent) {return collection;}
 
@@ -305,7 +250,7 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
     /*
      *
      */
-    n = require('n');
+    n = exports.n;
 
     /**
      * @function {static} o2.nn
@@ -327,11 +272,11 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    exports.nn = def(me, 'nn', function(name, parent) {
+    exports.nn = function(name, parent) {
         var result = n(name, parent);
 
         return result ? result[0] : null;
-    });
+    };
 
     /**
      * @function {static} o2.t
@@ -350,18 +295,18 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      *
      * @return a collection of matching elements.
      */
-    exports.t = def(me, 't', function(tagName, parent) {
+    exports.t = function(tagName, parent) {
         var p = $(parent || document);
 
         if (!p) {return null;}
 
         return p.getElementsByTagName(tagName);
-    });
+    };
 
     /*
      *
      */
-    t = require('t');
+    t = exports.t;
 
     /**
      * @function {static} o2.tt
@@ -383,11 +328,12 @@ if (!this.o2) {throw 'Please include module "o2.core.meta"!';}
      * @return the first matched element if found; <code>null</code>
      * otherwise.
      */
-    exports.tt = def(me, 'tt', function(tagName, parent) {
-        var p      = $(parent),
+    exports.tt = function(tagName, parent) {
+        var p = $(parent),
             result = t(tagName, p);
 
         return result ? result[0] : null;
-    });
-}(this.o2, this.o2.protecteds, this, this.document));
+    };
 
+    return exports;
+});

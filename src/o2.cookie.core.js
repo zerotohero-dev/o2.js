@@ -4,47 +4,24 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(framework, fp, window, document) {
+
+/**
+ * @module cookie.core
+ *
+ * <p>A <strong>Cookie</strong> helper.</p>
+ */
+define([
+    'o2.string.core'
+], function(
+    StringUtil
+) {
     'use strict';
-
-    /**
-     * @module   cookie.core
-     *
-     * @requires core
-     * @requires string.core
-     *
-     * <p>A <strong>Cookie</strong> helper.</p>
-     */
-    fp.ensure(
-        'cookie.core',
-    [
-        'core',
-        'string.core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Cookie',
-
-        /**
-         * @class {static} o2.Cookie
-         *
-         * <p>A <strong>cookie</strong> helper class.</p>
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases
@@ -53,27 +30,27 @@
         /*
          * string.core
          */
-        concat = require('String', 'concat'),
+        concat = StringUtil.concat,
 
         /*
          * native
          */
-        escape = attr(window, 'escape'),
+        escape = window.escape,
 
         /*
          * # Common Constants
          */
 
-        kBlank         = ' ',
-        kDelimeter     = ';',
-        kDomain        = '; domain=',
-        kEmpty         = '',
-        kEquals        = '=',
-        kExpires       = '; expires=',
+        kBlank = ' ',
+        kDelimeter = ';',
+        kDomain = '; domain=',
+        kEmpty = '',
+        kEquals = '=',
+        kExpires = '; expires=',
         kNextCharIndex = 1,
-        kPath          = '; path=',
-        kRootPath      = '/',
-        kSecure        = '; secure',
+        kPath = '; path=',
+        kRootPath = '/',
+        kSecure = '; secure',
 
         /*
          * # To be Overridden
@@ -102,8 +79,8 @@
     exports.read = def(me, 'read', function(name) {
         var ca = document.cookie.split(kDelimeter),
             eq = concat(decodeURIComponent(name), kEmpty),
-            i  = 0,
-            c  = 0;
+            i,
+            c;
 
         for (i = 0; i < ca.length; i++) {
             c = ca[i];
@@ -142,9 +119,9 @@
      */
     exports.save = def(me, 'save', function(name, value, days, path, domain,
                 isSecure) {
-        var d            = new Date(),
-            ex           = kEmpty,
-            cookiePath   = kEmpty,
+        var d = new Date(),
+            ex = kEmpty,
+            cookiePath = kEmpty,
             cookieString = kEmpty;
 
         if (days) {
@@ -202,8 +179,8 @@
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     });
 
+    // TODO: open this as an issue for tracking, and close it and label as wontfix
     // removeAll makes things too complicated if path, and domain
     // come into play... Will not implement it.
     // removeAll : function(){ }
-}(this.o2, this.o2.protecteds, this, this.document));
-
+});

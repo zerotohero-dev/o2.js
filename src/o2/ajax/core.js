@@ -1,23 +1,9 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-
-/**
- * @module ajax.core
- *
- * <p>A cross-browser <strong>AJAX</strong> Wrapper.</p>
- */
 define([
-    'o2.string',
-    'o2.event',
-    'o2.core',
+    '/o2/string',
+    '/o2/event'
 ], function(
     StringUtil,
-    Event,
-    o2
+    Event
 ) {
     'use strict';
 
@@ -146,7 +132,7 @@ define([
         createXhr;
 
     /*
-     * <p>Creates a brand new <code>XMLHttpRequest</code> object.</p>
+     * Creates a brand new `XMLHttpRequest` object.
      */
     createXhr = function() {
         var progId,
@@ -192,7 +178,7 @@ define([
     };
 
     /*
-     * <p>Good boys clean their mess ;)</p>
+     * Good boys clean their mess ;)
      *
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
@@ -218,9 +204,9 @@ define([
     }
 
     /*
-     * <p>Processes callbacks and finalizes the <code>Xhr</code>.</p>
+     * Processes callbacks and finalizes the `Xhr`.
      *
-     * @param {XMLHttpRequest} xhr - the current <code>Xhr</code> instance.
+     * @param {XMLHttpRequest} xhr - the current `Xhr` instance.
      * @param {Object} callbacks - oncomplete, onerror and onexception
      * callbacks.
      */
@@ -273,10 +259,10 @@ define([
     }
 
     /*
-     * <p>Registers the callbacks to the <code>XMLHttpRequest</code>
-     * instance.</p>
+     * Registers the callbacks to the `XMLHttpRequest`
+     * instance.
      *
-     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
      * @param {Object} callbacks - An object of the form
      * {oncomplete: fn(responseText, responseXml, xhr, status),
      * onerror: fn(status, statusText, xhr),
@@ -297,9 +283,9 @@ define([
     }
 
     /*
-     * <p>Adds headers.</p>
+     * Adds headers.
      *
-     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
+     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
      * @param {Object} headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
@@ -320,7 +306,7 @@ define([
     }
 
     /*
-     * <p>Adds common request headers.</p>
+     * Adds common request headers.
      *
      * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
      */
@@ -329,18 +315,17 @@ define([
     }
 
     /*
-     * <p>Adds request headers specific to <code>POST</code> requests.</p>
+     * Adds request headers specific to <code>POST</code> requests.
      *
-     * @param {XMLHttpRequest} xhr - the original <code>XMLHttpRequest</code>
-     * object.
+     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
      */
     function addPostRequestHeaders(xhr) {
         addHeaders(xhr, postHeaders);
     }
 
     /*
-     * <p>Parses the params JSON and returns a <code>String</code> of
-     * the form "&name1=value1&name2=value2"</p>
+     * Parses the params JSON and returns a `String` of
+     * the form "&name1=value1&name2=value2".
      */
     function generateParametrizeQueryString(params) {
         var buffer = [],
@@ -357,15 +342,15 @@ define([
     }
 
     /*
-     * <p>Sends the request.</p>
+     * Sends the request.
      *
-     * @see {@link Ajax.get} and {@link Ajax.post} for details.
-     * @return the original <code>XMLHttpRequest</code>
+     * @see `Ajax.get` and `Ajax.post` for details.
+     * @return the original `XMLHttpRequest`
      */
     function send(url, verb, parameters, callbacks, isSync) {
         if (!url) {return null;}
 
-        var ajaxCallbacks = callbacks  || {},
+        var ajaxCallbacks = callbacks || {},
             ajaxParameters = parameters || {},
 
             parametrizedQuery = generateParametrizeQueryString(ajaxParameters),
@@ -381,9 +366,9 @@ define([
             xhr = createXhr();
 
         // Add request to cache.
-        requestCache[kKey+index] = xhr;
+        requestCache[kKey + index] = xhr;
 
-        xhr.index = (kKey+index);
+        xhr.index = (kKey + index);
 
         activeRequestCount++;
 
@@ -406,28 +391,6 @@ define([
         return xhr;
     }
 
-//TODO: update doc comments to use AMD snytax.
-    /**
-     * @function {static} o2.Ajax.abort
-     * <p>Explicitly abort the request.</p>
-     * <p>When the request is explicitly abourted, <strong>onaborted</strong>
-     * callback is fired.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var request = o2.Ajax.get(url, params, callbacks);
-     *
-     * ...
-     *
-     * if (someCondition) {
-     *      o2.Ajax.abort(request);
-     * }
-     * </pre>
-     *
-     * @param {XMLHttpRequest} xhr - the original
-     * <strong>XMLHttpRequest</strong> being sent.
-     */
     exports.abort = function(xhr) {
         if (!xhr || xhr.isAborted) {return;}
 
@@ -437,96 +400,14 @@ define([
         } catch (ignore) {}
     };
 
-    /**
-     * @function {static} o2.Ajax.createXhr
-     *
-     * <p>Creates a native <code>XMLHttpRequest</code> object.
-     * <p>This is a <strong>low-level</strong> function; it simply returns
-     * the browser's native object.
-     * You may most probably want to use {@link Ajax.get} or {@link
-     * Ajax.post} instead, for more functionality.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * // Creates a low-level cross-browser XmlHttpRequest object.
-     * var request = o2.Ajax.createXhr();
-     * </pre>
-     * @return the created <code>XMLHttpRequest</code> object.
-     */
     exports.createXhr = function() {
         return createXhr();
     };
 
-    /**
-     * @function {static} o2.Ajax.get
-     *
-     * <p>Sends and <strong>AJAX GET</strong> request.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var request = o2.Ajax.get('/api.php', {
-     *      name   : 'Volkan Özçelik',
-     *      action : 'add'
-     * }, {
-     *      oncomplete  : function(text, xml, xhr, status) {},
-     *      onerror     : function(statusCode, statusText, xhr) {},
-     *      onaborted   : function(xhr) {},
-     *      onexception : function(exception, xhr) {}
-     * });
-     * </pre>
-     *
-     * @param {String} url - the URL to send the request.
-     * @param {Object} parameters - parameters collection as a name/value
-     * pair object ({}).
-     * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml, xhr, status),
-     * onerror: fn(status, statusText, xhr), onaborted: fn(xhr),
-     * onexception: fn(exception, originalXhr)}.
-     * Any of these callbacks are optional.
-     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-     * Set this <code>true</code> for sending a snychronous request.
-     *
-     * @return the original <code>XMLHttpRequest</code> object.
-     */
     exports.get = function(url, parameters, callbacks, isSync) {
         return send(url, kGet, parameters, callbacks, isSync);
     };
 
-    /**
-     * @function {static} o2.Ajax.post
-     *
-     * <p>Sends an <strong>AJAX POST</strong> request.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var request = o2.Ajax.post('/api.php', {
-     *      name   : 'Volkan Özçelik',
-     *      action : 'add'
-     * }, {
-     *      oncomplete  : function(text, xml, xhr, status) {},
-     *      onerror     : function(statusCode, statusText, xhr) {},
-     *      onaborted   : function(xhr) {},
-     *      onexception : function(exception, xhr) {}
-     * });
-     * </pre>
-     *
-     * @param {String} url - the <strong>URL</strong> to send the request.
-     * @param {Object} parameters - parameters collection as a
-     * <strong>name/value</strong> pair object ({}).
-     * @param {Object} callbacks - An object of the form
-     * {oncomplete: fn(responseText, responseXml, xhr, status),
-     * onerror: fn(status, statusText, xhr), onaborted : fn(xhr),
-     * onexception: fn(exception, originalXhr)}.
-     * Any of these callbacks are optional.
-     * @param {Boolean} isSync - (optional defaults to <code>false</code>).
-     * Set this <code>true</code> for sending a <strong>snychronous</strong>
-     * request.
-     *
-     * @return the original <code>XMLHttpRequest</code> object.
-     */
     exports.post = function(url, parameters, callbacks, isSync) {
         return send(url, kPost, parameters, callbacks, isSync);
     };

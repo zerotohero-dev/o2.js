@@ -140,7 +140,7 @@
      * <pre>
      * o2.String.format("Hello {0}. What's going on in {1}?", 'Ninja',
      * 'California');
-     * //will return "Hello Ninja. What's going on in California"
+     * //will return "Hello Ninja. What's going on in California?"
      * </pre>
      *
      * @return the formated <code>String</code>.

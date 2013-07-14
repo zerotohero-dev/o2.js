@@ -1,0 +1,37 @@
+    exports.extend = function(toObj, fromObj) {
+        var i,
+            key,
+            len,
+            value;
+
+        if (!toObj) {return {};}
+        if (!isObject(toObj)) {return toObj;}
+        if (!isObject(fromObj)) {return toObj;}
+
+        if (isArray(toObj)) {
+            if(!isArray(fromObj)) {return toObj;}
+
+            i   = 0;
+            len = fromObj.length;
+
+            for (i = 0; i < len; i++) {
+                value = fromObj[i];
+
+                if(indexOf(toObj, value) === -1) {
+                    toObj.push(value);
+                }
+            }
+
+            return toObj;
+        }
+
+        for (key in fromObj) {
+            if (fromObj.hasOwnProperty(key)) {
+                toObj[key] = fromObj[key];
+            }
+        }
+
+        return toObj;
+    };
+
+    exports.merge = exports.extend;

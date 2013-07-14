@@ -4,8 +4,8 @@
  *  This program is distributed under the terms of the "MIT License".
  *  Please see the <LICENSE.md> file for details.
  */
-(function(/*framework, window, undefined*/) {
-    'use strict';
+//(function(/*framework, window, undefined*/) {
+//    'use strict';
 
     /*
      * # Module Definition
@@ -25,5 +25,5 @@
     //     toUppercase : function(str) {},
     //     /* whatever */
     // };
-}(/*this.o2, this*/));
+//}(/*this.o2, this*/));
 
