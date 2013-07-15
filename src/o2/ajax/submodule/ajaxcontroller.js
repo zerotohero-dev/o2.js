@@ -1,5 +1,5 @@
 define([
-    '/o2/ajaxstate/core'
+    './ajaxstate'
 ], function(
     AjaxState
 ) {

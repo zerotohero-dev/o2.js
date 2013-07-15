@@ -1,9 +1,3 @@
-/**
- * @module ajaxstate.core
- *
- * <p>a model for controlling ajax timeouts etc.</p>
- * <p>an {@link o2.AjaxController} should be registered to this model.</p>
- */
 define([
 ], function(
 ) {

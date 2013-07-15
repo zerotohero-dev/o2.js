@@ -1,45 +1,28 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-//TODO: add header and documentation.
-(function(framework, fp, window) {
+require([
+    '/o2/core',
+    '/o2/object/core'
+    './jsonpstate',
+    './ajaxcontroller'
+], function(
+    o2,
+    ObjectUtil,
+    JsonpState,
+    AjaxController
+) {
     'use strict';
-
-    // Ensure that dependencies have been loaded.
-    fp.ensure(
-        'jsonpcontroller.core',
-    [
-        'ajaxcontroller.core',
-        'core',
-        'jsonpstate.core',
-        'object.core'
-    ]);
-
-    var attr      = fp.getAttr,
-        construct = attr(fp, 'construct'),
-        override  = attr(fp, 'override'),
-        require   = attr(fp, 'require'),
 
         /*
          * Module Exports
          */
-        exports = {},
-
-        /*
-         * Module Name
-         */
-        kModuleName = 'JsonpController',
+    var exports = {},
 
         /*
          * Aliases
          */
 
-        nill        = require('nill'),
-        state       = require('JsonpState'),
-        copyMethods = require('Object', 'copyMethods'),
+        nill = o2.nill,
+        state = JsonpState,
+        copyMethods = ObjectUtil.copyMethods,
 
         /*
          * State
@@ -49,40 +32,10 @@
         /*
          * Inheritance
          */
-        base = require('AjaxController'),
-        me   = null,
-        self = null,
+        base = AjaxController,
+        me,
+        self;
 
-        kConstructorIndex = 1;
-
-    /**
-     * @class o2.JsonpController
-     * @extends o2.AjaxController
-     *
-     * <p>A JSONP <code>Controller</code>. Registers itself to {@link
-     * JsonpState} <code>Observable</code> upon construction.</p>
-     *
-     * <p>Implements the <code>Observer</code> interface.</p>
-     */
-
-    /**
-     * @constructor o2.JsonpController.JsonpController
-     *
-     * See
-     * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var jsonp = o2.Jsonp.get('http://example.com/api.php', handleResponse);
-     * var controller = new o2.JsonpController(jsonp, {timeout: 5000});
-     * </pre>
-     *
-     * @param {String} jsonp - the current jsonp unique identifier.
-     * @param {Object} args - an associative array in the form
-     * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
-     * both attributes are optional.
-     */
     exports.JsonpController = construct(kModuleName, function(jsonp,
                 args) {
         this.jsonp     = jsonp;
@@ -96,38 +49,13 @@
     /*
      *
      */
-    me = exports.JsonpController;
-
-
-    /*
-     *
-     */
-     self = me[kConstructorIndex];
-
+    self = exports.JsonpController;
 
     // A quick way of inheriting methods without constructing base
     // (i.e. without the `self.prototype = new base();` assignment).
     copyMethods(self.prototype, base.prototype);
 
-    /**
-     * @function {override} o2.JsonpController.update
-     *
-     * <p>Overrides {@link o2.AjaxController.update}.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * controller.update({isTimedOut : true});
-     * </pre>
-     *
-     * @param {JsonpState} observable - the <code>Observable</code> state
-     * object.
-     * @param {Object} data - parameters passed from the
-     * <code>Observable</code> to this <code>Observer</code>.
-     *
-     * @see o2.AjaxController.update
-     */
-    exports.update = override(me, 'update', function(data) {
+    exports.update = function(data) {
         if (!data.isTimedOut) {return;}
 
         // Unregister self from the observable.
@@ -145,27 +73,14 @@
 
         // Execute callback.
         this.ontimeout();
-    });
+    };
 
-    /**
-     * @function {override} o2.JsonpController.unregister
-     *
-     * <p>Overrides {@link o2.AjaxController.unregister}.</p>
-     *
-     * <p>Unregisters this object from its associated observable.
-     * (<em>i.e. <strong>JsonpState</strong></em>)</p>
-     *
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * controller.unregister();
-     * </pre>
-     *
-     */
-    exports.unregister = override(me, 'unregister', function() {
+    exports.unregister = function() {
         if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
-    });
-}(this.o2, this.o2.protecteds, this));
+    };
+
+    return exports;
+});
+

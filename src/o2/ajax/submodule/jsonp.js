@@ -1,50 +1,17 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-(function(framework, fp, window, document) {
+require([
+    '/o2/core',
+    '/o2/string/core'
+], function(
+    o2,
+    StringUtil
+) {
     'use strict';
-
-    /**
-     * @module   jsonp.core
-     *
-     * @requires core
-     * @requires string.core
-     *
-     * <p>An object to make <strong>JSONP</strong> calls.</p>
-     */
-    fp.ensure(
-        'jsonp.core',
-    [
-        'core',
-        'string.core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Jsonp',
-
-        /**
-         * @class {static} o2.Jsonp
-         *
-         * <p>An object to make <strong>JSONP</strong> calls.</p>
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases
@@ -53,27 +20,27 @@
         /*
          * core
          */
-        frameworkName = require('name'),
-        nill          = require('nill'),
+        frameworkName = o2.name,
+        nill = o2.nill,
 
         /*
          * string.core
          */
-        concat = require('String', 'concat'),
+        concat = StringUtil.concat,
 
         /*
          * # Common Constants
          */
 
-        kAnd      = '&',
+        kAnd = '&',
         kCallback = 'callback',
-        kEmpty    = '',
-        kEquals   = '=',
-        kHead     = 'head',
-        kJson     = concat(frameworkName, '_json_'),
-        kLoaded   = 'loaded',
-        kQuery    = '?',
-        kScript   = 'script',
+        kEmpty = '',
+        kEquals = '=',
+        kHead = 'head',
+        kJson = concat(frameworkName, '_json_'),
+        kLoaded = 'loaded',
+        kQuery = '?',
+        kScript = 'script',
 
         /*
          * # Static State
@@ -163,5 +130,4 @@
 
         return jsonp;
     });
-}(this.o2, this.o2.protecteds, this, this.document));
-
+});

@@ -1993,4 +1993,89 @@
      * @see o2.Date.getTime
      */
 
+    /**
+     * @class o2.JsonpController
+     * @extends o2.AjaxController
+     *
+     * <p>A JSONP <code>Controller</code>. Registers itself to {@link
+     * JsonpState} <code>Observable</code> upon construction.</p>
+     *
+     * <p>Implements the <code>Observer</code> interface.</p>
+     */
 
+    /**
+     * @constructor o2.JsonpController.JsonpController
+     *
+     * See
+     * http://download.oracle.com/javase/1.4.2/docs/api/java/util/Observer.html
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var jsonp = o2.Jsonp.get('http://example.com/api.php', handleResponse);
+     * var controller = new o2.JsonpController(jsonp, {timeout: 5000});
+     * </pre>
+     *
+     * @param {String} jsonp - the current jsonp unique identifier.
+     * @param {Object} args - an associative array in the form
+     * {timeout:[timeoutInMilliSeconds], ontimeout: [function]}
+     * both attributes are optional.
+     */
+
+    /**
+     * @function {override} o2.JsonpController.update
+     *
+     * <p>Overrides {@link o2.AjaxController.update}.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * controller.update({isTimedOut : true});
+     * </pre>
+     *
+     * @param {JsonpState} observable - the <code>Observable</code> state
+     * object.
+     * @param {Object} data - parameters passed from the
+     * <code>Observable</code> to this <code>Observer</code>.
+     *
+     * @see o2.AjaxController.update
+     */
+
+    /**
+     * @function {override} o2.JsonpController.unregister
+     *
+     * <p>Overrides {@link o2.AjaxController.unregister}.</p>
+     *
+     * <p>Unregisters this object from its associated observable.
+     * (<em>i.e. <strong>JsonpState</strong></em>)</p>
+     *
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * controller.unregister();
+     * </pre>
+     *
+     */
+
+/**
+ * @module ajaxstate.core
+ *
+ * <p>a model for controlling ajax timeouts etc.</p>
+ * <p>an {@link o2.AjaxController} should be registered to this model.</p>
+ */
+
+    /**
+     * @module   jsonp.core
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>An object to make <strong>JSONP</strong> calls.</p>
+     */
+
+        /**
+         * @class {static} o2.Jsonp
+         *
+         * <p>An object to make <strong>JSONP</strong> calls.</p>
+         */
