@@ -1,4 +1,5 @@
 define([
+    '/o2/core',
     '/o2/string',
     '/o2/event'
 ], function(
@@ -27,24 +28,25 @@ define([
         /*
          * string.core
          */
-        concat = ensure(StringUtil.concat),
-        generateGuid = ensure(StringUtil.generateGuid),
+        concat = StringUtil.concat,
+        generateGuid = StringUtil.generateGuid,
 
         /*
          * event.core
          */
-        listen = ensure(Event.addEventListener),
+        listen = Event.addEventListener,
 
         /*
          * # Headers
          */
 
         commonHeaders = [{
-            'Accept' :
-            'text/javascript, text/html, application/xml, text/xml, */*'
+            'Accept':
+                'text/javascript, text/html, application/xml, text/xml, */*'
         }],
         postHeaders = [{
-            'Content-Type' : 'application/x-www-form-urlencoded'
+            'Content-Type':
+                'application/x-www-form-urlencoded'
         }],
 
         /*
@@ -180,7 +182,7 @@ define([
     /*
      * Good boys clean their mess ;)
      *
-     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
+     * @param `XMLHttpRequest` xhr - the original XMLHttpRequest object.
      */
     function finalizeXhr(xhr) {
         if (!xhr) {return;}
@@ -206,8 +208,8 @@ define([
     /*
      * Processes callbacks and finalizes the `Xhr`.
      *
-     * @param {XMLHttpRequest} xhr - the current `Xhr` instance.
-     * @param {Object} callbacks - oncomplete, onerror and onexception
+     * @param `XMLHttpRequest` xhr - the current `Xhr` instance.
+     * @param `Object` callbacks - oncomplete, onerror and onexception
      * callbacks.
      */
     function processCallbacks(xhr, callbacks) {
@@ -262,8 +264,8 @@ define([
      * Registers the callbacks to the `XMLHttpRequest`
      * instance.
      *
-     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
-     * @param {Object} callbacks - An object of the form
+     * @param `XMLHttpRequest` xhr - the original `XMLHttpRequest` object.
+     * @param `Object` callbacks - An object of the form
      * {oncomplete: fn(responseText, responseXml, xhr, status),
      * onerror: fn(status, statusText, xhr),
      * onexception: fn(originalXhr, exception)}. Any of these callbacks are
@@ -285,8 +287,8 @@ define([
     /*
      * Adds headers.
      *
-     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
-     * @param {Object} headers - a config.constants.headers.* collection.
+     * @param `XMLHttpRequest` xhr - the original `XMLHttpRequest` object.
+     * @param `Object` headers - a config.constants.headers.* collection.
      */
     function addHeaders(xhr, headers) {
         var header,
@@ -308,7 +310,7 @@ define([
     /*
      * Adds common request headers.
      *
-     * @param {XMLHttpRequest} xhr - the original XMLHttpRequest object.
+     * @param `XMLHttpRequest` xhr - the original XMLHttpRequest object.
      */
     function addCommonRequestHeaders(xhr) {
         addHeaders(xhr, commonHeaders);
@@ -317,7 +319,7 @@ define([
     /*
      * Adds request headers specific to <code>POST</code> requests.
      *
-     * @param {XMLHttpRequest} xhr - the original `XMLHttpRequest` object.
+     * @param `XMLHttpRequest` xhr - the original `XMLHttpRequest` object.
      */
     function addPostRequestHeaders(xhr) {
         addHeaders(xhr, postHeaders);
