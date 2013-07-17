@@ -1,3 +1,13 @@
+require([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.clear = function(ar) {
         var key = null;
 
@@ -56,3 +66,6 @@
 
         return ar;
     };
+
+    return exports;
+});

@@ -1,47 +1,15 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-(function(framework, fp, window, document) {
+require([
+    'o2/core'
+], function(
+    o2
+) {
     'use strict';
-
-    /**
-     * @module   dom.ready
-     *
-     * @requires core
-     *
-     * <p>A helper to fire events when the <code>DOM</code> content
-     * is loaded.</p>
-     */
-    fp.ensure(
-        'dom.ready',
-    [
-        'core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Dom',
-
-        /*
-         * Dom (ready)
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases
@@ -50,18 +18,18 @@
         /*
          * core
          */
-        nill = require('nill'),
+        nill = o2.nill,
 
         /*
          * # Common Constants
          */
 
-        kCheckIntervalMs    = 50,
-        kDomContentLoaded   = 'DOMContentLoaded',
-        kLoad               = 'load',
-        kOnLoad             = 'onload',
+        kCheckIntervalMs = 50,
+        kDomContentLoaded = 'DOMContentLoaded',
+        kLoad = 'load',
+        kOnLoad = 'onload',
         kOnReadyStateChange = 'onreadystatechange',
-        kPropertyToCheck    = 'left',
+        kPropertyToCheck = 'left',
 
         /*
          * # Common Regular Expressions
@@ -81,7 +49,7 @@
          */
 
         isApplicationReady = isDomContentReady(),
-        readyQueue         = [],
+        readyQueue = [],
 
         /*
          * # Private Static Helper Methods
@@ -232,23 +200,7 @@
         };
     }
 
-    /**
-     * @function {static} o2.Dom.ready
-     *
-     * <p>Fires when the <code>HTML DOM</code> is ready.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.ready(function() {
-     *      doInitializaton();
-     * });
-     * </pre>
-     *
-     * @param {Function} delegate - the callback that's called when the DOM is
-     * ready.
-     */
-    exports.ready = def(me, 'ready', function(delegate) {
+    exports.ready = function(delegate) {
 
         // if DOM is ready, execute the delegate immediately.
         if (isApplicationReady) {
@@ -262,6 +214,7 @@
 
         // this queue will be processed "only once" after DOM is ready.
         readyQueue.push(delegate);
-    });
-}(this.o2, this.o2.protecteds, this, this.document));
+    };
 
+    return exports;
+});

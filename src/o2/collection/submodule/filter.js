@@ -1,3 +1,19 @@
+require([
+], function(
+) {
+    'use strict';
+
+    // TODO: create an AMDLint project to sanitize o2.js AMD modules
+    // 1. constructor fn must always return
+    // 2. argument count should match.
+    // 3. modules should actually exists in the filesystem.
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.grep = function(obj, delegate) {
         var result = [],
             i,
@@ -35,3 +51,6 @@
     exports.select = exports.grep;
 
     exports.filter = exports.grep;
+
+    return exports;
+});

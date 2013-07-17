@@ -1,18 +1,28 @@
 requiere([
-    '/o2/core',
-    'core',
+    '/o2/object/core',
+    './core',
     './submodule/single'
 ], function(
-    o2,
+    ObjectUtil,
     Ajax,
     single
 ) {
     'use strict';
 
-    var exports = {};
+    var exports = {},
 
-    o2.extend(exports, Ajax);
-    o2.extend(exports, single);
+        /*
+         * # Aliases
+         */
+
+        /*
+         * object
+         */
+
+        extend = ObjectUtil.extend;
+
+    extend(exports, Ajax);
+    extend(exports, single);
 
     return exports;
 });

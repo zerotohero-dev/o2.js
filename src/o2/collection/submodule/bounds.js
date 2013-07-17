@@ -1,3 +1,10 @@
+define([
+], function(
+) {
+    'use strict';
+
+    var exports = {};
+
     exports.getSize = function(obj) {
         var counter = 0,
             key;
@@ -119,3 +126,7 @@
 
         return result;
     };
+
+    return exports;
+});
+

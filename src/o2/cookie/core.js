@@ -46,7 +46,7 @@ define([
 
         save;
 
-    exports.read = def(me, 'read', function(name) {
+    exports.read = function(name) {
         var ca = document.cookie.split(kDelimeter),
             eq = concat(decodeURIComponent(name), kEmpty),
             i,
@@ -65,10 +65,9 @@ define([
         }
 
         return null;
-    });
+    };
 
-    exports.save = def(me, 'save', function(name, value, days, path, domain,
-                isSecure) {
+    exports.save = function(name, value, days, path, domain, isSecure) {
         var d = new Date(),
             ex = kEmpty,
             cookiePath = kEmpty,
@@ -100,14 +99,14 @@ define([
         }
 
         document.cookie = cookieString;
-    });
+    };
 
     /*
      *
      */
-    save = require(kModuleName, 'save');
+    save = exports.save;
 
-    exports.remove = def(me, 'remove', function(name, path, domain) {
+    exports.remove = function(name, path, domain) {
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     });
 
@@ -115,4 +114,6 @@ define([
     // removeAll makes things too complicated if path, and domain
     // come into play... Will not implement it.
     // removeAll : function(){ }
+
+    return exports;
 });

@@ -1,49 +1,21 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-(function(framework, fp) {
+require([
+    '/o2/core',
+    '/o2/dom/core'
+], function(
+    o2,
+    Dom
+) {
     'use strict';
-
-    /**
-     * @module   dom.modify
-     *
-     * @requires core
-     * @requires dom.core
-     *
-     * <p>A utility package for additional <strong>DOM</strong>
-     * modifications.</p>
-     */
-    fp.ensure(
-        'dom.modify',
-    [
-        'core',
-        'dom.core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
+    var exports = {},
 
         /*
          * # Module Definition
          */
-
-        kModuleName = 'Dom',
-
-        /*
-         * Dom (modify)
-         */
-        me = create(kModuleName),
 
         /*
          * # Aliases
@@ -52,58 +24,28 @@
         /*
          * core
          */
-        $ = require('$'),
+        $ = o2.$,
 
         /*
          * dom.core
          */
-        append       = require(kModuleName, 'append'),
-        insertAfter  = require(kModuleName, 'insertAfter'),
-        insertBefore = require(kModuleName, 'insertBefore'),
-        isElement    = require(kModuleName, 'isElement'),
-        remove       = require(kModuleName, 'remove');
+        append = Dom.append,
+        insertAfter = Dom.insertAfter,
+        insertBefore = Dom.nsertBefore,
+        isElement = Dom.isElement,
+        remove = Dom.remove;
 
-    /**
-     * @function {static} o2.Dom.replace
-     *
-     * <p>Replaces one node with another.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.replace('firstContainer', 'secondContainer');
-     * </pre>
-     *
-     * @param elmTarget - the target node or its <code>String</code> id.
-     * @param elmToReplace - the replacement node or its <code>String</code> id.
-     */
     exports.replace = def(me, 'replace', function(elmTarget, elmToReplace) {
-        var target  = $(elmTarget),
+        var target = $(elmTarget),
             replace = $(elmToReplace);
 
         append(target, replace);
         remove(target);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.unwrap
-     *
-     * <p>This is like {@link o2.Dom.wrap} in reverse.</p>
-     * <p>Moves all the elements inside the container to the container's
-     * position and removes the container from the <strong>DOM</strong>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.unwrap('container');
-     * </pre>
-     *
-     * @param {Object} elmTarget - the target node or its <code>String</code> id
-     * to unwrap.
-     */
     exports.unwrap = def(me, 'unwrap', function(elmTarget) {
         var target = $(elmTarget),
-            child  = null;
+            child = null;
 
         if (!target) {return;}
 
@@ -116,28 +58,8 @@
         }
 
         remove(target);
-    });
+    };
 
-    /**
-     * @function {public static} o2.Dom.wrap
-     *
-     * <p>Puts the target element into the wrapper element.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var wrapper = o2.$('wrapper');
-     * var target = o2.$('content');
-     * o2.Dom.wrap(target, wrapper);
-     * </pre>
-     *
-     * @param {Object} elmTarget - the node to wrap or its <code>String</code>
-     * id.
-     * @param {Object} elmWrapper - the wrapper node to its <code>String</code>
-     * id.
-     *
-     * @return the wrapped node.
-     */
     exports.wrap = def(me, 'wrap', function(elmTarget, elmWrapper) {
         var target  = $(elmTarget),
             wrapper = $(elmWrapper);
@@ -148,6 +70,7 @@
         append(target, wrapper);
 
         return elmTarget;
-    });
-}(this.o2, this.o2.protecteds));
+    };
 
+    return exports;
+});

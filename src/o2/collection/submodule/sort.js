@@ -1,3 +1,14 @@
+require([
+], function(
+) {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.shuffle = function(obj) {
         var result = [],
             collection,
@@ -81,3 +92,4 @@
 
         return result;
     };
+});

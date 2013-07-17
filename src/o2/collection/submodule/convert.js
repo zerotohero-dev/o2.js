@@ -1,3 +1,13 @@
+define([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.toArray = function(obj) {
         var result = [],
             key;
@@ -26,3 +36,6 @@
      *
      */
     toArray = exports.toArray;
+
+    return exports;
+});

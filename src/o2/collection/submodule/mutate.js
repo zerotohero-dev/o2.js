@@ -1,3 +1,14 @@
+require([
+],
+function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.removeElement = function(obj, elm) {
         var i,
             item,
@@ -61,3 +72,6 @@
 
         return obj;
     };
+
+    return exports;
+});

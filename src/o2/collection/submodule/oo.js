@@ -1,3 +1,13 @@
+require([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.extend = function(toObj, fromObj) {
         var i,
             key,
@@ -35,3 +45,8 @@
     };
 
     exports.merge = exports.extend;
+
+    return exports;
+});
+
+

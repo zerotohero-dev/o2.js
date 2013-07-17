@@ -1,23 +1,8 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-(function(framework, fp, window, document, UNDEFINED) {
+require([
+], function() {
    'use strict';
 
-    /**
-     * @module   dom.style
-     *
-     * @requires core
-     * @requires string.core
-     * @requires string.transform
-     *
-     * <p>A utility package to
-     * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
-     * styles.</p>
-     */
+
     fp.ensure(
         'dom.style',
     [
@@ -120,21 +105,6 @@
         show      = null,
         isVisible = null;
 
-    /**
-     * @function {static} o2.Dom.activateAlternateStylesheet
-     *
-     * <p>Activates the <strong>alternate style sheet</strong> with the given
-     * <code>title</code>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.activateAlternateStylesheet('alternateTheme');
-     * </pre>
-     *
-     * @param {String} title - the <code>title</code> of the <strong>alternate
-     * style sheet</strong> to activate.
-     */
     exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
                 function(title) {
         var i             = 0,
@@ -155,21 +125,6 @@
     });
 
     if(isCrap) {
-
-        /**
-         * @function {static} o2.Dom.addCssRules
-         *
-         * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
-         * to the document.</p>
-         *
-         * <p><strong>Usage example:</strong></p>
-         *
-         * <pre>
-         * o2.Dom.addCssRules(
-         *      'div.warning { background-color:#c00; color:#fff };'
-         * );
-         * </pre>
-         */
         exports.addCssRules = def(me, 'addCssRules', function(cssText) {
             try {
                 document.createStyleSheet().cssText = cssText;
@@ -192,29 +147,6 @@
         });
     }
 
-    /**
-     * @function {static} o2.Dom.addStyle
-     *
-     * <p>Adds style attributes to a <code>DOM</code> node.</p>
-     *
-     * <p>Note that adding and removing style attributes to a
-     * <strong>DOM</strong>
-     * not is considered "bad practice". Do not use inline styles to modify the
-     * view;
-     * assign <strong>className</strong>'s instead of <strong>style</strong>
-     * values.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.addStyle('container', {color : '#bada55'})
-     * </pre>
-     *
-     * @param {Object} obj - the current <code>DOM</code> node, or the
-     * <strong>id</strong> of that node, to add styles to.
-     * @param {Object} style - styles in the form <code>{style1:value1,
-     * style2:value2}</code>.
-     */
     exports.addStyle = def(me, 'addStyle', function(obj, style) {
         obj = $(obj);
 
@@ -247,22 +179,8 @@
         }
     });
 
-    /**
-     * @function {static} o2.Dom.setCss
-     *
-     * <p>An alias to {@link o2.Dom.addStyle}.</p>
-     *
-     * @see o2.Dom.addStyle
-     */
     exports.setCss = alias(me, 'setCss', 'addStyle');
 
-    /**
-     * @function {static} o2.Dom.setStyle
-     *
-     * <p>An alias to {@link o2.Dom.addStyle}.</p>
-     *
-     * @see o2.Dom.addStyle
-     */
     exports.setStyle = alias(me, 'setStyle', 'addStyle');
 
     /*
@@ -305,42 +223,6 @@
     }
 
     if (document.defaultView && document.defaultView.getComputedStyle) {
-
-        /**
-         * @function {static} o2.Dom.getStyle
-         *
-         * <p>Gets the <strong>style</strong> of a given property of
-         * the element.</p>
-         * <p>Tries to parse the <code>currentStyle</code>, if available;
-         * otherwise tries to calculate the style using
-         * <code>window.getComputedStyle</code>;
-         * gets <code>obj.style</code> if everything else fails.
-         *
-         * <p>Note that adding and removing style attributes to a
-         * <strong>DOM</strong> not is considered "bad practice". Do not use
-         * inline styles to modify the view;
-         * assign <strong>className</strong>'s instead of <strong>style</strong>
-         * values.</p>
-         *
-         * <p><strong>Usage example:</strong></p>
-         *
-         * <pre>
-         * var color = o2.Dom.getStyle('container', 'color');
-         * </pre>
-         *
-         * @param {Object} elm - the element, or the <strong>id</strong> of it,
-         * to check.
-         * @param {String} cssProperty - the css property either
-         * <strong>dash-separated</strong>
-         * or <strong>camelCased</strong> (i.e.: 'border-color' or
-         * 'borderColor')
-         * @param {Boolean} isNoForce - (optional; defaults to
-         * <code>false</code>)
-         * if <code>true</code> inherited values from the CSS files will also be
-         * parsed, otherwise, only inline styles will be parsed.
-         *
-         * @return the calculated <strong>style</strong> value.
-         */
         exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
                     isNoForce) {
             var noForce     = !!isNoForce,
@@ -622,5 +504,4 @@
 
         show(elm);
     });
-}(this.o2, this.o2.protecteds, this, this.document));
-
+});

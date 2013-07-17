@@ -1,3 +1,12 @@
+define([], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.copy = function(ar) {
         if (!ar) {return [];}
         if (!isObject(ar)) {return [];}
@@ -19,3 +28,8 @@
     };
 
     exports.clone = exports.copy;
+
+    return exports;
+});
+
+

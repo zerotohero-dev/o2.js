@@ -2079,3 +2079,1112 @@
          *
          * <p>An object to make <strong>JSONP</strong> calls.</p>
          */
+
+     /**
+     * @module   jsonpstate.core
+     *
+     * @requires core
+     * @requires ajaxstate.core
+     * @requires object.core
+     *
+     * <p>A <strong>Model</strong> for controlling <strong>JSONP</strong>
+     * timeouts etc. A {@link JsonpController} should be registered to this
+     * <strong>model</strong>.
+     */
+
+        /**
+         * @class {static} o2.JsonpState
+         * @extends o2.AjaxState
+         *
+         * <p>Implements all public methods of {@link AjaxState} for
+         * <strong>JSONP</strong> requests.</p>
+         */
+
+
+    /**
+     * @module   sortdelegate.core
+     *
+     * @requires core
+     *
+     * <p>Custom delegates for <code>Array.sort</code> method.</p>
+     */
+
+        /**
+         * @class {static} o2.SortDelegate
+         *
+         * <p>Custom delegates for <code>Array.sort</code> method.</p>
+         */
+
+    /**
+     * @function {static} o2.SortDelegate.sort
+     *
+     * <p>A generic sort function.</p>
+     * <p>If the collecion consists of <code>String</code>s and
+     * <code>Number</code>s, <code>String</code>s will be stored
+     * alphabeticaly at the bottom, and
+     * <code>Number</code>s will be sorted numerically before them.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var ar = [1, 7, '12', 8, 'lorem', 'c', 42, 7];
+     * a.sort(o2.SortDelegatae.sort);
+     * </pre>
+     */
+
+    /**
+     * @function {static} o2.SortDelegate.sortAsc
+     *
+     * <p>An <strong>alias</strong> to {@link o2.SortDelegate.sort}.</p>
+     *
+     * @see o2.SortDelegate.sort
+     */
+
+    /**
+     * @function {static} o2.SortDelegate.sortDesc
+     *
+     * <p>Works similar to {link o2.SortDelegate.sort}. The only difference
+     * is that the items are sorted in a <strong>descending</strong>
+     * order.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var ar = [1, 7, '12', 8, 'lorem', 'c', 42, 7];
+     * a.sort(o2.SortDelegatae.sortDesc);
+     * </pre>
+     *
+     */
+
+    /**
+     * @module   debugger.core
+     *
+     * @requires core
+     *
+     * <p>A debugging helper.</p>
+     */
+
+        /**
+         * @class {static} o2.Debugger
+         *
+         * <p>A static object for debugging purposes.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // note: initialize Debugger only once,
+         * // possibly on window.load or DOM content ready
+         * o2.Debugger.init(someDomNode, true);
+         *
+         * //then inside your code use this syntax.
+         * o2.Debugger.println('stuff to debug');
+         * </pre>
+         *
+         * @see o2.Unit
+         */
+
+    /**
+     * @function {static} o2.Debugger.assert
+     *
+     * <p>Checks the value of pass, and displays the message with a proper
+     * className.</p>
+     * <p>The class name can be one of the {@link
+     * Debugger.config.constants.className} members.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.assert((1==true), '1 == true');
+     * </pre>
+     *
+     * @param {Expression} pass - the expression to evaluate.
+     * @param {String} message - the message to display.
+     *
+     * @see o2.Unit.assert
+     */
+
+    /**
+     * @function {static} o2.Debugger.error
+     *
+     * <p>Prints an error message to the output.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.error('A serious error occurred');
+     * </pre>
+     *
+     * @param {String} message - the error message to display.
+     */
+
+    /**
+     * @function {static} o2.Debugger.info
+     *
+     * <p>Prints an info message to the output.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.info('An info.');
+     * </pre>
+     *
+     * @param {String} message - the info message to display.
+     */
+
+    /**
+     * @function {static} o2.Debugger.init
+     *
+     * <p>Initializes the {@link Debugger} <code>static</code> class.</p>
+     * <p>Either <strong>outputElement</strong>, or
+     * <strong>shouldUseConsole</strong>, or both should be provided.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.init('divConsole', true);
+     * </pre>
+     *
+     * @param {Object} outputElm - Either the <strong>id</strong> of the
+     * element, or the element itself to append debug messages.
+     * @param {Boolean} shouldUseConsole - should browser's built-in console
+     * be used, if available.
+     */
+
+    /**
+     * @function {static} o2.Debugger.log
+     *
+     * <p>This is an <strong>alias</strong> to {@link Debugger.println}.</p>
+     * <p>Simply logs a message.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.log('Hello world');
+     * </pre>
+     *
+     * @param {String} message - the message to log.
+     *
+     * @see o2.Unit.log
+     */
+
+    /**
+     * @function {static} o2.Debugger.println
+     *
+     * <p>Prints the string representation of value to the next line.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.println('Hello world.');
+     * </pre>
+     *
+     * @param {String} value - the value to print.
+     * @param {String} className - the CSS class name that is associated with
+     * the line.
+     */
+
+    /**
+     * @function {static} o2.Debugger.warn
+     *
+     * <p>Prints an warning message to the output.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Debugger.warn('caution!');
+     * </pre>
+     *
+     * @param {String} message - the warning message to display.
+     */
+
+    /**
+     * @module   dom.class
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>A utility package to add/remove/modify <code>class</code>es.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.createClassNameRegExp
+     *
+     * <p>Creates a regular expression that will match a given
+     * <strong>CSS</strong> class name.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var reg = o2.Dom.createClassNameRegExp('testClass');
+     * </pre>
+     *
+     * @param {String} c - The name of the class.
+     *
+     * @returns a <code>RegExp</code> that matches the given class name.
+     */
+
+    /**
+     * @function {static} o2.Dom.hasClass
+     *
+     * <p>Checks whether an <strong>element</strong> has the given
+     * <strong>className</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * if (o2.Dom.hasClass('container', 'active')) {
+     *      doStuff();
+     * }
+     * </pre>
+     *
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
+     * @param {String} c - the <strong>className</strong> to test.
+     *
+     * @return <code>true</code> if <strong>el</strong> has the
+     * <code>className</code> <strong>c</strong>, <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Dom.addClass
+     *
+     * <p>Add a class to the given node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.addClass('container', 'active');
+     * </pre>
+     *
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
+     * @param {String} c - the <strong>className</strong> to add.
+     */
+
+    /**
+     * @function {static} o2.Dom.removeClass
+     *
+     * <p>Removes a <strong>class</strong> name from the given node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.removeClass('container', 'active');
+     * </pre>
+     *
+     * @param {DomNode} el - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it.
+     * @param {String} c - the className to remove.
+     */
+
+    /**
+     * @function {static} o2.Dom.toggleClass
+     *
+     * <p>Toggles the <strong>CSS</strong> <code>className</code> of a given
+     * element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.toggleClass('container', 'active');
+     * </pre>
+     *
+     * @param {Object} el - the <strong>DOM</strong> element to toggle or its
+     * <code>String</code> id.
+     * @param {String} c - the class name to toggle.
+     * @param {Boolean} state - (Optional, defaults to <code>undefined</code>),
+     * if <code>true</code> add class <strong>c</strong> to
+     * <strong>el</strong>, if <code>true</code> removes class
+     * <strong>c</strong> from <strong>el</strong>. If the parameter is not
+     * given, the class is toggled (i.e. added if the class does not exist,
+     * and removed if the class exists).
+     */
+
+    /**
+     * @struct {static} o2.Dom.nodeType
+     *
+     * <code>DOM</code> node types.
+     */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.ELEMENT - element node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.ATTRIBUTE - atribute node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.TEXT - text node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.CDATA - CDATA section.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.ENTITY_REFERENCE - entity reference.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.ENTITY - entity.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.PROCESSING_INSTRUCTION - processing
+         * instruction.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.COMMENT - comment node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.DOCUMENT - document (root) node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.DOCUMENT_TYPE - DTD node.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.DOCUMENT_FRAGMENT - document fragment.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Dom.nodeType.NOTATION - notation.
+         */
+
+        /**
+         * @class {static} o2.Dom
+         *
+         * A cross-browser <strong>DOM</strong> manipulation helper.
+         */
+
+    /**
+     * @module   dom.constants
+     *
+     * @requires core
+     *
+     * <p>Constant definitions for {@link o2.Dom}.</p>
+     */
+
+    /**
+     * @module   dom.dimension
+     *
+     * @requires core
+     * @requires dom.style
+     * @requires string.core
+     *
+     * <p>Includes dimension (<strong>i.e. width-height related</strong>)
+     * helper methods.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.getDocumentDimension
+     *
+     * <p>Gets the dimension of the document in the form <code>{width: w,
+     * height: h}</code>. If the visible (i.e. <code>clientHeight</code>) is
+     * greater than the document's height returns the height of the visible
+     * area as the height portion.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var viewportInfo = o2.Dom.getDocumentDimension();
+     * </pre>
+     *
+     * @return the dimension of the document in the form <code>{width: w,
+     * height: h}</code>.
+     */
+
+    /**
+     * @function {static} o2.Dom.getDocumentHeight
+     *
+     * <p>Gets the total height of the document in pixels.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var viewportHeight = o2.Dom.getDocumentHeight();
+     * </pre>
+     *
+     * @return the document's height.
+     */
+
+    /**
+     * @function {static} o2.Dom.getDocumentWidth
+     *
+     * <p>Gets the total width of the document in pixels.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var viewportWidth = o2.Dom.getDocumentWidth();
+     * </pre>
+     *
+     * @return the document's width.
+     */
+    /**
+     * @function {static} o2.Dom.getHeight
+     *
+     * <p>Gets the <strong>height</strong> of the given element, in pixels.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var containerHeight = o2.Dom.getHeight('container');
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the height of the element, in pixels.
+     */
+
+    /**
+     * @function {static} o2.Dom.getViewportInfo
+     *
+     * <p>Gets the viewport information in the form
+     * <code>{scrollTop : #, scrollLeft: #, width: #, height: #}</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var details = o2.Dom.getViewportInfo();
+     * </pre>
+     *
+     * @return the viewport information.
+     */
+
+    /**
+     * @function {static} o2.Dom.getWidth
+     *
+     * <p>Gets the <strong>width</strong> of the given element, in pixels.</p>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var elementWidth = o2.Dom.getWidth('container');
+     * </pre>
+     *
+     * @return the width of the element, in pixels.
+     */
+
+        /**
+         * @function {static} o2.Dom.getWindowInnerDimension
+         *
+         * <p>Gets the dimension of the visible area of the browser in the form
+         * <code>{width: w, height: h}</code>.
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * var windowDimensions = o2.Dom.getWindowInnerDimension();
+         * </pre>
+         *
+         * @return the dimension of the visible area of the browser in the form
+         * <code>{width: w, height: h}</code>.
+         */
+
+    /**
+     * @function {static} o2.Dom.getWindowInnerHeight
+     *
+     * <p>Gets the inner height of the visible area.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var innerHeight = o2.Dom.getWindowInnerHeight();
+     * </pre>
+     *
+     * @return the inner height of the window in pixels.
+     */
+
+    /**
+     * @function {static} o2.Dom.getWindowInnerWidth
+     *
+     * <p>Gets the inner width of the visible area.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var innerWidth = o2.Dom.getWindowInnerWidth();
+     * </pre>
+     *
+     * @return the inner width of the window in pixels.
+     */
+
+    /**
+     * @function {static} o2.Dom.setWidth
+     *
+     * <p>Sets the <strong>width</strong> of the given element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.setWidth('container', 500);
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Integer} width - the new width in pixels.
+     */
+
+    /**
+     * @function {static} o2.Dom.setHeight
+     *
+     * <p>Sets the <strong>height</strong> of the given element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.setHeight('container', 300);
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Integer} height - the new height in pixels.
+     */
+
+    /**
+     * @function {static} o2.Dom.setDimension
+     *
+     * <p>Sets the dimension of the given element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.setDimension('container', {width: 400, height: 200});
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     * @param {Object} dimension - the new dimension in the form
+     * <code>{width: w, height: h}</code>.
+     */
+
+    /**
+     * @function {static} o2.Dom.getDimension
+     *
+     * <p>Gets the dimension of the given element in the form
+     * <code>{width: w, height: h}</code>, where <strong>w</strong> and
+     * <strong>h</strong> are in pixels.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var dimensions = o2.Dom.getDimension('container');
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOMNode</strong> to get the dimension
+     * of, or the <code>String</code> <strong>id</strong> of it.
+     *
+     * @return the dimension of the <strong>DOMNode</strong> in the form
+     * <code>{width: w, height: h}</code>.
+     */
+
+    /**
+     * @module   dom.form
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>A HTML <code>Form</code> utility class.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.compactField
+     *
+     * <p>Trims a given field, and returns the compacted value.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.compactField('txtInput');
+     * </pre>
+     *
+     * @param {Object} field - the field to be compacted, or its
+     * <strong>id</strong>.
+     *
+     * @return field's compacted value; or <code>null</code> if the field
+     * does not exist.
+     *
+     * @see o2.String.compact
+     */
+
+    /**
+     * @function {static} o2.Dom.trimField
+     *
+     * <p>Trims a given field, and returns the trimmed value.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.trimField('txtInput');
+     * </pre>
+     *
+     * @param {Object} field - the field to be trimmed, or its
+     * <strong>id</strong>.
+     *
+     * @return field's trimmed value; or <code>null</code> if the field
+     * does not exist.
+     *
+     * @see o2.String.trim
+     */
+
+    /**
+     * @function {static} o2.Dom.preventMultipleSubmit
+     *
+     * <p>Prevents the form to re-submit itself when the submit button
+     * is pressed more than once.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.preventMultipleSubmit('actionForm');
+     * </pre>
+     *
+     * @param {Object} form - A <strong>DOM</strong> reference to the form
+     * object or its <code>String</code> id.
+     */
+
+    /**
+     * @module   dom.load
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>This package is for asynchronously loading resources such as images
+     * and scripts.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.loadCss
+     *
+     * <p>Asynchronously loads a <strong>CSS</strong> file with a given
+     * <strong>src</strong>.</p>
+     * <p>Cross-domain loading is also okay: The <strong>CSS</strong> file does
+     * not have to be in the same domain as the web page.</p>
+     *
+     * <p>The success and failure callbacks is a somewhat hacky way of handling
+     * <strong>CSS</strong> load events. In deed, detecting <strong>CSS</strong>
+     * load is not an easy task, and it's not necessary most of the time.</p>
+     * <p>Though it may get handy to prevent the Flash of Unstyled Content
+     * (FOUC) issues.</p>
+     * <p>A more robust way of handling load callbacks is polling
+     * the property of a test element (such as the background color), that
+     * you know that the loaded <strong>CSS</strong> will change for sure.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.loadCss('http://cdn.example.com/theme.css', function() {
+     *      handleSuccess();
+     * });
+     * </pre>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>css</strong> file.
+     * @param {Function} successCallback - the callback to execute when the load
+     * operation completes.
+     */
+
+    /**
+     * @function {static} o2.Dom.loadImage
+     *
+     * <p>Tries to load the image into a <strong>JavaScript</strong>
+     * <code>Image</code> object; then triggers
+     * <strong>successCallback</strong> or
+     * <strong>failureCallback</strong> depending on
+     * the result of the load attempt.</p>
+     *
+     * <p>This function can be used for pre-loading or post-loading images.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.loadImage('http//asset.example.com/spinner.png', function() {
+     *      handleSuccess();
+     * });
+     * </pre>
+     *
+     * @param {String} url - the <strong>URL</strong> of the
+     * <strong>image</strong>.
+     * @param {Function} successCallback - gets called when the
+     * <strong>image</strong> is loaded successfully.
+     */
+
+    /**
+     * @function {static} o2.Dom.loadScript
+     *
+     * <p>Asynchronously loads a <strong>script</strong> with a given
+     * <strong>src</strong>.</p>
+     *
+     * <p>Cross-domain loading is also okay: The <strong>script</strong> does
+     * not have to be in the same domain as the web page.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.loadImage('http//asset.example.com/script.js', function() {
+     *      handleSuccess();
+     * });
+     * </pre>
+     *
+     * @param {String} src - the source <strong>URL</strong> of the
+     * <strong>script</strong>.
+     * @param {Function} callback - the callback to execute when the load
+     * operation completes.
+     */
+
+    /**
+     * @module dom.modify
+     *
+     * @requires core
+     * @requires dom.core
+     *
+     * <p>A utility package for additional <strong>DOM</strong>
+     * modifications.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.replace
+     *
+     * <p>Replaces one node with another.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.replace('firstContainer', 'secondContainer');
+     * </pre>
+     *
+     * @param elmTarget - the target node or its <code>String</code> id.
+     * @param elmToReplace - the replacement node or its <code>String</code> id.
+     */
+
+    /**
+     * @function {static} o2.Dom.unwrap
+     *
+     * <p>This is like {@link o2.Dom.wrap} in reverse.</p>
+     * <p>Moves all the elements inside the container to the container's
+     * position and removes the container from the <strong>DOM</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.unwrap('container');
+     * </pre>
+     *
+     * @param {Object} elmTarget - the target node or its <code>String</code> id
+     * to unwrap.
+     */
+
+    /**
+     * @function {public static} o2.Dom.wrap
+     *
+     * <p>Puts the target element into the wrapper element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var wrapper = o2.$('wrapper');
+     * var target = o2.$('content');
+     * o2.Dom.wrap(target, wrapper);
+     * </pre>
+     *
+     * @param {Object} elmTarget - the node to wrap or its <code>String</code>
+     * id.
+     * @param {Object} elmWrapper - the wrapper node to its <code>String</code>
+     * id.
+     *
+     * @return the wrapped node.
+     */
+
+    /**
+     * @module   dom.ready
+     *
+     * @requires core
+     *
+     * <p>A helper to fire events when the <code>DOM</code> content
+     * is loaded.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.ready
+     *
+     * <p>Fires when the <code>HTML DOM</code> is ready.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.ready(function() {
+     *      doInitializaton();
+     * });
+     * </pre>
+     *
+     * @param {Function} delegate - the callback that's called when the DOM is
+     * ready.
+     */
+
+    /**
+     * @module   dom.scroll
+     *
+     * @requires core
+     * @requires dom.core
+     *
+     * <p>A window/div scroll helper.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.getObjectScrollOffset
+     *
+     * <p>Gets the <strong>DOM</strong> object's scroll offset.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var offsets = o2.Dom.getObjectScrollOfset('container');
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOM</strong> node to check, or its
+     * <code>String</code> id.
+     *
+     * @return the the <strong>DOM</strong> object's scroll offset in the form
+     * <code>{left: l, top: t}</code>.
+     */
+
+    /**
+     * @function {static} o2.Dom.getScrollOffset
+     *
+     * <p>An alias to {@link o2.Dom.getObjectScrollOffset}.</p>
+     *
+     * @see o2.Dom.getObjectScrollOffset
+     */
+
+        /**
+         * @function {static} o2.Dom.scrollWindowToTop
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Dom.scrollWindowToTop();
+         * </pre>
+         *
+         * <p>Scrolls window to top.</p>
+         */
+
+        /**
+         * @function {static} o2.Dom.getWindowScrollOffset
+         *
+         * <p>Gets the <strong>window</strong>'s scroll offset.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * var offsets = o2.Dom.getWindowScrollOffset();
+         * </pre>
+         *
+         * @return the the <strong>window</strong>'s scroll offset in the form
+         * <code>{left: l, top: t}</code>.
+         */
+
+        /**
+         * @function {static} o2.Dom.scrollWindowToBottom
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Dom.scrollWindowToBottom();
+         * </pre>
+         *
+         * <p>Scrolls window to bottom.</p>
+         */
+
+    /**
+     * @function {static} o2.Dom.scrollObjectToTop
+     *
+     * <p>Scrolls an element to top.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.scrollObjectToTop('container');
+     * </pre>
+     *
+     * @param {Object} obj - the element, or the <strong>id</strong> of the
+     * element, to scroll.
+     */
+
+    /**
+     * @function {static} o2.Dom.scrollObjectToBottom
+     *
+     * <p>Scrolls an element to bottom.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.scrollObjectToBottom('container');
+     * </pre>
+     *
+     * @param {Object} obj - the element, or the <strong>id</strong> of it, to
+     * scroll.
+     */
+
+    /**
+     * @function {static} o2.Dom.scrollTo
+     *
+     * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
+     *
+     * @see o2.Dom.scrollWindowToObject
+     */
+
+    /**
+     * @function {static} o2.Dom.scrollWindowToObject
+     *
+     * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
+     *
+     * @see o2.Dom.scrollWindowToObject
+     */
+
+    /**
+     * @function {static} o2.Dom.scrollToObject
+     *
+     * <p>An alias to {@link o2.Dom.scrollWindowToObject}.</p>
+     *
+     * @see o2.Dom.scrollWindowToObject
+     */
+
+    /**
+     * @module   dom.style
+     *
+     * @requires core
+     * @requires string.core
+     * @requires string.transform
+     *
+     * <p>A utility package to
+     * <strong>add</strong>/<strong>remove</strong>/<strong>modify</strong>
+     * styles.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.activateAlternateStylesheet
+     *
+     * <p>Activates the <strong>alternate style sheet</strong> with the given
+     * <code>title</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.activateAlternateStylesheet('alternateTheme');
+     * </pre>
+     *
+     * @param {String} title - the <code>title</code> of the <strong>alternate
+     * style sheet</strong> to activate.
+     */
+
+        /**
+         * @function {static} o2.Dom.addCssRules
+         *
+         * <p>Adds the CSS rules given in the <strong>cssText</strong> parameter
+         * to the document.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Dom.addCssRules(
+         *      'div.warning { background-color:#c00; color:#fff };'
+         * );
+         * </pre>
+         */
+
+    /**
+     * @function {static} o2.Dom.addStyle
+     *
+     * <p>Adds style attributes to a <code>DOM</code> node.</p>
+     *
+     * <p>Note that adding and removing style attributes to a
+     * <strong>DOM</strong>
+     * not is considered "bad practice". Do not use inline styles to modify the
+     * view;
+     * assign <strong>className</strong>'s instead of <strong>style</strong>
+     * values.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.addStyle('container', {color : '#bada55'})
+     * </pre>
+     *
+     * @param {Object} obj - the current <code>DOM</code> node, or the
+     * <strong>id</strong> of that node, to add styles to.
+     * @param {Object} style - styles in the form <code>{style1:value1,
+     * style2:value2}</code>.
+     */
+
+    /**
+     * @function {static} o2.Dom.setCss
+     *
+     * <p>An alias to {@link o2.Dom.addStyle}.</p>
+     *
+     * @see o2.Dom.addStyle
+     */
+
+    /**
+     * @function {static} o2.Dom.setStyle
+     *
+     * <p>An alias to {@link o2.Dom.addStyle}.</p>
+     *
+     * @see o2.Dom.addStyle
+     */
+
+        /**
+         * @function {static} o2.Dom.getStyle
+         *
+         * <p>Gets the <strong>style</strong> of a given property of
+         * the element.</p>
+         * <p>Tries to parse the <code>currentStyle</code>, if available;
+         * otherwise tries to calculate the style using
+         * <code>window.getComputedStyle</code>;
+         * gets <code>obj.style</code> if everything else fails.
+         *
+         * <p>Note that adding and removing style attributes to a
+         * <strong>DOM</strong> not is considered "bad practice". Do not use
+         * inline styles to modify the view;
+         * assign <strong>className</strong>'s instead of <strong>style</strong>
+         * values.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * var color = o2.Dom.getStyle('container', 'color');
+         * </pre>
+         *
+         * @param {Object} elm - the element, or the <strong>id</strong> of it,
+         * to check.
+         * @param {String} cssProperty - the css property either
+         * <strong>dash-separated</strong>
+         * or <strong>camelCased</strong> (i.e.: 'border-color' or
+         * 'borderColor')
+         * @param {Boolean} isNoForce - (optional; defaults to
+         * <code>false</code>)
+         * if <code>true</code> inherited values from the CSS files will also be
+         * parsed, otherwise, only inline styles will be parsed.
+         *
+         * @return the calculated <strong>style</strong> value.
+         */

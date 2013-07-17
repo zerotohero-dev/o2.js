@@ -1,3 +1,13 @@
+require([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.group = function(obj, delegate) {
         var iterator = isFunction(delegate) ?
                 delegate :
@@ -253,3 +263,6 @@
     };
 
     exports.reject = exports.exclude;
+
+    return exports;
+});

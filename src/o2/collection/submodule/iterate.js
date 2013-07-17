@@ -1,3 +1,14 @@
+require([
+], function(
+) {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.forEach = function(obj, delegate) {
         var i,
             key,
@@ -65,3 +76,6 @@
             }
         }
     }
+
+    return exports;
+});

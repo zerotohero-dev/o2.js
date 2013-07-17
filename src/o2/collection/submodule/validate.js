@@ -1,3 +1,14 @@
+require([
+], function(
+) {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.some = function(obj, delegate, context) {
         var iterator = delegate || identity,
             result = false,
@@ -114,3 +125,6 @@
     exports.includes = exports.contains;
 
     exports.inArray = exports.contains;
+
+    return exports;
+});

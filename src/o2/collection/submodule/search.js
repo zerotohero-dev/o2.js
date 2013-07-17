@@ -1,3 +1,13 @@
+require([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     /*
      *
      */
@@ -133,3 +143,4 @@
     };
 
     exports.detect = exports.find;
+});

@@ -1,3 +1,12 @@
+require([
+], function() {
+    use strict;
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
 
     exports.map = function(obj, delegate, context) {
         var results = [],
@@ -153,3 +162,5 @@
 
     exports.foldR = exports.reduceRight;
 
+    return exports;
+});

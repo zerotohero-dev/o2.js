@@ -1,3 +1,13 @@
+require([
+], function() {
+    'use strict';
+
+        /*
+         * # Module Exports
+         */
+
+    var exports = {};
+
     exports.getFirst = function(obj) {
         var key;
 
@@ -239,3 +249,6 @@
      *
      */
     pluck = exports.pluck;
+
+    return exports;
+});
