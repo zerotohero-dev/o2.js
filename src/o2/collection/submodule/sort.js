@@ -1,5 +1,11 @@
 require([
+    '../../method/core',
+    '../../validation/core',
+    './convert'
 ], function(
+    Method,
+    Validation,
+    Convert
 ) {
     'use strict';
 
@@ -7,7 +13,33 @@ require([
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../method/core
+         */
+        identity = Method.identity,
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isObject = Validation.isObject,
+
+        /*
+         * ./convert
+         */
+        toArray = Convert.toArray,
+
+        /*
+         * Math
+         */
+        floor = Math.floor,
+        random = Math.random;
 
     exports.shuffle = function(obj) {
         var result = [],

@@ -1,6 +1,6 @@
 require([
-    '/o2/core',
-    '/o2/string/core'
+    '../../core',
+    '../../string/core'
 ], function(
     o2,
     StringUtil
@@ -18,13 +18,13 @@ require([
          */
 
         /*
-         * core
+         * ../../core
          */
         frameworkName = o2.name,
         nill = o2.nill,
 
         /*
-         * string.core
+         * ../../string/core
          */
         concat = StringUtil.concat,
 
@@ -92,28 +92,7 @@ require([
         return query;
     }
 
-    /**
-     * @function {static} o2.Jsonp.get
-     *
-     * <p>Creates a <strong>JSONP</strong> request.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Jsonp.get('http://example.com/api.php', {param: 'value'},
-     *      function(data) {
-     *
-     *      }
-     * );
-     * </pre>
-     *
-     * @param {String} url - the <strong>URL</strong> of the
-     * <strong>JSONP</strong> service.
-     * @param {Object} params - parameters in the form of {name1:value1,...}
-     * @param {Function} callback - callback to execute after
-     * <strong>JSONP</strong> arrives.
-     */
-    exports.get = def(me, 'get', function(url, params, callback) {
+    exports.get = function(url, params, callback) {
         var query = createQuery(params),
             jsonp = concat(kJson, (++counter));
 
@@ -129,5 +108,5 @@ require([
         load(concat(url, kQuery, query, kCallback, kEquals, jsonp));
 
         return jsonp;
-    });
+    };
 });

@@ -1,12 +1,43 @@
 require([
-], function() {
+    '../../validation/core'
+], function(
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+         /*
+          * ../../validation/core
+          */
+        isArray = Validation.isArray,
+        isFunction = Validation.isFunction,
+        isObject = Validation.isObject,
+
+
+        /*
+         * Array.prototype
+         */
+        slice = Array.prototype.slice,
+
+        /*
+         * Math
+         */
+        max = Math.max,
+
+        /*
+         * # Common Constants
+         */
+
+        kEmpty = '';
 
     exports.getFirst = function(obj) {
         var key;
@@ -243,12 +274,7 @@ require([
         }
 
         return result;
-    }
-
-    /*
-     *
-     */
-    pluck = exports.pluck;
+    };
 
     return exports;
 });

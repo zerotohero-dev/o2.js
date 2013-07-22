@@ -1,5 +1,5 @@
-requiere([
-    '/o2/object/core',
+require([
+    '../object/core',
     './core',
     './submodule/single'
 ], function(

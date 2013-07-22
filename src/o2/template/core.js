@@ -66,7 +66,7 @@
         kEach = 'each',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         doParse = null;

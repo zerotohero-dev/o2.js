@@ -1,6 +1,6 @@
-define([
-    '/o2/dom/core',
-    '/o2/event/core'
+require([
+    './dom/core',
+    './event/core'
 ],
 function(
     Dom,
@@ -15,24 +15,14 @@ function(
     var exports = {},
 
         /*
-         * # Guid (copied from String.core to remove dependency)
-         */
-
-        kGuidRadix = 36,
-        kGuidShift = 30,
-        kDecimalPoint = '.',
-
-        /*
          * # Common Constants
          */
 
-        kEmpty = '',
         kLoad = 'load',
-        kObjectNotDefined = ' : Object is not defined.',
         kString = 'string',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         myName,
@@ -49,13 +39,10 @@ function(
      */
     myName = exports.name;
 
-
+    // TODO: these should be grunt-template-generated.
     exports.url = 'http://o2js.com';
-
     exports.longName = 'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)';
-
     exports.version = '0.25.a';
-
     exports.build = '.0001369602378';
 
     exports.$ = function(obj) {

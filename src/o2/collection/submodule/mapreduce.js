@@ -1,12 +1,46 @@
 require([
-], function() {
-    use strict;
+    '../../method/core',
+    '../../validation/core',
+    './convert'
+], function(
+    Method,
+    Validation,
+    Convert
+) {
+    'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isObject = Validation.isObject,
+        isArray = Validation.isArray,
+
+        /*
+         * ../../method/core
+         */
+        bind = Method.bind,
+
+        /*
+         * ./convert
+         */
+        toArray = Convert.toArray,
+
+        /*
+         * # To Be Overridden
+         */
+
+        map,
+        reduce;
 
     exports.map = function(obj, delegate, context) {
         var results = [],
@@ -57,7 +91,7 @@ require([
 
     exports.reduce = function(obj, delegate, store, context) {
         var cache = store,
-            isSeeded = arguments.length > 2
+            isSeeded = arguments.length > 2,
             iterator = delegate,
             i,
             index,

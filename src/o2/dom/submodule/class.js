@@ -1,6 +1,6 @@
 require([
-    '/o2/core',
-    '/o2/string/core'
+    '../../core',
+    '../../string/core'
 ], function(
     o2,
     StringUtil
@@ -53,7 +53,7 @@ require([
     /*
      *
      */
-    createClassNameRegExp = require(kModuleName, 'createClassNameRegExp');
+    createClassNameRegExp = exports.createClassNameRegExp;
 
     exports.hasClass = function(el, c) {
         el = $(el);
@@ -66,7 +66,7 @@ require([
     /*
      *
      */
-    hasClass = require(kModuleName, 'hasClass');
+    hasClass = exports.hasClass;
 
     exports.addClass = function(el, c) {
         el = $(el);
@@ -80,7 +80,7 @@ require([
     /*
      *
      */
-    addClass = require(kModuleName, 'addClass');
+    addClass = exports.addClass;
 
     exports.removeClass = function(el, c) {
         el = $(el);
@@ -94,10 +94,10 @@ require([
     /*
      *
      */
-    removeClass = require(kModuleName, 'removeClass');
+    removeClass = exports.removeClass;
 
     exports.toggleClass = function(el, c, state) {
-        if (state !== UNDEFINED) {
+        if (state !== undefined) {
             if (state) {
                 addClass(el, c);
 

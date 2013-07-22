@@ -1,12 +1,35 @@
-define([
-], function() {
+require([
+    '../../validation/core'
+], function(
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+         /*
+          * ../../validation/core
+          */
+        isArguments = Validation.isArguments,
+
+        /*
+         * Array.prototoype
+         */
+        slice = Array.prototype.slice,
+
+        /*
+         * # To Be Overridden
+         */
+
+        toArray;
 
     exports.toArray = function(obj) {
         var result = [],

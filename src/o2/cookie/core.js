@@ -1,5 +1,5 @@
-define([
-    '/o2/string/core'
+require([
+    '../string/core'
 ], function(
     StringUtil
 ) {
@@ -41,7 +41,7 @@ define([
         kSecure = '; secure',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         save;
@@ -108,7 +108,7 @@ define([
 
     exports.remove = function(name, path, domain) {
         save(name, kEmpty, -1, path || kRootPath, domain || null);
-    });
+    };
 
     // TODO: open this as an issue for tracking, and close it and label as wontfix
     // removeAll makes things too complicated if path, and domain

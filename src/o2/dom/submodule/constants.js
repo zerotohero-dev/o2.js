@@ -9,7 +9,7 @@ require([
 
     var exports = {};
 
-    exports.nodeType = def(me, 'nodeType', {
+    exports.nodeType = {
         ELEMENT: 1,
         ATTRIBUTE: 2,
         TEXT: 3,

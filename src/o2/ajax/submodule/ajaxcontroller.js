@@ -1,6 +1,8 @@
-define([
+require([
+    '../../core',
     './ajaxstate'
 ], function(
+    o2,
     AjaxState
 ) {
     'use strict';
@@ -10,9 +12,14 @@ define([
          */
 
         /*
-         * core
+         * ../../core
          */
-    var nill = o2.nill;
+    var nill = o2.nill,
+
+        /*
+         * ./ajaxstate
+         */
+        state = AjaxState;
 
     function AjaxController(xhr, args) {
         this.xhr = xhr;
@@ -22,7 +29,7 @@ define([
 
         // Register self.
         AjaxState.addObserver(this);
-    };
+    }
 
     AjaxController.prototype.update = function(data) {
         if (!data.isTimedOut) {return;}
@@ -35,13 +42,13 @@ define([
 
         // Execute callback.
         this.ontimeout();
-    });
+    };
 
     AjaxController.prototype.unregister = function() {
         if (this.isDeleted) {return;}
 
         state.deleteObserver(this);
-    });
+    };
 
     return AjaxController;
 });

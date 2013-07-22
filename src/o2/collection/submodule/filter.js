@@ -1,5 +1,7 @@
 require([
+    '../../validation/core'
 ], function(
+    Validation
 ) {
     'use strict';
 
@@ -12,7 +14,16 @@ require([
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray;
 
     exports.grep = function(obj, delegate) {
         var result = [],

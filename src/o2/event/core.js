@@ -81,7 +81,7 @@
         windowEventHandle  = window.event,
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         addEventListener    = null,

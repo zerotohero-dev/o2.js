@@ -1,4 +1,4 @@
-define([
+require([
 ], function(
 ) {
     'use strict';
@@ -35,14 +35,14 @@ define([
      *
      */
     function getProtecteds(self) {
-        return attr(self, 'protecteds');
+        return self.protecteds;
     }
 
     /*
      *
      */
     function getSelfProtecteds(self, key) {
-        return attr(getProtecteds(self), key);
+        return getProtecteds(self)[key];
     }
 
     /*

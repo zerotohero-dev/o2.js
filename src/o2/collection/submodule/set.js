@@ -1,12 +1,82 @@
 require([
-], function() {
+    '../../validation/core',
+    './bound',
+    './convert',
+    './mapreduce',
+    './partial',
+    './set',
+    './validation'
+], function(
+    Validation,
+    Bound,
+    Convert,
+    MapReduce,
+    Partial,
+    Set,
+    CollectionValidation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isFunction = Validation.isFunction,
+        isObject = Validation.isObject,
+
+        /*
+         * ./convert
+         */
+         toArray = Convert.toArray,
+
+        /*
+         * ./mapreduce
+         */
+        map = MapReduce.map,
+
+        /*
+         * ./validation
+         */
+        contains = CollectionValidation.contains,
+
+        /*
+         * ./partial
+         */
+        pluck = Partial.pluck,
+
+        /*
+         * ./bounds
+         */
+        getMax = Bound.getMax,
+
+        /*
+         * Array.prototype
+         */
+        slice = Array.prototype.slice,
+
+        /*
+         * # To Be Overridden
+         */
+
+        unique,
+        flatten,
+
+        /*
+         * # Comon Constants
+         */
+
+        kEmpty = '',
+        kLength = 'length';
 
     exports.group = function(obj, delegate) {
         var iterator = isFunction(delegate) ?
@@ -15,7 +85,7 @@ require([
                     return obj[delegate];
                 },
             result = {},
-            i
+            i,
             key,
             ky,
             len,

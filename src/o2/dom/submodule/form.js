@@ -1,6 +1,6 @@
 require([
-    '/o2/core',
-    '/o2/string/core'
+    '../../core',
+    '../../string/core'
 ], function(
     o2,
     StringUtil

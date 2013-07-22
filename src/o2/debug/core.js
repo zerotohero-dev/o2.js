@@ -1,5 +1,5 @@
 require([
-    '/o2/core'
+    '../core'
 ], function(
     o2
 ) {
@@ -9,7 +9,7 @@ require([
          * # Module Exports
          */
 
-     var exports = {};
+     var exports = {},
 
         /*
          * # Aliases
@@ -74,15 +74,16 @@ require([
         kEmpty = '',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
-        PrinterFactory = null;
+        PrinterFactory,
+        println;
 
     /*
      *
      */
-    function println(text, className) {
+    function out(text, className) {
         switch (className) {
             case kLog:
                 log(text);
@@ -135,13 +136,13 @@ require([
 
                     outputElement.appendChild(debugContent);
 
-                    println(value, className);
+                    out(value, className);
                 };
             }
 
             if (isUsingConsole && !outputElement) {
                 return function(value, className) {
-                    println(value, className);
+                    out(value, className);
                 };
             }
 
@@ -166,24 +167,24 @@ require([
         if (!isInitialized) {return;}
 
         if (pass) {
-            myself.println([kPassText, message].join(kEmpty), kPass);
+            println([kPassText, message].join(kEmpty), kPass);
 
             return;
         }
 
-        myself.println([kFailText, message].join(kEmpty), kFail);
+        println([kFailText, message].join(kEmpty), kFail);
     };
 
     exports.error = function(message) {
         if (!isInitialized) {return;}
 
-        myself.println([kErrorText, message].join(kEmpty), kError);
+        println([kErrorText, message].join(kEmpty), kError);
     };
 
     exports.info = function(message) {
         if (!isInitialized) {return;}
 
-        myself.println([kInfoText, message].join(kEmpty), kInfo);
+        println([kInfoText, message].join(kEmpty), kInfo);
     };
 
     exports.init = function(outputElm, shouldUseConsole) {
@@ -193,7 +194,7 @@ require([
         // Can I use the browser's built-in console?
         // (the double negation !!shouldUseConsole will convert the var to
         // boolean.)
-        isUsingConsole = (console !== UNDEFINED && !!shouldUseConsole);
+        isUsingConsole = (console !== undefined && !!shouldUseConsole);
 
         // Is everything OK? -- I should either use the output element, or
         // the console.
@@ -211,13 +212,13 @@ require([
         isInitialized = true;
 
         // Prevent initializing the object more than once.
-        myself.init = nill;
+        exports.init = nill;
     };
 
     exports.log = function(message) {
         if (!isInitialized) {return;}
 
-        myself.println(message, kLog);
+        println(message, kLog);
     };
 
     exports.println = function(value, className) {
@@ -232,20 +233,22 @@ require([
         }
 
         // Create a new printer method.
-        myself.println = PrinterFactory.create(
+        exports.println = PrinterFactory.create(
             //TODO: printerfactory should take output element
             //as a config parameter too.
             {isUsingConsole : isUsingConsole}
         );
 
         // Call the newly created method.
-        myself.println(value, className);
+        exports.println(value, className);
     };
+
+    println = exports.println;
 
     exports.warn = function(message) {
         if (!isInitialized) {return;}
 
-        myself.println([kWarnText, message].join(kEmpty), kWarn);
+        println([kWarnText, message].join(kEmpty), kWarn);
     };
 
     return exports;

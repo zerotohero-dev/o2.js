@@ -1,6 +1,6 @@
 require([
-    '/o2/core',
-    '/o2/string/core',
+    '../../core',
+    '../../string/core',
     './submodule/style'
 ], function(
     o2,
@@ -49,7 +49,7 @@ require([
         kWidth = 'width',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         getDocumentElement,
@@ -79,7 +79,7 @@ require([
     exports.getDimension = function(obj) {
         obj = $(obj);
 
-        if (!obj || obj.offsetWidth === UNDEFINED) {
+        if (!obj || obj.offsetWidth === undefined) {
             return {width : 0, height : 0};
         }
 
@@ -174,7 +174,7 @@ require([
                 width: doc.clientWidth || 0,
                 height: doc.clientHeight || 0
             };
-        });
+        };
     }
 
     /*
@@ -204,7 +204,7 @@ require([
         // we can only change the element's width through it's style
         // collection.
 
-        if (obj.offsetWidth !== UNDEFINED) {
+        if (obj.offsetWidth !== undefined) {
             setStyle(obj, kWidth, concat(width, kPixel));
 
             difference = obj.offsetWidth - width;

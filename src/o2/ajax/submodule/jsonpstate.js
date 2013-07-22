@@ -1,5 +1,5 @@
-define([
-    'o2/object'
+require([
+    '../../object/core',
     './ajaxstate'
 ], function(
     ObjectUtil,
@@ -18,9 +18,8 @@ define([
          */
 
         /*
-         * object.core
+         * ../../object/core
          */
-
         copyFn   = ObjectUtil.copyMethods,
         copyAttr = ObjectUtil.copy;
 

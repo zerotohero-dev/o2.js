@@ -1,5 +1,5 @@
 require([
-    'o2/core'
+    '../../core'
 ], function(
     o2
 ) {
@@ -69,10 +69,6 @@ require([
                     readyQueue.pop()();
                 } catch(ignore) {}
             }
-
-            // undocumented!
-            // A flag to set that the framework is ready and responsive.
-            me.isReady = true;
         },
 
         /*
@@ -141,7 +137,7 @@ require([
         },
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         bindReadyListeners = nill;

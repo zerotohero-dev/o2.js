@@ -1,6 +1,6 @@
 require([
-    '/o2/core',
-    '/o2/dom/core'
+    '../../core',
+    '../../dom/core'
 ], function(
     o2,
     Dom
@@ -35,7 +35,7 @@ require([
         isElement = Dom.isElement,
         remove = Dom.remove;
 
-    exports.replace = def(me, 'replace', function(elmTarget, elmToReplace) {
+    exports.replace = function(elmTarget, elmToReplace) {
         var target = $(elmTarget),
             replace = $(elmToReplace);
 
@@ -43,7 +43,7 @@ require([
         remove(target);
     };
 
-    exports.unwrap = def(me, 'unwrap', function(elmTarget) {
+    exports.unwrap = function(elmTarget) {
         var target = $(elmTarget),
             child = null;
 
@@ -60,7 +60,7 @@ require([
         remove(target);
     };
 
-    exports.wrap = def(me, 'wrap', function(elmTarget, elmWrapper) {
+    exports.wrap = function(elmTarget, elmWrapper) {
         var target  = $(elmTarget),
             wrapper = $(elmWrapper);
 

@@ -1,9 +1,38 @@
-define([
+require([
+    '../../validation/core'
 ], function(
+    Validation
 ) {
     'use strict';
 
-    var exports = {};
+        /*
+         * # Module Exports
+         */
+
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isEmpty = Validation.isEmpty,
+        isObject = Validation.isObject,
+
+        /*
+         * Math
+         */
+        max = Math.max,
+        min = Math.min,
+
+        /*
+         * # To Be Overridden
+         */
+
+        getMax;
 
     exports.getSize = function(obj) {
         var counter = 0,

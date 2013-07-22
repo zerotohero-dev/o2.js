@@ -1,13 +1,13 @@
 require([
-    '/o2/core',
-    '/o2/object/core'
-    './jsonpstate',
-    './ajaxcontroller'
+    '../../core',
+    '../../object/core',
+    './ajaxcontroller',
+    './jsonpstate'
 ], function(
     o2,
     ObjectUtil,
-    JsonpState,
-    AjaxController
+    AjaxController,
+    JsonpState
 ) {
     'use strict';
 
@@ -20,8 +20,19 @@ require([
          * Aliases
          */
 
+        /*
+         * /../../core
+         */
         nill = o2.nill,
+
+        /*
+         * ./jsonpstate
+         */
         state = JsonpState,
+
+        /*
+         * /../../object/core
+         */
         copyMethods = ObjectUtil.copyMethods,
 
         /*
@@ -33,18 +44,16 @@ require([
          * Inheritance
          */
         base = AjaxController,
-        me,
         self;
 
-    exports.JsonpController = construct(kModuleName, function(jsonp,
-                args) {
-        this.jsonp     = jsonp;
+    exports.JsonpController = function(jsonp, args) {
+        this.jsonp = jsonp;
         this.ontimeout = (args && args.ontimeout) || nill;
-        this.timeout   = (args && args.timeout) || null;
+        this.timeout = (args && args.timeout) || null;
 
         // Register self.
         state.addObserver(this);
-    });
+    };
 
     /*
      *

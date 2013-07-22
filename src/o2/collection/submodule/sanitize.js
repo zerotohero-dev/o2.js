@@ -1,12 +1,25 @@
 require([
-], function() {
+    '../../validation/core'
+], function(
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+         /*
+          * ../../validation/core
+          */
+         isArray = Validation.isArray,
+         isObject = Validation.isObject;
 
     exports.clear = function(ar) {
         var key = null;
@@ -43,7 +56,7 @@ require([
             for (i = 0, len = ar.length; i < len; i++) {
                 value = ar[i];
 
-                if (value === null || value === UNDEFINED) {
+                if (value === null || value === undefined) {
                     ar.splice(i, 1);
 
                     i = i - 1;
@@ -58,7 +71,7 @@ require([
             if (ar.hasOwnProperty(key)) {
                 value = ar[key];
 
-                if (value === null || value === UNDEFINED) {
+                if (value === null || value === undefined) {
                     delete ar[key];
                 }
             }

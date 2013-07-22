@@ -3188,3 +3188,1102 @@
          *
          * @return the calculated <strong>style</strong> value.
          */
+
+    /**
+     * @function {static} o2.Dom.getCss
+     *
+     * <p>An alias to {@link o2.Dom.getStyle}.</p>
+     *
+     * @see o2.Dom.getStyle
+     */
+
+    /**
+     * @function {static} o2.Dom.hide
+     *
+     * <p>Hides the given object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.hide('container');
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> to hide.
+     */
+
+    /**
+     * @function {static} o2.Dom.show
+     *
+     * <p>Shows the given object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.show('container');
+     * </pre>
+     *
+     * @param {Object} elm - the <strong>DOM</strong> node, or the
+     * <strong>id</strong> of it, to show.
+     */
+
+    /**
+     * @function {static} o2.Dom.isVisible
+     *
+     * <p>Checks whether the <strong>DOM</strong> node is visible.</p>
+     * <p>Note that being visible does not necessarily mean being available
+     * inside the <strong>viewport</strong>.</p>
+     * <p>If a <strong>DOM</strong> node has <code>display == 'none'</code>
+     * or <code>visibility == 'hidden'</code> <strong>CSS</strong> properties,
+     * then it's regarded as "invisible", otherwise it is considered to be
+     * "visible".</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isContainerVisible = o2.Dom.isVisible('container');
+     * </pre>
+     *
+     * @param {Object} obj - the <strong>DOM</strong> element, or the
+     * <strong>id</strong> of it, to test.
+     *
+     * @return <code>true</code> if the element is visible, <code>false</code>
+     * otherwise.
+     */
+
+    /**
+     * @function {static} o2.Dom.toggleVisibility
+     *
+     * <p>Toggles the visibility of the given element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.toggleVisibility('container');
+     * </pre>
+     *
+     * @param {Object} elm - a <strong>DOM</strong> reference or its
+     * <code>String</code> id.
+     * @param {Boolean} state - (Optional, defaults to <code>undefined</code>)
+     * if <code>true</code>, show the item; if <code>false</code> hides the
+     * item; if <code>undefined</code> simply toggles the visibility of the
+     * item.
+     */
+
+    /**
+     * @module   dom.core
+     *
+     * @requires core
+     * @requires dom.constants
+     *
+     * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
+     */
+
+    /**
+     * @function {static} o2.Dom.append
+     *
+     * <p>Appends the element to the bottom of its parent.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var child = o2.$('childNode');
+     * var parent = o2.$('parentNode');
+     * o2.Dom.append(child, parent);
+     * </pre>
+     *
+     * @param {Object} elmChild - the child node, or the <strong>id</strong> of
+     * the node to append.
+     * @param {Object} elmParent - the parent container, or the
+     * <strong>id</strong> of the container.
+     */
+
+    /**
+     * @function {static} o2.Dom.createDocumentFragment
+     *
+     * <p>Creates a <strong>Document Fragment</strong> from an
+     * <strong>HTML</strong> <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var frag = o2.Dom.createDocumentFragment('[div]test[/div]');
+     * </pre>
+     *
+     * @param {String} html - the <strong>HTML</strong> to create a fragment
+     * from.
+     *
+     * @return {HTMLDocumentFragment} - the generated <code>document</code>
+     * fragment.
+     */
+
+    /**
+     * @function {static} o2.Dom.createElement
+     *
+     * <p>Creates an element with given name and attributes.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var el = o2.Dom.createElement(
+     *      'div',
+     *      {className : 'active', style : 'font-weight : bold'}
+     * );
+     * </pre>
+     *
+     * @param {String} name - the node name of the element (i.e. 'div', 'a').
+     * @param {Object} attributes - an associative array in the form
+     * <code>{att1:value1, att2:value2}</code>.
+     *
+     * @return the created element.
+     */
+
+    /**
+     * @function {static} o2.Dom.create
+     *
+     * <p>An alias to {@link o2.Dom.createElement}.</p>
+     *
+     * @see o2.Dom.createElement
+     */
+
+    /**
+     * @function {static} o2.Dom.getAttribute
+     *
+     * <p>Gets the attribute of a given node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var uid = o2.Dom.getAttribute('container', 'data-user-id');
+     * </pre>
+     *
+     * @param {Object} elm - the node, or the <strong>id</strong> of the
+     * node, to get the attribute of.
+     * @param {String} attribute - the attribute to gather.
+     *
+     * @return the value of the attribute if found; <code>null</code>
+     * otherwise.
+     */
+
+    /**
+     * @function {static} o2.Dom.getHtml
+     *
+     * <p>Gets the <strong>HTML</strong> of a given element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var html = o2.Dom.getHtml('container');
+     * </pre>
+     *
+     * @param {Object} elm - the <strong>DOM</strong> node or its
+     * <code>String</code> id.
+     *
+     * @return the <code>innerHTML</code> of the given node, if it exists;
+     * <code>null</code> otherwise.
+     */
+
+        /**
+         * @function {static} o2.Dom.getText
+         *
+         * <p>Gets the textual content of the given node, replacing entities
+         * like <code>& amp;</code> with it's corresponding character
+         * counterpart (<strong>&</strong> in this example).</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * var txt = o2.Dom.getText('container');
+         * </pre>
+         *
+         * @param {Object} elm - the <strong>DOM</strong> node or its
+         * <code>String</code> id.
+         *
+         * @return the textual content of the given node.
+         */
+
+    /**
+     * @function {static} o2.Dom.insertAfter
+     *
+     * <p>Adds the node after the reference node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var ref = o2.$('ref');
+     * var new = o2.$('new');
+     * o2.Dom.insertAfter(new, ref);
+     * </pre>
+     *
+     * @param {Object} elmNewNode - the DOM node, or the <strong>id</strong> of
+     * the node, to insert after.
+     * @param {Object} elmRefNode - the reference node, or the
+     * <strong>id</strong> of the node.
+     */
+
+    /**
+     * @function {static} o2.Dom.insertBefore
+     *
+     * <p>Adds the node before the reference node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var ref = o2.$('ref');
+     * var new = o2.$('new');
+     * o2.Dom.insertBefore(new, ref);
+     * </pre>
+     *
+     * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
+     * node, to insert before.
+     * @param {Object} elmRefNode - the reference, or the <strong>id</strong>
+     * of the node.
+     */
+
+    /**
+     * @function {static} o2.Dom.isDocument
+     *
+     * <p>Checks whether the given node is a <code>document</code> node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isDocument = o2.Dom.isDocument(currentNode);
+     * </pre>
+     *
+     * @param {DOMNode} obj - the <strong>node</strong> to test.
+     *
+     * @return <code>true</code> if the <strong>node</strong> is the
+     * <code>document</code> element; <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Dom.isElement
+     *
+     * <p>Checks whether the given node is an <strong>element</strong>
+     * node.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isElement = o2.Dom.isElement(currentNode);
+     * </pre>
+     *
+     * @param {DOMNode} obj - the <strong>node</strong> to test.
+     *
+     * @return <code>true</code> if the <strong>node</strong> is an
+     * <strong>element</strong> node; <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Dom.prepend
+     *
+     * <p>Prepends the element to the top of its parent.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var child = o2.$('ChildContainer');
+     * var parent = o2.$('MasterContainer');
+     * o2.Dom.prepend(child, parent);
+     * </pre>
+     *
+     * @param {Object} elmChild - the child node, or the id of the node to
+     * prepend.
+     * @param {Object} elmParent - the parent container, or the id of the
+     * container.
+     */
+
+    /**
+     * @function {static} o2.Dom.remove
+     *
+     * <p>Removes the element from the <strong>DOM</strong> flow.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.remove('navigation');
+     * </pre>
+     *
+     * @param {Object} e - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it, to remove.
+     *
+     * @return the removed node.
+     */
+
+    /**
+     * @function {static} o2.Dom.removeNode
+     *
+     * <p>An <strong>alias</strong> to {@link o2.Dom.remove}.</p>
+     *
+     * @see o2.Dom.remove
+     */
+
+    /**
+     * @function {static} o2.Dom.removeChildren
+     *
+     * <p>Removes all the children of the element.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.removeChildren('container');
+     * </pre>
+     *
+     * @param {Object} e - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it to process.
+     */
+
+    /**
+     * @function {static} o2.Dom.empty
+     *
+     * <p>An <strong>alias</strong> to {@link o2.Dom.removeChildren}.</p>
+     *
+     * @param {Object} elm - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it to process.
+     */
+
+    /**
+     * @function {static} o2.Dom.removeEmptyTextNodes
+     *
+     * <p>Removes empty text nodes from the element.</p>
+     * <p>Note that this removal is not recursive; only the first-level empty
+     * child nodes of the element will be removed.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.removeEmptyTextNodes('container');
+     * </pre>
+     *
+     * @param {Object} e - either the <strong>element</strong>, or the
+     * <strong>id</strong> of it to process.
+     */
+
+    /**
+     * @function {static} o2.Dom.removeEmpty
+     *
+     * <p>An <strong>alias</strong> to
+     * {@link o2.Dom.removeEmptyTextNodes}.</p>
+     *
+     * @see o2.Dom.removeEmptyTextNodes
+     */
+
+    /**
+     * @function {static} o2.Dom.setAttribute
+     *
+     * <p>Sets the attribute of the given object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.setAttribute('container', 'data-user-id', '123');
+     * </pre>
+     *
+     * @param {Object} elm - the object or the <code>String</code> id of it.
+     * @param {String} attribute - the name of the attribute.
+     * @param {String} value - the value of the attribute.
+     */
+
+    /**
+     * @function {static} o2.Dom.setHtml
+     *
+     * <p>Simply sets the <code>innerHTML</code> of the element.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Dom.setHtml('container', '[h1]hello[/h1]');
+     * </pre>
+     *
+     * @param {Object} elm - The <strong>DOM</strong> element to set the
+     * <strong>HTML</strong> of, or its <code>String</code> id.
+     */
+
+    /**
+     * @function {static} o2.Jsonp.get
+     *
+     * <p>Creates a <strong>JSONP</strong> request.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Jsonp.get('http://example.com/api.php', {param: 'value'},
+     *      function(data) {
+     *
+     *      }
+     * );
+     * </pre>
+     *
+     * @param {String} url - the <strong>URL</strong> of the
+     * <strong>JSONP</strong> service.
+     * @param {Object} params - parameters in the form of {name1:value1,...}
+     * @param {Function} callback - callback to execute after
+     * <strong>JSONP</strong> arrives.
+     */
+
+    /**
+     * @module   validation.core
+     *
+     * @requires core
+     *
+     * <p>A validation helper.</p>
+     */
+
+        /**
+         * @class {static} o2.Validation
+         *
+         * <p>A simple class for validating various kinds of
+         * <strong>object</strong>s.</p>
+         */
+
+    /**
+     * @function {private} o2.Validation.is
+     *
+     * <p>Returns the type information of the given object.</p>
+     * <p>The type can be any of the following:</p>
+     * <p><code>Array, Boolean, Date, Error, Function, JSON,
+     * Math, Number, Object, RegExp, String, Arguments</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var obj = {lorem : 'dolor'};
+     * var isObject = o2.Validation.is(obj, 'Object');
+     * </pre>
+     *
+     * @param {Object} obj - the object to check type against.
+     * @param {String} type - the type to compare.
+     *
+     * @return <code>true</code> if the <strong>object</strong>'s type matches
+     * the <strong>type</strong> parameter, <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isArguments
+     *
+     * <p>Checks whether the object is an <code>arguments</code> object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isArguments = o2.Validation.isArguments(arguments);
+     * </pre>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is an <code>arguments</code> object,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isArray
+     *
+     * <p>Checks whether the object is an <code>Array</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isArray = o2.Validation.isArray([]);
+     * </pre>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is an <code>Array</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isBoolean
+     *
+     * <p>Checks whether the object is a <code>Boolean</code>.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isBoolean = o2.Validation.isBoolean(false);
+     * </pre>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is a <code>Boolean</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isDate
+     *
+     * <p>Checks whether the object is a <code>Date</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isDate = o2.Validation.isDate((ew Date());
+     * </pre>
+     *
+     * @param {Arguments} varargin - if a single argument is given it checks
+     * whether it identifies a <code>Date</code> object. Otherwise the
+     * function takes three parameters (year, month, date) and cheks whether
+     * they denote a valid Date.
+     *
+     * @return <code>true</code> if obj is a <code>Date</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isFunction
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isFunction = o2.Validation.isFunction(fnTest);
+     * </pre>
+     *
+     * <p>Checks whether the object is a <code>Function</code>.</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is a <code>Function</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isNaN
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isNaN = o2.Validation.isNaN('lorem');
+     * </pre>
+     *
+     * <p>Checks whether the given parameter is <code>NaN</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is <code>NaN</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isNull
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isNull = o2.Validation.isNull(null);
+     * </pre>
+     *
+     * <p>Checks whether the given parameter is <code>null</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is <code>null</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isNumber
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isNumber = o2.Validation.isNumber(42);
+     * </pre>
+     *
+     * <p>Checks whether the object is a <code>Number</code>.</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is a <code>Number</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isNumeric
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isNumeric = o2.Validation.isNumeric('4.2');
+     * </pre>
+     *
+     * <p>Checks whether the given parameter is a numeric entity.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is a numeric entity,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isObject
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isObject = o2.Validation.isObject({});
+     * </pre>
+     *
+     * <p>Checks whether the object is an <code>Object</code>({}).</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is an <code>Object</code> ({}),
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isRegExp
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isRegExp = o2.Validation.isRegExp(/test/ig);
+     * </pre>
+     *
+     * <p>Checks whether the object is a <code>RegExp</code>.</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return <code>true</code> if obj is a <code>RegExp</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isString
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isString = o2.Validation.isString('lorem');
+     * </pre>
+     *
+     * <p>Checks whether the object is a <code>String</code>.</p>
+     *
+     * @param {Object} obj - the object to test.
+     *
+     * @return true if obj is a String, false otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isUndefined
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isUndefined = o2.Validation.isUndefined(undefined);
+     * </pre>
+     *
+     * <p>Checks whether the given parameter is <code>undefined</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is <code>undefined</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isWindow
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isWindow = o2.Validation.isWindow(window);
+     * </pre>
+     *
+     * <p>Checks whether the given parameter is a <code>window</code>
+     * object.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to test.
+     *
+     * @return <code>true</code> if the item is a <code>window</code>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @module   supports.core
+     *
+     * @requires core
+     *
+     * <p>An object support checker.</p>
+     */
+
+        /**
+         * @class {static} o2.Supports
+         *
+         * <p>Checks support for various objects and properties like
+         * <strong>DOM</strong> and <strong>cookie</strong>s.</p>
+         */
+
+    /**
+     * @function {static} o2.Supports.ajax
+     *
+     * <p>Checks whether <strong>AJAX</strong> (At least XmlHttpRequest Level 1)
+     * is supported.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isAjaxSupported = o2.Supports.ajax();
+     * </pre>
+     *
+     * @return <code>true</code> if <strong>AJAX</strong> is supported,
+     * <code>false</code> otherwise.
+     *
+     * @throws Exception - if <code>o2.Ajax</code> does not exist.
+     */
+
+    /**
+     * @function {static} o2.Supports.cookie
+     *
+     * <p>Checks for <strong>cookie</strong> support.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isCookieSupported = o2.Supports.cookie();
+     * </pre>
+     *
+     * @return <code>true</code> if <strong>cookie</strong>s are supported,
+     * <code>false</code> otherwise.
+     *
+     * @throws Exception - if <code>o2.Cookie</code> does not exist.
+     */
+
+    /**
+     * @function {static} o2.Supports.dom
+     *
+     * <p>Checks whether <strong>DOM</strong> is adequately supported.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isDomSupported = o2.Supports.dom();
+     * </pre>
+     *
+     * @return <code>true</code> if <strong>DOM</strong> is supported,
+     * <code>false</code> otherwise.
+     */
+
+     /**
+      * @module   validation.regexp
+      *
+      * @requires core
+      *
+      * <p>Does validation by matching test subjects against predefined
+      * <strong>regular expression</strong>s.<p>
+      */
+
+    /**
+     * @function {static} o2.Validation.isEmail
+     *
+     * <p>Did you know that <code>Abc\@def@example.com</code>, and
+     * <code>customer/department=shipping@example.com</code> are all valid
+     * e-mails?</p>
+     * <p>There is no good (and realistic) regular expression to match an
+     * e-mail address.<p>
+     * <p>The grammar ( http://www.ietf.org/rfc/rfc5322.txt ) is too
+     * complicated for that.</p>
+     * <p>This method matches <strong>e-mail</strong> addresses, while giving
+     * some false-positives.</p>
+     * <p>The correct action to validate an <strong>e-mail</strong> address is
+     * to validate by trying
+     * (i.e. try sending an account activation <strong>e-mail</strong> to a
+     * newly registered user, for example.).</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isEmail = o2.Validation.isEmail('volkan@o2js.com');
+     * </pre>
+     *
+     * @param {String} mail - the <strong>e-mail</strong> address to test.
+     *
+     * @return <code>true</code> if the <strong>e-mail</strong> address is a
+     * potentially valid e-mail, <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isUrl
+     *
+     * <p>Checks whether the given argument is a valid <strong>URL</strong>
+     * address.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isUrl = o2.Validation.isUrl('http://o2js.com/');
+     * </pre>
+     *
+     * @param {String} url - the address to check.
+     *
+     * @return <code>true</code> if the address is a valid <strong>URL</strong>,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Validation.isWhitespace
+     *
+     * <p>Checks whether the given argument consists of only whitespace
+     * characters.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isWhitespace = o2.Validation.isWhitespace('  \t\r\n   \n  ');
+     * </pre>
+     *
+     * @param {String} text - the text to check.
+     *
+     * @return <code>true</code> if the argument consists of only whitespace
+     * characters, <code>false</code> otherwise.
+     */
+
+    /**
+     * @module   unit.core
+     *
+     * @requires core
+     * @requires debugger.core
+     * @requires dom.scroll
+     * @requires string.core
+     *
+     * <p>This package is a unit test runner, that is used to test
+     * <strong>js</strong> units.</p>
+     */
+
+        /**
+         * @class {static} o2.Unit
+         *
+         * <p>A "unit test" <strong>runner</strong>.</p>
+         * <p>Runs <code>UnitTest</code>s.</p>
+         */
+
+    /**
+     * @class {isolated} UnitTest
+     *
+     * <p>Defines a test unit.</p>
+     * <p>This <strong>class</strong> is <strong>isolated</strong>, and it is
+     * only available in the unit meta's callback given to the
+     * {@link o2.Unit.add} method.
+     */
+
+    /**
+     * @constructor UnitTest.UnitTest
+     *
+     * <p>Creates a new <code>UnitTest</code>.</p>
+     *
+     * @param {String} description - the description of the unit test.
+     * @param {String} totalAssertionCount - the overall number of assertions
+     * that the <code>UnitTest</code>'s <strong>testCase</strong> will run.
+     * @param {Function} testCase - the test case to run when executing the
+     * <code>UnitTest</code>.
+     *
+     * @param {String} description - the description of the test case.
+     * @param {Integer} totalAssertionCount - a non zero integer for the total
+     * assertion count in the test case.
+     * @param {Function} testCase - the actual test case reference.
+     *
+     * @see o2.Unit.add
+     */
+
+    /**
+     * @function o2.UnitTest.terminate
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * test.terminate();
+     * </pre>
+     *
+     * <p>Terminates the unit test by setting remaining assertion count to
+     * zero.</p>
+     */
+
+    /**
+     * @function {static} o2.Unit.add
+     *
+     * <p>Creates a test suite parsing the <strong>testMeta</strong>, and
+     * adds it to the test queue.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.add('some method SHOULD meet a requirement', {
+     *      count: 1,
+     *      test : function() {
+     *          var me = this;
+     *          o2.Unit.assert(me, false, 'I pass.');
+     *      }
+     * });
+     * </pre>
+     *
+     * @param {String} description - the description of the test.
+     * @param {Object} testMeta - test meta data in the form {count:
+     * [number], test: [callback]}, where <strong>count</strong> is the
+     * total number of assertions in the test suite, and
+     * <strong>test</strong> is the actual test suite <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Unit.assert
+     * <p>Asserts whether the given <strong>expression</strong> evaluates to
+     * <code>true</code> or not.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.assert(me, condition, 'condition is true');
+     * </pre>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Expression} expression - the expression to evaluate.
+     * @param {String} message - the associated message.
+     */
+
+    /**
+     * @function {static} o2.Unit.assertEqual
+     * <p>Asserts whether two values are equal.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.assertEqual(me, 10, '10', '10 is 10');
+     * </pre>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+
+    /**
+     * @function {static} o2.Unit.assertNotEqual
+     * <p>Asserts whether two values are <strong>NOT</strong> equal.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.assertNotEqual(me, 10, '11', '10 is not 11');
+     * </pre>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+
+    /**
+     * @function {static} o2.Unit.assertStrictEqual
+     *
+     * <p>Asserts whether two values are strictly equal (by value and
+     * type).</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.assertStrictEqual(me, 10, 10, '10 is 10');
+     * </pre>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+
+    /**
+     * @function {static} o2.Unit.assertStrictNotEqual
+     *
+     * <p>Asserts whether two values are strictly <strong>NOT</strong> equal
+     * (by value and type).</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.assertStrictNotEqual(me, 10, '10', '10 is not 10');
+     * </pre>
+     *
+     * @param {o2.UnitTest} unitTest - the current active unit test.
+     * @param {Object} currentValue - the current value to assert.
+     * @param {Object} expectedValue - the expected value to check against.
+     * @param {String} message - the associated message.
+     */
+
+    /**
+     * @function {static} o2.Unit.getGlobalFailureCount
+     *
+     * <p>Gets the total number of failed assertions so far.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var totalFail = o2.Unit.getGlobalFailureCount();
+     * </pre>
+     *
+     * @return the total number of failed assertions.
+     */
+
+    /**
+     * @function {static} o2.Unit.getGlobalSuccessCount
+     *
+     * <p>Gets the total number of successful assertions so far.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var totalSuccess = o2.Unit.getGlobalSuccessCount();
+     * </pre>
+     *
+     * @return the total number of successful assertions.
+     */
+
+    /**
+     * @function {static} o2.Unit.isRunning
+     *
+     * <p>Checks whether the current <strong>test suite</strong> is still
+     * running.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var isActive = o2.Unit.isRunning();
+     * </pre>
+     *
+     * @return <code>true</code> if the current <strong>test suite</strong>
+     * is still runing; <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Unit.log
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.log('hello world');
+     * </pre>
+     *
+     * <p>Logs the <strong>message</strong>.</p>
+     * <p>An alias to {@link Debugger.log}.</p>
+     *
+     * @see o2.Debugger.log
+     */
+
+    /**
+     * @function {static} o2.Unit.run
+     *
+     * <p>Asynchronously runs all of the registered
+     * <code>UnitTest</code>s, one after another.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Unit.run(function() {
+     *      // Completed.
+     * });
+     * </pre>
+     *
+     * @param {Function} globalCompletionCallback - (Optional) this callback
+     * will be run with <code>o2.Unit</code> as a parameter passed to it.
+     */
+
+
+

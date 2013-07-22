@@ -1,11 +1,26 @@
-define([], function() {
+require([
+    '../../validation/core'
+], function(
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isObject = Validation.isObject;
+
 
     exports.copy = function(ar) {
         if (!ar) {return [];}

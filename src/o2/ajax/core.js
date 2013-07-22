@@ -1,10 +1,9 @@
-define([
-    '/o2/core',
-    '/o2/string',
-    '/o2/event'
+require([
+    '../core',
+    '../string/core'
 ], function(
-    StringUtil,
-    Event
+    o2,
+    StringUtil
 ) {
     'use strict';
 
@@ -18,23 +17,16 @@ define([
          * # Aliases
          */
 
-        ensure = o2.ensure;
-
         /*
-         * core
+         * ../core
          */
-        nill = ensure(o2.nill),
+        nill = o2.nill,
 
         /*
-         * string.core
+         * ../string/core
          */
         concat = StringUtil.concat,
         generateGuid = StringUtil.generateGuid,
-
-        /*
-         * event.core
-         */
-        listen = Event.addEventListener,
 
         /*
          * # Headers
@@ -63,12 +55,6 @@ define([
             'Msxml2.XMLHTTP.5.0',
             'Msxml2.XMLHTTP.3.0'
         ],
-
-        /*
-         * # Events
-         */
-
-        kUnload = 'unload',
 
         /*
          * # Error Messages
@@ -128,7 +114,7 @@ define([
         activeRequestCount = 0,
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         createXhr;

@@ -1,12 +1,32 @@
 require([
-], function() {
+    '../../collection/core',
+    './validation'
+], function(
+    Collection,
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+         /*
+          * ../../collection/core
+          */
+        indexOf = Collection.indexOf,
+
+         /*
+          * ./validation
+          */
+        isArray = Validation.isArray,
+        isObject = Validation.isObject;
 
     exports.extend = function(toObj, fromObj) {
         var i,
@@ -21,10 +41,7 @@ require([
         if (isArray(toObj)) {
             if(!isArray(fromObj)) {return toObj;}
 
-            i   = 0;
-            len = fromObj.length;
-
-            for (i = 0; i < len; i++) {
+            for (i = 0, len = fromObj.length; i < len; i++) {
                 value = fromObj[i];
 
                 if(indexOf(toObj, value) === -1) {

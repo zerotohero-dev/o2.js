@@ -1,13 +1,25 @@
 require([
+    './validation'
 ],
-function() {
+function(
+    Validation
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ./validate
+         */
+        isArray = Validation.isArray;
 
     exports.removeElement = function(obj, elm) {
         var i,

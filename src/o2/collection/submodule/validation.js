@@ -1,5 +1,11 @@
 require([
+    '../../method/core',
+    '../../validation/core',
+    './search'
 ], function(
+    Method,
+    Validation,
+    Search
 ) {
     'use strict';
 
@@ -7,7 +13,29 @@ require([
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * Aliases
+         */
+
+        /*
+         * ../../method/core
+         */
+        identity = Method.identity,
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isEmpty = Validation.isEmpty,
+        isObject = Validation.isObject,
+        contains = Validation.contains,
+
+        /*
+         * ./search
+         */
+        indexOf = Search.indexOf;
 
     exports.some = function(obj, delegate, context) {
         var iterator = delegate || identity,

@@ -1,6 +1,6 @@
-define([
-    '/o2/core',
-    '/o2/string/core'
+require([
+    '../../core',
+    '../../string/core'
 ], function(
     o2,
     StringUtil
@@ -56,6 +56,7 @@ define([
 
         kCompleteRegExp = /loaded|complete/,
 
+        // TODO: hopefully this won't be needed in the next release.
         /*
          * # Minimal Browser Detection
          *
@@ -70,7 +71,7 @@ define([
             !window.opera,
         isOpera = !!window.opera;
 
-    exports.loadCss = def(me, 'loadCss', function(src, successCallback) {
+    exports.loadCss = function(src, successCallback) {
         var s = document.createElement(kLink),
             x = document.getElementsByTagName(kHead)[0] || document.body,
             id = format(kCssId, generateGuid()),
@@ -141,7 +142,7 @@ define([
         }, kCssCheckInterval);
     };
 
-    exports.loadImage = def(me, 'loadImage', function(url, succesCallback) {
+    exports.loadImage = function(url, succesCallback) {
         var succesCallbackCached = succesCallback || nill,
             testImg = null;
 
@@ -160,7 +161,7 @@ define([
         return testImg;
     };
 
-    exports.loadScript = def(me, 'loadScript', function(src, callback) {
+    exports.loadScript = function(src, callback) {
         var s = document.createElement(kScript),
             x = document.getElementsByTagName(kScript)[0] ||
                 document.getElementsByTagName(kHead)[0];

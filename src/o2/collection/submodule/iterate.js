@@ -1,5 +1,7 @@
 require([
+    '../../validation/core'
 ], function(
+    Validation
 ) {
     'use strict';
 
@@ -7,7 +9,24 @@ require([
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * # Aliases
+         */
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isFunction = Validation.isFunction,
+        isObject = Validation.isObject,
+
+
+        /*
+         * Array.prototype
+         */
+        slice = Array.prototype.slice;
 
     exports.forEach = function(obj, delegate) {
         var i,
@@ -75,7 +94,7 @@ require([
                 invoker.apply(item, args);
             }
         }
-    }
+    };
 
     return exports;
 });

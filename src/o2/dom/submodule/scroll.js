@@ -1,7 +1,9 @@
 require([
-    '/o2/core'
+    '../../core',
+    './coordinate'
 ], function(
-    o2
+    o2,
+    Coordinate
 ) {
     'use strict';
 
@@ -16,14 +18,23 @@ require([
          */
 
         /*
-         * core
+         * ../../core
          */
         $ = o2.$,
 
         /*
-         * native
+         * ./coordinate
+         */
+        getOffset = Coordinate.getOffset,
+
+        /*
+         * document
          */
         de  = document.documentElement,
+
+        /*
+         * Math
+         */
         max = Math.max,
 
         /*
@@ -180,7 +191,7 @@ require([
         if (!obj) {return;}
         if (obj === window) {return;}
 
-        var offset = me.getOffset(obj);
+        var offset = getOffset(obj);
 
         window.scrollTo(offset.left, offset.top);
     };

@@ -1,43 +1,17 @@
-(function(framework, fp, window, document, UNDEFINED) {
+require([
+    '../core',
+    './submodule/constants'
+], function(
+    o2,
+    Constants
+) {
     'use strict';
-
-    /**
-     * @module   dom.core
-     *
-     * @requires core
-     * @requires dom.constants
-     *
-     * <p>A cross-browser <strong>DOM</strong> manipulation helper.</p>
-     */
-    fp.ensure(
-        'dom.core',
-    [
-        'core',
-        'dom.constants'
-    ]);
-
-    var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * #Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Dom',
-
-        /*
-         * Dom (core)
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases
@@ -46,31 +20,31 @@
         /*
          * core
          */
-        $ = require('$'),
+        $ = o2.$,
 
         /*
          * dom.constants
          */
-        nt            = require(kModuleName, 'nodeType'),
-        kElementNode  = attr(nt, 'ELEMENT'),
-        kDocumentNode = attr(nt, 'DOCUMENT'),
-        kText         = attr(nt, 'TEXT'),
+        nt = Constants.nodeType,
+        kElementNode = nt.ELEMENT,
+        kDocumentNode = nt.DOCUMENT,
+        kText = nt.TEXT,
 
         /*
          * # Common Constants
          */
 
-        kClass     = 'class',
+        kClass = 'class',
         kClassName = 'className',
-        kCss       = 'css',
-        kCssText   = 'cssText',
-        kDiv       = 'div',
-        kEmpty     = '',
-        kFunction  = 'function',
-        kNumber    = 'number',
-        kObject    = 'object',
-        kString    = 'string',
-        kStyle     = 'style',
+        kCss = 'css',
+        kCssText = 'cssText',
+        kDiv = 'div',
+        kEmpty = '',
+        kFunction = 'function',
+        kNumber = 'number',
+        kObject = 'object',
+        kString = 'string',
+        kStyle = 'style',
 
         /*
          * # Common Regular Expressions
@@ -86,27 +60,9 @@
         /*
          * For creating document fragments.
          */
-        tempFragmentDiv = null;
+        tempFragmentDiv;
 
-    /**
-     * @function {static} o2.Dom.append
-     *
-     * <p>Appends the element to the bottom of its parent.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var child = o2.$('childNode');
-     * var parent = o2.$('parentNode');
-     * o2.Dom.append(child, parent);
-     * </pre>
-     *
-     * @param {Object} elmChild - the child node, or the <strong>id</strong> of
-     * the node to append.
-     * @param {Object} elmParent - the parent container, or the
-     * <strong>id</strong> of the container.
-     */
-    exports.append = def(me, 'append', function(elmChild, elmParent) {
+    exports.append = function(elmChild, elmParent) {
         var child  = $(elmChild),
             parent = $(elmParent),
             temp   = null;
@@ -120,28 +76,9 @@
         }
 
         return parent.appendChild(child);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.createDocumentFragment
-     *
-     * <p>Creates a <strong>Document Fragment</strong> from an
-     * <strong>HTML</strong> <code>String</code>.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var frag = o2.Dom.createDocumentFragment('[div]test[/div]');
-     * </pre>
-     *
-     * @param {String} html - the <strong>HTML</strong> to create a fragment
-     * from.
-     *
-     * @return {HTMLDocumentFragment} - the generated <code>document</code>
-     * fragment.
-     */
-    exports.createDocumentFragment = def(me, 'createDocumentFragment',
-                function(html) {
+    exports.createDocumentFragment = function(html) {
         var result = document.createDocumentFragment();
 
         tempFragmentDiv = tempFragmentDiv || document.createElement(kDiv);
@@ -155,35 +92,14 @@
         tempFragmentDiv = null;
 
         return result;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.createElement
-     *
-     * <p>Creates an element with given name and attributes.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var el = o2.Dom.createElement(
-     *      'div',
-     *      {className : 'active', style : 'font-weight : bold'}
-     * );
-     * </pre>
-     *
-     * @param {String} name - the node name of the element (i.e. 'div', 'a').
-     * @param {Object} attributes - an associative array in the form
-     * <code>{att1:value1, att2:value2}</code>.
-     *
-     * @return the created element.
-     */
-    exports.createElement = def(me, 'createElement', function(name,
-                attributes) {
-        var e       = document.createElement(name),
-            isClass = false,
-            isStyle = false,
-            key     = null,
-            value   = kEmpty;
+    exports.createElement = function(name, attributes) {
+        var e = document.createElement(name),
+            isClass,
+            isStyle,
+            key,
+            value;
 
         // Internet Explorer 7- (and some minor browsers) cannot set values
         // for style, class or event handlers, using setAttribute.
@@ -226,36 +142,14 @@
         }
 
         return e;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.create
-     *
-     * <p>An alias to {@link o2.Dom.createElement}.</p>
-     *
-     * @see o2.Dom.createElement
-     */
-    exports.create = alias(me, 'create', 'createElement');
+    // TODO: after AMDfiying everything, go over all the modules to clean them
+    // up; remove code for unsupported browsers.
 
-    /**
-     * @function {static} o2.Dom.getAttribute
-     *
-     * <p>Gets the attribute of a given node.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var uid = o2.Dom.getAttribute('container', 'data-user-id');
-     * </pre>
-     *
-     * @param {Object} elm - the node, or the <strong>id</strong> of the
-     * node, to get the attribute of.
-     * @param {String} attribute - the attribute to gather.
-     *
-     * @return the value of the attribute if found; <code>null</code>
-     * otherwise.
-     */
-    exports.getAttribute = def(me, 'getAttribute', function(elm, attribute) {
+    exports.create = exports.createElement;
+
+    exports.getAttribute = function(elm, attribute) {
         var obj = $(elm),
             value = null;
 
@@ -264,73 +158,37 @@
         if (attribute === kClass || attribute === kClassName) {
             value = obj.className;
 
-            if (value !== UNDEFINED) {return value;}
+            if (value !== undefined) {return value;}
         }
 
         if (attribute === kStyle || attribute === kCss ||
                     attribute === kCssText) {
             value = obj.cssText;
 
-            if (value !== UNDEFINED) {return value;}
+            if (value !== undefined) {return value;}
         }
 
         // The DOM object (obj) may not have a getAttribute method.
         if (typeof obj.getAttribute === kFunction) {
             value = obj.getAttribute(attribute);
 
-            if (value !== UNDEFINED) {return value;}
+            if (value !== undefined) {return value;}
         }
 
         return obj[attribute] || null;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.getHtml
-     *
-     * <p>Gets the <strong>HTML</strong> of a given element.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var html = o2.Dom.getHtml('container');
-     * </pre>
-     *
-     * @param {Object} elm - the <strong>DOM</strong> node or its
-     * <code>String</code> id.
-     *
-     * @return the <code>innerHTML</code> of the given node, if it exists;
-     * <code>null</code> otherwise.
-     */
-    exports.getHtml = def(me, 'getHtml', function(elm) {
+    exports.getHtml = function(elm) {
         var obj = $(elm);
 
         if (!obj) {return null;}
 
         return obj.innerHTML;
-    });
+    };
 
-    if (document.innerText !== UNDEFINED) {
-
-        /**
-         * @function {static} o2.Dom.getText
-         *
-         * <p>Gets the textual content of the given node, replacing entities
-         * like <code>& amp;</code> with it's corresponding character
-         * counterpart (<strong>&</strong> in this example).</p>
-         *
-         * <p><strong>Usage example:</strong></p>
-         *
-         * <pre>
-         * var txt = o2.Dom.getText('container');
-         * </pre>
-         *
-         * @param {Object} elm - the <strong>DOM</strong> node or its
-         * <code>String</code> id.
-         *
-         * @return the textual content of the given node.
-         */
-        exports.getText = def(me, 'getText', function(elm) {
-            var obj     = $(elm),
+    if (document.innerText !== undefined) {
+        exports.getText = function(elm) {
+            var obj = $(elm),
                 nodeType = null;
 
             if (!obj) {return null;}
@@ -345,10 +203,10 @@
             if (typeof obj.innerText !== kString) {return null;}
 
             return obj.innerText.replace(kReturnRegExp, '');
-        });
+        };
     } else {
-        exports.getText = def(me, 'getText', function(elm) {
-            var obj      = $(elm),
+        exports.getText = function(elm) {
+            var obj = $(elm),
                 nodeType = null;
 
             if (!obj) {return null;}
@@ -363,32 +221,13 @@
             if (typeof obj.textContent !== kString) {return null;}
 
             return obj.textContent;
-        });
+        };
     }
 
-    /**
-     * @function {static} o2.Dom.insertAfter
-     *
-     * <p>Adds the node after the reference node.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var ref = o2.$('ref');
-     * var new = o2.$('new');
-     * o2.Dom.insertAfter(new, ref);
-     * </pre>
-     *
-     * @param {Object} elmNewNode - the DOM node, or the <strong>id</strong> of
-     * the node, to insert after.
-     * @param {Object} elmRefNode - the reference node, or the
-     * <strong>id</strong> of the node.
-     */
-    exports.insertAfter = def(me, 'insertAfter', function(elmNewNode,
-                elmRefNode) {
+    exports.insertAfter = function(elmNewNode, elmRefNode) {
         var newNode = $(elmNewNode),
             refNode = $(elmRefNode),
-            obj     = null;
+            obj = null;
 
         if (!newNode || !refNode) {return;}
 
@@ -401,85 +240,33 @@
         }
 
         obj.appendChild(newNode);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.insertBefore
-     *
-     * <p>Adds the node before the reference node.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var ref = o2.$('ref');
-     * var new = o2.$('new');
-     * o2.Dom.insertBefore(new, ref);
-     * </pre>
-     *
-     * @param {Object} elmNewNode - the node, or the <strong>id</strong> of the
-     * node, to insert before.
-     * @param {Object} elmRefNode - the reference, or the <strong>id</strong>
-     * of the node.
-     */
-    exports.insertBefore = def(me, 'insertBefore', function(elmNewNode,
-                elmRefNode) {
+    exports.insertBefore = function(elmNewNode, elmRefNode) {
         var newNode = $(elmNewNode),
             refNode = $(elmRefNode),
-            obj     = null;
+            obj = null;
 
         if (!newNode || !refNode) {return;}
 
         obj = refNode.parentNode;
 
         obj.insertBefore(newNode, refNode);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.isDocument
-     *
-     * <p>Checks whether the given node is a <code>document</code> node.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var isDocument = o2.Dom.isDocument(currentNode);
-     * </pre>
-     *
-     * @param {DOMNode} obj - the <strong>node</strong> to test.
-     *
-     * @return <code>true</code> if the <strong>node</strong> is the
-     * <code>document</code> element; <code>false</code> otherwise.
-     */
-    exports.isDocument = def(me, 'isDocument', function(obj) {
+    exports.isDocument = function(obj) {
         return !!(obj && obj.nodeType === kElementNode);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.isElement
-     *
-     * <p>Checks whether the given node is an <strong>element</strong>
-     * node.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var isElement = o2.Dom.isElement(currentNode);
-     * </pre>
-     *
-     * @param {DOMNode} obj - the <strong>node</strong> to test.
-     *
-     * @return <code>true</code> if the <strong>node</strong> is an
-     * <strong>element</strong> node; <code>false</code> otherwise.
-     */
-    exports.isElement = def(me, 'isElement', function(obj) {
+    exports.isElement = function(obj) {
         return !!(obj && obj.nodeType === kElementNode);
-    });
+    };
 
     /**
      *
      */
     //TODO: add documentation.
-    exports.isNode = def(me, 'isNode', function(obj) {
+    exports.isNode = function(obj) {
         return (
             typeof window.Node === kObject ?
 
@@ -491,27 +278,10 @@
                     typeof obj.nodeType === kNumber &&
                     typeof obj.nodeName === kString
         );
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.prepend
-     *
-     * <p>Prepends the element to the top of its parent.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var child = o2.$('ChildContainer');
-     * var parent = o2.$('MasterContainer');
-     * o2.Dom.prepend(child, parent);
-     * </pre>
-     *
-     * @param {Object} elmChild - the child node, or the id of the node to
-     * prepend.
-     * @param {Object} elmParent - the parent container, or the id of the
-     * container.
-     */
-    exports.prepend = def(me, 'prepend', function(elmChild, elmParent) {
+
+    exports.prepend = function(elmChild, elmParent) {
         var child  = $(elmChild),
             parent = $(elmParent),
             temp   = null;
@@ -534,25 +304,9 @@
         }
 
         return parent.insertBefore(child, parent.childNodes[0]);
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.remove
-     *
-     * <p>Removes the element from the <strong>DOM</strong> flow.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.remove('navigation');
-     * </pre>
-     *
-     * @param {Object} e - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it, to remove.
-     *
-     * @return the removed node.
-     */
-    exports.remove = def(me, 'remove', function(e) {
+    exports.remove = function(e) {
         var elm = $(e);
 
         if (!elm) {return null;}
@@ -560,78 +314,33 @@
         elm.parentNode.removeChild(elm);
 
         return elm;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.removeNode
-     *
-     * <p>An <strong>alias</strong> to {@link o2.Dom.remove}.</p>
-     *
-     * @see o2.Dom.remove
-     */
-    exports.removeNode = alias(me, 'removeNode', 'remove');
+    exports.removeNode = exports.remove;
 
-    /**
-     * @function {static} o2.Dom.removeChildren
-     *
-     * <p>Removes all the children of the element.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.removeChildren('container');
-     * </pre>
-     *
-     * @param {Object} e - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it to process.
-     */
-    exports.removeChildren = def(me, 'removeChildren', function(elm) {
+    exports.removeChildren = function(elm) {
         var node = $(elm);
 
         if (!node) {return;}
 
         node.innerHTML = kEmpty;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.empty
-     *
-     * <p>An <strong>alias</strong> to {@link o2.Dom.removeChildren}.</p>
-     *
-     * @param {Object} elm - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it to process.
-     */
-    exports.empty = alias(me, 'empty', 'removeChildren');
+    exports.empty = exports.removeChildren;
 
-    /**
-     * @function {static} o2.Dom.removeEmptyTextNodes
-     *
-     * <p>Removes empty text nodes from the element.</p>
-     * <p>Note that this removal is not recursive; only the first-level empty
-     * child nodes of the element will be removed.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.removeEmptyTextNodes('container');
-     * </pre>
-     *
-     * @param {Object} e - either the <strong>element</strong>, or the
-     * <strong>id</strong> of it to process.
-     */
-    exports.removeEmptyTextNodes = def(me, 'removeEmptyTextNodes', function(e) {
-        var arRemove     = [],
-            child        = null,
-            elm          = $(e),
-            i            = 0,
+    exports.removeEmptyTextNodes = function(e) {
+        var arRemove = [],
+            elm = $(e),
             shouldRemove = false,
-            children     = null,
-            len          = 0;
+            child,
+            i,
+            children,
+            len;
 
         if (!elm) {return;}
 
         children = elm.childNodes;
-        len      = children.length;
+        len = children.length;
 
         for (i = 0; i < len; i++) {
             child = children[i];
@@ -650,35 +359,11 @@
             child = arRemove[i];
             child.parentNode.removeChild(child);
         }
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.removeEmpty
-     *
-     * <p>An <strong>alias</strong> to
-     * {@link o2.Dom.removeEmptyTextNodes}.</p>
-     *
-     * @see o2.Dom.removeEmptyTextNodes
-     */
-    exports.removeEmpty = alias(me, 'removeEmpty', 'removeEmptyTextNodes');
+    exports.removeEmpty = exports.removeEmptyTextNodes;
 
-    /**
-     * @function {static} o2.Dom.setAttribute
-     *
-     * <p>Sets the attribute of the given object.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.setAttribute('container', 'data-user-id', '123');
-     * </pre>
-     *
-     * @param {Object} elm - the object or the <code>String</code> id of it.
-     * @param {String} attribute - the name of the attribute.
-     * @param {String} value - the value of the attribute.
-     */
-    exports.setAttribute = def(me, 'setAttribute', function(elm, attribute,
-                value) {
+    exports.setAttribute = function(elm, attribute, value) {
         var obj = $(elm);
 
         if (!obj || !attribute) {return;}
@@ -696,27 +381,13 @@
         }
 
         obj[attribute] = value;
-    });
+    };
 
-    /**
-     * @function {static} o2.Dom.setHtml
-     *
-     * <p>Simply sets the <code>innerHTML</code> of the element.
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.setHtml('container', '[h1]hello[/h1]');
-     * </pre>
-     *
-     * @param {Object} elm - The <strong>DOM</strong> element to set the
-     * <strong>HTML</strong> of, or its <code>String</code> id.
-     */
-    exports.setHtml = def(me, 'setHtml', function(elm, html) {
+    exports.setHtml = function(elm, html) {
         var obj = $(elm);
 
         if (!obj) {return;}
 
         obj.innerHTML = html;
-    });
-}(this.o2, this.o2.protecteds, this, this.document));
+    };
+});

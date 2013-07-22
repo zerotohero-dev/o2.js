@@ -1,38 +1,19 @@
 require([
-], function() {
+    '../../core',
+    '../../string/core',
+    '../../string/submodule/transform'
+], function(
+    o2,
+    StringUtil,
+    Transform
+) {
    'use strict';
-
-
-    fp.ensure(
-        'dom.style',
-    [
-        'core',
-        'string.core',
-        'string.transform'
-    ]);
-
-    var attr      = fp.getAttr,
-        alias     = attr(fp, 'alias'),
-        create    = attr(fp, 'create'),
-        def       = attr(fp, 'define'),
-        require   = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Dom',
-
-        /*
-         * Dom (style)
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases
@@ -41,21 +22,20 @@ require([
         /*
          * core
          */
-        $             = require('$'),
-        t             = require('t'),
-        frameworkName = require('name'),
+        $ = o2.$,
+        t = o2.t,
+        frameworkName = o2.name,
 
         /*
          * string.core
          */
-        kString               = 'String',
-        concat                = require(kString, 'concat'),
+        concat = StringUtil.concat,
 
         /*
          * string.transform
          */
-        toCamelCase           = require(kString, 'toCamelCase'),
-        toDashedFromCamelCase = require(kString, 'toDashedFromCamelCase'),
+        toCamelCase = Transform.toCamelCase,
+        toDashedFromCamelCase = Transform.toDashedFromCamelCase,
 
         /*
          * # Common Constants
@@ -63,32 +43,33 @@ require([
 
         kBackgroundPositionX = 'background-position-x',
         kBackgroundPositionY = 'background-position-y',
-        kCssFloat            = 'cssFloat',
-        kDisplay             = 'display',
-        kEmpty               = '',
-        kFloat               = 'float',
-        kHead                = 'head',
-        kHidden              = 'hidden',
-        kLeft                = 'left',
-        kLink                = 'link',
-        kM$                  = 'MSIE',
-        kNone                = 'none',
-        kOldDisplay          = '_oldDisplay',
-        kPixels              = 'px',
-        kRel                 = 'rel',
-        kStyle               = 'style',
-        kTextCss             = 'text/css',
-        kTitle               = 'title',
-        kTop                 = 'top',
-        kVisibility          = 'visibility',
-        kZeroPx              = '0px',
-        kCssText             = 'cssText',
+        kCssFloat = 'cssFloat',
+        kDisplay = 'display',
+        kEmpty = '',
+        kFloat = 'float',
+        kHead = 'head',
+        kHidden = 'hidden',
+        kLeft = 'left',
+        kLink = 'link',
+        kM$ = 'MSIE',
+        kNone = 'none',
+        kOldDisplay = '_oldDisplay',
+        kPixels = 'px',
+        kRel = 'rel',
+        kStyle = 'style',
+        kString = 'string',
+        kTextCss = 'text/css',
+        kTitle = 'title',
+        kTop = 'top',
+        kVisibility = 'visibility',
+        kZeroPx = '0px',
+        kCssText = 'cssText',
 
         /*
          * # Common Regular Expressions
          */
 
-        kRegNumber      = /^-?\d/,
+        kRegNumber = /^-?\d/,
         kRegPixelNumber = /^-?\d+(?:px)?$/i,
 
         /*
@@ -98,34 +79,34 @@ require([
         isCrap = window.navigator.userAgent.indexOf(kM$) > -1 && !window.opera,
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
-        hide      = null,
-        show      = null,
-        isVisible = null;
+        hide,
+        show,
+        isVisible,
+        getStyle;
 
-    exports.activateAlternateStylesheet = def(me, 'activateAlternateStylesheet',
-                function(title) {
-        var i             = 0,
-            len           = 0,
-            link          = null,
-            links         = t(kLink),
-            linkTitle     = kEmpty,
-            shouldDisable = false;
+    exports.activateAlternateStylesheet = function(title) {
+        var links = t(kLink),
+            linkTitle = kEmpty,
+            shouldDisable = false,
+            i,
+            len,
+            link;
 
         for (i = 0, len = links.length; i < len; i++) {
-            link          = links[i];
-            linkTitle     = link.getAttribute(kTitle);
+            link = links[i];
+            linkTitle = link.getAttribute(kTitle);
             shouldDisable = link.getAttribute(kRel).indexOf(kStyle) !== -1 &&
                 title;
 
             link.disabled = (linkTitle === title) ? false : shouldDisable;
         }
-    });
+    };
 
     if(isCrap) {
-        exports.addCssRules = def(me, 'addCssRules', function(cssText) {
+        exports.addCssRules = function(cssText) {
             try {
                 document.createStyleSheet().cssText = cssText;
             } catch(e) {
@@ -135,26 +116,26 @@ require([
                     firstSheet.cssText = concat(firstSheet.cssText, cssText);
                 }
             }
-        });
+        };
     } else {
-        exports.addCssRules = def(me, 'addCssRules', function(cssText) {
-            var d         = document.createElement(kStyle);
+        exports.addCssRules = function(cssText) {
+            var d = document.createElement(kStyle);
 
-            d.type        = kTextCss;
+            d.type = kTextCss;
             d.textContent = cssText;
 
             document.getElementsByTagName(kHead)[0].appendChild(d);
-        });
+        };
     }
 
-    exports.addStyle = def(me, 'addStyle', function(obj, style) {
+    exports.addStyle = function(obj, style) {
         obj = $(obj);
 
         if (!obj) {return;}
 
-        var key               = null,
+        var key = null,
             toCamelCaseCached = toCamelCase,
-            objStyle          = obj.style;
+            objStyle = obj.style;
 
         if (typeof style === kString) {
             if(objStyle.setAttribute) {
@@ -177,11 +158,11 @@ require([
                 }
             }
         }
-    });
+    };
 
-    exports.setCss = alias(me, 'setCss', 'addStyle');
+    exports.setCss = exports.addStyle;
 
-    exports.setStyle = alias(me, 'setStyle', 'addStyle');
+    exports.setStyle = exports.addStyle;
 
     /*
      *
@@ -223,13 +204,12 @@ require([
     }
 
     if (document.defaultView && document.defaultView.getComputedStyle) {
-        exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
-                    isNoForce) {
-            var noForce     = !!isNoForce,
-                obj         = $(elm),
+        exports.getStyle = function(elm, cssProperty, isNoForce) {
+            var noForce = !!isNoForce,
+                obj = $(elm),
                 defaultView = document.defaultView,
-                cssProp     = kEmpty,
-                d           = null;
+                cssProp = kEmpty,
+                d = null;
 
             if (!obj) {return null;}
 
@@ -254,18 +234,17 @@ require([
             }
 
             return d;
-        });
+        };
     } else {
-        exports.getStyle = def(me, 'getStyle', function(elm, cssProperty,
-                    isNoForce) {
-            var noForce      = !!isNoForce,
-                obj          = $(elm),
-                cssProp      = kEmpty,
+        exports.getStyle = function(elm, cssProperty, isNoForce) {
+            var noForce = !!isNoForce,
+                obj = $(elm),
+                cssProp = kEmpty,
                 camelizedCss = kEmpty,
-                value        = kEmpty,
-                isImproper   = false,
-                left         = kEmpty,
-                runtimeLeft  = kEmpty;
+                value = kEmpty,
+                isImproper = false,
+                left = kEmpty,
+                runtimeLeft = kEmpty;
 
             if (!obj) {return;}
 
@@ -282,8 +261,8 @@ require([
             //TODO: factor out.
             if (obj.currentStyle) {
                 camelizedCss = toCamelCase(cssProp);
-                value        = obj.currentStyle[camelizedCss];
-                isImproper   = !kRegPixelNumber.test(value) &&
+                value = obj.currentStyle[camelizedCss];
+                isImproper = !kRegPixelNumber.test(value) &&
                     kRegNumber.test(value);
 
                 //
@@ -310,16 +289,16 @@ require([
                 // ref: http://ajaxian.com/archives/computed-vs-cascaded-style
                 //
                 if (isImproper) {
-                    left        = obj.style.left;
+                    left = obj.style.left;
                     runtimeLeft = obj.runtimeStyle.left;
 
                     obj.runtimeStyle.left = obj.currentStyle.left;
-                    obj.style.left        = (value || 0);
+                    obj.style.left = (value || 0);
 
                     value = concat(obj.style.pixelLeft, kPixels);
 
                     obj.runtimeStyle.left = runtimeLeft;
-                    obj.style.left        = left;
+                    obj.style.left = left;
 
                     return value;
                 }
@@ -328,33 +307,14 @@ require([
             }
 
             return null;
-        });
+        };
     }
 
-    /**
-     * @function {static} o2.Dom.getCss
-     *
-     * <p>An alias to {@link o2.Dom.getStyle}.</p>
-     *
-     * @see o2.Dom.getStyle
-     */
-    exports.getCss = alias(me, 'getCss', 'getStyle');
+    getStyle = exports.getStyle;
 
-    /**
-     * @function {static} o2.Dom.hide
-     *
-     * <p>Hides the given object.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.hide('container');
-     * </pre>
-     *
-     * @param {Object} obj - the <strong>DOM</strong> node, or the
-     * <strong>id</strong> to hide.
-     */
-    exports.hide = def(me, 'hide', function(elm) {
+    exports.getCss = exports.getStyle;
+
+    exports.hide = function(elm) {
         var obj = $(elm);
 
         if (!obj) {return;}
@@ -364,28 +324,14 @@ require([
         }
 
         obj.style.display = kNone;
-    });
+    };
 
     /*
      *
      */
-    hide = require(kModuleName, 'hide');
+    hide = exports.hide;
 
-    /**
-     * @function {static} o2.Dom.show
-     *
-     * <p>Shows the given object.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.show('container');
-     * </pre>
-     *
-     * @param {Object} elm - the <strong>DOM</strong> node, or the
-     * <strong>id</strong> of it, to show.
-     */
-    exports.show = def(me, 'show', function(elm) {
+    exports.show = function(elm) {
         var obj = $(elm);
 
         if (!obj) {return;}
@@ -395,37 +341,14 @@ require([
         ] || kEmpty;
 
         delete obj[[frameworkName, kOldDisplay].join(kEmpty)];
-    });
+    };
 
     /*
      *
      */
-    show = require(kModuleName, 'show');
+    show = exports.show;
 
-    /**
-     * @function {static} o2.Dom.isVisible
-     *
-     * <p>Checks whether the <strong>DOM</strong> node is visible.</p>
-     * <p>Note that being visible does not necessarily mean being available
-     * inside the <strong>viewport</strong>.</p>
-     * <p>If a <strong>DOM</strong> node has <code>display == 'none'</code>
-     * or <code>visibility == 'hidden'</code> <strong>CSS</strong> properties,
-     * then it's regarded as "invisible", otherwise it is considered to be
-     * "visible".</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var isContainerVisible = o2.Dom.isVisible('container');
-     * </pre>
-     *
-     * @param {Object} obj - the <strong>DOM</strong> element, or the
-     * <strong>id</strong> of it, to test.
-     *
-     * @return <code>true</code> if the element is visible, <code>false</code>
-     * otherwise.
-     */
-    exports.isVisible = def(me, 'isVisible', function(obj) {
+    exports.isVisible = function(obj) {
         obj = $(obj);
 
         if (!obj) {return false;}
@@ -443,48 +366,29 @@ require([
         // from the computed style, then the method fails and returns
         // false.
 
-        var display    = me.getStyle(obj, kDisplay),
-            visibility = me.getStyle(obj, kVisibility);
+        var display = getStyle(obj, kDisplay),
+            visibility = getStyle(obj, kVisibility);
 
         if (visibility === kHidden) {return false;}
-        if (display === kNone     ) {return false;}
+        if (display === kNone) {return false;}
 
-        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0   )) ||
-               ((display    ===  null  ) && (visibility !== kHidden)) ||
-               ((visibility ===  null  ) && (display    !== kNone  )) ||
-               ((display    !== kNone  ) && (visibility !== kHidden));
-    });
+        return ((obj.offsetWidth !== 0 || obj.offsetHeight !== 0)) ||
+            ((display ===  null) && (visibility !== kHidden)) ||
+            ((visibility ===  null) && (display !== kNone)) ||
+            ((display !== kNone) && (visibility !== kHidden));
+    };
 
     /*
      *
      */
-    isVisible = require(kModuleName, 'isVisible');
+    isVisible = exports.isVisible;
 
-    /**
-     * @function {static} o2.Dom.toggleVisibility
-     *
-     * <p>Toggles the visibility of the given element.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * o2.Dom.toggleVisibility('container');
-     * </pre>
-     *
-     * @param {Object} elm - a <strong>DOM</strong> reference or its
-     * <code>String</code> id.
-     * @param {Boolean} state - (Optional, defaults to <code>undefined</code>)
-     * if <code>true</code>, show the item; if <code>false</code> hides the
-     * item; if <code>undefined</code> simply toggles the visibility of the
-     * item.
-     */
-    exports.toggleVisibility = def(me, 'toggleVisibility', function(elm,
-                state) {
+    exports.toggleVisibility = function(elm, state) {
         var obj = $(elm);
 
         if (!obj) {return;}
 
-        if (state !== UNDEFINED) {
+        if (state !== undefined) {
             if (state) {
                 show(elm);
 
@@ -503,5 +407,7 @@ require([
         }
 
         show(elm);
-    });
+    };
+
+    return exports;
 });

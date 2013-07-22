@@ -48,7 +48,7 @@ define([
         kLength = 'length',
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         indexOf,

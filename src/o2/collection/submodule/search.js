@@ -1,12 +1,43 @@
 require([
-], function() {
+    '../../collection/core',
+    // TODO: intentionally mistyping. The build process should catch this.
+    '../../method/core',
+    '../../validatin/core',
+    './convert',
+], function(
+    Collection,
+    Method,
+    Validation,
+    Convert
+) {
     'use strict';
 
         /*
          * # Module Exports
          */
 
-    var exports = {};
+    var exports = {},
+
+        /*
+         * ../../validation/core
+         */
+        isArray = Validation.isArray,
+        isObject = Validation.isObject,
+
+        /*
+         * ../../collection/core
+         */
+        indexOf = Collection.indexOf,
+
+        /*
+         * ../../method/core
+         */
+        identity = Method.identity,
+
+        /*
+         * ./convert
+         */
+        toArray = Convert.toArray;
 
     /*
      *

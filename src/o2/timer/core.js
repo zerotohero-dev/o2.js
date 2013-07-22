@@ -87,7 +87,7 @@
         timers = {},
 
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         start = null,

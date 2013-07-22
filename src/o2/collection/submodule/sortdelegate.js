@@ -9,9 +9,8 @@ require([
 
     var exports = {},
 
-
         /*
-         * # To be Overridden
+         * # To Be Overridden
          */
 
         sort;

@@ -1,5 +1,5 @@
-define([
-    'o2.ajax.core'
+require([
+    '../core'
 ], function(
     Ajax
 ) {
@@ -12,7 +12,7 @@ define([
     var exports = {},
 
         /*
-         * ajax.core
+         * ../core
          */
         get = Ajax.get,
         post = Ajax.post,
@@ -60,7 +60,7 @@ define([
         request = getCache[token] = get(url, parameters, callbacks);
 
         return request;
-    }
+    };
 
     exports.postSingle = function(url, parameters, callbacks) {
         var token = prepareToken(url, parameters),
