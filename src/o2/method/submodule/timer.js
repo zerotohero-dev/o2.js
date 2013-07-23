@@ -1,48 +1,11 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
 (function(framework, fp) {
     'use strict';
-
-    /**
-     * @module   method.timer
-     *
-     * @requires core
-     *
-     * <p>A <code>Function</code> helper for timer-related actions, like
-     * delaying a <code>Function</code> call.</p>
-     */
-    fp.ensure(
-        'method.timer',
-    [
-        'core'
-    ]);
-
-    var attr    = fp.getAttr,
-        alias   = attr(fp, 'alias'),
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Method',
-
-        /*
-         * Method (timer)
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Aliases

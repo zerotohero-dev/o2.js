@@ -314,23 +314,23 @@ require([
         throw format(kArgumentCountMismatch, methodName, localParameterCount);
     }
 
-    exports.add = def(me, 'add', function(description, testMeta) {
+    exports.add = function(description, testMeta) {
         var kRequiredLocalParameterCount = 2,
-            kMethodName                  = 'add',
-            kArgumentsLength             = arguments.length,
-            totalAssertionCount          = testMeta.count,
-            testCase                     = testMeta.test;
+            kMethodName = 'add',
+            kArgumentsLength = arguments.length,
+            totalAssertionCount = testMeta.count,
+            testCase = testMeta.test;
 
         expectProperArgumentLength({}, kRequiredLocalParameterCount,
             kArgumentsLength, kMethodName);
 
         tests.push(new UnitTest(description, totalAssertionCount,
             testCase));
-    });
+    };
 
-    exports.assert = def(me, 'assert', function(unitTest, expression, message) {
-        var kArgumentsLength             = arguments.length,
-            kMethodName                  = 'assert',
+    exports.assert = function(unitTest, expression, message) {
+        var kArgumentsLength = arguments.length,
+            kMethodName = 'assert',
             kRequiredLocalParameterCount = 3,
 
             result = !!expression;
@@ -339,12 +339,12 @@ require([
             kArgumentsLength, kMethodName);
 
         didAssertion(unitTest, result, message);
-    });
+    };
 
-    exports.assertEqual = def(me, 'assertEqual', function(unitTest,
+    exports.assertEqual = function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length,
-            kMethodName                  = 'assertEqual',
+        var kArgumentsLength = arguments.length,
+            kMethodName = 'assertEqual',
             kRequiredLocalParameterCount = 4,
 
             // JSLint valitation error on purpose.
@@ -354,12 +354,12 @@ require([
             kArgumentsLength, kMethodName);
 
         didAssertion(unitTest, result, message);
-    });
+    };
 
-    exports.assertNotEqual = def(me, 'assertNotEqual', function(unitTest,
-                currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length,
-            kMethodName                  = 'assertNotEqual',
+    exports.assertNotEqual = function(unitTest, currentValue, expectedValue,
+                message) {
+        var kArgumentsLength = arguments.length,
+            kMethodName = 'assertNotEqual',
             kRequiredLocalParameterCount = 4,
 
             // JSLint validation error on purpose:
@@ -369,12 +369,12 @@ require([
             kArgumentsLength, kMethodName);
 
         didAssertion(unitTest, result, message);
-    });
+    };
 
-    exports.assertStrictEqual = def(me, 'assertStrictEqual', function(unitTest,
+    exports.assertStrictEqual = function(unitTest,
                 currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length,
-            kMethodName                  = 'assertStrictEqual',
+        var kArgumentsLength = arguments.length,
+            kMethodName = 'assertStrictEqual',
             kRequiredLocalParameterCount = 4,
 
             result = (currentValue === expectedValue);
@@ -383,12 +383,12 @@ require([
             kArgumentsLength, kMethodName);
 
         didAssertion(unitTest, result, message);
-    });
+    };
 
-    exports.assertStrictNotEqual = def(me, 'assertStrictNotEqual', function(
-                unitTest, currentValue, expectedValue, message) {
-        var kArgumentsLength             = arguments.length,
-            kMethodName                  = 'assertStrictNotEqual',
+    exports.assertStrictNotEqual = function(unitTest, currentValue,
+                expectedValue, message) {
+        var kArgumentsLength = arguments.length,
+            kMethodName = 'assertStrictNotEqual',
             kRequiredLocalParameterCount = 4,
 
             result = (currentValue !== expectedValue);
@@ -397,33 +397,30 @@ require([
             kArgumentsLength, kMethodName);
 
         didAssertion(unitTest, result, message);
-    });
+    };
 
-    exports.getGlobalFailureCount = def(me, 'getGlobalFailureCount',
-                function() {
+    exports.getGlobalFailureCount = function() {
         return globalFailureCount;
-    });
+    };
 
-    exports.getGlobalSuccessCount = def(me, 'getGlobalSuccessCount',
-                function() {
+    exports.getGlobalSuccessCount = function() {
         return globalSuccessCount;
-    });
+    };
 
-
-    exports.isRunning = def(me, 'isRunning', function() {
+    exports.isRunning = function() {
         return isRunning;
-    });
+    };
 
-    exports.log = def(me, 'log', function(message) {
+    exports.log = function(message) {
         log(message);
-    });
+    };
 
-    exports.run = def(me, 'run', function(globalCompletionCallback) {
+    exports.run = function(globalCompletionCallback) {
         if (isRunning) {return;}
 
         isRunning = true;
 
-        var oncomplete     = globalCompletionCallback || nill,
+        var oncomplete = globalCompletionCallback || nill,
             activeUnitTest = null;
 
         initializeDebugger();
@@ -449,7 +446,7 @@ require([
                 // We are done with this unit test, so release the lock.
                 activeUnitTest = null;
 
-                oncomplete(myself);
+                oncomplete(this);
 
                 return;
             }
@@ -466,7 +463,7 @@ require([
             activeUnitTest = null;
 
         }, kCheckInterval);
-    });
+    };
 });
 
 

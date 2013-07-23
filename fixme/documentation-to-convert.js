@@ -4285,5 +4285,729 @@
      * will be run with <code>o2.Unit</code> as a parameter passed to it.
      */
 
+   /**
+    * @module   event.constants
+    *
+    * @requires core
+    *
+    * <p>A cross-browser event management object.</p>
+    */
+
+        /**
+         * @class {static} o2.Event
+         *
+         * <p>A cross-browser event handling and event utilities class.</p>
+         */
+
+    /**
+     * @struct {static} o2.Event.keyCode
+     */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.ENTER - enter key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.RETURN - enter key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.LEFT - left arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.RIGHT - right arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.TOP - up arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.BOTTOM - down arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.UP - up arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.DOWN - down arrow key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.BACKSPACE - backspace key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.TAB - TAB key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.SHIFT - shift key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.CTRL - CTRL key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.ALT - ALT key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.CAPS_LOCK - caps lock key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.ESCAPE - ESC key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.DELETE - DEL key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.SPACE - SPACE key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.PAGE_UP - PAGE UP key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.PAGE_DOWN - PAGE DOWN key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.END - END key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.HOME - HOME key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.NUMPAD_ENTER - NUMPAD ENTER key.
+         */
+
+        /**
+         * @property {static const Integer}
+         * o2.Event.keyCode.COMMA - COMMA key.
+         */
+
+     /**
+      * @module   event.extend
+      *
+      * @requires core
+      * @requires event.constants
+      * @requires event.core
+      *
+      * <p>Extension methods for the {@link Event} object.</p>
+      */
+
+    /**
+     * @function {static} o2.Event.isArrowKey
+     *
+     * <p>Checks whether the pressed key is an arrow key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var isArrowKey = o2.Event.isArrowKey(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is an arrow key,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Event.isBackspaceKey
+     *
+     * <p>Checks whether the pressed key is the backspace (DEL) key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var isBackspaceKey = o2.Event.isBackspaceKey(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the backspace key,
+     * <code>false</code> otherwise.
+     */
+
+        /**
+         * @function {static} o2.Event.isCharacterKeypressEvent
+         *
+         * <p>Checks whether the character in a <code>onkeypress</code> event
+         * actually produces a printable char.</p>
+         *
+         * <p>The thing you have to remember is that you can't reliably tell
+         * <strong>anything at all</strong> about any character that may be
+         * typed in a <code>onkeydown</code> or <code>onkeyup</code> event:
+         * The printable key is determined only in the <code>onkeypress</code>
+         * handler.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'keypress', function(evt) {
+         *      var isCharKeypress = o2.Event.isCharacterKeypressEvent(evt);
+         * });
+         * </pre>
+         *
+         * @return <code>true</code> if the pressed key is a printable
+         * character; <code>false</code> otherwise.
+         */
+
+    /**
+     * @function {static} o2.Event.isEnterKey
+     *
+     * <p>Checks whether the pressed key is the enter (return) key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isEnterKey = o2.Event.isEnterKey(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the enter key,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @function {static} o2.Event.isEscapeKey
+     *
+     * <p>Checks whether the pressed key is the escape (ESC) key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isEscapeKey = o2.Event.isEscapeKey(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the escape key,
+     * <code>false</code> otherwise.
+     */
+
+        /**
+         * @function {static} o2.Event.isRightClick
+         *
+         * <p>Checks whether or not the curent action is a right click
+         * action.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var isRightClick = o2.Event.isRightClick(evt);
+         * });
+         * </pre>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link o2.Event.addEventListener}.
+         *
+         * @return <code>true</code> if the event is a right click event,
+         * <code>false</code> otherwise.
+         */
 
 
+    /**
+     * @function {static} o2.Event.isTabKey
+     *
+     * <p>Checks whether the pressed key is the tab key.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keypress', function(evt) {
+     *      var isTabKey = o2.Event.isTabKey(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <code>true</code> if the pressed key is the tab key,
+     * <code>false</code> otherwise.
+     */
+
+    /**
+     * @module   event.core
+     *
+     * @requires core
+     * @requires event.constants
+     * @requires string.core
+     *
+     * <p>A cross-browser event management object.</p>
+     */
+
+        /**
+         * @function {static} o2.Event.addEventListener
+         *
+         * <p>Adds a new event listener to the <strong>DOM</strong> Node.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      doClickHandling();
+         * });
+         * </pre>
+         *
+         * @param {DomNode} node - the <strong>DOM</strong> object (or its
+         * <code>String</code> id) the evet shall be attached.
+         * @param {String} evt - the name of the event (like "click",
+         * "mousemove"...)
+         * @param {Function} fn - a reference to the on[event] callback action.
+         *
+         * @throws exception - if <strong>fn</strong> callback is not defined.
+         */
+
+        /**
+         * @function {static} o2.Event.removeEventListener
+         *
+         * <p>Removes an already-added new event listener from the DOM Node.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.removeEventListener('container', 'click', container_click);
+         * </pre>
+         *
+         * @param {DomNode} node - the DOM object (or its <code>String</code>
+         * reference) the evet shall be removed.
+         * @param {String} evt - the name of the event (like "click",
+         * "mousemove"...)
+         * @param {Function} fn - a reference to the on[event] callback action.
+         *
+         * @throws Exception - if <strong>fn</strong> callback is not defined.
+         */
+
+    /**
+     * @function {static} o2.Event.addEventListeners
+     *
+     * <p>Adds a set of event handlers the the <strong>eventName</strong> of
+     * the given <strong>collection</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListeners(['elm1', 'elm2'], 'click', function(evt) {
+     *      handleClickEvent();
+     * });
+     * </pre>
+     *
+     * @param {Object} collection - an <code>Object</code> or an
+     * <code>Array</code> of <strong>DOM</strong> nodes, or their
+     * <strong>id</strong>s.
+     * @param {String} eventName - the name of the <strong>event</strong> to
+     * attach to.
+     * @param {Function} handler - the common event handling
+     * <strong>callback</strong>.
+     *
+     * @throws Exception - if the <strong>handler</strong> callback is not
+     * defined.
+     */
+
+        /**
+         * @function {static} o2.Event.getEventObject
+         *
+         * <p>Gets the actual event object.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var e = o2.Event.getEventObject(evt);
+         * });
+         * </pre>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link Event.addEventListener}
+         *
+         * @return the actual <code>DOM Event</code> object.
+         */
+
+        /**
+         * @function {static} o2.Event.getTarget
+         *
+         * <p>Gets the originating source of the event.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      var src = o2.Event.getTarget(evt);
+         * });
+         * </pre>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link o2.Event.addEventListener}
+         *
+         * @return the actual <strong>DOM</strong> target of the event object.
+         */
+
+    /**
+     * @function {static} o2.Event.getKeyCode
+     *
+     * <p>Gets the key code of the key-related event (keydown, keyup, keypress
+     * etc.).</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'keydown', function(evt) {
+     *      var code = o2.Event.getKeyCode(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the <strong>unicode</strong> key code associated
+     * with the event as an <code>Integer</code>, if found; <code>0</code>
+     * otherwise.
+     */
+
+    /**
+     * @function {static} o2.Event.getMouseCoordinates
+     *
+     * <p>Gets the current mouse coordinates.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Event.addEventListener('container', 'mousemove', function(evt) {
+     *      var dimensions = o2.Event.getMouseCoordinates(evt);
+     * });
+     * </pre>
+     *
+     * @param {Event} evt - the actual <code>DOM Event</code> object used
+     * internally in {@link o2.Event.addEventListener}
+     *
+     * @return the coordinates in the form of
+     * <code>{x: mouseX, y: mouseY}</code>
+     * where <code>x</code> is the distance from the top of the screen, and
+     * <code>y</code> is the distance from the left of the screen.
+     */
+
+        /**
+         * @function {static} o2.Event.preventDefault
+         *
+         * <p>Prevents the default action. When this method is called inside an
+         * even handling callback, the default action associated with that
+         * event is not triggered. Like, if it is an <code>onclick</code>
+         * event on a link, then the browser does not go to the
+         * <code>href</code> of that link.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      o2.Event.preventDefault(evt);
+         * });
+         * </pre>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link Event.addEventListener}
+         */
+
+        /**
+         * @function {static} o2.Event.stopPropagation
+         *
+         * <p>Stops the propagation of the event upwards in the DOM
+         * hierarchy.</p>
+         *
+         * <p>Note that "change" event does not bubble.</p>
+         *
+         * <p>Also, events: change, submit, reset, focus, blur do not bubble
+         * in Internet Explorer.</p>
+         *
+         * <p>According to specification, "focus" and "blur" should not bubble,
+         * while "change", "submit", "reset" should.</p>
+         *
+         * <p>This behavior implemented properly in all web browsers but IE.</p>
+         *
+         * <p>See {@link
+         * http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-flow}
+         * for details.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * o2.Event.addEventListener('container', 'click', function(evt) {
+         *      o2.Event.stopPropagation(evt);
+         * });
+         * </pre>
+         *
+         * @param {Event} evt - the actual <code>DOM Event</code> object used
+         * internally in {@link Event.addEventListener}
+         */
+
+    /**
+     * @module   method.event
+     *
+     * @requires core
+     *
+     * <p>Event-handling-related helper methods.</p>
+     */
+
+   /**
+    * @function {static} o2.Method.bindAsEventListener
+    *
+    * <p>Binds the given function as an event listener, ensuring that
+    * the first parameter is always the event object.</p>
+    *
+    * <p>This method is generally used in conjunction with
+    * {@link o2.Event.addEventListener}.</p>
+    *
+    * <p><strong>Usage example:</strong></p>
+    *
+    * <pre>
+    * var $ = o2.$;
+    * var listen = o2.Event.addEventListener;
+    * var getTarget = o2.Event.getTarget;
+    * var bind = o2.Method.bindAsEventListener;
+    *
+    * var context = {id : 1, description : 'hello world.'};
+    * var kClick = 'click';
+    * var menu = $('mainMenu');
+    *
+    * function test(evt, a, b) {
+    *      console.log( getTarget(evt) );
+    *      console.log( this.id );
+    *      console.log( this.description );
+    *      console.log( a );
+    *      console.log( b );
+    * }
+    *
+    * var delegate = bind(context, test, 20, 30);
+    * listen(menu, kClick, delegate);
+    *
+    * // When mainMenu element is clicked the output will be as follows:
+    * //
+    * // [DOM Element]
+    * // 1
+    * // hello world
+    * // 20
+    * // 30
+    * </pre>
+    *
+    * @return the bound <code>Function</code>.
+    *
+    * @see o2.Event.addEventListener
+    */
+
+/*
+ *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
+ *
+ *  This program is distributed under the terms of the "MIT License".
+ *  Please see the <LICENSE.md> file for details.
+ */
+
+    /**
+     * @module   method.inherit
+     *
+     * @requires core
+     * @requires string.corei
+     *
+     * <p>OOJS/Inheritance related method helpers.</p>
+     */
+
+    /**
+     * @function {static} o2.Method.overload
+     *
+     * <p>Adds a method to the <code>Object</code>.</p>
+     * <p>If parameters count is different but the name is same,
+     * adds the method with a different signature, overloading the former
+     * one.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var Context = {};
+     *
+     * o2.Method.overload(Context, 'test', function(a) {
+     *      console.log(a);
+     * });
+     *
+     * o2.Method.overload(Context, 'test', function(a, b) {
+     *      console.log(a + b);
+     * });
+     *
+     * Context.test(1);
+     * Context.test(1, 2);
+     *
+     * // will output:
+     * // 1
+     * // 3
+     * </pre>
+     *
+     * @param {Object} object - the <code>Object</code> to add methods to.
+     * @param {String} name - the name of the method.
+     * @param {Function} fn - the method reference.
+     *
+     * @return the overloaded <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.requireAllArguments
+     *
+     * <p>Checks the passed in arguments, and if all arguments are present,
+     * executes <code>Function</code>. Otherwise throws an error.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function test(a, b) {
+     *
+     * }
+     *
+     * var testEnsure = o2.Method.requireAllArguments(test);
+     *
+     * testEnsure(1);    // will throw an exception.
+     * testEnsure(1, 2); // will NOT throw an exception.
+     * </pre>
+     *
+     * @param {Function} fn - the <code>Function</code> to check.
+     *
+     * @return the applied <code>Function</code>.
+     *
+     * @throws Excpetion if all of the arguments is not provided to the
+     * <code>Function</code>.
+     */
+
+    /**
+     * @module   method.repeat
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for stuff repetitive method calls.</p>
+     */
+
+    /**
+     * @function {static} o2.Method.after
+     *
+     * <p>Creates a <code>Function</code> that only executes after being called
+     * <strong>count</strong> times.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var bump = o2.Method.after(3, function() {
+     *      console.log('bump');
+     * });
+     *
+     * bump();bump();bump();bump();
+     * // Will log 'bump' only once.
+     * </pre>
+     *
+     * @param {Integer} count - the numer of calls required to the
+     * <code>Function</code> before executing it.
+     * @param {Function} delegate - the delegate to execute.
+     *
+     * @return a <code>Function</code> that will only execute after being
+     * called <strong>count</strong> times.
+     */
+
+    /**
+     * @function {static} o2.Method.once
+     *
+     * <p>Creates a <code>Function</code> that will only get called once.<p>
+     * <p>May be useful for creating <strong>singleton</strong>
+     * <code>Object</code>s, or for lazy-loading modules.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var init = o2.Method.once(function() {
+     *      console.log('done');
+     * });
+     *
+     * init();init();
+     * // Will log 'done' only once.
+     * </pre>
+     *
+     * @param {Function} delegate - the <code>Function</code> to execute.
+     *
+     * @return a <code>Function</code> that will execute only once.
+     */
+
+    /**
+     * @function {static} o2.Method.times
+     *
+     * <p>Sequentially executes a given <code>Function</code> given amount
+     * of times.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Method.times(3, function(i) {
+     *   console.log(i);
+     * });
+     * // Will log:
+     * // 0
+     * // 1
+     * // 2
+     * </pre>
+     *
+     * @param {Integer} count - number of times to execute.
+     * @param {Function} delegate - the <code>Function</code> to execute (in
+     * the form <code>function(i, payload)</code>).
+     * @param {Object} context - what should <code>this</code> refer to inside
+     * the <code>Function</code>.
+     * @param {Object} payload - the <code>Object</code> to pass to the
+     * <strong>delegate</strong> as a second argument.
+     */
+
+    /**
+     * @module   method.timer
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for timer-related actions, like
+     * delaying a <code>Function</code> call.</p>
+     */
