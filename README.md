@@ -8,6 +8,8 @@
 About **[o2.js][2]**
 --------------------------------------------------------------------------------
 
+TODO: edit me!
+
 **[o2.js][2]** is a **JavaScript** Framework that's constantly evolving with
 three main goals:
 
@@ -174,7 +176,7 @@ development environment.
 * **[LICENSE.md][8]**: The usual *copyright* yadda yadda. **o2.j2** is
 is distributed under **MIT** license, so feel free to **fork it**.
 * **README.md**: This file that you are currently viewing.
-* **[WE_LOVE_YOU.md][12]**: The file explaining how to contribute. 
+* **[WE_LOVE_YOU.md][12]**: The file explaining how to contribute.
 Please keep in mind that **anyone** can contribute! And when we say
 **anyone**, we mean it **;)**.
 

@@ -5,6 +5,8 @@
     \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
                /___/
 
+TODO: edit me!
+
 # o2.js **JavaScript** Conventions & Best Practices
 
 ## An **All-in-One** Guide to Writing Efficient **JavaScript** *;)*

@@ -8,6 +8,8 @@
 **[o2.js](http://o2js.com/)** Change Log
 --------------------------------------------------------------------------------
 
+TODO: edit me!
+
 ### **[o2.js](http://o2js.com/)** v.0.26
 
 v.0.26 is not up there yet. Here are a few major things that will change

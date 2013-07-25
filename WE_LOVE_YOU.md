@@ -8,6 +8,8 @@
 How Can I Contribute to **[o2.js](http://o2js.com/)**
 --------------------------------------------------------------------------------
 
+TODO: edit me!
+
 ### Introduction
 
 Open source software has changed the world, and it will continue to do so.
