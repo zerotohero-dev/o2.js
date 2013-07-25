@@ -1,48 +1,12 @@
-/*
- *  [ o2.js JavaScript Framework ]( http://o2js.com/ )
- *
- *  This program is distributed under the terms of the "MIT License".
- *  Please see the <LICENSE.md> file for details.
- */
-(function(framework, fp, UNDEFINED) {
+require([
+], function() {
     'use strict';
-
-    /**
-     * @module   template.core
-     *
-     * @requires core
-     *
-     * <p>A "very" fast templating engine.</p>
-     */
-    fp.ensure(
-        'template.core',
-    [
-        'core'
-    ]);
-
-    var attr    = fp.getAttr,
-        create  = attr(fp, 'create'),
-        def     = attr(fp, 'define'),
-        require = attr(fp, 'require'),
 
         /*
          * # Module Exports
          */
 
-        exports = {},
-
-        /*
-         * # Module Definition
-         */
-
-        kModuleName = 'Template',
-
-        /**
-         * @class {static} o2.Template
-         *
-         * <p>A really <strong>fast</strong> template engine.</p>
-         */
-        me = create(kModuleName),
+    var exports = {},
 
         /*
          * # Common Constants
@@ -57,7 +21,7 @@
          */
 
         kSeparatorRegExp = /\s+/,
-        kTemplateRegExp  = /\{\{([a-zA-Z0-9]*?)\}\}/g,
+        kTemplateRegExp = /\{\{([a-zA-Z0-9]*?)\}\}/g,
 
         /*
          * # Common Commands
@@ -75,13 +39,13 @@
      *
      */
     function parseDirective(line, data) {
-        var kDirectiveIndex   = 0,
+        var kDirectiveIndex = 0,
             kSubTemplateIndex = 1,
-            kCommandIndex     = 0,
-            kDataKeyIndex     = 1,
+            kCommandIndex = 0,
+            kDataKeyIndex = 1,
 
             collectionKey = kEmpty,
-            directiveKey  = kEmpty,
+            directiveKey = kEmpty,
 
             directive = null,
 
@@ -92,9 +56,9 @@
             collection = null,
 
             clen = 0,
-            i    = 0;
+            i = 0;
 
-        if (!line.length     ) {return kEmpty;}
+        if (!line.length) {return kEmpty;}
         if (line.length === 1) {return line[0];}
 
         directive = line[kDirectiveIndex] &&
@@ -133,57 +97,27 @@
 
         return line.replace(kTemplateRegExp, function(str, p1
                     /*, offset, total*/) {
-            return data[p1] !== UNDEFINED ? data[p1] : str;
+            return data[p1] !== undefined ? data[p1] : str;
         });
     }
 
-    /**
-     * @function {static} o2.Template.parse
-     *
-     * <p>Parses the given template.</p>
-     *
-     * <p><strong>Usage example:</strong></p>
-     *
-     * <pre>
-     * var data = {
-     *      users : [
-     *          {name : 'Joe' },
-     *          {name : 'Jill'},
-     *          {name : 'Jack'}
-     *      ]
-     * };
-     *
-     * var tpl = [
-     *      'ul id="Products"',
-     *          ['each users',
-     *              'li {{name}} /li'],
-     *      '/ul'
-     * ];
-     *
-     * var html = o2.Template.parse(data, tpl);
-     * </pre>
-     *
-     * @param {Object} data - the source data as a <strong>JSON</strong> object.
-     * @param {String} tpl - the template to parse against.
-     *
-     * @return {String} the parsed template.
-     */
-     exports.parse = def(me, 'parse', function(data, tpl){
-        var buffer  = [],
+     exports.parse = function(data, tpl) {
+        var buffer = [],
             tplData = data || {},
-            i       = 0,
-            len     = 0;
+            i,
+            len;
 
         for (i = 0, len = tpl.length; i < len; i++) {
             buffer.push(parse(tpl[i], tplData));
         }
 
         return buffer.join(kEmpty);
-     });
+     };
 
      /*
       *
       */
-     doParse = require(kModuleName, 'parse');
-}(this.o2, this.o2.protecteds));
+     doParse = exports.parse;
 
+     return exports;
+});

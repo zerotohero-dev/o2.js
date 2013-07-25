@@ -5011,3 +5011,1265 @@
      * <p>A <code>Function</code> helper for timer-related actions, like
      * delaying a <code>Function</code> call.</p>
      */
+
+    /**
+     * @function o2.Method.debounce
+     *
+     * <p>Creates a <code>Function</code> that will not be triggered, as long as
+     * it continues to get invoked within a certain time window.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var debounceAction = o2.Method.debuonce(function() {
+     *      console('if you call me within a second, I will skip.');
+     * }, 1000);
+     * </pre>
+     *
+     * @param {Function} delegate - the <code>Function</code> to debounce.
+     * @param {Integer} waitMs - the least amount of time (in milliseconds)
+     * to wait between calls.
+     *
+     * @return the debounced <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.defer
+     *
+     * <p>Defers a <code>Function</code> for a specified amount of time.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var deferAction = o2.Method.defer(function() {
+     *      console.log('I will be delayed for 1 second');
+     * }, 1000);
+     * </pre>
+     *
+     * @param {Function} delegate - the <code>Function</code> to defer.
+     * @param {Integer} interval - the interval to defer in milliseconds.
+     * @param {Object} context - the context (this reference) to bind.
+     * @param {Array} args - arguments to pass to the function.
+     */
+
+    /**
+     * @function {static} o2.Method.delay
+     *
+     * <p>An <strong>alias</strong> to {@link o2.Method.defer}.</p>
+     *
+     * @see o2.Method.defer
+     */
+
+    /**
+     * @function {static} o2.Method.throttle
+     *
+     * <p>Returns a <code>Function</code> that will execute at most once in a
+     * given time window. That is to say, quick repetitive calls to the function
+     * are <strong>throttled</strong>.</p>
+     *
+     * <p>This may be especially useful for asyncronous <strong>AJAX</strong>,
+     * requests, preventing the client to bombard the server with too many
+     * simultaneous requests.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Method.throttle(function() {
+     *      console.log('You can call me at max once within a second');
+     * }, 1000);
+     * </pre>
+     *
+     * @param {Function} delegate - the <code>Function</code> to throttle.
+     * @param {Integer} waitMs - the least amount of time (in milliseconds)
+     * to wait between calls.
+     *
+     * @return the throttled <code>Function</code>.
+     */
+
+    /**
+     * @module   method.transpose
+     *
+     * @requires core
+     *
+     * <p>flip/fold/merge kind of method helper that ammend/transpose
+     * <code>Function</code>s.</p>
+     */
+
+    /**
+     * @function {static} o2.Method.compose
+     *
+     * <p>Create a method that calls the <strong>invoker</strong> with the
+     * return value of the evaluated function <strong>fn</strong>. The current
+     * arguments are passed to <strong>fn</strong>, and the evaluated result
+     * is passed to the <strong>invoker</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function double(a) { return a*2; }
+     * var min = Math.min;
+     * var doubleMin = o2.Method.compose(double, min);
+     * var res = doubleMin(3, 5);
+     * // res will be 6
+     * </pre>
+     *
+     * @param {Function} invoker - the invoker.
+     * @param {Function} delegate - the invokee.
+     *
+     * @return the created <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.flip
+     *
+     * <p>Flips two arguments of the given <code>Function</code>, and returns a
+     * new <code>Function</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function factor(a, b) { return a / b; }
+     * var flipped = o2.Method.flip(factor, 0, 1);
+     * var result = factor(5, 2) == flipped(2, 5);
+     * // result will be true
+     * </pre>
+     *
+     * @param {Function} fn - the delegate to flip arguments of.
+     * @param {Integer} index1 - the index of the first argument.
+     * @param {Integer} index2 - the index of the second argument.
+     *
+     * @return the created <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.wrap
+     *
+     * <p>Returns the first <strong>delegate</strong> passed as an argument
+     * to the second <strong>wrapper</strong> followed by the arguments of
+     * the returned <code>Funciton</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function wrapper(fn, a, b) { return fn(a, b) + a + b; }
+     * function delegate { return a * b; }
+     * var wrapped = o2.Method.wrap(delegate, wrapper);
+     *
+     * var result = wrapped(3, 5);
+     * // result will be 23
+     * </pre>
+     *
+     * @param {Function} delegate - the first <code>Function</code> to pass
+     * as parameter.
+     * @param {Function} wrapper - the wrapper <code>Function</code>.
+     *
+     * @return the wrapped <code>Function</code>.
+     */
+
+    /**
+     * @module   method.core
+     *
+     * @requires core
+     *
+     * <p>A <code>Function</code> helper for stuff like
+     * <strong>memoization</strong>, <strong>partial functions</strong> and
+     * <strong>currying</strong>.</p>
+     */
+
+        /**
+         * @function {static} o2.Method.bind
+         *
+         * <p>Creates a <code>Function</code> that uses <strong>base</strong> as
+         * the "<code>this</code>" reference.</p>
+         *
+         * <p><strong>bind</strong> can often be used to bind a different
+         * context to a <strong>curried</strong> function.
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * function test(a,b,c){ return this.number + (a*b+c); };
+         * var context = {number:10};
+         * var bound = o2.Method.bind(context, test);
+         * bound(20,2,10);//gives 60
+         * var bound2 = o2.Method.bind(context, test, 20);
+         * bound2(2, 10);//gives 60
+         * </pre>
+         *
+         * @param {Object} base - the context of the newly created
+         * <code>Function</code>.
+         * @param {Function} fn - the <code>Function</code> to modify.
+         * @param {Arguments} varargin - variable number of input arguments
+         * to be passed as initial set of arguments.
+         *
+         * @return the modified <code>Function</code>.
+         */
+
+    /**
+     * @function {static} o2.Method.curry
+     *
+     * <p>Curries the <code>Function</code>.</p>
+     * <p>See http://www.dustindiaz.com/javascript-curry/ for a
+     * discussion.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function test(a,b,c) { return a+b+c; }
+     * var curried = o2.Method.curry(this, test, 1, 2);
+     * var result = curried(3);//returns 6;
+     * </pre>
+     *
+     * @return the modified <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.identity
+     *
+     * <p>Just an identity function, that return what it's given without
+     * changing it.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var result = o2.identity(4);
+     * // result will be 4
+     * </pre>
+     *
+     * @param {Object} value - input.
+     * @return the <strong>value</strong> itself.
+     */
+
+    /**
+     * @function {static} o2.Method.memoize
+     *
+     * <p><strong>Memoizes</strong> the given <code>Function</code>'s
+     * outcome and presents it from cache, instead of recalculating.</p>
+     * <p>See http://en.wikipedia.org/wiki/Memoization for details.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function multiply(a,b){return a*b; }
+     * var memoized = o2.Method.memoize(multiply);
+     * var result = memoized(2,3);//fresh calculation.
+     * result = memoized(4,2);//fresh calculation.
+     * result = memoized(2,3);//retrieve from cache.
+     * </pre>
+     *
+     * @param {Function} fn - the <code>Function</code> to memoize.
+     * @param {Object} context - what should "this" refer to.
+     * @param {...} ... - variable number of input arguments to pass
+     * arguments to fn.
+     *
+     * @return a reference to the memoized <code>Function</code>.
+     */
+
+    /**
+     * @function {static} o2.Method.partial
+     *
+     * <p>Defines a partial <code>Function</code>.</p>
+     * <p>See http://ejohn.org/blog/partial-functions-in-javascript/ for a
+     * detailed discussion.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function test(a,b,c){ return a*b+c; }
+     * var partial = o2.Method.partial(this, test, 10, undefined, 20);
+     * var result = partial(3);//returns 50;
+     * </pre>
+     *
+     * @param {Object} base - the context of the newly created
+     * <code>Function</code>.
+     * @param {Function} fn - the <code>Function</code> to modify.
+     * @param {Arguments} varargin - variable number of input arguments to
+     * be passed as initial set of arguments.
+     *
+     * @return the modified <code>Function</code>.
+     */
+
+        /**
+         * @class {static} o2.Method
+         *
+         * <p>A method helper class.</p>
+         */
+
+    /**
+     * @module   object.core
+     *
+     * @requires core
+     * @requires collection.core
+     * @requires string.core
+     *
+     * <p>An object/clone/copy/inheritance helper.</p>
+     */
+
+        /**
+         * @class {static} o2.Object
+         *
+         * <p>A helper class for <strong>JavaScript</strong> <code>Object</code>
+         * inheritance.</p>
+         */
+
+    /**
+     * @function {static} o2.Object.copy
+     *
+     * <p>Copies members from <strong>base</strong> to
+     * <strong>child</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var base = {lorem : 1};
+     * var child = {ipsum : 2};
+     * o2.Object.copy(child, base);
+     * // child is now {lorem : 1, ipsum : 2}
+     * </pre>
+     *
+     * @param {Object} child
+     * @param {Object} base
+     *
+     * @see o2.Collection.union
+     */
+
+    /**
+     * @function {static} o2.Object.copyMethods
+     * <p>Copies <strong>base</strong>'s methods, to
+     * <strong>child</strong>.  </p>
+     * <p>Note that the methods are copied by ref. Therefore any change in
+     * <strong>base</strong> object's methods will be directly reflected to
+     * the <strong>child</strong> object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var child = {lorem : 1};
+     * var base = {ipsum : function() {}};
+     * o2.Object.copyMethods(child, base);
+     * // child is now {lorem : 1, ipsum : function() {}}
+     * </pre>
+     *
+     * @param {Object} child - the child <strong>object</strong> to copy
+     * methods to.
+     * @param {Object} base - the base <strong>object</strong> to copy
+     * methods from.
+     */
+
+    /**
+     * @function {static} o2.Object.copyPrototype
+     *
+     * <p>Copies every propery in <strong>base.prototype</strong>, to
+     * <strong>child.prototype</strong>.</p>
+     * <p>This is similar to extending <strong>child</strong>
+     * to <strong>base</strong>.</p>
+     * <p>Note that the methods are copied by ref. Therefore any change in
+     * <strong>base</strong> object's prototype methods will be directly
+     * reflected to the <strong>child</strong> object's protoype.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var Child = function() {};
+     * Child.prototype.method1 = function() {};
+     * var Base = function() {};
+     * Base.prototype.method2 = function() {};
+     * o2.Object.copyPrototype(Child, Base);
+     * // Child.prototype has both method1 and method2 now.
+     * </pre>
+     *
+     * @param {Object} child - the child <strong>object</strong> to copy
+     * methods to.
+     * @param {Object} base - the base <strong>object</strong> to copy
+     * methods from.
+     */
+
+    /**
+     * @function {static} o2.Object.extend
+     *
+     * <p>A simple way of extending objects.<p>
+     * <p>Although the so called "object-oriented <strong>JavaScript</strong>"
+     * is rarely useful and is against the <strong>functional</strong> nature of
+     * the language, this helper method may be handy at times.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * function Fruit() {}
+     * Fruit.prototype.grow = function() {};
+     * Fruit.prototype.name = 'fruit';
+     *
+     * function Apple() {}
+     * Apple.prototype.name = 'Steve';
+     *
+     * o2.Object.extend(Apple, Fruit, new Fruit());
+     *
+     * var fruit = new Fruit();
+     * var apple = new Apple();
+     *
+     * log(typeof apple.grow); // function
+     * log(apple.constructor); // Apple
+     * log(apple.parent);      // {grow: function(){}, name : 'fruit'}
+     * log(apple.name);        // 'Steve'
+     * log(apple.parent.name); // 'fruit'
+     * </pre>
+     *
+     * @param {Function} childConstructor - the child object.
+     * @param {Function} baseConstructor - the <code>Object</code> to extend.
+     * @param {Object} baseConstructed - base object initialized to a default
+     * state.
+     */
+
+    /**
+     * @function {static} o2.Object.toArray
+     *
+     * <p>Converts a given <code>Object</code> to an <code>Array</code>.</p>
+     *
+     * @param {Object} obj - the <code>Object</code> to convert to an
+     * <code>Array</code>.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var obj = {lorem : 1, ipsum : 2};
+     * var ar = o2.Object.toArray(obj);
+     * // ar will be [1, 2]
+     * </pre>
+     *
+     * @return the converted <code>Array</code>.
+     *
+     * @see o2.Collection.toArray
+     */
+
+    /**
+     * o2.Object.toJsonString
+     *
+     * <p>Converts the <code>Object</code> to a <strong>JSON</strong>
+     * <code>String</code>, if <strong>JSON</strong> is supported.
+     * you can use 3rdparty/json2/json2.js to add cross-browser
+     * <strong>JSON</strong> support.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var obj = {lorem : 1};
+     * var str = o2.Object.toJsonString(obj);
+     * // str will be '{"lorem":1}' (a serialized String literal)
+     * </pre>
+     *
+     * @param {Object} obj - the <code>Object</code> to convert to a
+     * <strong>JSON</strong> <code>String</code>.
+     *
+     * @return the converted <strong>JSON</strong> <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.Object.stringify
+     *
+     * <p>An <strong>alias</strong> to {@link o2.Object.toJsonString}.</p>
+     *
+     * @see o2.Object.toJsonString
+     */
+
+    /**
+     * @function {static} o2.Object.touch
+     *
+     * <p>Executes the delegate by passing the <strong>obj</strong> to it as a
+     * parameter, then returns the <strong>obj</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var obj = {lorem : '1'};
+     * o2.Object.touch(obj, function(o) {
+     *   o.lorem = '3';
+     * });
+     * // now obj is {lorem : '3'}
+     * </pre>
+     *
+     * @param {Object} obj - the <code>Object</code> to touch.
+     * @param {Function} delegate - the delegate to execute
+     * on <strong>obj</strong>.
+     *
+     * @return <code>null</code> if <strong>obj</strong> is falsy or it's a
+     * primitive type; returns the <strong>obj</strong> itself (after applying
+     * delagate to it) otherwise.
+     */
+
+    /**
+     * @module   string.encode
+     *
+     * @requires core
+     * @requires string.core
+     *
+     * <p>This package is responsible for encoding and decoding
+     * <code>String</code>s.</p>
+     */
+
+    /**
+     * @function {static} o2.String.decode
+     *
+     * <p>Decodes <strong>HTML</strong> entities back to normal characters.</p>
+     * <p>If possible try using standard decoding methods like
+     * <code>decodeURIComponent</code>, instead of using this method.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var decoded = o2.String.decode(encodedString);
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.encode
+     *
+     * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+     * entities.</p>
+     * <p>If possible try using standard encoding methods like
+     * <code>encodeURIComponent</code>,
+     * instead of using this method.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var encoded = o2.String.decode(inputString);
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.htmlEncode
+     *
+     * <p>An <strong>alias</strong> to {@link o2.String.encode}.</p>
+     *
+     * @see o2.String.encode
+     */
+
+    /**
+     * @function {static} o2.String.encodeSafeHtml
+     *
+     * <p>Works similar to {@link o2.String.encode}.</p>
+     * <p>Encodes the <code>String</code> by converting it into a text node
+     * and returning the node's value.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var encoded = o2.String.encodeSafeHtml(inputString);
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     *
+     * @see o2.String.encode
+     */
+
+    /**
+     * @function {static} o2.String.safeHtmlEncode
+     *
+     * <p>An <strong>alias</strong> to
+     * {@link o2.String.encodeSafeHtml}.</p>
+     *
+     * @see o2.String.encodeSafeHtml
+     */
+
+    /**
+     * @function {static} o2.String.escape
+     *
+     * <p>An <strong>alias</strong> to <code>encodeURIComponent</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.unescape
+     *
+     * <p>An <strong>alias</strong> to <code>decodeURIComponent</code>.</p>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.xssEncode
+     *
+     * <p>Encodes special charaters to their corresponding <strong>HTML</strong>
+     * entities. Works similar to {link String.encode}, with an
+     * exception that it does not encode whitespace characters.</p>
+     * <p>This method is specially designed to prevent cross-site script
+     * injection attacks.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var encoded = o2.String.xssEncode(inputString);
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process
+     * @param {Boolean} isAmpersandsPreserved - (Optional. Defaults to
+     * <code>false</code>). If <code>true</code> & characters will not be
+     * encoded, otherwise they will be.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @module   querystring.core
+     *
+     * @requires core
+     *
+     * <p>A <strong>query string</strong> parser.</p>
+     */
+
+        /**
+         * @class {static} o2.QueryString
+         *
+         * <p>Used for parsing the browser's <strong>query string</strong>.</p>
+         */
+    /**
+     * @function {static} o2.QueryString.encode
+     *
+     * <p>Converts the <strong>JSON</strong> object in parameters into a
+     * query string.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var query = {lorem : 'ipsum', dolor : sit};
+     * var qs = o2.QueryString.encode(query);
+     * </pre>
+     *
+     */
+
+    /**
+     * @function {static} o2.QueryString.parse
+     *
+     * <p>Parses the <strong>query string</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var params = o2.QueryString.parse(window.location.href);
+     * </pre>
+     *
+     * @param {String} url - (Optional) if given, parses the
+     * <strong>URL</strong>.
+     * given, parses <code>window.location.href</code> otherwise.
+     *
+     * @return the parsed <strong>query string</strong> as a {name1:value1,
+     * name2:value2} <code>Object</code>.
+     */
+
+    /**
+     * @module   string.strip
+     *
+     * @requires core
+     *
+     * <p>This package is responsible for simple <code>String</code> stripping
+     * operations.</p>
+     */
+
+    /**
+     * @function {static} o2.String.stripNonAlpha
+     *
+     * <p>Removes non alphabetical characters from the <code>String</code>
+     * (excluding numbers).</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var stripped = o2.String.stripNonAlpha('abc123.!');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.stripNonAlphanumeric
+     *
+     * <p>Removes alpha-numeric characters from the <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var stripped = o2.String.stripNonAlphanumeric('abc123.!');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.stripTags
+     *
+     * <p>Removes tags from the <code>String</code>.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var stripped = o2.String.stripTags('<p>abc123.!</p>');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.stripNonNumeric
+     *
+     * <p>Removes non-numeric characters from the <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var stripped = o2.String.stripNonNumeric('abc123.!');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.stripNumeric
+     *
+     * <p>Removes numeric characters from the <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var stripped = o2.String.stripNumeric('abc123.!');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @module   string.transform
+     *
+     * @requires core
+     *
+     * <p>This package is responsible for simple <code>String</code>
+     * transformation operations.</p>
+     */
+
+    /**
+     * @function {static} o2.String.br2nl
+     *
+     * <p>Replaces HTML [br /] tags with new line.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var replaced = o2.String.br2nl('hello<br />world.');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.nl2br
+     *
+     * <p>Replaces new lines [\n] with HTML [br /] tags.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var replaced = o2.String.nl2br('hello\nworld.');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.toCamelCase
+     *
+     * <p>Converts the input to camel case.</p>
+     * <p>i.e. if input is 'lorem-ipsum', the output is 'loremIpsum'.</p>
+     * <p>This is especially useful for converting <code>CSS</code> classes
+     * to their <strong>DOM</strong> style representations.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var camelized = o2.String.toCamelCase('font-family');
+     * </pre>
+     *
+     * @param {String} input - the <code>String</code> to convert.
+     *
+     * @return the formatted String.
+     */
+
+    /**
+     * @function {static} o2.String.toDashedFromCamelCase
+     *
+     * <p>Converts a <code>String</code> of the form 'loremIpsum' to
+     * 'lorem-ipsum'.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var dashed = o2.String.toDashedFromCamelCase('fontFamily');
+     * </pre>
+     *
+     * @param {String} input - the <code>String</code> to convert.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.toJson
+     *
+     * <p>Converts the given <code>String</code> to a <strong>JSON</strong>
+     * object.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var parsed = o2.String.toJson('{"name" : "value"}');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to convert.
+     *
+     * @return the converted <strong>JSON</strong> <code>Object</code>.
+     *
+     * @throws Exception - if <strong>str</strong> is not a well-formed
+     * <strong>JSON</strong> <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.toUnderscoreFromCamelCase
+     *
+     * <p>Converts a <code>String</code> of the form 'loremIpsum' to
+     * 'lorem_ipsum'.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var replaced = o2.String.toUnderscoreFromCamelCase('fontFamily');
+     * </pre>
+     *
+     * @param {String} input - the <code>String</code> to convert.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.truncate
+     *
+     * <p>Adds an ellipsis (&hellip;), if the length of the <code>String</code>
+     * is greater than <strong>maxLen</strong>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var truncated = o2.String.truncate('This ... is a very long String.');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     * @param {Integer} maxLen - Optional (defaults TRUNCATION_LENGTH},
+     * maximum <code>String</code> length that's allowed without truncation.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+    /**
+     * @module   string.core
+     *
+     * @requires core
+     *
+     * <p>A <code>String</code> helper.</p>
+     */
+
+    /**
+     * @function {static} o2.String.concat
+     *
+     * <p>Concatanes all its arguments into a single <code>String</code>.
+     * This is faster than adding those <code>String</code>s with
+     * <code>+</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var joined = o2.String.concat('lorem', ipsum);
+     * </pre>
+     *
+     * @return the concataneted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.format
+     *
+     * <p>Works similar to <strong>C#</strong>'s
+     * <code>String.Format</code>.</p>
+     *
+     * <p>Usage example:<p>
+     *
+     * <pre>
+     * o2.String.format("Hello {0}. What's going on in {1}?", 'Ninja',
+     * 'California');
+     * //will return "Hello Ninja. What's going on in California?"
+     * </pre>
+     *
+     * @return the formated <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.generateGuid
+     *
+     * <p>Creates a globally unique identifier (i.e. <strong>GUID</strong>),
+     * for that browsing session.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var guid = o2.String.generateGuid();
+     * </pre>
+     *
+     * @return a <strong>GUID</strong>.
+     */
+
+    /**
+     * @function {static} o2.String.generateRandom
+     *
+     * <p>Generates a random <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var rnd = o2.String.generateRandom();
+     * </pre>
+     *
+     * @param {Integer} length - (optional - default: {@link
+     * String.config.constants.DEFAULT_RANDOM_LENGTH})
+     * length of the <code>String</code> to be generated.
+     *
+     * @return the generated <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.printf
+     *
+     * <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
+     * function.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var test1 = 'lorem %s %s sit amet';
+     * var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+     * var test3 = 'lorem %id:s ipsum';
+     *
+     * //This will return 'lorem ipsum dolor sit amet''
+     * o2.String.printf(test1, 'ipsum', 'dolor');
+     *
+     * //This will return 'lorem ipsum dolor sit dolor amet ipsum'
+     * o2.String.printf(test1, 'ipsum', 'dolor');
+     *
+     * //This will return 'lorem test ipsum'.
+     * o2.String.printf(test3, {id : 'test'});
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.printf
+     *
+     * <p>Works similar to <strong>C</strong>'s <strong>printf</strong>
+     * function.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var test1 = 'lorem %s %s sit amet';
+     * var test2 = 'lorem %1:s %2:s sit %2:s amet %1:s';
+     * var test3 = 'lorem %id:s ipsum';
+     *
+     * //This will return 'lorem ipsum dolor sit amet''
+     * o2.String.printf(test1, 'ipsum', 'dolor');
+     *
+     * //This will return 'lorem ipsum dolor sit dolor amet ipsum'
+     * o2.String.printf(test1, 'ipsum', 'dolor');
+     *
+     * //This will return 'lorem test ipsum'.
+     * o2.String.printf(test3, {id : 'test'});
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to format.
+     *
+     * @return the formatted <code>String</code>.
+     */
+
+    /**
+     * @function {static} o2.String.remove
+     *
+     * <p>Simply removes the phrases that match the <code>RegExp</code> from
+     * the <code>String</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var removed = o2.String.remove('lorem', /e/ig);
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     * @param {RegExp} regExp - the <code>RegExp</code> to process against.
+     *
+     * @return the processed <code>String</code>.
+     */
+
+        /**
+         * @function {static} o2.String.trim
+         *
+         * <p>Trims white space from beginning and end of the
+         * <code>String</code>.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * var trimmed = o2.String.trim('    lorem     ');
+         * </pre>
+         *
+         * @param {String} str - the <code>String</code> to process.
+         * @param {Boolean} shouldCompact - Optional (default:
+         * <code>false</code>) if <code>true</code>, multiple whitespace
+         * is compacted into single whitespace.
+         *
+         * @return the processed <code>String</code>.
+         */
+
+    /**
+     * @function {static} o2.String.compact
+     *
+     * <p>Works identical to <code>String.trim(str,
+     * true)</code>.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var compacted = o2.String.compact('   lorem      ipsum     ');
+     * </pre>
+     *
+     * @param {String} str - the <code>String</code> to process.
+     *
+     * @return the processed <code>String</code>.
+     *
+     * @see String.trim
+     */
+
+    /**
+     * @module   template.core
+     *
+     * @requires core
+     *
+     * <p>A "very" fast templating engine.</p>
+     */
+
+        /**
+         * @class {static} o2.Template
+         *
+         * <p>A really <strong>fast</strong> template engine.</p>
+         */
+
+    /**
+     * @function {static} o2.Template.parse
+     *
+     * <p>Parses the given template.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * var data = {
+     *      users : [
+     *          {name : 'Joe' },
+     *          {name : 'Jill'},
+     *          {name : 'Jack'}
+     *      ]
+     * };
+     *
+     * var tpl = [
+     *      'ul id="Products"',
+     *          ['each users',
+     *              'li {{name}} /li'],
+     *      '/ul'
+     * ];
+     *
+     * var html = o2.Template.parse(data, tpl);
+     * </pre>
+     *
+     * @param {Object} data - the source data as a <strong>JSON</strong> object.
+     * @param {String} tpl - the template to parse against.
+     *
+     * @return {String} the parsed template.
+     */
+
+   /**
+    * @module   timer.core
+    *
+    * @requires core
+    * @requires string.core
+    *
+    * <p>A static class for timeout related operations.</p>
+    */
+
+        /**
+         * @class {static} o2.Timer
+         *
+         * <p>A class for executing repeated timed actions.</p>
+         *
+         * <p><strong>Usage example:</strong></p>
+         *
+         * <pre>
+         * // A unique id for the timer.
+         * var kCheckId = 'my_timer';
+         *
+         * // Auto start timer with id kCheckId to repeat doStuff approximately
+         * // every 500 milliseconds, please note that this is an approximation.
+         * // for further details see John Resig's excellent article on this:
+         * // http://ejohn.org/blog/how-javascript-timers-work/
+         * o2.Timer.set(kCheckId, doStuff, 500, {start: true, repeat: true});
+         *
+         * // Stops the timer (i.e. doStuff will not be executed further).
+         * o2.Timer.stop(kCheckId);
+         *
+         * // Restarts the timer (i.e. doStuff will be periodically executed
+         * // again).
+         * o2.Timer.start(kCheckId);
+         * </pre>
+         */
+
+    /**
+     * @function {static} o2.Timer.start
+     *
+     * <p>Starts/restarts the timer with the given id.
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Timer.start('myTimer');
+     * </pre>
+     *
+     * @param {String} id - the id of the timer to start.
+     */
+
+    /**
+     * @function {static} o2.Timer.stop
+     *
+     * <p>Stops the timer with the given id.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Timer.stop('myTimer');
+     * </pre>
+     *
+     * @param {String} id - the id of the timer to stop.
+     */
+
+    /**
+     * @function {static} o2.Timer.set
+     *
+     * <p>Sets and optionally starts a new timer.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Timer.set('myTimer', function() {
+     *      console.log('hello');
+     * }, 1000, {repeat : true});
+     * </pre>
+     *
+     * @param {String} id - a unique identifier for the timer.
+     * @param {Function} delegate - action to be done when the timer ticks.
+     * @param {Integer} timeout - interval of the timer in milliseconds.
+     * @param {Object} option - optional configuration in the form
+     * <code>{start: true, repeat: true}</code>, if <strong>start</strong>
+     * is <code>true</code> timer will start after being set; otherwise
+     * it should be explicitly started using the
+     * {@link o2.Timer.start} method. If <strong>repeat</strong> is
+     * <code>false</code> the delegate will be executed only once, othwerwise
+     * it will be executed at each interval until {@link o2.Timer.stop}
+     * is called.
+     */
+
+    /**
+     * @module   try.core
+     *
+     * @requires core
+     *
+     * <p>Used for consequentially executing a set of
+     * <code>Function</code>s.</p>
+     * <p>The functions are guaranteed to be called.</p>
+     * <p>Even if an error occurs when calling a <code>Function</code>,
+     * the next function will be tried, disregarding the error.</p>
+     */
+
+        /**
+         * @class {static} o2.Try
+         *
+         * <p>Used for consequentially executing a set of
+         * <code>Function</code>s.</p>
+         * <p>The <strong>function</strong>s are guaranteed to be called.</p>
+         * <p>Even if an error occurs when calling a <code>Function</code>,
+         * the next <code>Function</code> will be tried, disregarding the
+         * error.</p>
+         */
+
+    /**
+     * @function {static} o2.Try.all
+     *
+     * <p>Executes all the given delegates one by one.</p>
+     * <p>If an exception occurs while executing the argument, the next one
+     * will be tried.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Try.all(fn1, fn2, fn3);
+     * </pre>
+     *
+     * @param {Arguments} ... - each argument as a function.
+     */
+
+    /**
+     * @function {static} o2.Try.these
+     *
+     * <p>Tries all the given delegates, will stop at the first successful
+     * execution.</p>
+     * <p>If an exception occurs while executing the argument, the next one
+     * will be tried.</p>
+     * <p>But after the first successful execution, with no error,
+     * no further functions will be executed.</p>
+     *
+     * <p><strong>Usage example:</strong></p>
+     *
+     * <pre>
+     * o2.Try.these(fn1, fn2, fn3);
+     * </pre>
+     *
+     * @param {Arguments} ... - each argument as a function.
+     */
