@@ -1,4 +1,4 @@
-require([
+define([
     '../../core',
     '../../object/core',
     './ajaxcontroller',

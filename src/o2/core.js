@@ -1,4 +1,4 @@
-require([
+define([
     './dom/core',
     './event/core'
 ],

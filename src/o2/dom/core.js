@@ -1,4 +1,4 @@
-require([
+define([
     '../core',
     './submodule/constants'
 ], function(

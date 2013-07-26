@@ -1,4 +1,4 @@
-require([
+define([
     '../../object/core',
     './ajaxstate'
 ], function(

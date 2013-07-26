@@ -1,4 +1,4 @@
-require([
+define([
     '../string/core'
 ], function(
     StringUtil

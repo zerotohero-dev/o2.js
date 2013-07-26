@@ -1,4 +1,4 @@
-require([
+define([
     '../../collection/core',
     './validation'
 ], function(

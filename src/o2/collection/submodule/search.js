@@ -1,4 +1,4 @@
-require([
+define([
     '../../collection/core',
     // TODO: intentionally mistyping. The build process should catch this.
     '../../method/core',

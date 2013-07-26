@@ -1,4 +1,4 @@
-require([
+define([
     '../../method/core',
     '../../validation/core',
     './convert'

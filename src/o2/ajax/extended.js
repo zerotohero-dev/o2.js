@@ -1,4 +1,4 @@
-require([
+define([
     '../object/core',
     './core',
     './submodule/single'

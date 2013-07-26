@@ -1,4 +1,4 @@
-require([
+define([
 ], function() {
     'use strict';
 
