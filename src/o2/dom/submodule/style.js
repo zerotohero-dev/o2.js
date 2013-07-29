@@ -7,7 +7,7 @@ define([
     StringUtil,
     Transform
 ) {
-   'use strict';
+    'use strict';
 
         /*
          * # Module Exports

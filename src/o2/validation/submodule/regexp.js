@@ -15,10 +15,10 @@ define([
 
         kEmailRegExp = /[a-z0-9!#$%&'*+\/=?\^_`{|}~\-."]+@[a-z0-9.]+/i,
         kUrlRegExp = new RegExp([
-                '^(https?|ftp|file):',
-                '\\/\\/[\\-A-Z0-9+&@#\\/%?=~_|!:,.;]*',
-                '[\\-A-Z0-9+&@#\\/%=~_|]$'
-            ].join(''), 'i'),
+            '^(https?|ftp|file):',
+            '\\/\\/[\\-A-Z0-9+&@#\\/%?=~_|!:,.;]*',
+            '[\\-A-Z0-9+&@#\\/%=~_|]$'
+        ].join(''), 'i'),
         kWhitespaceRegExp = /^\s*$/;
 
     exports.isEmail = function(mail) {

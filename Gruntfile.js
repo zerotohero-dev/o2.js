@@ -3,8 +3,12 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         jshint: {
-            all: ['Gruntfile.js', 'src/o2/**/*.js']
-        }
+            options: {
+                jshintrc: ".jshintrc"
+            },
+            src: ['Gruntfile.js', 'src/o2/**/*.js']
+        },
+
     });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');

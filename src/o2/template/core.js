@@ -1,5 +1,6 @@
 define([
-], function() {
+], function(
+) {
     'use strict';
 
         /*
@@ -14,7 +15,7 @@ define([
 
         kObject = 'object',
         kString = 'string',
-        kEmpty  = '',
+        kEmpty = '',
 
         /*
          * # Common Regular Expressions
@@ -101,7 +102,7 @@ define([
         });
     }
 
-     exports.parse = function(data, tpl) {
+    exports.parse = function(data, tpl) {
         var buffer = [],
             tplData = data || {},
             i,
@@ -112,12 +113,12 @@ define([
         }
 
         return buffer.join(kEmpty);
-     };
+    };
 
      /*
       *
       */
-     doParse = exports.parse;
+    doParse = exports.parse;
 
-     return exports;
+    return exports;
 });

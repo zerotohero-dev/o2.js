@@ -143,7 +143,7 @@ define([
 
     if (windowEventHandle) {
         exports.getEventObject = function() {
-           return windowEventHandle;
+            return windowEventHandle;
         };
 
         exports.getTarget = function() {
@@ -151,7 +151,7 @@ define([
         };
     } else {
         exports.getEventObject = function(evt) {
-           return evt;
+            return evt;
         };
 
         exports.getTarget = function(evt) {

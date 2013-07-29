@@ -343,6 +343,8 @@ define([
 
     exports.assertEqual = function(unitTest,
                 currentValue, expectedValue, message) {
+        /* jshint eqeqeq: false */
+
         var kArgumentsLength = arguments.length,
             kMethodName = 'assertEqual',
             kRequiredLocalParameterCount = 4,
@@ -358,6 +360,8 @@ define([
 
     exports.assertNotEqual = function(unitTest, currentValue, expectedValue,
                 message) {
+        /* jshint eqeqeq: false */
+
         var kArgumentsLength = arguments.length,
             kMethodName = 'assertNotEqual',
             kRequiredLocalParameterCount = 4,
