@@ -79,18 +79,18 @@ define([
     exports.any = exports.some;
 
     exports.isEmpty = function (obj) {
-         var key;
+        var key;
 
-         if (!obj) {return true;}
-         if (!isObject(obj)) {return true;}
+        if (!obj) {return true;}
+        if (!isObject(obj)) {return true;}
 
-         for (key in obj) {
-             if (obj.hasOwnProperty(key)) {
-                 return false;
-             }
-         }
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                return false;
+            }
+        }
 
-         return true;
+        return true;
     };
 
     /*

@@ -40,10 +40,13 @@ function(
     myName = exports.name;
 
     // TODO: these should be grunt-template-generated.
-    exports.url = 'http://o2js.com';
-    exports.longName = 'o2.js - a Coherent Solution to Your JavaScript Dilemma ;)';
-    exports.version = '0.25.a';
-    exports.build = '.0001369602378';
+    // exports.url = 'http://o2js.com';
+    // exports.longName = [
+    //     'o2.js - ',
+    //     'a Coherent Solution to Your JavaScript Dilemma ;)'
+    // ].join('');
+    // exports.version = '0.25.a';
+    // exports.build = '.0001369602378';
 
     exports.$ = function(obj) {
         if (!obj) {

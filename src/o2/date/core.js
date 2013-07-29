@@ -11,7 +11,7 @@ define([
          * # Module Exports
          */
 
-     var exports = {},
+    var exports = {},
 
         /*
          * # Aliases

@@ -4,15 +4,13 @@ module.exports = function(grunt) {
     grunt.initConfig({
         jshint: {
             options: {
-                jshintrc: ".jshintrc"
+                jshintrc: '.jshintrc'
             },
             src: ['Gruntfile.js', 'src/o2/**/*.js']
-        },
-
+        }
     });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jshint']);
+    grunt.registerTask('default', ['jshint']);
 };

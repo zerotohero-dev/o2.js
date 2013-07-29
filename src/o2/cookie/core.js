@@ -110,7 +110,8 @@ define([
         save(name, kEmpty, -1, path || kRootPath, domain || null);
     };
 
-    // TODO: open this as an issue for tracking, and close it and label as wontfix
+    // TODO: open this as an issue for tracking, and close it and label as
+    // wontfix
     // removeAll makes things too complicated if path, and domain
     // come into play... Will not implement it.
     // removeAll : function(){ }

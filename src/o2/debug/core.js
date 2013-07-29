@@ -9,7 +9,7 @@ define([
          * # Module Exports
          */
 
-     var exports = {},
+    var exports = {},
 
         /*
          * # Aliases
@@ -18,7 +18,7 @@ define([
         /*
          * core
          */
-        $    = o2.$,
+        $ = o2.$,
         nill = o2.nill,
 
         /*
@@ -85,26 +85,26 @@ define([
      */
     function out(text, className) {
         switch (className) {
-            case kLog:
-                log(text);
+        case kLog:
+            log(text);
 
-                break;
-            case kInfo:
-                info(text);
+            break;
+        case kInfo:
+            info(text);
 
-                break;
-            case kWarn:
-                warn(text);
+            break;
+        case kWarn:
+            warn(text);
 
-                break;
-            case kError:
-                error(text);
+            break;
+        case kError:
+            error(text);
 
-                break;
-            default:
-                log(text);
+            break;
+        default:
+            log(text);
 
-                break;
+            break;
         }
     }
 
