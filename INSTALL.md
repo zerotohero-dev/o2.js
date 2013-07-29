@@ -10,8 +10,13 @@
 
 TODO: edit me!
 
-### Prerequisites
+this has changed.
+1. clone and install stuff.
+2. verify install by running a set of grunt tasks.
+3. java and apache is not needed anymore, node will suffice.
 
+
+### Prerequisites
 
 To view and build the **o2.js** examples locally you need the following set up:
 

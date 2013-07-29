@@ -10,6 +10,9 @@ About **[o2.js][2]**
 
 TODO: edit me!
 
+TODO: since o2.js started focusing on contemporary browsers and leave support
+for legacy ones (read IE), the entire text might need to be revised.
+
 **[o2.js][2]** is a **JavaScript** Framework that's constantly evolving with
 three main goals:
 
@@ -61,6 +64,8 @@ Hope you like the outcome **;)**.
 
 Supported Platforms & User Agents
 --------------------------------------------------------------------------------
+
+//TODO: update this.
 
 **[o2.js][2]** is being designed to run pretty smoothly in almost any
 device/useragent.
@@ -159,6 +164,8 @@ Directory Structure
 
 The directory structure of the project is as follows:
 
+TODO: the structure has changed, update this.
+
 * **3rdparty**: 3rd party components and plugins that are utilized.
 * **batch**: Documentation, deployment, and configuration scripts.
 * **doc**: Generated documentation.
@@ -179,6 +186,18 @@ is distributed under **MIT** license, so feel free to **fork it**.
 * **[WE_LOVE_YOU.md][12]**: The file explaining how to contribute.
 Please keep in mind that **anyone** can contribute! And when we say
 **anyone**, we mean it **;)**.
+
+Dependencies
+-------------------------------------------------------------------------------
+
+**o2.js** does not have any production dependencies. Currently it has
+the following submodules installed.
+
+TODO: figure out where those submodules are used.
+
+* 3rdparty/JSON (heads/master)
+* 3rdparty/require.js (2.1.6)
+
 
 Where Can I Get Help?
 --------------------------------------------------------------------------------

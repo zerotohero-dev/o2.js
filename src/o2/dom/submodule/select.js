@@ -25,19 +25,19 @@
 //     format(kImmediateClassSelector, el.id, className)
 // );
 
-function select(el, selector) {
-    try {
-        return el.querySelectorAll(selector);
-    } catch(e) {
-        if (!el.id) {
-            el.id = [frameworkName, generateGuid()].join(kEmpty);
-        }
+// function select(el, selector) {
+//     try {
+//         return el.querySelectorAll(selector);
+//     } catch(e) {
+//         if (!el.id) {
+//             el.id = [frameworkName, generateGuid()].join(kEmpty);
+//         }
 
-        return el.querySelectorAll(
-            format("#", el.id, " ", selector);
-        );
-    }
-}
+//         return el.querySelectorAll(
+//             format("#", el.id, " ", selector);
+//         );
+//     }
+// }
 
 // TODO: select will give a collection of DOM nodes,
 // we will need DOM-colleciton funcitons like
