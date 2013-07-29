@@ -1,3 +1,6 @@
 [submodule "3rdparty/require.js"]
 	path = 3rdparty/require.js
 	url = git://github.com/jrburke/requirejs.git
+[submodule "3rdparty/JSON"]
+	path = 3rdparty/JSON
+	url = https://github.com/douglascrockford/JSON-js.git

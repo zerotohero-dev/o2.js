@@ -20,7 +20,7 @@ define([
         /*
          * core
          */
-        $   = o2.$,
+        $ = o2.$,
         now = o2.now,
 
         /*
@@ -31,7 +31,7 @@ define([
         /*
          * native
          */
-        abs   = Math.abs,
+        abs = Math.abs,
         floor = Math.floor,
 
         /*
@@ -143,9 +143,9 @@ define([
         return time;
     };
 
-    exports.getTime = def(me, 'getTime', function() {
+    exports.getTime = function() {
         return now();
-    });
+    };
 
     exports.now = exports.getTime;
 
