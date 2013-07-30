@@ -1,6 +1,6 @@
 {
   "name": "o2",
-  "version": "0.25.9",
+  "version": "0.25.10",
   "author": "Volkan Özçelik <volkan@o2js.com>",
   "description": "o2.js JavaScript Framework",
   "preferGlobal": "true",
@@ -25,6 +25,7 @@
     "node": "*"
   },
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-qunit": "~0.2.2"
   }
 }
