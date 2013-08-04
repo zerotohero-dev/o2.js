@@ -4,3 +4,6 @@
 [submodule "3rdparty/JSON"]
 	path = 3rdparty/JSON
 	url = https://github.com/douglascrockford/JSON-js.git
+[submodule "3rdparty/qunit"]
+	path = 3rdparty/qunit
+	url = https://github.com/jquery/qunit.git
