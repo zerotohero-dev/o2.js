@@ -1,4 +1,4 @@
-'use strict';
+define(function (require, exports, module) {'use strict';
 
 /**
  * @module o2.ajax
@@ -30,3 +30,5 @@ var stringCore = require('./node_modules/o2.string/core');
 exports.sayHi = function() {
     return stringCore.sayHi();
 };
+
+});

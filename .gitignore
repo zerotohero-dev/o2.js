@@ -8,6 +8,11 @@
 *.so
 *.pyc
 
+# IntelliJ           #
+######################
+.idea
+checkstyle.xml
+
 # Node.js            #
 ######################
 node_modules

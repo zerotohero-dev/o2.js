@@ -1,4 +1,4 @@
-'use strict';
+define(function (require, exports, module) {'use strict';
 
 /**
  * @module o2.string
@@ -25,3 +25,5 @@
 exports.sayHi = function() {
     return 'Hello world; hello stars; hello universe!';
 };
+
+});

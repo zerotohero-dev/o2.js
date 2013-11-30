@@ -23,10 +23,13 @@
     "node": true,
     "maxlen": 80,
     "globals": {
-        "require": true,
-        "define": true,
-        "window": true,
-        "document": true
+        "exports": false,
+        "require": false,
+        "define": false,
+        "window": false,
+        "document": false,
+        "ok": false,
+        "expect": false
     }
 }
 

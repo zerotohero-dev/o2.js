@@ -1,0 +1,131 @@
+{
+    "project": {
+        "name": "o2",
+        "description": "o2.js JavaScript Framework",
+        "version": "0.26.12",
+        "url": "http://o2js.com/",
+        "logo": "../assets/logo.png"
+    },
+    "files": {
+        "src/o2/ajax/core.js": {
+            "name": "src/o2/ajax/core.js",
+            "modules": {
+                "o2.ajax": 1
+            },
+            "classes": {
+                "o2.ajax.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/string/core.js": {
+            "name": "src/o2/string/core.js",
+            "modules": {
+                "o2.string": 1,
+                "o2.string.core": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "o2.ajax": {
+            "name": "o2.ajax",
+            "submodules": {},
+            "classes": {
+                "o2.ajax.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/ajax/core.js",
+            "line": 9
+        },
+        "o2.string": {
+            "name": "o2.string",
+            "submodules": {
+                "o2.string.core": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/string/core.js",
+            "line": 3
+        },
+        "o2.string.core": {
+            "name": "o2.string.core",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "o2.string",
+            "namespace": "",
+            "file": "src/o2/string/core.js",
+            "line": 7
+        }
+    },
+    "classes": {
+        "o2.ajax.core": {
+            "name": "o2.ajax.core",
+            "shortname": "o2.ajax.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.ajax",
+            "namespace": "",
+            "file": "src/o2/ajax/core.js",
+            "line": 9,
+            "uses": [
+                "o2.string.core"
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/o2/ajax/core.js",
+            "line": 14,
+            "description": "Returns a welcome `String`.\n\nUsage example:",
+            "example": [
+                "\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();"
+            ],
+            "itemtype": "method",
+            "name": "sayHi",
+            "static": 1,
+            "return": {
+                "description": "The welcome `String`.",
+                "type": "String"
+            },
+            "class": "o2.ajax.core",
+            "module": "o2.ajax"
+        },
+        {
+            "file": "src/o2/string/core.js",
+            "line": 11,
+            "description": "Says hi.\n\nUsage example:\n\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();",
+            "itemtype": "method",
+            "name": "sayHi",
+            "return": {
+                "description": "\"hi\".",
+                "type": "String"
+            },
+            "class": "",
+            "module": "o2.string",
+            "submodule": "o2.string.core"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/ajax/core.js:14"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/string/core.js:11"
+        }
+    ]
+}
