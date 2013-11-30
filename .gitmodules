@@ -1,3 +1,4 @@
 [submodule "externals/requirejs"]
 	path = externals/requirejs
-	url = git@github.com:jrburke/requirejs.git
+	url = https://github.com/jrburke/requirejs.git
+
