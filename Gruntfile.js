@@ -46,8 +46,15 @@ module.exports = function(grunt) {
             clean: {
                 command: 'find amd/o2/string/ -maxdepth 1 -type f -delete;' +
                   'find amd/o2/ajax/ -maxdepth 1 -type f -delete;' +
+                  'find src/o2/ajax/node_modules/o2.string -maxdepth 1 ' +
+                    '-type f -delete;' +
                   'find amd/o2/ajax/node_modules/o2.string -maxdepth 1 ' +
-                  '-type f -delete;',
+                    '-type f -delete;',
+                stdout: true,
+                stderr: true
+            },
+            install: {
+                command: 'cd src/o2/ajax;npm install',
                 stdout: true,
                 stderr: true
             },
@@ -91,6 +98,7 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['connect:test', 'jasmine']);
     grunt.registerTask('publish', [
         'exec:clean',
+        'exec:install',
         'exec:amdify',
         'lint',
         'complexity'
