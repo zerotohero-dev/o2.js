@@ -225,7 +225,7 @@ Place an empty newline at the end of the file.
 
 #### Indent&hellip;
 
-* Statements within **blocks**:
+* Statements within **blocks**.
 
 ~~~
 while (node) {
@@ -237,7 +237,7 @@ while (node) {
 }
 ~~~
 
-* Statements within a **function** body:
+* Statements within a **function** body.
 
 ~~~
 me.getNextById = function(target, id) {
@@ -268,7 +268,7 @@ me.getNextById = function(target, id) {
 };
 ~~~
 
-* Statements within a **switch** body:
+* Statements within a **switch** body.
 
 ~~~
 switch (className) {
@@ -293,7 +293,7 @@ switch (className) {
 }
 ~~~
 
-* Statements within a **case** body:
+* Statements within a **case** body.
 
 ~~~
 ...
