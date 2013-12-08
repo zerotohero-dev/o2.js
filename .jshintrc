@@ -18,7 +18,7 @@
     "strict": true,
     "undef": true,
     "unused": true,
-    "white": true,
+    "white": false,
     "trailing": true,
     "node": true,
     "maxlen": 80,
