@@ -8,20 +8,28 @@
 **[o2.js](http://o2js.com/)** Change Log
 --------------------------------------------------------------------------------
 
-### **[o2.js](http://o2js.com/)** v.0.26
+### **[o2.js](http://o2js.com/)** v.2.0.0
 
-v.0.26 is not up there yet. Here are a few major things that will change most of the
-codebase:
+This new version will be **highly incompatible** with the current code base (hence it has been given a new major version number: **2**)
 
-- We'll be removing active support of IE versions less than 10
-- We'll be using an AMD approach (either using require.js or a custom AMD implementation
-that supports (or is similar to) require.js API
+- All the code will be written in **CommonJS** (*i.e., Node.JS*) format;
+- Everything will be highly modular;
+- We'll be removing active support of IE versions less than 10;
+- We'll be using an AMD approach (either using require.js or a custom AMD implementation;
+that supports (or is similar to) require.js API;
+- And more&hellip;
+
+[Switch to the dev branch to see what's coming up next](https://github.com/v0lkan/o2.js/tree/dev).
 
 ### **[o2.js](http://o2js.com/)** v.0.25
 
-* Still work in progress.
-* There are lots of patches to add.
-* Unit tests are being written from the grounds up.
+We are tagging **v.0.25.8** as a release.
+
+> If you want to contribute to the **0.x.x** codebase, please [branch off from the most recent **0.x.x** tag](https://github.com/v0lkan/o2.js/releases).
+>
+> However, **a huge amount of help** is needed in the **dev** branch right now, and we'd love to see you there. 
+>
+> If you want to contribute to the **o2.js v.2.x.x.**, please [branch off from the dev branch](https://github.com/v0lkan/o2.js/tree/dev), instead.
 
 ### **[o2.js](http://o2js.com/)** v.0.24
 
