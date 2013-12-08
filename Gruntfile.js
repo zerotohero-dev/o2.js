@@ -2,35 +2,6 @@ module.exports = function(grunt) {
     'use strict';
 
     grunt.initConfig({
-        coveralls: {
-            options: {
-                coverage_dir: '/Users/volkan.ozcelik/PROJECTS/o2.js/test/'
-            },
-            reporters: ['coverage'],
-            preprocessors: {
-                "**/lib/*js": "coverage"
-            },
-            coverageReporter: {
-                type: "lcov",
-                dir: "coverage/"
-            },
-            plugins: [
-                'karma-coverage',
-            ]
-        },
-        karma: {
-            reporters: ['coverage'],
-            preprocessors: {
-                "**/src/*js": "coverage"
-            },
-            coverageReporter: {
-                type: "lcov",
-                dir: "coverage/"
-            },
-            plugins: [
-                'karma-coverage',
-            ]
-        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
@@ -124,7 +95,6 @@ module.exports = function(grunt) {
         'lint',
         'complexity'
     ]);
-    grunt.loadNpmTasks('grunt-karma-coveralls');
     grunt.registerTask('testAll', ['exec:test', 'test']);
     grunt.registerTask('doc', ['yuidoc']);
 };
