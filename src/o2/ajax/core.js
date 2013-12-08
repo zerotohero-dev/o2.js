@@ -1,7 +1,15 @@
 'use strict';
 
+/*
+ *  This program is distributed under the terms of the MIT license.
+ *  Please see the LICENSE.md file for details.
+ */
+
 /**
+ *  An **XMLHttpRequest** helper module.
+ *
  * @module o2.ajax
+ * @requires o2.string
  */
 
 var stringCore = require('./node_modules/o2.string/core');

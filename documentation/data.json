@@ -18,6 +18,17 @@
             "fors": {},
             "namespaces": {}
         },
+        "src/o2/io/core.js": {
+            "name": "src/o2/io/core.js",
+            "modules": {
+                "o2.io": 1
+            },
+            "classes": {
+                "o2.io.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src/o2/string/core.js": {
             "name": "src/o2/string/core.js",
             "modules": {
@@ -40,7 +51,23 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/o2/ajax/core.js",
-            "line": 9
+            "line": 17,
+            "description": "An **XMLHttpRequest** `helper` module.",
+            "requires": [
+                "o2.string"
+            ]
+        },
+        "o2.io": {
+            "name": "o2.io",
+            "submodules": {},
+            "classes": {
+                "o2.io.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/io/core.js",
+            "line": 7
         },
         "o2.string": {
             "name": "o2.string",
@@ -79,16 +106,29 @@
             "module": "o2.ajax",
             "namespace": "",
             "file": "src/o2/ajax/core.js",
-            "line": 9,
+            "line": 17,
             "uses": [
                 "o2.string.core"
             ]
+        },
+        "o2.io.core": {
+            "name": "o2.io.core",
+            "shortname": "o2.io.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.io",
+            "namespace": "",
+            "file": "src/o2/io/core.js",
+            "line": 7
         }
     },
     "classitems": [
         {
             "file": "src/o2/ajax/core.js",
-            "line": 14,
+            "line": 22,
             "description": "Returns a welcome `String`.\n\nUsage example:",
             "example": [
                 "\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();"
@@ -121,7 +161,7 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/ajax/core.js:14"
+            "line": " src/o2/ajax/core.js:22"
         },
         {
             "message": "replacing incorrect tag: returns with return",

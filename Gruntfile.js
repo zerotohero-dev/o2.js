@@ -2,6 +2,35 @@ module.exports = function(grunt) {
     'use strict';
 
     grunt.initConfig({
+        coveralls: {
+            options: {
+                coverage_dir: '/Users/volkan.ozcelik/PROJECTS/o2.js/test/'
+            },
+            reporters: ['coverage'],
+            preprocessors: {
+                "**/lib/*js": "coverage"
+            },
+            coverageReporter: {
+                type: "lcov",
+                dir: "coverage/"
+            },
+            plugins: [
+                'karma-coverage',
+            ]
+        },
+        karma: {
+            reporters: ['coverage'],
+            preprocessors: {
+                "**/src/*js": "coverage"
+            },
+            coverageReporter: {
+                type: "lcov",
+                dir: "coverage/"
+            },
+            plugins: [
+                'karma-coverage',
+            ]
+        },
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
@@ -45,7 +74,9 @@ module.exports = function(grunt) {
         exec: {
             clean: {
                 command: 'find amd/o2/string/ -maxdepth 1 -type f -delete;' +
-                    'find amd/o2/ajax/ -maxdepth 1 -type f -delete',
+                  'find amd/o2/ajax/ -maxdepth 1 -type f -delete;' +
+                  'find amd/o2/ajax/node_modules/o2.string -maxdepth 1 ' +
+                  '-type f -delete;',
                 stdout: true,
                 stderr: true
             },
@@ -87,7 +118,13 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('test', ['connect:test', 'jasmine']);
-    grunt.registerTask('publish', ['exec:amdify']);
+    grunt.registerTask('publish', [
+        'exec:clean',
+        'exec:amdify',
+        'lint',
+        'complexity'
+    ]);
+    grunt.loadNpmTasks('grunt-karma-coveralls');
     grunt.registerTask('testAll', ['exec:test', 'test']);
     grunt.registerTask('doc', ['yuidoc']);
 };
