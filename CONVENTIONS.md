@@ -46,7 +46,7 @@ client-heavy **JavaScript** project.
 
 ## Why Do We Need Conventions?
 
-**Coding Conventions** is a must-have for any large-scale long-lived
+**Coding Conventions** are a must-have for any large-scale long-lived
 software project.
 
 > *Nearly %80 of the development time* in large-scale software projects go
