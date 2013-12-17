@@ -167,7 +167,7 @@ If there's a particular **JavaScript** usage that's not mentioned in this docume
 
 ## Why Do We Need Conventions?
 
-**Coding Conventions** is a must-have for any large-scale long-lived software project.
+**Coding Conventions** are a must-have for any large-scale long-lived software project.
 
 > *Nearly %80 of the development time* in large-scale software projects go to **maintenance**, **patching**, and **rewriting** the codebase.
 
