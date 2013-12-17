@@ -9,8 +9,6 @@
 
 ## An **All-in-One** Guide to Writing Efficient **JavaScript** *;)*
 
-**Last Updated**: *2012-06-07 08:17:03.197113*
-
 --------------------------------------------------------------------------------
 
 ## Bottom Line Up Front
