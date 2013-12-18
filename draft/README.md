@@ -195,6 +195,8 @@ the following submodules installed.
 
 TODO: figure out where those submodules are used.
 
+TODO: write somewhere dependencies are updated and automated tests are run before each major (and some minor) version upgrade.
+
 * 3rdparty/JSON (heads/master)
 * 3rdparty/require.js (2.1.6)
 
