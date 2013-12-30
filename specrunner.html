@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>o2.js AMD Spec Runner</title>
+
+    <!-- Jasmine core. -->
+    <link rel="shortcut icon" type="image/png" href="bower_components/jasmine/dist/jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="bower_components/jasmine/dist/jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.css">
+    <script type="text/javascript" src="bower_components/jasmine/dist/jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.js"></script>
+    <script type="text/javascript" src="bower_components/jasmine/dist/jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine-html.js"></script>
+    <script type="text/javascript" src="bower_components/jasmine/dist/jasmine-standalone-2.0.0/lib/jasmine-2.0.0/boot.js"></script>
+
+    <!-- require.js. -->
+    <script src="bower_components/requirejs/require.js"></script>
+
+    <!-- Override Jasmine boot loader for AMD. -->
+    <script src="test/override/jasmine/boot.js"></script>
+
+    <!-- require.js configuration. -->
+    <script src="test/config/requirejs/config.js"></script>
+
+    <!-- Jasmine coverage. -->
+    <script src="bower_components/blanket/dist/jasmine/blanket_jasmine.js"></script>
+
+    <!-- Specs to test. -->
+    <script src="test/config/amd/o2/config.js"></script>
+</head>
+<body>
+</body>
+</html>

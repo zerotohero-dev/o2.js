@@ -8,6 +8,7 @@ require([
     ajax
 ) {
     describe("o2.string.core", function() {
+
         it("returns a greeting when `sayHi` is called.", function() {
             var div = document.createElement('div');
 
@@ -18,4 +19,5 @@ require([
             expect(div.innerHTML).toBe(greet + greet);
         });
     });
+
 });

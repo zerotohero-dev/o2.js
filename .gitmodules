@@ -1,4 +1,6 @@
-[submodule "externals/requirejs"]
-	path = externals/requirejs
-	url = https://github.com/jrburke/requirejs.git
-
+[submodule "externals/jscover"]
+	path = externals/jscover
+	url = https://github.com/tntim96/JSCover.git
+[submodule "externals/node-jscoverage"]
+	path = externals/node-jscoverage
+	url = https://github.com/visionmedia/node-jscoverage.git
