@@ -1,4 +1,4 @@
-String utility methods.
+Console and debugging utility methods.
 
 This is an **o2.js** module.
 

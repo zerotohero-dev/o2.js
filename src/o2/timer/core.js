@@ -1,5 +1,10 @@
 'use strict';
 
+/*
+ *  This program is distributed under the terms of the MIT license.
+ *  Please see the LICENSE.md file for details.
+ */
+
 if (!window) {
     throw new Error('o2.timer should run in a browser');
 }

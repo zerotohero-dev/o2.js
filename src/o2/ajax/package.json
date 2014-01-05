@@ -1,6 +1,6 @@
 {
   "name": "o2.ajax",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "o2.js AJAX Helpers",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,6 +14,6 @@
   "license": "MIT",
   "main": "core.js",
   "dependencies": {
-    "o2.string": "0.0.6"
+    "o2.string": "0.0.7"
   }
 }

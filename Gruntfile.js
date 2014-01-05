@@ -44,12 +44,7 @@ module.exports = function(grunt) {
         },
         exec: {
             clean: {
-                command: 'find amd/o2/string/ -maxdepth 1 -type f -delete;' +
-                  'find amd/o2/ajax/ -maxdepth 1 -type f -delete;' +
-                  'find src/o2/ajax/node_modules/o2.string -maxdepth 1 ' +
-                    '-type f -delete;' +
-                  'find amd/o2/ajax/node_modules/o2.string -maxdepth 1 ' +
-                    '-type f -delete;',
+                command: 'sh bin/clean.sh',
                 stdout: true,
                 stderr: true
             },

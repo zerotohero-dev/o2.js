@@ -1,14 +1,14 @@
 {
-  "name": "o2.string",
-  "version": "0.0.6",
-  "description": "o2.js String utility methods",
+  "name": "o2.io",
+  "version": "0.0.0",
+  "description": "o2.js FileSystem-related methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "string",
-    "format",
-    "o2.js"
+    "io",
+    "fs",
+    "file system"
   ],
   "author": "Volkan Özçelik",
   "license": "MIT",
