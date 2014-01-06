@@ -14,5 +14,8 @@
   ],
   "author": "Volkan Özçelik",
   "license": "MIT",
-  "main": "core.js"
+  "main": "core.js",
+  "dependencies": {
+    "o2.debug": "0.0.1"
+  }
 }

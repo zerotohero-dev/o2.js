@@ -49,7 +49,7 @@ module.exports = function(grunt) {
                 stderr: true
             },
             install: {
-                command: 'cd src/o2/ajax;npm install',
+                command:'sh bin/install.sh',
                 stdout: true,
                 stderr: true
             },

@@ -1,11 +1,15 @@
 define([
-    '../../amd/o2/debug/core'
+    '../../amd/o2/debug/core',
+    '../../amd/o2/timer/core'
 ], function(
-    debugUtil
+    debugUtil,
+    timer
 ) {
     'use strict';
 
     var log = debugUtil.log;
+
+    timer.initialize();
 
     /**
      * The specifics of this function is not important.
@@ -41,21 +45,27 @@ define([
     }
 
     /**
-     * 
+     *
      */
     function render() {
-        var container = document.getElementById('Container'),
-            i, len;
+        var i = 0, len = 20;
 
-        for (i = 0, len = 20; i < len; i++) {
+        timer.setTimeout(function loop() {
+            var container = document.getElementById('Container');
+
             container.innerHTML = '<h1>' +
                 calculateIndex(i, container) +
                 '</h1>';
 
             log('set innerHTML to: "' + container.innerHTML + '"');
-        }
+
+            i++;
+
+            if(i <= len) {
+                timer.setTimeout(loop, 0);
+            }
+        }, 0);
     }
 
     render();
 });
-
