@@ -1,6 +1,6 @@
 {
   "name": "o2.timer",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "o2.js timer utility methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,6 +16,6 @@
   "license": "MIT",
   "main": "core.js",
   "dependencies": {
-    "o2.debug": "0.0.1"
+    "o2.debug": "0.0.2"
   }
 }

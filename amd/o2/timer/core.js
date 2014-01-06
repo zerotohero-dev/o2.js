@@ -14,7 +14,7 @@ define(function (require, exports, module) {'use strict';
  * @static
  */
 
-var log = require('./node_modules/o2.debug/core').log;
+var warn = require('./node_modules/o2.debug/core').warn;
 
 // Too many commands in the queue will create lags in UI responsiveness.
 var kTooManyCommandsInLine = 40;
@@ -68,6 +68,12 @@ function getMetaInfoFromQueueItem(item) {
     return parsed;
 }
 
+/**
+ *
+ * @param command
+ *
+ * @returns {boolean}
+ */
 function delegateCommand(command) {
     if (!command) {return false;}
 
@@ -76,14 +82,25 @@ function delegateCommand(command) {
     return true;
 }
 
+/**
+ *
+ * @returns {*}
+ */
 function getNextCommand() {
     return commandQueue.shift();
 }
 
+/**
+ *
+ * @returns {*}
+ */
 function delegateNextCommand() {
     return delegateCommand(getNextCommand());
 }
 
+/**
+ *
+ */
 function multiplex() {
     var i;
 
@@ -99,7 +116,7 @@ function loop() {
     tick(loop);
 
     if (commandQueue.length > kTooManyCommandsInLine) {
-        log(
+        warn(
             'There are "' + commandQueue.length + '" waiting commands in' +
             ' the pipe. This might be a performance issue! Multiplexing ' +
             kMultiplexLength + ' of these commands.'
@@ -110,7 +127,7 @@ function loop() {
         return;
     }
 
-    delegateCommand(getNextCommand());
+    delegateNextCommand();
 }
 
 /**

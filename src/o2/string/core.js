@@ -10,7 +10,8 @@
  */
 
 /**
- * @submodule o2.string.core
+ * @class o2.string.core
+ * @static
  */
 
 /**
@@ -24,6 +25,8 @@
  *     var greeting = ajaxUtil.sayHi();
  *
  * @method sayHi
+ * @static
+ * @final
  *
  * @returns {string} "hi".
  */

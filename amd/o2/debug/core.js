@@ -28,8 +28,20 @@ if (isConsoleAvailable) {
     exports.log = function() {
         console.log.apply(console, arguments);
     };
+
+    /**
+     * Displays a warning message on the console.
+     *
+     * @method warn
+     * @static
+     * @final
+     */
+    exports.warn = function() {
+        console.warn.apply(console, arguments);
+    };
 } else {
     exports.log = function() {};
+    exports.warn = function() {};
 }
 
 });
