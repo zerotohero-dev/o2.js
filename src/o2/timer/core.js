@@ -5,9 +5,23 @@
  *  Please see the LICENSE.md file for details.
  */
 
+/**
+ * @module o2.timer
+ */
+
+/**
+ * @class o2.timer.core
+ * @static
+ */
+
 var log = require('./node_modules/o2.debug/core').log;
 
-var kTooManyCommandsInLine = 50;
+// Too many commands in the queue will create lags in UI responsiveness.
+var kTooManyCommandsInLine = 40;
+
+// If there are too many commands waiting, group some of these commands and
+// execute them together.
+var kMultiplexLength = 10;
 
 if (!window) {
     throw new Error('o2.timer should run in a browser.');
@@ -56,20 +70,64 @@ function getMetaInfoFromQueueItem(item) {
 
 /**
  *
+ * @param command
+ *
+ * @returns {boolean}
+ */
+function delegateCommand(command) {
+    if (!command) {return false;}
+
+    getMetaInfoFromQueueItem(command).delegate();
+
+    return true;
+}
+
+/**
+ *
+ * @returns {*}
+ */
+function getNextCommand() {
+    return commandQueue.shift();
+}
+
+/**
+ *
+ * @returns {*}
+ */
+function delegateNextCommand() {
+    return delegateCommand(getNextCommand());
+}
+
+/**
+ *
+ */
+function multiplex() {
+    var i;
+
+    for(i = 0; i < kMultiplexLength; i++) {
+        if (!delegateNextCommand()) {break;}
+    }
+}
+
+/**
+ *
  */
 function loop() {
     tick(loop);
 
-    if ( commandQueue.length > kTooManyCommandsInLine ) {
-        log( 'There are "' + commandQueue.length + '" waiting commands in' +
-            ' the pipe. This might be a performance issue!' );
+    if (commandQueue.length > kTooManyCommandsInLine) {
+        log(
+            'There are "' + commandQueue.length + '" waiting commands in' +
+            ' the pipe. This might be a performance issue! Multiplexing ' +
+            kMultiplexLength + ' of these commands.'
+        );
+
+        multiplex();
+
+        return;
     }
 
-    var meta = getMetaInfoFromQueueItem(commandQueue.shift());
-
-    if ( meta && meta.delegate ) {
-        meta.delegate();
-    }
+    delegateNextCommand();
 }
 
 /**
