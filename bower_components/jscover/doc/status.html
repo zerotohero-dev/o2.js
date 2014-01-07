@@ -1,0 +1,31 @@
+<h2>Current State</h2>
+
+<p>
+    JSCover is based on the mature JSCoverage program (for differences with JSCoverage, please see the
+    <a href="manual/manual.xml#jsCoverageVJSCover" target="_blank">manual</a>).
+    It has re-used JSCoverage's regression tests
+    (see <a href="https://github.com/tntim96/JSCover/blob/master/src/test-integration/java/jscover/instrument/InstrumentAndHighlightRegressionTest.java" target="_blank">InstrumentAndHighlightRegressionTest</a>)
+    and has added a suite of unit, integration and acceptance tests which give a fairly high degree of coverage (~96% line, ~92% branch).
+    JavaScript tests have also been added (using Jasmine) and JSCover is used to check JavaScript coverage
+    (see <a href="https://github.com/tntim96/JSCover/blob/master/src/test-acceptance/java/jscover/server/HtmlUnitJSTest.java" target="_blank">HtmlUnitJSTest</a>).
+</p>
+
+<h2><a name="todo"></a>To-Do</h2>
+
+<p>
+    In order of priority unless feedback or other circumstances dictates otherwise:
+</p>
+
+<ul>
+    <li>Investigate migration to Nashorn</li>
+    <li>Function coverage?</li>
+    <li>JavaScript syntax highlighting</li>
+    <li>Add in check-style</li>
+    <li>Add caching of instrumented source (switch option?)</li>
+    <li>SSL proxy support? Combine with another tool?</li>
+</ul>
+<p>
+    Also check that the
+    <a href="manual/manual.xml#caveats" target="_blank">caveats</a>
+    don't affect you.
+</p>

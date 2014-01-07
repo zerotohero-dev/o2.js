@@ -24,6 +24,8 @@
   "dependencies": {
     "requirejs": "2.1.9",
     "blanket": "1.1.5",
-    "jasmine": "2.0.0"
+    "jasmine": "2.0.0",
+    "node-jscoverage": "https://github.com/visionmedia/node-jscoverage.git",
+    "jscover": "https://github.com/tntim96/JSCover.git"
   }
 }

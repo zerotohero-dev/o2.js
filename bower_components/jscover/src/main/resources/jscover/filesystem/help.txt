@@ -1,0 +1,9 @@
+Usage: java -jar JSCover-all.jar -fs [OPTION]... SOURCE-DIRECTORY DESTINATION-DIRECTORY
+Instrument JavaScript with code coverage information.
+
+Options:
+      --js-version=VERSION  use the specified JavaScript version
+      --no-instrument=PATH  copy but do not instrument PATH
+      --exclude=PATH        don't copy from source/PATH
+      --branch              collect branch coverage data
+  -h, --help                display this help and exit
