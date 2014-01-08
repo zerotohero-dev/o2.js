@@ -1,1 +1,3 @@
-.
+in progress...
+
+read **CONTRIBUTE.md** for now..

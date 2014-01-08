@@ -1,3 +1,8 @@
+# o2.js v.2.0.2
+
+* Started creating `npm` modules for each **o2.js** module.
+* Created a **CONTRIBUTE** file.
+
 # o2.js v.0.26.12
 
 * Starting porting modules from scratch.
