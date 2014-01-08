@@ -13,5 +13,3 @@ require([
     window.initializeJasmine();
 });});
 
-
-http://o2js.com/assets/coverage%E2%80%93000.png

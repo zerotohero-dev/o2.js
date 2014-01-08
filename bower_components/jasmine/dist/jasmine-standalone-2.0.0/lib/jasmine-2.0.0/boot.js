@@ -163,7 +163,6 @@
   var currentWindowOnload = window.onload;
 
   window.onload = function() {
-      debugger;
     if (currentWindowOnload) {
       currentWindowOnload();
     }
