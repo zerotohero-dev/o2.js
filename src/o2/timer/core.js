@@ -145,15 +145,24 @@ function loop() {
 }
 
 /**
+ * Initializes `o2.timer.core`.
  *
+ * Call this method, before using other methods of `o2.timer.core`.
+ *
+ * @method initialize
+ * @static
+ * @final
  */
 exports.initialize = function() {
     loop();
+
+    exports.initialize = noop;
 };
 
 /**
- * Defers tasks to `requestAnimationFrame`. Use this instead of
- * `window.setTimeout`.
+ * Defers tasks to `requestAnimationFrame`.
+ *
+ * Use this instead of `window.setTimeout`.
  *
  * @method setTimeout
  * @static
@@ -168,6 +177,7 @@ exports.initialize = function() {
  *
  * @param {Function} delegate - the delegate to execute in the future.
  * @param {Number} timeout - timeout in milliseconds.
+ *
  * @returns {Number} - a timeout id that we can use to clear the timeout.
  */
 exports.setTimeout = function(delegate, timeout) {

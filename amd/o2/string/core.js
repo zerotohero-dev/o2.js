@@ -10,7 +10,8 @@ define(function (require, exports, module) {'use strict';
  */
 
 /**
- * @submodule o2.string.core
+ * @class o2.string.core
+ * @static
  */
 
 /**
@@ -24,6 +25,8 @@ define(function (require, exports, module) {'use strict';
  *     var greeting = ajaxUtil.sayHi();
  *
  * @method sayHi
+ * @static
+ * @final
  *
  * @returns {string} "hi".
  */

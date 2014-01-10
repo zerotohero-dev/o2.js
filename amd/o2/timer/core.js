@@ -14,14 +14,21 @@ define(function (require, exports, module) {'use strict';
  * @static
  */
 
-var warn = require('./node_modules/o2.debug/core').warn;
+var rConfig = require('./config'),
 
-// Too many commands in the queue will create lags in UI responsiveness.
-var kTooManyCommandsInLine = 40;
+    config = {},
 
-// If there are too many commands waiting, group some of these commands and
-// execute them together.
-var kMultiplexLength = 10;
+    misses = 0,
+    hits = 0,
+
+    key;
+
+
+for (key in rConfig) {
+    if (rConfig.hasOwnProperty(key)) {
+        config[key] = rConfig[key];
+    }
+}
 
 if (!window) {
     throw new Error('o2.timer should run in a browser.');
@@ -102,9 +109,10 @@ function delegateNextCommand() {
  *
  */
 function multiplex() {
-    var i;
+    var i,
+        len = Math.pow(2, misses);
 
-    for(i = 0; i < kMultiplexLength; i++) {
+    for(i = 0; i < len; i++) {
         if (!delegateNextCommand()) {break;}
     }
 }
@@ -115,35 +123,46 @@ function multiplex() {
 function loop() {
     tick(loop);
 
-    if (commandQueue.length > kTooManyCommandsInLine) {
-        warn(
-            'There are "' + commandQueue.length + '" waiting commands in' +
-            ' the pipe. This might be a performance issue! Multiplexing ' +
-            kMultiplexLength + ' of these commands.'
-        );
+    if (commandQueue.length > config.multiplexThreshold) {
+        hits = 0;
+        misses++;
 
         multiplex();
 
         return;
     }
 
+    if (misses > 0) {
+        hits++;
+
+        if (hits >= config.batchSizeDecreaseThreshold) {
+            misses--;
+            hits = 0;
+        }
+    }
+
     delegateNextCommand();
 }
 
 /**
+ * Initializes `o2.timer.core`.
  *
+ * Call this method, before using other methods of `o2.timer.core`.
+ *
+ * @method initialize
+ * @static
+ * @final
  */
 exports.initialize = function() {
     loop();
 
-    if (!commandQueue.length) {return;}
-
-    commandQueue.shift()();
+    exports.initialize = noop;
 };
 
 /**
- * Defers tasks to `requestAnimationFrame`. Use this instead of
- * `window.setTimeout`.
+ * Defers tasks to `requestAnimationFrame`.
+ *
+ * Use this instead of `window.setTimeout`.
  *
  * @method setTimeout
  * @static
@@ -158,6 +177,7 @@ exports.initialize = function() {
  *
  * @param {Function} delegate - the delegate to execute in the future.
  * @param {Number} timeout - timeout in milliseconds.
+ *
  * @returns {Number} - a timeout id that we can use to clear the timeout.
  */
 exports.setTimeout = function(delegate, timeout) {
