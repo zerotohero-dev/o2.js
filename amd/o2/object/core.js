@@ -24,7 +24,7 @@ define(function (require, exports, module) {'use strict';
  *
  * @param {Object} obj - the object to clone.
  */
-exports.clone = function(obj) {
+exports.clone = function(/*obj*/) {
     //TODO: implement me.
 };
 

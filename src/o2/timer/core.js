@@ -119,29 +119,49 @@ function multiplex() {
 
 /**
  *
+ * @returns {boolean}
  */
-function loop() {
-    tick(loop);
-
+function executeMultiplex() {
     if (commandQueue.length > config.multiplexThreshold) {
         hits = 0;
         misses++;
 
         multiplex();
 
+        return true;
+    }
+
+    return false;
+}
+
+function adjustHitCount() {
+    if (misses <= 0) {
+        return false;
+    }
+
+    hits++;
+
+    if (hits >= config.batchSizeDecreaseThreshold) {
+        misses--;
+        hits = 0;
+    }
+
+    return true;
+}
+
+/**
+ *
+ */
+function loop() {
+    tick(loop);
+
+    if (executeMultiplex()) {
         return;
     }
 
-    if (misses > 0) {
-        hits++;
-
-        if (hits >= config.batchSizeDecreaseThreshold) {
-            misses--;
-            hits = 0;
-        }
+    if (adjustHitCount()) {
+        delegateNextCommand();
     }
-
-    delegateNextCommand();
 }
 
 /**

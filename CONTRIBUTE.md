@@ -12,13 +12,9 @@ How Can I Contribute to **[o2.js][o2jscom]**
 
 > Open source software has changed the world, and it will continue to do so, and it’s true that many of you would love to **contribute**. And many of you are also daunted by the glass ceiling over them, as they see the barrier to entry of a project overwhelming.
 
+At this repo, there are certain things (*such as this CONTRIBUTE document*) that are designed just to decrease this “pseudo” barrier.
 
-At this repo, there are certain things (*such as this CONTRIBUTE document*) that are designed just to decrease this "pseudo" barrier.
-
-Another thing is when you browse
-[the issue list][open-issues]
-you'll see that the isues are labeled with **@@beginner**, **@@intermediate**,
-and **@@advanced** tags to give you a feeling of "where to start".
+Another thing is when you browse [the issue list][open-issues] you'll see that the issues are labeled with **@@beginner**, **@@intermediate**, and **@@advanced** tags to give you a feeling of “where to start”.
 
 > Admittedly, [the issue list][open-issues] is a mess in an of itself. &ndash; If you find an issue interesting, but it looks too daunting to start, just **comment on it** and you will receive the help you need.
 
@@ -31,11 +27,11 @@ But first let us start with addressing the usual excuses:
 
 Per contra:
 
-* **Anyone** can contribute.
-* **Any** contribution is better than none.
-* **There's no spoon**: The barrier to entry does not exist. It's nowhere but in your mind.
+* **Anyone** can contribute;
+* **Any** contribution is better than none;
+* **There's no spoon**: The barrier to entry does not exist; It's nowhere but in your mind.
 
-Designing a new framework may require some lead and inspiration, and the rest what makes a project succeed is "perspiration". Your contribution **will** get noticed, and **will** be appreciated, not only by the users of this framework but also
+Designing a new framework may require some lead and inspiration, and the rest what makes a project succeed is “perspiration”. Your contribution **will** get noticed, and **will** be appreciated, not only by the users of this framework but also
 
 * By other open-source enthusiasts;
 * By your friends and colleagues;
@@ -55,23 +51,27 @@ Write about **[o2.js][o2jscom]**;
 
 Do you have a blog? Write about **[o2.js][o2jscom]**.
 
-Do you use Facecook? Then share **o2.js** on **Facebook**.
+Do you use Facebook? Then share **[o2.js][o2jscom]** on **Facebook**.
 
-Are you a tweeter? Then tweet about **o2.js**. 
+Are you a tweeter? Then tweet about **[o2.js][o2jscom]**. 
 
 ### Raise New Issues
 
-Have an idea, have a suggestion. &ndash; Then [open an issue][issues].
+Have an idea, have a suggestion? &ndash; Then [open an issue][issues].
 
 ### Suggest a Feature
 
 Related to the above, you can help by suggesting an interesting or innovative feature to **[o2.js][o2jscom]**.
 
-Bonus points if you start actually implementing it **;)**,
+Bonus points if you start actually implementing it **;)**çç.
 
 ### Trace and Diagnose an Issue
 
-Issues are generally poorly reported. When you diagnose a bug and come up with additional findings, sharing them as **comments** under the issue will help people save time. So try to figure out the specifics of the problem:
+Issues are generally poorly reported. 
+
+When you diagnose a bug and come up with additional findings, sharing them as **comments** under the issue will help people save time. 
+
+So try to figure out the specifics of the problem:
 
 * Is it reproducible, or is it ad-hoc?
 * What are the steps to reproduce the problem?
@@ -127,7 +127,7 @@ Here is a sample function documentation:
 > 
 > Read **[INSTALL.md][install]** for further installation and configuration instructions.
 
-### Seek the Code for Hidden "TODO" Items
+### Seek the Code for Hidden “TODO’ Items
 
 You can `grep -RIn TODO .` the `o2.js/src` folder and either **fork** the repository (we'll come to that soon below) and try to fix them yourself; or you can [open an issue][issues] for them.
 
@@ -172,39 +172,43 @@ If that's the case, here's a brief guideline for you:
 
 ![Read the Source Luke](http://o2js.com/assets/luke.png)
 
->>>>>>>>>>>>>>>>>>>>>>> BELOW IS WORK IN PROGRESS; SOME OF THE TOPICS MIGHT BE OUT OF DATE <<<<<<<<<<<<<<<
-
 1. Before starting anything **carefully** read the [o2.js **JavaScript** Conventions & Best Practices][conventions].
-2. Read the **Source Code** to get a feeling of the practical application of those
-conventions, variable namings, indentation, and the like.
-3. Fork **o2.js**.
+2. Read the **Source Code** to get a feeling of the practical application of those conventions, variable namings, indentation, and the like.
+3. Fork **[o2.js][o2git]**.
 4. Clone your fork into your local repository.
 5. Make sure you are working on the **dev** branch.
-6. **Branching out from the dev branch**,
-create a thoughtfully named **topic branch** containing your change.
+6. **Branch out from the dev branch**, and create a thoughtfully named **topic branch** containing your change.
 7. Implement your change.
-8. [JSLint your code](http://jslint.com/).
-9. Run the **publish** script at `batch/publish.sh`.
-10. **merge** the **topic branch** into the **dev** branch.
-11. Push the **dev** branch.
-12. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
+8. `grunt lint` your code, make sure that everything is green.
+9.  Run `grunt complexity` and check that your patch is not too complex. If it is, refactor it to make it simpler.
+10. Run the **publish** script (`grunt publish`).
+11. **merge** the **topic branch** into the **dev** branch.
+12. Push the **dev** branch.
+13. Send a **pull request** to <https://github/v0lkan/o2.js/> project.
 
 #### A Step by Step Introduction
 
-// TODO: this section is from the older version (v.1.) and it is being rewritten, some of the instructions might be outdated.
-// I'll remove this comment when the rewrite is done.
+#### Setup grunt
+
+[Follow this “getting started” guide][grunt-start].
+
+[grunt-start]: http://gruntjs.com/getting-started
 
 #### Setup git
 
-* [git setup for Mac](http://help.github.com/mac-set-up-git/)
-* [git setup for Windows](http://help.github.com/win-set-up-git/)
-* [git setup for Linux](http://help.github.com/linux-set-up-git/)
+* [git setup for Mac][gitmac]
+* [git setup for Windows][gitwin]
+* [git setup for Linux][gittux]
+
+[gitmac]: http://help.github.com/mac-set-up-git/
+[gitwin]: http://help.github.com/win-set-up-git/
+[gittux]: http://help.github.com/linux-set-up-git/
 
 #### Fork **[o2.js][o2jscom]**
 
 Forking **[o2.js][o2jscom]** is easy:
 
-* Go to <https://github/v0lkan/o2.js/>
+* Go to <https://github/v0lkan/o2.js/>;
 * Click the **fork** button.
 
 ![Fork Example](http://o2js.com/assets/fork.png)
@@ -213,96 +217,154 @@ Forking **[o2.js][o2jscom]** is easy:
 
 ![Forked Repository](http://o2js.com/assets/jose.png)
 
-* Go to your Projects folder.
+* Go to your Projects folderİŞÇ:
 
-        cd ~/PROJECT/
+~~~ 
+$ cd ~/PROJECT/
+~~~
 
 * Clone your forked repository, and checkout the dev branch:
 
-        git clone git@github.com:josecapablanca/o2.js.git
-        cd o2.js
-        git checkout -b dev origin/dev
+~~~
+git clone git@github.com:josecapablanca/o2.js.git
+cd o2.js
+git checkout -b dev origin/dev
+~~~
 
 * Make sure that you are on the dev branch:
 
-        $ git branch
+~~~
+$ git branch
         * dev
           master
+~~~
 
 * Branch out from **dev**:
 
-        $ git branch DocumentationReminder
-        $ git checkout DocumentationReminder
+~~~ 
+$ git branch DocumentationReminder
+$ git checkout DocumentationReminder
+~~~
 
 * Hack around, do your code changes.
 
-* (TODO: now this is automated) **[JSHint](http://jshin.com/)** your code and make sure that you haven't missed anything. There are also automated tools for most of the editors around, so that you will not need to
-copy and paste your code to <http://jslint.com> every time you want to **JSLint** it.
+* Lint your code when doneŞÇ:
 
-The **JSLint** validation preferences that **[o2.js][o2jscom]** uses are as follows:
+~~~
+$ grunt lint
 
-        "--indent", "4",
-        "--space",
-        "--newcap",
-        "--undef",
-        "--regexp",
-        "--bitwise",
-        "--white",
-        "--node",
-        "--plusplus",
-        "--stupid",
+Running "jshint:src" (jshint) task
+>> 10 files lint free.
 
-* Run the publish script.
+Done, without errors.
+~~~
 
-        cd {PATH_TO_YOUR_PROJECTS}/o2.js/batch/
-        sh publish.sh
+* Do a complexity analysisŞ:
 
-* merge with **dev** branch:
+~~~
+$ grunt complexity
 
-   If **JSLint** tests pass, and there are no errors after running the publish script,
-   then it's time to merge our changes into our **dev** branch.
+Running "complexity:generic" (complexity) task
+ 
+✓ src/o2/ajax/core.js                         ████████ 161.23
+✓ src/o2/ajax/node_modules/o2.string/core.js  █████████ 171.00
+✓ src/o2/debug/core.js                        █████████ 173.48
+✓ src/o2/io/core.js                           █████████ 171.00
+✓ src/o2/object/core.js                       ████████ 170.10
+✓ src/o2/string/core.js                       █████████ 171.00
+✓ src/o2/timer/config.js                      ██████ 133.03
+✓ src/o2/timer/core.js                        ██████ 135.74
+✓ src/o2/timer/node_modules/o2.debug/core.js  █████████ 173.48
 
-        $ git checkout dev
-        $ git merge DocumentationReminder
-        $ git branch -D DocumentationReminder
+Done, without errors.
+~~~
+
+* Run the publish script. The output should be similar to the following:
+
+~~~
+$ grunt publish
+
+Running "exec:clean" (exec) task
+
+Running "exec:install" (exec) task
+>> npm
+>> http GET https://registry.npmjs.org/o2.string/0.0.7
+>> npm
+>> http 304 https://registry.npmjs.org/o2.string/0.0.7
+o2.string@0.0.7 node_modules/o2.string
+>> npm
+>> 
+>> http
+>> GET https://registry.npmjs.org/o2.debug/0.0.2
+>> npm
+>> http 304 https://registry.npmjs.org/o2.debug/0.0.2
+o2.debug@0.0.2 node_modules/o2.debug
+
+Running "exec:amdify" (exec) task
+
+Running "jshint:src" (jshint) task
+>> 10 files lint free.
+
+Running "complexity:generic" (complexity) task
+ 
+✓ src/o2/ajax/core.js                         ████████ 161.23
+✓ src/o2/ajax/node_modules/o2.string/core.js  █████████ 171.00
+✓ src/o2/debug/core.js                        █████████ 173.48
+✓ src/o2/io/core.js                           █████████ 171.00
+✓ src/o2/object/core.js                       ████████ 170.10
+✓ src/o2/string/core.js                       █████████ 171.00
+✓ src/o2/timer/config.js                      ██████ 133.03
+✓ src/o2/timer/core.js                        ██████ 135.74
+✓ src/o2/timer/node_modules/o2.debug/core.js  █████████ 173.48
+
+Done, without errors.
+~~~
+
+* merge with the **dev** branch:
+
+> If everything was successful so far, then it’s time to merge with the **dev** branch.
+
+~~~
+$ git checkout dev
+$ git merge DocumentationReminder
+$ git branch -D DocumentationReminder
+~~~
 
 * Push your changes to the remote repository:
 
-        $ git push origin dev
+~~~
+$ git push origin dev
+~~~
 
 * Point your upstream to the **[o2.js][o2jscom]** original repository:
 
-        $ git remote add upstream git@github.com:v0lkan/o2.js.git
+~~~
+$ git remote add upstream git@github.com:v0lkan/o2.js.git
+~~~
 
-* Send a **pull request** on github by clicking on the **pull** button
-in your repository:
+* Send a **pull request** on github by clicking on the **pull** button in your repository:
 
 ![Pull](http://o2js.com/assets/pull.png)
 
-* Make sure that you are doing the pull request from the **dev branch** on
-your local repo, to the **dev branch** on the remote repo.
+* Make sure that you are doing the pull request from the **dev branch** on your local repo, to the **dev branch** of the remote repo.
 
 ![Dev Branch](http://o2js.com/assets/devbranch.png)
 
-* We will do our best to merge your change into **[o2.js][o2jscom]** code base
-if the change is useful, addresses and issue, or enhances the library,
-**AND** the code adheres to **[o2.js Conventions and Best Practices](https://github.com/v0lkan/o2.js/blob/master/CONVENTIONS.md)**.
-If the code cannot be merged, it'll be kindly rejected by giving pointers to
-how it can be improved further.
+* The code will be merged, into **[o2.js][o2jscom]** code base if the change is useful, addresses and issue, or enhances the library.
+* If the code, at its current state, cannot be merged, it'll be kindly rejected by giving pointers to how it can be improved further, so that it can be merged.
 
-* That ends a typical **[o2.js][o2jscom]** project contribution cycle. If you want
-to do another change, you most probably would want to get the updates from
-your **upstream** first:
+That ends a typical **[o2.js][o2jscom]** project contribution cycle. If you want to do another change, you most probably would want to get the updates from your **upstream** first:
 
-        $ git checkout dev
-        $ git fetch upstream
-        $ get merge upstream/dev
-        $ git push origin dev
+~~~
+$ git checkout dev
+$ git fetch upstream
+$ git merge upstream/dev
+$ git push origin dev
+~~~
 
-* You can then **branch out** from **dev**, and start the contribution
-cycle over again.
+* You can then **branch out** from **dev**, and start the contribution cycle over again.
 
-That's the end of this quick tutorial.
+That is the end of this quick tutorial.
 
 **May the source be with you**.
 

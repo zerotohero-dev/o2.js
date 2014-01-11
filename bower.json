@@ -21,7 +21,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
+  "devDependencies": {
     "requirejs": "2.1.9",
     "jasmine": "2.0.0",
     "node-jscoverage": "https://github.com/visionmedia/node-jscoverage.git",
