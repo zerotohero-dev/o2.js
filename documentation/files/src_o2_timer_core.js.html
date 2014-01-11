@@ -19,7 +19,7 @@
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: 2.0.1</em>
+            <em>API Docs for: 2.0.4</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -47,6 +47,8 @@
             
                 <li><a href="../classes/o2.io.core.html">o2.io.core</a></li>
             
+                <li><a href="../classes/o2.object.core.html">o2.object.core</a></li>
+            
                 <li><a href="../classes/o2.string.core.html">o2.string.core</a></li>
             
                 <li><a href="../classes/o2.timer.core.html">o2.timer.core</a></li>
@@ -60,6 +62,8 @@
                 <li><a href="../modules/o2.debug.html">o2.debug</a></li>
             
                 <li><a href="../modules/o2.io.html">o2.io</a></li>
+            
+                <li><a href="../modules/o2.object.html">o2.object</a></li>
             
                 <li><a href="../modules/o2.string.html">o2.string</a></li>
             
@@ -120,14 +124,21 @@
  * @static
  */
 
-var warn = require(&#x27;./node_modules/o2.debug/core&#x27;).warn;
+var rConfig = require(&#x27;./config&#x27;),
 
-// Too many commands in the queue will create lags in UI responsiveness.
-var kTooManyCommandsInLine = 40;
+    config = {},
 
-// If there are too many commands waiting, group some of these commands and
-// execute them together.
-var kMultiplexLength = 10;
+    misses = 0,
+    hits = 0,
+
+    key;
+
+
+for (key in rConfig) {
+    if (rConfig.hasOwnProperty(key)) {
+        config[key] = rConfig[key];
+    }
+}
 
 if (!window) {
     throw new Error(&#x27;o2.timer should run in a browser.&#x27;);
@@ -208,11 +219,44 @@ function delegateNextCommand() {
  *
  */
 function multiplex() {
-    var i;
+    var i,
+        len = Math.pow(2, misses);
 
-    for(i = 0; i &lt; kMultiplexLength; i++) {
+    for(i = 0; i &lt; len; i++) {
         if (!delegateNextCommand()) {break;}
     }
+}
+
+/**
+ *
+ * @returns {boolean}
+ */
+function executeMultiplex() {
+    if (commandQueue.length &gt; config.multiplexThreshold) {
+        hits = 0;
+        misses++;
+
+        multiplex();
+
+        return true;
+    }
+
+    return false;
+}
+
+function adjustHitCount() {
+    if (misses &lt;= 0) {
+        return false;
+    }
+
+    hits++;
+
+    if (hits &gt;= config.batchSizeDecreaseThreshold) {
+        misses--;
+        hits = 0;
+    }
+
+    return true;
 }
 
 /**
@@ -221,35 +265,34 @@ function multiplex() {
 function loop() {
     tick(loop);
 
-    if (commandQueue.length &gt; kTooManyCommandsInLine) {
-        warn(
-            &#x27;There are &quot;&#x27; + commandQueue.length + &#x27;&quot; waiting commands in&#x27; +
-            &#x27; the pipe. This might be a performance issue! Multiplexing &#x27; +
-            kMultiplexLength + &#x27; of these commands.&#x27;
-        );
-
-        multiplex();
-
+    if (executeMultiplex()) {
         return;
     }
 
-    delegateNextCommand();
+    if (adjustHitCount()) {
+        delegateNextCommand();
+    }
 }
 
 /**
+ * Initializes &#x60;o2.timer.core&#x60;.
  *
+ * Call this method, before using other methods of &#x60;o2.timer.core&#x60;.
+ *
+ * @method initialize
+ * @static
+ * @final
  */
 exports.initialize = function() {
     loop();
 
-    if (!commandQueue.length) {return;}
-
-    commandQueue.shift()();
+    exports.initialize = noop;
 };
 
 /**
- * Defers tasks to &#x60;requestAnimationFrame&#x60;. Use this instead of
- * &#x60;window.setTimeout&#x60;.
+ * Defers tasks to &#x60;requestAnimationFrame&#x60;.
+ *
+ * Use this instead of &#x60;window.setTimeout&#x60;.
  *
  * @method setTimeout
  * @static
@@ -264,6 +307,7 @@ exports.initialize = function() {
  *
  * @param {Function} delegate - the delegate to execute in the future.
  * @param {Number} timeout - timeout in milliseconds.
+ *
  * @returns {Number} - a timeout id that we can use to clear the timeout.
  */
 exports.setTimeout = function(delegate, timeout) {

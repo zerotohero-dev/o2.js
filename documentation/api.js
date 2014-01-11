@@ -4,6 +4,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "o2.ajax.core",
         "o2.debug.core",
         "o2.io.core",
+        "o2.object.core",
         "o2.string.core",
         "o2.timer.core"
     ],
@@ -11,6 +12,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "o2.ajax",
         "o2.debug",
         "o2.io",
+        "o2.object",
         "o2.string",
         "o2.timer"
     ],
@@ -27,6 +29,10 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "o2.io",
             "name": "o2.io"
+        },
+        {
+            "displayName": "o2.object",
+            "name": "o2.object"
         },
         {
             "displayName": "o2.string",

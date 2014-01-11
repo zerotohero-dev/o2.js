@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src/o2/string/core.js - o2</title>
+    <title>src/o2/object/core.js - o2</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -104,44 +104,103 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: src/o2/string/core.js</h1>
+                        <h1 class="file-heading">File: src/o2/object/core.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x27;use strict&#x27;;
 
-/*
- *  This program is distributed under the terms of the MIT license.
- *  Please see the LICENSE.md file for details.
+/**
+ * @module o2.object
  */
 
 /**
- * @module o2.string
- */
-
-/**
- * @class o2.string.core
+ * @class o2.object.core
  * @static
  */
 
+var kArrayTypeString = &#x27;[object Array]&#x27;;
+
 /**
- * Says hi.
  *
- * Usage example:
+ * @param obj
+ * @returns {boolean}
+ */
+// TODO: move this to its own module.
+function isArray(obj) {
+    return Object.prototye.toString.call(obj) === kArrayTypeString;
+}
+
+/**
+ * Clones the object (creates a non-recursive **shallow** copy).
  *
- *     var ajaxUtil = require(&#x27;ajax/core&#x27;);
+ * See also {{#crossLink &quot;o2.object.core/deepClone:method&quot;}}{{/crossLink}}.
  *
- *     // &#x60;greeting&#x60; will be a welcome text of type &#x60;String&#x60;.
- *     var greeting = ajaxUtil.sayHi();
+ * @example
+ *     var objectUtil = require(&#x27;amd/o2/object/core&#x27;);
  *
- * @method sayHi
+ *     var obj = {foo: &#x27;bar&#x27;};
+ *     var cloned = objectUtil.clone(obj);
+ *
+ *     cloned.foo = &#x27;baz&#x27;;
+ *
+ *     // Logs &#x27;bar&#x27;.
+ *     console.log(obj.foo);
+ *
+ *     // Logs &#x27;baz&#x27;.
+ *     console.log(cloned.foo);
+ *
+ * @method clone
  * @static
  * @final
  *
- * @returns {string} &quot;hi&quot;.
+ * @param {Object} obj - the object to clone.
+ *
+ * @returns {Object} - a brand new cloned object.
  */
-exports.sayHi = function() {
-    return &#x27;Hello world; hello stars; hello universe!&#x27;;
+exports.clone = function(obj) {
+    var clone = isArray(obj) ? [] : {},
+        key;
+
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            clone[key] = obj[key];
+        }
+    }
+
+    return clone;
+};
+
+/**
+ * Deep clones an object (recursively cloning children).
+ *
+ * This method only works on attributes, it does not clone function references.
+ *
+ * See also {{#crossLink &quot;o2.object.core/clone:method&quot;}}{{/crossLink}}.
+ *
+ * @example
+ *     var objectUtil = require(&#x27;amd/o2/object/core&#x27;);
+ *
+ *     var obj = {foo: &#x27;bar&#x27;, deep: {cloned: &#x27;baz&#x27;}};
+ *     var cloned = objectUtil.deepClone(obj);
+ *
+ *     cloned.deep.cloned = &#x27;bazinga&#x27;;
+ *
+ *     // Logs &#x27;baz&#x27;.
+ *     console.log(obj.deep.cloned);
+ *
+ *     // Logs &#x27;bazinga&#x27;.
+ *     console.log(cloned.deep.cloned);
+ *
+ * @method deepClone
+ * @static
+ * @final
+ *
+ * @param {Object} obj - the object to clone.
+ * @returns {Object}
+ */
+exports.deepClone = function(obj) {
+    return JSON.parse(JSON.stringify(obj));
 };
 
     </pre>

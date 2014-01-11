@@ -2,7 +2,7 @@
     "project": {
         "name": "o2",
         "description": "o2.js JavaScript Framework",
-        "version": "2.0.1",
+        "version": "2.0.4",
         "url": "http://o2js.com/",
         "logo": "../assets/logo.png"
     },
@@ -36,6 +36,17 @@
             },
             "classes": {
                 "o2.io.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/object/core.js": {
+            "name": "src/o2/object/core.js",
+            "modules": {
+                "o2.object": 1
+            },
+            "classes": {
+                "o2.object.core": 1
             },
             "fors": {},
             "namespaces": {}
@@ -103,6 +114,18 @@
             "tag": "module",
             "file": "src/o2/io/core.js",
             "line": 12
+        },
+        "o2.object": {
+            "name": "o2.object",
+            "submodules": {},
+            "classes": {
+                "o2.object.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/object/core.js",
+            "line": 7
         },
         "o2.string": {
             "name": "o2.string",
@@ -172,6 +195,20 @@
             "namespace": "",
             "file": "src/o2/io/core.js",
             "line": 12
+        },
+        "o2.object.core": {
+            "name": "o2.object.core",
+            "shortname": "o2.object.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.object",
+            "namespace": "",
+            "file": "src/o2/object/core.js",
+            "line": 7,
+            "static": 1
         },
         "o2.string.core": {
             "name": "o2.string.core",
@@ -245,6 +282,72 @@
             "module": "o2.debug"
         },
         {
+            "file": "src/o2/object/core.js",
+            "line": 14,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 24,
+            "description": "Clones the object (creates a non-recursive **shallow** copy).\n\nSee also {{#crossLink \"o2.object.core/deepClone:method\"}}{{/crossLink}}.",
+            "example": [
+                "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar'};\n    var cloned = objectUtil.clone(obj);\n\n    cloned.foo = 'baz';\n\n    // Logs 'bar'.\n    console.log(obj.foo);\n\n    // Logs 'baz'.\n    console.log(cloned.foo);"
+            ],
+            "itemtype": "method",
+            "name": "clone",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the object to clone.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "- a brand new cloned object.",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 64,
+            "description": "Deep clones an object (recursively cloning children).\n\nThis method only works on attributes, it does not clone function references.\n\nSee also {{#crossLink \"o2.object.core/clone:method\"}}{{/crossLink}}.",
+            "example": [
+                "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar', deep: {cloned: 'baz'}};\n    var cloned = objectUtil.deepClone(obj);\n\n    cloned.deep.cloned = 'bazinga';\n\n    // Logs 'baz'.\n    console.log(obj.deep.cloned);\n\n    // Logs 'bazinga'.\n    console.log(cloned.deep.cloned);"
+            ],
+            "itemtype": "method",
+            "name": "deepClone",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the object to clone.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
             "file": "src/o2/string/core.js",
             "line": 17,
             "description": "Says hi.\n\nUsage example:\n\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();",
@@ -261,13 +364,13 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 38,
+            "line": 45,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 43,
+            "line": 50,
             "params": [
                 {
                     "name": "item",
@@ -279,7 +382,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 55,
+            "line": 62,
             "params": [
                 {
                     "name": "item",
@@ -295,7 +398,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 71,
+            "line": 78,
             "params": [
                 {
                     "name": "command",
@@ -311,7 +414,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 85,
+            "line": 92,
             "return": {
                 "description": "",
                 "type": "*"
@@ -321,7 +424,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 93,
+            "line": 100,
             "return": {
                 "description": "",
                 "type": "*"
@@ -331,26 +434,41 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 101,
+            "line": 108,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 112,
+            "line": 120,
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 133,
+            "line": 152,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 144,
-            "description": "Defers tasks to `requestAnimationFrame`. Use this instead of\n`window.setTimeout`.",
+            "line": 167,
+            "description": "Initializes `o2.timer.core`.\n\nCall this method, before using other methods of `o2.timer.core`.",
+            "itemtype": "method",
+            "name": "initialize",
+            "static": 1,
+            "final": 1,
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 182,
+            "description": "Defers tasks to `requestAnimationFrame`.\n\nUse this instead of `window.setTimeout`.",
             "itemtype": "method",
             "name": "setTimeout",
             "static": 1,
@@ -379,7 +497,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 169,
+            "line": 209,
             "description": "Clears the timer scheduled with the given id.",
             "itemtype": "method",
             "name": "clearTimeout",
@@ -406,63 +524,83 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:14"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:24"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:64"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
             "line": " src/o2/string/core.js:17"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:55"
+            "line": " src/o2/timer/core.js:62"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:71"
+            "line": " src/o2/timer/core.js:78"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:85"
+            "line": " src/o2/timer/core.js:92"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:93"
+            "line": " src/o2/timer/core.js:100"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:144"
+            "line": " src/o2/timer/core.js:120"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:182"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:38"
+            "line": " src/o2/object/core.js:14"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:43"
+            "line": " src/o2/timer/core.js:45"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:55"
+            "line": " src/o2/timer/core.js:50"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:71"
+            "line": " src/o2/timer/core.js:62"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:85"
+            "line": " src/o2/timer/core.js:78"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:93"
+            "line": " src/o2/timer/core.js:92"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:101"
+            "line": " src/o2/timer/core.js:100"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:112"
+            "line": " src/o2/timer/core.js:108"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:133"
+            "line": " src/o2/timer/core.js:120"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:152"
         }
     ]
 }
