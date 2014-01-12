@@ -6,7 +6,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "o2.io.core",
         "o2.object.core",
         "o2.string.core",
-        "o2.timer.core"
+        "o2.timer.core",
+        "o2.validate.core"
     ],
     "modules": [
         "o2.ajax",
@@ -14,7 +15,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "o2.io",
         "o2.object",
         "o2.string",
-        "o2.timer"
+        "o2.timer",
+        "o2.validate"
     ],
     "allModules": [
         {
@@ -41,6 +43,10 @@ YUI.add("yuidoc-meta", function(Y) {
         {
             "displayName": "o2.timer",
             "name": "o2.timer"
+        },
+        {
+            "displayName": "o2.validate",
+            "name": "o2.validate"
         }
     ]
 } };

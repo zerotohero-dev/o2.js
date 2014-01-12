@@ -2,7 +2,7 @@
     "project": {
         "name": "o2",
         "description": "o2.js JavaScript Framework",
-        "version": "2.0.4",
+        "version": "2.0.6",
         "url": "http://o2js.com/",
         "logo": "../assets/logo.png"
     },
@@ -69,6 +69,17 @@
             },
             "classes": {
                 "o2.timer.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/validate/core.js": {
+            "name": "src/o2/validate/core.js",
+            "modules": {
+                "o2.validate": 1
+            },
+            "classes": {
+                "o2.validate.core": 1
             },
             "fors": {},
             "namespaces": {}
@@ -150,6 +161,18 @@
             "tag": "module",
             "file": "src/o2/timer/core.js",
             "line": 12
+        },
+        "o2.validate": {
+            "name": "o2.validate",
+            "submodules": {},
+            "classes": {
+                "o2.validate.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/validate/core.js",
+            "line": 7
         }
     },
     "classes": {
@@ -239,6 +262,20 @@
             "file": "src/o2/timer/core.js",
             "line": 12,
             "static": 1
+        },
+        "o2.validate.core": {
+            "name": "o2.validate.core",
+            "shortname": "o2.validate.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.validate",
+            "namespace": "",
+            "file": "src/o2/validate/core.js",
+            "line": 7,
+            "static": 1
         }
     },
     "classitems": [
@@ -283,23 +320,7 @@
         },
         {
             "file": "src/o2/object/core.js",
-            "line": 14,
-            "params": [
-                {
-                    "name": "obj",
-                    "description": ""
-                }
-            ],
-            "return": {
-                "description": "",
-                "type": "Boolean"
-            },
-            "class": "o2.object.core",
-            "module": "o2.object"
-        },
-        {
-            "file": "src/o2/object/core.js",
-            "line": 24,
+            "line": 15,
             "description": "Clones the object (creates a non-recursive **shallow** copy).\n\nSee also {{#crossLink \"o2.object.core/deepClone:method\"}}{{/crossLink}}.",
             "example": [
                 "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar'};\n    var cloned = objectUtil.clone(obj);\n\n    cloned.foo = 'baz';\n\n    // Logs 'bar'.\n    console.log(obj.foo);\n\n    // Logs 'baz'.\n    console.log(cloned.foo);"
@@ -324,7 +345,7 @@
         },
         {
             "file": "src/o2/object/core.js",
-            "line": 64,
+            "line": 55,
             "description": "Deep clones an object (recursively cloning children).\n\nThis method only works on attributes, it does not clone function references.\n\nSee also {{#crossLink \"o2.object.core/clone:method\"}}{{/crossLink}}.",
             "example": [
                 "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar', deep: {cloned: 'baz'}};\n    var cloned = objectUtil.deepClone(obj);\n\n    cloned.deep.cloned = 'bazinga';\n\n    // Logs 'baz'.\n    console.log(obj.deep.cloned);\n\n    // Logs 'bazinga'.\n    console.log(cloned.deep.cloned);"
@@ -515,6 +536,28 @@
             ],
             "class": "o2.timer.core",
             "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/validate/core.js",
+            "line": 12,
+            "description": "Checks whether the object is an [Array][array].\n\n[array]: http://mzl.la/19mDwAW",
+            "itemtype": "method",
+            "name": "isArray",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "- `true` if **obj** is an [Array][array];\n`false` otherwise.\n\n[array]: http://mzl.la/19mDwAW",
+                "type": "Boolean"
+            },
+            "class": "o2.validate.core",
+            "module": "o2.validate"
         }
     ],
     "warnings": [
@@ -524,15 +567,11 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/object/core.js:14"
+            "line": " src/o2/object/core.js:15"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/object/core.js:24"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/object/core.js:64"
+            "line": " src/o2/object/core.js:55"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -563,8 +602,8 @@
             "line": " src/o2/timer/core.js:182"
         },
         {
-            "message": "Missing item type",
-            "line": " src/o2/object/core.js:14"
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/validate/core.js:12"
         },
         {
             "message": "Missing item type",

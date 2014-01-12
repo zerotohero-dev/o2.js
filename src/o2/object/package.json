@@ -1,0 +1,17 @@
+{
+  "name": "o2.object",
+  "version": "0.0.0",
+  "description": "o2.js object-related methods",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "object",
+    "clone",
+    "copy",
+    "file system"
+  ],
+  "author": "Volkan Özçelik",
+  "license": "MIT",
+  "main": "core.js"
+}

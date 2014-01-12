@@ -11,17 +11,6 @@
 
 var kArrayTypeString = '[object Array]';
 
-// TODO: add a package.json and publish this module to npm.
-
-/**
- *
- * @param obj
- * @returns {boolean}
- */
-// TODO: move this to its own module.
-function isArray(obj) {
-    return Object.prototye.toString.call(obj) === kArrayTypeString;
-}
 
 /**
  * Clones the object (creates a non-recursive **shallow** copy).

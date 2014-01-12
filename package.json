@@ -1,12 +1,15 @@
 {
   "name": "o2",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "author": "Volkan Özçelik <volkan@o2js.com>",
   "description": "o2.js JavaScript Framework",
   "homepage": "http://o2js.com/",
   "preferGlobal": "false",
   "keywords": [
     "o2.js",
+    "io",
+    "objects",
+    "validation",
     "ajax",
     "strings",
     "formatting"
