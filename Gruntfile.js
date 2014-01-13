@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                      * Also McCabe (1996) discusses about limiting cyclomatic
                      * complexity to 10.
                      *
-                     * Keeping this at "5", a reasonably strict value. This
+                     * Keeping this at "5", a reasonably strict value: This
                      * overly-conservative choice will also force splitting
                      * longer methods into smaller sub-methods.
                      */
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                      * o2.js code uses "15" to err on the conservative side.
                      * This value might adjust itself as the library evolves.
                      *
-                     * Here are some interested findings:
+                     * Here are some interesting findings:
                      *
                      * http://www.amazon.com/dp/0471887137 suggests 50 to 100
                      * lines of code, less than 10 cyclomatic complexity, and
