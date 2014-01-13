@@ -135,6 +135,10 @@ function executeMultiplex() {
     return false;
 }
 
+/**
+ *
+ * @returns {boolean}
+ */
 function adjustHitCount() {
     if (misses <= 0) {return false;}
 
@@ -149,7 +153,7 @@ function adjustHitCount() {
 }
 
 /**
- *
+ * The main event loop.
  */
 function loop() {
     tick(loop);

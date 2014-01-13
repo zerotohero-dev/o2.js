@@ -1,6 +1,6 @@
 {
   "name": "o2.object",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "o2.js object-related methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,6 @@
   "license": "MIT",
   "main": "core.js",
   "dependencies": {
-    "o2.validate": "0.0.3"
+    "o2.validate": "<=10"
   }
 }

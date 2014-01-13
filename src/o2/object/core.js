@@ -12,17 +12,7 @@
 
 var isArray = require('./node_modules/o2.validate/core').isArray,
 
-    kObject = 'object';
-
-
-/**
- *
- * @param obj
- * @returns {boolean}
- */
-function isObject(obj) {
-    return typeof obj === kObject;
-}
+    kUndefined = 'undefined';
 
 /**
  * Clones the object (creates a non-recursive **shallow** copy).
@@ -121,13 +111,13 @@ exports.deepClone = function(obj) {
  * @returns {Object} - A reference to the the original object **obj**.
  */
 exports.extend = function(obj, extension) {
-    if (isObject(obj)) {
-        var key;
+    if (typeof obj === kUndefined) {return obj;}
 
-        for (key in extension) {
-            if (extension.hasOwnProperty(key)) {
-                obj[key] = extension[key];
-            }
+    var key;
+
+    for (key in extension) {
+        if (extension.hasOwnProperty(key)) {
+            obj[key] = extension[key];
         }
     }
 
