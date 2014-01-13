@@ -12,8 +12,4 @@ Run `grunt publish`.
 
 Run `grunt help` for a list of tasks available.
 
-### What Are Other Automated Tasks that I Can Run?
-
-Run `grunt help` for a list of tasks available.
-
 // TODO: update this file.

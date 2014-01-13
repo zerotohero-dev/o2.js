@@ -128,7 +128,7 @@ Bir örnek fonksiyon dokümantasyonu:
  */
 ~~~
 
-> **[o2.js][o2jscom] dokümantasyonunu derlemek için `grunt doc` komutunu kullan.
+> **[o2.js][o2jscom]** dokümantasyonunu derlemek için `grunt doc` komutunu kullan.
 >
 > **[INSTALL.md][install]** dosyasında kurulum ve konfigürasyonla ilgili daha fazla ayrıntı bulabilirsin.
 
