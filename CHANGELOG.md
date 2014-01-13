@@ -1,3 +1,7 @@
+# o2.js v.2.0.7
+
+* Added minimally working **timer**, **object**, and **validate** modules.
+
 # o2.js v.2.0.2
 
 * Started creating `npm` modules for each **o2.js** module.

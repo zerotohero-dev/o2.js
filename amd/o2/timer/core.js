@@ -17,7 +17,7 @@ define(function (require, exports, module) {'use strict';
 
 var rConfig = require('./config'),
 
-    o = require('./node_modules/o2.object'),
+    o = require('./node_modules/o2.object/core'),
     clone = o.clone,
     extend = o.extend,
 

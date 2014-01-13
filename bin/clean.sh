@@ -18,5 +18,11 @@ find amd/o2/ajax/node_modules/o2.string -maxdepth 1 -type f -delete;
 find src/o2/timer/node_modules/o2.debug -maxdepth 1 -type f -delete;
 find amd/o2/timer/node_modules/o2.debug -maxdepth 1 -type f -delete;
 
+find src/o2/timer/node_modules/o2.object -maxdepth 1 -type f -delete;
+find amd/o2/timer/node_modules/o2.object -maxdepth 1 -type f -delete;
+
+find src/o2/timer/node_modules/o2.object/node_modules/o2.validate -maxdepth 1 -type f -delete;
+find amd/o2/timer/node_modules/o2.object/node_modules/o2.validate -maxdepth 1 -type f -delete;
+
 find src/o2/object/node_modules/o2.validate -maxdepth 1 -type f -delete;
 find amd/o2/object/node_modules/o2.validate -maxdepth 1 -type f -delete;
