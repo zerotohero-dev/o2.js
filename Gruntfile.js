@@ -77,7 +77,7 @@ module.exports = function(grunt) {
                      * (e.g., http://bit.ly/halstead50).
                      *
                      * And some sources even argue that using Halstead
-                     * difficulty does not prove much value, since they are
+                     * difficulty does not prove much value, since there are
                      * simpler methods (such as counting lines of code) that
                      * provide adequate information.
                      * See, for example, http://bit.ly/simplerIsBetter which
