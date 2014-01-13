@@ -31,13 +31,71 @@ module.exports = function(grunt) {
         },
         complexity: {
             generic: {
-                src: ['src/**/*.js'],
+                src: ['src/o2/*/*.js'],
                 options: {
-                    jsLintXML: 'report.xml', // create XML JSLint-like report
-                    checkstyleXML: 'checkstyle.xml', // create checkstyle report
-                    errorsOnly: false, // show only maintainability errors
-                    cyclomatic: 3,
-                    halstead: 8,
+                    errorsOnly: false,
+
+                    /**
+                     * Different resources recommend different values for
+                     * cyclomatic complexity.
+                     *
+                     * For instance http://www.amazon.com/dp/1842651765/
+                     * recommends a value of 10 and says even 15 may be
+                     * acceptable.
+                     * On the other hand, http://bit.ly/cyclomatic regards a
+                     * number below 10 as "reliable".
+                     * Also McCabe (1996) discusses about limiting cyclomatic
+                     * complexity to 10.
+                     *
+                     * Keeping this at "5", a reasonably strict value. This
+                     * overly-conservative choice will also force splitting
+                     * longer methods into smaller sub-methods.
+                     */
+                    cyclomatic: 5,
+
+                    /**
+                     * There does not appear a common consensus for this metric
+                     * either.
+                     *
+                     * o2.js code uses "15" to err on the conservative side.
+                     * This value might adjust itself as the library evolves.
+                     *
+                     * Here are some interested findings:
+                     *
+                     * http://www.amazon.com/dp/0471887137 suggests 50 to 100
+                     * lines of code, less than 10 cyclomatic complexity, and
+                     * less than 10 Halstead difficulty per method.
+                     *
+                     * Some other resources recommend a Halstead "volume" of
+                     * at least 20, and not more than 1000 per method.
+                     *
+                     * http://www.mccabe.com/pdf/McCabe%20IQ%20Metrics.pdf
+                     * suggests a threshold of 30 for Halstead difficulty index.
+                     *
+                     * There even are sources that take numbers as high as 50
+                     * as a difficulty thresholds for methods
+                     * (e.g., http://bit.ly/halstead50).
+                     *
+                     * And some sources even argue that using Halstead
+                     * difficulty does not prove much value, since they are
+                     * simpler methods (such as counting lines of code) that
+                     * provide adequate information.
+                     * See, for example, http://bit.ly/simplerIsBetter which
+                     * shows high correlation between SLOC and Halstead
+                     * difficulty;
+                     * meaning: simply counting lines of code gives mostly the
+                     * same information as doing a more complex Halstead
+                     * analysis.
+                     */
+                    halstead: 15,
+
+                    /**
+                     * 65 is considered to be a real warning sign.
+                     * 85 and more is recommended.
+                     * ref: http://bit.ly/complexityMetrics
+                     *
+                     * Keeping it at 100 to be conservative.
+                     */
                     maintainability: 100
                 }
             }

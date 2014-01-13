@@ -7,6 +7,7 @@
 
 /**
  * @module o2.timer
+ * @require o2.object
  */
 
 /**
@@ -16,19 +17,15 @@
 
 var rConfig = require('./config'),
 
-    config = {},
+    o = require('./node_modules/o2.object'),
+    clone = o.clone,
+    extend = o.extend,
+
+    config,
 
     misses = 0,
-    hits = 0,
+    hits = 0;
 
-    key;
-
-
-for (key in rConfig) {
-    if (rConfig.hasOwnProperty(key)) {
-        config[key] = rConfig[key];
-    }
-}
 
 if (!window) {
     throw new Error('o2.timer should run in a browser.');
@@ -53,7 +50,11 @@ function noop() {}
  */
 function parse(item) {
     if (item) {
-        return typeof item === 'string' ? JSON.parse(item) : item;
+        if (typeof item === 'string') {
+            return JSON.parse(item);
+        } else {
+            return item;
+        }
     }
 
     return {};
@@ -109,8 +110,8 @@ function delegateNextCommand() {
  *
  */
 function multiplex() {
-    var i,
-        len = Math.pow(2, misses);
+    var len = Math.pow(2, misses),
+        i;
 
     for(i = 0; i < len; i++) {
         if (!delegateNextCommand()) {break;}
@@ -135,9 +136,7 @@ function executeMultiplex() {
 }
 
 function adjustHitCount() {
-    if (misses <= 0) {
-        return false;
-    }
+    if (misses <= 0) {return false;}
 
     hits++;
 
@@ -155,9 +154,7 @@ function adjustHitCount() {
 function loop() {
     tick(loop);
 
-    if (executeMultiplex()) {
-        return;
-    }
+    if (executeMultiplex()) {return;}
 
     if (adjustHitCount()) {
         delegateNextCommand();
@@ -172,12 +169,21 @@ function loop() {
  * @method initialize
  * @static
  * @final
+ *
+ * @param {Object} newConfig - configuration to override.
  */
-exports.initialize = function() {
+exports.initialize = function(newConfig) {
+    config = clone(rConfig);
+
+    extend(config, newConfig);
+
     loop();
 
     exports.initialize = noop;
 };
+
+// TODO: add usage examples to all public methods
+// TODO: remove sample 'sayhello' methods.
 
 /**
  * Defers tasks to `requestAnimationFrame`.

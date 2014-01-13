@@ -9,6 +9,8 @@
  * @static
  */
 
+var kArrayTypeString = '[object Array]';
+
 /**
  * Checks whether the object is an [Array][array].
  *
@@ -27,4 +29,4 @@
  */
 exports.isArray = function(obj) {
     return Object.prototye.toString.call(obj) === kArrayTypeString;
-}
+};

@@ -116,7 +116,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="../files/src_o2_object_core.js.html#l7"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:7</code></a>
+            Defined in: <a href="../files/src_o2_object_core.js.html#l8"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:8</code></a>
         </div>
     
 
@@ -170,6 +170,15 @@
                         
                             <li class="index-item method">
                                 <a href="#method_deepClone">deepClone</a>
+
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_extend">extend</a>
 
                                 
                                     <span class="flag static">static</span>
@@ -243,7 +252,7 @@
             
         
         
-        <a href="../files/src_o2_object_core.js.html#l15"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:15</code></a>
+        <a href="../files/src_o2_object_core.js.html#l27"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:27</code></a>
         
         </p>
 
@@ -379,7 +388,7 @@ console.log(cloned.foo);</code></pre>
             
         
         
-        <a href="../files/src_o2_object_core.js.html#l55"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:55</code></a>
+        <a href="../files/src_o2_object_core.js.html#l67"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:67</code></a>
         
         </p>
 
@@ -455,6 +464,162 @@ console.log(obj.deep.cloned);
 
 // Logs &#39;bazinga&#39;.
 console.log(cloned.deep.cloned);</code></pre>
+
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_extend" class="method item">
+    <h3 class="name"><code>extend</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>obj</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>extension</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+        <span class="flag final">final</span>
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_o2_object_core.js.html#l99"><code>src&#x2F;o2&#x2F;object&#x2F;core.js:99</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Extends a base object, with the attributes of an extension object.</p>
+<p>This does not clone the object <strong>obj</strong>; it modifies it <strong>by ref</strong>.</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">obj</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <ul>
+<li>the base object.</li>
+</ul>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">extension</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <ul>
+<li>the object to merge with.</li>
+</ul>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    <ul>
+<li>A reference to the the original object <strong>obj</strong>.</li>
+</ul>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>var base = {lorem: &#39;dolor&#39;};
+var extension = {ipsum: &#39;amet&#39;};
+var extend = require(&#39;amd/o2/object&#39;).extend;
+
+extend(base, extension);
+
+// Will log &quot;amet&quot;.
+console.log(base.ipsum);</code></pre>
 
             </div>
         </div>

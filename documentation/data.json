@@ -136,7 +136,10 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/o2/object/core.js",
-            "line": 7
+            "line": 8,
+            "requires": [
+                "o2.validate"
+            ]
         },
         "o2.string": {
             "name": "o2.string",
@@ -160,7 +163,8 @@
             "namespaces": {},
             "tag": "module",
             "file": "src/o2/timer/core.js",
-            "line": 12
+            "line": 13,
+            "require": "o2.object"
         },
         "o2.validate": {
             "name": "o2.validate",
@@ -230,7 +234,7 @@
             "module": "o2.object",
             "namespace": "",
             "file": "src/o2/object/core.js",
-            "line": 7,
+            "line": 8,
             "static": 1
         },
         "o2.string.core": {
@@ -260,7 +264,7 @@
             "module": "o2.timer",
             "namespace": "",
             "file": "src/o2/timer/core.js",
-            "line": 12,
+            "line": 13,
             "static": 1
         },
         "o2.validate.core": {
@@ -320,7 +324,23 @@
         },
         {
             "file": "src/o2/object/core.js",
-            "line": 15,
+            "line": 18,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 27,
             "description": "Clones the object (creates a non-recursive **shallow** copy).\n\nSee also {{#crossLink \"o2.object.core/deepClone:method\"}}{{/crossLink}}.",
             "example": [
                 "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar'};\n    var cloned = objectUtil.clone(obj);\n\n    cloned.foo = 'baz';\n\n    // Logs 'bar'.\n    console.log(obj.foo);\n\n    // Logs 'baz'.\n    console.log(cloned.foo);"
@@ -345,7 +365,7 @@
         },
         {
             "file": "src/o2/object/core.js",
-            "line": 55,
+            "line": 67,
             "description": "Deep clones an object (recursively cloning children).\n\nThis method only works on attributes, it does not clone function references.\n\nSee also {{#crossLink \"o2.object.core/clone:method\"}}{{/crossLink}}.",
             "example": [
                 "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar', deep: {cloned: 'baz'}};\n    var cloned = objectUtil.deepClone(obj);\n\n    cloned.deep.cloned = 'bazinga';\n\n    // Logs 'baz'.\n    console.log(obj.deep.cloned);\n\n    // Logs 'bazinga'.\n    console.log(cloned.deep.cloned);"
@@ -369,6 +389,36 @@
             "module": "o2.object"
         },
         {
+            "file": "src/o2/object/core.js",
+            "line": 99,
+            "description": "Extends a base object, with the attributes of an extension object.\n\nThis does not clone the object **obj**; it modifies it **by ref**.",
+            "itemtype": "method",
+            "name": "extend",
+            "static": 1,
+            "final": 1,
+            "example": [
+                "\n    var base = {lorem: 'dolor'};\n    var extension = {ipsum: 'amet'};\n    var extend = require('amd/o2/object').extend;\n\n    extend(base, extension);\n\n    // Will log \"amet\".\n    console.log(base.ipsum);"
+            ],
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the base object.",
+                    "type": "Object"
+                },
+                {
+                    "name": "extension",
+                    "description": "- the object to merge with.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "- A reference to the the original object **obj**.",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
             "file": "src/o2/string/core.js",
             "line": 17,
             "description": "Says hi.\n\nUsage example:\n\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();",
@@ -385,13 +435,13 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 45,
+            "line": 42,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 50,
+            "line": 47,
             "params": [
                 {
                     "name": "item",
@@ -403,7 +453,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 62,
+            "line": 63,
             "params": [
                 {
                     "name": "item",
@@ -419,7 +469,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 78,
+            "line": 79,
             "params": [
                 {
                     "name": "command",
@@ -435,7 +485,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 92,
+            "line": 93,
             "return": {
                 "description": "",
                 "type": "*"
@@ -445,7 +495,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 100,
+            "line": 101,
             "return": {
                 "description": "",
                 "type": "*"
@@ -455,13 +505,13 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 108,
+            "line": 109,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 120,
+            "line": 121,
             "return": {
                 "description": "",
                 "type": "Boolean"
@@ -471,24 +521,31 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 152,
+            "line": 151,
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 167,
+            "line": 164,
             "description": "Initializes `o2.timer.core`.\n\nCall this method, before using other methods of `o2.timer.core`.",
             "itemtype": "method",
             "name": "initialize",
             "static": 1,
             "final": 1,
+            "params": [
+                {
+                    "name": "newConfig",
+                    "description": "- configuration to override.",
+                    "type": "Object"
+                }
+            ],
             "class": "o2.timer.core",
             "module": "o2.timer"
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 182,
+            "line": 188,
             "description": "Defers tasks to `requestAnimationFrame`.\n\nUse this instead of `window.setTimeout`.",
             "itemtype": "method",
             "name": "setTimeout",
@@ -518,7 +575,7 @@
         },
         {
             "file": "src/o2/timer/core.js",
-            "line": 209,
+            "line": 215,
             "description": "Clears the timer scheduled with the given id.",
             "itemtype": "method",
             "name": "clearTimeout",
@@ -539,7 +596,7 @@
         },
         {
             "file": "src/o2/validate/core.js",
-            "line": 12,
+            "line": 14,
             "description": "Checks whether the object is an [Array][array].\n\n[array]: http://mzl.la/19mDwAW",
             "itemtype": "method",
             "name": "isArray",
@@ -567,79 +624,95 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/object/core.js:15"
+            "line": " src/o2/object/core.js:18"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/object/core.js:55"
+            "line": " src/o2/object/core.js:27"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:67"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:99"
         },
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src/o2/string/core.js:17"
         },
         {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:62"
+            "message": "unknown tag: require",
+            "line": " src/o2/timer/core.js:8"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:78"
+            "line": " src/o2/timer/core.js:63"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:92"
+            "line": " src/o2/timer/core.js:79"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:100"
+            "line": " src/o2/timer/core.js:93"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:120"
+            "line": " src/o2/timer/core.js:101"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/timer/core.js:182"
+            "line": " src/o2/timer/core.js:121"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/o2/validate/core.js:12"
+            "line": " src/o2/timer/core.js:188"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/validate/core.js:14"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:45"
+            "line": " src/o2/object/core.js:18"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:50"
+            "line": " src/o2/timer/core.js:42"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:62"
+            "line": " src/o2/timer/core.js:47"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:78"
+            "line": " src/o2/timer/core.js:63"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:92"
+            "line": " src/o2/timer/core.js:79"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:100"
+            "line": " src/o2/timer/core.js:93"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:108"
+            "line": " src/o2/timer/core.js:101"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:120"
+            "line": " src/o2/timer/core.js:109"
         },
         {
             "message": "Missing item type",
-            "line": " src/o2/timer/core.js:152"
+            "line": " src/o2/timer/core.js:121"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:151"
         }
     ]
 }

@@ -116,6 +116,7 @@
 
 /**
  * @module o2.object
+ * @requires o2.validate
  */
 
 /**
@@ -123,8 +124,19 @@
  * @static
  */
 
-var kArrayTypeString = &#x27;[object Array]&#x27;;
+var isArray = require(&#x27;./node_modules/o2.validate/core&#x27;).isArray,
 
+    kObject = &#x27;object&#x27;;
+
+
+/**
+ *
+ * @param obj
+ * @returns {boolean}
+ */
+function isObject(obj) {
+    return typeof obj === kObject;
+}
 
 /**
  * Clones the object (creates a non-recursive **shallow** copy).
@@ -196,6 +208,44 @@ exports.clone = function(obj) {
  */
 exports.deepClone = function(obj) {
     return JSON.parse(JSON.stringify(obj));
+};
+
+/**
+ * Extends a base object, with the attributes of an extension object.
+ *
+ * This does not clone the object **obj**; it modifies it **by ref**.
+ *
+ * @method extend
+ * @static
+ * @final
+ *
+ * @example
+ *     var base = {lorem: &#x27;dolor&#x27;};
+ *     var extension = {ipsum: &#x27;amet&#x27;};
+ *     var extend = require(&#x27;amd/o2/object&#x27;).extend;
+ *
+ *     extend(base, extension);
+ *
+ *     // Will log &quot;amet&quot;.
+ *     console.log(base.ipsum);
+ *
+ * @param {Object} obj - the base object.
+ * @param {Object} extension - the object to merge with.
+ *
+ * @returns {Object} - A reference to the the original object **obj**.
+ */
+exports.extend = function(obj, extension) {
+    if (isObject(obj)) {
+        var key;
+
+        for (key in extension) {
+            if (extension.hasOwnProperty(key)) {
+                obj[key] = extension[key];
+            }
+        }
+    }
+
+    return obj;
 };
 
     </pre>

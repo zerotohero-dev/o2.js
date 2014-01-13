@@ -121,6 +121,7 @@
 
 /**
  * @module o2.timer
+ * @require o2.object
  */
 
 /**
@@ -130,19 +131,15 @@
 
 var rConfig = require(&#x27;./config&#x27;),
 
-    config = {},
+    o = require(&#x27;./node_modules/o2.object&#x27;),
+    clone = o.clone,
+    extend = o.extend,
+
+    config,
 
     misses = 0,
-    hits = 0,
+    hits = 0;
 
-    key;
-
-
-for (key in rConfig) {
-    if (rConfig.hasOwnProperty(key)) {
-        config[key] = rConfig[key];
-    }
-}
 
 if (!window) {
     throw new Error(&#x27;o2.timer should run in a browser.&#x27;);
@@ -167,7 +164,11 @@ function noop() {}
  */
 function parse(item) {
     if (item) {
-        return typeof item === &#x27;string&#x27; ? JSON.parse(item) : item;
+        if (typeof item === &#x27;string&#x27;) {
+            return JSON.parse(item);
+        } else {
+            return item;
+        }
     }
 
     return {};
@@ -223,8 +224,8 @@ function delegateNextCommand() {
  *
  */
 function multiplex() {
-    var i,
-        len = Math.pow(2, misses);
+    var len = Math.pow(2, misses),
+        i;
 
     for(i = 0; i &lt; len; i++) {
         if (!delegateNextCommand()) {break;}
@@ -249,9 +250,7 @@ function executeMultiplex() {
 }
 
 function adjustHitCount() {
-    if (misses &lt;= 0) {
-        return false;
-    }
+    if (misses &lt;= 0) {return false;}
 
     hits++;
 
@@ -269,9 +268,7 @@ function adjustHitCount() {
 function loop() {
     tick(loop);
 
-    if (executeMultiplex()) {
-        return;
-    }
+    if (executeMultiplex()) {return;}
 
     if (adjustHitCount()) {
         delegateNextCommand();
@@ -286,12 +283,21 @@ function loop() {
  * @method initialize
  * @static
  * @final
+ *
+ * @param {Object} newConfig - configuration to override.
  */
-exports.initialize = function() {
+exports.initialize = function(newConfig) {
+    config = clone(rConfig);
+
+    extend(config, newConfig);
+
     loop();
 
     exports.initialize = noop;
 };
+
+// TODO: add usage examples to all public methods
+// TODO: remove sample &#x27;sayhello&#x27; methods.
 
 /**
  * Defers tasks to &#x60;requestAnimationFrame&#x60;.
