@@ -137,10 +137,9 @@ function executeMultiplex() {
 
 /**
  *
- * @returns {boolean}
  */
 function adjustHitCount() {
-    if (misses <= 0) {return false;}
+    if (misses <= 0) {return;}
 
     hits++;
 
@@ -148,8 +147,6 @@ function adjustHitCount() {
         misses--;
         hits = 0;
     }
-
-    return true;
 }
 
 /**
@@ -158,11 +155,13 @@ function adjustHitCount() {
 function loop() {
     tick(loop);
 
-    if (executeMultiplex()) {return;}
+    var didProcessQueue = executeMultiplex();
 
-    if (adjustHitCount()) {
-        delegateNextCommand();
-    }
+    if (didProcessQueue) {return;}
+
+    adjustHitCount();
+
+    delegateNextCommand();
 }
 
 /**
