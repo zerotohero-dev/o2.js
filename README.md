@@ -1,3 +1,5 @@
 in progress...
 
-read **CONTRIBUTE.md** for now..
+read **CONTRIBUTE.md** for now.
+
+also read **INSTALL.md** for installation instructions.

@@ -16,6 +16,8 @@ checkstyle.xml
 # Node.js            #
 ######################
 src/**/node_modules
+/node_modules
+
 
 # Logs and databases #
 ######################
