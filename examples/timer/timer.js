@@ -67,5 +67,16 @@ define([
         }, 0);
     }
 
-    render();
+// multiplexing test.
+//    for(var i = 0; i < 30; i++) {
+//        (function(i) {
+//            //console.log("in for " + i);
+//            timer.setTimeout(function() {
+//                console.log("timed out " + i);
+//            });
+//        }(i));
+//    }
+
+
+    //render();
 });

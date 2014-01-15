@@ -28,5 +28,5 @@ var kArrayTypeString = '[object Array]';
  * [array]: http://mzl.la/19mDwAW
  */
 exports.isArray = function(obj) {
-    return Object.prototye.toString.call(obj) === kArrayTypeString;
+    return Object.prototype.toString.call(obj) === kArrayTypeString;
 };

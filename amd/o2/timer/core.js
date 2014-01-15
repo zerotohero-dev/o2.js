@@ -127,7 +127,9 @@ function executeMultiplex() {
         hits = 0;
         misses++;
 
+        console.log('begin multiplex ' + misses);
         multiplex();
+        console.log('end multiplex');
 
         return true;
     }
@@ -156,13 +158,19 @@ function adjustHitCount() {
  * The main event loop.
  */
 function loop() {
+    //console.log('tick ' + commandQueue.length)
     tick(loop);
+    //console.log('ticked');
 
-    if (executeMultiplex()) {return;}
-
-    if (adjustHitCount()) {
-        delegateNextCommand();
+    if (executeMultiplex()) {
+      //  console.log('returning');
+        return;
     }
+
+    adjustHitCount()
+    //    console.log('delegating');
+        delegateNextCommand();
+
 }
 
 /**
