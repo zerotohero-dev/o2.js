@@ -127,9 +127,7 @@ function executeMultiplex() {
         hits = 0;
         misses++;
 
-        console.log('begin multiplex ' + misses);
         multiplex();
-        console.log('end multiplex');
 
         return true;
     }
@@ -139,10 +137,9 @@ function executeMultiplex() {
 
 /**
  *
- * @returns {boolean}
  */
 function adjustHitCount() {
-    if (misses <= 0) {return false;}
+    if (misses <= 0) {return;}
 
     hits++;
 
@@ -150,27 +147,21 @@ function adjustHitCount() {
         misses--;
         hits = 0;
     }
-
-    return true;
 }
 
 /**
  * The main event loop.
  */
 function loop() {
-    //console.log('tick ' + commandQueue.length)
     tick(loop);
-    //console.log('ticked');
 
-    if (executeMultiplex()) {
-      //  console.log('returning');
-        return;
-    }
+    var didProcessQueue = executeMultiplex();
 
-    adjustHitCount()
-    //    console.log('delegating');
-        delegateNextCommand();
+    if (didProcessQueue) {return;}
 
+    adjustHitCount();
+
+    delegateNextCommand();
 }
 
 /**
@@ -193,9 +184,6 @@ exports.initialize = function(newConfig) {
 
     exports.initialize = noop;
 };
-
-// TODO: add usage examples to all public methods
-// TODO: remove sample 'sayhello' methods.
 
 /**
  * Defers tasks to `requestAnimationFrame`.

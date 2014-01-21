@@ -185,9 +185,6 @@ exports.initialize = function(newConfig) {
     exports.initialize = noop;
 };
 
-// TODO: add usage examples to all public methods
-// TODO: remove sample 'sayhello' methods.
-
 /**
  * Defers tasks to `requestAnimationFrame`.
  *

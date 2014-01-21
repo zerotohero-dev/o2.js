@@ -48,7 +48,7 @@ define([
      *
      */
     function render() {
-        var i = 0, len = 20;
+        var i = 0, j, len = 20;
 
         timer.setTimeout(function loop() {
             var container = document.getElementById('Container');
@@ -65,18 +65,21 @@ define([
                 timer.setTimeout(loop, 0);
             }
         }, 0);
+
+
+        function queue(i) {
+            console.log('queued ' + i);
+
+            timer.setTimeout(function() {
+                console.log('timed out ' + i);
+            });
+        }
+
+        // Simulates timer congestion.
+        for(j = 0; j < 200; j++) {
+            queue(j);
+        }
     }
 
-// multiplexing test.
-//    for(var i = 0; i < 30; i++) {
-//        (function(i) {
-//            //console.log("in for " + i);
-//            timer.setTimeout(function() {
-//                console.log("timed out " + i);
-//            });
-//        }(i));
-//    }
-
-
-    //render();
+    render();
 });
