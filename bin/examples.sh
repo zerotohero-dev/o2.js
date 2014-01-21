@@ -7,13 +7,5 @@
 # Please see the LICENSE.md file for details.
 #
 
-# Install dependant npm modules.
-
-cd src/o2/ajax;
-npm install;
-
-cd ../../o2/timer;
-npm install;
-
-cd ../../o2/object;
-npm install;
+cd examples/timer;
+r.js -o name=timer baseUrl=. paths.requireLib=../../bower_components/requirejs/require include=requireLib out=timer-min.js;

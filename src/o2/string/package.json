@@ -1,6 +1,6 @@
 {
   "name": "o2.string",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "o2.js String utility methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "format",
     "o2.js"
   ],
-  "author": "Volkan Özçelik",
+  "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
   "main": "core.js"
 }

@@ -1,3 +1,12 @@
+#!/bin/sh
+
+#
+# o2.js JavaScript Framework (http://o2js.com - info@o2js.com)
+#
+# This program is distributed under the terms of the MIT license.
+# Please see the LICENSE.md file for details.
+#
+
 # TODO: do this with node.js (use an o2.js module for that) so that it can be platform-independent. This is also true fo other shell scripts.
 
 # Remove all AMD files.

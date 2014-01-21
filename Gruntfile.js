@@ -101,6 +101,11 @@ module.exports = function(grunt) {
             }
         },
         exec: {
+            examples: {
+                command: 'sh bin/examples.sh',
+                stdout: true,
+                stderr: true
+            },
             clean: {
                 command: 'sh bin/clean.sh',
                 stdout: true,
@@ -156,6 +161,7 @@ module.exports = function(grunt) {
         'lint',
         'complexity'
     ]);
+    grunt.registerTask('minify-examples', ['exec:examples']);
     grunt.registerTask('testAll', ['exec:test', 'test']);
     grunt.registerTask('doc', ['yuidoc']);
 };

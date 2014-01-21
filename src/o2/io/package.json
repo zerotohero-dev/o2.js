@@ -1,6 +1,6 @@
 {
   "name": "o2.io",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "o2.js FileSystem-related methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "fs",
     "file system"
   ],
-  "author": "Volkan Özçelik",
+  "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
   "main": "core.js"
 }
