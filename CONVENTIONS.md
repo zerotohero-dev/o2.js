@@ -7,6 +7,8 @@
 
 **Table of Contents**
 
+// TODO: regenerate TOC.
+
 - [o2.js JavaScript Conventions & Best Practices](#o2js-javascript-conventions--best-practices)
     - [An All-in-One Guide to Writing Efficient JavaScript ;)](#an-all-in-one-guide-to-writing-efficient-javascript-)
     - [Bottom Line Up Front](#bottom-line-up-front)
@@ -213,15 +215,15 @@ If there is a code piece that you long to keep, save it in an external file **ou
 
 To sustain code readability, limit the line length to **80 characters**. If the line (*including the indentation*) exceeds **80 characters**, continue from the next line.
 
+### End of File
+
+Place an empty newline at the end of the file.
+
 ### Indentation
 
 * Code blocks are indented with **4 spaces**.
 * The IDE should be set up to print **4 spaces** when pressing the `<TAB>` key (*i.e., use "soft tabs"*).
 * Never mix spaces and tabs.
-
-### End of File
-
-Place an empty newline at the end of the file.
 
 #### Indent&hellip;
 
