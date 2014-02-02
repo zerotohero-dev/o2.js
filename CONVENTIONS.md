@@ -371,7 +371,7 @@ function test() {
 
 > `var` statements should always be in the beginning of their respective scope (**function**). Same goes for `const` and `let` from [ECMAScript 6][es6].
 
-> For complex variable, and function declerations that need to be wrapped to the next line, a single indentation can make the code harder to read because the indented line can seem to preceed the following statement. In that cases (instead of double indenting) **triple indentattion** can make the distinction more clear.
+For complex variable, and function declerations that need to be wrapped to the next line, a single indentation can make the code harder to read because the indented line can seem to preceed the following statement. In that cases (instead of double indenting) **triple indentattion** can make the distinction more clear.
 
 #### Triple indent&hellip;
 
