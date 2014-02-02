@@ -326,7 +326,7 @@ default:
     break;
 ~~~
 
-* Statements **inside** a *closure*:
+* Statements **inside** a *closure*.
 
 > Technically speaking, *any function* is also a *closure*; therefore statements inside **any function** should be indented one level with respect to that *function*'s body.
 
@@ -355,6 +355,17 @@ me.eventHandler.preventDefault(evt);
 ~~~
 application.renderController.repaintUserInfo(messageId, userId,
     options, callback); //<-- 1x indented.
+~~~
+* Method chain calls.
+
+~~~
+program
+    .command('today') //<-- single indent. 
+    .description('If no option given, list the goals for today.' +
+        ' Otherwise executes the option within the context of today.’)//<-- single indent. 
+    .action(function() {
+        command.handleToday.call(program);
+    });
 ~~~
 
 * Variable declarations.
