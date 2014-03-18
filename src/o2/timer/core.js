@@ -28,7 +28,6 @@ var rConfig = require('./config'),
     misses = 0,
     hits = 0;
 
-
 if (!window) {
     throw new Error('o2.timer should run in a browser.');
 }
