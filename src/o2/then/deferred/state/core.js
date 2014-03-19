@@ -8,11 +8,6 @@
  */
 
 /**
- * @module o2.then.deferred.state
- * @submodule o2.then.deferred.state.core
- */
-
-/**
  * @attribute PENDING
  * @type {number}
  */

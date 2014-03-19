@@ -7,21 +7,12 @@ define(function (require, exports, module) {'use strict';
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @module o2.then
- */
-
-/**
- * @class o2.then.Deferred
- * @static
- */
-
 var Promise = require('../promise/core'),
 
     state = require('./state/core'),
 
-    isPromise = require('../../validation/core').isPromise,
-    noop = require('../../functional/core').noop,
+    isPromise = require('../node_modules/o2.validation/core').isPromise,
+    noop = require('../node_modules/o2.functional/core').noop,
 
     privates = require('./privates/core'),
     reject = privates.reject,

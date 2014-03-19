@@ -1,12 +1,18 @@
 define(function (require, exports, module) {'use strict';
 
-var isFunction = require('../../validation/core').isFunction,
-    identity = require('../../functional/core').identity;
+/*
+ * o2.js JavaScript Framework (http://o2js.com - info@o2js.com)
+ *
+ * This program is distributed under the terms of the MIT license.
+ * Please see the LICENSE.md file for details.
+ */
 
-function handle() {}
+var isFunction = require('../node_modules/o2.validation/core').isFunction,
+    identity = require('../node_modules/o2.functional/core').identity,
+
+    handle = require('./privates/core').handle;
 
 /**
- * @method Future
  * @constructor
  *
  * @param deferred
@@ -20,9 +26,6 @@ function Future(deferred, onFulfilled, onRejected) {
 }
 
 /**
- * @method resolve
- * @final
- *
  * @param value
  */
 Future.prototype.resolve = function(value) {
@@ -34,9 +37,6 @@ Future.prototype.resolve = function(value) {
 };
 
 /**
- * @method reject
- * @final
- *
  * @param reason
  */
 Future.prototype.reject = function(reason) {

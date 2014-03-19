@@ -7,15 +7,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @module o2.then
- */
-
-/**
- * @class o2.then.Deferred
- * @static
- */
-
 var Promise = require('../promise/core'),
 
     state = require('./state/core'),

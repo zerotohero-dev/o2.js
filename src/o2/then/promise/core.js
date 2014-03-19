@@ -7,30 +7,23 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @module o2.then
- */
-
-/**
- * @class o2.then.Promise
- */
-
 var privates = require('./privates/core'),
     isPending = privates.isPending,
     enqueue = privates.enqueue,
     handleNext = privates.handleNext;
 
 /**
- * @method Promise
  * @constructor
+ *
+ * @param ownerDeferred
+ * @param DeferredConstructor
  */
-function Promise() {
+function Promise(ownerDeferred, DeferredConstructor) {
+    this.deferred = ownerDeferred;
+    this.Deferred = DeferredConstructor;
 }
 
 /**
- * @method then
- * @final
- *
  * @param {Function} [onFulfilled]
  * @param {Function} [onRejected]
  *

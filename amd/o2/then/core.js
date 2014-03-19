@@ -1,4 +1,4 @@
-'use strict';
+define(function (require, exports, module) {'use strict';
 
 /*
  * o2.js JavaScript Framework (http://o2js.com - info@o2js.com)
@@ -16,5 +16,23 @@
  * @static
  */
 
-// TODO: add required modules to package.json and import them there,
-// do not import stuff that is outside the "then" folder.
+var Deferred = require('./deferred/core');
+
+/**
+ * Returns a `Deferred` **d**.
+ *
+ * * `d.resolve(value)` resolves the deferred,
+ * * `d.reject(reason)` rejects the deferred.
+ * * `d.promise` is a "thenable"  Promises/A+ compliant promise interface.
+ *
+ * @method defer
+ * @static
+ * @final
+ *
+ * @returns {Deferred}
+ */
+exports.defer = function() {
+    return new Deferred();
+};
+
+});

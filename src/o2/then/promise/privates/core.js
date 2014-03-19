@@ -7,16 +7,20 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @module o2.then.promise.privates
- * @submodule o2.then.promise.privates.core
- */
+var Future = require('../../future/core'),
+
+    state = require('../../deferred/state/core'),
+
+    privates = require('./privates/core'),
+    getState = privates.getState,
+    enqueue = privates.queue,
+    handleNext = privates.handleNext;
 
 /**
  * @param promise
  */
-exports.isPending = function(/*promise*/) {
-    throw 'Not Implemented';
+exports.isPending = function(promise) {
+    return getState(promise) === state.PENDING;
 };
 
 /**
@@ -24,8 +28,12 @@ exports.isPending = function(/*promise*/) {
  * @param onFulfilled
  * @param onRejected
  */
-exports.enqueue = function(/*promise, onFulfilled, onRejected*/) {
-    throw 'Not Implemented';
+exports.enqueue = function(promise, onFulfilled, onRejected) {
+    var newDeferred = new promise.Deferred();
+
+    enqueue(promise, new Future(newDeferred, onFulfilled, onRejected));
+
+    return newDeferred.promise;
 };
 
 /**
@@ -33,6 +41,10 @@ exports.enqueue = function(/*promise, onFulfilled, onRejected*/) {
  * @param onFulfilled
  * @param onRejected
  */
-exports.handleNext = function(/*promise, onFulfilled, onRejected*/) {
-    throw 'Not Implemented';
+exports.handleNext = function(promise, onFulfilled, onRejected) {
+    var newDeferred = new promise.Deferred();
+
+    handleNext(promise, new Future(newDeferred, onFulfilled, onRejected));
+
+    return newDeferred.promise;
 };
