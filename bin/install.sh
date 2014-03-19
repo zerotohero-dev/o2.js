@@ -17,3 +17,6 @@ npm install;
 
 cd ../../o2/object;
 npm install;
+
+cd ../../o2/then
+npm install;
