@@ -20,8 +20,8 @@ var Promise = require('../promise/core'),
 
     state = require('./state/core'),
 
-    isPromise = require('../../validation/core').isPromise,
-    noop = require('../../functional/core').noop,
+    isPromise = require('../node_modules/o2.validation/core').isPromise,
+    noop = require('../node_modules/o2.functional/core').noop,
 
     privates = require('./privates/core'),
     reject = privates.reject,

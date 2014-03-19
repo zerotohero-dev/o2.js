@@ -1,7 +1,7 @@
 'use strict';
 
-var isFunction = require('../../validation/core').isFunction,
-    identity = require('../../functional/core').identity;
+var isFunction = require('../node_modules/o2.validation/core').isFunction,
+    identity = require('../node_modules/o2.functional/core').identity;
 
 function handle() {}
 
