@@ -1,4 +1,4 @@
-'use strict';
+define(function (require, exports, module) {'use strict';
 
 /*
  * o2.js JavaScript Framework (http://o2js.com - info@o2js.com)
@@ -74,3 +74,5 @@ Deferred.prototype.reject = function(reason) {
 };
 
 module.exports = Deferred;
+
+});

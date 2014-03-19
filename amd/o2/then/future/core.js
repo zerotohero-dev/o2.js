@@ -1,4 +1,4 @@
-'use strict';
+define(function (require, exports, module) {'use strict';
 
 var isFunction = require('../../validation/core').isFunction,
     identity = require('../../functional/core').identity;
@@ -48,3 +48,5 @@ Future.prototype.reject = function(reason) {
 };
 
 module.exports = Future;
+
+});

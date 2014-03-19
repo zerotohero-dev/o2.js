@@ -8,9 +8,10 @@
  */
 
 /**
- * @module o2.io
+ * @module o2.then
  */
 
 /**
- * @class o2.io.core
+ * @class o2.then.core
+ * @static
  */
