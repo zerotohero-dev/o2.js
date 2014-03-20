@@ -1,0 +1,17 @@
+# <!--
+#  This program is distributed under
+#  the terms of the MIT license.
+#  Please see the LICENSE file for details.
+#
+#  lastModified: 2012-03-11 08:05:28.644109
+# -->
+
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^include/?.*$ - [F,L]
+
+RewriteRule ^index.php$ http://localhost/o2.js/examples/vcardapp [R]
+RewriteRule ^close$     http://localhost/o2.js/examples/vcardapp [R]
+
+RewriteRule ^people/(.*)$ vcard.php?u=$1

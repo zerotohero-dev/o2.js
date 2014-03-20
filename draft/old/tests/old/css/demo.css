@@ -1,0 +1,24 @@
+/*
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ * -->
+ */
+
+* {
+    margin : 0;
+    padding: 0;
+}
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size:0.9em;
+}
+
+h1 {
+    font-size: 120%;
+    padding:10px 15px 10px 15px;
+    background: #FFA500;
+    border-bottom: 1px #000000 solid;
+}

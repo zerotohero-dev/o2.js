@@ -1,0 +1,53 @@
+/*
+ * Style definitions for the unit tests.
+ *
+ * <!--
+ *  This program is distributed under
+ *  the terms of the MIT license.
+ *  Please see the LICENSE file for details.
+ *
+ *  lastModified: 2012-02-22 07:26:57.787690
+ * -->
+ */
+
+div.fail {
+    background : #cc0000;
+    border     : 1px #000000 solid;
+    color      : #ffffff;
+    margin     : 5px;
+    padding    : 10px;
+}
+
+div.fail b {
+    color: #000000;
+}
+
+div.pass {
+    background : #00cc00;
+    border     : 1px #000000 solid;
+    color      : #ffffff;
+    margin     : 5px;
+    padding    : 10px;
+}
+
+div.pass b {
+    color : #000000;
+}
+
+div.log {
+    background : #cccccc;
+    border     : 1px #666666 solid;
+    color      : #000000;
+    margin     : 5px;
+    padding    : 10px;
+}
+
+a {
+    background : #ffffff;
+    color      : #0000cc;
+}
+
+a:hover {
+    background : #0000cc;
+    color      : #ffffff;
+}

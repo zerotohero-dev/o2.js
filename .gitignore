@@ -8,9 +8,16 @@
 *.so
 *.pyc
 
+# IntelliJ           #
+######################
+.idea
+checkstyle.xml
+
 # Node.js            #
 ######################
-node_modules
+src/**/node_modules
+/node_modules
+
 
 # Logs and databases #
 ######################

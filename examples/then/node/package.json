@@ -1,0 +1,11 @@
+{
+  "name": "o2.examples.then.node",
+  "version": "0.0.0",
+  "description": "A Demo for o2.js Promise Implementation (o2.then)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Volkan Özçelik",
+  "license": "MIT"
+}

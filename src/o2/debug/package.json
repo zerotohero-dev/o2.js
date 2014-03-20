@@ -1,0 +1,16 @@
+{
+  "name": "o2.debug",
+  "version": "0.0.3",
+  "description": "o2.js console helper",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "debugger",
+    "console",
+    "o2.js"
+  ],
+  "author": "Volkan Özçelik <me@volkan.io>",
+  "license": "MIT",
+  "main": "core.js"
+}
