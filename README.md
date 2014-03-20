@@ -1,4 +1,8 @@
-in progress...
+> Although this branch is (by definition) stable, it's missing **a lot** of features since it's being rewritten.
+>
+> The recent 1.x version with a larger feature set may be found at https://github.com/v0lkan/o2.js/releases/tag/v.0.25.8
+
+### In Progress&hellip;
 
 read **CONTRIBUTE.md** for now.
 
