@@ -1,0 +1,718 @@
+{
+    "project": {
+        "name": "o2",
+        "description": "o2.js JavaScript Framework",
+        "version": "2.0.6",
+        "url": "http://o2js.com/",
+        "logo": "../assets/logo.png"
+    },
+    "files": {
+        "src/o2/ajax/core.js": {
+            "name": "src/o2/ajax/core.js",
+            "modules": {
+                "o2.ajax": 1
+            },
+            "classes": {
+                "o2.ajax.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/debug/core.js": {
+            "name": "src/o2/debug/core.js",
+            "modules": {
+                "o2.debug": 1
+            },
+            "classes": {
+                "o2.debug.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/io/core.js": {
+            "name": "src/o2/io/core.js",
+            "modules": {
+                "o2.io": 1
+            },
+            "classes": {
+                "o2.io.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/object/core.js": {
+            "name": "src/o2/object/core.js",
+            "modules": {
+                "o2.object": 1
+            },
+            "classes": {
+                "o2.object.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/string/core.js": {
+            "name": "src/o2/string/core.js",
+            "modules": {
+                "o2.string": 1
+            },
+            "classes": {
+                "o2.string.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/timer/core.js": {
+            "name": "src/o2/timer/core.js",
+            "modules": {
+                "o2.timer": 1
+            },
+            "classes": {
+                "o2.timer.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/o2/validate/core.js": {
+            "name": "src/o2/validate/core.js",
+            "modules": {
+                "o2.validate": 1
+            },
+            "classes": {
+                "o2.validate.core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "o2.ajax": {
+            "name": "o2.ajax",
+            "submodules": {},
+            "classes": {
+                "o2.ajax.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/ajax/core.js",
+            "line": 17,
+            "description": "An **XMLHttpRequest** helper module.",
+            "requires": [
+                "o2.string"
+            ]
+        },
+        "o2.debug": {
+            "name": "o2.debug",
+            "submodules": {},
+            "classes": {
+                "o2.debug.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/debug/core.js",
+            "line": 12
+        },
+        "o2.io": {
+            "name": "o2.io",
+            "submodules": {},
+            "classes": {
+                "o2.io.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/io/core.js",
+            "line": 12
+        },
+        "o2.object": {
+            "name": "o2.object",
+            "submodules": {},
+            "classes": {
+                "o2.object.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/object/core.js",
+            "line": 8,
+            "requires": [
+                "o2.validate"
+            ]
+        },
+        "o2.string": {
+            "name": "o2.string",
+            "submodules": {},
+            "classes": {
+                "o2.string.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/string/core.js",
+            "line": 12
+        },
+        "o2.timer": {
+            "name": "o2.timer",
+            "submodules": {},
+            "classes": {
+                "o2.timer.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/timer/core.js",
+            "line": 13,
+            "require": "o2.object"
+        },
+        "o2.validate": {
+            "name": "o2.validate",
+            "submodules": {},
+            "classes": {
+                "o2.validate.core": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/o2/validate/core.js",
+            "line": 7
+        }
+    },
+    "classes": {
+        "o2.ajax.core": {
+            "name": "o2.ajax.core",
+            "shortname": "o2.ajax.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.ajax",
+            "namespace": "",
+            "file": "src/o2/ajax/core.js",
+            "line": 17,
+            "uses": [
+                "o2.string.core"
+            ]
+        },
+        "o2.debug.core": {
+            "name": "o2.debug.core",
+            "shortname": "o2.debug.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.debug",
+            "namespace": "",
+            "file": "src/o2/debug/core.js",
+            "line": 12,
+            "static": 1
+        },
+        "o2.io.core": {
+            "name": "o2.io.core",
+            "shortname": "o2.io.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.io",
+            "namespace": "",
+            "file": "src/o2/io/core.js",
+            "line": 12
+        },
+        "o2.object.core": {
+            "name": "o2.object.core",
+            "shortname": "o2.object.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.object",
+            "namespace": "",
+            "file": "src/o2/object/core.js",
+            "line": 8,
+            "static": 1
+        },
+        "o2.string.core": {
+            "name": "o2.string.core",
+            "shortname": "o2.string.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "o2.ajax.core"
+            ],
+            "module": "o2.string",
+            "namespace": "",
+            "file": "src/o2/string/core.js",
+            "line": 12,
+            "static": 1
+        },
+        "o2.timer.core": {
+            "name": "o2.timer.core",
+            "shortname": "o2.timer.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.timer",
+            "namespace": "",
+            "file": "src/o2/timer/core.js",
+            "line": 13,
+            "static": 1
+        },
+        "o2.validate.core": {
+            "name": "o2.validate.core",
+            "shortname": "o2.validate.core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "o2.validate",
+            "namespace": "",
+            "file": "src/o2/validate/core.js",
+            "line": 7,
+            "static": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/o2/ajax/core.js",
+            "line": 22,
+            "description": "Returns a welcome `String`.\n\nUsage example:",
+            "example": [
+                "\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();"
+            ],
+            "itemtype": "method",
+            "name": "sayHi",
+            "static": 1,
+            "return": {
+                "description": "The welcome `String`.",
+                "type": "String"
+            },
+            "class": "o2.ajax.core",
+            "module": "o2.ajax"
+        },
+        {
+            "file": "src/o2/debug/core.js",
+            "line": 21,
+            "description": "Logs the arguments to the console.",
+            "itemtype": "method",
+            "name": "log",
+            "static": 1,
+            "final": 1,
+            "class": "o2.debug.core",
+            "module": "o2.debug"
+        },
+        {
+            "file": "src/o2/debug/core.js",
+            "line": 32,
+            "description": "Displays a warning message on the console.",
+            "itemtype": "method",
+            "name": "warn",
+            "static": 1,
+            "final": 1,
+            "class": "o2.debug.core",
+            "module": "o2.debug"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 18,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 27,
+            "description": "Clones the object (creates a non-recursive **shallow** copy).\n\nSee also {{#crossLink \"o2.object.core/deepClone:method\"}}{{/crossLink}}.",
+            "example": [
+                "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar'};\n    var cloned = objectUtil.clone(obj);\n\n    cloned.foo = 'baz';\n\n    // Logs 'bar'.\n    console.log(obj.foo);\n\n    // Logs 'baz'.\n    console.log(cloned.foo);"
+            ],
+            "itemtype": "method",
+            "name": "clone",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the object to clone.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "- a brand new cloned object.",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 67,
+            "description": "Deep clones an object (recursively cloning children).\n\nThis method only works on attributes, it does not clone function references.\n\nSee also {{#crossLink \"o2.object.core/clone:method\"}}{{/crossLink}}.",
+            "example": [
+                "\n    var objectUtil = require('amd/o2/object/core');\n\n    var obj = {foo: 'bar', deep: {cloned: 'baz'}};\n    var cloned = objectUtil.deepClone(obj);\n\n    cloned.deep.cloned = 'bazinga';\n\n    // Logs 'baz'.\n    console.log(obj.deep.cloned);\n\n    // Logs 'bazinga'.\n    console.log(cloned.deep.cloned);"
+            ],
+            "itemtype": "method",
+            "name": "deepClone",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the object to clone.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/object/core.js",
+            "line": 99,
+            "description": "Extends a base object, with the attributes of an extension object.\n\nThis does not clone the object **obj**; it modifies it **by ref**.",
+            "itemtype": "method",
+            "name": "extend",
+            "static": 1,
+            "final": 1,
+            "example": [
+                "\n    var base = {lorem: 'dolor'};\n    var extension = {ipsum: 'amet'};\n    var extend = require('amd/o2/object').extend;\n\n    extend(base, extension);\n\n    // Will log \"amet\".\n    console.log(base.ipsum);"
+            ],
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "- the base object.",
+                    "type": "Object"
+                },
+                {
+                    "name": "extension",
+                    "description": "- the object to merge with.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "- A reference to the the original object **obj**.",
+                "type": "Object"
+            },
+            "class": "o2.object.core",
+            "module": "o2.object"
+        },
+        {
+            "file": "src/o2/string/core.js",
+            "line": 17,
+            "description": "Says hi.\n\nUsage example:\n\n    var ajaxUtil = require('ajax/core');\n\n    // `greeting` will be a welcome text of type `String`.\n    var greeting = ajaxUtil.sayHi();",
+            "itemtype": "method",
+            "name": "sayHi",
+            "static": 1,
+            "final": 1,
+            "return": {
+                "description": "\"hi\".",
+                "type": "String"
+            },
+            "class": "o2.string.core",
+            "module": "o2.string"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 42,
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 47,
+            "params": [
+                {
+                    "name": "item",
+                    "description": ""
+                }
+            ],
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 63,
+            "params": [
+                {
+                    "name": "item",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 79,
+            "params": [
+                {
+                    "name": "command",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 93,
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 101,
+            "return": {
+                "description": "",
+                "type": "*"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 109,
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 121,
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 151,
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 164,
+            "description": "Initializes `o2.timer.core`.\n\nCall this method, before using other methods of `o2.timer.core`.",
+            "itemtype": "method",
+            "name": "initialize",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "newConfig",
+                    "description": "- configuration to override.",
+                    "type": "Object"
+                }
+            ],
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 188,
+            "description": "Defers tasks to `requestAnimationFrame`.\n\nUse this instead of `window.setTimeout`.",
+            "itemtype": "method",
+            "name": "setTimeout",
+            "static": 1,
+            "final": 1,
+            "example": [
+                "\n    var timer = require('amd/o2/timer/core');\n\n    var id = timer.setTimeout(function() {\n        console.log('This will run at least after a second');\n    }, 1000);"
+            ],
+            "params": [
+                {
+                    "name": "delegate",
+                    "description": "- the delegate to execute in the future.",
+                    "type": "Function"
+                },
+                {
+                    "name": "timeout",
+                    "description": "- timeout in milliseconds.",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "- a timeout id that we can use to clear the timeout.",
+                "type": "Number"
+            },
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/timer/core.js",
+            "line": 215,
+            "description": "Clears the timer scheduled with the given id.",
+            "itemtype": "method",
+            "name": "clearTimeout",
+            "static": 1,
+            "final": 1,
+            "example": [
+                "\n    var timer = require('amd/o2/timer/core');\n\n    var id = timer.setTimeout(function() {\n        console.log('This will run at least after a second');\n    }, 1000);\n\n    ...\n\n    // Now the task won't run.\n    timer.clearTimeout(id);"
+            ],
+            "params": [
+                {
+                    "name": "id",
+                    "description": "- the **id** of the timer.",
+                    "type": "Number"
+                }
+            ],
+            "class": "o2.timer.core",
+            "module": "o2.timer"
+        },
+        {
+            "file": "src/o2/validate/core.js",
+            "line": 14,
+            "description": "Checks whether the object is an [Array][array].\n\n[array]: http://mzl.la/19mDwAW",
+            "itemtype": "method",
+            "name": "isArray",
+            "static": 1,
+            "final": 1,
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "- `true` if **obj** is an [Array][array];\n`false` otherwise.\n\n[array]: http://mzl.la/19mDwAW",
+                "type": "Boolean"
+            },
+            "class": "o2.validate.core",
+            "module": "o2.validate"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/ajax/core.js:22"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:18"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:27"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:67"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/object/core.js:99"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/string/core.js:17"
+        },
+        {
+            "message": "unknown tag: require",
+            "line": " src/o2/timer/core.js:8"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:63"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:79"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:93"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:101"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:121"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/timer/core.js:188"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/o2/validate/core.js:14"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/object/core.js:18"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:42"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:47"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:63"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:79"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:93"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:101"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:109"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:121"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src/o2/timer/core.js:151"
+        }
+    ]
+}

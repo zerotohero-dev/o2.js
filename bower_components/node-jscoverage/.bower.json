@@ -1,0 +1,13 @@
+{
+  "name": "node-jscoverage",
+  "homepage": "https://github.com/visionmedia/node-jscoverage",
+  "_release": "36b3ba5d82",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "36b3ba5d82a87ffe45ae7101b7b036a3cb25483e"
+  },
+  "_source": "https://github.com/visionmedia/node-jscoverage.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/visionmedia/node-jscoverage.git"
+}

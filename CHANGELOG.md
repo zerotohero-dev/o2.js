@@ -1,36 +1,17 @@
-            ___       _
-      ____ |__ \     (_)____
-     / __ \__/ /    / / ___/
-    / /_/ / __/_   / (__  )    A Coherent Solution
-    \____/____(_)_/ /____/  to Your JavaScript Dilemma ;)
-               /___/
+# o2.js v.2.0.7
 
-**[o2.js](http://o2js.com/)** Change Log
---------------------------------------------------------------------------------
+* Added minimally working **timer**, **object**, and **validate** modules.
 
-### **[o2.js](http://o2js.com/)** v.0.26
+# o2.js v.2.0.2
 
-v.0.26 is not up there yet. Here are a few major things that will change most of the
-codebase:
+* Started creating `npm` modules for each **o2.js** module.
+* Created a **CONTRIBUTE** file.
 
-- We'll be removing active support of IE versions less than 10
-- We'll be using an AMD approach (either using require.js or a custom AMD implementation
-that supports (or is similar to) require.js API
+# o2.js v.0.26.12
 
-### **[o2.js](http://o2js.com/)** v.0.25
-
-* Still work in progress.
-* There are lots of patches to add.
-* Unit tests are being written from the grounds up.
-
-### **[o2.js](http://o2js.com/)** v.0.24
-
-* This version has been actually used in a **mobile** and **desktop** app
-production environments (for <http://grou.ps/> mobile and desktop apps, that
-has been used and tested by hundreds of thousands of users).
-The code is improved and got fixed by looking at user feedback and bug reports
-accordingly. I'd like to thank <http://grou.ps> once more for their support
-in **open source** development.
-* Many stability improvments have been done.
-* Created a set of unit test, that can be run automatically before each
-major release.
+* Starting porting modules from scratch.
+* o2.js JavaScript Framework will be able to run in **Node.JS** and on the client.
+* o2.js JavaScript Framework will support recent non-crappy user agents (i.e.: IE11.0 and above, Firefox 25.0 and above, Chrome 31.0 and above, Safari 7.0 and above, Opera 17.0 and above, iOS Safari 7.0 and above, Android Browser 4.3 and above, Opera Mini 7.0 and above, Blackberry Browser 10.0 and above, IE mobile 10.0 and above)
+* o2.js JavaScript Framework will, however, be extensible, so if a feature is not supported, it would be easy to write a plugin that shims the feature, and replace the functionality.
+* We are in the year **2014** so **to hell with IE quirks mode**. The project will assume that IE browsers will be on **standards-compatible** mode.
+* More documentation to come&hellip;

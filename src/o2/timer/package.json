@@ -1,0 +1,22 @@
+{
+  "name": "o2.timer",
+  "version": "0.0.7",
+  "description": "o2.js timer utility methods",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "timer",
+    "requestAnimationFrame",
+    "setTimeout",
+    "setInterval",
+    "o2.js"
+  ],
+  "author": "Volkan Özçelik <me@volkan.io>",
+  "license": "MIT",
+  "main": "core.js",
+  "dependencies": {
+    "o2.debug": "<=10",
+    "o2.object": "<=10"
+  }
+}

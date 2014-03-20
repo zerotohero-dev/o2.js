@@ -1,0 +1,30 @@
+{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik <volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "requirejs": "2.1.9",
+    "jasmine": "2.0.0",
+    "node-jscoverage": "https://github.com/visionmedia/node-jscoverage.git",
+    "jscover": "https://github.com/tntim96/JSCover.git"
+  }
+}

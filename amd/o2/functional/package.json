@@ -1,0 +1,16 @@
+{
+  "name": "o2.functional",
+  "version": "0.0.0",
+  "description": "o2.js Functional Programming Utility Methods",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "io",
+    "fs",
+    "file system"
+  ],
+  "author": "Volkan Özçelik <me@volkan.io>",
+  "license": "MIT",
+  "main": "core.js"
+}
