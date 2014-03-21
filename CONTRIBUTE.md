@@ -377,3 +377,5 @@ That is the end of this quick tutorial.
 [install]:       https://github.com/v0lkan/o2.js/blob/dev/INSTALL.md
 [o2git]:         https://github.com/volkan/o2.js
 [conventions]:   https://github.com/v0lkan/o2.js/blob/dev/CONVENTIONS.md
+
+.
