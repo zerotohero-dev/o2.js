@@ -13,7 +13,7 @@ var Future = require('../../future/core'),
 
     privates = require('./privates/core'),
     getState = privates.getState,
-    enqueue = privates.queue,
+    enqueue = privates.enqueue,
     handleNext = privates.handleNext;
 
 /**

@@ -35,3 +35,12 @@ exports.noop = function() {};
  * @returns {*} - the passed argument **x**.
  */
 exports.identity = function(x) {return x;};
+
+/**
+ * Executes **delegate** on the next possible time slice.
+ *
+ * @param {Function} delegate
+ */
+exports.next = function(delegate) {
+    setTimeout(delegate, 0);
+};
