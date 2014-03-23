@@ -29,3 +29,5 @@ src/**/node_modules
 ehthumbs.db
 Icon?
 Thumbs.db
+
+/examples/then/node/node_modules/

@@ -1,6 +1,6 @@
 {
   "name": "o2.then",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "o2.js Deferred Helpers - A Promises/A+ Compliant Deferred Library",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +18,6 @@
   "main": "core.js",
   "dependencies": {
     "o2.validation": "0.2.0",
-    "o2.functional": "0.0.0"
+    "o2.functional": "0.1.1"
   }
 }

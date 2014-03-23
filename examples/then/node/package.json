@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Volkan Özçelik",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "o2.then": "0.2.2"
+  }
 }

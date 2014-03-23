@@ -1,37 +1,49 @@
 'use strict';
 
-var then = require('o2.then/core');
-
-var deferred = then.defer();
-
-var promise = deferred.promise;
+var then = require('o2.then/core'),
+    deferred = then.defer(),
+    promise = deferred.promise;
 
 setTimeout(function() {
-    deferred.resolve('geronimo!');
+    deferred.resolve('o2js.com:');
 }, 1000);
 
 promise.then(function(value) {
-    console.log('Then 1 - ' + value);
-});
+    console.log(value);
 
-promise.then(function(value) {
-    console.log('Then 2 - ' + value);
-});
-
-promise.then(function(value) {
-    console.log('Then 3 ' + value);
-
-    return 42;
-}).then(function(value) {
     var deferred = then.defer();
 
-    var promise = deferred.promise;
-
     setTimeout(function() {
-        deferred.resolve(value/2);
+        deferred.resolve(value + ' A coherent');
     }, 1000);
+
+    promise = deferred.promise;
+
+    promise.then(function(value) {
+        console.log(value);
+
+        var deferred = then.defer();
+
+        setTimeout(function() {
+            deferred.resolve(value + ' solution');
+        }, 2000);
+
+        return deferred.promise.then(function(value) {
+            return value + ' to your JavaScript';
+        });
+    }).then(function(value) {
+        console.log(value);
+
+        return value + ' dilemma!';
+    }).then(function(value) {
+        console.log(value);
+    });
 
     return promise;
 }).then(function(value) {
+    console.log(value);
+});
+
+promise.then(function(value) {
     console.log(value);
 });
