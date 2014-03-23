@@ -40,6 +40,8 @@ Deferred.prototype.resolve = function(value) {
     if (isPromise(value)) {
         chain(this, value);
 
+        this.resolve = noop;
+
         return;
     }
 
