@@ -7,10 +7,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @param promise
- * @returns {*}
- */
 exports.get = function(promise) {
     return promise.deferred.outcome;
 };

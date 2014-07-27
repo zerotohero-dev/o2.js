@@ -10,27 +10,15 @@ define(function (require, exports, module) {'use strict';
 var state = require('../../../../deferred/state/core'),
     resolutionStrategy = {};
 
-/**
- * @param future
- * @param outcome
- */
 resolutionStrategy[state.PENDING] = function(future, outcome) {
     void future;
     void outcome;
 };
 
-/**
- * @param future
- * @param outcome
- */
 resolutionStrategy[state.FULFILLED] = function(future, outcome) {
     future.resolve(outcome);
 };
 
-/**
- * @param future
- * @param outcome
- */
 resolutionStrategy[state.REJECTED] = function(future, outcome) {
     future.reject(outcome);
 };

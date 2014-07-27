@@ -9,13 +9,22 @@ define(function (require, exports, module) {'use strict';
 
 var state = require('../state/core'),
 
-    isPromise = require('../../node_modules/o2.validation/core').isPromise,
-
     privates = require('./privates/core'),
-    resolveFutures = privates.resolveFutures,
-    rejectFutures = privates.rejectFutures;
 
-/**
+    resolveFutures = privates.resolveFutures,
+    rejectFutures = privates.rejectFutures,
+
+    validation = require('../../../validation/core'),
+
+    isPromise;
+
+if (!validation) {
+    throw new Error('Please run `npm install o2.validation` first.');
+}
+
+isPromise = validation.isPromise;
+
+   /**
  * @param deferred
  * @param reason
  */
