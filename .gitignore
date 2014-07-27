@@ -14,5 +14,5 @@ src/**/node_modules
 ehthumbs.db
 Icon?
 Thumbs.db
-.README.md.swp
-.CHANGELOG.md.swp
+*.swp
+**/node_modules
