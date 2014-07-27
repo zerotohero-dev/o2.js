@@ -7,31 +7,15 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @module o2.functional
- */
-
-/**
- * @class o2.functional.core
- */
-
-/**
- * Does nothing.
- *
- * @method noop
- * @static
- * @final
- */
 exports.noop = function() {};
 
-/**
- * An identity method.
- * Returns the original argument, without changing it.
- *
- * @method identity
- *
- * @param x
- *
- * @returns {*} - the passed argument **x**.
- */
 exports.identity = function(x) {return x;};
+
+/**
+ * Executes **delegate** on the next possible time slice.
+ *
+ * @param {Function} delegate
+ */
+exports.next = function(delegate) {
+    setTimeout(delegate, 0);
+};

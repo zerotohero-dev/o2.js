@@ -7,15 +7,19 @@
  * Please see the LICENSE.md file for details.
  */
 
-var next = require('../../node_modules/o2.functional/core').next,
+var functional = require('../../../functional/core'),
 
-    kCircularResolution = 'Cannot resolve a promise with itself';
+    kCircularResolution = 'Cannot resolve a promise with itself',
 
-/**
- * @param deferred
- * @param handler
- * @param value
- */
+    next;
+
+if (!functional) {
+    throw new Error('Please run `npm install o2.functional` first.');
+}
+
+next = functional.next;
+
+
 exports.handle = function(deferred, handler, value) {
     next(function() {
         var returnValue;

@@ -1,5 +1,3 @@
-# Compiled source #
-###################
 *.com
 *.class
 *.dll
@@ -7,28 +5,18 @@
 *.o
 *.so
 *.pyc
-
-# IntelliJ           #
-######################
 .idea
 checkstyle.xml
-
-# Node.js            #
-######################
 src/**/node_modules
 /node_modules
-
-
-# Logs and databases #
-######################
 *.log
-
-# OS generated files #
-######################
 .DS_Store*
 ehthumbs.db
 Icon?
 Thumbs.db
+*.swp
+
+**/node_modules
    
 
 /.idea/
