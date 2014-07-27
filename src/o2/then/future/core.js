@@ -7,27 +7,30 @@
  * Please see the LICENSE.md file for details.
  */
 
-var isFunction = require('../node_modules/o2.validation/core').isFunction,
-    identity = require('../node_modules/o2.functional/core').identity,
+var validation = require('../../validation/core'),
+    functional = require('../../functional/core'),
 
-    handle = require('./privates/core').handle;
+    handle = require('./privates/core').handle,
 
-/**
- * @constructor
- *
- * @param deferred
- * @param onFulfilled
- * @param onRejected
- */
+    isFunction, identity;
+
+if (!validation) {
+    throw new Error('Please run `npm install o2.validation` first.');
+}
+
+if (!functional) {
+    throw new Error('Please run `npm install o2.functional` first.');
+}
+
+isFunction = validation.isFunction;
+identity = functional.identity;
+
 function Future(deferred, onFulfilled, onRejected) {
     this.deferred = deferred;
     this.onFulfilled = onFulfilled;
     this.onRejected = onRejected;
 }
 
-/**
- * @param value
- */
 Future.prototype.resolve = function(value) {
     handle(
         this.deferred,
@@ -36,9 +39,6 @@ Future.prototype.resolve = function(value) {
     );
 };
 
-/**
- * @param reason
- */
 Future.prototype.reject = function(reason) {
     handle(
         this.deferred,

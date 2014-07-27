@@ -2,13 +2,35 @@
 >
 > The recent 1.x version with a larger feature set may be found at https://github.com/v0lkan/o2.js/releases/tag/v.0.25.8
 
-..
+...
 
 ### In Progress&hellip;
 
 read **CONTRIBUTE.md** for now.
 
 also read **INSTALL.md** for installation instructions.
+
+### Installation
+
+&hellip;
+
+### Dependencies
+
+Each folder in **src/o2/** is a separate **NPM module**.
+
+Although some these modules depend on one another, the dependencies are **not** explicitly set in **package.json**; instead these dependencies are checked at runtime as in&hellip;
+
+~~~
+var o = require('../object/core'),
+
+    ...
+
+    if (!o) {
+        throw new Error('Please run `npm install o2.object` first.');
+    }
+~~~
+
+So if you see an error message in the console, make sure you `npm install` necessary modules first.
 
 ### Release Policy
 

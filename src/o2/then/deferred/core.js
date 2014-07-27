@@ -11,18 +11,27 @@ var Promise = require('../promise/core'),
 
     state = require('./state/core'),
 
-    isPromise = require('../node_modules/o2.validation/core').isPromise,
-    noop = require('../node_modules/o2.functional/core').noop,
+    isPromise, noop,
 
     privates = require('./privates/core'),
     reject = privates.reject,
     resolve = privates.resolve,
-    chain = privates.chain;
+    chain = privates.chain,
 
-/**
- * @method Deferred
- * @constructor
- */
+    validation = require('../../validation/core'),
+    functional = require('../../functional/core');
+
+if (!validation) {
+    throw new Error('Please run `npm install o2.validation` first.');
+}
+
+if (!functional) {
+    throw new Error('Please run `npm install o2.functional` first.');
+}
+
+isPromise = validation.isPromise;
+noop = functional.noop;
+
 function Deferred() {
     this.state = state.PENDING;
     this.outcome = null;
@@ -30,15 +39,11 @@ function Deferred() {
     this.promise = new Promise(this, Deferred);
 }
 
-/**
- * @method resolve
- * @final
- *
- * @param value
- */
 Deferred.prototype.resolve = function(value) {
     if (isPromise(value)) {
         chain(this, value);
+
+        this.resolve = noop;
 
         return;
     }
@@ -48,13 +53,6 @@ Deferred.prototype.resolve = function(value) {
     this.resolve = noop;
 };
 
-/**
- * @method reject
- * @static
- * @final
- *
- * @param reason
- */
 Deferred.prototype.reject = function(reason) {
     this.state = state.REJECTED;
     this.outcome = reason;

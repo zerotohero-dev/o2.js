@@ -11,26 +11,14 @@ var resolution = require('./privates/strategy').resolution,
 
     getOutcome = require('./privates/outcome').get;
 
-/**
- * @param promise
- * @returns {state}
- */
 exports.getState = function(promise) {
     return promise.deferred.state;
 };
 
-/**
- * @param promise
- * @param future
- */
 exports.enqueue = function(promise, future) {
     promise.deferred.futures.push(future);
 };
 
-/**
- * @param promise
- * @param future
- */
 exports.handleNext = function(promise, future) {
     var currentState = exports.getState(promise),
         currentOutcome = getOutcome(promise),

@@ -7,20 +7,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @attribute PENDING
- * @type {number}
- */
 exports.PENDING = 0;
-
-/**
- * @attribute FULFILLED
- * @type {number}
- */
 exports.FULFILLED = 1;
-
-/**
- * @attribute REJECTED
- * @type {number}
- */
 exports.REJECTED = -1;
