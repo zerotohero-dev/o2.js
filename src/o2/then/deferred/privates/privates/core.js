@@ -7,10 +7,6 @@
  * Please see the LICENSE.md file for details.
  */
 
-/**
- * @param deferred
- * @param value
- */
 exports.resolveFutures = function(deferred, value) {
     var futures = deferred.futures,
         i, len;
@@ -22,10 +18,6 @@ exports.resolveFutures = function(deferred, value) {
     deferred.futures = null;
 };
 
-/**
- * @param deferred
- * @param reason
- */
 exports.rejectFutures = function(deferred, reason) {
     var futures = deferred.futures,
         i, len;

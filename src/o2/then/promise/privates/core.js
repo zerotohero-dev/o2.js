@@ -16,18 +16,10 @@ var Future = require('../../future/core'),
     enqueue = privates.enqueue,
     handleNext = privates.handleNext;
 
-/**
- * @param promise
- */
 exports.isPending = function(promise) {
     return getState(promise) === state.PENDING;
 };
 
-/**
- * @param promise
- * @param onFulfilled
- * @param onRejected
- */
 exports.enqueue = function(promise, onFulfilled, onRejected) {
     var newDeferred = new promise.Deferred();
 
@@ -36,11 +28,6 @@ exports.enqueue = function(promise, onFulfilled, onRejected) {
     return newDeferred.promise;
 };
 
-/**
- * @param promise
- * @param onFulfilled
- * @param onRejected
- */
 exports.handleNext = function(promise, onFulfilled, onRejected) {
     var newDeferred = new promise.Deferred();
 

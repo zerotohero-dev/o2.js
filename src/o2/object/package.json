@@ -1,6 +1,6 @@
 {
   "name": "o2.object",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "o2.js object-related methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,8 +13,5 @@
   ],
   "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
-  "main": "core.js",
-  "dependencies": {
-    "o2.validate": "<=10"
-  }
+  "main": "core.js"
 }

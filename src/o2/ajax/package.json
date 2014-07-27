@@ -1,6 +1,6 @@
 {
   "name": "o2.ajax",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "o2.js AJAX Helpers",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,8 +12,5 @@
   ],
   "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
-  "main": "core.js",
-  "dependencies": {
-    "o2.string": "0.0.7"
-  }
+  "main": "core.js"
 }

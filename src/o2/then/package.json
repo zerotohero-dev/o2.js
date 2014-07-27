@@ -1,6 +1,6 @@
 {
   "name": "o2.then",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "o2.js Deferred Helpers - A Promises/A+ Compliant Deferred Library",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,9 +15,5 @@
   ],
   "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
-  "main": "core.js",
-  "dependencies": {
-    "o2.validation": "0.2.0",
-    "o2.functional": "0.1.1"
-  }
+  "main": "core.js"
 }
