@@ -15,4 +15,8 @@ ehthumbs.db
 Icon?
 Thumbs.db
 *.swp
+
 **/node_modules
+   
+
+/.idea/
