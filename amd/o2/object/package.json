@@ -1,6 +1,6 @@
 {
   "name": "o2.object",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "o2.js object-related methods",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
