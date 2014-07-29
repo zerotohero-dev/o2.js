@@ -12,7 +12,13 @@ var isNode = (typeof module !== 'undefined' && !!module.exports),
 
     kFs = 'fs',
 
+    methodNames = ['log', 'warn', 'info'],
+
+    isEnabled = true,
+
     stream;
+
+function noop() {}
 
 function print(label, args) {
     var buffer = [],
@@ -25,53 +31,41 @@ function print(label, args) {
     stream.write(label + ': ' + buffer.join(','));
 }
 
-if (isNode) {
-    exports.initialize = function(file) {
+function doPrint(name, args) {print('[' + name + ']', args);}
 
-        // To trick grunt-contrib-jasmine.
-        var fs = require(kFs);
+function doLog(name, args) {console[name].apply(console, args);}
 
-        if (typeof file === 'string') {
-            stream = fs.createFileStream(
-                file, {flags: 'a+', encoding: 'utf8'}
-            );
+function exec(method, name, args) {
+    if (!isEnabled) {return;}
 
-            return;
-        }
-
-        stream = file;
-    };
-
-    exports.log = function() {
-        if (!stream) {
-            throw new Error(
-                'o2.debug: Please call `o2.debug.initialize` first.'
-            );
-        }
-
-        print('[LOG ]', arguments);
-    };
-
-    exports.warn = function() {
-        if (!stream) {
-            throw new Error(
-                'o2.debug: Please call `o2.debug.initialize` first.'
-            );
-        }
-
-        print('[WARN]', arguments);
-    };
-} else {
-    if (isConsoleAvailable) {
-        exports.log = function() {
-            console.log.apply(console, arguments);
-        };
-
-        exports.warn = function() {
-            console.warn.apply(console, arguments);
-        };
-    } else {
-        exports.log = function() {};
-        exports.warn = function() {};
-    }
+    method(name, args);
 }
+
+exports.enable = function() {isEnabled = true;};
+
+exports.disable = function() {isEnabled = false;};
+
+exports.initialize = function(file) {
+
+    // To trick grunt-contrib-jasmine.
+    var fs = require(kFs);
+
+    if (typeof file === 'string') {
+        stream = fs.createFileStream(
+            file, {flags: 'a+', encoding: 'utf8'}
+        );
+
+        return;
+    }
+
+    stream = file;
+};
+
+methodNames.forEach(function(name) {
+    exports[name] = isNode ?
+    function() {exec(doPrint, name, arguments);} : (
+        isConsoleAvailable ?
+        function() {exec(doLog, name, arguments);} :
+        noop
+    );
+});
