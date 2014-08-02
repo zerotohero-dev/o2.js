@@ -28,7 +28,7 @@ function print(label, args) {
         buffer.push(args[i]);
     }
 
-    stream.write(label + ': ' + buffer.join(','));
+    stream.write(label + ': ' + buffer.join(',') + '\n');
 }
 
 function doPrint(name, args) {print('[' + name + ']', args);}
@@ -51,7 +51,7 @@ exports.initialize = function(file) {
     var fs = require(kFs);
 
     if (typeof file === 'string') {
-        stream = fs.createFileStream(
+        stream = fs.createWriteStream(
             file, {flags: 'a+', encoding: 'utf8'}
         );
 
