@@ -1,3 +1,7 @@
+# o2.js v.2.2.0
+
+* Implemented a basic debug module.
+
 # o2.js v.2.1.0
 
 * Created a debugger that does async logging on the server, and logs to the console on the client.

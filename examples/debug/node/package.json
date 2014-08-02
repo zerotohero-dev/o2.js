@@ -1,0 +1,14 @@
+{
+  "name": "o2.examples.debugger.node",
+  "version": "0.0.0",
+  "description": "A demo for o2.debug implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Volkan Özçelik",
+  "license": "MIT",
+  "dependencies": {
+    "o2.debug": "~0.2.1"
+  }
+}
