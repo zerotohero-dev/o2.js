@@ -7,3 +7,12 @@
  * Please see the LICENSE.md file for details.
  */
 
+var path = require('path');
+
+exports.require = function(baseDir, appDir) {
+    return function(name) {
+        return require(path.join(
+            __dirname, name[0] === '/' ? baseDir || '.' : appDir || '.'
+        ));
+    };
+};
