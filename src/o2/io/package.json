@@ -12,5 +12,8 @@
   ],
   "author": "Volkan Özçelik <me@volkan.io>",
   "license": "MIT",
-  "main": "core.js"
+  "main": "core.js",
+  "dependencies": {
+    "path": "~0.4.9"
+  }
 }

@@ -12,7 +12,13 @@ var isNode = (typeof module !== 'undefined' && !!module.exports),
 
     kFs = 'fs',
 
+    methodNames = ['log', 'warn', 'info'],
+
+    isEnabled = true,
+
     stream;
+
+function noop() {}
 
 function print(label, args) {
     var buffer = [],
@@ -22,58 +28,46 @@ function print(label, args) {
         buffer.push(args[i]);
     }
 
-    stream.write(label + ': ' + buffer.join(','));
+    stream.write(label + ': ' + buffer.join(',') + '\n');
 }
 
-if (isNode) {
-    exports.initialize = function(file) {
+function doPrint(name, args) {print('[' + name + ']', args);}
 
-        // To trick grunt-contrib-jasmine.
-        var fs = require(kFs);
+function doLog(name, args) {console[name].apply(console, args);}
 
-        if (typeof file === 'string') {
-            stream = fs.createFileStream(
-                file, {flags: 'a+', encoding: 'utf8'}
-            );
+function exec(method, name, args) {
+    if (!isEnabled) {return;}
 
-            return;
-        }
+    method(name, args);
+}
 
-        stream = file;
-    };
+exports.enable = function() {isEnabled = true;};
 
-    exports.log = function() {
-        if (!stream) {
-            throw new Error(
-                'o2.debug: Please call `o2.debug.initialize` first.'
-            );
-        }
+exports.disable = function() {isEnabled = false;};
 
-        print('[LOG ]', arguments);
-    };
+exports.initialize = function(file) {
 
-    exports.warn = function() {
-        if (!stream) {
-            throw new Error(
-                'o2.debug: Please call `o2.debug.initialize` first.'
-            );
-        }
+    // To trick grunt-contrib-jasmine.
+    var fs = require(kFs);
 
-        print('[WARN]', arguments);
-    };
-} else {
-    if (isConsoleAvailable) {
-        exports.log = function() {
-            console.log.apply(console, arguments);
-        };
+    if (typeof file === 'string') {
+        stream = fs.createWriteStream(
+            file, {flags: 'a+', encoding: 'utf8'}
+        );
 
-        exports.warn = function() {
-            console.warn.apply(console, arguments);
-        };
-    } else {
-        exports.log = function() {};
-        exports.warn = function() {};
+        return;
     }
-}
+
+    stream = file;
+};
+
+methodNames.forEach(function(name) {
+    exports[name] = isNode ?
+    function() {exec(doPrint, name, arguments);} : (
+        isConsoleAvailable ?
+        function() {exec(doLog, name, arguments);} :
+        noop
+    );
+});
 
 });

@@ -17,6 +17,9 @@ Thumbs.db
 *.swp
 
 **/node_modules
-   
+
+.grunt
+
+_SpecRunner.html
 
 /.idea/

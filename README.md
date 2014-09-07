@@ -14,6 +14,9 @@ also read **INSTALL.md** for installation instructions.
 
 &hellip;
 
+//NOTE: node_modules should not be inside src/ folder, otherwise it messes up with the build process.
+//TODO: fix the documentation to reflect this, and how to maintain it.
+
 ### Dependencies
 
 Each folder in **src/o2/** is a separate **NPM module**.

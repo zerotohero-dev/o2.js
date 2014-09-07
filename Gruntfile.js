@@ -6,7 +6,8 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: '.jshintrc'
             },
-            src: ['Gruntfile.js', 'src/**/*.js']
+            src: ['Gruntfile.js', 'src/**/*.js', '!src/**/node_modules/**/*.js']
+
         },
         connect: {
             test: {
