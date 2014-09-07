@@ -17,7 +17,7 @@
     "formatting"
   ],
   "scripts": {
-    "test": "grunt publish;vows test/node/*.js --spec;grunt test"
+    "test": "grunt publish;"
   },
   "repository": {
     "type": "git",

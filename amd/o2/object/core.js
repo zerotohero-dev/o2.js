@@ -14,7 +14,7 @@ var validate = require('../validation/core'),
     kUndefined = 'undefined';
 
 if (!validate) {
-    throw new Error('Please run `npm install o2.validate` first.');
+    throw new Error('Please run `npm install o2.validation` first.');
 }
 
 isArray = validate.isArray;
