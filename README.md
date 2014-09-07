@@ -18,6 +18,7 @@ also read **INSTALL.md** for installation instructions.
 //TODO: fix the documentation to reflect this, and how to maintain it.
 
 // TODO: disabled all the tests, because testing amdified files were becoming a problem; need to think about a better way to do it.
+// maybe write a simpler test module that works with the project's specific requirements.
 
 ### Dependencies
 
